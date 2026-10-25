@@ -2,10 +2,10 @@ import { readFile, rm, writeFile, readdir, copyFile } from 'node:fs/promises';
 import { resolve, relative, sep } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { pathToFileURL } from 'node:url';
+import { pathToFileURL, fileURLToPath } from 'node:url';
 import process from 'node:process';
 
-const root = resolve(new URL('..', import.meta.url).pathname);
+const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const lock = JSON.parse(await readFile(resolve(root, 'ENGINE.lock.json'), 'utf8'));
 const engine = resolve(process.env.VN_ENGINE_PATH || resolve(root, '..', 'VN-Engine-v2'));
 const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
