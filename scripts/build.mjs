@@ -115,7 +115,7 @@ async function injectGameRuntime(project) {
     version: project.version,
     engine: packagedManifest.engine,
     contentFingerprint: fingerprint,
-    extensions: ['reset-combat-v1', 'reset-meta-v1', 'reset-portrait-set-v1'],
+    extensions: ['reset-combat-v1', 'reset-meta-v1', 'reset-portrait-set-v1', 'reset-scene-art-v1'],
     files: finalFiles.map(file => ({ name: file.name, size: file.bytes.length, sha256: createHash('sha256').update(file.bytes).digest('hex') }))
   };
   await writeFile(resolve(output, 'build-manifest.json'), JSON.stringify(metadata, null, 2) + '\n');
@@ -129,6 +129,7 @@ if (process.env.ALLOW_ENGINE_DRIFT !== '1') {
 
 run(process.execPath, [resolve(root, 'scripts/generate-audio.mjs')], root);
 run(process.execPath, [resolve(root, 'scripts/generate-portraits.mjs')], root);
+run(process.execPath, [resolve(root, 'scripts/generate-scenes.mjs')], root);
 let project = JSON.parse(await readFile(projectFile, 'utf8'));
 for (const pack of await loadContentPacks()) project = applyPack(project, pack);
 const audio = JSON.parse(await readFile(audioFile, 'utf8'));
@@ -144,7 +145,7 @@ try {
   await rm(output, { recursive: true, force: true });
   run(process.execPath, [resolve(engine, 'tools/package-game.mjs'), buildProjectFile, output], root);
   await injectGameRuntime(buildProject);
-  console.log(`回留 ${buildProject.version} build completed with VN Engine v2 ${lock.version} @ ${lock.commit.slice(0, 12)} + RESET combat/meta/portrait runtime`);
+  console.log(`回留 ${buildProject.version} build completed with VN Engine v2 ${lock.version} @ ${lock.commit.slice(0, 12)} + RESET combat/meta/production-art runtime`);
 } finally {
   await rm(buildProjectFile, { force: true });
 }
