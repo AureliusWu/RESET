@@ -7,7 +7,7 @@ import { pathToFileURL } from 'node:url';
 import { createHash } from 'node:crypto';
 const {chromium}=await import(pathToFileURL(resolve(process.env.VN_ENGINE_PATH,'node_modules/playwright/index.mjs')));
 const root=resolve(process.argv[2]), out=resolve('test-results/windows-installed');await mkdir(out,{recursive:true});
-const checks=[],errors=[];let browser;
+const checks=[],errors=[];let browser,page;
 const gameOrigin='https://game-'+createHash('sha256').update('reset').digest('hex').slice(0,24)+'.vnengine.test/';
 const stop=()=>{
   spawnSync('taskkill',['/IM','VNEngine.exe','/T','/F'],{stdio:'ignore'});
@@ -31,16 +31,22 @@ const launch=async()=>{
 };
 try{
   stop();
-  let page=await launch();checks.push('Extracted RESET.exe starts engine/VNEngine.exe and mounts the real game/ content in Windows WebView2');
+  page=await launch();checks.push('Extracted RESET.exe starts engine/VNEngine.exe and mounts the real game/ content in Windows WebView2');
   await page.locator('[data-control=settings]').click();await page.getByLabel('文字间隔',{exact:true}).fill('0');await page.getByRole('button',{name:'关闭',exact:true}).click();
   await page.locator('[data-control=next]').click();await page.locator('[data-control=save]').click();const line=await page.locator('.vn-engine').getAttribute('data-line');
   await page.locator('[data-control=next]').click();await page.locator('[data-control=load]').click();assert.equal(await page.locator('.vn-engine').getAttribute('data-line'),line);
   assert.match(await page.title(),/读取/);checks.push('Native player renders art, uses settings, saves and restores with Meta');
-  await page.screenshot({path:out+'/native-game.png'});await browser.close();browser=null;stop();
-  page=await launch();await page.locator('[data-control=load]').click();assert.equal(await page.locator('.vn-engine').getAttribute('data-line'),line);
+  await page.screenshot({path:out+'/native-game.png'});
+  const close=spawnSync('powershell',['-NoProfile','-Command',"Get-Process VNEngine | ForEach-Object { $_.CloseMainWindow() | Out-Null; if (-not $_.WaitForExit(10000)) { throw 'Native window did not close normally' } }"],{encoding:'utf8'});
+  assert.equal(close.status,0,close.stderr);await browser.close().catch(()=>{});browser=null;
+  await new Promise(r=>setTimeout(r,1500));
+  page=await launch();await page.locator('[data-control=load]').click();await page.waitForFunction(line=>document.querySelector('.vn-engine')?.dataset.line===line,line);
   assert.match(await page.title(),/读取 2/);checks.push('A complete native process restart retains the save, reading settings and Meta');
   await page.screenshot({path:out+'/native-restarted.png'});assert.deepEqual(errors,[]);
   await writeFile(out+'/acceptance.json',JSON.stringify({result:'passed',platform:process.platform,browser:await browser.version(),checks,errors},null,2)+'\n');
   console.log(JSON.stringify({result:'passed',checks},null,2));
-}catch(e){await writeFile(out+'/failure.json',JSON.stringify({error:e.stack,checks,errors},null,2));throw e}
+}catch(e){
+  const state=await page?.evaluate(()=>({title:document.title,scene:document.querySelector('.vn-engine')?.dataset,status:document.querySelector('.vn-status')?.textContent,save:localStorage.getItem('vn-engine:reset:save:1'),meta:localStorage.getItem('reset:meta:v1')})).catch(()=>null);
+  await page?.screenshot({path:out+'/failure.png'}).catch(()=>{});await writeFile(out+'/failure.json',JSON.stringify({error:e.stack,checks,errors,state},null,2));throw e;
+}
 finally{await browser?.close().catch(()=>{});stop()}

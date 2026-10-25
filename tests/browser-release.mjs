@@ -62,7 +62,9 @@ try{
       await page.keyboard.up('d');await page.screenshot({path:out+`/combat-${id}-${outcome}.png`});
       if(outcome==='win')for(let hit=0;hit<500;hit++){
         if(!await page.locator('.reset-combat').count())break;
-        if(id==='faceless_second')await page.locator('.reset-combat [data-key=KeyK]').tap();else await page.keyboard.press('k');
+        try{
+          if(id==='faceless_second')await page.locator('.reset-combat [data-key=KeyK]').tap({force:true,timeout:1000});else await page.keyboard.press('k');
+        }catch(error){if(!await page.locator('.reset-combat').count())break;throw error}
         await page.waitForTimeout(60);
       }
       await page.locator('.reset-combat').waitFor({state:'detached',timeout:45000});
