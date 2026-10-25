@@ -2,7 +2,7 @@
 
 ## 当前接入
 
-本作使用 `VN-Engine-v2` v0.3.0 alpha 的通用 `narrative` runtime，而不是复制《湿性愈合》《“网”恋》或《回路》的运行时代码。
+本作使用 `VN-Engine-v2` v0.3.0（精确锁定提交见 `ENGINE.lock.json`） 的通用 `narrative` runtime，而不是复制《湿性愈合》《“网”恋》或《回路》的运行时代码。
 
 `game/project.json` 当前直接使用：
 
@@ -16,7 +16,11 @@
 
 引擎固定提交记录在 `ENGINE.lock.json`。CI 会检出该精确提交并打包独立作品，避免游戏仓库静默跟随引擎 main 变化。
 
-## 下一轮需要进入引擎本体的能力
+## v1.0.0 作品级接入
+
+`game/runtime/meta.mjs` 提供真实读取计数、结局与通关 Meta，保护不可逆区间的保存、导入、读取、历史回退和重开入口。`game/runtime/combat.mjs` 提供三处战斗并回接 canonical choice。当前版本保持引擎锁定，不将这些作品专属行为主动搬入引擎。
+
+## 后续引擎能力设想（未纳入 v1.0.0 发布范围）
 
 ### 1. MetaState
 

@@ -32,3 +32,5 @@ True End 要求玩家把前面学会的“保存以避免后悔”主动放下�
 ## 自动验收
 
 `scripts/check-release.mjs` 强制要求六个 Normal End、`bad-permanent-save` 与 `true-end` 存在。具体死亡型 Bad End 通过剧情和战斗回接继续验证，不把所有中间死亡都当作独立收藏结局。
+
+`npm run test:release` 从开场遍历真实运行时选择，记录所有六个 Normal End、上述六个核心 Bad End 和 True End 的可重放路径，并验证读档后的结局一致。`test-results/routes.json` 保存验收路径；最终 ZIP 浏览器验收另外验证结局 UI 和 Meta，以及三处战斗真实胜负回接。

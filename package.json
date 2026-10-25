@@ -7,6 +7,8 @@
     "audio": "node scripts/generate-audio.mjs",
     "build": "node scripts/build.mjs",
     "check:release": "node scripts/check-release.mjs",
+    "test:release": "node --test tests/release.test.mjs",
+    "test:browser": "node tests/browser-release.mjs",
     "serve": "python -m http.server 8000 --directory dist"
   },
   "engines": {

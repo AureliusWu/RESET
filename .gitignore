@@ -4,3 +4,6 @@ node_modules/
 .DS_Store
 game/.project.build.json
 game/assets/generated/
+game/assets/generated-portraits/
+game/assets/generated-scenes/
+test-results/

@@ -51,6 +51,10 @@ jobs:
         working-directory: game-repo
         run: npm run check:release
 
+      - name: Runtime, ending reachability and Meta regressions
+        working-directory: game-repo
+        run: npm run test:release
+
       - name: Verify v1.0.0 release content
         working-directory: game-repo
         run: |

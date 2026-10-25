@@ -93,6 +93,9 @@ async function walkFiles(directory) {
 }
 
 async function injectGameRuntime(project) {
+  for (const file of ['README.md', 'LICENSE.md', 'CHANGELOG_v1.0.0.md']) {
+    await copyFile(resolve(root, file), resolve(output, file));
+  }
   await copyFile(resolve(root, 'game/runtime/combat.mjs'), resolve(output, 'combat.mjs'));
   await copyFile(resolve(root, 'game/runtime/meta.mjs'), resolve(output, 'meta.mjs'));
   const appPath = resolve(output, 'app.mjs');

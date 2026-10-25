@@ -9,12 +9,23 @@
 - 中文名：**回留**
 - 仓库：`AureliusWu/RESET`
 - 当前版本：**v1.0.0**
-- 状态：**完整可发布版本**
+- 状态：**v1.0.0 正式发行**
 - 剧情状态：**主线、六角色 Normal End、关键 Bad End、True End 已闭环**
 - 引擎：独立仓库 `AureliusWu/VN-Engine-v2`
 - 锁定引擎：v0.3.0 / `15c101e0d2b2c1e40dbc36d7a0c1a246d102b52c`
 - 发布平台：**Web/PWA + Windows x64**
 - Windows 版通过专用 `RESET.exe` 启动器进入自研 VN Engine v2 宿主，不依赖开发环境。
+
+## 下载与运行
+
+正式发行页：[《回留 / RESET》v1.0.0](https://github.com/AureliusWu/RESET/releases/tag/v1.0.0)。
+
+- [Windows x64](https://github.com/AureliusWu/RESET/releases/download/v1.0.0/RESET-huiliu-v1.0.0-win-x64.zip)：完整解压后运行根目录 `RESET.exe`；保留 `engine/` 与 `game/`。需要 Windows 10/11 x64 和 Microsoft Edge WebView2 Runtime，无需 Node.js 或 .NET SDK。
+- [Web / PWA](https://github.com/AureliusWu/RESET/releases/download/v1.0.0/RESET-huiliu-v1.0.0-web.zip)：解压后用静态 HTTP 服务或 HTTPS 网站托管。本地可在解压目录运行 `python -m http.server 8000`，访问 `http://localhost:8000/`。首次联网等候“已下载，可离线游玩”后再离线重开，勿直接双击 HTML。
+
+PWA 缓存需要 HTTPS 或 localhost。系统安装入口取决于浏览器。存档与 Meta 属于当前站点来源/浏览器或 Windows 配置目录；普通剧情区间可在设置中导出存档。True Route 不可逆区间禁止导入、导出和历史回退，完成 True End 后可重新开始并保留结局 Meta。
+
+完整说明见 [CHANGELOG_v1.0.0.md](CHANGELOG_v1.0.0.md)，下载校验值见 Release 附件 `SHA256SUMS.txt`。
 
 ## 游戏内容
 
@@ -76,10 +87,13 @@ launcher/                           Windows `RESET.exe` 启动器
 ```bash
 npm run build
 npm run check:release
+npm run test:release
 python -m http.server 8000 --directory dist
 ```
 
 `npm run check:release` 会验证剧情结局、Boss 回接、Meta/战斗插件、离线缓存、角色差分、production 背景/CG 与终局音乐，避免生成结构不完整的发行包。
+
+CI 还会从最终 ZIP 运行 `npm run test:browser`，检查真实断网重载、三处实时战斗胜负、结局/Meta/不可逆区间；Windows CI 从最终 ZIP 执行原生启动与进程重启持久化验收。测试报告与截图作为独立 Artifact 保留。
 
 ## 发布边界
 
