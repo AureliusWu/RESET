@@ -2,40 +2,55 @@
 
 ## 状态定义
 
-- **direction**：方向已确定，可继续迭代，但不能视为最终生产资产。
-- **prototype**：可直接运行，用于剧情、演出、技术和节奏验证。
-- **production-candidate**：已接近正式资产标准，仍需角色一致性/分辨率/版权与细节复核。
-- **production**：可以进入正式版本。
+- **direction**：方向已确定，可继续迭代，但不能视为正式生产资产。
+- **prototype**：可运行，主要用于技术、构图和节奏验证。
+- **production-candidate**：达到正式方向，仍等待发行链验收。
+- **production**：已纳入发布完整性检查，可以进入正式版本。
 
-## 当前资产
+## v1 正式视觉方向
 
-| 类别 | 资产 | 状态 | 说明 |
+《回留》v1 使用统一的二维日系动画感矢量体系：干净轮廓、克制赛璐璐色块、稳定人物底模。现实梧城使用清透自然的蓝灰、米白、暖黄；夜梧城与异常空间使用冷蓝、紫灰和低明度对比。
+
+这套资产是 v1 的正式基础美术。未来可以进行更高预算的手绘重制，但重制属于视觉升级，不影响当前版本作为完整发行版成立。
+
+## 当前生产资产
+
+| 类别 | 数量/资产 | 状态 | 说明 |
 | --- | --- | --- | --- |
-| 背景 | 第一章校园/地铁/档案室等 SVG | prototype | 可运行，占位构图用途 |
-| 背景 | `bg-stairwell-morning.svg` | direction | 清晨校园色调基准 |
-| 背景 | `bg-riverside-dusk.svg` | direction | 梧城江滩黄昏色调基准 |
-| 背景 | `bg-underpass-rain.svg` | direction | 都市灵异与战斗场景基准 |
-| 角色 | 六位女主 SVG | prototype | 只验证身份映射与 VN 立绘流程，不代表最终角色造型 |
-| 异常体 | `ch-faceless.svg` | direction | 无面行人的轮廓和气质基准 |
-| CG | `cg-faceless-reflection.svg` | direction | 倒影提前动作的镜头设计基准 |
-| UI | 标题/异常存档槽等 SVG | direction | Meta UI 的视觉基准 |
-| 音乐 | `music-memory-rain.wav` | prototype | 原创程序氛围音乐 |
-| 音乐 | `music-night-residue.wav` | prototype | 原创程序异常氛围音乐 |
-| 音乐 | `music-fracture-pulse.wav` | prototype | 原创程序战斗脉冲音乐 |
-| 音效 | memory/load/impact/dodge | prototype | 可随构建重复生成 |
+| 主要角色 | 6 位女主固定底模 | **production** | 发型、服装、色彩与核心识别点锁定 |
+| 表情差分 | 36 张生成资产 | **production** | 六人各 neutral / smile / worried / surprised / serious / angry；正史当前使用 31 张 |
+| 背景 | 20 个主要场景 | **production** | 校园、江滩、地铁、夜梧城、北站、存档室、True End 清晨等统一风格 |
+| CG | 5 张主线关键 CG | **production** | 无面行人倒影、18:42 来信、第七把椅子、北站约定、True End 江滩 |
+| 异常体 | 无面行人 / 第七人 | **production-candidate** | 已能完整承担战斗与剧情演出；后续可继续精修细节 |
+| UI | 标题、存档、Meta 异常表现 | **production-candidate** | 引擎 UI + 《回留》Meta 插件共同承担 |
+| 音乐 | 8 首原创程序音乐 | **production** | 日常、夜梧城、战斗、路线、悬疑、终局“不保存”、True End“明天见”等 |
+| 音效 | 7 组核心系统/战斗音效 | **production** | 读取、残响、冲击、闪避、异常快门、未来消息、异常门 |
+| 语音 | 无 | **optional** | v1 以无配音完整版本发布；全角色配音属于后续增强，不是阻断项 |
 
-## 正式立绘晋级条件
+## 生产方式与一致性
 
-六位主要角色的正式立绘必须满足：
+正式角色差分由 `scripts/generate-portraits.mjs` 可重复生成。所有表情共享同一角色几何底模、发型、服装和配色，因此不会出现传统逐张生成带来的脸型与服装漂移。
 
-1. 固定脸型、头身比、发型轮廓与服装结构；
-2. 至少 neutral / smile / worried / surprised / serious 五个表情使用同一底模；
-3. 正面、3/4、侧面转向时识别点不漂移；
-4. 透明背景和统一画布基准；
-5. 干净线稿、克制赛璐璐上色，禁止回到厚涂概念海报风；
-6. 在 VN 实际 1080p 画面中检查边缘、缩放和对话框遮挡；
-7. 未经角色设定文档确认的生日、班级、配饰等 AI 自生成信息不得进入正史。
+正式背景与关键 CG 由 `scripts/generate-scenes.mjs` 统一生成。20 个主要背景和 5 张关键 CG 共用同一套场景色彩和线条语言，并通过 `game/content/zzz-scene-art-v1.json` 替换早期 prototype 资产。
 
-## 第二轮资产原则
+音频由 `scripts/generate-audio.mjs` 可重复生成。发行候选版增加统一峰值归一化与软限幅，终局单独使用 `music-no-save` 与 `music-tomorrow`，避免高潮继续复用早期氛围占位曲。
 
-第二轮的目标是让**剧情、演出、音乐、场景和战斗语义全部能在引擎中跑通**。角色最终美术仍单独迭代，不因为技术链已经接通就降低一致性门槛。
+## 自动验收
+
+`scripts/check-release.mjs` 当前强制检查：
+
+1. 六位主要角色五套核心表情均为独立 production 文件；
+2. 许栖剧情所需 `angry` 差分已替换旧资产；
+3. 20 个主要背景和 5 张关键 CG 全部指向统一 production 路径；
+4. production 资产不得仍含“占位”标签；
+5. 所有正式资产必须进入 PWA Service Worker 离线缓存；
+6. “不保存”与“明天见”终局音乐必须存在、缓存，并绑定到正确场景；
+7. 战斗/Meta 作品插件必须进入完整性 manifest。
+
+## 后续可升级但不阻断 v1
+
+- 更高预算手绘角色与 CG 重制；
+- 更丰富的姿势差分与服装差分；
+- 真人或高质量角色配音；
+- 更长、更复杂的 OST 编曲与实体原声母带；
+- 4K 特制美术包。
