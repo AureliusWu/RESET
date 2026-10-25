@@ -1,0 +1,129 @@
+name: Deploy 回留 Web
+
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/pages.yml'
+      - 'tests/pages-live.mjs'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: reset-pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Download and verify the public release
+        id: release
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('node:fs');
+            const crypto = require('node:crypto');
+            const tag = context.payload.release?.tag_name || 'v' + require('./package.json').version;
+            if (!/^v\d+\.\d+\.\d+$/.test(tag)) throw new Error('A stable release tag is required');
+            const {data: release} = await github.rest.repos.getReleaseByTag({owner:context.repo.owner,repo:context.repo.repo,tag});
+            if (release.draft || release.prerelease) throw new Error('Release must be public and stable');
+            const name = `RESET-huiliu-${tag}-web.zip`;
+            const asset = release.assets.find(a=>a.name===name);
+            const sums = release.assets.find(a=>a.name==='SHA256SUMS.txt');
+            if (!asset || !sums) throw new Error('Verified Web release assets missing');
+            const get = async url => {const r=await fetch(url);if(!r.ok)throw new Error(`Download failed: ${r.status}`);return Buffer.from(await r.arrayBuffer());};
+            const checksumText=(await get(sums.browser_download_url)).toString('utf8');
+            const expected=checksumText.split(/\r?\n/).map(l=>l.trim().split(/\s+/)).find(parts=>parts[1]===name)?.[0];
+            const bytes=await get(asset.browser_download_url);
+            const digest=crypto.createHash('sha256').update(bytes).digest('hex');
+            if(!/^[a-f0-9]{64}$/.test(expected||'') || digest!==expected)throw new Error('Published ZIP checksum mismatch');
+            if(asset.digest && asset.digest!==`sha256:${digest}`)throw new Error('GitHub asset digest mismatch');
+            fs.writeFileSync('release-web.zip',bytes);
+            core.setOutput('tag',tag);
+            core.setOutput('sha256',digest);
+            core.notice(`Deploying ${tag} from the unchanged public Web ZIP ${digest}`);
+
+      - name: Extract and verify every packaged file
+        env:
+          RELEASE_TAG: ${{ steps.release.outputs.tag }}
+        run: |
+          unzip -q release-web.zip -d published
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import crypto from 'node:crypto';
+          const root=path.resolve('published'), manifest=JSON.parse(fs.readFileSync(path.join(root,'build-manifest.json')));
+          const project=JSON.parse(fs.readFileSync(path.join(root,'project.json')));
+          if(manifest.version!=='reset-'+process.env.RELEASE_TAG || project.version!==manifest.version)throw Error('Release identity mismatch');
+          for(const f of manifest.files){const target=path.resolve(root,f.name);if(!target.startsWith(root+path.sep))throw Error('Unsafe manifest path');const b=fs.readFileSync(target);if(b.length!==f.size||crypto.createHash('sha256').update(b).digest('hex')!==f.sha256)throw Error('Integrity mismatch: '+f.name);}
+          console.log(manifest.version,manifest.contentFingerprint,manifest.files.length,'verified files');
+          JS
+
+      - name: Test the exact release runtime
+        env:
+          RESET_DIST: published
+        run: npm run test:release
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: published
+
+      - name: Deploy the verified game
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Checkout locked browser-test dependencies
+        uses: actions/checkout@v4
+        with:
+          repository: AureliusWu/VN-Engine-v2
+          ref: 15c101e0d2b2c1e40dbc36d7a0c1a246d102b52c
+          path: vn-engine
+
+      - name: Install acceptance browser
+        working-directory: vn-engine
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+
+      - name: Verify the actual public website and offline reload
+        env:
+          VN_ENGINE_PATH: ${{ github.workspace }}/vn-engine
+          RESET_LIVE_URL: ${{ steps.deployment.outputs.page_url }}
+          RELEASE_TAG: ${{ steps.release.outputs.tag }}
+        run: node tests/pages-live.mjs
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: RESET-pages-live-validation
+          path: test-results/pages-live
+
+      - name: Report the deployed address
+        env:
+          LIVE_URL: ${{ steps.deployment.outputs.page_url }}
+          RELEASE_TAG: ${{ steps.release.outputs.tag }}
+          RELEASE_SHA256: ${{ steps.release.outputs.sha256 }}
+        run: |
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';
+          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,`## 回留在线试玩\n\n${process.env.LIVE_URL}\n\n版本：${process.env.RELEASE_TAG}\n\n公开 Web ZIP SHA256：${process.env.RELEASE_SHA256}\n\n已完成真实在线操作与 Service Worker 断网重载验收。\n`);
+          JS
