@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const out = resolve(root, 'game/assets/generated-portraits');
-const expressions = ['neutral', 'smile', 'worried', 'surprised', 'serious'];
+const expressions = ['neutral', 'smile', 'worried', 'surprised', 'serious', 'angry'];
 
 const cast = {
   linwan: { name:'林晚', hair:'#202832', hairHi:'#34414d', eye:'#657f98', skin:'#f1d8cc', top:'#b9d3e2', accent:'#eef6fa', skirt:'#455565', style:'long', prop:'ribbon' },
@@ -20,12 +20,13 @@ const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&
 function eyes(expression, color) {
   const brows = expression === 'worried'
     ? '<path d="M270 326l42 10M450 336l42-10"/>'
-    : expression === 'serious'
+    : (expression === 'serious' || expression === 'angry')
       ? '<path d="M270 336l42-10M450 326l42 10"/>'
       : '<path d="M270 326h42M450 326h42"/>';
   if (expression === 'smile') return `<g fill="none" stroke="#4b3b3a" stroke-width="7" stroke-linecap="round">${brows}<path d="M274 357q18 17 38 0M450 357q18 17 38 0"/></g>`;
   const ry = expression === 'surprised' ? 17 : 12;
-  return `<g fill="none" stroke="#4b3b3a" stroke-width="6" stroke-linecap="round">${brows}</g><g fill="${color}" stroke="#3a3030" stroke-width="5"><ellipse cx="294" cy="360" rx="14" ry="${ry}"/><ellipse cx="468" cy="360" rx="14" ry="${ry}"/></g><g fill="#fff"><circle cx="290" cy="354" r="4"/><circle cx="464" cy="354" r="4"/></g>`;
+  const pupilY = expression === 'angry' ? 363 : 360;
+  return `<g fill="none" stroke="#4b3b3a" stroke-width="6" stroke-linecap="round">${brows}</g><g fill="${color}" stroke="#3a3030" stroke-width="5"><ellipse cx="294" cy="${pupilY}" rx="14" ry="${ry}"/><ellipse cx="468" cy="${pupilY}" rx="14" ry="${ry}"/></g><g fill="#fff"><circle cx="290" cy="${pupilY-6}" r="4"/><circle cx="464" cy="${pupilY-6}" r="4"/></g>`;
 }
 
 function mouth(expression) {
@@ -33,6 +34,7 @@ function mouth(expression) {
   if (expression === 'worried') return '<path d="M353 432q29-20 58 0" fill="none" stroke="#9a6661" stroke-width="6" stroke-linecap="round"/>';
   if (expression === 'surprised') return '<ellipse cx="382" cy="425" rx="13" ry="18" fill="#a86665"/>';
   if (expression === 'serious') return '<path d="M356 425h52" fill="none" stroke="#8d5a59" stroke-width="6" stroke-linecap="round"/>';
+  if (expression === 'angry') return '<path d="M350 432q32-24 64 0" fill="none" stroke="#864d4d" stroke-width="7" stroke-linecap="round"/>';
   return '<path d="M363 425q19 7 38 0" fill="none" stroke="#9b615e" stroke-width="5" stroke-linecap="round"/>';
 }
 
@@ -60,7 +62,7 @@ function accessory(c) {
 }
 
 function sprite(id, c, expression) {
-  const seriousShadow = expression === 'serious' ? '.16' : '.08';
+  const seriousShadow = (expression === 'serious' || expression === 'angry') ? '.16' : '.08';
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 1080" role="img" aria-label="${esc(c.name)} ${expression}">
 <defs><linearGradient id="cloth" x2="0" y2="1"><stop stop-color="${c.top}"/><stop offset="1" stop-color="${c.skirt}"/></linearGradient><linearGradient id="skin" x2="0" y2="1"><stop stop-color="${c.skin}"/><stop offset="1" stop-color="#d7aa9b"/></linearGradient></defs>
 <g stroke-linejoin="round" stroke-linecap="round">${hairBack(c)}
