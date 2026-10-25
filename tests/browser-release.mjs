@@ -14,7 +14,7 @@ const checks=[], errors=[];const pass=name=>{checks.push(name);console.log('PASS
 const server=createServer(async(req,res)=>{
   try{const pathname=decodeURIComponent(new URL(req.url,'http://localhost').pathname);if(!pathname.startsWith('/play/'))throw Error();
     const p=resolve(dist,pathname.slice(6)||'index.html');if(!p.startsWith(dist+sep))throw Error();
-    const bytes=await readFile(p);res.writeHead(200,{'Content-Type':{'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.json':'application/json','.webmanifest':'application/manifest+json','.svg':'image/svg+xml','.wav':'audio/wav'}[extname(p)]||'application/octet-stream'});res.end(bytes);
+    const bytes=await readFile(p);res.writeHead(200,{'Content-Type':{'.html':'text/html','.css':'text/css','.mjs':'text/javascript','.js':'text/javascript','.json':'application/json','.webmanifest':'application/manifest+json','.svg':'image/svg+xml','.wav':'audio/wav'}[extname(p)]||'application/octet-stream'});res.end(bytes);
   }catch{res.writeHead(404);res.end();}
 });await new Promise(r=>server.listen(0,'127.0.0.1',r));
 const base=`http://127.0.0.1:${server.address().port}/play/`;
@@ -32,6 +32,7 @@ try{
     await page.locator('.vn-modal').waitFor({state:'hidden'});await isScene(save.state.sceneId);
   };
   await page.goto(base);await page.locator('.vn-engine').waitFor();assert.equal(await page.locator('#error').innerText(),'');
+  assert.equal(await page.locator('.reset-dialog').evaluate(el=>getComputedStyle(el).position),'absolute','the packaged experience stylesheet must actually apply');
   await page.locator('.vn-background').waitFor({state:'visible'});
   await page.screenshot({path:out+'/desktop.png',fullPage:true});pass('Standalone package loads from /play/ with actual art and no startup error');
   const start=await scene();await control('save').click();await control('next').click();await control('load').click();assert.equal(await scene(),start);
