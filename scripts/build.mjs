@@ -58,19 +58,24 @@ function applyPack(project, pack) {
     if (scenes.has(scene.id)) throw new Error(`Content pack ${pack.id} duplicates scene ${scene.id}`);
     scenes.set(scene.id, scene);
   }
-  const assets = [...project.assets, ...(pack.assets ?? [])];
-  const ids = new Set();
-  for (const asset of assets) {
-    if (ids.has(asset.id)) throw new Error(`Duplicate asset id ${asset.id}`);
-    ids.add(asset.id);
+
+  const assets = new Map((project.assets ?? []).map(asset => [asset.id, asset]));
+  for (const replacement of pack.replaceAssets ?? []) {
+    if (!assets.has(replacement.id)) throw new Error(`Content pack ${pack.id} cannot replace missing asset ${replacement.id}`);
+    assets.set(replacement.id, replacement);
   }
+  for (const asset of pack.assets ?? []) {
+    if (assets.has(asset.id)) throw new Error(`Content pack ${pack.id} duplicates asset ${asset.id}`);
+    assets.set(asset.id, asset);
+  }
+
   return {
     ...project,
     ...(pack.version ? { version: pack.version } : {}),
     stats: { ...(project.stats ?? {}), ...(pack.stats ?? {}) },
     scenes: [...scenes.values()],
     stage: mergeStage(project.stage, pack.stage),
-    assets
+    assets: [...assets.values()]
   };
 }
 
@@ -110,7 +115,7 @@ async function injectGameRuntime(project) {
     version: project.version,
     engine: packagedManifest.engine,
     contentFingerprint: fingerprint,
-    extensions: ['reset-combat-v1', 'reset-meta-v1'],
+    extensions: ['reset-combat-v1', 'reset-meta-v1', 'reset-portrait-set-v1'],
     files: finalFiles.map(file => ({ name: file.name, size: file.bytes.length, sha256: createHash('sha256').update(file.bytes).digest('hex') }))
   };
   await writeFile(resolve(output, 'build-manifest.json'), JSON.stringify(metadata, null, 2) + '\n');
@@ -123,6 +128,7 @@ if (process.env.ALLOW_ENGINE_DRIFT !== '1') {
 }
 
 run(process.execPath, [resolve(root, 'scripts/generate-audio.mjs')], root);
+run(process.execPath, [resolve(root, 'scripts/generate-portraits.mjs')], root);
 let project = JSON.parse(await readFile(projectFile, 'utf8'));
 for (const pack of await loadContentPacks()) project = applyPack(project, pack);
 const audio = JSON.parse(await readFile(audioFile, 'utf8'));
@@ -138,7 +144,7 @@ try {
   await rm(output, { recursive: true, force: true });
   run(process.execPath, [resolve(engine, 'tools/package-game.mjs'), buildProjectFile, output], root);
   await injectGameRuntime(buildProject);
-  console.log(`回留 ${buildProject.version} build completed with VN Engine v2 ${lock.version} @ ${lock.commit.slice(0, 12)} + RESET combat/meta runtime`);
+  console.log(`回留 ${buildProject.version} build completed with VN Engine v2 ${lock.version} @ ${lock.commit.slice(0, 12)} + RESET combat/meta/portrait runtime`);
 } finally {
   await rm(buildProjectFile, { force: true });
 }
