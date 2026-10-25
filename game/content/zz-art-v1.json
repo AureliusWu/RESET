@@ -1,0 +1,40 @@
+{
+  "id": "art-production-v1",
+  "replaceAssets": [
+    {"id":"linwan/neutral","kind":"portrait","src":"assets/generated-portraits/linwan/neutral.svg","alt":"林晚·标准立绘·平静"},
+    {"id":"linwan/smile","kind":"portrait","src":"assets/generated-portraits/linwan/smile.svg","alt":"林晚·标准立绘·微笑"},
+    {"id":"linwan/worried","kind":"portrait","src":"assets/generated-portraits/linwan/worried.svg","alt":"林晚·标准立绘·担忧"},
+    {"id":"linwan/surprised","kind":"portrait","src":"assets/generated-portraits/linwan/surprised.svg","alt":"林晚·标准立绘·惊讶"},
+    {"id":"linwan/serious","kind":"portrait","src":"assets/generated-portraits/linwan/serious.svg","alt":"林晚·标准立绘·认真"},
+
+    {"id":"xiaoman/neutral","kind":"portrait","src":"assets/generated-portraits/xiaoman/neutral.svg","alt":"周小满·标准立绘·平静"},
+    {"id":"xiaoman/smile","kind":"portrait","src":"assets/generated-portraits/xiaoman/smile.svg","alt":"周小满·标准立绘·微笑"},
+    {"id":"xiaoman/worried","kind":"portrait","src":"assets/generated-portraits/xiaoman/worried.svg","alt":"周小满·标准立绘·担忧"},
+    {"id":"xiaoman/surprised","kind":"portrait","src":"assets/generated-portraits/xiaoman/surprised.svg","alt":"周小满·标准立绘·惊讶"},
+    {"id":"xiaoman/serious","kind":"portrait","src":"assets/generated-portraits/xiaoman/serious.svg","alt":"周小满·标准立绘·认真"},
+
+    {"id":"xuqi/neutral","kind":"portrait","src":"assets/generated-portraits/xuqi/neutral.svg","alt":"许栖·标准立绘·平静"},
+    {"id":"xuqi/smile","kind":"portrait","src":"assets/generated-portraits/xuqi/smile.svg","alt":"许栖·标准立绘·微笑"},
+    {"id":"xuqi/worried","kind":"portrait","src":"assets/generated-portraits/xuqi/worried.svg","alt":"许栖·标准立绘·担忧"},
+    {"id":"xuqi/surprised","kind":"portrait","src":"assets/generated-portraits/xuqi/surprised.svg","alt":"许栖·标准立绘·惊讶"},
+    {"id":"xuqi/serious","kind":"portrait","src":"assets/generated-portraits/xuqi/serious.svg","alt":"许栖·标准立绘·认真"},
+
+    {"id":"tinglan/neutral","kind":"portrait","src":"assets/generated-portraits/tinglan/neutral.svg","alt":"沈听澜·标准立绘·平静"},
+    {"id":"tinglan/smile","kind":"portrait","src":"assets/generated-portraits/tinglan/smile.svg","alt":"沈听澜·标准立绘·微笑"},
+    {"id":"tinglan/worried","kind":"portrait","src":"assets/generated-portraits/tinglan/worried.svg","alt":"沈听澜·标准立绘·担忧"},
+    {"id":"tinglan/surprised","kind":"portrait","src":"assets/generated-portraits/tinglan/surprised.svg","alt":"沈听澜·标准立绘·惊讶"},
+    {"id":"tinglan/serious","kind":"portrait","src":"assets/generated-portraits/tinglan/serious.svg","alt":"沈听澜·标准立绘·认真"},
+
+    {"id":"tangli/neutral","kind":"portrait","src":"assets/generated-portraits/tangli/neutral.svg","alt":"唐梨·标准立绘·平静"},
+    {"id":"tangli/smile","kind":"portrait","src":"assets/generated-portraits/tangli/smile.svg","alt":"唐梨·标准立绘·微笑"},
+    {"id":"tangli/worried","kind":"portrait","src":"assets/generated-portraits/tangli/worried.svg","alt":"唐梨·标准立绘·担忧"},
+    {"id":"tangli/surprised","kind":"portrait","src":"assets/generated-portraits/tangli/surprised.svg","alt":"唐梨·标准立绘·惊讶"},
+    {"id":"tangli/serious","kind":"portrait","src":"assets/generated-portraits/tangli/serious.svg","alt":"唐梨·标准立绘·认真"},
+
+    {"id":"nanxing/neutral","kind":"portrait","src":"assets/generated-portraits/nanxing/neutral.svg","alt":"乔南星·标准立绘·平静"},
+    {"id":"nanxing/smile","kind":"portrait","src":"assets/generated-portraits/nanxing/smile.svg","alt":"乔南星·标准立绘·微笑"},
+    {"id":"nanxing/worried","kind":"portrait","src":"assets/generated-portraits/nanxing/worried.svg","alt":"乔南星·标准立绘·担忧"},
+    {"id":"nanxing/surprised","kind":"portrait","src":"assets/generated-portraits/nanxing/surprised.svg","alt":"乔南星·标准立绘·惊讶"},
+    {"id":"nanxing/serious","kind":"portrait","src":"assets/generated-portraits/nanxing/serious.svg","alt":"乔南星·标准立绘·认真"}
+  ]
+}
