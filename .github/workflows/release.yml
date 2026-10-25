@@ -125,9 +125,26 @@ jobs:
           if (!(Test-Path package/game/meta.mjs)) { throw 'meta runtime missing' }
           if (!(Test-Path package/RESET.exe)) { throw 'RESET launcher missing' }
 
-      - name: Native host smoke test against 回留
+      - name: Native host policy and game-mode smoke test
         shell: pwsh
-        run: vn-engine/tools/test-windows.ps1 -Executable package/engine/VNEngine.exe -Site package/game -Game package/game
+        run: |
+          $ErrorActionPreference = 'Stop'
+          New-Item -ItemType Directory -Force test-results/windows | Out-Null
+          function Invoke-Check([string]$Name, [string[]]$Arguments) {
+            $Report = [IO.Path]::GetFullPath("test-results/windows/$Name.json")
+            $Args = $Arguments + @('--report', ('"' + $Report + '"'))
+            $Process = Start-Process -FilePath ([IO.Path]::GetFullPath('package/engine/VNEngine.exe')) -ArgumentList $Args -PassThru
+            if (-not $Process.WaitForExit(120000)) { Stop-Process -Id $Process.Id -Force; throw "Timed out: $Name" }
+            if (!(Test-Path $Report)) { throw "Missing report: $Name" }
+            Get-Content $Report
+            $Result = Get-Content $Report -Raw | ConvertFrom-Json
+            if ($Process.ExitCode -ne 0 -or $Result.result -ne 'passed') { throw "Failed: $Name (exit $($Process.ExitCode))" }
+          }
+          $Game = [IO.Path]::GetFullPath('package/game')
+          $Profile = [IO.Path]::GetFullPath('test-results/windows/game-profile')
+          Invoke-Check 'host-policy' @('--self-test')
+          Invoke-Check 'game-first' @('--game', ('"' + $Game + '"'), '--smoke-test', '--user-data-dir', ('"' + $Profile + '"'))
+          Invoke-Check 'game-restart' @('--game', ('"' + $Game + '"'), '--smoke-test', '--verify-persistence', '--user-data-dir', ('"' + $Profile + '"'))
 
       - name: Archive Windows release
         shell: pwsh
