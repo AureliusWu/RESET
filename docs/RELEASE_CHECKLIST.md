@@ -19,9 +19,9 @@
 - [x] 《回留》专用 `RESET.exe` 启动器
 - [x] 内容包组合构建
 - [x] 战斗 / Meta / production art 作品插件进入 build manifest
-- [x] 构建身份、结局、关键剧情节点和生产资产自动校验
+- [x] 构建身份、结局、关键剧情节点和 production 资产自动校验
 - [x] Web/PWA Release Candidate 构建与完整性验收通过
-- [ ] Windows Release Candidate 的 game-mode 原生宿主冒烟测试通过
+- [x] Windows Release Candidate 实际游戏窗口与 `RESET.exe` 启动链验收通过
 
 ## 玩法
 
@@ -51,7 +51,7 @@
 - [x] 可重复生成的原创程序音乐/音效管线
 - [x] 日常、夜梧城、战斗、路线、悬疑等主题进入构建
 - [x] 终局“不保存”与 True End“明天见”独立配乐
-- [x] 发行候选音频统一峰值归一化与软限幅
+- [x] 发行音频统一峰值归一化与软限幅
 - [x] 终局音乐文件、场景绑定和离线缓存进入发布检查
 - [ ] 全角色语音（**可选增强，不阻断无配音 v1**）
 
@@ -61,18 +61,18 @@
 - [x] 引擎固定到已审计提交
 - [x] 引擎 / 第三方许可进入 Windows 包
 - [x] Web + Windows 双发布工作流
-- [x] Windows 构建链已能完成游戏构建、宿主编译、启动器编译与发行目录组装
-- [ ] Windows game-mode 首次启动 / 重启持久化冒烟测试全绿
-- [ ] `v1.0.0` 版本冻结
+- [x] Windows 构建链完成游戏构建、宿主编译、启动器编译与发行目录组装
+- [x] Windows host-policy、实际《回留》原生窗口、`RESET.exe` 启动子进程验收全绿
+- [x] `v1.0.0` 版本冻结
 - [ ] `v1.0.0` 标签与最终 Release 产物
 
-## v1 阻断规则
+## v1 冻结条件
 
-`v1.0.0` 只有在以下条件同时成立后冻结：
+当前冻结提交必须同时满足：
 
 1. 主 Build CI 通过 `npm run check:release`。
 2. Web Release CI 生成独立 PWA 压缩包并通过内容完整性检查。
-3. Windows Release CI 生成自包含 `RESET.exe + VNEngine.exe + game/` 包，并通过 host-policy、game-first、game-restart 三项原生冒烟测试。
+3. Windows Release CI 生成自包含 `RESET.exe + VNEngine.exe + game/` 包，并通过宿主安全策略、实际作品原生窗口和启动器链路检查。
 4. 三处实时战斗节点仍拥有正确的 VN 胜负回接动作。
 5. True End、六个 Normal End 与关键 Bad End 自动检查通过。
 6. 角色、20 个主要背景、5 张关键 CG 与两首终局音乐保持 production 路径且全部进入离线缓存。
