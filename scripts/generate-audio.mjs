@@ -20,13 +20,14 @@ function seededNoise(seed = 1842) {
   return () => { state = (1664525 * state + 1013904223) >>> 0; return state / 0xffffffff * 2 - 1; };
 }
 
-function synth({ duration, partials, tremolo = 0, noise = 0, attack = .35, release = .45 }) {
+function synth({ duration, partials, tremolo = 0, noise = 0, attack = .35, release = .45, pulse = 0 }) {
   const count = Math.floor(duration * sampleRate), result = new Float64Array(count), random = seededNoise();
   for (let i = 0; i < count; i++) {
     const t = i / sampleRate;
     let value = 0;
     for (const [frequency, amplitude, phase = 0] of partials) value += Math.sin(Math.PI * 2 * frequency * t + phase) * amplitude;
     if (tremolo) value *= .72 + .28 * Math.sin(Math.PI * 2 * tremolo * t);
+    if (pulse) value *= .42 + .58 * Math.pow(Math.max(0, Math.sin(Math.PI * 2 * pulse * t)), 3);
     if (noise) value += random() * noise;
     const fadeIn = Math.min(1, t / attack), fadeOut = Math.min(1, (duration - t) / release);
     result[i] = value * Math.max(0, Math.min(fadeIn, fadeOut));
@@ -45,9 +46,29 @@ await writeFile(resolve(out, 'music-night-residue.wav'), wav(synth({
   partials: [[55, .065], [82.41, .032, .5], [123.47, .018, 1.1], [220, .008, 2.3]],
   tremolo: .07, noise: .009
 })));
+await writeFile(resolve(out, 'music-fracture-pulse.wav'), wav(synth({
+  duration: 8,
+  partials: [[49, .08], [73.42, .04, .8], [98, .03, 1.5], [196, .012, 2.2]],
+  pulse: 1.42, noise: .012, attack: .12, release: .6
+})));
 await writeFile(resolve(out, 'sfx-memory-ping.wav'), wav(synth({
   duration: .42,
   partials: [[880, .08], [1320, .045, .4], [1760, .02, .8]],
   attack: .008, release: .32
+})));
+await writeFile(resolve(out, 'sfx-load.wav'), wav(synth({
+  duration: .9,
+  partials: [[110, .07], [220, .045, .7], [440, .025, 1.4], [880, .012, 2.1]],
+  tremolo: 5.4, noise: .018, attack: .01, release: .5
+})));
+await writeFile(resolve(out, 'sfx-impact.wav'), wav(synth({
+  duration: .32,
+  partials: [[62, .13], [93, .065, .4], [186, .028, 1.1]],
+  noise: .07, attack: .004, release: .29
+})));
+await writeFile(resolve(out, 'sfx-dodge.wav'), wav(synth({
+  duration: .22,
+  partials: [[420, .028], [760, .018, .6]],
+  noise: .045, attack: .003, release: .18
 })));
 console.log('Generated original RESET audio prototypes in game/assets/generated');
