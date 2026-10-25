@@ -1,0 +1,129 @@
+name: Release 回留
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: read
+
+jobs:
+  web:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout game
+        uses: actions/checkout@v4
+        with:
+          path: game-repo
+
+      - name: Checkout locked VN Engine v2
+        uses: actions/checkout@v4
+        with:
+          repository: AureliusWu/VN-Engine-v2
+          ref: 15c101e0d2b2c1e40dbc36d7a0c1a246d102b52c
+          path: vn-engine
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: vn-engine/package-lock.json
+
+      - name: Install engine dependencies
+        working-directory: vn-engine
+        run: npm ci
+
+      - name: Build standalone PWA
+        working-directory: game-repo
+        env:
+          VN_ENGINE_PATH: ${{ github.workspace }}/vn-engine
+        run: npm run build
+
+      - name: Validate release content
+        working-directory: game-repo
+        run: |
+          node -e "const m=require('./dist/build-manifest.json');const p=require('./dist/project.json');if(m.game!=='reset'||p.version!=='reset-v0.9.0')process.exit(1);if(!p.scenes.some(s=>s.ending==='true-end'))process.exit(2);console.log(m.engine,m.contentFingerprint,p.scenes.length,p.assets.length)"
+          test -f dist/index.html
+          test -f dist/manifest.webmanifest
+          test -f dist/sw.js
+
+      - name: Archive Web release
+        working-directory: game-repo
+        run: cd dist && zip -r ../RESET-huiliu-v0.9.0-web.zip .
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: RESET-huiliu-v0.9.0-web
+          path: game-repo/RESET-huiliu-v0.9.0-web.zip
+
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout game
+        uses: actions/checkout@v4
+        with:
+          path: game-repo
+
+      - name: Checkout locked VN Engine v2
+        uses: actions/checkout@v4
+        with:
+          repository: AureliusWu/VN-Engine-v2
+          ref: 15c101e0d2b2c1e40dbc36d7a0c1a246d102b52c
+          path: vn-engine
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: vn-engine/package-lock.json
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Install engine dependencies
+        working-directory: vn-engine
+        run: npm ci
+
+      - name: Build game content
+        working-directory: game-repo
+        env:
+          VN_ENGINE_PATH: ${{ github.workspace }}\vn-engine
+        run: npm run build
+
+      - name: Publish native engine host
+        run: dotnet publish vn-engine/hosts/windows/VNEngine.Windows.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:DebugType=None -p:DebugSymbols=false -o package/engine
+
+      - name: Publish 回留 launcher
+        run: dotnet publish game-repo/launcher/RESET.Launcher.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:DebugType=None -p:DebugSymbols=false -o package/launcher
+
+      - name: Assemble Windows release
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force package/game | Out-Null
+          Copy-Item game-repo/dist/* package/game -Recurse
+          Copy-Item package/launcher/RESET.exe package/RESET.exe
+          Copy-Item game-repo/README.md package/README.md
+          if (Test-Path game-repo/LICENSE.md) { Copy-Item game-repo/LICENSE.md package/LICENSE.md }
+          Copy-Item vn-engine/LICENSE package/ENGINE-LICENSE.txt
+          Copy-Item vn-engine/THIRD_PARTY_NOTICES.md package/ENGINE-THIRD-PARTY-NOTICES.md
+          Copy-Item vn-engine/licenses package/engine-licenses -Recurse
+          if (!(Test-Path package/engine/VNEngine.exe)) { throw 'VNEngine.exe missing' }
+          if (!(Test-Path package/game/project.json)) { throw 'game project missing' }
+          if (!(Test-Path package/RESET.exe)) { throw 'RESET launcher missing' }
+
+      - name: Native host smoke test against 回留
+        shell: pwsh
+        run: vn-engine/tools/test-windows.ps1 -Executable package/engine/VNEngine.exe -Site package/game -Game package/game
+
+      - name: Archive Windows release
+        shell: pwsh
+        run: Compress-Archive -Path package/* -DestinationPath RESET-huiliu-v0.9.0-win-x64.zip
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: RESET-huiliu-v0.9.0-win-x64
+          path: RESET-huiliu-v0.9.0-win-x64.zip
