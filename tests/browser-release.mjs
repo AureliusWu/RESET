@@ -4,10 +4,12 @@ import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import { createServer } from 'node:http';
 import { resolve, extname, sep } from 'node:path';
 import { pathToFileURL } from 'node:url';
+import { verifyArchive } from './archive-browser.mjs';
 const engine=resolve(process.env.VN_ENGINE_PATH||'../VN-Engine-v2');
 const {chromium}=await import(pathToFileURL(resolve(engine,'node_modules/playwright/index.mjs')));
 const dist=resolve(process.env.RESET_DIST||'dist'), out=resolve('test-results/browser');await mkdir(out,{recursive:true});
 const fixtures=JSON.parse(await readFile('test-results/route-fixtures.json','utf8'));
+const project=JSON.parse(await readFile(resolve(dist,'project.json'),'utf8'));
 const checks=[], errors=[];const pass=name=>{checks.push(name);console.log('PASS',name)};
 const server=createServer(async(req,res)=>{
   try{const pathname=decodeURIComponent(new URL(req.url,'http://localhost').pathname);if(!pathname.startsWith('/play/'))throw Error();
@@ -37,6 +39,7 @@ try{
   const legacy=structuredClone(fixtures.witnesses[start]);legacy.state.storyVersion='reset-v1.0.0';
   await loadFixture(legacy);assert.equal(await scene(),start);assert.match(await page.title(),/读取 2/);
   pass('A published v1.0.0 backup imports through the packaged settings UI and retains the route');
+  await verifyArchive({page,context,fixtures,project,loadFixture,control,scene,isScene,out,pass});
   await control('settings').click();assert.equal(await control('save').isDisabled(),true);
   await page.getByLabel('阅读区透明度').fill('0.6');await page.getByRole('button',{name:'关闭',exact:true}).click();
   assert.match(await page.locator('.vn-engine').getAttribute('style'),/0.6/);
@@ -48,6 +51,7 @@ try{
     await loadFixture(save);assert.match(await page.locator('.vn-actions').innerText(),/已到达结局/);
     const meta=await page.evaluate(()=>JSON.parse(localStorage.getItem('reset:meta:v1')));assert.ok(meta.endings.includes(id));
   }pass('All six Normal Ends and six key Bad Ends render and register Meta from validated route saves');
+  await control('settings').click();await page.getByLabel('减少动态效果',{exact:true}).uncheck();await page.getByRole('button',{name:'关闭',exact:true}).click();
   for(const [id,save] of Object.entries(fixtures.combat)){
     for(const outcome of ['win','lose']){
       await loadFixture(save);await page.locator('.reset-combat canvas').waitFor();
@@ -88,6 +92,10 @@ try{
   const combatMeta=await page.evaluate(()=>JSON.parse(localStorage.getItem('reset:combat-meta:v1')));for(const id of Object.keys(fixtures.combat))assert.ok(combatMeta[id]>=2);
   pass('Combat attempt history survives restore and repeated encounters');
   await loadFixture(fixtures.witnesses.c6_no_save);assert.equal(await control('save').isHidden(),true);assert.equal(await control('load').isHidden(),true);assert.equal(await control('restart').isHidden(),true);
+  assert.equal(await page.locator('[data-reset-control=slots]').isHidden(),true);
+  const irreversibleLoads=await page.evaluate(()=>JSON.parse(localStorage.getItem('reset:meta:v1')).loads);
+  await page.locator('[data-reset-control=collection]').click();assert.equal(await page.locator('[data-slot-action]').count(),0);await page.keyboard.press('Escape');
+  assert.equal(await scene(),'c6_no_save');assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('reset:meta:v1')).loads),irreversibleLoads);
   await control('history').click();await page.locator('.vn-record').first().click();assert.equal(await scene(),'c6_no_save');await page.getByRole('button',{name:'关闭',exact:true}).click();
   await control('settings').click();assert.equal(await page.locator('.vn-backup').isHidden(),true);await page.getByRole('button',{name:'关闭',exact:true}).click();
   await page.screenshot({path:out+'/irreversible.png',fullPage:true});
@@ -97,8 +105,10 @@ try{
   }
   assert.equal(await scene(),'c7_credits');assert.equal(await page.title(),'回留 · 明天见');
   const meta=await page.evaluate(()=>JSON.parse(localStorage.getItem('reset:meta:v1')));assert.equal(meta.trueEnd,true);assert.ok(meta.endings.includes('true-end'));
+  assert.ok(meta.cgs.includes('true-end-riverside-cg'));
   await page.screenshot({path:out+'/true-end.png',fullPage:true});
   await control('restart').click();assert.equal(await scene(),start);assert.equal(await page.title(),'回留 · 明天见');
+  await page.locator('[data-reset-control=collection]').click();assert.equal(await page.locator('.reset-ending[data-unlocked=true]').count(),13);await page.keyboard.press('Escape');
   pass('True Route blocks toolbar/history/settings bypasses, reaches True End and permits replay with retained Meta');
   await page.setViewportSize({width:390,height:844});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
   await page.screenshot({path:out+'/mobile.png',fullPage:true});pass('390px viewport has no horizontal overflow');
@@ -109,6 +119,9 @@ try{
   assert.equal(await page.locator('#error').innerText(),'');await page.locator('.vn-background').waitFor({state:'visible'});
   const resources=await page.evaluate(async()=>{const c=await caches.open((await caches.keys()).find(k=>k.startsWith('vn-self-reset-v2:')));const requests=await c.keys();return requests.map(r=>new URL(r.url).pathname)});
   assert.ok(resources.some(p=>p.endsWith('/meta.mjs')));assert.ok(resources.some(p=>p.endsWith('/combat.mjs')));assert.ok(resources.some(p=>p.endsWith('/assets/generated-scenes/true-end-riverside-cg.svg')));
+  assert.ok(resources.some(p=>p.endsWith('/archive.mjs')));assert.ok(resources.some(p=>p.endsWith('/archive-data.mjs')));assert.ok(resources.some(p=>p.endsWith('/experience.css')));
+  await page.locator('[data-reset-control=slots]').click();assert.ok(await page.locator('[data-slot="1"] [data-slot-action=load]').isEnabled());await page.keyboard.press('Escape');
+  await page.locator('[data-reset-control=collection]').click();assert.equal(await page.locator('.reset-ending[data-unlocked=true]').count(),13);assert.ok(await page.locator('.reset-cg-card img').count());await page.keyboard.press('Escape');
   await page.screenshot({path:out+'/offline.png',fullPage:true});pass('Real service-worker cache at a nested URL reloads offline with assets, saves and Meta intact');
   assert.deepEqual(errors,[]);await writeFile(out+'/acceptance.json',JSON.stringify({result:'passed',browser:await browser.version(),checks,errors},null,2)+'\n');
 }catch(e){if(page)await page.screenshot({path:out+'/failure.png',fullPage:true}).catch(()=>{});await writeFile(out+'/failure.json',JSON.stringify({error:e.stack,checks,errors},null,2));throw e;}

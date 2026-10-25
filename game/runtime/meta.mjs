@@ -1,10 +1,15 @@
+import { CGS } from './archive-data.mjs';
 const META_KEY = 'reset:meta:v1';
+const STORY_VERSION = 'reset-v1.1.0';
+const LEGACY_VERSIONS = new Set(['reset-v1.0.0','reset-v1.0.1']);
+const CG_IDS = new Set(CGS.map(cg => cg.id));
 const IRREVERSIBLE = new Set(['c6_no_save','c6_walk_forward','c6_escape','c6_echo_goodbye','c6_last_door','c7_morning','c7_after','c7_linwan','c7_credits']);
 function readMeta(){try{const v=JSON.parse(localStorage.getItem(META_KEY)||'{}');return v&&typeof v==='object'?v:{}}catch{return{}}}
 function writeMeta(v){try{localStorage.setItem(META_KEY,JSON.stringify(v))}catch{}}
 export function mountMetaBridge(game){
   const session=game.session, meta=readMeta();
   meta.loads=Number(meta.loads)||0; meta.endings=Array.isArray(meta.endings)?meta.endings:[];
+  meta.cgs=Array.isArray(meta.cgs)?meta.cgs.filter(id=>CG_IDS.has(id)):[];
   let disposed=false,lastVisit=-1,lastEnding='';
   const locked=()=>IRREVERSIBLE.has(session.getView().frame.sceneId);
   const finished=()=>{const v=session.getView();return v.ready&&v.frame.ending==='true-end'};
@@ -21,8 +26,8 @@ export function mountMetaBridge(game){
       }
       // This patch changes no story nodes or choices. Upgrade only the exact
       // published predecessor; the engine still validates and replays the save.
-      if(name==='restore'&&args[0]?.schema===1&&args[0]?.game==='reset'&&args[0]?.state?.storyVersion==='reset-v1.0.0'){
-        args[0]={...args[0],state:{...args[0].state,storyVersion:'reset-v1.0.1'}};
+      if(name==='restore'&&args[0]?.schema===1&&args[0]?.game==='reset'&&LEGACY_VERSIONS.has(args[0]?.state?.storyVersion)){
+        args[0]={...args[0],state:{...args[0].state,storyVersion:STORY_VERSION}};
       }
       return original.apply(session,args);
     };
@@ -43,6 +48,8 @@ export function mountMetaBridge(game){
       if(!meta.endings.includes(frame.ending)){meta.endings.push(frame.ending);writeMeta(meta)}
       if(frame.ending==='true-end'){meta.trueEnd=true;writeMeta(meta)}
     }
+    const cg=frame.stage?.cg;
+    if(view.ready&&CG_IDS.has(cg)&&!meta.cgs.includes(cg)){meta.cgs.push(cg);writeMeta(meta)}
     const irreversible=locked();
     const host=document.querySelector('.vn-engine');
     if(host)host.dataset.irreversible=String(irreversible);

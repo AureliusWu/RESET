@@ -1,13 +1,13 @@
 {
   "name": "reset-huiliu",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "private": true,
   "type": "module",
   "scripts": {
     "audio": "node scripts/generate-audio.mjs",
     "build": "node scripts/build.mjs",
     "check:release": "node scripts/check-release.mjs",
-    "test:release": "node --test tests/release.test.mjs tests/combat-input.test.mjs",
+    "test:release": "node --test tests/release.test.mjs tests/combat-input.test.mjs tests/archive.test.mjs",
     "test:browser": "node tests/browser-release.mjs",
     "serve": "python -m http.server 8000 --directory dist"
   },
