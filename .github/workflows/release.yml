@@ -154,19 +154,22 @@ jobs:
             throw 'actual RESET game did not reach a native window with a WebView2 profile'
           }
           Stop-Process -Id $Native.Id -Force
+          $Native.WaitForExit(10000) | Out-Null
 
-          $Before = @(Get-Process VNEngine -ErrorAction SilentlyContinue).Count
+          $BeforeIds = @((Get-Process VNEngine -ErrorAction SilentlyContinue).Id)
           $Launcher = Start-Process -FilePath ([IO.Path]::GetFullPath('package/RESET.exe')) -PassThru
           if (-not $Launcher.WaitForExit(20000)) { Stop-Process -Id $Launcher.Id -Force; throw 'RESET launcher timed out' }
           if ($Launcher.ExitCode -ne 0) { throw "RESET launcher failed with exit $($Launcher.ExitCode)" }
           $Deadline = (Get-Date).AddSeconds(20)
-          $Launched = $false
+          $Spawned = $null
           while ((Get-Date) -lt $Deadline) {
             Start-Sleep -Milliseconds 500
-            $Processes = @(Get-Process VNEngine -ErrorAction SilentlyContinue)
-            if ($Processes.Count -gt $Before) { $Launched = $true; break }
+            $Spawned = Get-Process VNEngine -ErrorAction SilentlyContinue | Where-Object { $_.Id -notin $BeforeIds } | Select-Object -First 1
+            if ($Spawned) { break }
           }
-          if (-not $Launched) { throw 'RESET.exe did not launch the native VN Engine game process' }
+          if (-not $Spawned) { throw 'RESET.exe did not launch a new native VN Engine game process' }
+          $Spawned.Refresh()
+          if ($Spawned.HasExited) { throw 'launcher-spawned VN Engine exited immediately' }
           Get-Process VNEngine -ErrorAction SilentlyContinue | Stop-Process -Force
 
       - name: Archive Windows release
