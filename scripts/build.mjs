@@ -1,6 +1,8 @@
-import { readFile, rm, writeFile, readdir } from 'node:fs/promises';
-import { resolve } from 'node:path';
+import { readFile, rm, writeFile, readdir, copyFile } from 'node:fs/promises';
+import { resolve, relative, sep } from 'node:path';
 import { spawnSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
+import { pathToFileURL } from 'node:url';
 import process from 'node:process';
 
 const root = resolve(new URL('..', import.meta.url).pathname);
@@ -11,6 +13,7 @@ const projectFile = resolve(root, 'game/project.json');
 const contentDir = resolve(root, 'game/content');
 const audioFile = resolve(root, 'game/audio.json');
 const buildProjectFile = resolve(root, 'game/.project.build.json');
+const output = resolve(root, 'dist');
 
 function run(command, args, cwd) {
   const result = spawnSync(command, args, { cwd, stdio: 'inherit', encoding: 'utf8' });
@@ -62,6 +65,49 @@ function applyPack(project, pack) {
   };
 }
 
+async function walkFiles(directory) {
+  const result = [];
+  async function visit(path) {
+    for (const entry of await readdir(path, { withFileTypes: true })) {
+      const absolute = resolve(path, entry.name);
+      if (entry.isDirectory()) await visit(absolute);
+      else result.push({ name: relative(directory, absolute).split(sep).join('/'), bytes: await readFile(absolute) });
+    }
+  }
+  await visit(directory);
+  return result;
+}
+
+async function injectGameRuntime(project) {
+  const source = resolve(root, 'game/runtime/combat.mjs');
+  const target = resolve(output, 'combat.mjs');
+  await copyFile(source, target);
+  const appPath = resolve(output, 'app.mjs');
+  let app = await readFile(appPath, 'utf8');
+  const pagehide = "window.addEventListener('pagehide',event=>{if(!event.persisted)game.dispose();});";
+  if (!app.includes(pagehide)) throw new Error('VN Engine packaged app entry changed; combat bridge injection needs review');
+  app = app.replace(pagehide, "const {mountCombatBridge}=await import('./combat.mjs');const combat=mountCombatBridge(game);window.addEventListener('pagehide',event=>{if(!event.persisted){combat.dispose();game.dispose();}});");
+  await writeFile(appPath, app);
+
+  const { fingerprintFiles, renderWorker } = await import(pathToFileURL(resolve(engine, 'tools/pwa.mjs')).href);
+  const packagedManifest = JSON.parse(await readFile(resolve(output, 'build-manifest.json'), 'utf8'));
+  const core = (await walkFiles(output)).filter(file => !['sw.js', 'build-manifest.json'].includes(file.name));
+  const fingerprint = fingerprintFiles(core);
+  const worker = Buffer.from(renderWorker({ namespace: 'vn-self-' + project.game, version: fingerprint, urls: core.map(file => file.name) }));
+  await writeFile(resolve(output, 'sw.js'), worker);
+  const finalFiles = [...core, { name: 'sw.js', bytes: worker }];
+  const metadata = {
+    schema: 1,
+    game: project.game,
+    version: project.version,
+    engine: packagedManifest.engine,
+    contentFingerprint: fingerprint,
+    extensions: ['reset-combat-v1'],
+    files: finalFiles.map(file => ({ name: file.name, size: file.bytes.length, sha256: createHash('sha256').update(file.bytes).digest('hex') }))
+  };
+  await writeFile(resolve(output, 'build-manifest.json'), JSON.stringify(metadata, null, 2) + '\n');
+}
+
 if (process.env.ALLOW_ENGINE_DRIFT !== '1') {
   const head = spawnSync('git', ['rev-parse', 'HEAD'], { cwd: engine, encoding: 'utf8' });
   if (head.status !== 0) throw new Error('VN Engine v2 repository is unavailable; set VN_ENGINE_PATH.');
@@ -81,9 +127,10 @@ await writeFile(buildProjectFile, JSON.stringify(buildProject, null, 2) + '\n');
 
 try {
   run(npm, ['run', 'build'], engine);
-  await rm(resolve(root, 'dist'), { recursive: true, force: true });
-  run(process.execPath, [resolve(engine, 'tools/package-game.mjs'), buildProjectFile, resolve(root, 'dist')], root);
-  console.log(`回留 ${buildProject.version} build completed with VN Engine v2 ${lock.version} @ ${lock.commit.slice(0, 12)}`);
+  await rm(output, { recursive: true, force: true });
+  run(process.execPath, [resolve(engine, 'tools/package-game.mjs'), buildProjectFile, output], root);
+  await injectGameRuntime(buildProject);
+  console.log(`回留 ${buildProject.version} build completed with VN Engine v2 ${lock.version} @ ${lock.commit.slice(0, 12)} + RESET combat runtime`);
 } finally {
   await rm(buildProjectFile, { force: true });
 }
