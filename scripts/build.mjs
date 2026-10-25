@@ -79,14 +79,13 @@ async function walkFiles(directory) {
 }
 
 async function injectGameRuntime(project) {
-  const source = resolve(root, 'game/runtime/combat.mjs');
-  const target = resolve(output, 'combat.mjs');
-  await copyFile(source, target);
+  await copyFile(resolve(root, 'game/runtime/combat.mjs'), resolve(output, 'combat.mjs'));
+  await copyFile(resolve(root, 'game/runtime/meta.mjs'), resolve(output, 'meta.mjs'));
   const appPath = resolve(output, 'app.mjs');
   let app = await readFile(appPath, 'utf8');
   const pagehide = "window.addEventListener('pagehide',event=>{if(!event.persisted)game.dispose();});";
-  if (!app.includes(pagehide)) throw new Error('VN Engine packaged app entry changed; combat bridge injection needs review');
-  app = app.replace(pagehide, "const {mountCombatBridge}=await import('./combat.mjs');const combat=mountCombatBridge(game);window.addEventListener('pagehide',event=>{if(!event.persisted){combat.dispose();game.dispose();}});");
+  if (!app.includes(pagehide)) throw new Error('VN Engine packaged app entry changed; RESET runtime injection needs review');
+  app = app.replace(pagehide, "const [{mountCombatBridge},{mountMetaBridge}]=await Promise.all([import('./combat.mjs'),import('./meta.mjs')]);const combat=mountCombatBridge(game),meta=mountMetaBridge(game);window.addEventListener('pagehide',event=>{if(!event.persisted){meta.dispose();combat.dispose();game.dispose();}});");
   await writeFile(appPath, app);
 
   const { fingerprintFiles, renderWorker } = await import(pathToFileURL(resolve(engine, 'tools/pwa.mjs')).href);
@@ -102,7 +101,7 @@ async function injectGameRuntime(project) {
     version: project.version,
     engine: packagedManifest.engine,
     contentFingerprint: fingerprint,
-    extensions: ['reset-combat-v1'],
+    extensions: ['reset-combat-v1', 'reset-meta-v1'],
     files: finalFiles.map(file => ({ name: file.name, size: file.bytes.length, sha256: createHash('sha256').update(file.bytes).digest('hex') }))
   };
   await writeFile(resolve(output, 'build-manifest.json'), JSON.stringify(metadata, null, 2) + '\n');
@@ -130,7 +129,7 @@ try {
   await rm(output, { recursive: true, force: true });
   run(process.execPath, [resolve(engine, 'tools/package-game.mjs'), buildProjectFile, output], root);
   await injectGameRuntime(buildProject);
-  console.log(`回留 ${buildProject.version} build completed with VN Engine v2 ${lock.version} @ ${lock.commit.slice(0, 12)} + RESET combat runtime`);
+  console.log(`回留 ${buildProject.version} build completed with VN Engine v2 ${lock.version} @ ${lock.commit.slice(0, 12)} + RESET combat/meta runtime`);
 } finally {
   await rm(buildProjectFile, { force: true });
 }
