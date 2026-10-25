@@ -28,25 +28,28 @@ jobs:
           cache: npm
           cache-dependency-path: vn-engine/package-lock.json
 
-      - name: Install and build engine
+      - name: Install engine dependencies
         working-directory: vn-engine
-        run: |
-          npm ci
-          npm run build
+        run: npm ci
 
-      - name: Package 回留 with self-developed engine
-        run: node vn-engine/tools/package-game.mjs game-repo/game/project.json game-repo/dist
+      - name: Compose content and package 回留
+        working-directory: game-repo
+        env:
+          VN_ENGINE_PATH: ${{ github.workspace }}/vn-engine
+        run: npm run build
 
-      - name: Verify package identity
+      - name: Verify package identity and second-round content
         working-directory: game-repo
         run: |
-          node -e "const m=require('./dist/build-manifest.json'); if(m.game!=='reset'||m.version!=='reset-v0.1.0') process.exit(1); console.log(m.engine, m.contentFingerprint)"
+          node -e "const fs=require('fs'); const m=require('./dist/build-manifest.json'); const p=require('./dist/project.json'); if(m.game!=='reset'||m.version!=='reset-v0.2.0'||p.version!=='reset-v0.2.0') process.exit(1); if(!p.scenes.some(s=>s.id==='faceless_second')||!p.assets.some(a=>a.id==='music-fracture-pulse')) process.exit(2); console.log(m.engine, m.contentFingerprint, p.scenes.length, p.assets.length)"
           test -f dist/index.html
           test -f dist/project.json
           test -f dist/sw.js
+          test -f dist/assets/generated/music-fracture-pulse.wav
+          test -f dist/assets/cg-faceless-reflection.svg
 
       - name: Upload standalone build
         uses: actions/upload-artifact@v4
         with:
-          name: RESET-huiliu-v0.1.0
+          name: RESET-huiliu-v0.2.0
           path: game-repo/dist
