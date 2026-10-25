@@ -2,7 +2,11 @@
   "assets": [
     {"id":"music-memory-rain","kind":"audio","src":"assets/generated/music-memory-rain.wav","alt":"原创程序氛围音乐：雨中的回忆"},
     {"id":"music-night-residue","kind":"audio","src":"assets/generated/music-night-residue.wav","alt":"原创程序氛围音乐：夜梧城残响"},
-    {"id":"sfx-memory-ping","kind":"audio","src":"assets/generated/sfx-memory-ping.wav","alt":"原创系统残响提示音"}
+    {"id":"music-fracture-pulse","kind":"audio","src":"assets/generated/music-fracture-pulse.wav","alt":"原创程序战斗原型音乐：断层脉冲"},
+    {"id":"sfx-memory-ping","kind":"audio","src":"assets/generated/sfx-memory-ping.wav","alt":"原创系统残响提示音"},
+    {"id":"sfx-load","kind":"audio","src":"assets/generated/sfx-load.wav","alt":"原创读取与世界重写提示音"},
+    {"id":"sfx-impact","kind":"audio","src":"assets/generated/sfx-impact.wav","alt":"原创异常体冲击音效"},
+    {"id":"sfx-dodge","kind":"audio","src":"assets/generated/sfx-dodge.wav","alt":"原创闪避掠过音效"}
   ],
   "stage": {
     "defaults": {"music":"music-memory-rain"},
@@ -11,10 +15,24 @@
       "station_refuse": {"music":"music-night-residue"},
       "night_wucheng": {"music":"music-night-residue"},
       "rooftop_warning": {"music":"music-night-residue"},
-      "chapter2_teaser": {"music":"music-night-residue"}
+      "chapter2_teaser": {"music":"music-night-residue"},
+      "underpass_warning": {"music":"music-night-residue"},
+      "faceless_first": {"music":"music-fracture-pulse"},
+      "faceless_pattern": {"music":"music-fracture-pulse"},
+      "death_fifth": {"music":"music-fracture-pulse"},
+      "faceless_second": {"music":"music-fracture-pulse"},
+      "death_sixth": {"music":"music-fracture-pulse"},
+      "breakthrough_first": {"music":"music-night-residue"}
     },
     "lines": {
-      "z002": {"sound":"sfx-memory-ping"}
+      "z002": {"sound":"sfx-memory-ping"},
+      "c2f004": {"sound":"sfx-impact"},
+      "c2p003": {"sound":"sfx-dodge"},
+      "c2x002": {"sound":"sfx-impact"},
+      "c2x004": {"sound":"sfx-load"},
+      "c2l001": {"sound":"sfx-load"},
+      "c2s002": {"sound":"sfx-memory-ping"},
+      "c2y001": {"sound":"sfx-impact"}
     }
   }
 }
