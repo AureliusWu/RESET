@@ -15,7 +15,7 @@ async function exists(path) { try { await access(path); return true; } catch { r
 assert(project.game === 'reset', 'wrong game id');
 assert(project.version === manifest.version, 'project/build manifest version mismatch');
 assert(Array.isArray(manifest.extensions), 'build extensions missing');
-for (const extension of ['reset-combat-v1','reset-meta-v1','reset-portrait-set-v1']) assert(manifest.extensions.includes(extension), `missing extension ${extension}`);
+for (const extension of ['reset-combat-v1','reset-meta-v1','reset-portrait-set-v1','reset-scene-art-v1']) assert(manifest.extensions.includes(extension), `missing extension ${extension}`);
 for (const file of ['combat.mjs','meta.mjs','project.json','sw.js','app.mjs','manifest.webmanifest']) assert(await exists(resolve(dist, file)), `missing ${file}`);
 assert(app.includes("import('./combat.mjs')") && app.includes("import('./meta.mjs')"), 'runtime bridges are not mounted');
 assert(sw.includes('combat.mjs') && sw.includes('meta.mjs'), 'runtime bridges are not offline cached');
@@ -48,7 +48,23 @@ for (const character of cast) for (const expression of expressions) {
   assert(await exists(resolve(dist, asset.src)), `portrait file missing from package: ${asset.src}`);
   assert(sw.includes(asset.src), `portrait not offline cached: ${asset.src}`);
 }
-assert(portraitSources.size === 30, 'expression variants are not distinct files');
+const xuqiAngry = assetMap.get('xuqi/angry');
+assert(xuqiAngry?.src === 'assets/generated-portraits/xuqi/angry.svg', 'Xu Qi angry expression still points at legacy sprite');
+assert(await exists(resolve(dist, xuqiAngry.src)), 'Xu Qi angry production sprite missing');
+assert(portraitSources.size === 30, 'five-expression heroine variants are not distinct files');
+
+const productionScenes = [
+  'classroom-rain','school-gate-rain','school-gate-evening','home-corridor','station-night','night-wucheng','school-morning','archive-room','cafeteria','rooftop-evening',
+  'stairwell-morning','riverside-dusk','underpass-rain','classroom-dawn','old-art-room','night-art-room','old-stationery','north-station','save-room','true-dawn'
+];
+const productionCgs = ['faceless-reflection-cg','letter-1842-cg','six-chairs-cg','linwan-1842-cg','true-end-riverside-cg'];
+for (const id of [...productionScenes, ...productionCgs]) {
+  const asset = assetMap.get(id); assert(asset, `missing production scene asset ${id}`);
+  assert(asset.src === `assets/generated-scenes/${id}.svg`, `${id} still points at legacy art`);
+  assert(!String(asset.alt ?? '').includes('占位'), `${id} is still labelled placeholder`);
+  assert(await exists(resolve(dist, asset.src)), `scene art missing from package: ${asset.src}`);
+  assert(sw.includes(asset.src), `scene art not offline cached: ${asset.src}`);
+}
 
 const finalScenes = ['c6_no_save','c6_walk_forward','c6_echo_goodbye','c6_last_door','c7_morning','c7_linwan','c7_credits'];
 for (const id of finalScenes) assert(scenes.has(id), `missing irreversible/true ending scene ${id}`);
@@ -58,6 +74,7 @@ for (const file of ['combat.mjs','meta.mjs']) assert(listed.has(file), `${file} 
 
 console.log(JSON.stringify({
   status: 'release-integrity-ok', version: project.version, scenes: project.scenes.length,
-  assets: project.assets.length, endings: endings.size, productionPortraits: portraitSources.size,
+  assets: project.assets.length, endings: endings.size, productionPortraits: portraitSources.size + 1,
+  productionBackgrounds: productionScenes.length, productionCGs: productionCgs.length,
   extensions: manifest.extensions
 }, null, 2));
