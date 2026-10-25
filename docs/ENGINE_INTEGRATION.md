@@ -20,7 +20,11 @@
 
 `game/runtime/meta.mjs` 提供真实读取计数、结局与通关 Meta，保护不可逆区间的保存、导入、读取、历史回退和重开入口。`game/runtime/combat.mjs` 提供三处战斗并回接 canonical choice。当前版本保持引擎锁定，不将这些作品专属行为主动搬入引擎。
 
-## 后续引擎能力设想（未纳入 v1.0.0 发布范围）
+## v1.1.0 作品级增强
+
+`archive.mjs` 与 `archive-data.mjs` 在作品侧提供六个手动存档槽和只读结局/CG 收藏；保存和读取继续调用 Meta 守护后的 session 接口。`experience.css` 适配小窗口与手机。存档版本兼容、CG 见闻记录和战斗反馈均由作品插件实现，引擎锁定提交保持不变。
+
+## 后续引擎能力设想（未纳入当前发布范围）
 
 ### 1. MetaState
 

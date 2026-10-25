@@ -29,14 +29,14 @@ export function mountCombatBridge(game) {
       active = null;
       session.pause('reset-combat', false);
       queueMicrotask(() => session.act(result === 'win' ? config.win : config.lose));
-    });
+    }, view.settings);
     session.pause('reset-combat', true);
   }
 
   return { dispose() { disposed = true; unsubscribe(); if (active) active.dispose(); session.pause('reset-combat', false); } };
 }
 
-function createCombat(config, encounterId, done) {
+function createCombat(config, encounterId, done, settings = {}) {
   const meta = readMeta();
   meta[encounterId] = (Number(meta[encounterId]) || 0) + 1;
   writeMeta(meta);
@@ -58,6 +58,12 @@ function createCombat(config, encounterId, done) {
   let ended = false, raf = 0, finishTimer, last = performance.now(), attackClock = config.tempo, telegraph = null, message = '观察前摇。活下来比抢伤害重要。', messageTime = 2.6;
   const player = { x: 170, y: 270, r: 18, hp: 5, maxHp: 5, stamina: 100, iframes: 0, attackCd: 0, flash: 0, vx: 0, vy: 0 };
   const boss = { x: 760, y: 270, r: 32, hp: config.hp, maxHp: config.hp, flash: 0, phase: 1, attackIndex: 0 };
+  const reducedMotion = Boolean(settings.reducedMotion), sparks = [], trails = [];
+  let swing = null;
+  function impact(x, y, color) {
+    if (reducedMotion) return;
+    for (let i=0;i<8;i++) { const angle=i*Math.PI/4, speed=55+(i%3)*30; sparks.push({x,y,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed,life:.3,color}); }
+  }
 
   const keydown = e => { if (['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Space','KeyJ','KeyK','KeyA','KeyD','KeyW','KeyS'].includes(e.code)) { e.preventDefault(); e.stopPropagation(); press(e.code); } };
   const keyup = e => keys.delete(e.code);
@@ -78,8 +84,10 @@ function createCombat(config, encounterId, done) {
     const heavy = kind === 'heavy', cost = heavy ? 30 : 16;
     if (player.stamina < cost) return;
     player.stamina -= cost; player.attackCd = heavy ? .62 : .34;
+    if (!reducedMotion) swing = {angle:Math.atan2(boss.y-player.y,boss.x-player.x),life:heavy?.23:.15,total:heavy?.23:.15,heavy};
     if (distance(player, boss) < (heavy ? 112 : 92)) {
       boss.hp = Math.max(0, boss.hp - (heavy ? 2 : 1)); boss.flash = .12;
+      impact(boss.x,boss.y,'#e3c3aa');
       message = heavy ? '重击命中。' : '命中。'; messageTime = .5;
       if (boss.hp <= boss.maxHp / 2 && boss.phase === 1) { boss.phase = 2; message = config.mode === 'adaptive' ? '它记住了你的节奏。' : '第二阶段。'; messageTime = 1.4; }
       if (boss.hp <= 0) finish('win');
@@ -89,7 +97,9 @@ function createCombat(config, encounterId, done) {
   function dodge(dx, dy) {
     if (player.iframes > 0 || player.stamina < 26) return;
     player.stamina -= 26; player.iframes = .36;
+    const before = {x:player.x,y:player.y};
     const len = Math.hypot(dx, dy) || 1; player.x = clamp(player.x + dx / len * 92, 32, 928); player.y = clamp(player.y + dy / len * 92, 32, 508);
+    if (!reducedMotion) for(let i=0;i<4;i++)trails.push({x:before.x+(player.x-before.x)*i/4,y:before.y+(player.y-before.y)*i/4,life:.28});
   }
 
   function beginAttack() {
@@ -109,7 +119,7 @@ function createCombat(config, encounterId, done) {
     if (telegraph.type === 'ring') hit = distance(player, boss) < (boss.phase === 2 ? 190 : 160);
     else if (telegraph.type === 'dash') hit = Math.abs(player.y - boss.y) < 58;
     else hit = Math.hypot(player.x - telegraph.target.x, player.y - telegraph.target.y) < 92;
-    if (hit && player.iframes <= 0) { player.hp--; player.flash = .18; message = config.mode === 'echo' ? '旧选择提前等在了那里。' : '受击。'; messageTime = .9; if (player.hp <= 0) finish('lose'); }
+    if (hit && player.iframes <= 0) { player.hp--; player.flash = .18; impact(player.x,player.y,'#aacbdc'); message = config.mode === 'echo' ? '旧选择提前等在了那里。' : '受击。'; messageTime = .9; if (player.hp <= 0) finish('lose'); }
     telegraph = null;
     attackClock = config.tempo * (boss.phase === 2 ? .68 : 1) * Math.max(.72, 1 - (attempt - 1) * .035);
   }
@@ -121,6 +131,9 @@ function createCombat(config, encounterId, done) {
   }
 
   function update(dt) {
+    if (swing) { swing.life-=dt; if(swing.life<=0)swing=null; }
+    for(let i=sparks.length-1;i>=0;i--){const spark=sparks[i];spark.life-=dt;spark.x+=spark.vx*dt;spark.y+=spark.vy*dt;if(spark.life<=0)sparks.splice(i,1);}
+    for(let i=trails.length-1;i>=0;i--){trails[i].life-=dt;if(trails[i].life<=0)trails.splice(i,1);}
     messageTime = Math.max(0, messageTime - dt); player.iframes = Math.max(0, player.iframes - dt); player.attackCd = Math.max(0, player.attackCd - dt); player.flash = Math.max(0, player.flash - dt); boss.flash = Math.max(0, boss.flash - dt);
     let dx = 0, dy = 0;
     if (keys.has('ArrowLeft') || keys.has('KeyA')) dx--; if (keys.has('ArrowRight') || keys.has('KeyD')) dx++; if (keys.has('ArrowUp') || keys.has('KeyW')) dy--; if (keys.has('ArrowDown') || keys.has('KeyS')) dy++;
@@ -148,6 +161,10 @@ function createCombat(config, encounterId, done) {
       if (telegraph.type === 'dash') { ctx.fillStyle=`rgba(240,120,105,${.08+.2*progress})`;ctx.fillRect(0,boss.y-58,960,116); }
       if (telegraph.type === 'predict') { ctx.beginPath();ctx.arc(telegraph.target.x,telegraph.target.y,92*(.45+.55*progress),0,Math.PI*2);ctx.stroke(); }
     }
+    ctx.save();ctx.strokeStyle=boss.phase===2?'#a77f9e':'#7896a4';ctx.lineWidth=2;ctx.beginPath();ctx.arc(boss.x,boss.y,boss.r+9,0,Math.PI*2);ctx.stroke();ctx.restore();
+    for(const trail of trails){ctx.save();ctx.globalAlpha=trail.life/.28*.28;ctx.fillStyle='#6f9bae';ctx.beginPath();ctx.arc(trail.x,trail.y,17,0,Math.PI*2);ctx.fill();ctx.restore();}
+    if(swing){ctx.save();const progress=1-swing.life/swing.total;ctx.strokeStyle=swing.heavy?'#e2ceb0':'#d6edf1';ctx.globalAlpha=swing.life/swing.total;ctx.lineWidth=swing.heavy?7:4;ctx.beginPath();ctx.arc(player.x,player.y,swing.heavy?85:65,swing.angle-1+progress*.8,swing.angle+.5+progress*.8);ctx.stroke();ctx.restore();}
+    for(const spark of sparks){ctx.save();ctx.globalAlpha=spark.life/.3;ctx.fillStyle=spark.color;ctx.fillRect(spark.x-2,spark.y-2,4,4);ctx.restore();}
     ctx.save(); if (boss.flash>0) ctx.globalAlpha=.45; ctx.fillStyle='#d7dde1';ctx.beginPath();ctx.arc(boss.x,boss.y,boss.r,0,Math.PI*2);ctx.fill();ctx.fillStyle='#151b21';ctx.fillRect(boss.x-24,boss.y-8,48,16);ctx.restore();
     ctx.save(); if(player.iframes>0)ctx.globalAlpha=.38; if(player.flash>0)ctx.globalAlpha=.25;ctx.fillStyle='#9fc6dc';ctx.beginPath();ctx.arc(player.x,player.y,player.r,0,Math.PI*2);ctx.fill();ctx.restore();
     bar(28,24,230,16,player.hp,player.maxHp,'#d7e7ee'); bar(28,46,230,10,player.stamina,100,'#9db7a7'); bar(570,24,360,16,boss.hp,boss.maxHp,'#d09288');

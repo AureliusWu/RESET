@@ -93,16 +93,19 @@ async function walkFiles(directory) {
 }
 
 async function injectGameRuntime(project) {
-  for (const file of ['README.md', 'LICENSE.md', 'CHANGELOG_v1.0.1.md']) {
+  for (const file of ['README.md', 'LICENSE.md', 'CHANGELOG_v1.1.0.md']) {
     await copyFile(resolve(root, file), resolve(output, file));
   }
-  await copyFile(resolve(root, 'game/runtime/combat.mjs'), resolve(output, 'combat.mjs'));
-  await copyFile(resolve(root, 'game/runtime/meta.mjs'), resolve(output, 'meta.mjs'));
+  for (const file of ['combat.mjs','meta.mjs','archive.mjs','archive-data.mjs','experience.css']) {
+    await copyFile(resolve(root, 'game/runtime', file), resolve(output, file));
+  }
+  const htmlPath=resolve(output,'index.html');
+  await writeFile(htmlPath,(await readFile(htmlPath,'utf8')).replace('</head>','<link rel="stylesheet" href="./experience.css"></head>'));
   const appPath = resolve(output, 'app.mjs');
   let app = await readFile(appPath, 'utf8');
   const pagehide = "window.addEventListener('pagehide',event=>{if(!event.persisted)game.dispose();});";
   if (!app.includes(pagehide)) throw new Error('VN Engine packaged app entry changed; RESET runtime injection needs review');
-  app = app.replace(pagehide, "const [{mountCombatBridge},{mountMetaBridge}]=await Promise.all([import('./combat.mjs'),import('./meta.mjs')]);const combat=mountCombatBridge(game),meta=mountMetaBridge(game);window.addEventListener('pagehide',event=>{if(!event.persisted){meta.dispose();combat.dispose();game.dispose();}});");
+  app = app.replace(pagehide, "const [{mountCombatBridge},{mountMetaBridge},{mountArchiveBridge}]=await Promise.all([import('./combat.mjs'),import('./meta.mjs'),import('./archive.mjs')]);const combat=mountCombatBridge(game),meta=mountMetaBridge(game),archive=mountArchiveBridge(game,project,meta);window.addEventListener('pagehide',event=>{if(!event.persisted){archive.dispose();meta.dispose();combat.dispose();game.dispose();}});");
   await writeFile(appPath, app);
 
   const { fingerprintFiles, renderWorker } = await import(pathToFileURL(resolve(engine, 'tools/pwa.mjs')).href);
@@ -118,7 +121,7 @@ async function injectGameRuntime(project) {
     version: project.version,
     engine: packagedManifest.engine,
     contentFingerprint: fingerprint,
-    extensions: ['reset-combat-v1', 'reset-meta-v1', 'reset-portrait-set-v1', 'reset-scene-art-v1'],
+    extensions: ['reset-combat-v1', 'reset-meta-v1', 'reset-portrait-set-v1', 'reset-scene-art-v1', 'reset-archive-v1', 'reset-responsive-v1'],
     files: finalFiles.map(file => ({ name: file.name, size: file.bytes.length, sha256: createHash('sha256').update(file.bytes).digest('hex') }))
   };
   await writeFile(resolve(output, 'build-manifest.json'), JSON.stringify(metadata, null, 2) + '\n');

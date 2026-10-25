@@ -63,7 +63,7 @@ test('every release ending is reached through canonical choices and survives sav
 
 test('all shipped bytes match the build manifest', async () => {
   const manifest = JSON.parse(await readFile(resolve(dist, 'build-manifest.json'), 'utf8'));
-  assert.equal(manifest.version, 'reset-v1.0.1'); assert.equal(project.version, manifest.version);
+  assert.equal(manifest.version, 'reset-v1.1.0'); assert.equal(project.version, manifest.version);
   for (const f of manifest.files) { const data = await readFile(resolve(dist,f.name)); assert.equal(data.length,f.size,f.name); assert.equal(createHash('sha256').update(data).digest('hex'),f.sha256,f.name); }
 });
 
@@ -87,21 +87,33 @@ test('Meta counts one restore per visit, retains endings and respects paused con
   bridge.dispose(); s.dispose();
 }));
 
-test('the published v1.0.0 save upgrades without changing routes or bypassing validation', () => withMeta(() => {
+test('published v1.0.0 and v1.0.1 saves upgrade without changing routes or bypassing validation', () => withMeta(() => {
   const s=instance().session, bridge=mountMetaBridge({session:s});
-  for(const id of expected){
-    s.restart(); const legacy=structuredClone(endings.get(id)); legacy.state.storyVersion='reset-v1.0.0';
-    s.restore(legacy); assert.equal(s.getView().frame.ending,id); assert.equal(legacy.state.storyVersion,'reset-v1.0.0','import must not mutate the backup');
+  for(const version of ['reset-v1.0.0','reset-v1.0.1'])for(const id of expected){
+    s.restart(); const legacy=structuredClone(endings.get(id)); legacy.state.storyVersion=version;
+    s.restore(legacy); assert.equal(s.getView().frame.ending,id); assert.equal(legacy.state.storyVersion,version,'import must not mutate the backup');
     if(id==='true-end')assert.throws(()=>s.save(),/不可逆|保存|回退/);
     else assert.equal(s.save().state.storyVersion,project.version);
   }
-  assert.equal(bridge.meta.loads,expected.length);
+  assert.equal(bridge.meta.loads,expected.length*2);
   s.restart(); const invalid=structuredClone(endings.get('normal-linwan')); invalid.state.storyVersion='reset-v1.0.0';
   invalid.state.decisions[0].choiceId='invalid-choice'; assert.throws(()=>s.restore(invalid));
   invalid.state.storyVersion='unknown-version'; assert.throws(()=>s.restore(invalid));
   invalid.game='another-game'; invalid.state.storyVersion='reset-v1.0.0'; assert.throws(()=>s.restore(invalid));
-  assert.equal(bridge.meta.loads,expected.length,'rejected restores must not increase Meta');
+  assert.equal(bridge.meta.loads,expected.length*2,'rejected restores must not increase Meta');
   bridge.dispose(); s.dispose();
+}));
+
+test('CG collection unlocks only actual ready frames and survives restart independently of saves', () => withMeta(({values}) => {
+  const s=instance().session,bridge=mountMetaBridge({session:s});assert.deepEqual(bridge.meta.cgs,[]);
+  const cgScene=project.scenes.find(scene=>scene.cg==='letter-1842-cg');assert.ok(cgScene);
+  s.restore(witnesses.get(cgScene.id));
+  for(let count=0;count<30&&s.getView().frame.stage.cg!=='letter-1842-cg';count++)assert.ok(s.next());
+  assert.ok(bridge.meta.cgs.includes('letter-1842-cg'));
+  assert.equal(bridge.meta.cgs.includes('true-end-riverside-cg'),false,'unseen finale CG must stay locked');
+  const loads=bridge.meta.loads;s.restart();assert.equal(bridge.meta.loads,loads);assert.ok(bridge.meta.cgs.includes('letter-1842-cg'));
+  bridge.dispose();const again=mountMetaBridge({session:s});assert.ok(again.meta.cgs.includes('letter-1842-cg'));
+  assert.ok(JSON.parse(values.get('reset:meta:v1')).cgs.includes('letter-1842-cg'));again.dispose();s.dispose();
 }));
 
 test('irreversible scenes block history, import, export, load and restart at the session boundary', () => withMeta(({controls}) => {
