@@ -36,39 +36,17 @@ function synth({ duration, partials, tremolo = 0, noise = 0, attack = .35, relea
 }
 
 await mkdir(out, { recursive: true });
-await writeFile(resolve(out, 'music-memory-rain.wav'), wav(synth({
-  duration: 8,
-  partials: [[196, .07], [293.66, .045, .8], [392, .028, 1.7], [98, .02, .2]],
-  tremolo: .11, noise: .002
-})));
-await writeFile(resolve(out, 'music-night-residue.wav'), wav(synth({
-  duration: 8,
-  partials: [[55, .065], [82.41, .032, .5], [123.47, .018, 1.1], [220, .008, 2.3]],
-  tremolo: .07, noise: .009
-})));
-await writeFile(resolve(out, 'music-fracture-pulse.wav'), wav(synth({
-  duration: 8,
-  partials: [[49, .08], [73.42, .04, .8], [98, .03, 1.5], [196, .012, 2.2]],
-  pulse: 1.42, noise: .012, attack: .12, release: .6
-})));
-await writeFile(resolve(out, 'sfx-memory-ping.wav'), wav(synth({
-  duration: .42,
-  partials: [[880, .08], [1320, .045, .4], [1760, .02, .8]],
-  attack: .008, release: .32
-})));
-await writeFile(resolve(out, 'sfx-load.wav'), wav(synth({
-  duration: .9,
-  partials: [[110, .07], [220, .045, .7], [440, .025, 1.4], [880, .012, 2.1]],
-  tremolo: 5.4, noise: .018, attack: .01, release: .5
-})));
-await writeFile(resolve(out, 'sfx-impact.wav'), wav(synth({
-  duration: .32,
-  partials: [[62, .13], [93, .065, .4], [186, .028, 1.1]],
-  noise: .07, attack: .004, release: .29
-})));
-await writeFile(resolve(out, 'sfx-dodge.wav'), wav(synth({
-  duration: .22,
-  partials: [[420, .028], [760, .018, .6]],
-  noise: .045, attack: .003, release: .18
-})));
+await writeFile(resolve(out, 'music-memory-rain.wav'), wav(synth({ duration: 8, partials: [[196, .07], [293.66, .045, .8], [392, .028, 1.7], [98, .02, .2]], tremolo: .11, noise: .002 })));
+await writeFile(resolve(out, 'music-night-residue.wav'), wav(synth({ duration: 8, partials: [[55, .065], [82.41, .032, .5], [123.47, .018, 1.1], [220, .008, 2.3]], tremolo: .07, noise: .009 })));
+await writeFile(resolve(out, 'music-fracture-pulse.wav'), wav(synth({ duration: 8, partials: [[49, .08], [73.42, .04, .8], [98, .03, 1.5], [196, .012, 2.2]], pulse: 1.42, noise: .012, attack: .12, release: .6 })));
+await writeFile(resolve(out, 'music-letter-dawn.wav'), wav(synth({ duration: 8, partials: [[261.63, .052], [329.63, .032, .7], [392, .026, 1.4], [130.81, .018, .2]], tremolo: .08, noise: .0015 })));
+await writeFile(resolve(out, 'music-seven-chairs.wav'), wav(synth({ duration: 8, partials: [[65.41, .06], [98, .035, .7], [146.83, .021, 1.6], [293.66, .009, 2.4]], tremolo: .13, noise: .006 })));
+await writeFile(resolve(out, 'music-route-choice.wav'), wav(synth({ duration: 8, partials: [[174.61, .045], [261.63, .034, .6], [349.23, .022, 1.2], [87.31, .018, 2]], tremolo: .09, noise: .002 })));
+await writeFile(resolve(out, 'sfx-memory-ping.wav'), wav(synth({ duration: .42, partials: [[880, .08], [1320, .045, .4], [1760, .02, .8]], attack: .008, release: .32 })));
+await writeFile(resolve(out, 'sfx-load.wav'), wav(synth({ duration: .9, partials: [[110, .07], [220, .045, .7], [440, .025, 1.4], [880, .012, 2.1]], tremolo: 5.4, noise: .018, attack: .01, release: .5 })));
+await writeFile(resolve(out, 'sfx-impact.wav'), wav(synth({ duration: .32, partials: [[62, .13], [93, .065, .4], [186, .028, 1.1]], noise: .07, attack: .004, release: .29 })));
+await writeFile(resolve(out, 'sfx-dodge.wav'), wav(synth({ duration: .22, partials: [[420, .028], [760, .018, .6]], noise: .045, attack: .003, release: .18 })));
+await writeFile(resolve(out, 'sfx-camera-self.wav'), wav(synth({ duration: .28, partials: [[1046.5, .045], [1568, .026, .5]], noise: .012, attack: .002, release: .22 })));
+await writeFile(resolve(out, 'sfx-message-future.wav'), wav(synth({ duration: .48, partials: [[659.25, .04], [987.77, .03, .5], [1318.5, .018, 1.1]], tremolo: 8, attack: .004, release: .3 })));
+await writeFile(resolve(out, 'sfx-door-ghost.wav'), wav(synth({ duration: .7, partials: [[73.42, .06], [110, .028, .9], [220, .013, 1.7]], noise: .035, attack: .03, release: .5 })));
 console.log('Generated original RESET audio prototypes in game/assets/generated');

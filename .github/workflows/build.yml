@@ -38,18 +38,19 @@ jobs:
           VN_ENGINE_PATH: ${{ github.workspace }}/vn-engine
         run: npm run build
 
-      - name: Verify package identity and second-round content
+      - name: Verify package identity and third-round content
         working-directory: game-repo
         run: |
-          node -e "const fs=require('fs'); const m=require('./dist/build-manifest.json'); const p=require('./dist/project.json'); if(m.game!=='reset'||m.version!=='reset-v0.2.0'||p.version!=='reset-v0.2.0') process.exit(1); if(!p.scenes.some(s=>s.id==='faceless_second')||!p.assets.some(a=>a.id==='music-fracture-pulse')) process.exit(2); console.log(m.engine, m.contentFingerprint, p.scenes.length, p.assets.length)"
+          node -e "const m=require('./dist/build-manifest.json'); const p=require('./dist/project.json'); if(m.game!=='reset'||m.version!=='reset-v0.3.0'||p.version!=='reset-v0.3.0') process.exit(1); const ids=new Set(p.scenes.map(s=>s.id)); if(!ids.has('route_focus_choice')||!ids.has('focus_linwan_open')||!ids.has('focus_xiaoman_open')||!ids.has('focus_xuqi_open')) process.exit(2); if(!p.assets.some(a=>a.id==='music-seven-chairs')||!p.assets.some(a=>a.id==='six-chairs-cg')) process.exit(3); console.log(m.engine, m.contentFingerprint, p.scenes.length, p.assets.length)"
           test -f dist/index.html
           test -f dist/project.json
           test -f dist/sw.js
-          test -f dist/assets/generated/music-fracture-pulse.wav
-          test -f dist/assets/cg-faceless-reflection.svg
+          test -f dist/assets/generated/music-seven-chairs.wav
+          test -f dist/assets/cg-six-chairs.svg
+          test -f dist/assets/cg-letter-1842.svg
 
       - name: Upload standalone build
         uses: actions/upload-artifact@v4
         with:
-          name: RESET-huiliu-v0.2.0
+          name: RESET-huiliu-v0.3.0
           path: game-repo/dist

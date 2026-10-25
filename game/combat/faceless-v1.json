@@ -1,0 +1,27 @@
+{
+  "id": "faceless-v1",
+  "name": "无面行人",
+  "runtimeTarget": "combat_soulslike",
+  "narrativeRole": "第一个证明异常体也能跨读档学习的敌人",
+  "playerKit": ["move", "light", "heavy", "dodge", "ability", "item"],
+  "phase1": {
+    "tell": "积水倒影提前约0.35秒动作",
+    "attacks": ["gap-close", "right-swipe", "delayed-step"],
+    "adaptation": "若玩家连续依赖倒影闪避，则下一周目取消倒影前摇"
+  },
+  "phase2": {
+    "trigger": "playerLoadCount>=1 or priorPatternKnown",
+    "attacks": ["false-reflection", "intercept-dodge", "memory-callout"],
+    "voice": ["又是你。", "你会躲。"]
+  },
+  "rules": [
+    "死亡不能自动等价为进步；Boss 也获得有限的跨周目信息",
+    "每次适应只改变一个核心规律，避免随机化破坏可学习性",
+    "剧情模式与实时战斗模式必须产出同一组 canonical outcome IDs"
+  ],
+  "outcomes": ["escape-first", "death-fifth", "death-sixth"],
+  "determinism": {
+    "seedSource": "worldRevision + encounterAttempt",
+    "recordResult": true
+  }
+}

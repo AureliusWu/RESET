@@ -3,10 +3,16 @@
     {"id":"music-memory-rain","kind":"audio","src":"assets/generated/music-memory-rain.wav","alt":"原创程序氛围音乐：雨中的回忆"},
     {"id":"music-night-residue","kind":"audio","src":"assets/generated/music-night-residue.wav","alt":"原创程序氛围音乐：夜梧城残响"},
     {"id":"music-fracture-pulse","kind":"audio","src":"assets/generated/music-fracture-pulse.wav","alt":"原创程序战斗原型音乐：断层脉冲"},
+    {"id":"music-letter-dawn","kind":"audio","src":"assets/generated/music-letter-dawn.wav","alt":"原创程序音乐：没有发生过的约定"},
+    {"id":"music-seven-chairs","kind":"audio","src":"assets/generated/music-seven-chairs.wav","alt":"原创程序音乐：第七把椅子"},
+    {"id":"music-route-choice","kind":"audio","src":"assets/generated/music-route-choice.wav","alt":"原创程序音乐：把时间交给谁"},
     {"id":"sfx-memory-ping","kind":"audio","src":"assets/generated/sfx-memory-ping.wav","alt":"原创系统残响提示音"},
     {"id":"sfx-load","kind":"audio","src":"assets/generated/sfx-load.wav","alt":"原创读取与世界重写提示音"},
     {"id":"sfx-impact","kind":"audio","src":"assets/generated/sfx-impact.wav","alt":"原创异常体冲击音效"},
-    {"id":"sfx-dodge","kind":"audio","src":"assets/generated/sfx-dodge.wav","alt":"原创闪避掠过音效"}
+    {"id":"sfx-dodge","kind":"audio","src":"assets/generated/sfx-dodge.wav","alt":"原创闪避掠过音效"},
+    {"id":"sfx-camera-self","kind":"audio","src":"assets/generated/sfx-camera-self.wav","alt":"原创异常自拍快门音"},
+    {"id":"sfx-message-future","kind":"audio","src":"assets/generated/sfx-message-future.wav","alt":"原创未来消息提示音"},
+    {"id":"sfx-door-ghost","kind":"audio","src":"assets/generated/sfx-door-ghost.wav","alt":"原创不存在之门开启音"}
   ],
   "stage": {
     "defaults": {"music":"music-memory-rain"},
@@ -22,7 +28,21 @@
       "death_fifth": {"music":"music-fracture-pulse"},
       "faceless_second": {"music":"music-fracture-pulse"},
       "death_sixth": {"music":"music-fracture-pulse"},
-      "breakthrough_first": {"music":"music-night-residue"}
+      "breakthrough_first": {"music":"music-night-residue"},
+      "chapter3_gate": {"music":"music-letter-dawn"},
+      "letter_examination": {"music":"music-letter-dawn"},
+      "route_method_choice": {"music":"music-route-choice"},
+      "route_linwan_dream": {"music":"music-letter-dawn"},
+      "route_xiaoman_feeling": {"music":"music-letter-dawn"},
+      "route_xuqi_night": {"music":"music-night-residue"},
+      "route_merge_message": {"music":"music-seven-chairs"},
+      "six_person_meeting": {"music":"music-seven-chairs"},
+      "archive_photo": {"music":"music-seven-chairs"},
+      "future_rule": {"music":"music-seven-chairs"},
+      "route_focus_choice": {"music":"music-route-choice"},
+      "focus_linwan_open": {"music":"music-letter-dawn"},
+      "focus_xiaoman_open": {"music":"music-route-choice"},
+      "focus_xuqi_open": {"music":"music-night-residue"}
     },
     "lines": {
       "z002": {"sound":"sfx-memory-ping"},
@@ -32,7 +52,12 @@
       "c2x004": {"sound":"sfx-load"},
       "c2l001": {"sound":"sfx-load"},
       "c2s002": {"sound":"sfx-memory-ping"},
-      "c2y001": {"sound":"sfx-impact"}
+      "c2y001": {"sound":"sfx-impact"},
+      "c3d004": {"sound":"sfx-message-future"},
+      "c3f001": {"sound":"sfx-camera-self"},
+      "c3h002": {"sound":"sfx-message-future"},
+      "c3j003": {"sound":"sfx-door-ghost"},
+      "c3n004": {"sound":"sfx-door-ghost"}
     }
   }
 }
