@@ -35,7 +35,7 @@ try{
   await control('settings').click();await page.locator('input[type=file]').setInputFiles({name:'acceptance-save.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(fixtures.witnesses.c6_no_save))});
   await page.locator('.vn-modal').waitFor({state:'hidden'});assert.equal(await control('save').isHidden(),true);assert.equal(await archive('slots').isHidden(),true);
   for(let count=0;count<100;count++){
-    if(await page.locator('.vn-engine').getAttribute('data-scene')==='c7_credits')break;
+    if((await page.locator('.vn-actions').innerText()).includes('已到达结局'))break;
     const choice=page.locator('[data-action=confirm_no_save]');if(await choice.count())await choice.click();else await control('next').click();
   }
   assert.equal(await page.title(),'回留 · 明天见');await control('restart').click();
