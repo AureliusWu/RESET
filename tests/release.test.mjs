@@ -87,6 +87,23 @@ test('Meta counts one restore per visit, retains endings and respects paused con
   bridge.dispose(); s.dispose();
 }));
 
+test('the published v1.0.0 save upgrades without changing routes or bypassing validation', () => withMeta(() => {
+  const s=instance().session, bridge=mountMetaBridge({session:s});
+  for(const id of expected){
+    s.restart(); const legacy=structuredClone(endings.get(id)); legacy.state.storyVersion='reset-v1.0.0';
+    s.restore(legacy); assert.equal(s.getView().frame.ending,id); assert.equal(legacy.state.storyVersion,'reset-v1.0.0','import must not mutate the backup');
+    if(id==='true-end')assert.throws(()=>s.save(),/不可逆|保存|回退/);
+    else assert.equal(s.save().state.storyVersion,project.version);
+  }
+  assert.equal(bridge.meta.loads,expected.length);
+  s.restart(); const invalid=structuredClone(endings.get('normal-linwan')); invalid.state.storyVersion='reset-v1.0.0';
+  invalid.state.decisions[0].choiceId='invalid-choice'; assert.throws(()=>s.restore(invalid));
+  invalid.state.storyVersion='unknown-version'; assert.throws(()=>s.restore(invalid));
+  invalid.game='another-game'; invalid.state.storyVersion='reset-v1.0.0'; assert.throws(()=>s.restore(invalid));
+  assert.equal(bridge.meta.loads,expected.length,'rejected restores must not increase Meta');
+  bridge.dispose(); s.dispose();
+}));
+
 test('irreversible scenes block history, import, export, load and restart at the session boundary', () => withMeta(({controls}) => {
   const s=instance().session, before=s.save(); s.restore(witnesses.get('c6_no_save'));
   const bridge=mountMetaBridge({session:s}), scene=s.getView().frame.sceneId, earlier=s.history()[0].id;

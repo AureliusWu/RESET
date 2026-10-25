@@ -34,6 +34,9 @@ try{
   await page.screenshot({path:out+'/desktop.png',fullPage:true});pass('Standalone package loads from /play/ with actual art and no startup error');
   const start=await scene();await control('save').click();await control('next').click();await control('load').click();assert.equal(await scene(),start);
   assert.match(await page.title(),/读取 1/);pass('Save/load restores the paragraph and increments persistent Meta once');
+  const legacy=structuredClone(fixtures.witnesses[start]);legacy.state.storyVersion='reset-v1.0.0';
+  await loadFixture(legacy);assert.equal(await scene(),start);assert.match(await page.title(),/读取 2/);
+  pass('A published v1.0.0 backup imports through the packaged settings UI and retains the route');
   await control('settings').click();assert.equal(await control('save').isDisabled(),true);
   await page.getByLabel('阅读区透明度').fill('0.6');await page.getByRole('button',{name:'关闭',exact:true}).click();
   assert.match(await page.locator('.vn-engine').getAttribute('style'),/0.6/);

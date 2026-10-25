@@ -19,6 +19,11 @@ export function mountMetaBridge(game){
         if(name==='save'||name==='restore')throw new Error(message);
         return false;
       }
+      // This patch changes no story nodes or choices. Upgrade only the exact
+      // published predecessor; the engine still validates and replays the save.
+      if(name==='restore'&&args[0]?.schema===1&&args[0]?.game==='reset'&&args[0]?.state?.storyVersion==='reset-v1.0.0'){
+        args[0]={...args[0],state:{...args[0].state,storyVersion:'reset-v1.0.1'}};
+      }
       return original.apply(session,args);
     };
     originals.set(name,{own,guarded});session[name]=guarded;

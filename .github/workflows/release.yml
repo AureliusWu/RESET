@@ -272,6 +272,8 @@ jobs:
         with:
           script: |
             const repo = {owner: context.repo.owner, repo: context.repo.repo};
+            const head = (await github.rest.repos.getBranch({...repo, branch: 'main'})).data.commit.sha;
+            if (head !== context.sha) throw new Error('A newer main commit superseded this candidate; refusing to publish');
             let ref;
             try { ref = (await github.rest.git.getRef({...repo, ref: 'tags/v1.0.1'})).data; } catch (e) { if (e.status !== 404) throw e; }
             if (ref) {
