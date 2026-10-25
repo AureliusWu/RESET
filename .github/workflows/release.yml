@@ -210,8 +210,9 @@ jobs:
         with:
           name: RESET-huiliu-v1.0.0-windows-validation
           path: |
-            test-results/windows
-            game-repo/test-results/windows-installed
+            test-results/windows/host-policy.json
+            game-repo/test-results/windows-installed/*.json
+            game-repo/test-results/windows-installed/*.png
 
       - uses: actions/upload-artifact@v4
         with:

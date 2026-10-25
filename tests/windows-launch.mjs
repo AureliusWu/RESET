@@ -9,11 +9,20 @@ const {chromium}=await import(pathToFileURL(resolve(process.env.VN_ENGINE_PATH,'
 const root=resolve(process.argv[2]), out=resolve('test-results/windows-installed');await mkdir(out,{recursive:true});
 const checks=[],errors=[];let browser;
 const gameOrigin='https://game-'+createHash('sha256').update('reset').digest('hex').slice(0,24)+'.vnengine.test/';
-const stop=()=>spawnSync('taskkill',['/IM','VNEngine.exe','/T','/F'],{stdio:'ignore'});
+const stop=()=>{
+  spawnSync('taskkill',['/IM','VNEngine.exe','/T','/F'],{stdio:'ignore'});
+  // Previous CI window probes can leave an orphan browser using the default
+  // profile. This dedicated runner contains only our disposable test processes.
+  spawnSync('taskkill',['/IM','msedgewebview2.exe','/T','/F'],{stdio:'ignore'});
+};
 const launch=async()=>{
-  const child=spawn(resolve(root,'RESET.exe'),[],{cwd:root,env:{...process.env,WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS:'--remote-debugging-port=9223'}});
+  const child=spawn(resolve(root,'RESET.exe'),[],{cwd:root,env:{...process.env,WEBVIEW2_USER_DATA_FOLDER:resolve(out,'profile'),WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS:'--remote-debugging-port=9223'}});
   child.on('error',e=>errors.push(e.message));
   for(let i=0;i<150;i++){try{const r=await fetch('http://127.0.0.1:9223/json/version');if(r.ok){browser=await chromium.connectOverCDP('http://127.0.0.1:9223');break}}catch{}await new Promise(r=>setTimeout(r,200));}
+  if(!browser){
+    const result=spawnSync('powershell',['-NoProfile','-Command',"Get-CimInstance Win32_Process | Where-Object {$_.Name -in @('RESET.exe','VNEngine.exe','msedgewebview2.exe')} | Select-Object Name,ProcessId,ParentProcessId,CommandLine | ConvertTo-Json"],{encoding:'utf8'});
+    await writeFile(out+'/process-diagnostics.json',result.stdout||'[]');
+  }
   assert.ok(browser,'RESET.exe did not start a debuggable native WebView2');
   const context=browser.contexts()[0];let page;
   for(let i=0;i<100;i++){page=context.pages().find(p=>p.url().startsWith(gameOrigin));if(page)break;await new Promise(r=>setTimeout(r,100));}
@@ -21,6 +30,7 @@ const launch=async()=>{
   assert.equal(await page.locator('#error').innerText(),'');await page.locator('.vn-background').waitFor({state:'visible'});return page;
 };
 try{
+  stop();
   let page=await launch();checks.push('Extracted RESET.exe starts engine/VNEngine.exe and mounts the real game/ content in Windows WebView2');
   await page.locator('[data-control=settings]').click();await page.getByLabel('文字间隔',{exact:true}).fill('0');await page.getByRole('button',{name:'关闭',exact:true}).click();
   await page.locator('[data-control=next]').click();await page.locator('[data-control=save]').click();const line=await page.locator('.vn-engine').getAttribute('data-line');

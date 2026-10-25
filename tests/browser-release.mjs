@@ -47,7 +47,7 @@ try{
   }pass('All six Normal Ends and six key Bad Ends render and register Meta from validated route saves');
   for(const [id,save] of Object.entries(fixtures.combat)){
     for(const outcome of ['win','lose']){
-      await loadFixture(save);await page.getByRole('dialog').filter({has:page.locator('canvas')}).waitFor();
+      await loadFixture(save);await page.locator('.reset-combat canvas').waitFor();
       await page.keyboard.down('d');await page.waitForTimeout(2400);await page.keyboard.up('d');
       if(outcome==='win')for(let hit=0;hit<9;hit++){if(!await page.locator('.reset-combat').count())break;await page.keyboard.press('k');await page.waitForTimeout(650);}
       await page.locator('.reset-combat').waitFor({state:'detached',timeout:25000});
