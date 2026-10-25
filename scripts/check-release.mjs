@@ -66,6 +66,18 @@ for (const id of [...productionScenes, ...productionCgs]) {
   assert(sw.includes(asset.src), `scene art not offline cached: ${asset.src}`);
 }
 
+const finaleScore = ['music-no-save','music-tomorrow'];
+for (const id of finaleScore) {
+  const asset = assetMap.get(id);
+  assert(asset?.kind === 'audio', `missing finale score ${id}`);
+  assert(await exists(resolve(dist, asset.src)), `finale score missing from package: ${asset.src}`);
+  assert(sw.includes(asset.src), `finale score not offline cached: ${asset.src}`);
+}
+const noSaveMusicScenes = ['c5_anchor_truth','c5_request','c5_1842','chapter6_gate','c6_no_save','c6_echo_goodbye'];
+const tomorrowMusicScenes = ['c7_morning','c7_after','c7_linwan','c7_credits'];
+for (const id of noSaveMusicScenes) assert(project.stage?.scenes?.[id]?.music === 'music-no-save', `no-save theme missing from ${id}`);
+for (const id of tomorrowMusicScenes) assert(project.stage?.scenes?.[id]?.music === 'music-tomorrow', `tomorrow theme missing from ${id}`);
+
 const finalScenes = ['c6_no_save','c6_walk_forward','c6_echo_goodbye','c6_last_door','c7_morning','c7_linwan','c7_credits'];
 for (const id of finalScenes) assert(scenes.has(id), `missing irreversible/true ending scene ${id}`);
 
@@ -76,5 +88,5 @@ console.log(JSON.stringify({
   status: 'release-integrity-ok', version: project.version, scenes: project.scenes.length,
   assets: project.assets.length, endings: endings.size, productionPortraits: portraitSources.size + 1,
   productionBackgrounds: productionScenes.length, productionCGs: productionCgs.length,
-  extensions: manifest.extensions
+  finaleScore: finaleScore.length, extensions: manifest.extensions
 }, null, 2));
