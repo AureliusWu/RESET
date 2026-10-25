@@ -63,7 +63,7 @@ test('every release ending is reached through canonical choices and survives sav
 
 test('all shipped bytes match the build manifest', async () => {
   const manifest = JSON.parse(await readFile(resolve(dist, 'build-manifest.json'), 'utf8'));
-  assert.equal(manifest.version, 'reset-v1.0.0'); assert.equal(project.version, manifest.version);
+  assert.equal(manifest.version, 'reset-v1.0.1'); assert.equal(project.version, manifest.version);
   for (const f of manifest.files) { const data = await readFile(resolve(dist,f.name)); assert.equal(data.length,f.size,f.name); assert.equal(createHash('sha256').update(data).digest('hex'),f.sha256,f.name); }
 });
 

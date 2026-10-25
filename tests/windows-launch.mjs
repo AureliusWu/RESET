@@ -16,7 +16,12 @@ const stop=()=>{
   spawnSync('taskkill',['/IM','msedgewebview2.exe','/T','/F'],{stdio:'ignore'});
 };
 const launch=async()=>{
-  const child=spawn(resolve(root,'RESET.exe'),[],{cwd:root,env:{...process.env,WEBVIEW2_USER_DATA_FOLDER:resolve(out,'profile'),WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS:'--remote-debugging-port=9223'}});
+  // The verifier uses Node, but the game process receives only system search
+  // paths, with SDK/runtime overrides removed. It must use its packaged host.
+  const runtimeEnv={...process.env};
+  for(const name of Object.keys(runtimeEnv))if(/^(PATH|NODE.*|NPM.*|DOTNET.*)$/i.test(name))delete runtimeEnv[name];
+  runtimeEnv.PATH=`${process.env.SystemRoot}\\System32;${process.env.SystemRoot}`;
+  const child=spawn(resolve(root,'RESET.exe'),[],{cwd:root,env:{...runtimeEnv,WEBVIEW2_USER_DATA_FOLDER:resolve(out,'profile'),WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS:'--remote-debugging-port=9223'}});
   child.on('error',e=>errors.push(e.message));
   for(let i=0;i<150;i++){try{const r=await fetch('http://127.0.0.1:9223/json/version');if(r.ok){browser=await chromium.connectOverCDP('http://127.0.0.1:9223');break}}catch{}await new Promise(r=>setTimeout(r,200));}
   if(!browser){
@@ -31,7 +36,7 @@ const launch=async()=>{
 };
 try{
   stop();
-  page=await launch();checks.push('Extracted RESET.exe starts engine/VNEngine.exe and mounts the real game/ content in Windows WebView2');
+  page=await launch();checks.push('Extracted RESET.exe starts engine/VNEngine.exe and mounts the real game/ content in Windows WebView2 with only system PATH and no SDK overrides');
   await page.locator('[data-control=settings]').click();await page.getByLabel('文字间隔',{exact:true}).fill('0');await page.getByRole('button',{name:'关闭',exact:true}).click();
   await page.locator('[data-control=next]').click();await page.locator('[data-control=save]').click();const line=await page.locator('.vn-engine').getAttribute('data-line');
   await page.locator('[data-control=next]').click();await page.locator('[data-control=load]').click();assert.equal(await page.locator('.vn-engine').getAttribute('data-line'),line);

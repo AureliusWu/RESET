@@ -62,8 +62,10 @@ function createCombat(config, encounterId, done) {
   const keydown = e => { if (['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Space','KeyJ','KeyK','KeyA','KeyD','KeyW','KeyS'].includes(e.code)) { e.preventDefault(); e.stopPropagation(); press(e.code); } };
   const keyup = e => keys.delete(e.code);
   const blur = () => { keys.clear(); presses.clear(); };
+  const visibility = () => { if (document.hidden) blur(); };
   addEventListener('keydown', keydown, true); addEventListener('keyup', keyup, true);
   addEventListener('blur', blur);
+  document.addEventListener('visibilitychange', visibility);
   for (const button of overlay.querySelectorAll('button[data-key]')) {
     const code = button.dataset.key;
     const down = e => { e.preventDefault(); press(code); };
@@ -156,6 +158,6 @@ function createCombat(config, encounterId, done) {
 
   function loop(now) { if (ended) { draw(); return; } const dt = Math.min(.033,(now-last)/1000); last=now; update(dt); draw(); raf=requestAnimationFrame(loop); }
   raf=requestAnimationFrame(loop);
-  function cleanup(){ cancelAnimationFrame(raf); clearTimeout(finishTimer); removeEventListener('keydown',keydown,true);removeEventListener('keyup',keyup,true);removeEventListener('blur',blur);keys.clear();presses.clear();overlay.remove(); }
+  function cleanup(){ cancelAnimationFrame(raf); clearTimeout(finishTimer); removeEventListener('keydown',keydown,true);removeEventListener('keyup',keyup,true);removeEventListener('blur',blur);document.removeEventListener('visibilitychange',visibility);keys.clear();presses.clear();overlay.remove(); }
   return { dispose(){ ended=true;cleanup(); } };
 }

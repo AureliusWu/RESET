@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.1 — Combat input patch
+
+- 页面隐藏时清空战斗移动和待执行行动，覆盖切后台未发生窗口失焦的情况。
+- 补充全部三场战斗的键盘/触屏快速轻击、重击、闪避、连续输入与退出清理回归。
+- 重新运行主 Build、最终 Web/PWA 与 Windows x64 原生包验收；保留已公开 v1.0.0。
+- 详细下载、验收与边界见 [CHANGELOG_v1.0.1.md](CHANGELOG_v1.0.1.md)。
+
 ## 1.0.0 — Release
 
 《回留 / RESET》的第一个完整正式发行版本。详细下载、最终验收修复与边界见 [CHANGELOG_v1.0.0.md](CHANGELOG_v1.0.0.md)。

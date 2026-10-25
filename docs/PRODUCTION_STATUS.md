@@ -1,6 +1,6 @@
-# 《回留》v1.0.0 制作状态
+# 《回留》v1.0.1 制作状态
 
-更新时间：2026-10-25。正式版本和下载以 [v1.0.0 Release](https://github.com/AureliusWu/RESET/releases/tag/v1.0.0) 为准。
+更新时间：2026-10-25。正式版本和下载以 [v1.0.1 Release](https://github.com/AureliusWu/RESET/releases/tag/v1.0.1) 为准。
 
 ## 已完成
 
@@ -16,8 +16,8 @@
 
 主 Build、最终 Web ZIP 浏览器/离线验收、最终 Windows ZIP 原生启动/进程重启验收全部通过后，发布流水线创建 Tag、正式 Release、两个 ZIP 和 SHA256SUMS。最终结果、截图与报告见对应提交 Actions，不以编译通过代替实机验收。
 
-详见 [发布清单](RELEASE_CHECKLIST.md)、[结局矩阵](ENDING_MATRIX.md)、[发行说明](../CHANGELOG_v1.0.0.md)。
+详见 [发布清单](RELEASE_CHECKLIST.md)、[结局矩阵](ENDING_MATRIX.md)、[发行说明](../CHANGELOG_v1.0.1.md)。
 
 ## 后续增强
 
-全角色配音、4K 重绘、高预算手绘重制、Boss 动画精修、更多存档槽/结局回收界面。以上均不阻断完整无配音 v1.0.0。
+全角色配音、4K 重绘、高预算手绘重制、Boss 动画精修、更多存档槽/结局回收界面。以上均不阻断完整无配音 v1.0.1。
