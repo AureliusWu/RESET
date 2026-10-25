@@ -18,6 +18,7 @@
     {"id":"xuqi/worried","kind":"portrait","src":"assets/generated-portraits/xuqi/worried.svg","alt":"许栖·标准立绘·担忧"},
     {"id":"xuqi/surprised","kind":"portrait","src":"assets/generated-portraits/xuqi/surprised.svg","alt":"许栖·标准立绘·惊讶"},
     {"id":"xuqi/serious","kind":"portrait","src":"assets/generated-portraits/xuqi/serious.svg","alt":"许栖·标准立绘·认真"},
+    {"id":"xuqi/angry","kind":"portrait","src":"assets/generated-portraits/xuqi/angry.svg","alt":"许栖·标准立绘·生气"},
 
     {"id":"tinglan/neutral","kind":"portrait","src":"assets/generated-portraits/tinglan/neutral.svg","alt":"沈听澜·标准立绘·平静"},
     {"id":"tinglan/smile","kind":"portrait","src":"assets/generated-portraits/tinglan/smile.svg","alt":"沈听澜·标准立绘·微笑"},
