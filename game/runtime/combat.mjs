@@ -52,17 +52,21 @@ function createCombat(config, encounterId, done) {
   </style><div class="reset-combat reset-combat__root"><div class="reset-combat__head"><div class="reset-combat__title">${config.title}</div><div class="reset-combat__hint">第 ${attempt} 次接触 · WASD/方向键移动 · Space闪避 · J轻击 · K重击</div></div><canvas width="960" height="540"></canvas><div class="reset-combat__controls"><button data-key="ArrowLeft">←</button><button data-key="ArrowUp">↑</button><button data-key="ArrowDown">↓</button><button data-key="ArrowRight">→</button><button data-key="Space">闪避</button><button data-key="KeyJ">轻击</button><button data-key="KeyK">重击</button></div></div>`;
   document.body.appendChild(overlay);
   const canvas = overlay.querySelector('canvas'), ctx = canvas.getContext('2d');
-  const keys = new Set();
-  let ended = false, raf = 0, last = performance.now(), attackClock = config.tempo, telegraph = null, message = '观察前摇。活下来比抢伤害重要。', messageTime = 2.6;
+  const keys = new Set(), presses = new Set();
+  const actions = new Set(['Space','KeyJ','KeyK']);
+  const press = code => (actions.has(code) ? presses : keys).add(code);
+  let ended = false, raf = 0, finishTimer, last = performance.now(), attackClock = config.tempo, telegraph = null, message = '观察前摇。活下来比抢伤害重要。', messageTime = 2.6;
   const player = { x: 170, y: 270, r: 18, hp: 5, maxHp: 5, stamina: 100, iframes: 0, attackCd: 0, flash: 0, vx: 0, vy: 0 };
   const boss = { x: 760, y: 270, r: 32, hp: config.hp, maxHp: config.hp, flash: 0, phase: 1, attackIndex: 0 };
 
-  const keydown = e => { if (['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Space','KeyJ','KeyK','KeyA','KeyD','KeyW','KeyS'].includes(e.code)) { e.preventDefault(); keys.add(e.code); } };
+  const keydown = e => { if (['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Space','KeyJ','KeyK','KeyA','KeyD','KeyW','KeyS'].includes(e.code)) { e.preventDefault(); e.stopPropagation(); press(e.code); } };
   const keyup = e => keys.delete(e.code);
+  const blur = () => { keys.clear(); presses.clear(); };
   addEventListener('keydown', keydown, true); addEventListener('keyup', keyup, true);
+  addEventListener('blur', blur);
   for (const button of overlay.querySelectorAll('button[data-key]')) {
     const code = button.dataset.key;
-    const down = e => { e.preventDefault(); keys.add(code); };
+    const down = e => { e.preventDefault(); press(code); };
     const up = e => { e.preventDefault(); keys.delete(code); };
     button.addEventListener('pointerdown', down); button.addEventListener('pointerup', up); button.addEventListener('pointercancel', up); button.addEventListener('pointerleave', up);
   }
@@ -111,7 +115,7 @@ function createCombat(config, encounterId, done) {
   function finish(result) {
     if (ended) return; ended = true;
     message = result === 'win' ? '突破。' : '死亡。'; messageTime = .7;
-    setTimeout(() => { cleanup(); done(result); }, 650);
+    finishTimer = setTimeout(() => { cleanup(); done(result); }, 650);
   }
 
   function update(dt) {
@@ -121,9 +125,11 @@ function createCombat(config, encounterId, done) {
     const len = Math.hypot(dx, dy) || 1, speed = 225; player.vx = dx / len * speed; player.vy = dy / len * speed;
     if (dx || dy) { player.x = clamp(player.x + player.vx * dt, 28, 932); player.y = clamp(player.y + player.vy * dt, 28, 512); }
     else { player.vx = 0; player.vy = 0; }
-    if (keys.has('Space')) { keys.delete('Space'); dodge(dx, dy); }
-    if (keys.has('KeyJ')) { keys.delete('KeyJ'); strike('light'); }
-    if (keys.has('KeyK')) { keys.delete('KeyK'); strike('heavy'); }
+    // A tap can begin and end between animation frames. Queue action edges until
+    // update consumes them; keyup/pointerup only release held movement keys.
+    if (presses.has('Space')) { presses.delete('Space'); dodge(dx, dy); }
+    if (presses.has('KeyJ')) { presses.delete('KeyJ'); strike('light'); }
+    if (presses.has('KeyK')) { presses.delete('KeyK'); strike('heavy'); }
     player.stamina = Math.min(100, player.stamina + 25 * dt);
     if (!telegraph) { attackClock -= dt; if (attackClock <= 0) beginAttack(); }
     else { telegraph.t -= dt; if (telegraph.t <= 0) resolveAttack(); }
@@ -150,6 +156,6 @@ function createCombat(config, encounterId, done) {
 
   function loop(now) { if (ended) { draw(); return; } const dt = Math.min(.033,(now-last)/1000); last=now; update(dt); draw(); raf=requestAnimationFrame(loop); }
   raf=requestAnimationFrame(loop);
-  function cleanup(){ cancelAnimationFrame(raf); removeEventListener('keydown',keydown,true);removeEventListener('keyup',keyup,true);keys.clear();overlay.remove(); }
+  function cleanup(){ cancelAnimationFrame(raf); clearTimeout(finishTimer); removeEventListener('keydown',keydown,true);removeEventListener('keyup',keyup,true);removeEventListener('blur',blur);keys.clear();presses.clear();overlay.remove(); }
   return { dispose(){ ended=true;cleanup(); } };
 }

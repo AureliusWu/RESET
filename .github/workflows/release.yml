@@ -208,7 +208,7 @@ jobs:
           # This app-specific localhost setting exists only on this CI machine.
           $Policy = 'HKLM:\SOFTWARE\Policies\Microsoft\Edge\WebView2\AdditionalBrowserArguments'
           New-Item -Path $Policy -Force | Out-Null
-          $Prior = Get-ItemPropertyValue -Path $Policy -Name 'VNEngine.exe' -ErrorAction SilentlyContinue
+          $Prior = (Get-Item -Path $Policy).GetValue('VNEngine.exe', $null)
           New-ItemProperty -Path $Policy -Name 'VNEngine.exe' -Value '--remote-debugging-port=9223 --remote-debugging-address=127.0.0.1' -PropertyType String -Force | Out-Null
           try {
             node tests/windows-launch.mjs ../installed-windows

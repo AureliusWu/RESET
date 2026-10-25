@@ -19,7 +19,7 @@ const base=`http://127.0.0.1:${server.address().port}/play/`;
 let browser,context,page;
 try{
   browser=await chromium.launch({headless:true,args:['--no-sandbox']});
-  context=await browser.newContext({viewport:{width:1280,height:900}});
+  context=await browser.newContext({viewport:{width:1280,height:900},hasTouch:true});
   await context.addInitScript(()=>{if(!localStorage.getItem('vn-engine:reset:settings'))localStorage.setItem('vn-engine:reset:settings',JSON.stringify({textDelayMs:0,reducedMotion:true,music:false,voiceEnabled:false,autoDelayMs:200}));});
   page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
   const control=id=>page.locator(`[data-control="${id}"]`);
@@ -60,7 +60,11 @@ try{
         if(x!==null&&x>=700)break;await page.waitForTimeout(60);
       }
       await page.keyboard.up('d');await page.screenshot({path:out+`/combat-${id}-${outcome}.png`});
-      if(outcome==='win')for(let hit=0;hit<500;hit++){if(!await page.locator('.reset-combat').count())break;await page.keyboard.press('k');await page.waitForTimeout(60);}
+      if(outcome==='win')for(let hit=0;hit<500;hit++){
+        if(!await page.locator('.reset-combat').count())break;
+        if(id==='faceless_second')await page.locator('.reset-combat [data-key=KeyK]').tap();else await page.keyboard.press('k');
+        await page.waitForTimeout(60);
+      }
       await page.locator('.reset-combat').waitFor({state:'detached',timeout:45000});
       const next=await scene(), expected={faceless_first:{win:'faceless_pattern',lose:'death_fifth'},faceless_second:{win:'breakthrough_first',lose:'death_sixth'},c5_echo_fail:{win:'c5_echo_pattern',lose:'c5_echo_death'}}[id][outcome];
       assert.equal(next,expected,`${id} ${outcome}`);
