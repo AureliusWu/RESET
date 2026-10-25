@@ -1,0 +1,52 @@
+name: Build 回留
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout game
+        uses: actions/checkout@v4
+        with:
+          path: game-repo
+
+      - name: Checkout VN Engine v2
+        uses: actions/checkout@v4
+        with:
+          repository: AureliusWu/VN-Engine-v2
+          ref: 15c101e0d2b2c1e40dbc36d7a0c1a246d102b52c
+          path: vn-engine
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: vn-engine/package-lock.json
+
+      - name: Install and build engine
+        working-directory: vn-engine
+        run: |
+          npm ci
+          npm run build
+
+      - name: Package 回留 with self-developed engine
+        run: node vn-engine/tools/package-game.mjs game-repo/game/project.json game-repo/dist
+
+      - name: Verify package identity
+        working-directory: game-repo
+        run: |
+          node -e "const m=require('./dist/build-manifest.json'); if(m.game!=='reset'||m.version!=='reset-v0.1.0') process.exit(1); console.log(m.engine, m.contentFingerprint)"
+          test -f dist/index.html
+          test -f dist/project.json
+          test -f dist/sw.js
+
+      - name: Upload standalone build
+        uses: actions/upload-artifact@v4
+        with:
+          name: RESET-huiliu-v0.1.0
+          path: game-repo/dist

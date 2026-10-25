@@ -1,0 +1,13 @@
+{
+  "name": "reset-huiliu",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "serve": "python -m http.server 8000 --directory dist"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
