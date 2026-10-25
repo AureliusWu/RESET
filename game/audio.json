@@ -1,0 +1,20 @@
+{
+  "assets": [
+    {"id":"music-memory-rain","kind":"audio","src":"assets/generated/music-memory-rain.wav","alt":"原创程序氛围音乐：雨中的回忆"},
+    {"id":"music-night-residue","kind":"audio","src":"assets/generated/music-night-residue.wav","alt":"原创程序氛围音乐：夜梧城残响"},
+    {"id":"sfx-memory-ping","kind":"audio","src":"assets/generated/sfx-memory-ping.wav","alt":"原创系统残响提示音"}
+  ],
+  "stage": {
+    "defaults": {"music":"music-memory-rain"},
+    "scenes": {
+      "station_fourth": {"music":"music-night-residue"},
+      "station_refuse": {"music":"music-night-residue"},
+      "night_wucheng": {"music":"music-night-residue"},
+      "rooftop_warning": {"music":"music-night-residue"},
+      "chapter2_teaser": {"music":"music-night-residue"}
+    },
+    "lines": {
+      "z002": {"sound":"sfx-memory-ping"}
+    }
+  }
+}

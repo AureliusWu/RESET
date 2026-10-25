@@ -2,3 +2,5 @@ dist/
 _engine/
 node_modules/
 .DS_Store
+game/.project.build.json
+game/assets/generated/
