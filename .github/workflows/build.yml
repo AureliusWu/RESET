@@ -38,16 +38,19 @@ jobs:
           VN_ENGINE_PATH: ${{ github.workspace }}/vn-engine
         run: npm run build
 
-      - name: Verify package identity and six heroine routes
+      - name: Verify package identity and October 24 climax
         working-directory: game-repo
         run: |
-          node -e "const m=require('./dist/build-manifest.json'); const p=require('./dist/project.json'); if(m.game!=='reset'||m.version!=='reset-v0.4.0'||p.version!=='reset-v0.4.0') process.exit(1); const ids=new Set(p.scenes.map(s=>s.id)); for(const id of ['end_linwan','end_xiaoman','end_xuqi','end_tinglan','end_tangli','end_nanxing','route_convergence','chapter5_gate']) if(!ids.has(id)) process.exit(2); const focus=p.scenes.find(s=>s.id==='route_focus_choice'); if(!focus||focus.choices.length!==6) process.exit(3); console.log(m.engine,m.contentFingerprint,p.scenes.length,p.assets.length)"
+          node -e "const m=require('./dist/build-manifest.json'); const p=require('./dist/project.json'); if(m.game!=='reset'||m.version!=='reset-v0.5.0'||p.version!=='reset-v0.5.0') process.exit(1); const ids=new Set(p.scenes.map(s=>s.id)); for(const id of ['c5_north_station','c5_echo_chen','c5_anchor_truth','c5_1842','chapter6_gate']) if(!ids.has(id)) process.exit(2); for(const id of ['north-station','echochen/neutral','linwan-1842-cg']) if(!p.assets.some(a=>a.id===id)) process.exit(3); console.log(m.engine,m.contentFingerprint,p.scenes.length,p.assets.length)"
           test -f dist/index.html
           test -f dist/project.json
           test -f dist/sw.js
+          test -f dist/assets/bg-north-station.svg
+          test -f dist/assets/ch-echo-chen.svg
+          test -f dist/assets/cg-linwan-1842.svg
 
       - name: Upload standalone build
         uses: actions/upload-artifact@v4
         with:
-          name: RESET-huiliu-v0.4.0
+          name: RESET-huiliu-v0.5.0
           path: game-repo/dist
