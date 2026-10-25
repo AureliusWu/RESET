@@ -42,11 +42,11 @@ jobs:
           VN_ENGINE_PATH: ${{ github.workspace }}/vn-engine
         run: npm run build
 
-      - name: Validate release content and runtime extensions
+      - name: Validate v1.0.0 release content and runtime extensions
         working-directory: game-repo
         run: |
           npm run check:release
-          node -e "const m=require('./dist/build-manifest.json');const p=require('./dist/project.json');if(m.game!=='reset'||p.version!=='reset-v0.9.0')process.exit(1);if(!p.scenes.some(s=>s.ending==='true-end'))process.exit(2);console.log(m.engine,m.contentFingerprint,p.scenes.length,p.assets.length,m.extensions)"
+          node -e "const m=require('./dist/build-manifest.json');const p=require('./dist/project.json');if(m.game!=='reset'||p.version!=='reset-v1.0.0'||m.version!=='reset-v1.0.0')process.exit(1);if(!p.scenes.some(s=>s.ending==='true-end'))process.exit(2);console.log(m.engine,m.contentFingerprint,p.scenes.length,p.assets.length,m.extensions)"
           test -f dist/index.html
           test -f dist/manifest.webmanifest
           test -f dist/sw.js
@@ -55,12 +55,12 @@ jobs:
 
       - name: Archive Web release
         working-directory: game-repo
-        run: cd dist && zip -r ../RESET-huiliu-v0.9.0-web.zip .
+        run: cd dist && zip -r ../RESET-huiliu-v1.0.0-web.zip .
 
       - uses: actions/upload-artifact@v4
         with:
-          name: RESET-huiliu-v0.9.0-web
-          path: game-repo/RESET-huiliu-v0.9.0-web.zip
+          name: RESET-huiliu-v1.0.0-web
+          path: game-repo/RESET-huiliu-v1.0.0-web.zip
 
   windows:
     runs-on: windows-latest
@@ -174,9 +174,9 @@ jobs:
 
       - name: Archive Windows release
         shell: pwsh
-        run: Compress-Archive -Path package/* -DestinationPath RESET-huiliu-v0.9.0-win-x64.zip
+        run: Compress-Archive -Path package/* -DestinationPath RESET-huiliu-v1.0.0-win-x64.zip
 
       - uses: actions/upload-artifact@v4
         with:
-          name: RESET-huiliu-v0.9.0-win-x64
-          path: RESET-huiliu-v0.9.0-win-x64.zip
+          name: RESET-huiliu-v1.0.0-win-x64
+          path: RESET-huiliu-v1.0.0-win-x64.zip
