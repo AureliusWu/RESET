@@ -48,9 +48,20 @@ try{
   for(const [id,save] of Object.entries(fixtures.combat)){
     for(const outcome of ['win','lose']){
       await loadFixture(save);await page.locator('.reset-combat canvas').waitFor();
-      await page.keyboard.down('d');await page.waitForTimeout(2400);await page.keyboard.up('d');
-      if(outcome==='win')for(let hit=0;hit<9;hit++){if(!await page.locator('.reset-combat').count())break;await page.keyboard.press('k');await page.waitForTimeout(650);}
-      await page.locator('.reset-combat').waitFor({state:'detached',timeout:25000});
+      // Observe the visible player pixels rather than assume that a CI runner
+      // delivers 60 animation frames per second during a wall-clock key hold.
+      await page.keyboard.down('d');
+      for(let move=0;move<150;move++){
+        const x=await page.locator('.reset-combat canvas').evaluate(canvas=>{
+          const {data,width}=canvas.getContext('2d').getImageData(0,0,960,540);let sum=0,count=0;
+          for(let y=100;y<450;y++)for(let x=25;x<935;x++){const i=(y*width+x)*4;if(data[i]===159&&data[i+1]===198&&data[i+2]===220){sum+=x;count++;}}
+          return count>40?sum/count:null;
+        });
+        if(x!==null&&x>=700)break;await page.waitForTimeout(60);
+      }
+      await page.keyboard.up('d');await page.screenshot({path:out+`/combat-${id}-${outcome}.png`});
+      if(outcome==='win')for(let hit=0;hit<500;hit++){if(!await page.locator('.reset-combat').count())break;await page.keyboard.press('k');await page.waitForTimeout(60);}
+      await page.locator('.reset-combat').waitFor({state:'detached',timeout:45000});
       const next=await scene(), expected={faceless_first:{win:'faceless_pattern',lose:'death_fifth'},faceless_second:{win:'breakthrough_first',lose:'death_sixth'},c5_echo_fail:{win:'c5_echo_pattern',lose:'c5_echo_death'}}[id][outcome];
       assert.equal(next,expected,`${id} ${outcome}`);
       assert.equal(await page.locator('.vn-engine').getAttribute('data-paused'),'false');

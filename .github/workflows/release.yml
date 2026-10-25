@@ -203,7 +203,20 @@ jobs:
           VN_ENGINE_PATH: ${{ github.workspace }}\vn-engine
         run: |
           Expand-Archive ../RESET-huiliu-v1.0.0-win-x64.zip -DestinationPath ../installed-windows
-          node tests/windows-launch.mjs ../installed-windows
+          # Elevated hosted runners use WebView2 150+; its trusted HKLM policy
+          # is required for test CDP flags (environment overrides are ignored).
+          # This app-specific localhost setting exists only on this CI machine.
+          $Policy = 'HKLM:\SOFTWARE\Policies\Microsoft\Edge\WebView2\AdditionalBrowserArguments'
+          New-Item -Path $Policy -Force | Out-Null
+          $Prior = Get-ItemPropertyValue -Path $Policy -Name 'VNEngine.exe' -ErrorAction SilentlyContinue
+          New-ItemProperty -Path $Policy -Name 'VNEngine.exe' -Value '--remote-debugging-port=9223 --remote-debugging-address=127.0.0.1' -PropertyType String -Force | Out-Null
+          try {
+            node tests/windows-launch.mjs ../installed-windows
+            if ($LASTEXITCODE -ne 0) { throw 'Installed Windows acceptance failed' }
+          } finally {
+            if ($null -eq $Prior) { Remove-ItemProperty -Path $Policy -Name 'VNEngine.exe' -ErrorAction SilentlyContinue }
+            else { Set-ItemProperty -Path $Policy -Name 'VNEngine.exe' -Value $Prior }
+          }
 
       - uses: actions/upload-artifact@v4
         if: always()
