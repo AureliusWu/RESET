@@ -16,7 +16,16 @@ const buildProjectFile = resolve(root, 'game/.project.build.json');
 const output = resolve(root, 'dist');
 
 function run(command, args, cwd) {
-  const result = spawnSync(command, args, { cwd, stdio: 'inherit', encoding: 'utf8' });
+  const result = spawnSync(command, args, {
+    cwd,
+    stdio: 'inherit',
+    encoding: 'utf8',
+    shell: process.platform === 'win32' && /\.cmd$/i.test(command)
+  });
+  if (result.error) {
+    console.error(`Failed to run ${command}:`, result.error);
+    process.exit(1);
+  }
   if (result.status !== 0) process.exit(result.status ?? 1);
 }
 
