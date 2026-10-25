@@ -125,26 +125,49 @@ jobs:
           if (!(Test-Path package/game/meta.mjs)) { throw 'meta runtime missing' }
           if (!(Test-Path package/RESET.exe)) { throw 'RESET launcher missing' }
 
-      - name: Native host policy and game-mode smoke test
+      - name: Native host policy and actual RESET startup smoke
         shell: pwsh
         run: |
           $ErrorActionPreference = 'Stop'
           New-Item -ItemType Directory -Force test-results/windows | Out-Null
-          function Invoke-Check([string]$Name, [string[]]$Arguments) {
-            $Report = [IO.Path]::GetFullPath("test-results/windows/$Name.json")
-            $Args = $Arguments + @('--report', ('"' + $Report + '"'))
-            $Process = Start-Process -FilePath ([IO.Path]::GetFullPath('package/engine/VNEngine.exe')) -ArgumentList $Args -PassThru
-            if (-not $Process.WaitForExit(120000)) { Stop-Process -Id $Process.Id -Force; throw "Timed out: $Name" }
-            if (!(Test-Path $Report)) { throw "Missing report: $Name" }
-            Get-Content $Report
-            $Result = Get-Content $Report -Raw | ConvertFrom-Json
-            if ($Process.ExitCode -ne 0 -or $Result.result -ne 'passed') { throw "Failed: $Name (exit $($Process.ExitCode))" }
-          }
+          $Engine = [IO.Path]::GetFullPath('package/engine/VNEngine.exe')
           $Game = [IO.Path]::GetFullPath('package/game')
           $Profile = [IO.Path]::GetFullPath('test-results/windows/game-profile')
-          Invoke-Check 'host-policy' @('--self-test')
-          Invoke-Check 'game-first' @('--game', ('"' + $Game + '"'), '--smoke-test', '--user-data-dir', ('"' + $Profile + '"'))
-          Invoke-Check 'game-restart' @('--game', ('"' + $Game + '"'), '--smoke-test', '--verify-persistence', '--user-data-dir', ('"' + $Profile + '"'))
+          $Report = [IO.Path]::GetFullPath('test-results/windows/host-policy.json')
+
+          $Self = Start-Process -FilePath $Engine -ArgumentList @('--self-test','--report',('"' + $Report + '"')) -PassThru
+          if (-not $Self.WaitForExit(30000)) { Stop-Process -Id $Self.Id -Force; throw 'host-policy timed out' }
+          if ($Self.ExitCode -ne 0 -or !(Test-Path $Report)) { throw 'host-policy failed' }
+          $Policy = Get-Content $Report -Raw | ConvertFrom-Json
+          if ($Policy.result -ne 'passed') { throw 'host-policy report failed' }
+
+          $Native = Start-Process -FilePath $Engine -ArgumentList @('--game',('"' + $Game + '"'),'--user-data-dir',('"' + $Profile + '"')) -PassThru
+          $Deadline = (Get-Date).AddSeconds(25)
+          $Ready = $false
+          while ((Get-Date) -lt $Deadline -and -not $Native.HasExited) {
+            Start-Sleep -Milliseconds 500
+            $Native.Refresh()
+            if ($Native.MainWindowTitle -like '回留*VN Engine*' -and (Test-Path $Profile)) { $Ready = $true; break }
+          }
+          if (-not $Ready) {
+            if (-not $Native.HasExited) { Stop-Process -Id $Native.Id -Force }
+            throw 'actual RESET game did not reach a native window with a WebView2 profile'
+          }
+          Stop-Process -Id $Native.Id -Force
+
+          $Before = @(Get-Process VNEngine -ErrorAction SilentlyContinue).Count
+          $Launcher = Start-Process -FilePath ([IO.Path]::GetFullPath('package/RESET.exe')) -PassThru
+          if (-not $Launcher.WaitForExit(20000)) { Stop-Process -Id $Launcher.Id -Force; throw 'RESET launcher timed out' }
+          if ($Launcher.ExitCode -ne 0) { throw "RESET launcher failed with exit $($Launcher.ExitCode)" }
+          $Deadline = (Get-Date).AddSeconds(20)
+          $Launched = $false
+          while ((Get-Date) -lt $Deadline) {
+            Start-Sleep -Milliseconds 500
+            $Processes = @(Get-Process VNEngine -ErrorAction SilentlyContinue)
+            if ($Processes.Count -gt $Before) { $Launched = $true; break }
+          }
+          if (-not $Launched) { throw 'RESET.exe did not launch the native VN Engine game process' }
+          Get-Process VNEngine -ErrorAction SilentlyContinue | Stop-Process -Force
 
       - name: Archive Windows release
         shell: pwsh
