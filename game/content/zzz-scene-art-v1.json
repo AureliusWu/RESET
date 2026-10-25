@@ -1,0 +1,31 @@
+{
+  "id": "scene-art-production-v1",
+  "replaceAssets": [
+    {"id":"classroom-rain","kind":"background","src":"assets/generated-scenes/classroom-rain.svg","alt":"雨夜中的梧城一中教室"},
+    {"id":"school-gate-rain","kind":"background","src":"assets/generated-scenes/school-gate-rain.svg","alt":"雨夜中的梧城一中东门"},
+    {"id":"school-gate-evening","kind":"background","src":"assets/generated-scenes/school-gate-evening.svg","alt":"傍晚的梧城一中东门"},
+    {"id":"home-corridor","kind":"background","src":"assets/generated-scenes/home-corridor.svg","alt":"陈渡家门外居民楼走廊"},
+    {"id":"station-night","kind":"background","src":"assets/generated-scenes/station-night.svg","alt":"夜间南湖站站台"},
+    {"id":"night-wucheng","kind":"background","src":"assets/generated-scenes/night-wucheng.svg","alt":"停在18:42的夜梧城"},
+    {"id":"school-morning","kind":"background","src":"assets/generated-scenes/school-morning.svg","alt":"清晨的梧城一中"},
+    {"id":"archive-room","kind":"background","src":"assets/generated-scenes/archive-room.svg","alt":"学校与市档案馆旧档案室"},
+    {"id":"cafeteria","kind":"background","src":"assets/generated-scenes/cafeteria.svg","alt":"梧城一中食堂二楼"},
+    {"id":"rooftop-evening","kind":"background","src":"assets/generated-scenes/rooftop-evening.svg","alt":"傍晚的教学楼天台"},
+    {"id":"stairwell-morning","kind":"background","src":"assets/generated-scenes/stairwell-morning.svg","alt":"清晨教学楼楼梯间"},
+    {"id":"riverside-dusk","kind":"background","src":"assets/generated-scenes/riverside-dusk.svg","alt":"晚霞下的梧城江滩"},
+    {"id":"underpass-rain","kind":"background","src":"assets/generated-scenes/underpass-rain.svg","alt":"雨夜中不存在的下穿通道"},
+    {"id":"classroom-dawn","kind":"background","src":"assets/generated-scenes/classroom-dawn.svg","alt":"天刚亮时的空教室"},
+    {"id":"old-art-room","kind":"background","src":"assets/generated-scenes/old-art-room.svg","alt":"梧城一中旧美术教室"},
+    {"id":"night-art-room","kind":"background","src":"assets/generated-scenes/night-art-room.svg","alt":"夜梧城中的旧美术教室"},
+    {"id":"old-stationery","kind":"background","src":"assets/generated-scenes/old-stationery.svg","alt":"东门旧街被现实抹去的文具店"},
+    {"id":"north-station","kind":"background","src":"assets/generated-scenes/north-station.svg","alt":"只在18:42出现的梧城北站"},
+    {"id":"save-room","kind":"background","src":"assets/generated-scenes/save-room.svg","alt":"不可逆事件后的永久存档空间"},
+    {"id":"true-dawn","kind":"background","src":"assets/generated-scenes/true-dawn.svg","alt":"10月25日的梧城清晨"},
+
+    {"id":"faceless-reflection-cg","kind":"cg","src":"assets/generated-scenes/faceless-reflection-cg.svg","alt":"无面行人的倒影先于本体动作"},
+    {"id":"letter-1842-cg","kind":"cg","src":"assets/generated-scenes/letter-1842-cg.svg","alt":"林晚落款的18:42来信"},
+    {"id":"six-chairs-cg","kind":"cg","src":"assets/generated-scenes/six-chairs-cg.svg","alt":"六名女生与第七把椅子的异常照片"},
+    {"id":"linwan-1842-cg","kind":"cg","src":"assets/generated-scenes/linwan-1842-cg.svg","alt":"梧城北站18:42的最终约定"},
+    {"id":"true-end-riverside-cg","kind":"cg","src":"assets/generated-scenes/true-end-riverside-cg.svg","alt":"10月25日江滩的True End"}
+  ]
+}
