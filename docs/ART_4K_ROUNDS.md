@@ -149,3 +149,16 @@ Runner 门禁：`art:audit:write`、`art:audit`、`art:check`、`build`、`check
 - Windows：原生 host、RESET.exe 启动链、最终 ZIP、重启与持久化验收通过。
 - 资产提交：`80958b048c35ba494011a1c71570a244637567f0`。
 - 最终验证触发提交：`f5f5f0a03341f8ad1ae24c384152f4d6c31ad071`。
+
+## Round 6 — 异常体 / Boss
+
+Round 6 completed。无面行人和第七人 / 陈渡残响已迁移为正式 4K anomaly 资产；剧情 asset ID 保持 `faceless/neutral` 与 `echochen/neutral` 不变，仅切换正式 `src`。
+
+- `faceless/neutral` → `assets/4k/runtime/anomalies/faceless.webp`；2160×3840 RGBA PNG 母版为 `assets/4k/anomalies/faceless.png`。新源美术强调空白面孔、雨夜湿痕与错位残影，对应“倒影先于本体动作”和跨读档适应的玩法语义。
+- `echochen/neutral` → `assets/4k/runtime/anomalies/echo-chen.webp`；2160×3840 RGBA PNG 母版为 `assets/4k/anomalies/echo-chen.png`。新源美术以多层失败读档残响构成“第七人”。
+- 两项 runtime 均为 1080×1920 WebP，保留 Alpha；原始 1440×2560 PNG、新 ChatGPT 编写的矢量源、provenance、处理方法及 SHA256 均保存在 `game/art-sources/chatgpt/anomalies/`。旧 `ch-faceless.svg` / `ch-echo-chen.svg` 未作为 4K 母版像素来源。
+- 4K 审计：production 58 / 58，4K_READY 58，planned 0，undersized 0，missing alpha 0。
+- 资产提交：`192190ad7421b60e308257b75f76d70aa9893153`。
+- 双平台正式资产验收：Build Run `40359812104` success；Release Run `40359811821` Web success、Windows success，最终 Web ZIP/PWA/离线浏览器验收及 Windows 原生启动/最终 ZIP/重启持久化全部通过。
+- 完整性门禁补强提交：`6834dc757b37defacb49e7539a1952216b8b2a6d`，`check-art-integrity.mjs` 已把 anomaly overlay 纳入 production 统计；最终 Build Run `40360377213` success，Windows Release Run `40360376925` success。该提交不改变打包运行时或美术字节。
+- 保持 `v1.2.0-dev`，不进入 RC，不覆盖正式 `v1.1.0 Pages`。下一轮为 Round 7 — UI 关键视觉。
