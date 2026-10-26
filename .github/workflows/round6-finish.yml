@@ -55,8 +55,10 @@ jobs:
             'scripts/check-4k-production.mjs':[
               ("const sceneOverlay = await readJson(resolve(game, 'content/zzz-scene-art-v1.json'));\nconst production = [...portraitOverlay.replaceAssets, ...sceneOverlay.replaceAssets];",
                "const sceneOverlay = await readJson(resolve(game, 'content/zzz-scene-art-v1.json'));\nconst anomalyOverlay = await readJson(resolve(game, 'content/zzzz-anomaly-art-v1.json'));\nconst production = [...portraitOverlay.replaceAssets, ...sceneOverlay.replaceAssets, ...anomalyOverlay.replaceAssets];"),
-              ("const anomaly = plan.anomalies.find(item => item.id === asset.id);",
-               "const anomaly = plan.anomalies.find(item => item.id === asset.id || item.productionId === asset.id);")
+              ("function pathsFor(asset) {\n  if (asset.kind === 'portrait') {",
+               "function pathsFor(asset) {\n  const anomaly = plan.anomalies.find(item => item.id === asset.id || item.productionId === asset.id);\n  if (anomaly) return { master: anomaly.master, runtime: anomaly.runtime, policy: plan.policy.anomaly };\n  if (asset.kind === 'portrait') {"),
+              ("  const anomaly = plan.anomalies.find(item => item.id === asset.id);\n  if (anomaly) return { master: anomaly.master, runtime: anomaly.runtime, policy: plan.policy.anomaly };\n",
+               "")
             ]
           }
           for filename,pairs in replacements.items():
