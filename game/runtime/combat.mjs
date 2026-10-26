@@ -49,13 +49,14 @@ function createCombat(config, encounterId, done, settings = {}) {
     .reset-combat canvas{width:min(1100px,100%);height:auto;max-height:70vh;align-self:center;justify-self:center;border:1px solid rgba(220,235,242,.22);background:#101820;touch-action:none}
     .reset-combat__controls{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin:12px auto 0;max-width:900px}.reset-combat button{min-width:58px;min-height:46px;border:1px solid rgba(230,240,245,.25);border-radius:9px;background:#18232e;color:#f4f7f8;font-weight:700}.reset-combat button:active{transform:translateY(1px);background:#263847}
     @media (pointer:fine){.reset-combat__controls{opacity:.36}.reset-combat button{min-height:36px}}
-  </style><div class="reset-combat reset-combat__root"><div class="reset-combat__head"><div class="reset-combat__title">${config.title}</div><div class="reset-combat__hint">第 ${attempt} 次接触 · WASD/方向键移动 · Space闪避 · J轻击 · K重击</div></div><canvas width="960" height="540"></canvas><div class="reset-combat__controls"><button data-key="ArrowLeft">←</button><button data-key="ArrowUp">↑</button><button data-key="ArrowDown">↓</button><button data-key="ArrowRight">→</button><button data-key="Space">闪避</button><button data-key="KeyJ">轻击</button><button data-key="KeyK">重击</button></div></div>`;
+  </style><div class="reset-combat reset-combat__root"><div class="reset-combat__head"><div class="reset-combat__title">${config.title}</div><div class="reset-combat__hint">第 ${attempt} 次接触 · WASD/方向键移动 · Space闪避 · J轻击 · K重击</div></div><canvas width="960" height="540"></canvas><div class="reset-combat__controls"><button data-key="ArrowLeft">←</button><button data-key="ArrowUp">↑</button><button data-key="ArrowDown">↓</button><button data-key="ArrowRight">→</button><button data-key="Space">闪避</button><button data-key="KeyJ">轻击</button><button data-key="KeyK">重击</button><button data-combat-resume hidden>继续战斗</button><span class="reset-combat__state" role="status" aria-live="off"></span></div></div>`;
   document.body.appendChild(overlay);
   const canvas = overlay.querySelector('canvas'), ctx = canvas.getContext('2d');
-  const keys = new Set(), presses = new Set();
+  const keys = new Set(), presses = new Set(), touchKeys = new Set(), touchPresses = new Set();
   const actions = new Set(['Space','KeyJ','KeyK']);
-  const press = code => (actions.has(code) ? presses : keys).add(code);
-  let ended = false, raf = 0, finishTimer, last = performance.now(), attackClock = config.tempo, telegraph = null, message = '观察前摇。活下来比抢伤害重要。', messageTime = 2.6;
+  const press = (code,touch=false) => { if (!suspended && !document.hidden) (actions.has(code) ? (touch ? touchPresses : presses) : (touch ? touchKeys : keys)).add(code); };
+  const held = code => keys.has(code) || touchKeys.has(code);
+  let suspended = false, ended = false, raf = 0, finishTimer, last = performance.now(), attackClock = config.tempo, telegraph = null, message = '观察前摇。活下来比抢伤害重要。', messageTime = 2.6;
   const player = { x: 170, y: 270, r: 18, hp: 5, maxHp: 5, stamina: 100, iframes: 0, attackCd: 0, flash: 0, vx: 0, vy: 0 };
   const boss = { x: 760, y: 270, r: 32, hp: config.hp, maxHp: config.hp, flash: 0, phase: 1, attackIndex: 0 };
   const reducedMotion = Boolean(settings.reducedMotion), sparks = [], trails = [];
@@ -65,24 +66,40 @@ function createCombat(config, encounterId, done, settings = {}) {
     for (let i=0;i<8;i++) { const angle=i*Math.PI/4, speed=55+(i%3)*30; sparks.push({x,y,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed,life:.3,color}); }
   }
 
-  const keydown = e => { if (['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Space','KeyJ','KeyK','KeyA','KeyD','KeyW','KeyS'].includes(e.code)) { e.preventDefault(); e.stopPropagation(); press(e.code); } };
+  const resumeButton = overlay.querySelector('[data-combat-resume]'), hud = overlay.querySelector('.reset-combat__state');
+  let lastHud = '';
+  const keydown = e => { if (['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Space','KeyJ','KeyK','KeyA','KeyD','KeyW','KeyS'].includes(e.code)) { e.preventDefault(); e.stopPropagation(); if (!e.repeat) press(e.code); } };
   const keyup = e => keys.delete(e.code);
-  const blur = () => { keys.clear(); presses.clear(); };
+  const clearInput = () => { keys.clear(); presses.clear(); touchKeys.clear(); touchPresses.clear(); };
+  const blur = () => {
+    clearInput(); if (ended) return; suspended = true; resumeButton.hidden = false;
+    for (const button of overlay.querySelectorAll('button[data-key]')) button.disabled = true;
+    message = '战斗已暂停，点击“继续战斗”后恢复。'; messageTime = 3;
+  };
+  const resume = () => {
+    if (ended || document.hidden) return;
+    clearInput(); suspended = false; last = performance.now(); resumeButton.hidden = true;
+    for (const button of overlay.querySelectorAll('button[data-key]')) button.disabled = false;
+    message = '观察提示范围，再决定进退。'; messageTime = 1.5;
+  };
+  resumeButton.addEventListener('click',resume);
   const visibility = () => { if (document.hidden) blur(); };
   addEventListener('keydown', keydown, true); addEventListener('keyup', keyup, true);
   addEventListener('blur', blur);
   document.addEventListener('visibilitychange', visibility);
   for (const button of overlay.querySelectorAll('button[data-key]')) {
     const code = button.dataset.key;
-    const down = e => { e.preventDefault(); press(code); };
-    const up = e => { e.preventDefault(); keys.delete(code); };
-    button.addEventListener('pointerdown', down); button.addEventListener('pointerup', up); button.addEventListener('pointercancel', up); button.addEventListener('pointerleave', up);
+    const down = e => { e.preventDefault(); if (suspended) return; button.setPointerCapture?.(e.pointerId); press(code,true); };
+    const up = e => { e.preventDefault(); touchKeys.delete(code); };
+    const cancel = e => { up(e); touchPresses.delete(code); };
+    const leave = e => { if (!button.hasPointerCapture?.(e.pointerId)) up(e); };
+    button.addEventListener('pointerdown', down); button.addEventListener('pointerup', up); button.addEventListener('pointercancel', cancel); button.addEventListener('pointerleave', leave); button.addEventListener('lostpointercapture',up);
   }
 
   function strike(kind) {
     if (player.attackCd > 0 || ended) return;
     const heavy = kind === 'heavy', cost = heavy ? 30 : 16;
-    if (player.stamina < cost) return;
+    if (player.stamina < cost) { message = '体力不足，松开攻击等待恢复。'; messageTime = .9; return; }
     player.stamina -= cost; player.attackCd = heavy ? .62 : .34;
     if (!reducedMotion) swing = {angle:Math.atan2(boss.y-player.y,boss.x-player.x),life:heavy?.23:.15,total:heavy?.23:.15,heavy};
     if (distance(player, boss) < (heavy ? 112 : 92)) {
@@ -95,7 +112,10 @@ function createCombat(config, encounterId, done, settings = {}) {
   }
 
   function dodge(dx, dy) {
-    if (player.iframes > 0 || player.stamina < 26) return;
+    if (player.iframes > 0) return;
+    if (player.stamina < 26) { message = '体力不足，暂时无法闪避。'; messageTime = .9; return; }
+    if (!dx && !dy) { dx = player.x-boss.x; dy = player.y-boss.y; }
+    message = '闪避。'; messageTime = .35;
     player.stamina -= 26; player.iframes = .36;
     const before = {x:player.x,y:player.y};
     const len = Math.hypot(dx, dy) || 1; player.x = clamp(player.x + dx / len * 92, 32, 928); player.y = clamp(player.y + dy / len * 92, 32, 508);
@@ -136,15 +156,15 @@ function createCombat(config, encounterId, done, settings = {}) {
     for(let i=trails.length-1;i>=0;i--){trails[i].life-=dt;if(trails[i].life<=0)trails.splice(i,1);}
     messageTime = Math.max(0, messageTime - dt); player.iframes = Math.max(0, player.iframes - dt); player.attackCd = Math.max(0, player.attackCd - dt); player.flash = Math.max(0, player.flash - dt); boss.flash = Math.max(0, boss.flash - dt);
     let dx = 0, dy = 0;
-    if (keys.has('ArrowLeft') || keys.has('KeyA')) dx--; if (keys.has('ArrowRight') || keys.has('KeyD')) dx++; if (keys.has('ArrowUp') || keys.has('KeyW')) dy--; if (keys.has('ArrowDown') || keys.has('KeyS')) dy++;
+    if (held('ArrowLeft') || held('KeyA')) dx--; if (held('ArrowRight') || held('KeyD')) dx++; if (held('ArrowUp') || held('KeyW')) dy--; if (held('ArrowDown') || held('KeyS')) dy++;
     const len = Math.hypot(dx, dy) || 1, speed = 225; player.vx = dx / len * speed; player.vy = dy / len * speed;
     if (dx || dy) { player.x = clamp(player.x + player.vx * dt, 28, 932); player.y = clamp(player.y + player.vy * dt, 28, 512); }
     else { player.vx = 0; player.vy = 0; }
     // A tap can begin and end between animation frames. Queue action edges until
     // update consumes them; keyup/pointerup only release held movement keys.
-    if (presses.has('Space')) { presses.delete('Space'); dodge(dx, dy); }
-    if (presses.has('KeyJ')) { presses.delete('KeyJ'); strike('light'); }
-    if (presses.has('KeyK')) { presses.delete('KeyK'); strike('heavy'); }
+    if (presses.has('Space') || touchPresses.has('Space')) { presses.delete('Space'); touchPresses.delete('Space'); dodge(dx, dy); }
+    if (presses.has('KeyJ') || touchPresses.has('KeyJ')) { presses.delete('KeyJ'); touchPresses.delete('KeyJ'); strike('light'); }
+    if (presses.has('KeyK') || touchPresses.has('KeyK')) { presses.delete('KeyK'); touchPresses.delete('KeyK'); strike('heavy'); }
     player.stamina = Math.min(100, player.stamina + 25 * dt);
     if (!telegraph) { attackClock -= dt; if (attackClock <= 0) beginAttack(); }
     else { telegraph.t -= dt; if (telegraph.t <= 0) resolveAttack(); }
@@ -157,24 +177,27 @@ function createCombat(config, encounterId, done, settings = {}) {
     ctx.strokeStyle='rgba(190,215,228,.09)'; ctx.lineWidth=1; for(let x=0;x<960;x+=60){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,540);ctx.stroke()} for(let y=0;y<540;y+=60){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(960,y);ctx.stroke()}
     if (telegraph) {
       const progress = 1 - telegraph.t / telegraph.duration; ctx.lineWidth = 5; ctx.strokeStyle = `rgba(240,120,105,${.25+.6*progress})`;
-      if (telegraph.type === 'ring') { ctx.beginPath(); ctx.arc(boss.x,boss.y,(boss.phase===2?190:160)*(.55+.45*progress),0,Math.PI*2);ctx.stroke(); }
+      if (telegraph.type === 'ring') { ctx.save();ctx.strokeStyle='rgba(240,160,140,.3)';ctx.lineWidth=2;ctx.beginPath();ctx.arc(boss.x,boss.y,boss.phase===2?190:160,0,Math.PI*2);ctx.stroke();ctx.restore();ctx.beginPath(); ctx.arc(boss.x,boss.y,(boss.phase===2?190:160)*(.55+.45*progress),0,Math.PI*2);ctx.stroke(); }
       if (telegraph.type === 'dash') { ctx.fillStyle=`rgba(240,120,105,${.08+.2*progress})`;ctx.fillRect(0,boss.y-58,960,116); }
       if (telegraph.type === 'predict') { ctx.beginPath();ctx.arc(telegraph.target.x,telegraph.target.y,92*(.45+.55*progress),0,Math.PI*2);ctx.stroke(); }
     }
+    if(telegraph){ctx.fillStyle='#ebc7b8';ctx.font='14px system-ui';ctx.fillText(({ring:'圆圈内危险',dash:'横向范围攻击',predict:'正在瞄准落点'})[telegraph.type]+' · '+Math.max(0,telegraph.t).toFixed(1)+'s',28,103);}
+    const hudText = suspended ? message : `生命 ${player.hp}/${player.maxHp} · 体力 ${Math.round(player.stamina)}/100${messageTime>0 ? ' · '+message : ''}`;
+    if(hudText!==lastHud){hud.textContent=hudText;lastHud=hudText;}
     ctx.save();ctx.strokeStyle=boss.phase===2?'#a77f9e':'#7896a4';ctx.lineWidth=2;ctx.beginPath();ctx.arc(boss.x,boss.y,boss.r+9,0,Math.PI*2);ctx.stroke();ctx.restore();
     for(const trail of trails){ctx.save();ctx.globalAlpha=trail.life/.28*.28;ctx.fillStyle='#6f9bae';ctx.beginPath();ctx.arc(trail.x,trail.y,17,0,Math.PI*2);ctx.fill();ctx.restore();}
     if(swing){ctx.save();const progress=1-swing.life/swing.total;ctx.strokeStyle=swing.heavy?'#e2ceb0':'#d6edf1';ctx.globalAlpha=swing.life/swing.total;ctx.lineWidth=swing.heavy?7:4;ctx.beginPath();ctx.arc(player.x,player.y,swing.heavy?85:65,swing.angle-1+progress*.8,swing.angle+.5+progress*.8);ctx.stroke();ctx.restore();}
     for(const spark of sparks){ctx.save();ctx.globalAlpha=spark.life/.3;ctx.fillStyle=spark.color;ctx.fillRect(spark.x-2,spark.y-2,4,4);ctx.restore();}
-    ctx.save(); if (boss.flash>0) ctx.globalAlpha=.45; ctx.fillStyle='#d7dde1';ctx.beginPath();ctx.arc(boss.x,boss.y,boss.r,0,Math.PI*2);ctx.fill();ctx.fillStyle='#151b21';ctx.fillRect(boss.x-24,boss.y-8,48,16);ctx.restore();
-    ctx.save(); if(player.iframes>0)ctx.globalAlpha=.38; if(player.flash>0)ctx.globalAlpha=.25;ctx.fillStyle='#9fc6dc';ctx.beginPath();ctx.arc(player.x,player.y,player.r,0,Math.PI*2);ctx.fill();ctx.restore();
+    ctx.save(); if (!reducedMotion && boss.flash>0) ctx.globalAlpha=.45; ctx.fillStyle='#d7dde1';ctx.beginPath();ctx.arc(boss.x,boss.y,boss.r,0,Math.PI*2);ctx.fill();ctx.fillStyle='#151b21';ctx.fillRect(boss.x-24,boss.y-8,48,16);ctx.restore();
+    ctx.save(); if(!reducedMotion && player.iframes>0)ctx.globalAlpha=.38; if(!reducedMotion && player.flash>0)ctx.globalAlpha=.25;ctx.fillStyle='#9fc6dc';ctx.beginPath();ctx.arc(player.x,player.y,player.r,0,Math.PI*2);ctx.fill();ctx.restore();
     bar(28,24,230,16,player.hp,player.maxHp,'#d7e7ee'); bar(28,46,230,10,player.stamina,100,'#9db7a7'); bar(570,24,360,16,boss.hp,boss.maxHp,'#d09288');
     ctx.fillStyle='#e8eef1';ctx.font='15px system-ui';ctx.fillText('陈渡',28,78);ctx.textAlign='right';ctx.fillText(config.title,930,58);ctx.textAlign='left';
     if(messageTime>0){ctx.fillStyle='rgba(4,7,10,.72)';ctx.fillRect(250,475,460,42);ctx.fillStyle='#edf2f4';ctx.textAlign='center';ctx.font='17px system-ui';ctx.fillText(message,480,502);ctx.textAlign='left';}
     if(config.mode==='reflection'){ctx.strokeStyle='rgba(173,208,225,.2)';ctx.beginPath();ctx.moveTo(0,360);ctx.lineTo(960,360);ctx.stroke();ctx.globalAlpha=.18;ctx.fillStyle='#d7dde1';ctx.beginPath();ctx.ellipse(boss.x,410,boss.r*1.2,boss.r*.4,0,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1;}
   }
 
-  function loop(now) { if (ended) { draw(); return; } const dt = Math.min(.033,(now-last)/1000); last=now; update(dt); draw(); raf=requestAnimationFrame(loop); }
+  function loop(now) { if (ended) { draw(); return; } const dt = Math.min(.033,(now-last)/1000); last=now; if(!suspended) update(dt); draw(); raf=requestAnimationFrame(loop); }
   raf=requestAnimationFrame(loop);
-  function cleanup(){ cancelAnimationFrame(raf); clearTimeout(finishTimer); removeEventListener('keydown',keydown,true);removeEventListener('keyup',keyup,true);removeEventListener('blur',blur);document.removeEventListener('visibilitychange',visibility);keys.clear();presses.clear();overlay.remove(); }
+  function cleanup(){ cancelAnimationFrame(raf); clearTimeout(finishTimer); removeEventListener('keydown',keydown,true);removeEventListener('keyup',keyup,true);removeEventListener('blur',blur);document.removeEventListener('visibilitychange',visibility);clearInput();resumeButton.removeEventListener('click',resume);overlay.remove(); }
   return { dispose(){ ended=true;cleanup(); } };
 }

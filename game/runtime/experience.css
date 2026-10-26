@@ -35,3 +35,11 @@ main#game{height:calc(100dvh - 30px - env(safe-area-inset-top) - env(safe-area-i
   .vn-engine .vn-panel{padding:12px;max-height:100%}
   .vn-engine .vn-modal{padding:8px}
 }
+
+.reset-combat__state{flex-basis:100%;text-align:center;min-height:20px;font-size:12px;color:#c7dfdc;line-height:1.6}
+.reset-combat button[data-combat-resume]{background:#31574f;border-color:#8db7a7}
+.reset-combat button:disabled{opacity:.38}
+.reset-combat.reset-combat__root{padding-top:max(10px,env(safe-area-inset-top));padding-bottom:max(10px,env(safe-area-inset-bottom));padding-left:max(10px,env(safe-area-inset-left));padding-right:max(10px,env(safe-area-inset-right))}
+@media(max-height:480px){.reset-combat.reset-combat__root canvas{width:min(100%,calc((100dvh - 180px)*16/9))}.reset-combat__head{gap:6px}.reset-combat__title{font-size:14px}.reset-combat .reset-combat__hint{font-size:10px}.reset-combat__controls{margin-top:4px;gap:4px}}
+
+.reset-combat [hidden]{display:none!important}

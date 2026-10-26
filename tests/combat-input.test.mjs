@@ -30,7 +30,8 @@ function harness(sceneId = 'faceless_first', settings = {}) {
     }
   }, { get(target, key) { return key in target ? target[key] : () => {}; } });
   for (const code of ['ArrowLeft','ArrowUp','ArrowDown','ArrowRight','Space','KeyJ','KeyK']) buttons.set(code, { ...events(), dataset: { key: code } });
-  const overlay = { setAttribute() {}, querySelector: () => ({ getContext: () => ctx }), querySelectorAll: () => [...buttons.values()], remove() { removed = true; } };
+  const resume = {...events(),hidden:true}, hud = {textContent:''};
+  const overlay = { setAttribute() {}, querySelector: selector => selector==='[data-combat-resume]' ? resume : selector==='.reset-combat__state' ? hud : ({ getContext: () => ctx }), querySelectorAll: () => [...buttons.values()], remove() { removed = true; } };
   document.createElement = () => overlay; document.body = { appendChild() {} };
   const callbacks = new Set();
   const config = { faceless_first: ['watch_reflection','rush_forward'], faceless_second: ['change_read','repeat_old'], c5_echo_fail: ['break_habit','repeat_dodge'] }[sceneId];
@@ -52,7 +53,7 @@ function harness(sceneId = 'faceless_first', settings = {}) {
   const key = (type, code) => window.emit(type, code);
   const tap = code => { key('keydown', code); key('keyup', code); };
   const touch = (type, code) => buttons.get(code).emit(type);
-  return { frame, key, tap, touch, window, document, bridge, drawn, view, frames, timers, get removed() { return removed; }, get result() { return result; } };
+  return { frame, key, tap, touch, window, document, bridge, drawn, view, frames, timers, resume, hud, get removed() { return removed; }, get result() { return result; } };
 }
 
 for (const encounter of ['faceless_first','faceless_second','c5_echo_fail']) {
@@ -100,4 +101,23 @@ test('attack and dodge feedback respects reduced motion without changing action 
   assert.ok(normal.drawn.swings>0);assert.ok(normal.drawn.trails>0);assert.equal(reduced.drawn.swings,0);assert.equal(reduced.drawn.trails,0);
   for(const property of ['x','y','stamina','hp'])assert.equal(normal.drawn[property],reduced.drawn[property],property+' must remain identical');
   normal.bridge.dispose();reduced.bridge.dispose();
+});
+
+
+test('blur freezes boss damage and stamina until an explicit resume; stale inputs never replay', () => {
+  const h=harness();h.key('keydown','KeyD');h.frame(150);h.key('keyup','KeyD');
+  h.window.emit('blur');const before={...h.drawn};h.tap('KeyK');h.frame(1500);
+  for(const key of ['x','y','hp','stamina','bossHp'])assert.equal(h.drawn[key],before[key],key);
+  assert.equal(h.resume.hidden,false);h.resume.emit('click');h.frame();assert.equal(h.resume.hidden,true);
+  assert.equal(h.drawn.bossHp,before.bossHp,'queued attack must be discarded');h.bridge.dispose();
+});
+
+test('cancelled touch actions do not fire and releasing touch cannot release a keyboard direction', () => {
+  const h=harness();h.touch('pointerdown','KeyK');h.touch('pointercancel','KeyK');h.frame();assert.equal(h.drawn.stamina,100);
+  h.key('keydown','ArrowRight');h.touch('pointerdown','ArrowRight');h.touch('pointerup','ArrowRight');h.frame();assert.ok(h.drawn.x>170);
+  h.key('keyup','ArrowRight');const x=h.drawn.x;h.frame();assert.equal(h.drawn.x,x);h.bridge.dispose();
+});
+
+test('stationary dodge retreats from the visible boss with the same stamina cost', () => {
+  const h=harness();h.tap('Space');h.frame();assert.equal(h.drawn.x,78);assert.equal(h.drawn.y,270);assert.ok(Math.abs(h.drawn.stamina-74.4)<.001);h.bridge.dispose();
 });
