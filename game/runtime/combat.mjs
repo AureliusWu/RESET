@@ -14,29 +14,53 @@ function writeMeta(value) { try { localStorage.setItem(META_KEY, JSON.stringify(
 
 export function mountCombatBridge(game) {
   const session = game.session;
-  let active = null, disposed = false, lastVisit = -1;
+  let active = null, disposed = false, lastVisit = -1, activeScene, pendingResult;
+  const externallyPaused = view => view.hidden || view.pauseReasons?.some(reason => reason !== 'reset-combat');
   const unsubscribe = session.subscribe(check);
   check();
 
   function check() {
-    if (disposed || active) return;
+    if (disposed) return;
     const view = session.getView();
+    if (active) {
+      if (view.visit !== lastVisit || view.frame.sceneId !== activeScene) {
+        active.dispose(); active = null;
+        session.pause('reset-combat', false); check();
+      } else if (externallyPaused(view)) active.suspend();
+      return;
+    }
+    if (pendingResult) {
+      if (view.visit !== pendingResult.visit || view.frame.sceneId !== pendingResult.scene) pendingResult = null;
+      else if (!view.paused && !document.hidden) {
+        const result = pendingResult; pendingResult = null;
+        queueMicrotask(() => {
+          if (disposed) return;
+          const current = session.getView();
+          if (current.visit !== result.visit || current.frame.sceneId !== result.scene) return;
+          if (current.paused || document.hidden) { pendingResult = result; return; }
+          session.act(result.action);
+        });
+      }
+      return;
+    }
     const config = ENCOUNTERS[view.frame.sceneId];
-    if (!config || !view.ready || view.visit === lastVisit) return;
+    if (!config || !view.ready || view.paused || view.visit === lastVisit) return;
     if (!view.frame.actions.some(action => action.id === config.win) || !view.frame.actions.some(action => action.id === config.lose)) return;
     lastVisit = view.visit;
+    activeScene = view.frame.sceneId;
     active = createCombat(config, view.frame.sceneId, result => {
       active = null;
+      pendingResult = { visit: view.visit, scene: view.frame.sceneId, action: result === 'win' ? config.win : config.lose };
       session.pause('reset-combat', false);
-      queueMicrotask(() => session.act(result === 'win' ? config.win : config.lose));
-    }, view.settings);
+      check();
+    }, view.settings, () => !externallyPaused(session.getView()));
     session.pause('reset-combat', true);
   }
 
   return { dispose() { disposed = true; unsubscribe(); if (active) active.dispose(); session.pause('reset-combat', false); } };
 }
 
-function createCombat(config, encounterId, done, settings = {}) {
+function createCombat(config, encounterId, done, settings = {}, canResume = () => true) {
   const meta = readMeta();
   meta[encounterId] = (Number(meta[encounterId]) || 0) + 1;
   writeMeta(meta);
@@ -56,7 +80,7 @@ function createCombat(config, encounterId, done, settings = {}) {
   const actions = new Set(['Space','KeyJ','KeyK']);
   const press = (code,touch=false) => { if (!suspended && !document.hidden) (actions.has(code) ? (touch ? touchPresses : presses) : (touch ? touchKeys : keys)).add(code); };
   const held = code => keys.has(code) || touchKeys.has(code);
-  let suspended = false, ended = false, raf = 0, finishTimer, last = performance.now(), attackClock = config.tempo + 1.2, telegraph = null, message = '观察前摇。活下来比抢伤害重要。', messageTime = 2.6;
+  let suspended = false, ended = false, raf = 0, finishTimer, finishDue = 0, finishRemaining = 650, last = performance.now(), attackClock = config.tempo + 1.2, telegraph = null, message = '观察前摇。活下来比抢伤害重要。', messageTime = 2.6;
   const player = { x: 170, y: 270, r: 18, hp: 5, maxHp: 5, stamina: 100, iframes: 0, attackCd: 0, flash: 0, vx: 0, vy: 0 };
   const boss = { x: 760, y: 270, r: 32, hp: config.hp, maxHp: config.hp, flash: 0, phase: 1, attackIndex: 0 };
   const reducedMotion = Boolean(settings.reducedMotion), sparks = [], trails = [];
@@ -72,14 +96,20 @@ function createCombat(config, encounterId, done, settings = {}) {
   const keyup = e => keys.delete(e.code);
   const clearInput = () => { keys.clear(); presses.clear(); touchKeys.clear(); touchPresses.clear(); };
   const blur = () => {
-    clearInput(); if (ended) return; suspended = true; resumeButton.hidden = false;
+    clearInput();
+    if (finishTimer !== undefined) {
+      finishRemaining = Math.max(0, finishDue-performance.now());
+      clearTimeout(finishTimer); finishTimer = undefined;
+    }
+    suspended = true; resumeButton.hidden = false;
     for (const button of overlay.querySelectorAll('button[data-key]')) button.disabled = true;
     message = '战斗已暂停，点击“继续战斗”后恢复。'; messageTime = 3;
   };
   const resume = () => {
-    if (ended || document.hidden) return;
+    if (document.hidden || !canResume()) return;
     clearInput(); suspended = false; last = performance.now(); resumeButton.hidden = true;
-    for (const button of overlay.querySelectorAll('button[data-key]')) button.disabled = false;
+    for (const button of overlay.querySelectorAll('button[data-key]')) button.disabled = ended;
+    if (ended) { message = outcome === 'win' ? '突破。' : '死亡。'; messageTime = .7; scheduleResult(); draw(); return; }
     message = '观察提示范围，再决定进退。'; messageTime = 1.5;
   };
   resumeButton.addEventListener('click',resume);
@@ -147,7 +177,17 @@ function createCombat(config, encounterId, done, settings = {}) {
   function finish(result) {
     if (ended) return; ended = true;
     message = result === 'win' ? '突破。' : '死亡。'; messageTime = .7;
-    finishTimer = setTimeout(() => { cleanup(); done(result); }, 650);
+    outcome = result; scheduleResult();
+  }
+  let outcome;
+  function scheduleResult() {
+    if (suspended || finishTimer !== undefined) return;
+    finishDue = performance.now()+finishRemaining;
+    finishTimer = setTimeout(() => {
+      finishTimer = undefined;
+      if (document.hidden || !canResume()) { finishRemaining = 0; blur(); draw(); return; }
+      cleanup(); done(outcome);
+    }, finishRemaining);
   }
 
   function update(dt) {
@@ -200,5 +240,5 @@ function createCombat(config, encounterId, done, settings = {}) {
   if(document.hidden || document.hasFocus?.()===false)blur();
   raf=requestAnimationFrame(loop);
   function cleanup(){ cancelAnimationFrame(raf); clearTimeout(finishTimer); removeEventListener('keydown',keydown,true);removeEventListener('keyup',keyup,true);removeEventListener('blur',blur);document.removeEventListener('visibilitychange',visibility);clearInput();resumeButton.removeEventListener('click',resume);overlay.remove(); }
-  return { dispose(){ ended=true;cleanup(); } };
+  return { suspend: blur, dispose(){ ended=true;cleanup(); } };
 }

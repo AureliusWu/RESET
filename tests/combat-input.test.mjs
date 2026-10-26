@@ -7,7 +7,7 @@ import { runInNewContext } from 'node:vm';
 // Drive the shipped plugin with a manual animation clock. Input events can both
 // arrive before one frame, as they do for fast taps on a slow or hidden browser.
 const source = readFileSync(resolve(process.env.RESET_DIST || 'dist', 'combat.mjs'), 'utf8');
-function harness(sceneId = 'faceless_first', settings = {}, focused = true) {
+function harness(sceneId = 'faceless_first', settings = {}, focused = true, initiallyPaused = false, deferResults = false) {
   const events = () => {
     const handlers = new Map();
     return {
@@ -20,6 +20,7 @@ function harness(sceneId = 'faceless_first', settings = {}, focused = true) {
   const window = events(), document = { ...events(), hidden: false, hasFocus:()=>focused }, frames = new Map(), timers = new Map(), store = new Map();
   const drawn = { x: 170, y: 270, stamina: 100, hp: 5, bossHp: null, swings:0, trails:0 }, buttons = new Map();
   let time = 0, serial = 0, removed = false, result;
+  const results = [], microtasks = [];
   const ctx = new Proxy({
     createLinearGradient: () => ({ addColorStop() {} }),
     arc(x, y, r) { if (r === 18) { drawn.x = x; drawn.y = y; } if(r===65||r===85)drawn.swings++;if(r===17)drawn.trails++; },
@@ -35,16 +36,18 @@ function harness(sceneId = 'faceless_first', settings = {}, focused = true) {
   document.createElement = () => overlay; document.body = { appendChild() {} };
   const callbacks = new Set();
   const config = { faceless_first: ['watch_reflection','rush_forward'], faceless_second: ['change_read','repeat_old'], c5_echo_fail: ['break_habit','repeat_dodge'] }[sceneId];
-  const view = { frame: { sceneId, actions: config.map(id => ({ id })) }, settings, ready: true, visit: 1, paused: false };
+  const pauseReasons = new Set(initiallyPaused ? ['panel'] : []);
+  const view = { frame: { sceneId, actions: config.map(id => ({ id })) }, settings, ready: true, visit: 1, paused: initiallyPaused, pauseReasons: [...pauseReasons], hidden: false };
+  const notify = () => { view.pauseReasons = [...pauseReasons]; view.paused = pauseReasons.size > 0 || view.hidden; for (const fn of [...callbacks]) fn(); };
   const session = {
     subscribe(fn) { callbacks.add(fn); return () => callbacks.delete(fn); }, getView: () => view,
-    pause(reason, paused) { view.paused = paused; for (const fn of callbacks) fn(); },
-    act(id) { result = id; return true; }
+    pause(reason, paused) { if (pauseReasons.has(reason) === paused) return; if (paused) pauseReasons.add(reason); else pauseReasons.delete(reason); notify(); },
+    act(id) { if (view.paused || view.hidden) return false; result = id; results.push(id); return true; }
   };
   const mount = runInNewContext(source.replace('export function mountCombatBridge', 'function mountCombatBridge') + '\nmountCombatBridge', {
     document, localStorage: { getItem: key => store.get(key) ?? null, setItem: (key, value) => store.set(key, value) },
     addEventListener: window.addEventListener, removeEventListener: window.removeEventListener,
-    performance: { now: () => time }, queueMicrotask: fn => fn(),
+    performance: { now: () => time }, queueMicrotask: fn => deferResults ? microtasks.push(fn) : fn(),
     requestAnimationFrame(fn) { const id = ++serial; frames.set(id, fn); return id; }, cancelAnimationFrame: id => frames.delete(id),
     setTimeout(fn, delay) { const id = ++serial; timers.set(id, { fn, at: time + delay }); return id; }, clearTimeout: id => timers.delete(id)
   });
@@ -53,7 +56,8 @@ function harness(sceneId = 'faceless_first', settings = {}, focused = true) {
   const key = (type, code) => window.emit(type, code);
   const tap = code => { key('keydown', code); key('keyup', code); };
   const touch = (type, code) => buttons.get(code).emit(type);
-  return { frame, key, tap, touch, window, document, bridge, drawn, view, frames, timers, resume, hud, get removed() { return removed; }, get result() { return result; } };
+  const flush = () => { for(const fn of microtasks.splice(0)) fn(); };
+  return { frame, key, tap, touch, window, document, bridge, session, notify, flush, results, drawn, view, frames, timers, resume, hud, get removed() { return removed; }, get result() { return result; } };
 }
 
 for (const encounter of ['faceless_first','faceless_second','c5_echo_fail']) {
@@ -132,4 +136,58 @@ test('an encounter opened in a background window starts paused without losing he
 test('the opening gives a touch player time to read controls while attacks remain responsive', () => {
   const h=harness('c5_echo_fail');h.frame(140);assert.equal(h.drawn.hp,5);
   h.tap('KeyJ');h.frame();assert.ok(h.drawn.stamina<85);h.frame(200);assert.ok(h.drawn.hp<5);h.bridge.dispose();
+});
+
+function reachResult(h) {
+  h.key('keydown','KeyD'); h.frame(150); h.key('keyup','KeyD');
+  for (let i=0;i<2000 && !h.timers.size;i++) h.frame();
+  assert.equal(h.timers.size,1,'a real death must reach the result delay');
+}
+
+for (const encounter of ['faceless_first','faceless_second','c5_echo_fail']) {
+  for (const signal of ['blur','hidden']) test(`${encounter}: ${signal} freezes the result delay until explicit resume and applies it once`, () => {
+    const h=harness(encounter); reachResult(h); h.frame(10);
+    if (signal==='blur') h.window.emit('blur');
+    else { h.view.hidden=true; h.notify(); h.document.hidden=true; h.document.emit('visibilitychange'); }
+    h.frame(1000); assert.equal(h.result,undefined); assert.equal(h.removed,false); assert.equal(h.resume.hidden,false);
+    h.document.hidden=false; h.view.hidden=false; h.notify(); h.document.emit('visibilitychange');
+    h.frame(100); assert.equal(h.result,undefined,'returning to the tab must not commit the result');
+    h.resume.emit('click'); h.frame(10); assert.equal(h.result,undefined,'remaining foreground delay must be retained');
+    h.frame(40); assert.equal(h.results.length,1); assert.equal(h.removed,true); assert.equal(h.view.paused,false);
+    h.frame(100); assert.equal(h.results.length,1); h.bridge.dispose();
+  });
+}
+
+test('an unrelated session pause freezes combat and cannot be bypassed with the resume button', () => {
+  const h=harness('c5_echo_fail'); h.key('keydown','KeyD'); h.frame(150); h.key('keyup','KeyD');
+  h.session.pause('panel',true); const before={...h.drawn}; h.frame(1500);
+  for(const key of ['x','y','hp','stamina','bossHp']) assert.equal(h.drawn[key],before[key]);
+  h.resume.emit('click'); h.frame(500); assert.equal(h.drawn.hp,before.hp); assert.equal(h.resume.hidden,false);
+  h.session.pause('panel',false); h.frame(100); assert.equal(h.drawn.hp,before.hp);
+  h.resume.emit('click'); h.frame(500); assert.ok(h.drawn.hp<before.hp); h.bridge.dispose();
+});
+
+test('a combat restored under a settings or archive pause waits until the panel closes', () => {
+  const h=harness('c5_echo_fail',{},true,true); assert.equal(h.frames.size,0); assert.equal(h.timers.size,0);
+  h.session.pause('panel',false); assert.equal(h.frames.size,1); assert.equal(h.view.paused,true);
+  h.bridge.dispose(); assert.equal(h.view.paused,false);
+});
+
+test('replacing the story visit disposes an old combat and its pending result', () => {
+  const h=harness('c5_echo_fail'); reachResult(h);
+  h.view.frame={sceneId:'opening',actions:[]}; h.view.visit++; h.notify();
+  assert.equal(h.removed,true); assert.equal(h.timers.size,0); assert.equal(h.frames.size,0); assert.equal(h.view.paused,false);
+  h.frame(1000); assert.equal(h.result,undefined); assert.equal(h.window.count(),0); h.bridge.dispose();
+});
+
+test('a host pause between combat cleanup and the VN microtask retains the result for resume', () => {
+  const h=harness('c5_echo_fail',{},true,false,true); reachResult(h); h.frame(50);
+  assert.equal(h.removed,true); h.session.pause('native-host',true); h.flush(); assert.equal(h.result,undefined);
+  h.session.pause('native-host',false); h.flush(); assert.equal(h.results.length,1);
+  h.flush(); assert.equal(h.results.length,1); h.bridge.dispose();
+});
+
+test('disposing after combat cleanup prevents an already queued VN result', () => {
+  const h=harness('c5_echo_fail',{},true,false,true); reachResult(h); h.frame(50); assert.equal(h.removed,true);
+  h.bridge.dispose(); h.flush(); assert.equal(h.result,undefined); assert.equal(h.window.count(),0);
 });
