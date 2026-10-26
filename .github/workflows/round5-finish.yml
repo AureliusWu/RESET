@@ -83,39 +83,22 @@ jobs:
             }
             (src_dir/'provenance.json').write_text(json.dumps(provenance,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 
-          # 18:42 — unmistakable heavy-rain night at Wucheng North Station.
           bg=Image.open(ROOT/'assets/4k/backgrounds/north-station.png').convert('RGBA')
           bg=ImageEnhance.Brightness(bg).enhance(0.72)
-          cool=Image.new('RGBA',bg.size,(18,44,82,78))
-          bg=Image.alpha_composite(bg,cool)
+          bg=Image.alpha_composite(bg,Image.new('RGBA',bg.size,(18,44,82,78)))
           char=fit_character(ROOT/'assets/4k/characters/linwan/worried.png',2850)
-          # waist-up / intimate climax framing; crop naturally below frame.
-          x=190; y=-145
-          bg.alpha_composite(char,(x,y))
+          bg.alpha_composite(char,(190,-145))
           bg=Image.alpha_composite(bg,rain_overlay(bg.size))
-          mist=Image.new('RGBA',bg.size,(75,105,140,34)).filter(ImageFilter.GaussianBlur(16))
-          bg=Image.alpha_composite(bg,mist)
-          save_set(
-            'linwan-1842-cg',bg,
-            ['game/assets/4k/backgrounds/north-station.png','game/assets/4k/characters/linwan/worried.png'],
-            '18:42 climax: Linwan at Wucheng North Station in unmistakable heavy rain at night; soaked, frightened but resolute; cold blue-gray station light, wet reflections, dark tunnel. No dusk treatment.'
-          )
+          bg=Image.alpha_composite(bg,Image.new('RGBA',bg.size,(75,105,140,34)).filter(ImageFilter.GaussianBlur(16)))
+          save_set('linwan-1842-cg',bg,['game/assets/4k/backgrounds/north-station.png','game/assets/4k/characters/linwan/worried.png'],'18:42 climax: Linwan at Wucheng North Station in unmistakable heavy rain at night; soaked, frightened but resolute; cold blue-gray station light, wet reflections, dark tunnel. No dusk treatment.')
 
-          # True End — October 25 morning, warm low-angle dawn, not sunset.
           bg=Image.open(ROOT/'assets/4k/backgrounds/true-dawn.png').convert('RGBA')
           bg=ImageEnhance.Brightness(bg).enhance(1.05)
-          warm=Image.new('RGBA',bg.size,(255,205,125,45))
-          bg=Image.alpha_composite(bg,warm)
+          bg=Image.alpha_composite(bg,Image.new('RGBA',bg.size,(255,205,125,45)))
           char=fit_character(ROOT/'assets/4k/characters/linwan/smile.png',2600)
-          x=300; y=-60
-          bg.alpha_composite(char,(x,y))
-          glow=Image.new('RGBA',bg.size,(255,224,170,24)).filter(ImageFilter.GaussianBlur(24))
-          bg=Image.alpha_composite(bg,glow)
-          save_set(
-            'true-end-riverside-cg',bg,
-            ['game/assets/4k/backgrounds/true-dawn.png','game/assets/4k/characters/linwan/smile.png'],
-            'True End, October 25 morning: Linwan smiling after the loop is broken; clear warm morning light and fresh dawn atmosphere, explicitly not dusk or sunset.'
-          )
+          bg.alpha_composite(char,(300,-60))
+          bg=Image.alpha_composite(bg,Image.new('RGBA',bg.size,(255,224,170,24)).filter(ImageFilter.GaussianBlur(24)))
+          save_set('true-end-riverside-cg',bg,['game/assets/4k/backgrounds/true-dawn.png','game/assets/4k/characters/linwan/smile.png'],'True End, October 25 morning: Linwan smiling after the loop is broken; clear warm morning light and fresh dawn atmosphere, explicitly not dusk or sunset.')
           PY
 
       - name: Switch all five production CG references to 4K runtime
@@ -125,8 +108,8 @@ jobs:
           const path='game/content/zzz-scene-art-v1.json';
           const doc=JSON.parse(fs.readFileSync(path,'utf8'));
           const ids=new Set(['faceless-reflection-cg','letter-1842-cg','six-chairs-cg','linwan-1842-cg','true-end-riverside-cg']);
-          const assets=Array.isArray(doc) ? doc : doc.assets;
-          if (!Array.isArray(assets)) throw new Error('scene art asset list not found');
+          const assets=doc.replaceAssets;
+          if (!Array.isArray(assets)) throw new Error('replaceAssets list not found');
           let changed=0;
           for (const asset of assets) {
             if (asset && ids.has(asset.id)) {
