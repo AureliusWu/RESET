@@ -56,7 +56,7 @@ function createCombat(config, encounterId, done, settings = {}) {
   const actions = new Set(['Space','KeyJ','KeyK']);
   const press = (code,touch=false) => { if (!suspended && !document.hidden) (actions.has(code) ? (touch ? touchPresses : presses) : (touch ? touchKeys : keys)).add(code); };
   const held = code => keys.has(code) || touchKeys.has(code);
-  let suspended = false, ended = false, raf = 0, finishTimer, last = performance.now(), attackClock = config.tempo, telegraph = null, message = '观察前摇。活下来比抢伤害重要。', messageTime = 2.6;
+  let suspended = false, ended = false, raf = 0, finishTimer, last = performance.now(), attackClock = config.tempo + 1.2, telegraph = null, message = '观察前摇。活下来比抢伤害重要。', messageTime = 2.6;
   const player = { x: 170, y: 270, r: 18, hp: 5, maxHp: 5, stamina: 100, iframes: 0, attackCd: 0, flash: 0, vx: 0, vy: 0 };
   const boss = { x: 760, y: 270, r: 32, hp: config.hp, maxHp: config.hp, flash: 0, phase: 1, attackIndex: 0 };
   const reducedMotion = Boolean(settings.reducedMotion), sparks = [], trails = [];
@@ -197,6 +197,7 @@ function createCombat(config, encounterId, done, settings = {}) {
   }
 
   function loop(now) { if (ended) { draw(); return; } const dt = Math.min(.033,(now-last)/1000); last=now; if(!suspended) update(dt); draw(); raf=requestAnimationFrame(loop); }
+  if(document.hidden || document.hasFocus?.()===false)blur();
   raf=requestAnimationFrame(loop);
   function cleanup(){ cancelAnimationFrame(raf); clearTimeout(finishTimer); removeEventListener('keydown',keydown,true);removeEventListener('keyup',keyup,true);removeEventListener('blur',blur);document.removeEventListener('visibilitychange',visibility);clearInput();resumeButton.removeEventListener('click',resume);overlay.remove(); }
   return { dispose(){ ended=true;cleanup(); } };

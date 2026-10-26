@@ -21,7 +21,7 @@ switch($Action){
  'maximize' {[ResetWindow]::ShowWindow($Handle,3)|Out-Null}
  'minimize' {[ResetWindow]::ShowWindow($Handle,6)|Out-Null}
  'restore' {[ResetWindow]::ShowWindow($Handle,9)|Out-Null;[ResetWindow]::SetForegroundWindow($Handle)|Out-Null}
- 'focus' {[ResetWindow]::SetForegroundWindow($Handle)|Out-Null}
+ 'focus' {$Shell=New-Object -ComObject WScript.Shell;[void]$Shell.AppActivate($Process.Id);[ResetWindow]::SetForegroundWindow($Handle)|Out-Null}
  'defocus' {
    Add-Type -AssemblyName System.Windows.Forms
    $Form=New-Object System.Windows.Forms.Form

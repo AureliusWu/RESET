@@ -58,7 +58,8 @@ try{
   await control('settings').click();await page.getByLabel('减少动态效果',{exact:true}).uncheck();await page.getByRole('button',{name:'关闭',exact:true}).click();
   for(const [id,save] of Object.entries(fixtures.combat)){
     for(const outcome of ['win','lose']){
-      await loadFixture(save);await page.locator('.reset-combat canvas').waitFor();
+      await page.bringToFront();await loadFixture(save);await page.locator('.reset-combat canvas').waitFor();
+      if(await page.locator('[data-combat-resume]').isVisible())await page.locator('[data-combat-resume]').click();
       // Observe the visible player pixels rather than assume that a CI runner
       // delivers 60 animation frames per second during a wall-clock key hold.
       const moveTo=async(key,reached)=>{

@@ -7,7 +7,7 @@ import { runInNewContext } from 'node:vm';
 // Drive the shipped plugin with a manual animation clock. Input events can both
 // arrive before one frame, as they do for fast taps on a slow or hidden browser.
 const source = readFileSync(resolve(process.env.RESET_DIST || 'dist', 'combat.mjs'), 'utf8');
-function harness(sceneId = 'faceless_first', settings = {}) {
+function harness(sceneId = 'faceless_first', settings = {}, focused = true) {
   const events = () => {
     const handlers = new Map();
     return {
@@ -17,7 +17,7 @@ function harness(sceneId = 'faceless_first', settings = {}) {
       count() { return [...handlers.values()].reduce((sum, set) => sum + set.size, 0); }
     };
   };
-  const window = events(), document = { ...events(), hidden: false }, frames = new Map(), timers = new Map(), store = new Map();
+  const window = events(), document = { ...events(), hidden: false, hasFocus:()=>focused }, frames = new Map(), timers = new Map(), store = new Map();
   const drawn = { x: 170, y: 270, stamina: 100, hp: 5, bossHp: null, swings:0, trails:0 }, buttons = new Map();
   let time = 0, serial = 0, removed = false, result;
   const ctx = new Proxy({
@@ -120,4 +120,16 @@ test('cancelled touch actions do not fire and releasing touch cannot release a k
 
 test('stationary dodge retreats from the visible boss with the same stamina cost', () => {
   const h=harness();h.tap('Space');h.frame();assert.equal(h.drawn.x,78);assert.equal(h.drawn.y,270);assert.ok(Math.abs(h.drawn.stamina-74.4)<.001);h.bridge.dispose();
+});
+
+
+test('an encounter opened in a background window starts paused without losing health', () => {
+  const h=harness('c5_echo_fail',{},false);assert.equal(h.resume.hidden,false);
+  h.frame(1000);assert.equal(h.drawn.hp,5);assert.equal(h.drawn.stamina,100);
+  h.resume.emit('click');assert.equal(h.resume.hidden,true);h.bridge.dispose();
+});
+
+test('the opening gives a touch player time to read controls while attacks remain responsive', () => {
+  const h=harness('c5_echo_fail');h.frame(140);assert.equal(h.drawn.hp,5);
+  h.tap('KeyJ');h.frame();assert.ok(h.drawn.stamina<85);h.frame(200);assert.ok(h.drawn.hp<5);h.bridge.dispose();
 });
