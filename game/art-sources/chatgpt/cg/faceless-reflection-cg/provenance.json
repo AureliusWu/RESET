@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "generator": "ChatGPT built-in image generation",
+  "workflow": "chatgpt-original-to-processed-4k-master",
+  "native4kClaim": false,
+  "processing": "Pillow Lanczos with premultiplied alpha; aspect-preserving pad",
+  "authorization": "2026-10-26: ChatGPT出原图，做出4K母版",
+  "category": "cg",
+  "id": "faceless-reflection-cg",
+  "assets": [
+    {
+      "master": "game/assets/4k/cg/faceless-reflection-cg.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "5d6edde3b4a0103a0b23fc57a75e35b9b2bab5fcb55282002d37246190f18324",
+      "runtime": "game/assets/4k/runtime/cg/faceless-reflection-cg.webp",
+      "runtimeSize": [
+        1920,
+        1080
+      ],
+      "runtimeSHA256": "ddfdbea11d0f41e67768ab9df435e3ca78386a3fb4e55ac69bd7bdea53e21905",
+      "expression": "original",
+      "original": "game/art-sources/chatgpt/cg/faceless-reflection-cg/original.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "364a56a1b065503f64dfe9d356c61c3fe5f287720a6939064a6259110553dc20",
+      "prompt": "Use case: illustration-story. Final narrative CG for Chinese campus supernatural VN RESET. At the rainy Wucheng underpass, one adult male-shaped faceless pedestrian in a charcoal coat stands absolutely still with arms DOWN; his foreground puddle reflection is visibly raising one arm BEFORE the body's arm moves. Smooth blank face with no features, no gore. Muted slate-blue uncanny quiet. Reference1 architecture; reference2 linework style only, do not include the girl. Match Linwan's thin confident anime linework, restrained 2-3 level clean shadows, facial abstraction, detailed modest clothes and muted color density. Full-bleed landscape16:9 opaque illustration, not collage, no watermark or UI.",
+      "faceComposition": null
+    }
+  ]
+}
