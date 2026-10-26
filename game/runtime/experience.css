@@ -47,3 +47,18 @@ main#game{height:calc(100dvh - 30px - env(safe-area-inset-top) - env(safe-area-i
 .vn-engine[data-world=anomaly] .vn-background{filter:saturate(.88)}
 .vn-engine[data-reduced-motion=true] .vn-image{transition:none;animation:none}
 @media(prefers-reduced-motion:reduce){.vn-engine .vn-image{transition:none!important;animation:none!important}}
+
+/* Large desktop viewports need a wider stage and readable controls, rather
+   than stretching the 1280px reading window into a tall strip. */
+@media(min-width:2000px) and (min-height:1000px){
+  main#game{width:min(3200px,100%)}
+  .vn-engine .vn-reading{padding:24px 40px 28px}
+  .vn-engine .vn-text{font-size:clamp(22px,.8vw,30px)}
+  .vn-engine .vn-speaker{font-size:20px}
+  .vn-engine .vn-actions button{font-size:18px;min-height:48px}
+  .vn-engine .vn-toolbar{padding:14px 20px}
+  .vn-engine .vn-toolbar button{font-size:18px;min-height:48px;padding:10px 14px}
+  .vn-engine .vn-status{font-size:14px;min-height:20px;line-height:20px}
+  .vn-engine .vn-scene-title{font-size:18px}
+  .vn-engine .vn-mode{font-size:16px}
+}

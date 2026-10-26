@@ -62,6 +62,7 @@ export async function verifyLinwanArt({page,project,fixtures,loadFixture,control
           return {portrait:{x:p.x,y:p.y,width:p.width,height:p.height},stage:{x:s.x,y:s.y,width:s.width,height:s.height},reading:{x:r.x,y:r.y,width:r.width,height:r.height},overflow:document.documentElement.scrollWidth>innerWidth};
         });
         assert.equal(metrics.overflow,false);assert.ok(metrics.portrait.width>0&&metrics.portrait.height>0);
+        if(width>=2000&&height>=1000)assert.ok(metrics.stage.width>=width*.65,'4K stage must use the desktop width instead of a narrow vertical strip');
         assert.ok(metrics.portrait.x>=metrics.stage.x-1&&metrics.portrait.x+metrics.portrait.width<=metrics.stage.x+metrics.stage.width+1,'portrait outside stage');
         await page.screenshot({path:out+`/linwan-${width}x${height}.png`,fullPage:true,animations:'disabled'});layout.push({width,height,...metrics});
       }
