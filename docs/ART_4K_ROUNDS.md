@@ -14,17 +14,16 @@
 
 ## Round 2 — 林晚正式 4K 角色基准
 
-- 状态：进行中；运行时 production 位图接入中，4K master 尚未通过，不进入 Round 3
-- 参考画风已重新收拢：长黑发、灰蓝眼、米白针织外套、蓝白校服、蓝色蝴蝶结、深蓝百褶裙、白袜棕色乐福鞋、蓝色书本与黑色肩包；现代日系二维角色设定稿风格
+- 状态：进行中；林晚 production runtime 位图已准备，4K master 尚未通过，不进入 Round 3
+- 参考画风：长黑发、灰蓝眼、米白针织外套、蓝白校服、蓝色蝴蝶结、深蓝百褶裙、白袜棕色乐福鞋、蓝色书本与黑色肩包；现代日系二维角色设定稿风格
 - 当前剧情正式 expression：`neutral / smile / worried / surprised / serious`
 - 额外暂存：`sad`
-- production 运行时目标：`game/assets/generated-portraits/linwan-production/*.webp`
-- 5 个正式 expression 的 asset ID 保持不变，仅替换 `src`
-- `sad.webp` 暂存但不新增剧情 asset ID，因为当前正式剧情未引用 sad
-- 运行时位图用于纠正旧 SVG production 画风偏移；不计作正式 4K master
-- 正式 4K 目标仍为：`game/assets/4k/characters/linwan/*.png`
-- 运行时 4K derivative 仍允许：`game/assets/4k/runtime/characters/linwan/*.webp`
-- master/runtime 策略：4K PNG master + WebP runtime derivative，冻结根目录 `game/assets/4k/` 不变
+- production runtime：`game/assets/generated-portraits/linwan-production/*.webp`
+- asset ID 保持不变，仅替换 `src`
+- `sad.webp` 暂存但当前剧情未引用
+- runtime 位图不计作正式 4K master
+- 正式 4K 目标：`game/assets/4k/characters/linwan/*.png`
+- 4K runtime derivative：`game/assets/4k/runtime/characters/linwan/*.webp`
 - 自动校验：`art:check` / `art:legacy` / `art:size`
 
-恢复条件：完成当前运行时位图二进制写入并通过 Build 后，继续补齐原生达到最低尺寸、带透明通道、同底模一致的 `base/normal/smile/worried/sad/surprised/serious` 4K PNG master；通过完整验收后再进入 Round 3。
+恢复条件：将 runtime WebP 完整挂入 main 并通过 Build；随后继续补齐原生 4K PNG master，通过浏览器、Windows、PWA smoke 后再进入 Round 3。
