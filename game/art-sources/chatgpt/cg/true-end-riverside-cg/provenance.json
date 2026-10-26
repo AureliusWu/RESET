@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "generator": "deterministic composite from approved ChatGPT-origin 4K production assets",
+  "workflow": "approved-4k-background-plus-approved-4k-linwan-composite",
+  "native4kClaim": false,
+  "processing": "Pillow 4K composite canvas from approved production assets; deterministic lighting/weather layers",
+  "authorization": "2026-10-26: Round 5 收尾，保持人物身份、画风与 4K 正式资产链",
+  "category": "cg",
+  "id": "true-end-riverside-cg",
+  "sources": [
+    "game/assets/4k/backgrounds/true-dawn.png",
+    "game/assets/4k/characters/linwan/smile.png"
+  ],
+  "assets": [
+    {
+      "master": "game/assets/4k/cg/true-end-riverside-cg.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "930220ca02a207ce52dccdd13ffb63da58bf57b0ca2517a5ab0319e7ca8a28ff",
+      "runtime": "game/assets/4k/runtime/cg/true-end-riverside-cg.webp",
+      "runtimeSize": [
+        1920,
+        1080
+      ],
+      "runtimeSHA256": "3d714e6b2c139880621ce598adc5aba0cd594568b839d9cb75b0b4078ada75a4",
+      "expression": "composite",
+      "original": "game/art-sources/chatgpt/cg/true-end-riverside-cg/original.png",
+      "originalSize": [
+        3840,
+        2160
+      ],
+      "originalSHA256": "930220ca02a207ce52dccdd13ffb63da58bf57b0ca2517a5ab0319e7ca8a28ff",
+      "prompt": "True End, October 25 morning: Linwan smiling after the loop is broken; clear warm morning light and fresh dawn atmosphere, explicitly not dusk or sunset.",
+      "faceComposition": null
+    }
+  ]
+}

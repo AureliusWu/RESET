@@ -1,6 +1,6 @@
 # 《回留》4K 美术自动审计
 
-生成时间：2026-10-26T09:38:27.944Z
+生成时间：2026-10-26T16:06:55.996Z
 
 ## 统计
 
@@ -8,10 +8,10 @@
 - 角色差分：31
 - 背景：20
 - CG：5
-- 源树 SVG：96
+- 源树 SVG：35
 - 已建立 4K master 映射：56/56
-- 已存在且达到最低尺寸/Alpha 要求：51
-- 已规划但尚未写入：5
+- 已存在且达到最低尺寸/Alpha 要求：56
+- 已规划但尚未写入：0
 - 尺寸不达标：0
 - 缺少透明通道：0
 - 额外规划资产：8
@@ -71,11 +71,11 @@
 | north-station | background | assets/4k/runtime/backgrounds/north-station.webp | assets/4k/backgrounds/north-station.png | 4K_READY 3840×2160 |
 | save-room | background | assets/4k/runtime/backgrounds/save-room.webp | assets/4k/backgrounds/save-room.png | 4K_READY 3840×2160 |
 | true-dawn | background | assets/4k/runtime/backgrounds/true-dawn.webp | assets/4k/backgrounds/true-dawn.png | 4K_READY 3840×2160 |
-| faceless-reflection-cg | cg | assets/generated-scenes/faceless-reflection-cg.svg | assets/4k/cg/faceless-reflection-cg.png | PLANNED |
-| letter-1842-cg | cg | assets/generated-scenes/letter-1842-cg.svg | assets/4k/cg/letter-1842-cg.png | PLANNED |
-| six-chairs-cg | cg | assets/generated-scenes/six-chairs-cg.svg | assets/4k/cg/six-chairs-cg.png | PLANNED |
-| linwan-1842-cg | cg | assets/generated-scenes/linwan-1842-cg.svg | assets/4k/cg/linwan-1842-cg.png | PLANNED |
-| true-end-riverside-cg | cg | assets/generated-scenes/true-end-riverside-cg.svg | assets/4k/cg/true-end-riverside-cg.png | PLANNED |
+| faceless-reflection-cg | cg | assets/4k/runtime/cg/faceless-reflection-cg.webp | assets/4k/cg/faceless-reflection-cg.png | 4K_READY 3840×2160 |
+| letter-1842-cg | cg | assets/4k/runtime/cg/letter-1842-cg.webp | assets/4k/cg/letter-1842-cg.png | 4K_READY 3840×2160 |
+| six-chairs-cg | cg | assets/4k/runtime/cg/six-chairs-cg.webp | assets/4k/cg/six-chairs-cg.png | 4K_READY 3840×2160 |
+| linwan-1842-cg | cg | assets/4k/runtime/cg/linwan-1842-cg.webp | assets/4k/cg/linwan-1842-cg.png | 4K_READY 3840×2160 |
+| true-end-riverside-cg | cg | assets/4k/runtime/cg/true-end-riverside-cg.webp | assets/4k/cg/true-end-riverside-cg.png | 4K_READY 3840×2160 |
 
 ## 仍保留的 SVG
 
@@ -112,67 +112,6 @@
 - assets/ch-tinglan.svg
 - assets/ch-xiaoman.svg
 - assets/ch-xuqi.svg
-- assets/generated-portraits/linwan/angry.svg
-- assets/generated-portraits/linwan/neutral.svg
-- assets/generated-portraits/linwan/serious.svg
-- assets/generated-portraits/linwan/smile.svg
-- assets/generated-portraits/linwan/surprised.svg
-- assets/generated-portraits/linwan/worried.svg
-- assets/generated-portraits/nanxing/angry.svg
-- assets/generated-portraits/nanxing/neutral.svg
-- assets/generated-portraits/nanxing/serious.svg
-- assets/generated-portraits/nanxing/smile.svg
-- assets/generated-portraits/nanxing/surprised.svg
-- assets/generated-portraits/nanxing/worried.svg
-- assets/generated-portraits/tangli/angry.svg
-- assets/generated-portraits/tangli/neutral.svg
-- assets/generated-portraits/tangli/serious.svg
-- assets/generated-portraits/tangli/smile.svg
-- assets/generated-portraits/tangli/surprised.svg
-- assets/generated-portraits/tangli/worried.svg
-- assets/generated-portraits/tinglan/angry.svg
-- assets/generated-portraits/tinglan/neutral.svg
-- assets/generated-portraits/tinglan/serious.svg
-- assets/generated-portraits/tinglan/smile.svg
-- assets/generated-portraits/tinglan/surprised.svg
-- assets/generated-portraits/tinglan/worried.svg
-- assets/generated-portraits/xiaoman/angry.svg
-- assets/generated-portraits/xiaoman/neutral.svg
-- assets/generated-portraits/xiaoman/serious.svg
-- assets/generated-portraits/xiaoman/smile.svg
-- assets/generated-portraits/xiaoman/surprised.svg
-- assets/generated-portraits/xiaoman/worried.svg
-- assets/generated-portraits/xuqi/angry.svg
-- assets/generated-portraits/xuqi/neutral.svg
-- assets/generated-portraits/xuqi/serious.svg
-- assets/generated-portraits/xuqi/smile.svg
-- assets/generated-portraits/xuqi/surprised.svg
-- assets/generated-portraits/xuqi/worried.svg
-- assets/generated-scenes/archive-room.svg
-- assets/generated-scenes/cafeteria.svg
-- assets/generated-scenes/classroom-dawn.svg
-- assets/generated-scenes/classroom-rain.svg
-- assets/generated-scenes/faceless-reflection-cg.svg
-- assets/generated-scenes/home-corridor.svg
-- assets/generated-scenes/letter-1842-cg.svg
-- assets/generated-scenes/linwan-1842-cg.svg
-- assets/generated-scenes/night-art-room.svg
-- assets/generated-scenes/night-wucheng.svg
-- assets/generated-scenes/north-station.svg
-- assets/generated-scenes/old-art-room.svg
-- assets/generated-scenes/old-stationery.svg
-- assets/generated-scenes/riverside-dusk.svg
-- assets/generated-scenes/rooftop-evening.svg
-- assets/generated-scenes/save-room.svg
-- assets/generated-scenes/school-gate-evening.svg
-- assets/generated-scenes/school-gate-rain.svg
-- assets/generated-scenes/school-morning.svg
-- assets/generated-scenes/six-chairs-cg.svg
-- assets/generated-scenes/stairwell-morning.svg
-- assets/generated-scenes/station-night.svg
-- assets/generated-scenes/true-dawn.svg
-- assets/generated-scenes/true-end-riverside-cg.svg
-- assets/generated-scenes/underpass-rain.svg
 - assets/ui-save-anomaly.svg
 - assets/ui-title-mark.svg
 

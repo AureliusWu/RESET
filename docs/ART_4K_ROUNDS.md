@@ -130,4 +130,12 @@
 
 ## Round 5 — 5 个关键 CG
 
-进行中：ChatGPT 原图 → 3840×2160 PNG 母版 → 1920×1080 WebP。保持人物身份、CG ID、解锁逻辑与 True End 文本。
+资产接入完成，等待本提交的 GitHub Build / Release 双平台 CI 最终确认。五个 CG 已全部切换为 `assets/4k/runtime/cg/*.webp`，对应 3840×2160 PNG 母版保存在 `game/assets/4k/cg/`；provenance 与 SHA256 保存在 `game/art-sources/chatgpt/cg/`。
+
+- `faceless-reflection-cg`：雨中倒影提前动作。
+- `letter-1842-cg`：18:42 来信；恢复母版 PNG IDAT 问题已修复。
+- `six-chairs-cg`：六位女主 + 第七把空椅子。
+- `linwan-1842-cg`：北站 18:42，使用正式林晚 4K 立绘与正式北站 4K 场景合成，强化明显雨夜。
+- `true-end-riverside-cg`：使用正式林晚 4K 立绘与 `true-dawn` 4K 场景合成，明确 10 月 25 日暖晨光而非黄昏。
+
+Runner 门禁：`art:audit:write`、`art:audit`、`art:check`、`build`、`check:release`、`test:release` 全部通过后才允许提交。保持 `v1.2.0-dev`，不进入 RC，不覆盖正式 `v1.1.0 Pages`。
