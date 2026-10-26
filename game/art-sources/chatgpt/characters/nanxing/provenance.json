@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "generator": "ChatGPT built-in image generation",
+  "workflow": "chatgpt-original-to-processed-4k-master",
+  "native4kClaim": false,
+  "processing": "Pillow Lanczos with premultiplied alpha; aspect-preserving pad",
+  "authorization": "2026-10-26: ChatGPT出原图，做出4K母版",
+  "category": "characters",
+  "id": "nanxing",
+  "assets": [
+    {
+      "master": "game/assets/4k/characters/nanxing/neutral.png",
+      "masterSize": [
+        2160,
+        3840
+      ],
+      "masterSHA256": "a1deaacde1bb91c17242a03907e527da9874527688ee6baef1a5bf9c16c73f0b",
+      "runtime": "game/assets/4k/runtime/characters/nanxing/neutral.webp",
+      "runtimeSize": [
+        1080,
+        1920
+      ],
+      "runtimeSHA256": "c287e41252c100fb5befa9ac3b31f74b29b691a24463359ead50c630673908d7",
+      "lockedBodySHA256": "812441ab942ce0a3feda7e30f404f0b1eaa4c2e454e6accd017c93d235b24d47",
+      "expression": "neutral",
+      "original": "game/art-sources/chatgpt/characters/nanxing/neutral.png",
+      "originalSize": [
+        941,
+        1672
+      ],
+      "originalSHA256": "37be8ba7720169b36bb6d036f488327252208420aea753f9e4e186aa967f71fd",
+      "prompt": "Single full-body neutral production Chinese-campus VN character sprite: Qiao Nanxing / 乔南星. A distinct clever information-savvy girl, straight dark navy-black hair, small understated silver star hair clip, muted violet-gray eyes, neutral curious observant expression. Muted navy cardigan over white collared school shirt and pale lavender ribbon, charcoal pleated school skirt, white socks, brown school loafers. A plain smartphone held naturally in one hand at waist, small dark school shoulder bag. Reference Lin Wan is STYLE AND PROPORTION ONLY. Match her thin clean anime line work, facial abstraction, 7-head proportions, restrained cel shadows, subtle gradients, low saturation, fabric detail density and natural even light. Keep every part of the head and both shoes inside the frame with margins. 9:16 portrait, centered, real transparent PNG RGBA, clean fine hair alpha edges. NO words, logos, backdrop, floor shadow, panels, thick painting, realistic face or cinematic backlight.",
+      "faceComposition": null
+    }
+  ]
+}

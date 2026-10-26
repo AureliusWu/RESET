@@ -1,0 +1,196 @@
+{
+  "schema": 1,
+  "generator": "ChatGPT built-in image generation",
+  "workflow": "chatgpt-original-to-processed-4k-master",
+  "native4kClaim": false,
+  "processing": "Pillow Lanczos with premultiplied alpha; aspect-preserving pad",
+  "authorization": "2026-10-26: ChatGPT出原图，做出4K母版",
+  "category": "characters",
+  "id": "xuqi",
+  "assets": [
+    {
+      "master": "game/assets/4k/characters/xuqi/neutral.png",
+      "masterSize": [
+        2160,
+        3840
+      ],
+      "masterSHA256": "4cbfeacdc5e615878639212d10e702780f38ed6905282cde59f5ea67603bd7e5",
+      "runtime": "game/assets/4k/runtime/characters/xuqi/neutral.webp",
+      "runtimeSize": [
+        1080,
+        1920
+      ],
+      "runtimeSHA256": "6abafd9c28625ce4fe8a08c914684d0e14abced6a89adf8c9caaf1b529f82011",
+      "lockedBodySHA256": "3a22d103cfef481773b4913d497a5ba2cf3eba85f6bbf2cb1c16d9b8b389c8d9",
+      "expression": "neutral",
+      "original": "game/art-sources/chatgpt/characters/xuqi/neutral.png",
+      "originalSize": [
+        941,
+        1672
+      ],
+      "originalSHA256": "1fdcf5a971eb4d5b37e7b33c54cfb704f9f38d34cd1b52a4a3d5c1fcfadd6d98",
+      "prompt": "Production full-body visual novel sprite: Xu Qi / 许栖, neutral baseline. Reference image is Lin Wan STYLE AND PROPORTION ONLY, create a distinct girl. Straight long silver hair with soft silver-gray cel shadows, amber gold eyes, cool calm reserved gamer expression. Graphite charcoal zip hoodie over white collared shirt with a small muted gold ribbon, charcoal pleated school skirt, opaque dark knee socks, brown school loafers, a small generic handheld game console held naturally near waist. Chinese modern school student, clean contemporary Chinese campus character design. Match reference exactly in thin clean lines, anime facial abstraction, restrained cel shadow hierarchy, 7-head natural proportions, moderate fabric detail, subtle gradients and low saturation. Full head and both shoes with margins visible, neutral standing pose, centered portrait 9:16 transparent PNG RGBA. No illustration backdrop, white halo, floor shadow, text, collage, logos, realistic face, 3D, thick painting or cinematic light.",
+      "faceComposition": null
+    },
+    {
+      "master": "game/assets/4k/characters/xuqi/smile.png",
+      "masterSize": [
+        2160,
+        3840
+      ],
+      "masterSHA256": "7914036c9344fef85016f3c8c05dd3efc130502feeaa5eeb73a447d6856b101e",
+      "runtime": "game/assets/4k/runtime/characters/xuqi/smile.webp",
+      "runtimeSize": [
+        1080,
+        1920
+      ],
+      "runtimeSHA256": "1319c067d8dc66639e10e2da68dd94138bfeb1d61209bfe3e9527e3200107872",
+      "lockedBodySHA256": "3a22d103cfef481773b4913d497a5ba2cf3eba85f6bbf2cb1c16d9b8b389c8d9",
+      "expression": "smile",
+      "original": "game/art-sources/chatgpt/characters/xuqi/smile.png",
+      "originalSize": [
+        941,
+        1672
+      ],
+      "originalSHA256": "a85967bb8681a69d589b46ff2b3f50f40dc88bf2379f5ea8d8a52d6d4ab5bd77",
+      "prompt": "Precise expression edit of the supplied Xu Qi full-body sprite. Change ONLY eyes, eyebrows and mouth to a tiny restrained knowing smile, relaxed eyes, subtle raised mouth corners. Preserve exact identity, silver hair, gold eyes, head angle, full-body pose, handheld console, all fingers, clothes, bag, folds, line weight, colors, shadows and transparent silhouette. Full original composition and both shoes visible. No panel, text or new objects. Facial expression smile must be distinctly readable.",
+      "faceComposition": {
+        "expressionFaceRegion": [
+          391,
+          120,
+          574,
+          252
+        ],
+        "bodyLockedTo": "neutral"
+      }
+    },
+    {
+      "master": "game/assets/4k/characters/xuqi/worried.png",
+      "masterSize": [
+        2160,
+        3840
+      ],
+      "masterSHA256": "4d798d310f4ffbd343be7eaf59864c537535d6b50b6b68f438405376510f6719",
+      "runtime": "game/assets/4k/runtime/characters/xuqi/worried.webp",
+      "runtimeSize": [
+        1080,
+        1920
+      ],
+      "runtimeSHA256": "b1390fddc83aedf772c7d5ff3f757520d1ad1fbe1b85093c1967458edfc70674",
+      "lockedBodySHA256": "3a22d103cfef481773b4913d497a5ba2cf3eba85f6bbf2cb1c16d9b8b389c8d9",
+      "expression": "worried",
+      "original": "game/art-sources/chatgpt/characters/xuqi/worried.png",
+      "originalSize": [
+        941,
+        1672
+      ],
+      "originalSHA256": "7ce4f966df6b32722e14f637010c05802778cff564b98cc6ecef06cf7e345510",
+      "prompt": "Precise expression edit of the supplied Xu Qi full-body sprite. Change ONLY eyes, eyebrows and mouth to a concerned uneasy expression, lifted inner eyebrows and small tense mouth. Preserve exact identity, silver hair, gold eyes, head angle, full-body pose, handheld console, all fingers, clothes, bag, folds, line weight, colors, shadows and transparent silhouette. Full original composition and both shoes visible. No panel, text or new objects. Facial expression worried must be distinctly readable.",
+      "faceComposition": {
+        "expressionFaceRegion": [
+          391,
+          120,
+          574,
+          252
+        ],
+        "bodyLockedTo": "neutral"
+      }
+    },
+    {
+      "master": "game/assets/4k/characters/xuqi/surprised.png",
+      "masterSize": [
+        2160,
+        3840
+      ],
+      "masterSHA256": "14c00ff66122d90c0d126827d6695bc97d95d7543bdc9151a2b4893efca5aa72",
+      "runtime": "game/assets/4k/runtime/characters/xuqi/surprised.webp",
+      "runtimeSize": [
+        1080,
+        1920
+      ],
+      "runtimeSHA256": "7500c3114bd05c33766feca7b5cfac201b1c57495e7d0b61cdd59ce9e9a65b75",
+      "lockedBodySHA256": "3a22d103cfef481773b4913d497a5ba2cf3eba85f6bbf2cb1c16d9b8b389c8d9",
+      "expression": "surprised",
+      "original": "game/art-sources/chatgpt/characters/xuqi/surprised.png",
+      "originalSize": [
+        941,
+        1671
+      ],
+      "originalSHA256": "daf289a72557efff4f94e731e62b106421286266e01903011bf259420eac35fa",
+      "prompt": "Precise expression edit of the supplied Xu Qi full-body sprite. Change ONLY eyes, eyebrows and mouth to clearly surprised wider amber eyes and a small open rounded mouth. Preserve exact identity, silver hair, gold eyes, head angle, full-body pose, handheld console, all fingers, clothes, bag, folds, line weight, colors, shadows and transparent silhouette. Full original composition and both shoes visible. No panel, text or new objects. Facial expression surprised must be distinctly readable.",
+      "faceComposition": {
+        "expressionFaceRegion": [
+          391,
+          120,
+          574,
+          252
+        ],
+        "bodyLockedTo": "neutral"
+      }
+    },
+    {
+      "master": "game/assets/4k/characters/xuqi/serious.png",
+      "masterSize": [
+        2160,
+        3840
+      ],
+      "masterSHA256": "52e7885f36ed1a31f77cd31723fa79021ffbd28f934dd058349742dd3361a8c6",
+      "runtime": "game/assets/4k/runtime/characters/xuqi/serious.webp",
+      "runtimeSize": [
+        1080,
+        1920
+      ],
+      "runtimeSHA256": "d4ba161fa11c91682ff5b3f21e150198044ba170b62f15ae556feb8f2022f9f9",
+      "lockedBodySHA256": "3a22d103cfef481773b4913d497a5ba2cf3eba85f6bbf2cb1c16d9b8b389c8d9",
+      "expression": "serious",
+      "original": "game/art-sources/chatgpt/characters/xuqi/serious.png",
+      "originalSize": [
+        941,
+        1672
+      ],
+      "originalSHA256": "9dbabb55c95e097f71dd8eb624b10eae45e724f6e809f57c827cce8ebd99e3cb",
+      "prompt": "Precise expression edit of the supplied Xu Qi full-body sprite. Change ONLY eyes, eyebrows and mouth to intensely focused composed expression, firm lowered brows and closed straight mouth. Preserve exact identity, silver hair, gold eyes, head angle, full-body pose, handheld console, all fingers, clothes, bag, folds, line weight, colors, shadows and transparent silhouette. Full original composition and both shoes visible. No panel, text or new objects. Facial expression serious must be distinctly readable.",
+      "faceComposition": {
+        "expressionFaceRegion": [
+          391,
+          120,
+          574,
+          252
+        ],
+        "bodyLockedTo": "neutral"
+      }
+    },
+    {
+      "master": "game/assets/4k/characters/xuqi/angry.png",
+      "masterSize": [
+        2160,
+        3840
+      ],
+      "masterSHA256": "41e8a90d552e9e7fb669c830f469b035a799fa6d925d6bce0999a175f22a6afd",
+      "runtime": "game/assets/4k/runtime/characters/xuqi/angry.webp",
+      "runtimeSize": [
+        1080,
+        1920
+      ],
+      "runtimeSHA256": "f1358251024e87453ec8ca29e36d4a6942e3d056779c45df8df4baf9dcd11dc4",
+      "lockedBodySHA256": "3a22d103cfef481773b4913d497a5ba2cf3eba85f6bbf2cb1c16d9b8b389c8d9",
+      "expression": "angry",
+      "original": "game/art-sources/chatgpt/characters/xuqi/angry.png",
+      "originalSize": [
+        941,
+        1672
+      ],
+      "originalSHA256": "90f993b703bdb11380128cdf8e6dc3c0aa3c0e2d4584e7c3f34973b81609fdb2",
+      "prompt": "Precise expression edit of the supplied Xu Qi full-body sprite. Change ONLY eyes, eyebrows and mouth to clearly angry furrowed brows, narrowed eyes and visibly tense downturned mouth, no shouting. Preserve exact identity, silver hair, gold eyes, head angle, full-body pose, handheld console, all fingers, clothes, bag, folds, line weight, colors, shadows and transparent silhouette. Full original composition and both shoes visible. No panel, text or new objects. Facial expression angry must be distinctly readable.",
+      "faceComposition": {
+        "expressionFaceRegion": [
+          391,
+          120,
+          574,
+          252
+        ],
+        "bodyLockedTo": "neutral"
+      }
+    }
+  ]
+}

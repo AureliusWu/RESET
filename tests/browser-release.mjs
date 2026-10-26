@@ -9,6 +9,7 @@ import { verifyPlayerExperience } from './player-experience-browser.mjs';
 import { verifyPwaUpgrade } from './pwa-upgrade-browser.mjs';
 import { verifyStageBridge } from './stage-browser.mjs';
 import { verifyLinwanArt, verifyLinwanOffline } from './linwan-art-browser.mjs';
+import { verifyProductionArt, verifyProductionArtOffline } from './production-art-browser.mjs';
 const engine=resolve(process.env.VN_ENGINE_PATH||'../VN-Engine-v2');
 const {chromium}=await import(pathToFileURL(resolve(engine,'node_modules/playwright/index.mjs')));
 const dist=resolve(process.env.RESET_DIST||'dist'), out=resolve('test-results/browser');await mkdir(out,{recursive:true});
@@ -46,6 +47,7 @@ try{
     const artControl=id=>artPage.locator(`[data-control="${id}"]`);
     const artLoad=async save=>{await artControl('settings').click();await artPage.locator('input[type=file]').setInputFiles({name:'art-frame.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(save))});await artPage.locator('.vn-modal').waitFor({state:'hidden'});};
     await verifyLinwanArt({page:artPage,project,fixtures,loadFixture:artLoad,control:artControl,out,pass});
+    await verifyProductionArt({page:artPage,project,fixtures,loadFixture:artLoad,out,pass});
   } finally { await artContext.close(); }
   const start=await scene();await control('save').click();await control('next').click();await control('load').click();assert.equal(await scene(),start);
   assert.match(await page.title(),/读取 1/);pass('Save/load restores the paragraph and increments persistent Meta once');
@@ -154,6 +156,7 @@ try{
   await page.locator('[data-reset-control=collection]').click();assert.equal(await page.locator('.reset-ending[data-unlocked=true]').count(),13);assert.ok(await page.locator('.reset-cg-card img').count());await page.keyboard.press('Escape');
   await page.screenshot({path:out+'/offline.png',fullPage:true});pass('Real service-worker cache at a nested URL reloads offline with assets, saves and Meta intact');
   await verifyLinwanOffline({page,loadFixture,fixtures,out,pass});
+  await verifyProductionArtOffline({page,project,pass});
   if(process.env.RESET_PREVIOUS_DIST)await verifyPwaUpgrade({browser,dist,previous:process.env.RESET_PREVIOUS_DIST,fixtures,out,pass});
   assert.deepEqual(errors,[]);await writeFile(out+'/acceptance.json',JSON.stringify({result:'passed',browser:await browser.version(),checks,errors},null,2)+'\n');
 }catch(e){if(page)await page.screenshot({path:out+'/failure.png',fullPage:true}).catch(()=>{});await writeFile(out+'/failure.json',JSON.stringify({error:e.stack,checks,errors},null,2));throw e;}

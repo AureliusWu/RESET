@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "generator": "ChatGPT built-in image generation",
+  "workflow": "chatgpt-original-to-processed-4k-master",
+  "native4kClaim": false,
+  "processing": "Pillow Lanczos with premultiplied alpha; aspect-preserving pad",
+  "authorization": "2026-10-26: ChatGPT出原图，做出4K母版",
+  "category": "characters",
+  "id": "tangli",
+  "assets": [
+    {
+      "master": "game/assets/4k/characters/tangli/neutral.png",
+      "masterSize": [
+        2160,
+        3840
+      ],
+      "masterSHA256": "8ef13de4ab427e7f01ed4c0d65e8f11c74306920b89ad5593ea017f7d090ffbd",
+      "runtime": "game/assets/4k/runtime/characters/tangli/neutral.webp",
+      "runtimeSize": [
+        1080,
+        1920
+      ],
+      "runtimeSHA256": "9024463630b581b08ad6b9265b35f460ff4cdc55e08ed16b50dd73dd774daad8",
+      "lockedBodySHA256": "63720b6f1e79717c15f385d1741c0800ba9782711dec7ff92d7e596784d50562",
+      "expression": "neutral",
+      "original": "game/art-sources/chatgpt/characters/tangli/neutral.png",
+      "originalSize": [
+        941,
+        1672
+      ],
+      "originalSHA256": "e50edab2237f214d66db279a3827202cdcbde4d95cf39b6114f4999a98090eda",
+      "prompt": "Single full-body neutral production Chinese-campus VN character sprite: Tang Li / 唐梨. A distinct bright sporty girl, auburn high ponytail, warm brown eyes, neutral alert friendly expression. Muted burnt-orange casual zip hoodie over white school shirt, charcoal pleated school skirt, white socks and brown school loafers. A compact pair of dark headphones around neck. Hold a folded unlettered paper street map at waist in one hand, other hand rests naturally at side, confident relaxed standing posture. Reference Lin Wan is STYLE AND PROPORTION ONLY. Match her thin clean anime line work, facial abstraction, 7-head proportions, restrained cel shadows, subtle gradients, low saturation, fabric detail density and natural even light. Keep every part of the head and both shoes inside the frame with margins. 9:16 portrait, centered, real transparent PNG RGBA, clean fine hair alpha edges. NO words, logos, backdrop, floor shadow, panels, thick painting, realistic face or cinematic backlight.",
+      "faceComposition": null
+    }
+  ]
+}

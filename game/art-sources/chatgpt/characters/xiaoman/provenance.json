@@ -1,0 +1,164 @@
+{
+  "schema": 1,
+  "generator": "ChatGPT built-in image generation",
+  "workflow": "chatgpt-original-to-processed-4k-master",
+  "native4kClaim": false,
+  "processing": "Pillow Lanczos with premultiplied alpha; aspect-preserving pad",
+  "authorization": "2026-10-26: ChatGPT出原图，做出4K母版",
+  "category": "characters",
+  "id": "xiaoman",
+  "assets": [
+    {
+      "master": "game/assets/4k/characters/xiaoman/neutral.png",
+      "masterSize": [
+        2160,
+        3840
+      ],
+      "masterSHA256": "578c47ef4548d4cfb7e7119d59a0474f55dd88f8d20ae579cc02555d4005f3e4",
+      "runtime": "game/assets/4k/runtime/characters/xiaoman/neutral.webp",
+      "runtimeSize": [
+        1080,
+        1920
+      ],
+      "runtimeSHA256": "5c3a13ffb49e3264e88326bf858436dc9238259a0eac2d0b1265eff9b55375ca",
+      "lockedBodySHA256": "b1526deeec110e7fe57673a91f6423e0a7ec7ade25323e2d3a506858bfd9b13a",
+      "expression": "neutral",
+      "original": "game/art-sources/chatgpt/characters/xiaoman/neutral.png",
+      "originalSize": [
+        941,
+        1672
+      ],
+      "originalSHA256": "e561977e72dd93a5247dd5ba23034d93050a326040f504b0fb50f9daddcf02b1",
+      "prompt": "Zhou Xiaoman neutral baseline: Lin Wan style reference; short chestnut bob, teal clip and ribbon, hazel eyes, beige cardigan, charcoal school skirt, sketchbook, transparent full body.",
+      "faceComposition": null
+    },
+    {
+      "master": "game/assets/4k/characters/xiaoman/smile.png",
+      "masterSize": [
+        2160,
+        3840
+      ],
+      "masterSHA256": "75d8a0d6f40ab556e50b82ffda168e9a60f5682cfefffc6ca838bb64a5b50721",
+      "runtime": "game/assets/4k/runtime/characters/xiaoman/smile.webp",
+      "runtimeSize": [
+        1080,
+        1920
+      ],
+      "runtimeSHA256": "96604b9da02891a31cd6e156516fe24d71fc8252083602528e45ef7e8f97f024",
+      "lockedBodySHA256": "b1526deeec110e7fe57673a91f6423e0a7ec7ade25323e2d3a506858bfd9b13a",
+      "expression": "smile",
+      "original": "game/art-sources/chatgpt/characters/xiaoman/smile.png",
+      "originalSize": [
+        941,
+        1672
+      ],
+      "originalSHA256": "731e9df9464f161444bd41561d8bbe7320c152ff48da3240500e0459245c3a85",
+      "prompt": "a bright gentle friendly smile, slightly raised cheeks, warm smiling eyes",
+      "faceComposition": {
+        "expressionFaceRegion": [
+          391,
+          125,
+          574,
+          256
+        ],
+        "bodyLockedTo": "neutral"
+      }
+    },
+    {
+      "master": "game/assets/4k/characters/xiaoman/worried.png",
+      "masterSize": [
+        2160,
+        3840
+      ],
+      "masterSHA256": "f6bd350c8b6411ab988a3b819d810c382542448eb47e30c38e89092500f99d1a",
+      "runtime": "game/assets/4k/runtime/characters/xiaoman/worried.webp",
+      "runtimeSize": [
+        1080,
+        1920
+      ],
+      "runtimeSHA256": "d2b54bbada08e3fad46bf43265f7d91a9b684f68cc3034eed3b25164e63661f6",
+      "lockedBodySHA256": "b1526deeec110e7fe57673a91f6423e0a7ec7ade25323e2d3a506858bfd9b13a",
+      "expression": "worried",
+      "original": "game/art-sources/chatgpt/characters/xiaoman/worried.png",
+      "originalSize": [
+        941,
+        1672
+      ],
+      "originalSHA256": "2d565dd38b88f17c4d27dd0055aa200330f9fdd892961600853217a2f4684d39",
+      "prompt": "worried knitted upward inner eyebrows, concerned eyes, small tense downturned mouth",
+      "faceComposition": {
+        "expressionFaceRegion": [
+          391,
+          125,
+          574,
+          256
+        ],
+        "bodyLockedTo": "neutral"
+      }
+    },
+    {
+      "master": "game/assets/4k/characters/xiaoman/surprised.png",
+      "masterSize": [
+        2160,
+        3840
+      ],
+      "masterSHA256": "bc3ff0b7d203cd4d745d704d485c097fe8539ae92e838bba8a3346e992161bd5",
+      "runtime": "game/assets/4k/runtime/characters/xiaoman/surprised.webp",
+      "runtimeSize": [
+        1080,
+        1920
+      ],
+      "runtimeSHA256": "dcf79e9f47a5ce144d6fd82d47dc8d450b2998a9cd700dbf5e56d833eedf7d94",
+      "lockedBodySHA256": "b1526deeec110e7fe57673a91f6423e0a7ec7ade25323e2d3a506858bfd9b13a",
+      "expression": "surprised",
+      "original": "game/art-sources/chatgpt/characters/xiaoman/surprised.png",
+      "originalSize": [
+        941,
+        1672
+      ],
+      "originalSHA256": "5f1d174f5ed2ef653b776ff47dc24369ea5a5fc933ec1e33f244814603083604",
+      "prompt": "clearly surprised wide open eyes and a small open rounded mouth",
+      "faceComposition": {
+        "expressionFaceRegion": [
+          391,
+          125,
+          574,
+          256
+        ],
+        "bodyLockedTo": "neutral"
+      }
+    },
+    {
+      "master": "game/assets/4k/characters/xiaoman/serious.png",
+      "masterSize": [
+        2160,
+        3840
+      ],
+      "masterSHA256": "57a0ad10d15e60090e9a6cef362ddf23a3ffe8fe86b0046c10281b394cbeef76",
+      "runtime": "game/assets/4k/runtime/characters/xiaoman/serious.webp",
+      "runtimeSize": [
+        1080,
+        1920
+      ],
+      "runtimeSHA256": "d982f66ffb006e784f2b3cd5dac3e5601be417b77cf0c0e9178e8c4acc7f1c9f",
+      "lockedBodySHA256": "b1526deeec110e7fe57673a91f6423e0a7ec7ade25323e2d3a506858bfd9b13a",
+      "expression": "serious",
+      "original": "game/art-sources/chatgpt/characters/xiaoman/serious.png",
+      "originalSize": [
+        941,
+        1672
+      ],
+      "originalSHA256": "bf8ca252c6af139fab721098302c277f67f72a5d26ba0073682268d0787f91ff",
+      "prompt": "determined serious focused eyes, lowered firm brows, closed straight mouth",
+      "faceComposition": {
+        "expressionFaceRegion": [
+          391,
+          125,
+          574,
+          256
+        ],
+        "bodyLockedTo": "neutral"
+      }
+    }
+  ]
+}

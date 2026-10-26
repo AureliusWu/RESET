@@ -1,6 +1,7 @@
 import { readFile, stat } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createHash } from 'node:crypto';
 
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const game = resolve(root, 'game');
@@ -95,6 +96,7 @@ for (const asset of production) {
   assert(runtimeInfo.width > 0 && runtimeInfo.height > 0, `runtime derivative has invalid size: ${asset.id}`);
   assert(runtimeInfo.width <= masterInfo.width && runtimeInfo.height <= masterInfo.height, `runtime derivative exceeds master dimensions: ${asset.id}`);
   if (paths.policy.alpha) assert(runtimeInfo.alpha, `runtime derivative is missing alpha: ${asset.id}`);
+  if (paths.character) assert(runtimeInfo.width === 1080 && runtimeInfo.height === 1920, `portrait runtime must be 1080x1920: ${asset.id}`);
   adopted++;
   if (paths.character) adoptedCharacters.add(paths.character);
 }
@@ -109,6 +111,22 @@ for (const characterId of adoptedCharacters) {
     for (const alias of ['base', 'normal']) {
       await verifyMaster(`assets/4k/characters/linwan/${alias}.png`, plan.policy.portrait, `linwan/${alias}`);
     }
+  } else {
+    const provenance = await readJson(resolve(root, `game/art-sources/chatgpt/characters/${characterId}/provenance.json`));
+    assert(provenance.native4kClaim === false, `${characterId}: processed master provenance must not claim native 4K`);
+    const bodyHashes = new Set();
+    for (const record of provenance.assets) {
+      for (const [pathKey, hashKey] of [['original','originalSHA256'],['master','masterSHA256'],['runtime','runtimeSHA256']]) {
+        const bytes = await readFile(resolve(root, record[pathKey]));
+        assert(createHash('sha256').update(bytes).digest('hex') === record[hashKey], `${characterId}: ${pathKey} provenance mismatch`);
+      }
+      const original = pngInfo(await readFile(resolve(root, record.original)));
+      assert(original?.width === record.originalSize[0] && original.height === record.originalSize[1], `${characterId}: original dimensions were not recorded accurately`);
+      assert(record.lockedBodySHA256, `${characterId}: body-lock evidence missing`);
+      bodyHashes.add(record.lockedBodySHA256);
+    }
+    assert(bodyHashes.size === 1, `${characterId}: expression bodies drift from neutral`);
+    for (const expression of character.expressions) assert(provenance.assets.some(a=>a.expression === expression), `${characterId}: provenance missing ${expression}`);
   }
 }
 

@@ -92,3 +92,11 @@ node scripts/audit-4k-art.mjs --strict
 10. 恢复 `v1.2.0-rc.1` 冻结流程
 
 旧 SVG 生成链在第 8 轮前仅作为开发回退；不提前删除，以保证逐轮替换期间始终可构建、可恢复。
+
+## 2026-10-26 母版制作流程修订（用户授权）
+
+ChatGPT 内置图像生成产出原图，再通过可复现的像素处理制作 4K PNG 母版和半尺寸 WebP。原图尺寸不再作为生成服务阻断；必须记录实际原图尺寸、SHA256、提示词和处理方法，不能宣称为原生 4K 生成。禁止将旧 SVG 栅格放大后冒充新美术。
+
+正式目录以 schema 2 `asset-plan.json` 为准：`assets/4k/{category}/*.png` 保存制作母版，`assets/4k/runtime/{category}/*.webp` 用于游戏。角色为 2160×3840 PNG RGBA + 1080×1920 WebP；横向图为 3840×2160 PNG + 1920×1080 WebP。原图和 provenance 保存在 `game/art-sources/chatgpt/`，不进入客户端和离线缓存。
+
+角色差分由 ChatGPT 编辑独立表情；制作时锁定 neutral 的身体与轮廓，仅合成经复核的表情区域，以避免服装和人体比例随表情漂移。林晚 Round 2 资产保持原样。

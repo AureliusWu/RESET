@@ -8,6 +8,7 @@
     "noUpscaledSvgAsFinalArt": true,
     "masterRequired": true,
     "runtimeDerivativesAllowed": true,
+    "generation": {"method":"chatgpt-original-to-processed-4k-master","originalsRetained":true,"native4kClaim":false,"authorization":"2026-10-26 用户授权 ChatGPT出原图，做出4K母版","resize":"alpha-aware Lanczos; no old SVG rasterization"},
     "portrait": {"masterFormat":"png","runtimeFormat":"webp","minimumWidth":2160,"minimumHeight":3840,"alpha":true},
     "background": {"masterFormat":"png","runtimeFormat":"webp","minimumWidth":3840,"minimumHeight":2160},
     "cg": {"masterFormat":"png","runtimeFormat":"webp","minimumWidth":3840,"minimumHeight":2160},

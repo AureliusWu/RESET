@@ -6,6 +6,7 @@ import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { createHash } from 'node:crypto';
 import { verifyLinwanArt } from './linwan-art-browser.mjs';
+import { verifyProductionArt } from './production-art-browser.mjs';
 const {chromium}=await import(pathToFileURL(resolve(process.env.VN_ENGINE_PATH,'node_modules/playwright/index.mjs')));
 const root=resolve(process.argv[2]), out=resolve('test-results/windows-installed');await mkdir(out,{recursive:true});
 const checks=[],errors=[],limitations=[];let browser,page;
@@ -47,6 +48,7 @@ try{
   await page.locator('[data-reset-control=slots]').click();await page.locator('[data-slot="1"] [data-slot-action=save]').click();await page.keyboard.press('Escape');
   const importSave=async save=>{await page.locator('[data-control=settings]').click();await page.locator('input[type=file]').setInputFiles({name:'reset-save.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(save))});await page.locator('.vn-modal').waitFor({state:'hidden'});};
   await verifyLinwanArt({page,project,fixtures,loadFixture:importSave,control:id=>page.locator(`[data-control="${id}"]`),out,pass:name=>checks.push('Native WebView2: '+name),viewports:false});
+  await verifyProductionArt({page,project,fixtures,loadFixture:importSave,out,pass:name=>checks.push('Native WebView2: '+name),captureEdges:false});
   const cgScene=project.scenes.find(s=>s.cg==='letter-1842-cg');await importSave(fixtures.witnesses[cgScene.id]);
   for(let i=0;i<30;i++){if(await page.locator('.vn-cg').getAttribute('data-asset')==='letter-1842-cg')break;await page.locator('[data-control=next]').click();}
   await page.waitForFunction(()=>JSON.parse(localStorage.getItem('reset:meta:v1')).cgs.includes('letter-1842-cg'));

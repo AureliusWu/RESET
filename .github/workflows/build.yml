@@ -48,6 +48,7 @@ jobs:
           node --check scripts/check-4k-production.mjs
           node --check scripts/check-release.mjs
           node --check tests/linwan-art-browser.mjs
+          node --check tests/production-art-browser.mjs
 
       - name: Verify frozen 4K migration map
         working-directory: game-repo

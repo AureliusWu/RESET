@@ -54,9 +54,15 @@ for (const character of cast) for (const expression of expressions) {
   assert(sw.includes(asset.src), `portrait not offline cached: ${asset.src}`);
 }
 const xuqiAngry = assetMap.get('xuqi/angry');
-assert(xuqiAngry?.src === 'assets/generated-portraits/xuqi/angry.svg', 'Xu Qi angry expression still points at legacy sprite');
+assert(xuqiAngry?.src === 'assets/generated-portraits/xuqi/angry.svg' || xuqiAngry?.src === 'assets/4k/runtime/characters/xuqi/angry.webp', 'Xu Qi angry expression is not a production sprite');
 assert(await exists(resolve(dist, xuqiAngry.src)), 'Xu Qi angry production sprite missing');
 assert(portraitSources.size === 30, 'five-expression heroine variants are not distinct files');
+for(const asset of project.assets.filter(a=>a.src.startsWith('assets/4k/runtime/'))){
+  const bytes=await readFile(resolve(dist,asset.src));
+  const record=manifest.files.find(f=>f.name===asset.src);
+  assert(record?.size===bytes.length&&record.sha256===createHash('sha256').update(bytes).digest('hex'),`4K runtime missing/stale in final manifest: ${asset.id}`);
+  assert(sw.includes(asset.src),`4K runtime missing from offline cache: ${asset.id}`);
+}
 
 const productionScenes = [
   'classroom-rain','school-gate-rain','school-gate-evening','home-corridor','station-night','night-wucheng','school-morning','archive-room','cafeteria','rooftop-evening',

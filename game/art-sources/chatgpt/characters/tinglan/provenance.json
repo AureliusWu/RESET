@@ -1,0 +1,164 @@
+{
+  "schema": 1,
+  "generator": "ChatGPT built-in image generation",
+  "workflow": "chatgpt-original-to-processed-4k-master",
+  "native4kClaim": false,
+  "processing": "Pillow Lanczos with premultiplied alpha; aspect-preserving pad",
+  "authorization": "2026-10-26: ChatGPT出原图，做出4K母版",
+  "category": "characters",
+  "id": "tinglan",
+  "assets": [
+    {
+      "master": "game/assets/4k/characters/tinglan/neutral.png",
+      "masterSize": [
+        2160,
+        3840
+      ],
+      "masterSHA256": "4ec0df582b411203e251f9cb34154da4c95335c8548a9283e2ad5435b1b500e1",
+      "runtime": "game/assets/4k/runtime/characters/tinglan/neutral.webp",
+      "runtimeSize": [
+        1080,
+        1920
+      ],
+      "runtimeSHA256": "f536d859d4ec0fc38bb6ab8a699ecb4686099a0ade9c9eb9b5037c8b2b9a9c68",
+      "lockedBodySHA256": "15478b8f1cc4942219bb094959923fa49075d4ad64fabaa359ae6b66b793617f",
+      "expression": "neutral",
+      "original": "game/art-sources/chatgpt/characters/tinglan/neutral.png",
+      "originalSize": [
+        941,
+        1672
+      ],
+      "originalSHA256": "13c5853ea87befe23d8d962c9ee854e84d6aeba7c24c9df6deb9d32312eb238b",
+      "prompt": "Single full-body neutral production VN sprite Shen Tinglan / 沈听澜. The input Lin Wan is STYLE ONLY. Distinct girl: straight dark black-brown hair to mid back, fine thin round glasses, muted gray-green eyes, rational gentle attentive expression. Muted sage-green cardigan over a white collared school shirt, cream bow, charcoal dark green pleated skirt, white ankle socks and brown loafers. Holds an orderly paper archive folder and a small notebook naturally against her waist; all fingers anatomically correct. Same thin clean anime outlines, face abstraction, 7-head body proportions, restrained cel-shading layers, subtle gradients, detail density and quiet neutral lighting as input Lin Wan. Modern Chinese schoolgirl, NOT a university poster. Centered 9:16 portrait with head and both shoes visible and margins, transparent PNG RGBA, fine alpha edges, no text, logo, floor shadow or backdrop.",
+      "faceComposition": null
+    },
+    {
+      "master": "game/assets/4k/characters/tinglan/smile.png",
+      "masterSize": [
+        2160,
+        3840
+      ],
+      "masterSHA256": "d9c9411504ef1c5d3a0c0930a5d1dacf4d6f279f62fd39d33cc69c1b3c134c1d",
+      "runtime": "game/assets/4k/runtime/characters/tinglan/smile.webp",
+      "runtimeSize": [
+        1080,
+        1920
+      ],
+      "runtimeSHA256": "ca0c760d031238388eb9aca524f40885feed08a1eac824997523bcb4acb6d903",
+      "lockedBodySHA256": "15478b8f1cc4942219bb094959923fa49075d4ad64fabaa359ae6b66b793617f",
+      "expression": "smile",
+      "original": "game/art-sources/chatgpt/characters/tinglan/smile.png",
+      "originalSize": [
+        941,
+        1672
+      ],
+      "originalSHA256": "a1acaead120a21a9aad4ef1ee703fa1c40cf1e916e733d68a9d4a9a3e6a58436",
+      "prompt": "Precise expression-only edit of supplied Shen Tinglan sprite: a gentle warm reassuring closed-mouth smile, relaxed gray-green eyes. Preserve thin round glasses EXACTLY, original face identity and shape, black hair, head angle, body pose, book, paper folder, hands, sage cardigan, cream bow, skirt, all clothing folds and line/cel-shading style. Only eyes, eyebrows, mouth change. Full original transparent portrait composition with both shoes present. No text, backdrop, panels or extra props.",
+      "faceComposition": {
+        "expressionFaceRegion": [
+          391,
+          120,
+          574,
+          259
+        ],
+        "bodyLockedTo": "neutral"
+      }
+    },
+    {
+      "master": "game/assets/4k/characters/tinglan/worried.png",
+      "masterSize": [
+        2160,
+        3840
+      ],
+      "masterSHA256": "1d8e8b6d3fc7a9555b483934fbfd79316d5fccce9bdb81adecc50c6ac2fd6c81",
+      "runtime": "game/assets/4k/runtime/characters/tinglan/worried.webp",
+      "runtimeSize": [
+        1080,
+        1920
+      ],
+      "runtimeSHA256": "cec5c1bf1bfd7f63dbd65723814716bacbd6785f3120da5878b278df0d04f579",
+      "lockedBodySHA256": "15478b8f1cc4942219bb094959923fa49075d4ad64fabaa359ae6b66b793617f",
+      "expression": "worried",
+      "original": "game/art-sources/chatgpt/characters/tinglan/worried.png",
+      "originalSize": [
+        941,
+        1672
+      ],
+      "originalSHA256": "78202b785e47ddcf59fca170e7b67fc77825bfca5f9d722c3ce89c0a086786f0",
+      "prompt": "Precise expression-only edit of supplied Shen Tinglan sprite: a clearly worried concerned expression, lifted inner eyebrows, tense slightly downturned mouth. Preserve thin round glasses EXACTLY, original face identity and shape, black hair, head angle, body pose, book, paper folder, hands, sage cardigan, cream bow, skirt, all clothing folds and line/cel-shading style. Only eyes, eyebrows, mouth change. Full original transparent portrait composition with both shoes present. No text, backdrop, panels or extra props.",
+      "faceComposition": {
+        "expressionFaceRegion": [
+          391,
+          120,
+          574,
+          259
+        ],
+        "bodyLockedTo": "neutral"
+      }
+    },
+    {
+      "master": "game/assets/4k/characters/tinglan/surprised.png",
+      "masterSize": [
+        2160,
+        3840
+      ],
+      "masterSHA256": "4ec06e43334aaa1ba6c906a09ab381131fa812754e8e2cf160d7b577a51c8542",
+      "runtime": "game/assets/4k/runtime/characters/tinglan/surprised.webp",
+      "runtimeSize": [
+        1080,
+        1920
+      ],
+      "runtimeSHA256": "19a3f29cf548d8e666b0c86b348c0f29f452a635c045cb989402f870d86afa57",
+      "lockedBodySHA256": "15478b8f1cc4942219bb094959923fa49075d4ad64fabaa359ae6b66b793617f",
+      "expression": "surprised",
+      "original": "game/art-sources/chatgpt/characters/tinglan/surprised.png",
+      "originalSize": [
+        941,
+        1672
+      ],
+      "originalSHA256": "3f33ec97b75f0f38fb1427f961efebb5c7fb57b1c28d5502d9ede700ddffd9a6",
+      "prompt": "Precise expression-only edit of supplied Shen Tinglan sprite: clearly surprised wide gray-green eyes and small round open mouth. Preserve thin round glasses EXACTLY, original face identity and shape, black hair, head angle, body pose, book, paper folder, hands, sage cardigan, cream bow, skirt, all clothing folds and line/cel-shading style. Only eyes, eyebrows, mouth change. Full original transparent portrait composition with both shoes present. No text, backdrop, panels or extra props.",
+      "faceComposition": {
+        "expressionFaceRegion": [
+          391,
+          120,
+          574,
+          259
+        ],
+        "bodyLockedTo": "neutral"
+      }
+    },
+    {
+      "master": "game/assets/4k/characters/tinglan/serious.png",
+      "masterSize": [
+        2160,
+        3840
+      ],
+      "masterSHA256": "cafd21c2c08bec9f9527f0600bdae674a959cf2058cebd41f2d477f3cd68e6cd",
+      "runtime": "game/assets/4k/runtime/characters/tinglan/serious.webp",
+      "runtimeSize": [
+        1080,
+        1920
+      ],
+      "runtimeSHA256": "1ab6bc910e80a74a801bdb921522e4b74a4f309b2cfacc88ee34f68910752e1c",
+      "lockedBodySHA256": "15478b8f1cc4942219bb094959923fa49075d4ad64fabaa359ae6b66b793617f",
+      "expression": "serious",
+      "original": "game/art-sources/chatgpt/characters/tinglan/serious.png",
+      "originalSize": [
+        941,
+        1672
+      ],
+      "originalSHA256": "6b4277098b59615b2b8ecc869c7d1cfc76d54b510784862e4ee852deda382a0e",
+      "prompt": "Precise expression-only edit of supplied Shen Tinglan sprite: calm analytical determined focus, firm brows and straight closed mouth. Preserve thin round glasses EXACTLY, original face identity and shape, black hair, head angle, body pose, book, paper folder, hands, sage cardigan, cream bow, skirt, all clothing folds and line/cel-shading style. Only eyes, eyebrows, mouth change. Full original transparent portrait composition with both shoes present. No text, backdrop, panels or extra props.",
+      "faceComposition": {
+        "expressionFaceRegion": [
+          391,
+          120,
+          574,
+          259
+        ],
+        "bodyLockedTo": "neutral"
+      }
+    }
+  ]
+}
