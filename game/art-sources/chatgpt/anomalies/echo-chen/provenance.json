@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "generator": "ChatGPT-authored original vector illustration; deterministic raster master pipeline",
+  "workflow": "round6-new-vector-source-to-processed-4k-master",
+  "native4kClaim": false,
+  "processing": "new ChatGPT-authored vector source -> rsvg 1440x2560 PNG -> alpha-aware Lanczos 2160x3840 PNG master -> 1080x1920 WebP runtime; legacy SVG not used as pixels",
+  "authorization": "2026-10-27: 用户明确授权 Round 6 写入及仓库修改",
+  "category": "anomalies",
+  "id": "echo-chen",
+  "assets": [
+    {
+      "master": "game/assets/4k/anomalies/echo-chen.png",
+      "masterSize": [
+        2160,
+        3840
+      ],
+      "masterSHA256": "d9689b3640066f6f68f891a3b0a8f0bfd9eace72257248ac27201771868f82d2",
+      "runtime": "game/assets/4k/runtime/anomalies/echo-chen.webp",
+      "runtimeSize": [
+        1080,
+        1920
+      ],
+      "runtimeSHA256": "c048822eb1ef373ca80a68f0ab5d2339fb9bae221640cfa922c8d59dee60a633",
+      "original": "game/art-sources/chatgpt/anomalies/echo-chen/original.png",
+      "originalSize": [
+        1440,
+        2560
+      ],
+      "originalSHA256": "adcc8eacd197d3774447772e05366cac72aa1f4dc22318ef57f530786115cf38",
+      "sourceVector": "game/art-sources/chatgpt/anomalies/echo-chen/source.svg",
+      "sourceVectorSHA256": "3ac54d2dba9c4c48adc777f092b0fa50290496038a57fcc4d863381365c04583",
+      "prompt": "Full-body transparent-background anomaly concept for RESET: the seventh person / Chen Du echo, a human silhouette made from stacked residues of failed loads, layered translucent blue-gray afterimages, obscured mask-like face and repeated temporal traces; melancholic and uncanny visual-novel boss design, no text.",
+      "processing": "new ChatGPT-authored vector source -> rsvg 1440x2560 PNG -> alpha-aware Lanczos 2160x3840 PNG master -> 1080x1920 WebP runtime; legacy SVG not used as pixels"
+    }
+  ]
+}

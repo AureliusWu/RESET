@@ -13,7 +13,8 @@ const readJson = async p => JSON.parse(await readFile(p, 'utf8'));
 const plan = await readJson(planPath);
 const portraitOverlay = await readJson(resolve(game, 'content/zz-art-v1.json'));
 const sceneOverlay = await readJson(resolve(game, 'content/zzz-scene-art-v1.json'));
-const production = [...portraitOverlay.replaceAssets, ...sceneOverlay.replaceAssets];
+const anomalyOverlay = await readJson(resolve(game, 'content/zzzz-anomaly-art-v1.json'));
+const production = [...portraitOverlay.replaceAssets, ...sceneOverlay.replaceAssets, ...anomalyOverlay.replaceAssets];
 
 const pathFromRule = (rule, vars) => Object.entries(vars).reduce((s,[k,v]) => s.replaceAll(`{${k}}`, v), rule);
 const targetById = new Map();
@@ -24,7 +25,7 @@ for (const c of plan.characters) {
 }
 for (const id of plan.backgrounds) targetById.set(id, pathFromRule(plan.pathRules.backgroundMaster, { assetId:id }));
 for (const id of plan.cgs) targetById.set(id, pathFromRule(plan.pathRules.cgMaster, { assetId:id }));
-for (const item of plan.anomalies) targetById.set(item.id, item.master);
+for (const item of plan.anomalies) targetById.set(item.productionId ?? item.id, item.master);
 for (const item of plan.ui) targetById.set(item.id, item.master);
 
 async function exists(p) { try { await stat(p); return true; } catch { return false; } }
@@ -66,7 +67,7 @@ function minimumFor(id,kind) {
   if (kind==='portrait') return plan.policy.portrait;
   if (kind==='background') return plan.policy.background;
   if (kind==='cg') return plan.policy.cg;
-  if (plan.anomalies.some(x=>x.id===id)) return plan.policy.anomaly;
+  if (plan.anomalies.some(x=>x.id===id || x.productionId===id)) return plan.policy.anomaly;
   return plan.policy.uiKeyVisual;
 }
 

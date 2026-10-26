@@ -1,20 +1,20 @@
 # 《回留》4K 美术自动审计
 
-生成时间：2026-10-26T16:06:55.996Z
+生成时间：2026-10-26T16:30:10.964Z
 
 ## 统计
 
-- 当前 production 资产：56
-- 角色差分：31
+- 当前 production 资产：58
+- 角色差分：33
 - 背景：20
 - CG：5
 - 源树 SVG：35
-- 已建立 4K master 映射：56/56
-- 已存在且达到最低尺寸/Alpha 要求：56
+- 已建立 4K master 映射：58/58
+- 已存在且达到最低尺寸/Alpha 要求：58
 - 已规划但尚未写入：0
 - 尺寸不达标：0
 - 缺少透明通道：0
-- 额外规划资产：8
+- 额外规划资产：6
 
 ## Production → 4K master 映射
 
@@ -76,6 +76,8 @@
 | six-chairs-cg | cg | assets/4k/runtime/cg/six-chairs-cg.webp | assets/4k/cg/six-chairs-cg.png | 4K_READY 3840×2160 |
 | linwan-1842-cg | cg | assets/4k/runtime/cg/linwan-1842-cg.webp | assets/4k/cg/linwan-1842-cg.png | 4K_READY 3840×2160 |
 | true-end-riverside-cg | cg | assets/4k/runtime/cg/true-end-riverside-cg.webp | assets/4k/cg/true-end-riverside-cg.png | 4K_READY 3840×2160 |
+| faceless/neutral | portrait | assets/4k/runtime/anomalies/faceless.webp | assets/4k/anomalies/faceless.png | 4K_READY 2160×3840 |
+| echochen/neutral | portrait | assets/4k/runtime/anomalies/echo-chen.webp | assets/4k/anomalies/echo-chen.png | 4K_READY 2160×3840 |
 
 ## 仍保留的 SVG
 
@@ -118,8 +120,6 @@
 ## 额外规划资产
 
 - linwan/sad → assets/4k/characters/linwan/sad.png
-- faceless → assets/4k/anomalies/faceless.png
-- echo-chen → assets/4k/anomalies/echo-chen.png
 - title-key-visual → assets/4k/ui/title-key-visual.png
 - save-anomaly → assets/4k/ui/save-anomaly.png
 - ending-collection-header → assets/4k/ui/ending-collection-header.png

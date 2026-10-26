@@ -12,7 +12,8 @@ const assert = (value, message) => { if (!value) throw new Error(message); };
 const plan = await readJson(resolve(game, 'assets/4k/asset-plan.json'));
 const portraitOverlay = await readJson(resolve(game, 'content/zz-art-v1.json'));
 const sceneOverlay = await readJson(resolve(game, 'content/zzz-scene-art-v1.json'));
-const production = [...portraitOverlay.replaceAssets, ...sceneOverlay.replaceAssets];
+const anomalyOverlay = await readJson(resolve(game, 'content/zzzz-anomaly-art-v1.json'));
+const production = [...portraitOverlay.replaceAssets, ...sceneOverlay.replaceAssets, ...anomalyOverlay.replaceAssets];
 
 const render = (rule, vars) => Object.entries(vars).reduce((text, [key, value]) => text.replaceAll(`{${key}}`, value), rule);
 
@@ -48,6 +49,8 @@ function webpInfo(buffer) {
 }
 
 function pathsFor(asset) {
+  const anomaly = plan.anomalies.find(item => item.id === asset.id || item.productionId === asset.id);
+  if (anomaly) return { master: anomaly.master, runtime: anomaly.runtime, policy: plan.policy.anomaly };
   if (asset.kind === 'portrait') {
     const [character, expression] = asset.id.split('/');
     if (!character || !expression || !plan.characters.some(item => item.id === character)) return null;
@@ -64,8 +67,6 @@ function pathsFor(asset) {
   if (asset.kind === 'cg' && plan.cgs.includes(asset.id)) return {
     master: render(plan.pathRules.cgMaster, { assetId: asset.id }), runtime: render(plan.pathRules.cgRuntime, { assetId: asset.id }), policy: plan.policy.cg
   };
-  const anomaly = plan.anomalies.find(item => item.id === asset.id);
-  if (anomaly) return { master: anomaly.master, runtime: anomaly.runtime, policy: plan.policy.anomaly };
   const ui = plan.ui.find(item => item.id === asset.id);
   if (ui) return { master: ui.master, runtime: ui.runtime, policy: plan.policy.uiKeyVisual };
   return null;
