@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "generator": "ChatGPT built-in image generation",
+  "workflow": "chatgpt-original-to-processed-4k-master",
+  "native4kClaim": false,
+  "processing": "Pillow Lanczos with premultiplied alpha; aspect-preserving pad",
+  "authorization": "2026-10-26: ChatGPT出原图，做出4K母版",
+  "category": "cg",
+  "id": "six-chairs-cg",
+  "assets": [
+    {
+      "master": "game/assets/4k/cg/six-chairs-cg.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "83e1637f59c4186ab349c90149d417e200eaf0203700dd98ce57292ae53499bb",
+      "runtime": "game/assets/4k/runtime/cg/six-chairs-cg.webp",
+      "runtimeSize": [
+        1920,
+        1080
+      ],
+      "runtimeSHA256": "2db8b92b05208bdaf712fe0610e95dc624f439a69d26d7419bed3955735936c9",
+      "expression": "original",
+      "original": "game/art-sources/chatgpt/cg/six-chairs-cg/original.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "a43793921678c47431c3fb1ece850fe9fab57d2785633c3e32d2ace37f649a39",
+      "prompt": "Use case: illustration-story. Final narrative CG for Chinese campus VN RESET, an uncanny old class photograph inside a school art room. EXACTLY SIX Chinese schoolgirls sit on six separate simple wooden chairs in a single row; a SEVENTH EMPTY wooden chair stands at far right with faint pale ghostly light above it, no solid seventh person. All seven chairs visible, exactly six faces. Left-to-right: reference1 Linwan long black hair cream cardigan/navy bow; reference2 Xiaoman chestnut bob teal clip/teal bow; reference3 Xuqi long silver hair charcoal hoodie/gold bow; reference4 Tinglan long dark hair round glasses/sage cardigan/cream bow; reference5 Tangli auburn ponytail/orange hoodie/headphones; sixth Nanxing long straight navy-black hair with silver star clip near temple, pale violet eyes, dark navy cardigan over white school shirt/lavender bow/dark pleated skirt, white smartphone in lap, calm reserved face. No duplicates, merged chairs or extra people. All modest clothes, thin clean anime lines, 2-3 shadow levels, restrained detail and muted color density match references. Aged subdued photo-like composition with fine paper border, still drawn anime art not photoreal people. Landscape16:9 opaque, no writing/watermark/UI.",
+      "faceComposition": null
+    }
+  ]
+}
