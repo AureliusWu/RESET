@@ -123,3 +123,11 @@
 ### Round 4 验收修复
 
 `c03c83e` Web 最终 ZIP success；Windows 美术渲染检查通过后，被新增背景探针留在不可逆终章，后续导入按设计被拒绝。纯引擎 witness 生成未挂载作品 Meta 守卫，现共享 runtime 的不可逆场景清单，禁止将这些导出作为可回退的主游戏夹具。不可逆画面以标注的独立渲染夹具检查，真实 True Route 全程门禁保留。等待修正候选双平台结果。
+
+### Round 4 completed
+
+最终候选 `c820c84c5387c14d92e62f3db58365bfb5521c9e`，Release [40302785695](https://github.com/AureliusWu/RESET/actions/runs/40302785695) Web/Windows 均 success。20 背景正式引用全部迁移；46 个新增角色/背景实际解码与渲染通过；62 项 Node 回归通过。不可逆测试夹具问题已修复，正常重启与旧存档门禁保留。
+
+## Round 5 — 5 个关键 CG
+
+进行中：ChatGPT 原图 → 3840×2160 PNG 母版 → 1920×1080 WebP。保持人物身份、CG ID、解锁逻辑与 True End 文本。
