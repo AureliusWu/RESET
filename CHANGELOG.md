@@ -1,11 +1,11 @@
 # Changelog
 
-## 1.2.0-dev — Player experience
+## 1.2.0-rc.1 — Release candidate freeze
 
-- 开始基于 v1.1.0 的体验修复周期，继续锁定原引擎。
-- 增加 v1.1.0 存档升级回归；保留全部历史正式版。
-- 开发工作流只生成候选 ZIP 与验收证据，不创建标签或正式 Release。
-- 详见 [CHANGELOG_v1.2.0-dev.md](CHANGELOG_v1.2.0-dev.md)。
+- 基于 v1.1.0 的体验修复、剧情闭环和 4K 美术 Round 1–9 已完成并进入首个 RC 冻结候选。
+- 保持 VN Engine v2 锁定提交不变；兼容 v1.0.0 / v1.0.1 / v1.1.0，并额外接受 v1.2.0-dev 测试存档升级。
+- RC 工作流只生成候选 ZIP 与验收证据；正式线上版、正式 Release 与 Pages 仍保持 v1.1.0。
+- 详见 [CHANGELOG_v1.2.0-rc.1.md](CHANGELOG_v1.2.0-rc.1.md)。
 
 ## 1.1.0 — Saves and collection
 
