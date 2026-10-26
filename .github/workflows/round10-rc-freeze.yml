@@ -1,0 +1,169 @@
+name: Round 10 RC freeze
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/round10-rc-freeze.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  freeze:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout game
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify Round 9 handoff
+        run: |
+          test "$(git rev-parse HEAD^)" = "d1cb09c3775775e478c6e0c4967049d8360ee783"
+          grep -q 'Round 9 completed' docs/ART_4K_ROUNDS.md
+          grep -q '状态：\*\*completed\*\*' docs/ROUND9_VISUAL_ACCEPTANCE.md
+
+      - name: Checkout locked VN Engine v2
+        uses: actions/checkout@v4
+        with:
+          repository: AureliusWu/VN-Engine-v2
+          ref: 15c101e0d2b2c1e40dbc36d7a0c1a246d102b52c
+          path: vn-engine
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install engine dependencies
+        working-directory: vn-engine
+        run: npm ci
+
+      - name: Promote the complete version contract to rc.1
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+
+          DEV='v1.2.0-dev'
+          RC='v1.2.0-rc.1'
+          STORY_DEV='reset-v1.2.0-dev'
+          STORY_RC='reset-v1.2.0-rc.1'
+
+          def text(path):
+              return Path(path).read_text(encoding='utf-8')
+          def write(path, value):
+              Path(path).write_text(value, encoding='utf-8')
+          def replace_required(path, old, new, count=None):
+              value=text(path)
+              found=value.count(old)
+              if found == 0:
+                  raise SystemExit(f'{path}: expected text missing: {old!r}')
+              if count is not None and found != count:
+                  raise SystemExit(f'{path}: expected {count} occurrence(s), found {found}: {old!r}')
+              write(path, value.replace(old,new))
+
+          package=json.loads(text('package.json'))
+          if package['version']!='1.2.0-dev': raise SystemExit('package.json version drift')
+          package['version']='1.2.0-rc.1'
+          write('package.json', json.dumps(package,ensure_ascii=False,indent=2)+'\n')
+
+          overlay=json.loads(text('game/content/zzzz-release-v1.json'))
+          if overlay['version']!=STORY_DEV: raise SystemExit('release overlay version drift')
+          overlay['version']=STORY_RC
+          write('game/content/zzzz-release-v1.json', json.dumps(overlay,ensure_ascii=False,indent=2)+'\n')
+
+          meta=text('game/runtime/meta.mjs')
+          old="const STORY_VERSION = 'reset-v1.2.0-dev';\nconst LEGACY_VERSIONS = new Set(['reset-v1.0.0','reset-v1.0.1','reset-v1.1.0']);"
+          new="const STORY_VERSION = 'reset-v1.2.0-rc.1';\nconst LEGACY_VERSIONS = new Set(['reset-v1.0.0','reset-v1.0.1','reset-v1.1.0','reset-v1.2.0-dev']);"
+          if old not in meta: raise SystemExit('meta version contract drift')
+          write('game/runtime/meta.mjs', meta.replace(old,new,1))
+
+          release_test=text('tests/release.test.mjs')
+          release_test=release_test.replace("assert.equal(manifest.version, 'reset-v1.2.0-dev')", "assert.equal(manifest.version, 'reset-v1.2.0-rc.1')")
+          release_test=release_test.replace("published v1.0.0, v1.0.1 and v1.1.0 saves upgrade", "published v1.0.0, v1.0.1, v1.1.0 and v1.2.0-dev saves upgrade")
+          release_test=release_test.replace("['reset-v1.0.0','reset-v1.0.1','reset-v1.1.0']", "['reset-v1.0.0','reset-v1.0.1','reset-v1.1.0','reset-v1.2.0-dev']")
+          release_test=release_test.replace('expected.length*3','expected.length*4')
+          if "manifest.version, 'reset-v1.2.0-rc.1'" not in release_test or release_test.count('expected.length*4') != 2:
+              raise SystemExit('release test promotion incomplete')
+          write('tests/release.test.mjs',release_test)
+
+          replace_required('tests/pwa-upgrade-browser.mjs', STORY_DEV, STORY_RC)
+          replace_required('.github/workflows/build.yml', DEV, RC)
+          replace_required('.github/workflows/release.yml', DEV, RC)
+          replace_required('scripts/build.mjs', 'CHANGELOG_v1.2.0-dev.md', 'CHANGELOG_v1.2.0-rc.1.md', 1)
+
+          readme=text('README.md').replace(DEV,RC)
+          readme=readme.replace('状态：**v1.2.0 开发中；正式下载仍为 v1.1.0**','状态：**v1.2.0-rc.1 冻结候选；正式下载仍为 v1.1.0**')
+          write('README.md',readme)
+
+          agents=text('AGENTS.md').replace(DEV,RC)
+          agents=agents.replace('当前开发线为 `v1.2.0-rc.1`','当前 RC 冻结线为 `v1.2.0-rc.1`')
+          write('AGENTS.md',agents)
+
+          changelog=text('CHANGELOG.md')
+          old_section='''## 1.2.0-dev — Player experience\n\n- 开始基于 v1.1.0 的体验修复周期，继续锁定原引擎。\n- 增加 v1.1.0 存档升级回归；保留全部历史正式版。\n- 开发工作流只生成候选 ZIP 与验收证据，不创建标签或正式 Release。\n- 详见 [CHANGELOG_v1.2.0-dev.md](CHANGELOG_v1.2.0-dev.md)。'''
+          new_section='''## 1.2.0-rc.1 — Release candidate freeze\n\n- 基于 v1.1.0 的体验修复、剧情闭环和 4K 美术 Round 1–9 已完成并进入首个 RC 冻结候选。\n- 保持 VN Engine v2 锁定提交不变；兼容 v1.0.0 / v1.0.1 / v1.1.0，并额外接受 v1.2.0-dev 测试存档升级。\n- RC 工作流只生成候选 ZIP 与验收证据；正式线上版、正式 Release 与 Pages 仍保持 v1.1.0。\n- 详见 [CHANGELOG_v1.2.0-rc.1.md](CHANGELOG_v1.2.0-rc.1.md)。'''
+          if old_section not in changelog: raise SystemExit('CHANGELOG current section drift')
+          write('CHANGELOG.md',changelog.replace(old_section,new_section,1))
+
+          devlog=text('CHANGELOG_v1.2.0-dev.md')
+          rc=devlog.replace('# 《回留 / RESET》v1.2.0-dev','# 《回留 / RESET》v1.2.0-rc.1',1)
+          rc=rc.replace('本版本处于开发周期，正式线上版与下载保持 v1.1.0。','本版本为 v1.2.0 的首个 Release Candidate 冻结候选；正式线上版与下载仍保持 v1.1.0。',1)
+          rc += '''\n## RC freeze\n\n- 4K 美术 Round 1–9 已闭环：58 / 58 production 4K 引用、5 张 UI 关键视觉、Web / Windows 全游戏视觉验收通过。\n- 版本契约统一切换至 `reset-v1.2.0-rc.1`；`reset-v1.2.0-dev` 加入受控存档升级来源。\n- Build / Release 候选产物名统一为 `v1.2.0-rc.1`。\n- 不创建 v1.2.0 正式 Release，不覆盖 v1.1.0 Pages；实体设备与公开候选站点仍作为人工验收边界保留。\n'''
+          write('CHANGELOG_v1.2.0-rc.1.md',rc)
+
+          plan=text('docs/ART_4K_PLAN.md')
+          plan=plan.replace('状态：`v1.2.0-dev` / 4K 迁移阶段。','状态：`v1.2.0-rc.1` / 4K 迁移完成，RC 冻结阶段。',1)
+          write('docs/ART_4K_PLAN.md',plan)
+
+          artreadme=text('game/assets/4k/README.md').replace('v1.2.0-dev','v1.2.0-rc.1')
+          write('game/assets/4k/README.md',artreadme)
+
+          # Live/current-version paths must no longer claim dev. The two
+          # intentional dev strings are the legacy import contract + its test.
+          forbidden=[
+              'package.json','game/content/zzzz-release-v1.json',
+              '.github/workflows/build.yml','.github/workflows/release.yml',
+              'scripts/build.mjs','tests/pwa-upgrade-browser.mjs','README.md','AGENTS.md'
+          ]
+          for path in forbidden:
+              if DEV in text(path) or STORY_DEV in text(path):
+                  raise SystemExit(f'live dev version remains in {path}')
+          if text('game/runtime/meta.mjs').count(STORY_DEV)!=1:
+              raise SystemExit('dev story version must remain exactly once as a legacy import')
+          if STORY_RC not in text('game/runtime/meta.mjs') or STORY_RC not in text('game/content/zzzz-release-v1.json'):
+              raise SystemExit('rc story contract incomplete')
+          PY
+
+      - name: Verify RC freeze contract locally
+        env:
+          VN_ENGINE_PATH: ${{ github.workspace }}/vn-engine
+        run: |
+          node --check game/runtime/meta.mjs
+          node --check tests/release.test.mjs
+          node --check tests/pwa-upgrade-browser.mjs
+          npm run art:legacy -- --strict
+          node scripts/audit-4k-art.mjs --strict
+          npm run art:check
+          npm run build
+          npm run check:release
+          npm run test:release
+          node - <<'NODE'
+          const p=require('./dist/project.json');
+          const m=require('./dist/build-manifest.json');
+          if(p.version!=='reset-v1.2.0-rc.1'||m.version!=='reset-v1.2.0-rc.1') throw Error('dist version is not rc.1');
+          NODE
+          test -f dist/CHANGELOG_v1.2.0-rc.1.md
+          git diff --check
+
+      - name: Freeze rc.1 candidate on main
+        run: |
+          rm .github/workflows/round10-rc-freeze.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'release(round10): freeze v1.2.0-rc.1 [skip ci]'
+          git push origin HEAD:main
