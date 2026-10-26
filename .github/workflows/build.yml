@@ -79,7 +79,7 @@ jobs:
           test -f dist/meta.mjs
           test -f dist/assets/4k/runtime/backgrounds/save-room.webp
           test -f dist/assets/4k/runtime/backgrounds/true-dawn.webp
-          test -f dist/assets/generated-scenes/true-end-riverside-cg.svg
+          test -f dist/assets/4k/runtime/cg/true-end-riverside-cg.webp
           test -f dist/assets/4k/runtime/characters/linwan/smile.webp
           test -f dist/assets/4k/runtime/characters/xuqi/serious.webp
           test -f dist/assets/4k/runtime/characters/xuqi/angry.webp
