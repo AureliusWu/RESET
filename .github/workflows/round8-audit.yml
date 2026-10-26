@@ -14,13 +14,25 @@ jobs:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout game
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Checkout locked VN Engine v2
+        uses: actions/checkout@v4
+        with:
+          repository: AureliusWu/VN-Engine-v2
+          ref: 15c101e0d2b2c1e40dbc36d7a0c1a246d102b52c
+          path: vn-engine
 
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+
+      - name: Install engine dependencies
+        working-directory: vn-engine
+        run: npm ci
 
       - name: Verify production references have left legacy SVG
         run: npm run art:legacy -- --strict
@@ -58,6 +70,8 @@ jobs:
           test "$(find game/assets -maxdepth 1 -type f -name '*.svg' | wc -l)" -eq 0
 
       - name: Run production gates
+        env:
+          VN_ENGINE_PATH: ${{ github.workspace }}/vn-engine
         run: |
           npm run art:check
           npm run build
@@ -88,6 +102,7 @@ jobs:
       - name: Remove one-shot workflow and commit
         run: |
           rm .github/workflows/round8-audit.yml
+          rm -rf vn-engine
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
