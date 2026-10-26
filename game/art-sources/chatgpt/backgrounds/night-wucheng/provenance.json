@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "generator": "ChatGPT built-in image generation",
+  "workflow": "chatgpt-original-to-processed-4k-master",
+  "native4kClaim": false,
+  "processing": "Pillow Lanczos with premultiplied alpha; aspect-preserving pad",
+  "authorization": "2026-10-26: ChatGPT出原图，做出4K母版",
+  "category": "backgrounds",
+  "id": "night-wucheng",
+  "assets": [
+    {
+      "master": "game/assets/4k/backgrounds/night-wucheng.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "517a79c4993796e197ff5b40881f76ac17394cf931dd7269f6d6cc679552d28c",
+      "runtime": "game/assets/4k/runtime/backgrounds/night-wucheng.webp",
+      "runtimeSize": [
+        1920,
+        1080
+      ],
+      "runtimeSHA256": "fd742ac1c7fa137fa51553be3eafdc57d3781ea27e8cbf01df31b7b2cc24df2c",
+      "expression": "original",
+      "original": "game/art-sources/chatgpt/backgrounds/night-wucheng/original.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "adb37a789ab2a2083166f18f6e4005067b241b3fc170130adbcbdc4d0a76e562",
+      "prompt": "ChatGPT illustration-story production background for Chinese campus VN RESET. Full bleed landscape 16:9; thin confident anime linework aligned with Round 2 Linwan, clean 2-3 level cel shadows, muted detailed materials. Modern China, no people, border, collage or watermark. Readable foreground for sprites and dialogue. Empty ordinary Chinese street after rain at night, closed shutters, apartment blocks, utility cables, wet road, subdued blue-violet shadows. Public clock shows only 18:42; correction removes all tiny city/date header text.",
+      "faceComposition": null
+    }
+  ],
+  "recovery": {
+    "reason": "execution workspace reset after image generation",
+    "promptNote": "Prompt specification reconstructed from execution record; source image bytes recovered unchanged from the generated artifact.",
+    "artifactName": "雨夜街景中的18:42.png"
+  }
+}

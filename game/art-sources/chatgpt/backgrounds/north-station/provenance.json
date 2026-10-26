@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "generator": "ChatGPT built-in image generation",
+  "workflow": "chatgpt-original-to-processed-4k-master",
+  "native4kClaim": false,
+  "processing": "Pillow Lanczos with premultiplied alpha; aspect-preserving pad",
+  "authorization": "2026-10-26: ChatGPT出原图，做出4K母版",
+  "category": "backgrounds",
+  "id": "north-station",
+  "assets": [
+    {
+      "master": "game/assets/4k/backgrounds/north-station.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "e5b3d40c50fd76066d82f2632bb9003669589c59d170f30a9c771147cf02cd87",
+      "runtime": "game/assets/4k/runtime/backgrounds/north-station.webp",
+      "runtimeSize": [
+        1920,
+        1080
+      ],
+      "runtimeSHA256": "04e2d8f2171e60fad0669e4af299927fb8dfbecca4c7a6e6441942e7c8da65fe",
+      "expression": "original",
+      "original": "game/art-sources/chatgpt/backgrounds/north-station/original.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "61c5623be927f256237743d06d0dd873a6e736e2fa4142d191d00490cd3238c7",
+      "prompt": "ChatGPT illustration-story production background for Chinese campus VN RESET. Full bleed landscape 16:9; thin confident anime linework aligned with Round 2 Linwan, clean 2-3 level cel shadows, muted detailed materials. Modern China, no people, border, collage or watermark. Readable foreground for sprites and dialogue. Empty phantom Chinese railway platform, fog, concrete canopy and benches; exact sign 梧城北站 and public clock 18:42; subdued slate blue with faint violet shadows.",
+      "faceComposition": null
+    }
+  ],
+  "recovery": {
+    "reason": "execution workspace reset after image generation",
+    "promptNote": "Prompt specification reconstructed from execution record; source image bytes recovered unchanged from the generated artifact.",
+    "artifactName": "18:42，雾中的梧城北站.png"
+  }
+}

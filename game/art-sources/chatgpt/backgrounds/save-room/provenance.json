@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "generator": "ChatGPT built-in image generation",
+  "workflow": "chatgpt-original-to-processed-4k-master",
+  "native4kClaim": false,
+  "processing": "Pillow Lanczos with premultiplied alpha; aspect-preserving pad",
+  "authorization": "2026-10-26: ChatGPT出原图，做出4K母版",
+  "category": "backgrounds",
+  "id": "save-room",
+  "assets": [
+    {
+      "master": "game/assets/4k/backgrounds/save-room.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "84ccc1c309de333111bc1a71c261e766536efe5ac0fb278b3daef03ad056a925",
+      "runtime": "game/assets/4k/runtime/backgrounds/save-room.webp",
+      "runtimeSize": [
+        1920,
+        1080
+      ],
+      "runtimeSHA256": "3ff8ece5036359326fb74c822b9823ab383ef80d359fdd49508a30cd45c3ca92",
+      "expression": "original",
+      "original": "game/art-sources/chatgpt/backgrounds/save-room/original.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "fcfba5748936be579b7eec7bbd363b5698c4e0fc21b014a3ed912c887c581692",
+      "prompt": "ChatGPT illustration-story production background for Chinese campus VN RESET. Full bleed landscape 16:9; thin confident anime linework aligned with Round 2 Linwan, clean 2-3 level cel shadows, muted detailed materials. Modern China, no people, border, collage or watermark. Readable foreground for sprites and dialogue. Abstract uncanny dark blue-gray room with faint rectangular light planes, a softly illuminated blank glass panel and branching light traces; empty space for DOM choices, no baked labels/buttons/text.",
+      "faceComposition": null
+    }
+  ],
+  "recovery": {
+    "reason": "execution workspace reset after image generation",
+    "promptNote": "Prompt specification reconstructed from execution record; source image bytes recovered unchanged from the generated artifact.",
+    "artifactName": "幽蓝存档室.png"
+  }
+}

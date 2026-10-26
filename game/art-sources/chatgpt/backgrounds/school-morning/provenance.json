@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "generator": "ChatGPT built-in image generation",
+  "workflow": "chatgpt-original-to-processed-4k-master",
+  "native4kClaim": false,
+  "processing": "Pillow Lanczos with premultiplied alpha; aspect-preserving pad",
+  "authorization": "2026-10-26: ChatGPT出原图，做出4K母版",
+  "category": "backgrounds",
+  "id": "school-morning",
+  "assets": [
+    {
+      "master": "game/assets/4k/backgrounds/school-morning.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "e0e792185bf89acc0d4f74c74655bd9178c76bafa5270ed91c2e116b6f699252",
+      "runtime": "game/assets/4k/runtime/backgrounds/school-morning.webp",
+      "runtimeSize": [
+        1920,
+        1080
+      ],
+      "runtimeSHA256": "7310b6f4e431013ccf667d99e80e102d6304927c9cbd5afae7891ea64713aef5",
+      "expression": "original",
+      "original": "game/art-sources/chatgpt/backgrounds/school-morning/original.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "2c496cb380b8d0ff1cc4094560018cc85bd5be823029535d6a3ce6205cef6cc1",
+      "prompt": "ChatGPT illustration-story production background for Chinese campus VN RESET. Full bleed landscape 16:9; thin confident anime linework aligned with Round 2 Linwan, clean 2-3 level cel shadows, muted detailed materials. Modern China, no people, border, collage or watermark. Readable foreground for sprites and dialogue. Lighting-weather edit of school-gate-rain, preserve exact architecture/sign/camera; fresh clear morning, blue sky, soft sunlight, plane-tree shadows, no rain.",
+      "faceComposition": null
+    }
+  ],
+  "recovery": {
+    "reason": "execution workspace reset after image generation",
+    "promptNote": "Prompt specification reconstructed from execution record; source image bytes recovered unchanged from the generated artifact.",
+    "artifactName": "梧城一中晴朗清晨.png"
+  }
+}

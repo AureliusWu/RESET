@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "generator": "ChatGPT built-in image generation",
+  "workflow": "chatgpt-original-to-processed-4k-master",
+  "native4kClaim": false,
+  "processing": "Pillow Lanczos with premultiplied alpha; aspect-preserving pad",
+  "authorization": "2026-10-26: ChatGPT出原图，做出4K母版",
+  "category": "backgrounds",
+  "id": "underpass-rain",
+  "assets": [
+    {
+      "master": "game/assets/4k/backgrounds/underpass-rain.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "3eb4e7f5499b54ad56b3862f4f5d2a12f0c4aab737ae26ef57db277b2e7bc2be",
+      "runtime": "game/assets/4k/runtime/backgrounds/underpass-rain.webp",
+      "runtimeSize": [
+        1920,
+        1080
+      ],
+      "runtimeSHA256": "dfe5a59f8126914828627b16c6bbe0d6f71c5f9fe14f57e30b40ccc866beb58e",
+      "expression": "original",
+      "original": "game/art-sources/chatgpt/backgrounds/underpass-rain/original.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "e42640f57431289d13cc8b8fd93ac0da1514886fc64bbdc94da8ff1ee4e64a43",
+      "prompt": "ChatGPT illustration-story production background for Chinese campus VN RESET. Full bleed landscape 16:9; thin confident anime linework aligned with Round 2 Linwan, clean 2-3 level cel shadows, muted detailed materials. Modern China, no people, border, collage or watermark. Readable foreground for sprites and dialogue. Deserted Chinese pedestrian underpass at rainy night, concrete entrance/stair rails, fluorescent long tunnel, wet pavement and reflective foreground puddle; uncanny perspective, slate-blue.",
+      "faceComposition": null
+    }
+  ],
+  "recovery": {
+    "reason": "execution workspace reset after image generation",
+    "promptNote": "Prompt specification reconstructed from execution record; source image bytes recovered unchanged from the generated artifact.",
+    "artifactName": "雨夜空寂地下通道.png"
+  }
+}

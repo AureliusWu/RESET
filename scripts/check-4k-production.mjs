@@ -97,6 +97,20 @@ for (const asset of production) {
   assert(runtimeInfo.width <= masterInfo.width && runtimeInfo.height <= masterInfo.height, `runtime derivative exceeds master dimensions: ${asset.id}`);
   if (paths.policy.alpha) assert(runtimeInfo.alpha, `runtime derivative is missing alpha: ${asset.id}`);
   if (paths.character) assert(runtimeInfo.width === 1080 && runtimeInfo.height === 1920, `portrait runtime must be 1080x1920: ${asset.id}`);
+  if (!paths.character) {
+    assert(runtimeInfo.width === (paths.policy.alpha?1080:1920) && runtimeInfo.height === (paths.policy.alpha?1920:1080), `runtime dimensions drift: ${asset.id}`);
+    const category=paths.runtime.split('/')[3],sourceId=paths.runtime.split('/').at(-1).replace(/\.webp$/,'');
+    const provenance=await readJson(resolve(root,`game/art-sources/chatgpt/${category}/${sourceId}/provenance.json`));
+    assert(provenance.native4kClaim===false,`${asset.id}: native 4K claim is not permitted`);
+    const record=provenance.assets.find(a=>a.runtime===`game/${paths.runtime}`);
+    assert(record,`${asset.id}: provenance pairing missing`);
+    for(const [pathKey,hashKey] of [['original','originalSHA256'],['master','masterSHA256'],['runtime','runtimeSHA256']]) {
+      const bytes=await readFile(resolve(root,record[pathKey]));
+      assert(createHash('sha256').update(bytes).digest('hex')===record[hashKey],`${asset.id}: ${pathKey} provenance mismatch`);
+    }
+    const original=pngInfo(await readFile(resolve(root,record.original)));
+    assert(original?.width===record.originalSize[0]&&original.height===record.originalSize[1],`${asset.id}: original dimensions mismatch`);
+  }
   adopted++;
   if (paths.character) adoptedCharacters.add(paths.character);
 }

@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "generator": "ChatGPT built-in image generation",
+  "workflow": "chatgpt-original-to-processed-4k-master",
+  "native4kClaim": false,
+  "processing": "Pillow Lanczos with premultiplied alpha; aspect-preserving pad",
+  "authorization": "2026-10-26: ChatGPT出原图，做出4K母版",
+  "category": "backgrounds",
+  "id": "rooftop-evening",
+  "assets": [
+    {
+      "master": "game/assets/4k/backgrounds/rooftop-evening.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "a683117e35e889e5004b52198a0310fab94bc0e39f3cb588623b7b44b63239d2",
+      "runtime": "game/assets/4k/runtime/backgrounds/rooftop-evening.webp",
+      "runtimeSize": [
+        1920,
+        1080
+      ],
+      "runtimeSHA256": "9d44133792485633364baa9e2083cb33102d33bd57c06e0f5b9d5a6a41ef4feb",
+      "expression": "original",
+      "original": "game/art-sources/chatgpt/backgrounds/rooftop-evening/original.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "f14ee06be1081a0634f57a04881d1fd6722b5aebfb8afcf6389e9f3abcc05756",
+      "prompt": "ChatGPT illustration-story production background for Chinese campus VN RESET. Full bleed landscape 16:9; thin confident anime linework aligned with Round 2 Linwan, clean 2-3 level cel shadows, muted detailed materials. Modern China, no people, border, collage or watermark. Readable foreground for sprites and dialogue. Chinese school rooftop sunset, worn concrete roof, safety fence, rooftop stairwell door, neighboring residential blocks, peach-gray sky.",
+      "faceComposition": null
+    }
+  ],
+  "recovery": {
+    "reason": "execution workspace reset after image generation",
+    "promptNote": "Prompt specification reconstructed from execution record; source image bytes recovered unchanged from the generated artifact.",
+    "artifactName": "黄昏校园教学楼天台.png"
+  }
+}

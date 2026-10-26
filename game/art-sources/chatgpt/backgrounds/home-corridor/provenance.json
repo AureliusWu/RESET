@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "generator": "ChatGPT built-in image generation",
+  "workflow": "chatgpt-original-to-processed-4k-master",
+  "native4kClaim": false,
+  "processing": "Pillow Lanczos with premultiplied alpha; aspect-preserving pad",
+  "authorization": "2026-10-26: ChatGPT出原图，做出4K母版",
+  "category": "backgrounds",
+  "id": "home-corridor",
+  "assets": [
+    {
+      "master": "game/assets/4k/backgrounds/home-corridor.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "ab4f858e6b2ef5c0c8f8172d50441db226e50ab53bdb3a96b899c7bf88fd1322",
+      "runtime": "game/assets/4k/runtime/backgrounds/home-corridor.webp",
+      "runtimeSize": [
+        1920,
+        1080
+      ],
+      "runtimeSHA256": "9f480e2ffcc505460d611ca60fe3bcf388cb54a579a5151766480939edf47c19",
+      "expression": "original",
+      "original": "game/art-sources/chatgpt/backgrounds/home-corridor/original.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "98d1af974a177f5be7bfaf406a4e5f9af2d47c9892e0c6644dd5a723abf60aec",
+      "prompt": "ChatGPT illustration-story production background for Chinese campus VN RESET. Full bleed landscape 16:9; thin confident anime linework aligned with Round 2 Linwan, clean 2-3 level cel shadows, muted detailed materials. Modern China, no people, border, collage or watermark. Readable foreground for sprites and dialogue. Older Chinese apartment corridor outside Chen Du home, evening; terrazzo floor, worn pale walls, metal security doors, meter cabinet/conduits, warm light beneath one door, quiet unease.",
+      "faceComposition": null
+    }
+  ],
+  "recovery": {
+    "reason": "execution workspace reset after image generation",
+    "promptNote": "Prompt specification reconstructed from execution record; source image bytes recovered unchanged from the generated artifact.",
+    "artifactName": "黄昏旧楼走廊.png"
+  }
+}

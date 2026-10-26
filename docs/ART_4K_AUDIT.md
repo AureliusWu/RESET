@@ -1,6 +1,6 @@
 # 《回留》4K 美术自动审计
 
-生成时间：2026-10-26T07:50:44.952Z
+生成时间：2026-10-26T09:38:27.944Z
 
 ## 统计
 
@@ -10,8 +10,8 @@
 - CG：5
 - 源树 SVG：96
 - 已建立 4K master 映射：56/56
-- 已存在且达到最低尺寸/Alpha 要求：31
-- 已规划但尚未写入：25
+- 已存在且达到最低尺寸/Alpha 要求：51
+- 已规划但尚未写入：5
 - 尺寸不达标：0
 - 缺少透明通道：0
 - 额外规划资产：8
@@ -51,26 +51,26 @@
 | nanxing/worried | portrait | assets/4k/runtime/characters/nanxing/worried.webp | assets/4k/characters/nanxing/worried.png | 4K_READY 2160×3840 |
 | nanxing/surprised | portrait | assets/4k/runtime/characters/nanxing/surprised.webp | assets/4k/characters/nanxing/surprised.png | 4K_READY 2160×3840 |
 | nanxing/serious | portrait | assets/4k/runtime/characters/nanxing/serious.webp | assets/4k/characters/nanxing/serious.png | 4K_READY 2160×3840 |
-| classroom-rain | background | assets/generated-scenes/classroom-rain.svg | assets/4k/backgrounds/classroom-rain.png | PLANNED |
-| school-gate-rain | background | assets/generated-scenes/school-gate-rain.svg | assets/4k/backgrounds/school-gate-rain.png | PLANNED |
-| school-gate-evening | background | assets/generated-scenes/school-gate-evening.svg | assets/4k/backgrounds/school-gate-evening.png | PLANNED |
-| home-corridor | background | assets/generated-scenes/home-corridor.svg | assets/4k/backgrounds/home-corridor.png | PLANNED |
-| station-night | background | assets/generated-scenes/station-night.svg | assets/4k/backgrounds/station-night.png | PLANNED |
-| night-wucheng | background | assets/generated-scenes/night-wucheng.svg | assets/4k/backgrounds/night-wucheng.png | PLANNED |
-| school-morning | background | assets/generated-scenes/school-morning.svg | assets/4k/backgrounds/school-morning.png | PLANNED |
-| archive-room | background | assets/generated-scenes/archive-room.svg | assets/4k/backgrounds/archive-room.png | PLANNED |
-| cafeteria | background | assets/generated-scenes/cafeteria.svg | assets/4k/backgrounds/cafeteria.png | PLANNED |
-| rooftop-evening | background | assets/generated-scenes/rooftop-evening.svg | assets/4k/backgrounds/rooftop-evening.png | PLANNED |
-| stairwell-morning | background | assets/generated-scenes/stairwell-morning.svg | assets/4k/backgrounds/stairwell-morning.png | PLANNED |
-| riverside-dusk | background | assets/generated-scenes/riverside-dusk.svg | assets/4k/backgrounds/riverside-dusk.png | PLANNED |
-| underpass-rain | background | assets/generated-scenes/underpass-rain.svg | assets/4k/backgrounds/underpass-rain.png | PLANNED |
-| classroom-dawn | background | assets/generated-scenes/classroom-dawn.svg | assets/4k/backgrounds/classroom-dawn.png | PLANNED |
-| old-art-room | background | assets/generated-scenes/old-art-room.svg | assets/4k/backgrounds/old-art-room.png | PLANNED |
-| night-art-room | background | assets/generated-scenes/night-art-room.svg | assets/4k/backgrounds/night-art-room.png | PLANNED |
-| old-stationery | background | assets/generated-scenes/old-stationery.svg | assets/4k/backgrounds/old-stationery.png | PLANNED |
-| north-station | background | assets/generated-scenes/north-station.svg | assets/4k/backgrounds/north-station.png | PLANNED |
-| save-room | background | assets/generated-scenes/save-room.svg | assets/4k/backgrounds/save-room.png | PLANNED |
-| true-dawn | background | assets/generated-scenes/true-dawn.svg | assets/4k/backgrounds/true-dawn.png | PLANNED |
+| classroom-rain | background | assets/4k/runtime/backgrounds/classroom-rain.webp | assets/4k/backgrounds/classroom-rain.png | 4K_READY 3840×2160 |
+| school-gate-rain | background | assets/4k/runtime/backgrounds/school-gate-rain.webp | assets/4k/backgrounds/school-gate-rain.png | 4K_READY 3840×2160 |
+| school-gate-evening | background | assets/4k/runtime/backgrounds/school-gate-evening.webp | assets/4k/backgrounds/school-gate-evening.png | 4K_READY 3840×2160 |
+| home-corridor | background | assets/4k/runtime/backgrounds/home-corridor.webp | assets/4k/backgrounds/home-corridor.png | 4K_READY 3840×2160 |
+| station-night | background | assets/4k/runtime/backgrounds/station-night.webp | assets/4k/backgrounds/station-night.png | 4K_READY 3840×2160 |
+| night-wucheng | background | assets/4k/runtime/backgrounds/night-wucheng.webp | assets/4k/backgrounds/night-wucheng.png | 4K_READY 3840×2160 |
+| school-morning | background | assets/4k/runtime/backgrounds/school-morning.webp | assets/4k/backgrounds/school-morning.png | 4K_READY 3840×2160 |
+| archive-room | background | assets/4k/runtime/backgrounds/archive-room.webp | assets/4k/backgrounds/archive-room.png | 4K_READY 3840×2160 |
+| cafeteria | background | assets/4k/runtime/backgrounds/cafeteria.webp | assets/4k/backgrounds/cafeteria.png | 4K_READY 3840×2160 |
+| rooftop-evening | background | assets/4k/runtime/backgrounds/rooftop-evening.webp | assets/4k/backgrounds/rooftop-evening.png | 4K_READY 3840×2160 |
+| stairwell-morning | background | assets/4k/runtime/backgrounds/stairwell-morning.webp | assets/4k/backgrounds/stairwell-morning.png | 4K_READY 3840×2160 |
+| riverside-dusk | background | assets/4k/runtime/backgrounds/riverside-dusk.webp | assets/4k/backgrounds/riverside-dusk.png | 4K_READY 3840×2160 |
+| underpass-rain | background | assets/4k/runtime/backgrounds/underpass-rain.webp | assets/4k/backgrounds/underpass-rain.png | 4K_READY 3840×2160 |
+| classroom-dawn | background | assets/4k/runtime/backgrounds/classroom-dawn.webp | assets/4k/backgrounds/classroom-dawn.png | 4K_READY 3840×2160 |
+| old-art-room | background | assets/4k/runtime/backgrounds/old-art-room.webp | assets/4k/backgrounds/old-art-room.png | 4K_READY 3840×2160 |
+| night-art-room | background | assets/4k/runtime/backgrounds/night-art-room.webp | assets/4k/backgrounds/night-art-room.png | 4K_READY 3840×2160 |
+| old-stationery | background | assets/4k/runtime/backgrounds/old-stationery.webp | assets/4k/backgrounds/old-stationery.png | 4K_READY 3840×2160 |
+| north-station | background | assets/4k/runtime/backgrounds/north-station.webp | assets/4k/backgrounds/north-station.png | 4K_READY 3840×2160 |
+| save-room | background | assets/4k/runtime/backgrounds/save-room.webp | assets/4k/backgrounds/save-room.png | 4K_READY 3840×2160 |
+| true-dawn | background | assets/4k/runtime/backgrounds/true-dawn.webp | assets/4k/backgrounds/true-dawn.png | 4K_READY 3840×2160 |
 | faceless-reflection-cg | cg | assets/generated-scenes/faceless-reflection-cg.svg | assets/4k/cg/faceless-reflection-cg.png | PLANNED |
 | letter-1842-cg | cg | assets/generated-scenes/letter-1842-cg.svg | assets/4k/cg/letter-1842-cg.png | PLANNED |
 | six-chairs-cg | cg | assets/generated-scenes/six-chairs-cg.svg | assets/4k/cg/six-chairs-cg.png | PLANNED |

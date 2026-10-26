@@ -71,7 +71,8 @@ const productionScenes = [
 const productionCgs = ['faceless-reflection-cg','letter-1842-cg','six-chairs-cg','linwan-1842-cg','true-end-riverside-cg'];
 for (const id of [...productionScenes, ...productionCgs]) {
   const asset = assetMap.get(id); assert(asset, `missing production scene asset ${id}`);
-  assert(asset.src === `assets/generated-scenes/${id}.svg`, `${id} still points at legacy art`);
+  const category = productionScenes.includes(id) ? 'backgrounds' : 'cg';
+  assert(asset.src === `assets/4k/runtime/${category}/${id}.webp` || (category==='cg' && asset.src===`assets/generated-scenes/${id}.svg`), `${id} has an unexpected production art path`);
   assert(!String(asset.alt ?? '').includes('占位'), `${id} is still labelled placeholder`);
   assert(await exists(resolve(dist, asset.src)), `scene art missing from package: ${asset.src}`);
   assert(sw.includes(asset.src), `scene art not offline cached: ${asset.src}`);

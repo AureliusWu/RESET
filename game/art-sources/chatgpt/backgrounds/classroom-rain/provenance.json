@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "generator": "ChatGPT built-in image generation",
+  "workflow": "chatgpt-original-to-processed-4k-master",
+  "native4kClaim": false,
+  "processing": "Pillow Lanczos with premultiplied alpha; aspect-preserving pad",
+  "authorization": "2026-10-26: ChatGPT出原图，做出4K母版",
+  "category": "backgrounds",
+  "id": "classroom-rain",
+  "assets": [
+    {
+      "master": "game/assets/4k/backgrounds/classroom-rain.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "3f3f7deb405f8e49ca64974d52f339248219c129b8dc129e39a86bfb92fd310b",
+      "runtime": "game/assets/4k/runtime/backgrounds/classroom-rain.webp",
+      "runtimeSize": [
+        1920,
+        1080
+      ],
+      "runtimeSHA256": "60a717508eb943f37929ea4f4778902ff3e624c58523310c05eb568194315267",
+      "expression": "original",
+      "original": "game/art-sources/chatgpt/backgrounds/classroom-rain/original.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "0b83cd071863584c7b59f3f063f58b5cc03584473c0a8358e0999435916d7b1f",
+      "prompt": "ChatGPT illustration-story production background for Chinese campus VN RESET. Full bleed landscape 16:9; thin confident anime linework aligned with Round 2 Linwan, clean 2-3 level cel shadows, muted detailed materials. Modern China, no people, border, collage or watermark. Readable foreground for sprites and dialogue. Empty Chinese Wucheng No.1 High School classroom at rainy evening; individual wooden desks/metal chairs, green blackboard front right, tall aluminum windows left with raindrops, ceiling fans and fluorescent lights, worn pale walls.",
+      "faceComposition": null
+    }
+  ],
+  "recovery": {
+    "reason": "execution workspace reset after image generation",
+    "promptNote": "Prompt specification reconstructed from execution record; source image bytes recovered unchanged from the generated artifact.",
+    "artifactName": "雨夜空教室.png"
+  }
+}

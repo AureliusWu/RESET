@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "generator": "ChatGPT built-in image generation",
+  "workflow": "chatgpt-original-to-processed-4k-master",
+  "native4kClaim": false,
+  "processing": "Pillow Lanczos with premultiplied alpha; aspect-preserving pad",
+  "authorization": "2026-10-26: ChatGPT出原图，做出4K母版",
+  "category": "backgrounds",
+  "id": "station-night",
+  "assets": [
+    {
+      "master": "game/assets/4k/backgrounds/station-night.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "9ad9b3ef7697059b72301a3d3620fd5426a16aa55b14b50783b183983dd9f51c",
+      "runtime": "game/assets/4k/runtime/backgrounds/station-night.webp",
+      "runtimeSize": [
+        1920,
+        1080
+      ],
+      "runtimeSHA256": "bb52ddbb42272d3d4986bb6d5994209df9475e2b16763d566ef37b2d85e3c0bd",
+      "expression": "original",
+      "original": "game/art-sources/chatgpt/backgrounds/station-night/original.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "ebd35b604b0807087eddaa2a4f0ae36c6d6889a8fed09faf7fabe42744302995",
+      "prompt": "ChatGPT illustration-story production background for Chinese campus VN RESET. Full bleed landscape 16:9; thin confident anime linework aligned with Round 2 Linwan, clean 2-3 level cel shadows, muted detailed materials. Modern China, no people, border, collage or watermark. Readable foreground for sprites and dialogue. Empty modern Chinese metro Nanhu station at night, platform screen doors, tiled floor/yellow safety line, white fluorescent lights, exact 南湖站 / NANHU sign, CCTV and wall clock, cyan-gray.",
+      "faceComposition": null
+    }
+  ],
+  "recovery": {
+    "reason": "execution workspace reset after image generation",
+    "promptNote": "Prompt specification reconstructed from execution record; source image bytes recovered unchanged from the generated artifact.",
+    "artifactName": "夜幕下的南湖站月台.png"
+  }
+}

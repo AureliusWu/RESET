@@ -36,13 +36,14 @@ export async function verifyProductionArt({page,project,fixtures,loadFixture,out
     if(portrait)assert.ok(d.transparent>0&&d.opaque>0,`actual alpha missing: ${d.id}`);
   }
   const records=[];
-  for(const asset of assets.filter(a=>a.kind==='portrait')){
-    const witness=frames.get(asset.id),selector='.vn-portrait';
+  for(const asset of assets.filter(a=>['portrait','background','cg'].includes(a.kind))){
+    const witness=frames.get(asset.id),selector=asset.kind==='portrait'?'.vn-portrait':asset.kind==='background'?'.vn-background':'.vn-cg';
+    const expectedWidth=asset.kind==='portrait'?1080:1920;
     if(witness){
       await loadFixture(witness);
-      await page.waitForFunction(id=>{const im=document.querySelector('.vn-portrait');return im?.dataset.asset===id&&im.complete&&im.naturalWidth===1080;},asset.id);
+      await page.waitForFunction(({id,selector,width})=>{const im=document.querySelector(selector);return im?.dataset.asset===id&&im.complete&&im.naturalWidth===width;},{id:asset.id,selector,width:expectedWidth});
       assert.equal(await page.locator(selector).getAttribute('src').then(s=>s.includes(asset.src)),true);
-      if(asset.id.endsWith('/neutral'))await page.screenshot({path:out+'/production-'+asset.id.replaceAll('/','-')+'.png',animations:'disabled'});
+      if(asset.kind!=='portrait'||asset.id.endsWith('/neutral'))await page.screenshot({path:out+'/production-'+asset.id.replaceAll('/','-')+'.png',animations:'disabled'});
       records.push({id:asset.id,verification:'canonical story save'});
     }else{
       // Explicit isolated renderer fixture for a formal expression not referenced
@@ -50,11 +51,11 @@ export async function verifyProductionArt({page,project,fixtures,loadFixture,out
       await page.evaluate(async({asset,background})=>{
         const {mountGame}=await import('./lib/index.js');const root=document.createElement('div');root.id='__assetQA';root.style.cssText='position:fixed;inset:0;z-index:2147483647;background:#14272e';document.body.append(root);
         const [character,expression]=asset.id.split('/');
-        const fixture={schema:1,game:'reset-isolated-art-qa',version:'qa',title:'Isolated art QA',type:'narrative',entry:'qa',stats:{},assets:[asset,background],stage:{scenes:{qa:{portrait:asset.id}}},scenes:[{id:'qa',title:'Formal expression renderer fixture',character,background:background.id,lines:[{id:'qa-line',speaker:'QA',text:'此差分暂未在剧情使用；独立渲染验收。',expression}],ending:'qa'}]};
+        const fixture={schema:1,game:'reset-isolated-art-qa',version:'qa',title:'Isolated art QA',type:'narrative',entry:'qa',stats:{},assets:[asset,...(asset.id===background.id?[]:[background])],stage:{scenes:{qa:{[asset.kind==='portrait'?'portrait':asset.kind]:asset.id}}},scenes:[{id:'qa',title:'Formal expression renderer fixture',character,background:background.id,lines:[{id:'qa-line',speaker:'QA',text:'此差分暂未在剧情使用；独立渲染验收。',expression}],ending:'qa'}]};
         window.__assetQAGame=mountGame(root,fixture,{baseURL:new URL('./',location.href),storage:null,audio:false});window.__assetQAGame.session.configure({textDelayMs:0,reducedMotion:true});
       },{asset,background:project.assets.find(a=>a.kind==='background')});
       try{
-        await page.waitForFunction(id=>{const im=document.querySelector('#__assetQA .vn-portrait');return im?.dataset.asset===id&&im.complete&&im.naturalWidth===1080;},asset.id);
+        await page.waitForFunction(({id,selector,width})=>{const im=document.querySelector('#__assetQA '+selector);return im?.dataset.asset===id&&im.complete&&im.naturalWidth===width;},{id:asset.id,selector,width:expectedWidth});
         await page.screenshot({path:out+'/fixture-'+asset.id.replaceAll('/','-')+'.png',animations:'disabled'});
       }finally{await page.evaluate(()=>{window.__assetQAGame.dispose();delete window.__assetQAGame;document.getElementById('__assetQA').remove();});}
       records.push({id:asset.id,verification:'isolated packaged renderer fixture; unused in story'});
@@ -76,7 +77,7 @@ export async function verifyProductionArt({page,project,fixtures,loadFixture,out
       }
     }finally{await page.setViewportSize(viewport);}
   }
-  pass(`${assets.length} adopted production art files decode at runtime dimensions; ${records.length} new portraits render in story or labelled unused-expression fixtures`);
+  pass(`${assets.length} adopted production art files decode at runtime dimensions; ${records.length} production images render in story or labelled isolated fixtures`);
 }
 
 export async function verifyProductionArtOffline({page,project,pass}){

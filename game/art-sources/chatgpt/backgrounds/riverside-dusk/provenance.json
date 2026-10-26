@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "generator": "ChatGPT built-in image generation",
+  "workflow": "chatgpt-original-to-processed-4k-master",
+  "native4kClaim": false,
+  "processing": "Pillow Lanczos with premultiplied alpha; aspect-preserving pad",
+  "authorization": "2026-10-26: ChatGPT出原图，做出4K母版",
+  "category": "backgrounds",
+  "id": "riverside-dusk",
+  "assets": [
+    {
+      "master": "game/assets/4k/backgrounds/riverside-dusk.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "edf4fbbf2c6796ea23c3a503c58c6bf5265c7c7c87fe44558b91cbfb15af34e3",
+      "runtime": "game/assets/4k/runtime/backgrounds/riverside-dusk.webp",
+      "runtimeSize": [
+        1920,
+        1080
+      ],
+      "runtimeSHA256": "b49813ab4e8f069c15102bae386a80f84ece5018855b43542f8a8a7d7456cd6e",
+      "expression": "original",
+      "original": "game/art-sources/chatgpt/backgrounds/riverside-dusk/original.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "98497f115f2963c5466d2a242d836bd9f9c4b0812d5f38274e4129f29470e29b",
+      "prompt": "ChatGPT illustration-story production background for Chinese campus VN RESET. Full bleed landscape 16:9; thin confident anime linework aligned with Round 2 Linwan, clean 2-3 level cel shadows, muted detailed materials. Modern China, no people, border, collage or watermark. Readable foreground for sprites and dialogue. Wucheng Chinese river embankment at autumn dusk; broad slow river, modest skyline, concrete railing, stone steps, plane trees, muted peach-gray sky on blue-gray water.",
+      "faceComposition": null
+    }
+  ],
+  "recovery": {
+    "reason": "execution workspace reset after image generation",
+    "promptNote": "Prompt specification reconstructed from execution record; source image bytes recovered unchanged from the generated artifact.",
+    "artifactName": "武城秋暮江畔.png"
+  }
+}

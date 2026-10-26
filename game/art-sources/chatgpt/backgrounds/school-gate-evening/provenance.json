@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "generator": "ChatGPT built-in image generation",
+  "workflow": "chatgpt-original-to-processed-4k-master",
+  "native4kClaim": false,
+  "processing": "Pillow Lanczos with premultiplied alpha; aspect-preserving pad",
+  "authorization": "2026-10-26: ChatGPT出原图，做出4K母版",
+  "category": "backgrounds",
+  "id": "school-gate-evening",
+  "assets": [
+    {
+      "master": "game/assets/4k/backgrounds/school-gate-evening.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "327fe6b2494491a59fc5cde31349ab96c3bd6e088b1b2e9d5a7795ad2f30d921",
+      "runtime": "game/assets/4k/runtime/backgrounds/school-gate-evening.webp",
+      "runtimeSize": [
+        1920,
+        1080
+      ],
+      "runtimeSHA256": "c98caca4d7c91d129d421764cb69b0a128d2b71c8c0924e18a7731e01b056337",
+      "expression": "original",
+      "original": "game/art-sources/chatgpt/backgrounds/school-gate-evening/original.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "5bb3c3b838a512c2b2084863b90c8b84fb32a3d917c08090ffe879df4a9284c8",
+      "prompt": "ChatGPT illustration-story production background for Chinese campus VN RESET. Full bleed landscape 16:9; thin confident anime linework aligned with Round 2 Linwan, clean 2-3 level cel shadows, muted detailed materials. Modern China, no people, border, collage or watermark. Readable foreground for sprites and dialogue. Lighting-weather edit of school-gate-rain, preserve exact architecture/sign/camera; dry peach-orange early evening, warm sunset, no rain.",
+      "faceComposition": null
+    }
+  ],
+  "recovery": {
+    "reason": "execution workspace reset after image generation",
+    "promptNote": "Prompt specification reconstructed from execution record; source image bytes recovered unchanged from the generated artifact.",
+    "artifactName": "梧城一中暖暮校门.png"
+  }
+}

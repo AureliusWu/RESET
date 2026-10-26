@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "generator": "ChatGPT built-in image generation",
+  "workflow": "chatgpt-original-to-processed-4k-master",
+  "native4kClaim": false,
+  "processing": "Pillow Lanczos with premultiplied alpha; aspect-preserving pad",
+  "authorization": "2026-10-26: ChatGPT出原图，做出4K母版",
+  "category": "backgrounds",
+  "id": "night-art-room",
+  "assets": [
+    {
+      "master": "game/assets/4k/backgrounds/night-art-room.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "c7f22bba96255d86e663b2d5c4db17c50f660ab341149f76f0d0b0805bb27566",
+      "runtime": "game/assets/4k/runtime/backgrounds/night-art-room.webp",
+      "runtimeSize": [
+        1920,
+        1080
+      ],
+      "runtimeSHA256": "6555b12806c0d3aaf6d73555784f803b0ae42bdca41b377a312e52c9f1fb0a87",
+      "expression": "original",
+      "original": "game/art-sources/chatgpt/backgrounds/night-art-room/original.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "5b96f1cef2cfde3931e18a53f342a2c57e8c5ef00815c00a877bdc2282a591a3",
+      "prompt": "ChatGPT illustration-story production background for Chinese campus VN RESET. Full bleed landscape 16:9; thin confident anime linework aligned with Round 2 Linwan, clean 2-3 level cel shadows, muted detailed materials. Modern China, no people, border, collage or watermark. Readable foreground for sprites and dialogue. Lighting-weather edit of old-art-room: preserve camera, windows, easels, busts and stool positions; cold blue-violet moonlight from left windows, faint light on rear stool; no gore or neon.",
+      "faceComposition": null
+    }
+  ],
+  "recovery": {
+    "reason": "execution workspace reset after image generation",
+    "promptNote": "Prompt specification reconstructed from execution record; source image bytes recovered unchanged from the generated artifact.",
+    "artifactName": "冷月下的静谧画室.png"
+  }
+}

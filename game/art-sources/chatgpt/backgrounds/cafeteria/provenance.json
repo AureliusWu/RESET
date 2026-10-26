@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "generator": "ChatGPT built-in image generation",
+  "workflow": "chatgpt-original-to-processed-4k-master",
+  "native4kClaim": false,
+  "processing": "Pillow Lanczos with premultiplied alpha; aspect-preserving pad",
+  "authorization": "2026-10-26: ChatGPT出原图，做出4K母版",
+  "category": "backgrounds",
+  "id": "cafeteria",
+  "assets": [
+    {
+      "master": "game/assets/4k/backgrounds/cafeteria.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "606ed40dbb33173d6fb7ada68758d9f8dfa168ead09a547f975b96c932a25f0b",
+      "runtime": "game/assets/4k/runtime/backgrounds/cafeteria.webp",
+      "runtimeSize": [
+        1920,
+        1080
+      ],
+      "runtimeSHA256": "d55db46cc26cf6a8f785d95208f6331c06dc52a933081cc3cb76d2856e67f573",
+      "expression": "original",
+      "original": "game/art-sources/chatgpt/backgrounds/cafeteria/original.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "df7d2087060c21255a107830a54d644a11f173b9aa718017eef43c18431abcf9",
+      "prompt": "ChatGPT illustration-story production background for Chinese campus VN RESET. Full bleed landscape 16:9; thin confident anime linework aligned with Round 2 Linwan, clean 2-3 level cel shadows, muted detailed materials. Modern China, no people, border, collage or watermark. Readable foreground for sprites and dialogue. Empty second-floor Chinese high-school cafeteria between meals; pale tables/attached stools, stainless serving windows, courtyard through aluminum windows, cream/green tile, daylight.",
+      "faceComposition": null
+    }
+  ],
+  "recovery": {
+    "reason": "execution workspace reset after image generation",
+    "promptNote": "Prompt specification reconstructed from execution record; source image bytes recovered unchanged from the generated artifact.",
+    "artifactName": "二楼空旷的校园食堂.png"
+  }
+}

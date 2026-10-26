@@ -111,3 +111,11 @@
 ### Round 3 Windows 验收修正
 
 候选 `4ddddb8` Web 验收通过；Windows 首次重启探针使用 taskkill，WebView2 的异步存储后端未正常关闭，导致解锁记录丢失。将持久化探针改为真实窗口正常关闭，并在第一次与第二次进程重启后分别断言结局和 CG 保留；不降低解锁检查。强制清理仍仅用于启动前及测试结束。等待修正候选验收，尚未标记 Round 3 完成。
+
+### Round 3 completed
+
+最终候选 `f3f566559b8507ac3852614894fc10b50b02ee77`，Build [40289473030](https://github.com/AureliusWu/RESET/actions/runs/40289473030) 和 Release 验收 [40289473066](https://github.com/AureliusWu/RESET/actions/runs/40289473066) Web/Windows 均 success；26 个其余女主差分正式接入，62 项 Node 回归保留。正常关闭后的两次原生进程重启检查解锁与存档保留。自动进入 Round 4。
+
+## Round 4 — 20 个背景
+
+20 张 ChatGPT 原图生成并复核，教室/校门/画室时段变体保持构图。夜梧城时钟头部误生成日期已局部修正，只显示 18:42。执行环境重置后从已生成文件恢复原始像素；provenance 明示提示词按执行记录重建。母版 3840×2160 PNG、runtime 1920×1080 WebP；正式引用保持原 ID。新增背景舞台渲染及源图/母版/runtime 哈希门禁，等待最终 ZIP 双平台验收。

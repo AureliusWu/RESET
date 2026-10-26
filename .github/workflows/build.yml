@@ -77,8 +77,8 @@ jobs:
           test -f dist/sw.js
           test -f dist/combat.mjs
           test -f dist/meta.mjs
-          test -f dist/assets/generated-scenes/save-room.svg
-          test -f dist/assets/generated-scenes/true-dawn.svg
+          test -f dist/assets/4k/runtime/backgrounds/save-room.webp
+          test -f dist/assets/4k/runtime/backgrounds/true-dawn.webp
           test -f dist/assets/generated-scenes/true-end-riverside-cg.svg
           test -f dist/assets/4k/runtime/characters/linwan/smile.webp
           test -f dist/assets/4k/runtime/characters/xuqi/serious.webp
