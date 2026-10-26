@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#080b13"/><stop offset=".55" stop-color="#171827"/><stop offset="1" stop-color="#2a2032"/></linearGradient>
+  <linearGradient id="card" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#131b27"/><stop offset="1" stop-color="#241d31"/></linearGradient>
+  <filter id="glow"><feGaussianBlur stdDeviation="14"/></filter>
+</defs>
+<rect width="1920" height="1080" fill="url(#bg)"/>
+<g opacity=".18" stroke="#8c789a" stroke-width="2"><path d="M0 180h1920M0 540h1920M0 900h1920"/><path d="M320 0v1080M960 0v1080M1600 0v1080"/></g>
+<g transform="translate(190 190)"><rect width="1540" height="700" rx="42" fill="url(#card)" stroke="#7b7790" stroke-width="4"/>
+<rect x="44" y="48" width="1452" height="604" rx="28" fill="none" stroke="#3f4656" stroke-width="2"/>
+<path d="M1250 105l120 120-120 120M1250 355l120 120-120 120" fill="none" stroke="#9d83aa" stroke-width="7" opacity=".56"/>
+<path d="M110 500h780M110 552h610" stroke="#6f7c88" stroke-width="3" opacity=".45"/>
+<text x="112" y="170" fill="#adb7c4" font-family="Inter,Arial,sans-serif" font-size="30" letter-spacing="8">SLOT ?? / LOAD TRACE</text>
+<text x="112" y="310" fill="#eef1f4" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="86" font-weight="300">10月17日 18:42</text>
+<text x="112" y="414" fill="#cbbbd2" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="44" letter-spacing="4">不要再读取了。</text>
+<g fill="#d9dce4"><circle cx="118" cy="598" r="8"/><circle cx="154" cy="598" r="8" opacity=".55"/><circle cx="190" cy="598" r="8" opacity=".25"/></g></g>
+<g opacity=".3" fill="#b38cc0" filter="url(#glow)"><rect x="1440" y="90" width="130" height="900"/><rect x="355" y="86" width="26" height="905"/></g>
+<g opacity=".28" stroke="#d7c6dd" fill="none"><path d="M1522 60l-88 212 76 84-114 199 95 108-129 244" stroke-width="5"/><path d="M397 48l42 205-52 170 68 195-50 217" stroke-width="3"/></g>
+</svg>
