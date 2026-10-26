@@ -18,9 +18,20 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Checkout frozen VN Engine v2
+        uses: actions/checkout@v4
+        with:
+          repository: AureliusWu/VN-Engine-v2
+          ref: 15c101e0d2b2c1e40dbc36d7a0c1a246d102b52c
+          path: vn-engine
+
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+
+      - name: Install engine dependencies
+        working-directory: vn-engine
+        run: npm ci
 
       - name: Install Pillow
         run: python -m pip install --disable-pip-version-check pillow
@@ -90,8 +101,7 @@ jobs:
           bg=Image.open(ROOT/'assets/4k/backgrounds/north-station.png').convert('RGBA')
           bg=ImageEnhance.Brightness(bg).enhance(0.72)
           bg=Image.alpha_composite(bg,Image.new('RGBA',bg.size,(18,44,82,78)))
-          char=fit_character(ROOT/'assets/4k/characters/linwan/worried.png',2850)
-          bg.alpha_composite(char,(190,-145))
+          bg.alpha_composite(fit_character(ROOT/'assets/4k/characters/linwan/worried.png',2850),(190,-145))
           bg=Image.alpha_composite(bg,rain_overlay(bg.size))
           bg=Image.alpha_composite(bg,Image.new('RGBA',bg.size,(75,105,140,34)).filter(ImageFilter.GaussianBlur(16)))
           save_set('linwan-1842-cg',bg,['game/assets/4k/backgrounds/north-station.png','game/assets/4k/characters/linwan/worried.png'],'18:42 climax: Linwan at Wucheng North Station in unmistakable heavy rain at night; soaked, frightened but resolute; cold blue-gray station light, wet reflections, dark tunnel. No dusk treatment.')
@@ -99,8 +109,7 @@ jobs:
           bg=Image.open(ROOT/'assets/4k/backgrounds/true-dawn.png').convert('RGBA')
           bg=ImageEnhance.Brightness(bg).enhance(1.05)
           bg=Image.alpha_composite(bg,Image.new('RGBA',bg.size,(255,205,125,45)))
-          char=fit_character(ROOT/'assets/4k/characters/linwan/smile.png',2600)
-          bg.alpha_composite(char,(300,-60))
+          bg.alpha_composite(fit_character(ROOT/'assets/4k/characters/linwan/smile.png',2600),(300,-60))
           bg=Image.alpha_composite(bg,Image.new('RGBA',bg.size,(255,224,170,24)).filter(ImageFilter.GaussianBlur(24)))
           save_set('true-end-riverside-cg',bg,['game/assets/4k/backgrounds/true-dawn.png','game/assets/4k/characters/linwan/smile.png'],'True End, October 25 morning: Linwan smiling after the loop is broken; clear warm morning light and fresh dawn atmosphere, explicitly not dusk or sunset.')
           PY
@@ -126,6 +135,8 @@ jobs:
           NODE
 
       - name: Refresh audit and validate Round 5
+        env:
+          VN_ENGINE_PATH: ${{ github.workspace }}/vn-engine
         run: |
           npm run art:audit:write
           npm run art:audit
