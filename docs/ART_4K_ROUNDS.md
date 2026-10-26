@@ -107,3 +107,7 @@
 - 六位女主共 31 个正式 asset ID 全部切换至 4K runtime；林晚原图未修改。
 - art:check：56 个 production 引用、31 个已接入 4K 引用通过；六角色 master/runtime pairing 通过。
 - Build、check:release、62/62 Node 回归通过；新提交的 Web/Windows 安装包验收待 Actions 确认，尚未标记 Round 3 completed。
+
+### Round 3 Windows 验收修正
+
+候选 `4ddddb8` Web 验收通过；Windows 首次重启探针使用 taskkill，WebView2 的异步存储后端未正常关闭，导致解锁记录丢失。将持久化探针改为真实窗口正常关闭，并在第一次与第二次进程重启后分别断言结局和 CG 保留；不降低解锁检查。强制清理仍仅用于启动前及测试结束。等待修正候选验收，尚未标记 Round 3 完成。

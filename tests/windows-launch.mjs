@@ -98,7 +98,13 @@ try{
   if(await page.locator('[data-combat-resume]').isVisible())checks.push('Actual native minimize/restore pauses combat until explicit resume');
   else limitations.push('Native minimize/restore worked, but this runner did not expose a new DOM focus/visibility transition; physical background combat check remains unverified');
   await page.screenshot({path:out+'/native-paused-combat.png'});
-  stop();await browser.close().catch(()=>{});browser=null;page=await launch();
+  // A normal restart must let WebView2 flush its asynchronous storage backend.
+  // taskkill is reserved for disposable runner cleanup, not persistence probes.
+  const firstClose=spawnSync('powershell',['-NoProfile','-Command',"Get-Process VNEngine | ForEach-Object { $_.CloseMainWindow() | Out-Null; if (-not $_.WaitForExit(10000)) { throw 'Native window did not close normally' } }"],{encoding:'utf8'});
+  assert.equal(firstClose.status,0,firstClose.stderr);await browser.close().catch(()=>{});browser=null;
+  page=await launch();
+  assert.ok(await page.evaluate(()=>JSON.parse(localStorage.getItem('reset:meta:v1')).endings.includes('normal-linwan')),'ending survives first normal process restart');
+  assert.ok(await page.evaluate(()=>JSON.parse(localStorage.getItem('reset:meta:v1')).cgs.includes('letter-1842-cg')),'CG survives first normal process restart');
   await page.locator('[data-control=load]').click();assert.equal(await page.locator('.vn-engine').getAttribute('data-line'),line);
   const beforeRestart=await page.evaluate(()=>({loads:JSON.parse(localStorage.getItem('reset:meta:v1')).loads,slots:localStorage.getItem('reset:slots:v1')}));
   checks.push('Native manual slots save and restore; actual story CG and ending unlock in the archive');
