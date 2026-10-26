@@ -57,6 +57,12 @@ export function createSlotStore(storage, now = () => new Date().toISOString()) {
   }
   return {
     list() { const slots = read(); return Array.from({length:SLOT_COUNT}, (_,index) => structuredClone(slots.find(s => s.id === index + 1) ?? null)); },
+    get(id, expected) {
+      checkId(id); const slot = read().find(s => s.id === id) ?? null;
+      if (expected !== undefined && JSON.stringify(slot) !== JSON.stringify(expected)) throw new Error('此存档已在其他窗口更新，请重新操作。');
+      if (!slot) throw new Error('此存档已不存在。');
+      return structuredClone(slot);
+    },
     put(id, save, frame, expected) {
       checkId(id);
       if (!record(save) || save.schema !== 1 || save.game !== 'reset' || JSON.stringify(save).length > MAX_SAVE) throw new Error('无法保存当前进度。');

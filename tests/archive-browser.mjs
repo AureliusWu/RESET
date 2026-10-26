@@ -35,7 +35,7 @@ export async function verifyArchive({page,fixtures,project,loadFixture,control,s
   assert.equal(await page.evaluate(()=>localStorage.getItem('vn-engine:reset:save:1')),quick);
   await page.screenshot({path:out+'/slots-desktop.png',fullPage:true});
   await page.keyboard.press('Escape');await control('next').click();const beforeLoad=await loads();
-  await archive('slots').click();await action(1,'load').click();assert.equal(await loads(),beforeLoad+1);
+  await archive('slots').click();await action(1,'load').click();await page.locator('[data-reset-confirm]').click();assert.equal(await loads(),beforeLoad+1);
   assert.equal(await page.locator('.vn-engine').getAttribute('data-line'),project.scenes.find(s=>s.id===start).lines[second.save.state.line].id);
   pass('All six manual slots work; overwrite/delete cancel and confirm correctly, quota failures preserve data, and legacy quick-save stays intact');
 

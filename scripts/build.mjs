@@ -100,7 +100,7 @@ async function injectGameRuntime(project) {
     await copyFile(resolve(root, 'game/runtime', file), resolve(output, file));
   }
   const htmlPath=resolve(output,'index.html');
-  await writeFile(htmlPath,(await readFile(htmlPath,'utf8')).replace('</head>','<link rel="stylesheet" href="./experience.css"></head>'));
+  await writeFile(htmlPath,(await readFile(htmlPath,'utf8')).replace('width=device-width,initial-scale=1','width=device-width,initial-scale=1,viewport-fit=cover').replace('</head>','<link rel="stylesheet" href="./experience.css"></head>'));
   const appPath = resolve(output, 'app.mjs');
   let app = await readFile(appPath, 'utf8');
   const pagehide = "window.addEventListener('pagehide',event=>{if(!event.persisted)game.dispose();});";

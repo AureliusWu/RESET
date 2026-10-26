@@ -5,3 +5,33 @@ html,body{height:100%;height:100dvh;overflow:hidden}body{font-family:system-ui,-
 @media(max-height:480px){main#game{padding:4px;height:calc(100dvh - 22px)}#status{height:14px;line-height:14px;font-size:10px}.vn-engine .vn-toolbar{gap:4px;padding:4px 7px}.vn-engine .vn-toolbar button{min-height:27px;font-size:10px;padding:4px 6px}.vn-engine .vn-status{min-height:12px;line-height:12px;font-size:10px}.vn-engine .vn-reading{padding:8px 15px;max-height:70%}.vn-engine .vn-text{font-size:15px;line-height:1.6;margin-bottom:7px}.vn-engine .vn-speaker{font-size:12px;margin-bottom:3px}.vn-engine .vn-actions button{min-height:29px;font-size:11px;padding:5px 8px}.vn-engine .vn-scene-title{top:10px;left:14px}.vn-engine .vn-mode{top:12px}.reset-dialog{padding:8px}.reset-panel{padding:13px}.reset-panel-head{margin-bottom:8px}.reset-slot-grid,.reset-ending-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .reset-combat.reset-combat__root canvas{width:min(1100px,100%,calc((100dvh - 168px)*16/9));height:auto;max-height:none}.reset-combat.reset-combat__root{grid-template-rows:auto minmax(0,1fr) auto;overflow:auto}
 @media(max-width:700px){.reset-combat.reset-combat__root canvas{width:min(100%,calc((100dvh - 230px)*16/9))}.reset-combat__hint{font-size:10px;line-height:1.4}}
+
+/* v1.2: keep text and touch controls usable in narrow/short player windows. */
+main#game{height:calc(100dvh - 30px - env(safe-area-inset-top) - env(safe-area-inset-bottom));margin-top:env(safe-area-inset-top);padding-left:max(5px,env(safe-area-inset-left));padding-right:max(5px,env(safe-area-inset-right))}
+.vn-engine .vn-toolbar{display:grid;grid-template-columns:minmax(0,1fr)}
+.reset-toolbar-controls{display:flex;flex-wrap:wrap;gap:6px;min-width:0;align-items:center}
+.vn-engine .vn-text,.vn-engine .vn-speaker,.vn-engine .vn-actions button{overflow-wrap:anywhere;word-break:normal}
+.vn-engine .vn-reading{overscroll-behavior:contain;scroll-padding:10px}
+.reset-panel,.vn-engine .vn-panel{box-sizing:border-box;scroll-padding-top:64px;overflow-wrap:anywhere}
+.reset-panel-head,.vn-engine .vn-panel-head{position:sticky;top:0;z-index:2;background:#152833;padding:8px 0;border-bottom:1px solid #3c5864}
+.reset-panel-head button,.vn-panel-head button{flex:none}
+.reset-current-position{color:#d4e9e6;font-size:13px}
+.reset-ending-groups{display:grid;gap:20px}
+.reset-dialog,.vn-modal{box-sizing:border-box}
+.vn-engine button:focus-visible,.reset-combat button:focus-visible{outline:2px solid #b4e3d5;outline-offset:3px}
+@media(pointer:coarse),(max-width:700px){
+  .reset-toolbar-controls{flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin;padding:2px 0 5px;scroll-snap-type:x proximity}
+  .vn-engine .vn-toolbar .reset-toolbar-controls button{flex:none;min-height:44px;min-width:44px;font-size:12px;scroll-snap-align:start;touch-action:manipulation}
+  .vn-engine .vn-actions button,.vn-engine .reset-panel button,.vn-engine .vn-panel button{min-height:44px;touch-action:manipulation}
+  .vn-engine .vn-toolbar{gap:2px;padding:5px 7px}
+  .vn-engine .vn-setting{grid-template-columns:minmax(0,1fr) minmax(0,1.3fr)}
+  .vn-engine .vn-panel input{min-height:36px}
+  .reset-combat .reset-combat__controls button{min-height:48px;min-width:48px;touch-action:none}
+}
+@media(max-height:480px){
+  main#game{height:calc(100dvh - 22px - env(safe-area-inset-top) - env(safe-area-inset-bottom))}
+  .reset-toolbar-controls{flex-wrap:nowrap;overflow-x:auto;padding-bottom:3px}
+  .vn-engine .vn-toolbar .reset-toolbar-controls button{flex:none}
+  .vn-engine .vn-panel{padding:12px;max-height:100%}
+  .vn-engine .vn-modal{padding:8px}
+}

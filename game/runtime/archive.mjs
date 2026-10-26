@@ -13,6 +13,11 @@ export function mountArchiveBridge(game, project, metaBridge) {
   const slotsButton = button('存档管理',openSlots), collectionButton = button('结局与图鉴',openCollection);
   slotsButton.dataset.resetControl = 'slots'; collectionButton.dataset.resetControl = 'collection';
   toolbar.insertBefore(slotsButton,status); toolbar.insertBefore(collectionButton,status);
+  const controls = element('div',undefined,'reset-toolbar-controls');
+  for (const node of [...toolbar.children]) if (node !== status) controls.append(node);
+  toolbar.insertBefore(controls,status);
+  const sceneMap = new Map(project.scenes.map(scene => [scene.id,scene]));
+  const position = id => { const scene = sceneMap.get(id); return scene ? `${scene.chapter ? `第 ${scene.chapter} 章 · ` : ''}${scene.title ?? '当前段落'}` : '已保存的故事位置'; };
   const quickSave = toolbar.querySelector('[data-control=save]'), quickLoad = toolbar.querySelector('[data-control=load]');
   const quickLabels = [quickSave.textContent,quickLoad.textContent];
   quickSave.textContent = '快速存档'; quickLoad.textContent = '快速读档';
@@ -56,13 +61,14 @@ export function mountArchiveBridge(game, project, metaBridge) {
   }
   function openSlots() {
     if (!canManage() || !begin('slots','存档管理')) return;
-    panel.append(element('p','6 个手动存档槽。快速存档与旧版存档保持独立。','reset-muted'));
+    panel.append(element('p',`当前位置：${position(session.getView().frame.sceneId)}`,'reset-current-position'));
+    panel.append(element('p','6 个手动存档槽。读取前会确认，快速存档保持独立。','reset-muted'));
     const list = element('div',undefined,'reset-slot-grid'); panel.append(list,note);
     let slots; try { slots = store.list(); } catch (error) { tell(error.message); return; }
     slots.forEach((slot,index) => {
       const id = index + 1, card = element('article',undefined,'reset-slot'); card.dataset.slot = String(id);
       const head = element('div',undefined,'reset-slot-head'); head.append(element('h3',`手动存档 ${id}`),element('span',slot ? new Date(slot.savedAt).toLocaleString('zh-CN',{hour12:false}) : '空白','reset-muted')); card.append(head);
-      card.append(element('p',slot?.title ?? '留一个可以回来的位置。','reset-slot-title'));
+      card.append(element('p',slot ? position(slot.save.state?.sceneId) : '空槽 · 保存当前进度','reset-slot-title'));
       if (slot) card.append(element('p',slot.excerpt,'reset-excerpt'));
       const row = element('div',undefined,'reset-row');
       const save = button(slot ? '覆盖' : '保存',() => guarded(() => {
@@ -70,8 +76,13 @@ export function mountArchiveBridge(game, project, metaBridge) {
         if (slot) confirm(`覆盖手动存档 ${id}？`,`${slot.title}\n原存档将被当前进度替换。`,write); else write();
       })); save.dataset.slotAction = 'save'; row.append(save);
       const load = button('读取',() => guarded(() => {
-        const current = store.list()[index]; if (!current) throw new Error('此存档已不存在。');
-        session.restore(current.save); closePanel(); tell(`已读取手动存档 ${id}`);
+        const current = store.get(id,slot);
+        confirm(`读取手动存档 ${id}？`,`${position(current.save.state?.sceneId)}
+${current.excerpt}
+当前未保存的进度会被替换。`,() => {
+          const latest = store.get(id,current);
+          session.restore(latest.save); closePanel(); tell(`已读取手动存档 ${id}`);
+        });
       })); load.dataset.slotAction = 'load'; load.disabled = !slot; row.append(load);
       if (slot) {
         const remove = button('删除',() => guarded(() => confirm(`删除手动存档 ${id}？`,`${slot.title}\n此操作仅删除这个手动存档。`,() => { store.remove(id,slot); openSlots(); tell(`已删除手动存档 ${id}`); })));
@@ -85,12 +96,17 @@ export function mountArchiveBridge(game, project, metaBridge) {
     const meta = metaBridge.meta, endings = new Set(meta.endings), cgs = new Set(meta.cgs);
     panel.append(element('p',`结局 ${ENDINGS.filter(e => endings.has(e.id)).length} / ${ENDINGS.length} · CG ${CGS.filter(cg => cgs.has(cg.id)).length} / ${CGS.length}`,'reset-progress'));
     panel.append(element('p','已走过的路、已见过的画面会留在这里。查看收藏不会改变当前进度。','reset-muted'));
-    const list = element('div',undefined,'reset-ending-grid');
-    ENDINGS.forEach((ending,index) => {
+    const list = element('div',undefined,'reset-ending-groups');
+    for (const [kind,label] of [['Normal End','Normal · 角色结局'],['Bad End','Bad · 异常结局'],['True End','True · 最终结局']]) {
+      const group = element('section'), grid = element('div',undefined,'reset-ending-grid');
+      const entries = ENDINGS.filter(ending => ending.kind === kind);
+      group.append(element('h3',`${label} ${entries.filter(ending => endings.has(ending.id)).length} / ${entries.length}`),grid); list.append(group);
+      entries.forEach((ending,index) => {
       const unlocked = endings.has(ending.id), card = element('article',undefined,'reset-ending'); card.dataset.ending = ending.id; card.dataset.unlocked = String(unlocked);
       card.append(element('small',unlocked ? ending.kind : `结局 ${String(index+1).padStart(2,'0')}`),element('h3',unlocked ? ending.title : '尚未抵达'));
-      list.append(card);
-    }); panel.append(element('h3','结局收藏'),list,element('h3','CG 图鉴'));
+      grid.append(card);
+      });
+    } panel.append(element('h3','结局收藏'),list,element('h3','CG 图鉴'));
     const grid = element('div',undefined,'reset-cg-grid');
     CGS.forEach((cg,index) => {
       const unlocked = cgs.has(cg.id), item = button('',() => { if (unlocked) showCG(cg); }); item.className = 'reset-cg-card'; item.dataset.cg = cg.id; item.disabled = !unlocked;
@@ -129,6 +145,7 @@ export function mountArchiveBridge(game, project, metaBridge) {
   return {openSlots,openCollection,dispose() {
     if (disposed) return; disposed = true; unsubscribe(); closePanel(); observer?.disconnect(); modal.removeEventListener('keydown',key,true);
     slotsButton.remove(); collectionButton.remove(); modal.remove(); host.style.removeProperty('--reset-reading');
+    for (const node of [...controls.children]) toolbar.insertBefore(node,status); controls.remove();
     quickSave.textContent = quickLabels[0]; quickLoad.textContent = quickLabels[1];
   }};
 }

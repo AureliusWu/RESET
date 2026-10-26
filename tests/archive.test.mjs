@@ -45,3 +45,12 @@ test('invalid slots, wrong-game envelopes and oversized saves are rejected befor
   assert.equal(storage.getItem(SLOT_KEY),null);
   assert.equal(new Set(ENDINGS.map(e=>e.id)).size,13);assert.equal(new Set(CGS.map(c=>c.id)).size,5);
 });
+
+
+test('a pending manual load cannot silently switch to a slot replaced in another window', () => {
+  const storage=memory(), a=createSlotStore(storage), b=createSlotStore(storage);
+  a.put(1,save,frame,null);const pending=a.get(1);b.put(1,save,{...frame,title:'更新的位置'},pending);
+  const raw=storage.getItem(SLOT_KEY);assert.throws(()=>a.get(1,pending),/其他窗口/);assert.equal(storage.getItem(SLOT_KEY),raw);
+  const current=a.get(1);current.save.state.line=999;assert.notEqual(a.get(1).save.state.line,999);
+  b.remove(1,a.get(1));assert.throws(()=>a.get(1),/不存在/);
+});

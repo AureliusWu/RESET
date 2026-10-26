@@ -51,7 +51,7 @@ try{
   await importSave(fixtures.endings['normal-linwan']);await page.locator('[data-reset-control=collection]').click();
   assert.equal(await page.locator('[data-ending=normal-linwan]').getAttribute('data-unlocked'),'true');assert.equal(await page.locator('[data-cg=letter-1842-cg]').isEnabled(),true);
   await page.screenshot({path:out+'/native-collection.png'});await page.keyboard.press('Escape');
-  await page.locator('[data-reset-control=slots]').click();await page.locator('[data-slot="1"] [data-slot-action=load]').click();
+  await page.locator('[data-reset-control=slots]').click();await page.locator('[data-slot="1"] [data-slot-action=load]').click();await page.locator('[data-reset-confirm]').click();
   assert.equal(await page.locator('.vn-engine').getAttribute('data-line'),line);
   const beforeRestart=await page.evaluate(()=>({loads:JSON.parse(localStorage.getItem('reset:meta:v1')).loads,slots:localStorage.getItem('reset:slots:v1')}));
   checks.push('Native manual slots save and restore; actual story CG and ending unlock in the archive');
@@ -60,7 +60,7 @@ try{
   assert.equal(close.status,0,close.stderr);await browser.close().catch(()=>{});browser=null;
   await new Promise(r=>setTimeout(r,1500));
   page=await launch();assert.equal(await page.evaluate(()=>localStorage.getItem('reset:slots:v1')),beforeRestart.slots);
-  await page.locator('[data-reset-control=slots]').click();await page.locator('[data-slot="1"] [data-slot-action=load]').click();await page.waitForFunction(line=>document.querySelector('.vn-engine')?.dataset.line===line,line);
+  await page.locator('[data-reset-control=slots]').click();await page.locator('[data-slot="1"] [data-slot-action=load]').click();await page.locator('[data-reset-confirm]').click();await page.waitForFunction(line=>document.querySelector('.vn-engine')?.dataset.line===line,line);
   assert.equal(await page.title(),`回留 · 读取 ${beforeRestart.loads+1}`);
   await page.locator('[data-control=load]').click();assert.equal(await page.locator('.vn-engine').getAttribute('data-line'),line);
   assert.equal(await page.title(),`回留 · 读取 ${beforeRestart.loads+2}`);
