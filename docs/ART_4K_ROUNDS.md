@@ -15,7 +15,7 @@
 ## Round 2 — 林晚正式 4K 角色基准
 
 - 恢复基线：`f87da7725af622e7b689d64143b96c8b1ae6039f`，2026-10-26。
-- 状态：资产接入完成；显示与最终 ZIP 验收待对应提交 Actions 确认；透明边缘视觉验收仍有阻断，不能宣布 Round 2 completed。
+- 状态：资产接入、Build、Release Web/Windows、显示及 PWA 技术验收全部通过；透明边缘视觉验收仍有阻断，不能宣布 Round 2 completed。
 - 来源：用户交接包 `RESET-Round2-LinWan-4K(1).zip`。导入前逐项核验原 MANIFEST 的 17 份文件大小和 SHA256，全部一致。没有重绘或以低分辨率试样替换母版。
 - 参考画风：长黑发、灰蓝眼、米白针织外套、蓝白校服、蓝色蝴蝶结、深蓝百褶裙、白袜棕色乐福鞋、蓝色书本与黑色肩包；现代日系二维角色设定稿风格。
 - Master：8 份 `2160×3840` RGBA PNG，目录 `game/assets/4k/characters/linwan/`。
@@ -38,4 +38,33 @@
 
 ### 对应提交的 CI / 最终证据
 
-等待推送后的 Build、Release Web、Release Windows；完成后在此补充提交 SHA、run URL、浏览器/原生 smoke/PWA 状态。技术验收通过也不能覆盖上述视觉阻断。
+- 美术提交 SHA：`70b75c7adf9a7b37dc53f7feaf3641815215dcb2`。
+- 固定提交信息：`art(linwan): add production 4k sprite set`。
+- [Build 回留 40279986681](https://github.com/AureliusWu/RESET/actions/runs/40279986681)：成功。
+- [Release 回留 40279986686](https://github.com/AureliusWu/RESET/actions/runs/40279986686)：Web、Windows 均成功。
+- 最终 Web ZIP：浏览器 39 项通过，零 page error；五表情、首次登场、表情动画和五组视口通过。
+- 最终 Windows ZIP：原生 WebView2 12 项通过，零 page error，limitations 数组为空；实际 RESET.exe 启动链、首次登场、五表情、8 图解码、退出/重启正常。物理显示器 DPI 仍不等于内容 DPI 模拟。
+- PWA：8 图实际 Service Worker 缓存、真实断网中显示新立绘、原有离线重载及 v1.1.0 同源升级通过。
+- 下载复核四个 Release Artifact 的 SHA256 均与 GitHub digest 一致；另下载 Build Artifact，同样通过 digest 校验。
+- 最终 Web 与 Windows 内层 ZIP 的 127 个 manifest 文件逐项通过大小及 SHA256 验证，两端 contentFingerprint 均为 `496a0ba6fbad4b`；均有 8 张 runtime，无 PNG master 混入客户端下载。
+- Web ZIP SHA256：`72406805ab5c34e014cdf728a1e4e244e20677108c083be1ad48355bb6e40f3a`。
+- Windows ZIP SHA256：`58813bfeb5a5504d437018b5d5e12d344afc1082e7f35044164cc4f762da938e`。
+- 目视抽查：Web 390×844、844×390、1920×1080 与 Windows smile 的原生显示截图。角色身份、位置、比例与台词显示合理；原素材白块残点仍以未通过登记，不能以缩小显示或对白遮住脚部代替边缘合格。
+
+### 完成门槛实录
+
+| 门槛 | 结果 |
+| --- | --- |
+| 8 份 4K PNG + 8 份 runtime 真正写入 GitHub | 通过 |
+| 正式五个 src 切换、原 asset ID 保留 | 通过 |
+| art:check / art:audit / art:size / build / check:release | 通过 |
+| test:release | 62/62 通过 |
+| Build / Release Web / Release Windows | 通过 |
+| 浏览器真实显示、五表情、动画、五视口 | 通过 |
+| Windows 原生 smoke、五表情、退出/重启 | 通过 |
+| dist / manifest / PWA cache / Windows package | 8 图均通过 |
+| PWA offline / v1.1.0 升级 | 通过 |
+| 无白边、无透明残块 | **未通过，阻断 Round 2 完成** |
+| Round 3 / RC / 正式发布 / Pages 覆盖 | 未执行 |
+
+该 SHA 的技术验收证据齐全，透明边缘视觉阻断仍待修复；本轮保持 v1.2.0-dev。后续文档提交不改变该候选包的素材和运行代码。
