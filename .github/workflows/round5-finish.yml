@@ -61,23 +61,27 @@ jobs:
             master=ROOT/'assets/4k/cg'/f'{asset_id}.png'
             runtime=ROOT/'assets/4k/runtime/cg'/f'{asset_id}.webp'
             src_dir=ROOT/'art-sources/chatgpt/cg'/asset_id
+            original=src_dir/'original.png'
             master.parent.mkdir(parents=True,exist_ok=True)
             runtime.parent.mkdir(parents=True,exist_ok=True)
             src_dir.mkdir(parents=True,exist_ok=True)
-            image.convert('RGB').save(master,'PNG',compress_level=6)
-            image.convert('RGB').resize((1920,1080),Image.Resampling.LANCZOS).save(runtime,'WEBP',quality=92,method=6)
+            rgb=image.convert('RGB')
+            rgb.save(original,'PNG',compress_level=6)
+            rgb.save(master,'PNG',compress_level=6)
+            rgb.resize((1920,1080),Image.Resampling.LANCZOS).save(runtime,'WEBP',quality=92,method=6)
             provenance={
               'schema':1,
               'generator':'deterministic composite from approved ChatGPT-origin 4K production assets',
               'workflow':'approved-4k-background-plus-approved-4k-linwan-composite',
-              'native4kClaim':True,
-              'processing':'Pillow 4K native canvas; approved RGBA sprite compositing; deterministic lighting/weather layers',
+              'native4kClaim':False,
+              'processing':'Pillow 4K composite canvas from approved production assets; deterministic lighting/weather layers',
               'authorization':'2026-10-26: Round 5 收尾，保持人物身份、画风与 4K 正式资产链',
               'category':'cg','id':asset_id,
               'sources':sources,
               'assets':[{
                 'master':f'game/assets/4k/cg/{asset_id}.png','masterSize':[3840,2160],'masterSHA256':sha(master),
                 'runtime':f'game/assets/4k/runtime/cg/{asset_id}.webp','runtimeSize':[1920,1080],'runtimeSHA256':sha(runtime),
+                'expression':'composite','original':f'game/art-sources/chatgpt/cg/{asset_id}/original.png','originalSize':[3840,2160],'originalSHA256':sha(original),
                 'prompt':prompt,'faceComposition':None
               }]
             }
