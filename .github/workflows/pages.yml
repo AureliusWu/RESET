@@ -4,6 +4,11 @@ on:
   workflow_dispatch:
   release:
     types: [published]
+  workflow_run:
+    workflows: ["Release 回留"]
+    types: [completed]
+  push:
+    branches: [main]
 
 permissions:
   contents: read
@@ -16,6 +21,11 @@ concurrency:
 
 jobs:
   deploy:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      github.event_name == 'release' ||
+      (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' && startsWith(github.event.workflow_run.head_commit.message, 'release: publish v')) ||
+      (github.event_name == 'push' && startsWith(github.event.head_commit.message, 'chore(release): deploy stable pages'))
     runs-on: ubuntu-latest
     timeout-minutes: 20
     environment:
