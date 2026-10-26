@@ -19,101 +19,13 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Wire UI visuals into runtime and gates
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          def patch(path, old, new):
-              p=Path(path); s=p.read_text(encoding='utf-8')
-              if s.count(old)!=1: raise SystemExit(f'{path}: expected one patch target, got {s.count(old)} for {old[:70]!r}')
-              p.write_text(s.replace(old,new),encoding='utf-8')
-
-          patch('scripts/build.mjs',
-                "import { readFile, rm, writeFile, readdir, copyFile } from 'node:fs/promises';",
-                "import { readFile, rm, writeFile, readdir, copyFile, mkdir } from 'node:fs/promises';")
-          patch('scripts/build.mjs',
-                "  for (const file of ['README.md', 'LICENSE.md', 'CHANGELOG_v1.2.0-dev.md']) {",
-                "  const uiRuntimeDir = resolve(root, 'game/assets/4k/runtime/ui'), uiOutputDir = resolve(output, 'assets/4k/runtime/ui');\n  await mkdir(uiOutputDir, { recursive: true });\n  for (const file of ['title-key-visual.webp','save-anomaly.webp','ending-collection-header.webp','cg-gallery-header.webp','combat-hud-key-visual.webp']) {\n    await copyFile(resolve(uiRuntimeDir, file), resolve(uiOutputDir, file));\n  }\n  for (const file of ['README.md', 'LICENSE.md', 'CHANGELOG_v1.2.0-dev.md']) {")
-          patch('scripts/build.mjs',
-                "extensions: ['reset-combat-v1', 'reset-meta-v1', 'reset-portrait-set-v1', 'reset-scene-art-v1', 'reset-archive-v1', 'reset-responsive-v1'],",
-                "extensions: ['reset-combat-v1', 'reset-meta-v1', 'reset-portrait-set-v1', 'reset-scene-art-v1', 'reset-archive-v1', 'reset-responsive-v1', 'reset-ui-key-visual-v1'],")
-
-          patch('game/runtime/archive.mjs',
-                "  const element = (tag, text, className) => { const node = doc.createElement(tag); if (text !== undefined) node.textContent = text; if (className) node.className = className; return node; };",
-                "  const element = (tag, text, className) => { const node = doc.createElement(tag); if (text !== undefined) node.textContent = text; if (className) node.className = className; return node; };\n  const uiImage = (id, alt) => { const image = element('img'); image.src = `./assets/4k/runtime/ui/${id}.webp`; image.alt = alt; image.className = 'reset-ui-header'; image.dataset.uiVisual = id; return image; };")
-          patch('game/runtime/archive.mjs',
-                "    panel.append(element('p',`当前位置：${position(session.getView().frame.sceneId)}`,'reset-current-position'));",
-                "    panel.append(uiImage('save-anomaly','异常存档视觉'));\n    panel.append(element('p',`当前位置：${position(session.getView().frame.sceneId)}`,'reset-current-position'));")
-          patch('game/runtime/archive.mjs',
-                "    const meta = metaBridge.meta, endings = new Set(meta.endings), cgs = new Set(meta.cgs);",
-                "    const meta = metaBridge.meta, endings = new Set(meta.endings), cgs = new Set(meta.cgs);\n    panel.append(uiImage('ending-collection-header','结局收藏关键视觉'));")
-          patch('game/runtime/archive.mjs',
-                "    } panel.append(element('h3','结局收藏'),list,element('h3','CG 图鉴'));",
-                "    } panel.append(element('h3','结局收藏'),list,uiImage('cg-gallery-header','CG 图鉴关键视觉'),element('h3','CG 图鉴'));")
-
-          patch('game/runtime/experience.mjs',
-                "    host.dataset.reducedMotion=String(view.settings.reducedMotion);",
-                "    host.dataset.reducedMotion=String(view.settings.reducedMotion);\n    host.dataset.titleVisual=frame.sceneId==='prologue_1842'?'true':'false';")
-          patch('game/runtime/experience.mjs',
-                "delete host.dataset.world;delete host.dataset.reducedMotion;",
-                "delete host.dataset.world;delete host.dataset.reducedMotion;delete host.dataset.titleVisual;")
-
-          css=Path('game/runtime/experience.css')
-          s=css.read_text(encoding='utf-8')
-          block="""
-
-/* Round 7: 4K UI key visuals remain decorative; controls and text stay DOM/CSS. */
-.vn-engine .vn-stage{position:relative}
-.vn-engine[data-title-visual=true] .vn-stage::after{content:\"\";position:absolute;inset:0;z-index:6;pointer-events:none;background:linear-gradient(180deg,#07111a22,#07111a66),url('./assets/4k/runtime/ui/title-key-visual.webp') center/cover no-repeat;opacity:.92}
-.reset-ui-header{display:block;width:100%;height:clamp(116px,18vw,220px);object-fit:cover;object-position:center;border:1px solid #46616a;border-radius:12px;margin:8px 0 16px;box-shadow:0 12px 32px #0004;background:#0d1a22}
-.reset-ui-header[data-ui-visual=save-anomaly]{object-position:center 48%}
-.reset-ui-header[data-ui-visual=ending-collection-header],.reset-ui-header[data-ui-visual=cg-gallery-header]{margin-top:14px}
-@media(max-width:700px){.reset-ui-header{height:118px;border-radius:9px;margin-bottom:12px}}
-"""
-          if 'Round 7: 4K UI key visuals' in s: raise SystemExit('experience.css already patched')
-          css.write_text(s.rstrip()+block+'\n',encoding='utf-8')
-
-          patch('game/runtime/combat.mjs',
-                ".reset-combat{position:fixed;inset:0;z-index:99999;background:rgba(5,8,12,.96);display:grid;",
-                ".reset-combat{position:fixed;inset:0;z-index:99999;background:linear-gradient(rgba(5,8,12,.86),rgba(5,8,12,.95)),url('./assets/4k/runtime/ui/combat-hud-key-visual.webp') center/cover no-repeat;display:grid;")
-
-          patch('scripts/check-release.mjs',
-                "for (const extension of ['reset-combat-v1','reset-meta-v1','reset-portrait-set-v1','reset-scene-art-v1','reset-archive-v1','reset-responsive-v1'])",
-                "for (const extension of ['reset-combat-v1','reset-meta-v1','reset-portrait-set-v1','reset-scene-art-v1','reset-archive-v1','reset-responsive-v1','reset-ui-key-visual-v1'])")
-          patch('scripts/check-release.mjs',
-                "for(const file of ['archive.mjs','archive-data.mjs','experience.css','experience.mjs','pwa.mjs','icon-192.png','icon-512.png'])assert(sw.includes(file),`${file} not cached`);",
-                "for(const file of ['archive.mjs','archive-data.mjs','experience.css','experience.mjs','pwa.mjs','icon-192.png','icon-512.png'])assert(sw.includes(file),`${file} not cached`);\nconst uiVisuals=['title-key-visual','save-anomaly','ending-collection-header','cg-gallery-header','combat-hud-key-visual'];\nfor(const id of uiVisuals){const path=`assets/4k/runtime/ui/${id}.webp`,bytes=await readFile(resolve(dist,path));const record=manifest.files.find(file=>file.name===path);assert(record?.size===bytes.length&&record.sha256===createHash('sha256').update(bytes).digest('hex'),`UI key visual missing/stale in final manifest: ${id}`);assert(sw.includes(path),`UI key visual not offline cached: ${id}`);}\nconst archiveRuntime=await readFile(resolve(dist,'archive.mjs'),'utf8'),combatRuntime=await readFile(resolve(dist,'combat.mjs'),'utf8'),experienceCss=await readFile(resolve(dist,'experience.css'),'utf8');\nfor(const id of ['save-anomaly','ending-collection-header','cg-gallery-header'])assert(archiveRuntime.includes(`${id}.webp`),`archive UI is not wired: ${id}`);\nassert(combatRuntime.includes('combat-hud-key-visual.webp'),'combat HUD visual is not wired');\nassert(experienceCss.includes('title-key-visual.webp'),'title key visual is not wired');")
-
-          p=Path('scripts/check-4k-production.mjs'); s=p.read_text(encoding='utf-8')
-          marker="console.log(`4K production pairing ok: ${adopted} runtime asset(s), ${adoptedCharacters.size} adopted character(s)`);"
-          if s.count(marker)!=1: raise SystemExit('check-4k-production marker drift')
-          insert="""let uiReady = 0;
-for (const item of plan.ui) {
-  const masterInfo = await verifyMaster(item.master, plan.policy.uiKeyVisual, item.id);
-  const runtimePath = resolve(game, item.runtime);
-  assert(await exists(runtimePath), `${item.id} runtime derivative missing: ${item.runtime}`);
-  const runtimeInfo = webpInfo(await readFile(runtimePath));
-  assert(runtimeInfo?.width === 1920 && runtimeInfo.height === 1080, `${item.id} runtime must be 1920x1080`);
-  assert(runtimeInfo.width <= masterInfo.width && runtimeInfo.height <= masterInfo.height, `${item.id} runtime exceeds master dimensions`);
-  const provenance = await readJson(resolve(root, `game/art-sources/chatgpt/ui/${item.id}/provenance.json`));
-  assert(provenance.native4kClaim === false, `${item.id}: processed UI master must not claim native 4K`);
-  for (const [pathKey, hashKey] of [['sourceVector','sourceVectorSHA256'],['original','originalSHA256'],['master','masterSHA256'],['runtime','runtimeSHA256']]) {
-    const bytes = await readFile(resolve(root, provenance[pathKey]));
-    assert(createHash('sha256').update(bytes).digest('hex') === provenance[hashKey], `${item.id}: ${pathKey} provenance mismatch`);
-  }
-  const original = pngInfo(await readFile(resolve(root, provenance.original)));
-  assert(original?.width === 1920 && original.height === 1080, `${item.id}: original dimensions mismatch`);
-  uiReady++;
-}
-
-console.log(`4K production pairing ok: ${adopted} runtime asset(s), ${adoptedCharacters.size} adopted character(s), ${uiReady} UI key visual(s)`);"""
-          p.write_text(s.replace(marker,insert),encoding='utf-8')
-          PY
+      - name: Apply Round 7 integration patch
+        run: python scripts/round7-integrate.py
 
       - name: Commit Round 7 integration
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add scripts/build.mjs scripts/check-release.mjs scripts/check-4k-production.mjs game/runtime/archive.mjs game/runtime/experience.mjs game/runtime/experience.css game/runtime/combat.mjs
+          git add scripts/build.mjs scripts/check-release.mjs scripts/check-4k-production.mjs game/runtime/experience.css
           git commit -m 'feat(round7): integrate 4K UI key visuals'
           git push origin HEAD:main
