@@ -27,11 +27,11 @@ try{
   const start=await page.locator('.vn-engine').getAttribute('data-line');
   await control('save').click();await control('next').click();await control('load').click();assert.equal(await page.locator('.vn-engine').getAttribute('data-line'),start);
   await archive('slots').click();await page.locator('[data-slot="1"] [data-slot-action=save]').click();await page.keyboard.press('Escape');
-  await control('next').click();await archive('slots').click();await page.locator('[data-slot="1"] [data-slot-action=load]').click();assert.equal(await page.locator('.vn-engine').getAttribute('data-line'),start);
+  await control('next').click();await archive('slots').click();await page.locator('[data-slot="1"] [data-slot-action=load]').click();if(await page.locator('[data-reset-confirm]').isVisible())await page.locator('[data-reset-confirm]').click();assert.equal(await page.locator('.vn-engine').getAttribute('data-line'),start);
   await archive('collection').click();assert.equal(await page.locator('.reset-ending[data-unlocked=true]').count(),0);await page.keyboard.press('Escape');
   await page.screenshot({path:out+'/online-desktop.png',fullPage:true});
   pass('Real public game renders production art and supports quick saves, manual slots, Meta and spoiler-free collection');
-  const fixtures=JSON.parse(await readFile('test-results/route-fixtures.json','utf8'));
+  const fixtures=JSON.parse(await readFile(process.env.RESET_FIXTURES||'test-results/route-fixtures.json','utf8'));
   await control('settings').click();await page.locator('input[type=file]').setInputFiles({name:'acceptance-save.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(fixtures.witnesses.c6_no_save))});
   await page.locator('.vn-modal').waitFor({state:'hidden'});assert.equal(await control('save').isHidden(),true);assert.equal(await archive('slots').isHidden(),true);
   for(let count=0;count<100;count++){
@@ -45,7 +45,7 @@ try{
   await page.waitForFunction(()=>document.getElementById('status').textContent.includes('可离线游玩'),null,{timeout:90000});
   await page.waitForFunction(()=>navigator.serviceWorker.controller!==null);
   await control('save').click();await context.setOffline(true);await page.reload();await page.locator('.vn-engine').waitFor();await page.locator('.vn-background').waitFor({state:'visible'});
-  await archive('slots').click();await page.locator('[data-slot="1"] [data-slot-action=load]').click();assert.equal(await page.locator('.vn-engine').getAttribute('data-line'),start);
+  await archive('slots').click();await page.locator('[data-slot="1"] [data-slot-action=load]').click();if(await page.locator('[data-reset-confirm]').isVisible())await page.locator('[data-reset-confirm]').click();assert.equal(await page.locator('.vn-engine').getAttribute('data-line'),start);
   await archive('collection').click();assert.equal(await page.locator('[data-ending=true-end]').getAttribute('data-unlocked'),'true');await page.keyboard.press('Escape');
   assert.equal(await page.title(),'回留 · 明天见');assert.equal(await page.locator('#error').innerText(),'');
   await page.screenshot({path:out+'/offline-mobile.png',fullPage:true});

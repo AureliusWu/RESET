@@ -74,12 +74,20 @@ try{
   await dpi.send('Emulation.clearDeviceMetricsOverride');await dpi.detach();
   checks.push('WebView2 content DPI emulation at 125%, 150% and 200% has no horizontal overflow; physical monitor scaling remains a manual check');
   await importSave(fixtures.combat.faceless_first);await page.locator('.reset-combat canvas').waitFor();
+  const focusClient=await page.context().newCDPSession(page);
+  // Playwright enables focus emulation in its own Chromium initialization.
+  // Disable it before observing actual Win32 foreground/visibility behavior.
+  await focusClient.send('Emulation.setFocusEmulationEnabled',{enabled:false});
   nativeWindow('focus');
   const foreground=await page.evaluate(()=>document.hasFocus());
   if(foreground){
     if(await page.locator('[data-combat-resume]').isVisible())await page.locator('[data-combat-resume]').click();
-    nativeWindow('defocus');await page.locator('[data-combat-resume]').waitFor({state:'visible'});
-    checks.push('Actual native foreground focus loss pauses combat until explicit resume');
+    await page.evaluate(()=>{window.__resetFocusProbe={blur:false};addEventListener('blur',()=>window.__resetFocusProbe.blur=true,{once:true});});
+    nativeWindow('defocus');
+    if(await page.evaluate(()=>window.__resetFocusProbe.blur)){
+      await page.locator('[data-combat-resume]').waitFor({state:'visible'});
+      checks.push('Actual native foreground focus loss pauses combat until explicit resume');
+    }else limitations.push('The external focus probe did not produce a real blur event; physical Alt+Tab remains unverified');
   }else limitations.push('The runner could not establish a real foreground WebView2 focus; physical Alt+Tab remains unverified');
   if(await page.locator('[data-combat-resume]').isVisible())await page.locator('[data-combat-resume]').click();
   nativeWindow('minimize');nativeWindow('restore');

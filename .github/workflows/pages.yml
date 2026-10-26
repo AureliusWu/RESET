@@ -111,14 +111,14 @@ jobs:
           VN_ENGINE_PATH: ${{ github.workspace }}/vn-engine
           RESET_LIVE_URL: ${{ steps.deployment.outputs.page_url }}
           RELEASE_TAG: ${{ steps.release.outputs.tag }}
-        working-directory: stable-verifier
+          RESET_FIXTURES: stable-verifier/test-results/route-fixtures.json
         run: node tests/pages-live.mjs
 
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: RESET-pages-live-validation
-          path: stable-verifier/test-results/pages-live
+          path: test-results/pages-live
 
       - name: Report the deployed address
         env:
