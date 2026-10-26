@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#07131a"/><stop offset=".5" stop-color="#17313a"/><stop offset="1" stop-color="#2b3c42"/></linearGradient>
+  <radialGradient id="light"><stop stop-color="#c9e4db" stop-opacity=".45"/><stop offset="1" stop-color="#c9e4db" stop-opacity="0"/></radialGradient>
+</defs>
+<rect width="1920" height="1080" fill="url(#bg)"/>
+<ellipse cx="960" cy="480" rx="790" ry="430" fill="url(#light)"/>
+<g fill="#0d1d24" stroke="#6c8e8d" stroke-width="3">
+  <path d="M280 670h160l25 220H255Z"/><path d="M500 635h160l25 255H475Z"/><path d="M720 605h160l25 285H695Z"/><path d="M1040 605h160l25 285h-210Z"/><path d="M1260 635h160l25 255h-210Z"/><path d="M1480 670h160l25 220h-210Z"/>
+</g>
+<g fill="none" stroke="#b9d6d0" opacity=".35"><path d="M235 900h1450" stroke-width="2"/><path d="M960 110v730" stroke-dasharray="9 16" stroke-width="2"/></g>
+<g transform="translate(845 515)" opacity=".82"><rect width="230" height="310" rx="18" fill="#0b151b" stroke="#a2beb9" stroke-width="4" stroke-dasharray="12 12"/><path d="M35 235h160M60 195h110M72 153h86" stroke="#8db1ad" stroke-width="3"/><circle cx="115" cy="92" r="32" fill="none" stroke="#9ebdb9" stroke-width="4"/></g>
+<text x="960" y="230" text-anchor="middle" fill="#e7f0ed" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="76" font-weight="300" letter-spacing="14">结局收藏</text>
+<text x="960" y="300" text-anchor="middle" fill="#a8c3bf" font-family="Inter,Arial,sans-serif" font-size="24" letter-spacing="10">ROUTES REMEMBERED</text>
+<text x="960" y="980" text-anchor="middle" fill="#779491" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="22" letter-spacing="6">六条抵达的路 · 一把仍空着的椅子</text>
+</svg>
