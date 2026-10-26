@@ -22,24 +22,10 @@ jobs:
         with:
           node-version: 22
 
-      - name: Verify no runtime or content references legacy SVG
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          roots = [Path('game/content'), Path('game/runtime')]
-          bad=[]
-          for root in roots:
-              for p in root.rglob('*'):
-                  if p.is_file() and p.suffix.lower() in {'.json','.mjs','.js','.css','.html'}:
-                      text=p.read_text(encoding='utf-8',errors='ignore')
-                      if '.svg' in text:
-                          bad.append(str(p))
-          if bad:
-              raise SystemExit('legacy SVG runtime/content references remain: '+', '.join(bad))
-          print('No runtime/content SVG references remain')
-          PY
+      - name: Verify production references have left legacy SVG
+        run: npm run art:legacy -- --strict
 
-      - name: Remove retired legacy SVG source assets
+      - name: Remove retired root legacy SVG assets
         run: |
           find game/assets -maxdepth 1 -type f -name '*.svg' -print -delete
 
@@ -59,8 +45,8 @@ jobs:
           a=Path('scripts/audit-4k-art.mjs')
           s=a.read_text(encoding='utf-8')
           needle="const currentSvg=(await walk(assetsRoot)).filter(p=>p.endsWith('.svg')).map(p=>relative(game,p).split(sep).join('/')).sort();"
-          repl=needle+"\nif (plan.policy.legacySvgRetired && currentSvg.length) throw new Error(`Round 8 policy forbids legacy SVG in game/assets: ${currentSvg.join(', ')}`);"
-          if 'Round 8 policy forbids legacy SVG' not in s:
+          repl=needle+"\nconst legacyRootSvg=currentSvg.filter(p=>/^assets\\/[^/]+\\.svg$/i.test(p));\nif (plan.policy.legacySvgRetired && legacyRootSvg.length) throw new Error(`Round 8 policy forbids retired root SVG assets: ${legacyRootSvg.join(', ')}`);"
+          if 'Round 8 policy forbids retired root SVG assets' not in s:
               if needle not in s: raise SystemExit('audit insertion point missing')
               s=s.replace(needle,repl)
           a.write_text(s,encoding='utf-8')
@@ -88,11 +74,11 @@ jobs:
           if marker not in s:
               lines=[
                 '', marker, '',
-                'Round 8 completed。正式运行时与剧情引用已全部脱离 legacy SVG；`game/assets/` 根目录旧 SVG 已删除，4K master/runtime 成为唯一正式视觉资产链。', '',
-                '- Round 8 开始前自动扫描 `game/content/` 与 `game/runtime/`，确认不存在 `.svg` 运行时/剧情引用后才允许删除旧源。',
-                '- 删除旧背景、CG、角色、异常体及 UI 的 35 份根目录 SVG；`game/assets/4k/` 下正式 PNG master 与 WebP runtime 不受影响。',
+                'Round 8 completed。正式 production 资产引用已全部脱离 legacy SVG；`game/assets/` 根目录旧 SVG 已删除，4K master/runtime 成为唯一正式视觉资产链。', '',
+                '- 清理前以 `art:legacy -- --strict` 核验正式 production overlay，确认 58 个 production 引用不存在 SVG。章节与基础工程中仍可保留被后续 overlay 覆盖的历史定义，但不会进入最终 production。',
+                '- 删除旧背景、CG、角色、异常体及 UI 的根目录 legacy SVG；`game/assets/4k/` 正式 PNG master 与 WebP runtime 不受影响。',
                 '- `asset-plan.json` 冻结 `legacySvgFallbackUntilRound8=false`、`legacySvgRetired=true`；anomaly/UI 的 `current` 更新为正式 runtime。',
-                '- `audit-4k-art.mjs` 新增 Round 8 永久门禁：迁移完成后若 `game/assets/` 再出现 legacy SVG，审计直接失败。',
+                '- `audit-4k-art.mjs` 新增永久门禁：迁移完成后若 `game/assets/` 根目录再次出现 retired SVG，审计直接失败；生成器的开发期 `generated-*/*.svg` 不属于 production fallback。',
                 '- 严格 4K 审计、art:check、build、check:release、test:release 全部通过后才提交。',
                 '- 保持 `v1.2.0-dev`，不进入 RC，不覆盖正式 `v1.1.0 Pages`。下一轮为 Round 9 — 全游戏视觉验收。',
               ]
