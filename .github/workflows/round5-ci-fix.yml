@@ -18,26 +18,24 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Replace legacy True End SVG assertions with Round 5 runtime WebP
+      - name: Replace legacy True End SVG assertion in browser acceptance
         run: |
           python - <<'PY'
           from pathlib import Path
+          p=Path('tests/browser-release.mjs')
           old='assets/generated-scenes/true-end-riverside-cg.svg'
           new='assets/4k/runtime/cg/true-end-riverside-cg.webp'
-          for name in ['.github/workflows/build.yml','tests/browser-release.mjs']:
-            p=Path(name)
-            s=p.read_text(encoding='utf-8')
-            count=s.count(old)
-            if count != 1:
-              raise SystemExit(f'{name}: expected exactly one stale assertion, found {count}')
-            p.write_text(s.replace(old,new),encoding='utf-8')
-            print(name, 'updated')
+          s=p.read_text(encoding='utf-8')
+          count=s.count(old)
+          if count != 1:
+            raise SystemExit(f'expected exactly one stale browser assertion, found {count}')
+          p.write_text(s.replace(old,new),encoding='utf-8')
           PY
 
-      - name: Commit CI gate migration
+      - name: Commit browser acceptance migration
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add .github/workflows/build.yml tests/browser-release.mjs
-          git commit -m 'test(art): validate Round 5 CG runtime instead of legacy SVG'
+          git add tests/browser-release.mjs
+          git commit -m 'test(art): validate Round 5 CG runtime in browser cache'
           git push origin HEAD:main
