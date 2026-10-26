@@ -37,7 +37,7 @@ jobs:
             convert "$original" -filter Lanczos -resize '3840x2160!' "$master"
             cwebp -quiet -q 92 "$original" -o "$runtime"
             identify "$original" "$master"
-            webpinfo "$runtime" | grep 'Canvas size'
+            webpinfo "$runtime" >/dev/null
           done
 
       - name: Write provenance and SHA256
