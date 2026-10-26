@@ -105,7 +105,7 @@ async function injectGameRuntime(project) {
   for (const file of ['title-key-visual.webp','save-anomaly.webp','ending-collection-header.webp','cg-gallery-header.webp','combat-hud-key-visual.webp']) {
     await copyFile(resolve(uiRuntimeDir, file), resolve(uiOutputDir, file));
   }
-  for (const file of ['README.md', 'LICENSE.md', 'CHANGELOG_v1.2.0-rc.2.md']) {
+  for (const file of ['README.md', 'LICENSE.md', 'CHANGELOG_v1.2.1-dev.md']) {
     await copyFile(resolve(root, file), resolve(output, file));
   }
   for (const file of ['combat.mjs','meta.mjs','archive.mjs','archive-data.mjs','experience.css','experience.mjs','ui.mjs','pwa.mjs']) {
@@ -141,7 +141,7 @@ async function injectGameRuntime(project) {
     version: project.version,
     engine: packagedManifest.engine,
     contentFingerprint: fingerprint,
-    extensions: ['reset-combat-v1', 'reset-meta-v1', 'reset-portrait-set-v1', 'reset-scene-art-v1', 'reset-archive-v1', 'reset-responsive-v1', 'reset-ui-key-visual-v1', 'reset-art-completeness-v1'],
+    extensions: ['reset-combat-v1', 'reset-meta-v1', 'reset-portrait-set-v1', 'reset-scene-art-v1', 'reset-archive-v1', 'reset-responsive-v1', 'reset-ui-key-visual-v1', 'reset-art-completeness-v1', 'reset-art-visual-gate-v1'],
     files: finalFiles.map(file => ({ name: file.name, size: file.bytes.length, sha256: createHash('sha256').update(file.bytes).digest('hex') }))
   };
   await writeFile(resolve(output, 'build-manifest.json'), JSON.stringify(metadata, null, 2) + '\n');
@@ -154,7 +154,9 @@ if (process.env.ALLOW_ENGINE_DRIFT !== '1') {
 }
 
 run(process.execPath, [resolve(root, 'scripts/generate-audio.mjs')], root);
-run(process.execPath, [resolve(root, 'scripts/generate-portraits.mjs')], root);
+// Production character art is source-controlled under game/assets/4k. The
+// deterministic SVG portrait generator is legacy/prototype tooling only and
+// MUST NOT participate in a production build.
 run(process.execPath, [resolve(root, 'scripts/generate-scenes.mjs')], root);
 let project = JSON.parse(await readFile(projectFile, 'utf8'));
 for (const pack of await loadContentPacks()) project = applyPack(project, pack);
