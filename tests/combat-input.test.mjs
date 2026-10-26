@@ -7,7 +7,7 @@ import { runInNewContext } from 'node:vm';
 // Drive the shipped plugin with a manual animation clock. Input events can both
 // arrive before one frame, as they do for fast taps on a slow or hidden browser.
 const source = readFileSync(resolve(process.env.RESET_DIST || 'dist', 'combat.mjs'), 'utf8');
-function harness(sceneId = 'faceless_first', settings = {}, focused = true, initiallyPaused = false, deferResults = false) {
+function harness(sceneId = 'faceless_first', settings = {}, focused = true, initiallyPaused = false, deferResults = false, store = new Map()) {
   const events = () => {
     const handlers = new Map();
     return {
@@ -17,12 +17,14 @@ function harness(sceneId = 'faceless_first', settings = {}, focused = true, init
       count() { return [...handlers.values()].reduce((sum, set) => sum + set.size, 0); }
     };
   };
-  const window = events(), document = { ...events(), hidden: false, hasFocus:()=>focused }, frames = new Map(), timers = new Map(), store = new Map();
-  const drawn = { x: 170, y: 270, stamina: 100, hp: 5, bossHp: null, swings:0, trails:0 }, buttons = new Map();
+  const window = events(), document = { ...events(), hidden: false, hasFocus:()=>focused }, frames = new Map(), timers = new Map();
+  const drawn = { x: 170, y: 270, stamina: 100, hp: 5, bossHp: null, swings:0, trails:0, telegraph:null }, buttons = new Map();
   let time = 0, serial = 0, removed = false, result;
   const results = [], microtasks = [];
   const ctx = new Proxy({
     createLinearGradient: () => ({ addColorStop() {} }),
+    clearRect() { drawn.telegraph=null; },
+    fillText(text) { if (/^(圆圈内危险|横向范围攻击|正在瞄准落点)/.test(text)) drawn.telegraph=text.split(' · ')[0]; },
     arc(x, y, r) { if (r === 18) { drawn.x = x; drawn.y = y; } if(r===65||r===85)drawn.swings++;if(r===17)drawn.trails++; },
     fillRect(x, y, width) {
       if (x === 30 && y === 48 && this.fillStyle === '#9db7a7') drawn.stamina = width / 226 * 100;
@@ -57,7 +59,7 @@ function harness(sceneId = 'faceless_first', settings = {}, focused = true, init
   const tap = code => { key('keydown', code); key('keyup', code); };
   const touch = (type, code) => buttons.get(code).emit(type);
   const flush = () => { for(const fn of microtasks.splice(0)) fn(); };
-  return { frame, key, tap, touch, window, document, bridge, session, notify, flush, results, drawn, view, frames, timers, resume, hud, get removed() { return removed; }, get result() { return result; } };
+  return { frame, key, tap, touch, window, document, bridge, session, notify, flush, results, drawn, view, frames, timers, resume, hud, get time(){return time;}, get removed() { return removed; }, get result() { return result; } };
 }
 
 for (const encounter of ['faceless_first','faceless_second','c5_echo_fail']) {
@@ -190,4 +192,23 @@ test('a host pause between combat cleanup and the VN microtask retains the resul
 test('disposing after combat cleanup prevents an already queued VN result', () => {
   const h=harness('c5_echo_fail',{},true,false,true); reachResult(h); h.frame(50); assert.equal(h.removed,true);
   h.bridge.dispose(); h.flush(); assert.equal(h.result,undefined); assert.equal(h.window.count(),0);
+});
+
+test('Boss learning persists across encounters, changes adaptive patterns and caps the tempo increase', () => {
+  const store=new Map(), observed=[];
+  const attackCycle=h=>{
+    const until=predicate=>{for(let budget=0;budget<1000&&!predicate();budget++)h.frame();assert.ok(predicate());};
+    until(()=>h.drawn.telegraph!==null);const first={type:h.drawn.telegraph,time:h.time};
+    until(()=>h.drawn.telegraph===null);until(()=>h.drawn.telegraph!==null);
+    return {first:first.type,second:h.drawn.telegraph,interval:h.time-first.time};
+  };
+  for(const prior of [0,1,99,199]){
+    store.set('reset:combat-meta:v1',JSON.stringify({faceless_second:prior}));
+    const h=harness('faceless_second',{},true,false,false,store);observed.push(attackCycle(h));h.bridge.dispose();
+    assert.equal(JSON.parse(store.get('reset:combat-meta:v1')).faceless_second,prior+1);
+  }
+  assert.equal(observed[0].first,'圆圈内危险');assert.equal(observed[1].first,'横向范围攻击');
+  assert.ok(observed[2].interval<observed[0].interval);assert.equal(observed[2].interval,observed[3].interval,'later attempts must stop increasing speed at the existing cap');
+  const echo=harness('c5_echo_fail');const prediction=attackCycle(echo);
+  assert.equal(prediction.first,'正在瞄准落点');assert.equal(prediction.second,'圆圈内危险');echo.bridge.dispose();
 });

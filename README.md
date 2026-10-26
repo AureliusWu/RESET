@@ -79,7 +79,7 @@ game/content/chapter5.json          10 月 24 日 / 梧城北站 / 第七人
 game/content/chapter6.json          不保存 / True Route / True End
 game/content/zz-art-v1.json         角色 production 资产替换
 game/content/zzz-scene-art-v1.json  背景与 CG production 资产替换
-game/content/zzzz-release-v1.json   v1.1.0 最终内容版本锁
+game/content/zzzz-release-v1.json   当前开发候选内容版本锁
 game/runtime/combat.mjs             《回留》实时 2D 战斗插件
 game/runtime/meta.mjs               跨读档 Meta 与不可逆 UI 插件
 game/runtime/archive.mjs            存档管理、结局收藏与 CG 图鉴
@@ -108,6 +108,8 @@ python -m http.server 8000 --directory dist
 `npm run check:release` 会验证剧情结局、Boss 回接、Meta/战斗插件、离线缓存、角色差分、production 背景/CG 与终局音乐，避免生成结构不完整的发行包。
 
 CI 还会从最终 ZIP 运行 `npm run test:browser`，检查真实断网重载、三处实时战斗胜负、结局/Meta/不可逆区间；Windows CI 从最终 ZIP 执行原生启动与进程重启持久化验收。测试报告与截图作为独立 Artifact 保留。
+
+v1.2.0 断点续跑状态、修复与未完成实机项目见 [本轮验收](docs/V1_2_0_RESUME.md)；开发版本继续为 `1.2.0-dev`。
 
 ## 发布边界
 
