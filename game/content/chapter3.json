@@ -54,7 +54,7 @@
       "background": "old-art-room",
       "noSprite": true,
       "lines": [
-        {"id":"c3m001","speaker":"旁白","text":"六个人第一次在同一间教室里坐下。没有人知道应该从哪一种“不可能”开始解释。"},
+        {"id":"c3m001","speaker":"旁白","text":"六位女生第一次和陈渡坐在同一间教室里。谁也没先开口，只有旧风扇还在转。"},
         {"id":"c3m002","speaker":"沈听澜","text":"我们只验证一件事：同一个被覆盖事件，会不会在不同人身上留下不同证据。","expression":"serious"},
         {"id":"c3m003","speaker":"乔南星","text":"那就选一种最不像巧合的。","expression":"neutral"}
       ],
@@ -114,7 +114,7 @@
         {"id":"c3c003","speaker":"许栖","text":"你问错了。","expression":"serious"},
         {"id":"c3c004","speaker":"许栖","text":"应该问：是谁每次读档以后，都被从照片里拿掉了？"},
         {"id":"c3c005","speaker":"陈渡","text":"你知道答案？"},
-        {"id":"c3c006","speaker":"许栖","text":"我只知道一件事。六天后杀你的人，会是你亲口请求她动手的。","expression":"worried"}
+        {"id":"c3c006","speaker":"许栖","text":"我只知道一件事。10月24日杀你的人，会是你亲口请求她动手的。","expression":"worried"}
       ],
       "next": "route_merge_message"
     },
@@ -185,7 +185,7 @@
         {"id":"c3h001","speaker":"旁白","text":"乔南星的手机再次震动。"},
         {"id":"c3h002","speaker":"系统","text":"陈渡（已离线）：杀你的人不是凶手。"},
         {"id":"c3h003","speaker":"系统","text":"陈渡（已离线）：不要阻止她。先弄明白我为什么会求她。"},
-        {"id":"c3h004","speaker":"陈渡","text":"……未来的我到底在救谁？"},
+        {"id":"c3h004","speaker":"陈渡","text":"……未来的我到底在救谁？刚才那个选择，我明明还没开口。"},
         {"id":"c3h005","speaker":"许栖","text":"也可能是在救世界。也可能只是在救一个人。","expression":"worried"}
       ],
       "next": "route_focus_choice"

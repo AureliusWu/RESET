@@ -58,7 +58,7 @@
         {"id":"c2a003","speaker":"陈渡","text":"可旧地图上有？"},
         {"id":"c2a004","speaker":"沈听澜","text":"不止有。它还被人用同一种笔迹圈了七次。"},
         {"id":"c2a005","speaker":"旁白","text":"圆圈旁写着一行极小的字：不要在18:42经过这里。"},
-        {"id":"c2a006","speaker":"沈听澜","text":"陈渡，如果现实会改记录，那纸和记忆里总有一个在说谎。","expression":"worried"}
+        {"id":"c2a006","speaker":"沈听澜","text":"地图和档案对不上。先都留着，别急着信任何一份。","expression":"worried"}
       ],
       "next": "riverside_wrong_turn"
     },

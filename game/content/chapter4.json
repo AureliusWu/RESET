@@ -16,8 +16,8 @@
       "noSprite": true,
       "lines": [
         {"id":"c4g001","speaker":"旁白","text":"距离10月24日只剩四天。六个人都带来了新的线索。"},
-        {"id":"c4g002","speaker":"陈渡","text":"这一次我不想只追最像答案的线索。我想知道，你们各自记住了什么。"},
-        {"id":"c4g003","speaker":"沈听澜","text":"那就一次只跟一个人走。否则证据会互相污染。","expression":"serious"}
+        {"id":"c4g002","speaker":"陈渡","text":"这一次，先听你们说。你们记住的那些事，我不一定都知道。"},
+        {"id":"c4g003","speaker":"沈听澜","text":"那就分开核对。一次跟一个人走，免得把彼此的记忆混在一起。","expression":"serious"}
       ],
       "choices": [
         {"id":"route_linwan","text":"林晚：找回没有发生过的约定","next":"c4_linwan_1","effect":{"linwan":3,"routeCommit":1}},
@@ -36,16 +36,16 @@
         {"id":"c4l001","speaker":"林晚","text":"我昨晚又梦见那家店了。你在柜台后面，把一张纸塞给我。","expression":"worried"},
         {"id":"c4l002","speaker":"陈渡","text":"纸上写了什么？"},
         {"id":"c4l003","speaker":"林晚","text":"“如果我开始忘记自己，就由你结束这一轮。”","expression":"serious"},
-        {"id":"c4l004","speaker":"陈渡","text":"所以六天后……是我请求你杀我。"},
-        {"id":"c4l005","speaker":"林晚","text":"我不接受。至少现在的我不接受。","expression":"worried"}
+        {"id":"c4l004","speaker":"陈渡","text":"所以10月24日那天……是我请求你杀我。"},
+        {"id":"c4l005","speaker":"林晚","text":"我不答应。你别拿梦里的我，替现在的我点头。","expression":"worried"}
       ],"next":"c4_linwan_2"
     },
     {
       "id":"c4_linwan_2","chapter":4,"title":"只属于这一轮的晚霞","location":"梧城江滩","time":"18:03","background":"riverside-dusk","character":"linwan",
       "lines":[
         {"id":"c4l101","speaker":"林晚","text":"如果以后只有你记得今天，我们现在说的话还算数吗？","expression":"neutral"},
-        {"id":"c4l102","speaker":"陈渡","text":"算。只要至少有一个人愿意负责地记着。"},
-        {"id":"c4l103","speaker":"林晚","text":"那你也答应我一件事。不要因为能重来，就把这一轮的我当成可以放弃的人。","expression":"worried"}
+        {"id":"c4l102","speaker":"陈渡","text":"算。我会记得。以后你再问，我也会这么回答。"},
+        {"id":"c4l103","speaker":"林晚","text":"那你也答应我。别想着下次还能见，就把现在的我留在这里。","expression":"worried"}
       ],
       "choices":[
         {"id":"linwan_normal","text":"答应她，停止追查","next":"end_linwan","effect":{"linwan":2}},
@@ -64,7 +64,7 @@
     {
       "id":"c4_xiaoman_1","chapter":4,"title":"借来的悲伤","location":"梧城一中·旧美术教室","time":"15:20","background":"old-art-room","character":"xiaoman",
       "lines":[
-        {"id":"c4x001","speaker":"周小满","text":"我终于分得出来了。那些情绪不是我的。像有人把哭过的感觉借给我。","expression":"serious"},
+        {"id":"c4x001","speaker":"周小满","text":"我分出来了。那种想哭又哭不出来的感觉，不是我的。","expression":"serious"},
         {"id":"c4x002","speaker":"陈渡","text":"能找到是谁吗？"},
         {"id":"c4x003","speaker":"周小满","text":"能。最强的一股……来自林晚。还有一股来自你。","expression":"worried"},
         {"id":"c4x004","speaker":"周小满","text":"你们两个那天都很害怕，可只有一个人在哭。"}
@@ -73,7 +73,7 @@
     {
       "id":"c4_xiaoman_2","chapter":4,"title":"把恐惧说出来","location":"学校天台","time":"17:16","background":"rooftop-evening","character":"xiaoman",
       "lines":[
-        {"id":"c4x101","speaker":"周小满","text":"我以前总觉得害怕就是没用。现在发现，害怕至少能告诉你什么东西真的重要。","expression":"smile"},
+        {"id":"c4x101","speaker":"周小满","text":"以前一害怕，我就骂自己没用。现在想想，怕也是因为舍不得吧。","expression":"smile"},
         {"id":"c4x102","speaker":"陈渡","text":"那你现在怕什么？"},
         {"id":"c4x103","speaker":"周小满","text":"怕下一轮你认识我，我却不认识你。","expression":"worried"}
       ],
@@ -164,7 +164,7 @@
     {
       "id":"c4_tangli_2","chapter":4,"title":"不要只会回头","location":"废弃站口","time":"17:02","background":"station-night","character":"tangli",
       "lines":[
-        {"id":"c4d101","speaker":"唐梨","text":"你最大的毛病不是会读档。是你一遇到做错的事，就觉得回去一定比往前走好。","expression":"serious"},
+        {"id":"c4d101","speaker":"唐梨","text":"你一做错事就想往回走。可你都没看过前面的路。","expression":"serious"},
         {"id":"c4d102","speaker":"陈渡","text":"如果回去真的能救人呢？"},
         {"id":"c4d103","speaker":"唐梨","text":"那也得有人负责把被救下来的人带到明天。","expression":"worried"}
       ],
@@ -176,7 +176,7 @@
     {
       "id":"end_tangli","chapter":4,"title":"唐梨 Normal End · 向前跑","location":"城外江堤","time":"10月24日 18:43","background":"riverside-dusk","character":"tangli",
       "lines":[
-        {"id":"e4d001","speaker":"唐梨","text":"十八点四十二已经在我们后面了。","expression":"smile"},
+        {"id":"e4d001","speaker":"唐梨","text":"十八点四十二分已经在我们后面了。","expression":"smile"},
         {"id":"e4d002","speaker":"旁白","text":"陈渡没有回头。第一次，读档键在他的意识里安静了下来。"}
       ],"ending":"normal-tangli"
     },
@@ -184,9 +184,9 @@
     {
       "id":"c4_nanxing_1","chapter":4,"title":"发送端在未来","location":"梧城一中信息楼","time":"15:44","background":"old-art-room","character":"nanxing",
       "lines":[
-        {"id":"c4n001","speaker":"乔南星","text":"我抓到了那几条未来消息的时间戳规律。它们不是从服务器来的。","expression":"serious"},
+        {"id":"c4n001","speaker":"乔南星","text":"我把那几条未来消息的时间戳对过了。它们没经过服务器。","expression":"serious"},
         {"id":"c4n002","speaker":"陈渡","text":"那从哪来？"},
-        {"id":"c4n003","speaker":"乔南星","text":"从我的手机本地。更准确点，是从一份还没生成的聊天数据库。"},
+        {"id":"c4n003","speaker":"乔南星","text":"手机本地。一份现在还不存在的聊天数据库里。"},
         {"id":"c4n004","speaker":"乔南星","text":"未来的我在替未来的你发消息。","expression":"worried"}
       ],"next":"c4_nanxing_2"
     },
@@ -197,7 +197,7 @@
         {"id":"c4n102","speaker":"陈渡","text":"什么？"},
         {"id":"c4n103","speaker":"乔南星","text":"“不要保存。”","expression":"worried"},
         {"id":"c4n104","speaker":"陈渡","text":"保存什么？"},
-        {"id":"c4n105","speaker":"乔南星","text":"我不知道。但未来的你把它设成了最高优先级。"}
+        {"id":"c4n105","speaker":"乔南星","text":"还不知道。我只看到，未来的你给它设了最高优先级。"}
       ],
       "choices":[
         {"id":"nanxing_normal","text":"删掉未来消息，留在现在","next":"end_nanxing","effect":{"nanxing":2}},

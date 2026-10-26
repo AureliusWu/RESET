@@ -79,7 +79,7 @@
       "lines": [
         {"id":"a001","speaker":"旁白","text":"手机震动。地铁运营提醒弹出：南湖站因设备故障临时封闭。"},
         {"id":"a002","speaker":"陈渡","text":"和第二次死亡前一模一样。"},
-        {"id":"a003","speaker":"旁白","text":"我还是去了南湖站。不是因为勇敢，只因为那里已经等了我三次。"}
+        {"id":"a003","speaker":"旁白","text":"我还是去了南湖站。我记得自己倒在那里的样子。"}
       ],
       "next": "station_fourth"
     },
@@ -235,7 +235,7 @@
         {"id":"u005","speaker":"许栖","text":"六天以后，你会死。这次不是意外。","expression":"worried"},
         {"id":"u006","speaker":"许栖","text":"而且她们六个里面，有一个人会杀你。"}
       ],
-      "ending": "chapter-one",
+      "chapterEnd": true,
       "continuation": "chapter2_teaser"
     },
     {

@@ -150,3 +150,13 @@ for(const id of ['faceless_first','faceless_second','c5_echo_fail']){
 }
 await writeFile('test-results/route-fixtures.json',JSON.stringify({witnesses:Object.fromEntries(witnesses),endings:Object.fromEntries(endings),combat:combatSaves}));
 await writeFile('test-results/routes.json',JSON.stringify({version:project.version,reachableScenes:witnesses.size,totalScenes:project.scenes.length,endingWitnesses:Object.fromEntries(expected.map(id=>[id,{sceneId:endings.get(id)?.state.sceneId,decisions:endings.get(id)?.state.decisions}]))},null,2)+'\n');
+
+
+test('chapter-one handoff continues the story without advertising an ending', () => {
+  const s=instance().session;s.restore(witnesses.get('rooftop_warning'));
+  for(let count=0;count<50&&s.getView().frame.sceneId==='rooftop_warning';count++){
+    assert.equal(s.getView().frame.ending,undefined);
+    if(s.getView().frame.actions.some(a=>a.id==='@continue'))assert.equal(s.act('@continue'),true);else assert.equal(s.next(),true);
+  }
+  assert.equal(s.getView().frame.sceneId,'chapter2_teaser');s.dispose();
+});

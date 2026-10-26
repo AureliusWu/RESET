@@ -20,7 +20,7 @@
     {
       "id":"c5_team_morning","chapter":5,"title":"六个人都来了","location":"梧城一中·旧美术教室","time":"08:12","background":"old-art-room","noSprite":true,
       "lines":[
-        {"id":"c5a001","speaker":"旁白","text":"六个人一个不少。桌上摆着旧档案、未来聊天截图、地铁票和林晚那封没有写过的信。"},
+        {"id":"c5a001","speaker":"旁白","text":"六位女生都到了。桌上摆着旧档案、未来聊天截图、地铁票和林晚那封没有写过的信。"},
         {"id":"c5a002","speaker":"沈听澜","text":"梧城北站只在2009年的施工图上出现过一次，之后所有版本都把它删掉了。","expression":"serious"},
         {"id":"c5a003","speaker":"唐梨","text":"但我的身体知道怎么去。","expression":"neutral"},
         {"id":"c5a004","speaker":"乔南星","text":"未来消息今天一条都没有。像是发送端已经断了。","expression":"worried"},
@@ -41,7 +41,7 @@
       "lines":[
         {"id":"c5c001","speaker":"唐梨","text":"从这里开始别看地图。跟着我。","expression":"serious"},
         {"id":"c5c002","speaker":"旁白","text":"唐梨穿过封闭的围挡，踏上只有她记得的台阶。每向下一层，城市的声音就少一种。"},
-        {"id":"c5c003","speaker":"唐梨","text":"我以前以为方向感就是知道哪里是北。现在才知道，有时候它只是知道哪里还能往前。","expression":"smile"}
+        {"id":"c5c003","speaker":"唐梨","text":"别数步子了，看脚下。路还在，我们就能往前。","expression":"smile"}
       ],"next":"c5_north_station"
     },
     {
