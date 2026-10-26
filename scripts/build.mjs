@@ -94,8 +94,6 @@ async function walkFiles(directory) {
 }
 
 async function injectGameRuntime(project) {
-  // Keep the adopted character's extra expressions/aliases in the installable
-  // runtime and offline cache, without shipping the large archival PNG masters.
   const portraitDirs = new Set(project.assets.filter(asset => asset.kind === 'portrait' && asset.src.startsWith('assets/4k/runtime/characters/')).map(asset => asset.src.slice(0, asset.src.lastIndexOf('/'))));
   for (const directory of portraitDirs) {
     for (const file of await readdir(resolve(root, 'game', directory))) {
@@ -107,7 +105,7 @@ async function injectGameRuntime(project) {
   for (const file of ['title-key-visual.webp','save-anomaly.webp','ending-collection-header.webp','cg-gallery-header.webp','combat-hud-key-visual.webp']) {
     await copyFile(resolve(uiRuntimeDir, file), resolve(uiOutputDir, file));
   }
-  for (const file of ['README.md', 'LICENSE.md', 'CHANGELOG_v1.2.0-rc.1.md']) {
+  for (const file of ['README.md', 'LICENSE.md', 'CHANGELOG_v1.2.0-rc.2.md']) {
     await copyFile(resolve(root, file), resolve(output, file));
   }
   for (const file of ['combat.mjs','meta.mjs','archive.mjs','archive-data.mjs','experience.css','experience.mjs','ui.mjs','pwa.mjs']) {
@@ -143,7 +141,7 @@ async function injectGameRuntime(project) {
     version: project.version,
     engine: packagedManifest.engine,
     contentFingerprint: fingerprint,
-    extensions: ['reset-combat-v1', 'reset-meta-v1', 'reset-portrait-set-v1', 'reset-scene-art-v1', 'reset-archive-v1', 'reset-responsive-v1', 'reset-ui-key-visual-v1'],
+    extensions: ['reset-combat-v1', 'reset-meta-v1', 'reset-portrait-set-v1', 'reset-scene-art-v1', 'reset-archive-v1', 'reset-responsive-v1', 'reset-ui-key-visual-v1', 'reset-art-completeness-v1'],
     files: finalFiles.map(file => ({ name: file.name, size: file.bytes.length, sha256: createHash('sha256').update(file.bytes).digest('hex') }))
   };
   await writeFile(resolve(output, 'build-manifest.json'), JSON.stringify(metadata, null, 2) + '\n');

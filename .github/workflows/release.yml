@@ -44,11 +44,11 @@ jobs:
           VN_ENGINE_PATH: ${{ github.workspace }}/vn-engine
         run: npm run build
 
-      - name: Validate v1.2.0-rc.1 release content and runtime extensions
+      - name: Validate v1.2.0-rc.2 release content and runtime extensions
         working-directory: game-repo
         run: |
           npm run check:release
-          node -e "const m=require('./dist/build-manifest.json');const p=require('./dist/project.json');if(m.game!=='reset'||p.version!=='reset-v1.2.0-rc.1'||m.version!=='reset-v1.2.0-rc.1')process.exit(1);if(!p.scenes.some(s=>s.ending==='true-end'))process.exit(2);console.log(m.engine,m.contentFingerprint,p.scenes.length,p.assets.length,m.extensions)"
+          node -e "const m=require('./dist/build-manifest.json');const p=require('./dist/project.json');if(m.game!=='reset'||p.version!=='reset-v1.2.0-rc.2'||m.version!=='reset-v1.2.0-rc.2')process.exit(1);if(!p.scenes.some(s=>s.ending==='true-end'))process.exit(2);console.log(m.engine,m.contentFingerprint,p.scenes.length,p.assets.length,m.extensions)"
           test -f dist/index.html
           test -f dist/manifest.webmanifest
           test -f dist/sw.js
@@ -57,7 +57,7 @@ jobs:
 
       - name: Archive Web release
         working-directory: game-repo
-        run: cd dist && zip -r ../RESET-huiliu-v1.2.0-rc.1-web.zip .
+        run: cd dist && zip -r ../RESET-huiliu-v1.2.0-rc.2-web.zip .
 
       - name: Install acceptance browser
         working-directory: vn-engine
@@ -77,20 +77,20 @@ jobs:
           RESET_PREVIOUS_DIST: previous-web
           VN_ENGINE_PATH: ${{ github.workspace }}/vn-engine
         run: |
-          unzip -q RESET-huiliu-v1.2.0-rc.1-web.zip -d installed-web
+          unzip -q RESET-huiliu-v1.2.0-rc.2-web.zip -d installed-web
           npm run test:release
           npm run test:browser
 
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: RESET-huiliu-v1.2.0-rc.1-web-validation
+          name: RESET-huiliu-v1.2.0-rc.2-web-validation
           path: game-repo/test-results
 
       - uses: actions/upload-artifact@v4
         with:
-          name: RESET-huiliu-v1.2.0-rc.1-web
-          path: game-repo/RESET-huiliu-v1.2.0-rc.1-web.zip
+          name: RESET-huiliu-v1.2.0-rc.2-web
+          path: game-repo/RESET-huiliu-v1.2.0-rc.2-web.zip
 
   windows:
     runs-on: windows-latest
@@ -204,20 +204,17 @@ jobs:
 
       - name: Archive Windows release
         shell: pwsh
-        run: Compress-Archive -Path package/* -DestinationPath RESET-huiliu-v1.2.0-rc.1-win-x64.zip
+        run: Compress-Archive -Path package/* -DestinationPath RESET-huiliu-v1.2.0-rc.2-win-x64.zip
 
       - name: Test actual installed Windows ZIP and process restart
         working-directory: game-repo
         env:
           VN_ENGINE_PATH: ${{ github.workspace }}\vn-engine
         run: |
-          Expand-Archive ../RESET-huiliu-v1.2.0-rc.1-win-x64.zip -DestinationPath ../installed-windows
+          Expand-Archive ../RESET-huiliu-v1.2.0-rc.2-win-x64.zip -DestinationPath ../installed-windows
           $env:RESET_DIST = '../installed-windows/game'
           npm run test:release
           if ($LASTEXITCODE -ne 0) { throw 'Installed Windows runtime regressions failed' }
-          # Elevated hosted runners use WebView2 150+; its trusted HKLM policy
-          # is required for test CDP flags (environment overrides are ignored).
-          # This app-specific localhost setting exists only on this CI machine.
           $Policy = 'HKLM:\SOFTWARE\Policies\Microsoft\Edge\WebView2\AdditionalBrowserArguments'
           New-Item -Path $Policy -Force | Out-Null
           $Prior = (Get-Item -Path $Policy).GetValue('VNEngine.exe', $null)
@@ -233,7 +230,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: RESET-huiliu-v1.2.0-rc.1-windows-validation
+          name: RESET-huiliu-v1.2.0-rc.2-windows-validation
           path: |
             test-results/windows/host-policy.json
             game-repo/test-results/windows-installed/*.json
@@ -241,5 +238,5 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: RESET-huiliu-v1.2.0-rc.1-win-x64
-          path: RESET-huiliu-v1.2.0-rc.1-win-x64.zip
+          name: RESET-huiliu-v1.2.0-rc.2-win-x64
+          path: RESET-huiliu-v1.2.0-rc.2-win-x64.zip

@@ -1,6 +1,6 @@
 # 《回留》Galgame 美术完整性审计
 
-状态：**art-completeness 分支实施中**  
+状态：**v1.2.0-rc.2 候选实现完成，等待最终同 SHA CI**  
 基线：`v1.2.0-rc.1` / main `6730a081b6d0c5d2e37425147b224b97cb59b047`
 
 ## 结论
@@ -50,4 +50,4 @@ PWA 图标继续由代码确定性生成 PNG 192×192 / 512×512，但源几何�
 - PWA 图标已脱离通用引擎 N 标识；
 - 192 / 512 PNG 图标尺寸正确且重复生成字节一致。
 
-该测试已并入 `npm run test:release`。正式合并前仍需通过原有 Build / Release Web / Release Windows 全链路，且不会自动覆盖 v1.1.0 Pages。
+该测试已并入 `npm run test:release`。美术实现 SHA `3a63547063c7b8ffdfcaaca62d9554d27bed03f3` 已通过 Build / Release Web / Release Windows；rc.2 版本提升后必须在最终候选 SHA 上重新通过同一组门禁后再合并 main。正式线上 v1.1.0 Pages 不在本轮变更范围。
