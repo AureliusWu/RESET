@@ -130,7 +130,7 @@
 
 ## Round 5 — 5 个关键 CG
 
-资产接入完成，等待本提交的 GitHub Build / Release 双平台 CI 最终确认。五个 CG 已全部切换为 `assets/4k/runtime/cg/*.webp`，对应 3840×2160 PNG 母版保存在 `game/assets/4k/cg/`；provenance 与 SHA256 保存在 `game/art-sources/chatgpt/cg/`。
+Round 5 completed。5 个关键 CG 已正式接入并通过 Build / Web / Windows 双平台验收。五个 CG 已全部切换为 `assets/4k/runtime/cg/*.webp`，对应 3840×2160 PNG 母版保存在 `game/assets/4k/cg/`；provenance 与 SHA256 保存在 `game/art-sources/chatgpt/cg/`。
 
 - `faceless-reflection-cg`：雨中倒影提前动作。
 - `letter-1842-cg`：18:42 来信；恢复母版 PNG IDAT 问题已修复。
@@ -139,3 +139,13 @@
 - `true-end-riverside-cg`：使用正式林晚 4K 立绘与 `true-dawn` 4K 场景合成，明确 10 月 25 日暖晨光而非黄昏。
 
 Runner 门禁：`art:audit:write`、`art:audit`、`art:check`、`build`、`check:release`、`test:release` 全部通过后才允许提交。保持 `v1.2.0-dev`，不进入 RC，不覆盖正式 `v1.1.0 Pages`。
+
+### Round 5 completed
+
+- 4K 审计：production 56 / 56，4K_READY 56，planned 0，undersized 0。
+- Build 回留：Run `40357135795`，success。
+- Release 回留：Run `40357135682`，Web success，Windows success。
+- Web：最终 ZIP、PWA、离线缓存、浏览器验收通过。
+- Windows：原生 host、RESET.exe 启动链、最终 ZIP、重启与持久化验收通过。
+- 资产提交：`80958b048c35ba494011a1c71570a244637567f0`。
+- 最终验证触发提交：`f5f5f0a03341f8ad1ae24c384152f4d6c31ad071`。
