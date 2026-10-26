@@ -90,6 +90,10 @@ try{
       const next=await scene(), expected={faceless_first:{win:'faceless_pattern',lose:'death_fifth'},faceless_second:{win:'breakthrough_first',lose:'death_sixth'},c5_echo_fail:{win:'c5_echo_pattern',lose:'c5_echo_death'}}[id][outcome];
       assert.equal(next,expected,`${id} ${outcome}`);
       assert.equal(await page.locator('.vn-engine').getAttribute('data-paused'),'false');
+      if(outcome==='lose'&&id!=='c5_echo_fail'){
+        for(let count=0;count<20&&!await page.locator('.vn-actions [data-action="@continue"]').count();count++)await control('next').click();
+        assert.equal(await page.locator('.vn-actions [data-action="@continue"]').innerText(),'重新尝试');
+      }
       pass(`Combat ${id}: actual ${outcome} returns to ${expected}`);
     }
   }pass('All three real-time combats accept movement/heavy attacks; actual wins and deaths resume the canonical VN branch');

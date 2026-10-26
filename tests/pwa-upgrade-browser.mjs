@@ -26,10 +26,17 @@ export async function verifyPwaUpgrade({browser,dist,previous,fixtures,out,pass}
     await page.waitForFunction(()=>document.getElementById('status').textContent.includes('可离线游玩')&&navigator.serviceWorker.controller);
     const saved=await page.evaluate(async()=>({quick:localStorage.getItem('vn-engine:reset:save:1'),slots:localStorage.getItem('reset:slots:v1'),caches:await caches.keys()}));
     await page.evaluate(async()=>{const c=await caches.open('qa-unrelated-cache');await c.put('./unrelated',new Response('keep'));});
+    const nextWorkerPromise=context.waitForEvent('serviceworker');
     root=resolve(dist);await page.evaluate(async()=>{const owner=await navigator.serviceWorker.getRegistration();await owner.update();});
     await page.waitForFunction(async()=>Boolean((await navigator.serviceWorker.getRegistration()).waiting),null,{timeout:90000});
     assert.equal(await page.evaluate(async()=> (await(await fetch('./project.json')).json()).version),'reset-v1.1.0','the active client must not switch runtime mid-story');
-    await page.close();page=await context.newPage();await page.goto(base);await page.locator('.vn-engine').waitFor();
+    const nextWorker=await nextWorkerPromise;
+    await page.close();
+    await nextWorker.evaluate(()=>new Promise((resolve,reject)=>{
+      const deadline=Date.now()+30000;
+      const check=()=>{if(!self.registration.waiting&&self.registration.active?.state==='activated')resolve(true);else if(Date.now()>deadline)reject(Error('Candidate worker activation timed out'));else setTimeout(check,25);};check();
+    }));
+    page=await context.newPage();await page.goto(base);await page.locator('.vn-engine').waitFor();
     await page.waitForFunction(async()=> (await(await fetch('./project.json')).json()).version==='reset-v1.2.0-dev',null,{timeout:90000});
     await page.reload();await page.locator('.reset-toolbar-controls').waitFor();
     assert.equal(await page.evaluate(()=>localStorage.getItem('vn-engine:reset:save:1')),saved.quick);
@@ -46,5 +53,9 @@ export async function verifyPwaUpgrade({browser,dist,previous,fixtures,out,pass}
     await page.locator('.vn-background').waitFor({state:'visible'});assert.equal(await page.locator('#error').innerText(),'');
     await page.screenshot({path:out+'/v110-upgraded-offline.png',fullPage:true});
     pass('Upgraded candidate reloads offline and reads both real v1.1.0 save formats without clearing other caches');
+  }catch(error){
+    await page?.screenshot({path:out+'/upgrade-failure.png',fullPage:true}).catch(()=>{});
+    const state=await page?.evaluate(async()=>({error:document.querySelector('#error')?.textContent,html:document.body.innerText,cacheKeys:await caches.keys(),controller:navigator.serviceWorker.controller?.state,waiting:(await navigator.serviceWorker.getRegistration())?.waiting?.state})).catch(()=>null);
+    const {writeFile}=await import('node:fs/promises');await writeFile(out+'/upgrade-failure.json',JSON.stringify({error:error.stack,state},null,2));throw error;
   }finally{await context.close();await new Promise(r=>server.close(r));}
 }

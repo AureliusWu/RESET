@@ -57,7 +57,7 @@ try{
     const result=spawnSync('powershell',['-NoProfile','-File',resolve('tests/windows-window.ps1'),'-Action',action,'-Width',String(width),'-Height',String(height)],{encoding:'utf8'});
     assert.equal(result.status,0,result.stderr);return JSON.parse(result.stdout.trim());
   };
-  for(const [width,height] of [[1024,768],[1280,720],[900,900]]){
+  for(const [width,height] of [[960,720],[960,540],[700,700]]){
     const rect=nativeWindow('resize',width,height);assert.equal(rect.width,width);assert.equal(rect.height,height);
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth&&document.querySelector('.vn-toolbar').getBoundingClientRect().bottom<=innerHeight));
     await page.screenshot({path:out+`/native-${width}x${height}.png`});

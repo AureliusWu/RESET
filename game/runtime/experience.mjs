@@ -12,6 +12,7 @@ export function mountExperienceBridge(game, project) {
     if(disposed)return;
     const view=session.getView(), frame=view.frame, scene=scenes.get(frame.sceneId);
     const next={visit:view.visit,scene:frame.sceneId,portrait:frame.stage?.portrait,cg:frame.stage?.cg,background:frame.stage?.background};
+    if(['death-fifth','death-sixth'].includes(frame.ending)){const retry=host.querySelector('.vn-actions [data-action="@continue"]');if(retry)retry.textContent='重新尝试';}
     host.dataset.world=String(scene?.location??'').startsWith('夜梧城')?'anomaly':'normal';
     host.dataset.reducedMotion=String(view.settings.reducedMotion);
     if(view.settings.reducedMotion){for(const animation of animations)animation.cancel();animations.clear();}
