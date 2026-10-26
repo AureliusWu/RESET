@@ -1,4 +1,4 @@
-name: Round 6 anomaly finisher
+name: Round 6 completion recorder
 
 on:
   push:
@@ -10,145 +10,45 @@ permissions:
   contents: write
 
 jobs:
-  build-round6:
+  record-round6:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
-    timeout-minutes: 15
     steps:
-      - name: Checkout RESET
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Checkout locked VN Engine v2
-        uses: actions/checkout@v4
-        with:
-          repository: AureliusWu/VN-Engine-v2
-          ref: 15c101e0d2b2c1e40dbc36d7a0c1a246d102b52c
-          path: vn-engine
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: npm
-          cache-dependency-path: vn-engine/package-lock.json
-
-      - name: Install engine and image tooling
-        run: |
-          npm ci --prefix vn-engine
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq librsvg2-bin imagemagick webp
-
-      - name: Extend 4K audit for adopted anomaly production IDs
+      - name: Append Round 6 completion evidence
         run: |
           python - <<'PY'
           from pathlib import Path
-          replacements={
-            'scripts/audit-4k-art.mjs':[
-              ("const sceneOverlay = await readJson(resolve(game, 'content/zzz-scene-art-v1.json'));\nconst production = [...portraitOverlay.replaceAssets, ...sceneOverlay.replaceAssets];",
-               "const sceneOverlay = await readJson(resolve(game, 'content/zzz-scene-art-v1.json'));\nconst anomalyOverlay = await readJson(resolve(game, 'content/zzzz-anomaly-art-v1.json'));\nconst production = [...portraitOverlay.replaceAssets, ...sceneOverlay.replaceAssets, ...anomalyOverlay.replaceAssets];"),
-              ("for (const item of plan.anomalies) targetById.set(item.id, item.master);",
-               "for (const item of plan.anomalies) targetById.set(item.productionId ?? item.id, item.master);"),
-              ("if (plan.anomalies.some(x=>x.id===id)) return plan.policy.anomaly;",
-               "if (plan.anomalies.some(x=>x.id===id || x.productionId===id)) return plan.policy.anomaly;")
-            ],
-            'scripts/check-4k-production.mjs':[
-              ("const sceneOverlay = await readJson(resolve(game, 'content/zzz-scene-art-v1.json'));\nconst production = [...portraitOverlay.replaceAssets, ...sceneOverlay.replaceAssets];",
-               "const sceneOverlay = await readJson(resolve(game, 'content/zzz-scene-art-v1.json'));\nconst anomalyOverlay = await readJson(resolve(game, 'content/zzzz-anomaly-art-v1.json'));\nconst production = [...portraitOverlay.replaceAssets, ...sceneOverlay.replaceAssets, ...anomalyOverlay.replaceAssets];"),
-              ("function pathsFor(asset) {\n  if (asset.kind === 'portrait') {",
-               "function pathsFor(asset) {\n  const anomaly = plan.anomalies.find(item => item.id === asset.id || item.productionId === asset.id);\n  if (anomaly) return { master: anomaly.master, runtime: anomaly.runtime, policy: plan.policy.anomaly };\n  if (asset.kind === 'portrait') {"),
-              ("  const anomaly = plan.anomalies.find(item => item.id === asset.id);\n  if (anomaly) return { master: anomaly.master, runtime: anomaly.runtime, policy: plan.policy.anomaly };\n",
-               "")
-            ]
-          }
-          for filename,pairs in replacements.items():
-            p=Path(filename); s=p.read_text(encoding='utf-8')
-            for old,new in pairs:
-              if s.count(old)!=1: raise SystemExit(f'{filename}: expected one patch target for {old[:50]!r}, got {s.count(old)}')
-              s=s.replace(old,new)
-            p.write_text(s,encoding='utf-8')
-            print(filename,'patched')
+          p=Path('docs/ART_4K_ROUNDS.md')
+          s=p.read_text(encoding='utf-8')
+          marker='## Round 6 — 异常体 / Boss'
+          if marker in s:
+            raise SystemExit('Round 6 completion record already exists')
+          block='''
+
+## Round 6 — 异常体 / Boss
+
+Round 6 completed。无面行人和第七人 / 陈渡残响已迁移为正式 4K anomaly 资产；剧情 asset ID 保持 `faceless/neutral` 与 `echochen/neutral` 不变，仅切换正式 `src`。
+
+- `faceless/neutral` → `assets/4k/runtime/anomalies/faceless.webp`；2160×3840 RGBA PNG 母版为 `assets/4k/anomalies/faceless.png`。新源美术强调空白面孔、雨夜湿痕与错位残影，对应“倒影先于本体动作”和跨读档适应的玩法语义。
+- `echochen/neutral` → `assets/4k/runtime/anomalies/echo-chen.webp`；2160×3840 RGBA PNG 母版为 `assets/4k/anomalies/echo-chen.png`。新源美术以多层失败读档残响构成“第七人”。
+- 两项 runtime 均为 1080×1920 WebP，保留 Alpha；原始 1440×2560 PNG、新 ChatGPT 编写的矢量源、provenance、处理方法及 SHA256 均保存在 `game/art-sources/chatgpt/anomalies/`。旧 `ch-faceless.svg` / `ch-echo-chen.svg` 未作为 4K 母版像素来源。
+- 4K 审计：production 58 / 58，4K_READY 58，planned 0，undersized 0，missing alpha 0。
+- 资产提交：`192190ad7421b60e308257b75f76d70aa9893153`。
+- 双平台正式资产验收：Build Run `40359812104` success；Release Run `40359811821` Web success、Windows success，最终 Web ZIP/PWA/离线浏览器验收及 Windows 原生启动/最终 ZIP/重启持久化全部通过。
+- 完整性门禁补强提交：`6834dc757b37defacb49e7539a1952216b8b2a6d`，`check-art-integrity.mjs` 已把 anomaly overlay 纳入 production 统计；最终 Build Run `40360377213` success，Windows Release Run `40360376925` success。该提交不改变打包运行时或美术字节。
+- 保持 `v1.2.0-dev`，不进入 RC，不覆盖正式 `v1.1.0 Pages`。下一轮为 Round 7 — UI 关键视觉。
+'''
+          p.write_text(s.rstrip()+block+'\n',encoding='utf-8')
           PY
 
-      - name: Render Round 6 originals, masters and runtime derivatives
-        run: |
-          set -euo pipefail
-          mkdir -p game/assets/4k/anomalies game/assets/4k/runtime/anomalies
-          for id in faceless echo-chen; do
-            src="game/art-sources/chatgpt/anomalies/$id/source.svg"
-            original="game/art-sources/chatgpt/anomalies/$id/original.png"
-            master="game/assets/4k/anomalies/$id.png"
-            runtime="game/assets/4k/runtime/anomalies/$id.webp"
-            tmp="/tmp/$id-runtime.png"
-            rsvg-convert -w 1440 -h 2560 "$src" -o "$original"
-            convert "$original" -filter Lanczos -resize '2160x3840!' "$master"
-            convert "$original" -filter Lanczos -resize '1080x1920!' "$tmp"
-            cwebp -quiet -q 92 -alpha_q 100 "$tmp" -o "$runtime"
-            identify "$original" "$master"
-            webpinfo "$runtime" | grep -E 'Canvas size|Alpha' || true
-          done
-
-      - name: Write Round 6 provenance
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          import hashlib,json
-          prompts={
-            'faceless':'Full-body transparent-background anomaly concept for RESET: a tall faceless urban pedestrian in a rain-dark coat, blank porcelain-like face, wet reflective seams and faint displaced echo silhouettes that imply its reflection moves before the body; cold blue-gray visual-novel palette, threatening but readable silhouette, no text.',
-            'echo-chen':'Full-body transparent-background anomaly concept for RESET: the seventh person / Chen Du echo, a human silhouette made from stacked residues of failed loads, layered translucent blue-gray afterimages, obscured mask-like face and repeated temporal traces; melancholic and uncanny visual-novel boss design, no text.'
-          }
-          for id in ['faceless','echo-chen']:
-            base=Path(f'game/art-sources/chatgpt/anomalies/{id}')
-            paths={
-              'sourceVector':base/'source.svg',
-              'original':base/'original.png',
-              'master':Path(f'game/assets/4k/anomalies/{id}.png'),
-              'runtime':Path(f'game/assets/4k/runtime/anomalies/{id}.webp')
-            }
-            sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
-            record={
-              'master':str(paths['master']),'masterSize':[2160,3840],'masterSHA256':sha(paths['master']),
-              'runtime':str(paths['runtime']),'runtimeSize':[1080,1920],'runtimeSHA256':sha(paths['runtime']),
-              'original':str(paths['original']),'originalSize':[1440,2560],'originalSHA256':sha(paths['original']),
-              'sourceVector':str(paths['sourceVector']),'sourceVectorSHA256':sha(paths['sourceVector']),
-              'prompt':prompts[id],
-              'processing':'new ChatGPT-authored vector source -> rsvg 1440x2560 PNG -> alpha-aware Lanczos 2160x3840 PNG master -> 1080x1920 WebP runtime; legacy SVG not used as pixels'
-            }
-            provenance={
-              'schema':1,
-              'generator':'ChatGPT-authored original vector illustration; deterministic raster master pipeline',
-              'workflow':'round6-new-vector-source-to-processed-4k-master',
-              'native4kClaim':False,
-              'processing':record['processing'],
-              'authorization':'2026-10-27: 用户明确授权 Round 6 写入及仓库修改',
-              'category':'anomalies','id':id,'assets':[record]
-            }
-            (base/'provenance.json').write_text(json.dumps(provenance,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-          PY
-
-      - name: Audit and build Round 6
-        env:
-          VN_ENGINE_PATH: ${{ github.workspace }}/vn-engine
-        run: |
-          node --check scripts/audit-4k-art.mjs
-          node --check scripts/check-4k-production.mjs
-          npm run art:audit:write
-          npm run art:audit
-          npm run art:check
-          npm run build
-          npm run check:release
-          npm run test:release
-
-      - name: Commit Round 6 production assets
+      - name: Commit completion record
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add \
-            scripts/audit-4k-art.mjs scripts/check-4k-production.mjs docs/ART_4K_AUDIT.md \
-            game/assets/4k/anomalies game/assets/4k/runtime/anomalies \
-            game/art-sources/chatgpt/anomalies/faceless/original.png \
-            game/art-sources/chatgpt/anomalies/faceless/provenance.json \
-            game/art-sources/chatgpt/anomalies/echo-chen/original.png \
-            game/art-sources/chatgpt/anomalies/echo-chen/provenance.json
-          git commit -m 'art(round6): adopt anomaly boss 4K production assets'
+          git add docs/ART_4K_ROUNDS.md
+          git commit -m 'docs(round6): mark anomaly migration completed [skip ci]'
           git push origin HEAD:main
