@@ -1,0 +1,152 @@
+name: Round 6 anomaly finisher
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/round6-finish.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  build-round6:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout RESET
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Checkout locked VN Engine v2
+        uses: actions/checkout@v4
+        with:
+          repository: AureliusWu/VN-Engine-v2
+          ref: 15c101e0d2b2c1e40dbc36d7a0c1a246d102b52c
+          path: vn-engine
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: vn-engine/package-lock.json
+
+      - name: Install engine and image tooling
+        run: |
+          npm ci --prefix vn-engine
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq librsvg2-bin imagemagick webp
+
+      - name: Extend 4K audit for adopted anomaly production IDs
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          replacements={
+            'scripts/audit-4k-art.mjs':[
+              ("const sceneOverlay = await readJson(resolve(game, 'content/zzz-scene-art-v1.json'));\nconst production = [...portraitOverlay.replaceAssets, ...sceneOverlay.replaceAssets];",
+               "const sceneOverlay = await readJson(resolve(game, 'content/zzz-scene-art-v1.json'));\nconst anomalyOverlay = await readJson(resolve(game, 'content/zzzz-anomaly-art-v1.json'));\nconst production = [...portraitOverlay.replaceAssets, ...sceneOverlay.replaceAssets, ...anomalyOverlay.replaceAssets];"),
+              ("for (const item of plan.anomalies) targetById.set(item.id, item.master);",
+               "for (const item of plan.anomalies) targetById.set(item.productionId ?? item.id, item.master);"),
+              ("if (plan.anomalies.some(x=>x.id===id)) return plan.policy.anomaly;",
+               "if (plan.anomalies.some(x=>x.id===id || x.productionId===id)) return plan.policy.anomaly;")
+            ],
+            'scripts/check-4k-production.mjs':[
+              ("const sceneOverlay = await readJson(resolve(game, 'content/zzz-scene-art-v1.json'));\nconst production = [...portraitOverlay.replaceAssets, ...sceneOverlay.replaceAssets];",
+               "const sceneOverlay = await readJson(resolve(game, 'content/zzz-scene-art-v1.json'));\nconst anomalyOverlay = await readJson(resolve(game, 'content/zzzz-anomaly-art-v1.json'));\nconst production = [...portraitOverlay.replaceAssets, ...sceneOverlay.replaceAssets, ...anomalyOverlay.replaceAssets];"),
+              ("const anomaly = plan.anomalies.find(item => item.id === asset.id);",
+               "const anomaly = plan.anomalies.find(item => item.id === asset.id || item.productionId === asset.id);")
+            ]
+          }
+          for filename,pairs in replacements.items():
+            p=Path(filename); s=p.read_text(encoding='utf-8')
+            for old,new in pairs:
+              if s.count(old)!=1: raise SystemExit(f'{filename}: expected one patch target for {old[:50]!r}, got {s.count(old)}')
+              s=s.replace(old,new)
+            p.write_text(s,encoding='utf-8')
+            print(filename,'patched')
+          PY
+
+      - name: Render Round 6 originals, masters and runtime derivatives
+        run: |
+          set -euo pipefail
+          mkdir -p game/assets/4k/anomalies game/assets/4k/runtime/anomalies
+          for id in faceless echo-chen; do
+            src="game/art-sources/chatgpt/anomalies/$id/source.svg"
+            original="game/art-sources/chatgpt/anomalies/$id/original.png"
+            master="game/assets/4k/anomalies/$id.png"
+            runtime="game/assets/4k/runtime/anomalies/$id.webp"
+            tmp="/tmp/$id-runtime.png"
+            rsvg-convert -w 1440 -h 2560 "$src" -o "$original"
+            convert "$original" -filter Lanczos -resize '2160x3840!' "$master"
+            convert "$original" -filter Lanczos -resize '1080x1920!' "$tmp"
+            cwebp -quiet -q 92 -alpha_q 100 "$tmp" -o "$runtime"
+            identify "$original" "$master"
+            webpinfo "$runtime" | grep -E 'Canvas size|Alpha' || true
+          done
+
+      - name: Write Round 6 provenance
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json
+          prompts={
+            'faceless':'Full-body transparent-background anomaly concept for RESET: a tall faceless urban pedestrian in a rain-dark coat, blank porcelain-like face, wet reflective seams and faint displaced echo silhouettes that imply its reflection moves before the body; cold blue-gray visual-novel palette, threatening but readable silhouette, no text.',
+            'echo-chen':'Full-body transparent-background anomaly concept for RESET: the seventh person / Chen Du echo, a human silhouette made from stacked residues of failed loads, layered translucent blue-gray afterimages, obscured mask-like face and repeated temporal traces; melancholic and uncanny visual-novel boss design, no text.'
+          }
+          for id in ['faceless','echo-chen']:
+            base=Path(f'game/art-sources/chatgpt/anomalies/{id}')
+            paths={
+              'sourceVector':base/'source.svg',
+              'original':base/'original.png',
+              'master':Path(f'game/assets/4k/anomalies/{id}.png'),
+              'runtime':Path(f'game/assets/4k/runtime/anomalies/{id}.webp')
+            }
+            sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+            record={
+              'master':str(paths['master']),'masterSize':[2160,3840],'masterSHA256':sha(paths['master']),
+              'runtime':str(paths['runtime']),'runtimeSize':[1080,1920],'runtimeSHA256':sha(paths['runtime']),
+              'original':str(paths['original']),'originalSize':[1440,2560],'originalSHA256':sha(paths['original']),
+              'sourceVector':str(paths['sourceVector']),'sourceVectorSHA256':sha(paths['sourceVector']),
+              'prompt':prompts[id],
+              'processing':'new ChatGPT-authored vector source -> rsvg 1440x2560 PNG -> alpha-aware Lanczos 2160x3840 PNG master -> 1080x1920 WebP runtime; legacy SVG not used as pixels'
+            }
+            provenance={
+              'schema':1,
+              'generator':'ChatGPT-authored original vector illustration; deterministic raster master pipeline',
+              'workflow':'round6-new-vector-source-to-processed-4k-master',
+              'native4kClaim':False,
+              'processing':record['processing'],
+              'authorization':'2026-10-27: 用户明确授权 Round 6 写入及仓库修改',
+              'category':'anomalies','id':id,'assets':[record]
+            }
+            (base/'provenance.json').write_text(json.dumps(provenance,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          PY
+
+      - name: Audit and build Round 6
+        env:
+          VN_ENGINE_PATH: ${{ github.workspace }}/vn-engine
+        run: |
+          node --check scripts/audit-4k-art.mjs
+          node --check scripts/check-4k-production.mjs
+          npm run art:audit:write
+          npm run art:audit
+          npm run art:check
+          npm run build
+          npm run check:release
+          npm run test:release
+
+      - name: Commit Round 6 production assets
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            scripts/audit-4k-art.mjs scripts/check-4k-production.mjs docs/ART_4K_AUDIT.md \
+            game/assets/4k/anomalies game/assets/4k/runtime/anomalies \
+            game/art-sources/chatgpt/anomalies/faceless/original.png \
+            game/art-sources/chatgpt/anomalies/faceless/provenance.json \
+            game/art-sources/chatgpt/anomalies/echo-chen/original.png \
+            game/art-sources/chatgpt/anomalies/echo-chen/provenance.json
+          git commit -m 'art(round6): adopt anomaly boss 4K production assets'
+          git push origin HEAD:main
