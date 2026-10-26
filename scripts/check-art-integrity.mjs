@@ -12,7 +12,8 @@ const exists = async p => { try { await stat(p); return true; } catch { return f
 const plan = await readJson(resolve(game, 'assets/4k/asset-plan.json'));
 const portraitOverlay = await readJson(resolve(game, 'content/zz-art-v1.json'));
 const sceneOverlay = await readJson(resolve(game, 'content/zzz-scene-art-v1.json'));
-const production = [...portraitOverlay.replaceAssets, ...sceneOverlay.replaceAssets];
+const anomalyOverlay = await readJson(resolve(game, 'content/zzzz-anomaly-art-v1.json'));
+const production = [...portraitOverlay.replaceAssets, ...sceneOverlay.replaceAssets, ...anomalyOverlay.replaceAssets];
 
 const ids = new Set();
 for (const asset of production) {
@@ -57,12 +58,13 @@ for (const asset of adopted4k) {
   if (/\.png$/i.test(asset.src)) {
     const info = pngInfo(buffer);
     if (!info) throw new Error(`invalid PNG: ${asset.id} -> ${asset.src}`);
+    const anomaly = plan.anomalies.some(item => item.productionId === asset.id || item.id === asset.id);
     const portrait = asset.kind === 'portrait';
-    const minimum = portrait ? plan.policy.portrait : asset.kind === 'background' ? plan.policy.background : plan.policy.cg;
+    const minimum = anomaly ? plan.policy.anomaly : portrait ? plan.policy.portrait : asset.kind === 'background' ? plan.policy.background : plan.policy.cg;
     if (info.width < minimum.minimumWidth || info.height < minimum.minimumHeight) {
       throw new Error(`undersized 4K asset: ${asset.id} ${info.width}x${info.height}`);
     }
-    if (portrait && minimum.alpha && !info.alpha) throw new Error(`portrait missing alpha channel: ${asset.id}`);
+    if ((portrait || anomaly) && minimum.alpha && !info.alpha) throw new Error(`portrait/anomaly missing alpha channel: ${asset.id}`);
   }
 }
 
