@@ -5,6 +5,8 @@ import { createServer } from 'node:http';
 import { resolve, extname, sep } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { verifyArchive } from './archive-browser.mjs';
+import { verifyPlayerExperience } from './player-experience-browser.mjs';
+import { verifyPwaUpgrade } from './pwa-upgrade-browser.mjs';
 const engine=resolve(process.env.VN_ENGINE_PATH||'../VN-Engine-v2');
 const {chromium}=await import(pathToFileURL(resolve(engine,'node_modules/playwright/index.mjs')));
 const dist=resolve(process.env.RESET_DIST||'dist'), out=resolve('test-results/browser');await mkdir(out,{recursive:true});
@@ -41,6 +43,7 @@ try{
   await loadFixture(legacy);assert.equal(await scene(),start);assert.match(await page.title(),/读取 2/);
   pass('A published v1.0.0 backup imports through the packaged settings UI and retains the route');
   await verifyArchive({page,context,fixtures,project,loadFixture,control,scene,isScene,out,pass});
+  await verifyPlayerExperience({browser,page,base,fixtures,project,out,pass});
   await control('settings').click();assert.equal(await control('save').isDisabled(),true);
   await page.getByLabel('阅读区透明度').fill('0.6');await page.getByRole('button',{name:'关闭',exact:true}).click();
   assert.match(await page.locator('.vn-engine').getAttribute('style'),/0.6/);
@@ -124,6 +127,7 @@ try{
   await page.locator('[data-reset-control=slots]').click();assert.ok(await page.locator('[data-slot="1"] [data-slot-action=load]').isEnabled());await page.keyboard.press('Escape');
   await page.locator('[data-reset-control=collection]').click();assert.equal(await page.locator('.reset-ending[data-unlocked=true]').count(),13);assert.ok(await page.locator('.reset-cg-card img').count());await page.keyboard.press('Escape');
   await page.screenshot({path:out+'/offline.png',fullPage:true});pass('Real service-worker cache at a nested URL reloads offline with assets, saves and Meta intact');
+  if(process.env.RESET_PREVIOUS_DIST)await verifyPwaUpgrade({browser,dist,previous:process.env.RESET_PREVIOUS_DIST,fixtures,out,pass});
   assert.deepEqual(errors,[]);await writeFile(out+'/acceptance.json',JSON.stringify({result:'passed',browser:await browser.version(),checks,errors},null,2)+'\n');
 }catch(e){if(page)await page.screenshot({path:out+'/failure.png',fullPage:true}).catch(()=>{});await writeFile(out+'/failure.json',JSON.stringify({error:e.stack,checks,errors},null,2));throw e;}
 finally{await context?.close();await browser?.close();await new Promise(r=>server.close(r));}

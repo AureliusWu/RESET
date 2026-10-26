@@ -39,6 +39,8 @@ jobs:
           node --check game/runtime/meta.mjs
           node --check game/runtime/archive.mjs
           node --check game/runtime/archive-data.mjs
+          node --check game/runtime/experience.mjs
+          node --check game/runtime/pwa.mjs
           node --check scripts/generate-portraits.mjs
           node --check scripts/generate-scenes.mjs
           node --check scripts/check-release.mjs

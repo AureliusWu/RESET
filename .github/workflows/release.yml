@@ -63,10 +63,18 @@ jobs:
         working-directory: vn-engine
         run: npx playwright install --with-deps chromium
 
+      - name: Prepare the immutable v1.1.0 upgrade fixture
+        working-directory: game-repo
+        run: |
+          curl --fail --location --retry 3 https://github.com/AureliusWu/RESET/releases/download/v1.1.0/RESET-huiliu-v1.1.0-web.zip -o previous-web.zip
+          echo '6750ed303f1029684418f93449ae3d322f08e294e40926a53529cae81fad8f24  previous-web.zip' | sha256sum --check
+          unzip -q previous-web.zip -d previous-web
+
       - name: Test the extracted final Web ZIP
         working-directory: game-repo
         env:
           RESET_DIST: installed-web
+          RESET_PREVIOUS_DIST: previous-web
           VN_ENGINE_PATH: ${{ github.workspace }}/vn-engine
         run: |
           unzip -q RESET-huiliu-v1.2.0-dev-web.zip -d installed-web

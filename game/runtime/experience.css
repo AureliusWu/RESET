@@ -43,3 +43,7 @@ main#game{height:calc(100dvh - 30px - env(safe-area-inset-top) - env(safe-area-i
 @media(max-height:480px){.reset-combat.reset-combat__root canvas{width:min(100%,calc((100dvh - 180px)*16/9))}.reset-combat__head{gap:6px}.reset-combat__title{font-size:14px}.reset-combat .reset-combat__hint{font-size:10px}.reset-combat__controls{margin-top:4px;gap:4px}}
 
 .reset-combat [hidden]{display:none!important}
+
+.vn-engine[data-world=anomaly] .vn-background{filter:saturate(.88)}
+.vn-engine[data-reduced-motion=true] .vn-image{transition:none;animation:none}
+@media(prefers-reduced-motion:reduce){.vn-engine .vn-image{transition:none!important;animation:none!important}}

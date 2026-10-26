@@ -53,6 +53,34 @@ try{
   await page.screenshot({path:out+'/native-collection.png'});await page.keyboard.press('Escape');
   await page.locator('[data-reset-control=slots]').click();await page.locator('[data-slot="1"] [data-slot-action=load]').click();await page.locator('[data-reset-confirm]').click();
   assert.equal(await page.locator('.vn-engine').getAttribute('data-line'),line);
+  const nativeWindow=(action,width=1024,height=768)=>{
+    const result=spawnSync('powershell',['-NoProfile','-File',resolve('tests/windows-window.ps1'),'-Action',action,'-Width',String(width),'-Height',String(height)],{encoding:'utf8'});
+    assert.equal(result.status,0,result.stderr);return JSON.parse(result.stdout.trim());
+  };
+  for(const [width,height] of [[1024,768],[1280,720],[900,900]]){
+    const rect=nativeWindow('resize',width,height);assert.equal(rect.width,width);assert.equal(rect.height,height);
+    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth&&document.querySelector('.vn-toolbar').getBoundingClientRect().bottom<=innerHeight));
+    await page.screenshot({path:out+`/native-${width}x${height}.png`});
+  }
+  assert.equal(nativeWindow('maximize').maximized,true);
+  assert.equal(nativeWindow('minimize').minimized,true);assert.equal(nativeWindow('restore').minimized,false);
+  checks.push('Real Win32 window resize at 4:3, 16:9 and square sizes, maximize, minimize and restore keep the player usable');
+  const dpi=await page.context().newCDPSession(page);
+  for(const scale of [1.25,1.5,2]){
+    await dpi.send('Emulation.setDeviceMetricsOverride',{width:800,height:600,deviceScaleFactor:scale,mobile:false});
+    assert.equal(await page.evaluate(()=>devicePixelRatio),scale);
+    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+  }
+  await dpi.send('Emulation.clearDeviceMetricsOverride');await dpi.detach();
+  checks.push('WebView2 content DPI emulation at 125%, 150% and 200% has no horizontal overflow; physical monitor scaling remains a manual check');
+  await importSave(fixtures.combat.faceless_first);await page.locator('.reset-combat canvas').waitFor();
+  nativeWindow('defocus');await page.locator('[data-combat-resume]').waitFor({state:'visible'});
+  await page.locator('[data-combat-resume]').click();
+  nativeWindow('minimize');nativeWindow('restore');await page.locator('[data-combat-resume]').waitFor({state:'visible'});
+  await page.screenshot({path:out+'/native-paused-combat.png'});
+  checks.push('Actual native focus loss and minimize/restore pause combat until explicit resume');
+  stop();await browser.close().catch(()=>{});browser=null;page=await launch();
+  await page.locator('[data-control=load]').click();assert.equal(await page.locator('.vn-engine').getAttribute('data-line'),line);
   const beforeRestart=await page.evaluate(()=>({loads:JSON.parse(localStorage.getItem('reset:meta:v1')).loads,slots:localStorage.getItem('reset:slots:v1')}));
   checks.push('Native manual slots save and restore; actual story CG and ending unlock in the archive');
   await page.screenshot({path:out+'/native-game.png'});

@@ -16,13 +16,13 @@ assert(project.game === 'reset', 'wrong game id');
 assert(project.version === manifest.version, 'project/build manifest version mismatch');
 assert(Array.isArray(manifest.extensions), 'build extensions missing');
 for (const extension of ['reset-combat-v1','reset-meta-v1','reset-portrait-set-v1','reset-scene-art-v1','reset-archive-v1','reset-responsive-v1']) assert(manifest.extensions.includes(extension), `missing extension ${extension}`);
-for (const file of ['combat.mjs','meta.mjs','archive.mjs','archive-data.mjs','experience.css','project.json','sw.js','app.mjs','manifest.webmanifest']) assert(await exists(resolve(dist, file)), `missing ${file}`);
+for (const file of ['combat.mjs','meta.mjs','archive.mjs','archive-data.mjs','experience.css','experience.mjs','pwa.mjs','icon-192.png','icon-512.png','project.json','sw.js','app.mjs','manifest.webmanifest']) assert(await exists(resolve(dist, file)), `missing ${file}`);
 assert(app.includes("import('./combat.mjs')") && app.includes("import('./meta.mjs')"), 'runtime bridges are not mounted');
 assert(sw.includes('combat.mjs') && sw.includes('meta.mjs'), 'runtime bridges are not offline cached');
 assert(app.includes("import('./archive.mjs')"), 'archive runtime is not mounted');
 const html=await readFile(resolve(dist,'index.html'),'utf8');
 assert(html.includes('href="./experience.css"'), 'responsive stylesheet is not loaded');
-for(const file of ['archive.mjs','archive-data.mjs','experience.css'])assert(sw.includes(file),`${file} not cached`);
+for(const file of ['archive.mjs','archive-data.mjs','experience.css','experience.mjs','pwa.mjs','icon-192.png','icon-512.png'])assert(sw.includes(file),`${file} not cached`);
 
 const scenes = new Map(project.scenes.map(scene => [scene.id, scene]));
 const encounters = [
@@ -86,7 +86,7 @@ const finalScenes = ['c6_no_save','c6_walk_forward','c6_echo_goodbye','c6_last_d
 for (const id of finalScenes) assert(scenes.has(id), `missing irreversible/true ending scene ${id}`);
 
 const listed = new Set(manifest.files.map(file => file.name));
-for (const file of ['combat.mjs','meta.mjs','archive.mjs','archive-data.mjs','experience.css']) assert(listed.has(file), `${file} absent from integrity manifest`);
+for (const file of ['combat.mjs','meta.mjs','archive.mjs','archive-data.mjs','experience.css','experience.mjs','pwa.mjs','icon-192.png','icon-512.png']) assert(listed.has(file), `${file} absent from integrity manifest`);
 
 console.log(JSON.stringify({
   status: 'release-integrity-ok', version: project.version, scenes: project.scenes.length,

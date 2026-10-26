@@ -4,6 +4,7 @@ import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { pathToFileURL, fileURLToPath } from 'node:url';
 import process from 'node:process';
+import { pngIcon } from './pwa-assets.mjs';
 
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const lock = JSON.parse(await readFile(resolve(root, 'ENGINE.lock.json'), 'utf8'));
@@ -96,17 +97,25 @@ async function injectGameRuntime(project) {
   for (const file of ['README.md', 'LICENSE.md', 'CHANGELOG_v1.2.0-dev.md']) {
     await copyFile(resolve(root, file), resolve(output, file));
   }
-  for (const file of ['combat.mjs','meta.mjs','archive.mjs','archive-data.mjs','experience.css']) {
+  for (const file of ['combat.mjs','meta.mjs','archive.mjs','archive-data.mjs','experience.css','experience.mjs','pwa.mjs']) {
     await copyFile(resolve(root, 'game/runtime', file), resolve(output, file));
   }
   const htmlPath=resolve(output,'index.html');
-  await writeFile(htmlPath,(await readFile(htmlPath,'utf8')).replace('width=device-width,initial-scale=1','width=device-width,initial-scale=1,viewport-fit=cover').replace('</head>','<link rel="stylesheet" href="./experience.css"></head>'));
+  await writeFile(htmlPath,(await readFile(htmlPath,'utf8')).replace('width=device-width,initial-scale=1','width=device-width,initial-scale=1,viewport-fit=cover').replace('</head>','<link rel="stylesheet" href="./experience.css"><meta name="theme-color" content="#1d393e"><link rel="apple-touch-icon" href="./icon-192.png"></head>'));
   const appPath = resolve(output, 'app.mjs');
   let app = await readFile(appPath, 'utf8');
   const pagehide = "window.addEventListener('pagehide',event=>{if(!event.persisted)game.dispose();});";
   if (!app.includes(pagehide)) throw new Error('VN Engine packaged app entry changed; RESET runtime injection needs review');
-  app = app.replace(pagehide, "const [{mountCombatBridge},{mountMetaBridge},{mountArchiveBridge}]=await Promise.all([import('./combat.mjs'),import('./meta.mjs'),import('./archive.mjs')]);const combat=mountCombatBridge(game),meta=mountMetaBridge(game),archive=mountArchiveBridge(game,project,meta);window.addEventListener('pagehide',event=>{if(!event.persisted){archive.dispose();meta.dispose();combat.dispose();game.dispose();}});");
+  app = app.replace(pagehide, "const [{mountCombatBridge},{mountMetaBridge},{mountArchiveBridge},{mountExperienceBridge}]=await Promise.all([import('./combat.mjs'),import('./meta.mjs'),import('./archive.mjs'),import('./experience.mjs')]);const combat=mountCombatBridge(game),meta=mountMetaBridge(game),archive=mountArchiveBridge(game,project,meta),experience=mountExperienceBridge(game,project);window.addEventListener('pagehide',event=>{if(!event.persisted){experience.dispose();archive.dispose();meta.dispose();combat.dispose();game.dispose();}});");
+  const workerStart=app.indexOf("if('serviceWorker' in navigator)"), catchStart=app.indexOf('\ncatch(failure)',workerStart);
+  if(workerStart<0||catchStart<0)throw new Error('Packaged PWA entry changed; review work-level registration');
+  app=app.slice(0,workerStart)+"await (await import('./pwa.mjs')).registerGamePwa();}\n"+app.slice(catchStart);
   await writeFile(appPath, app);
+  for(const size of [192,512])await writeFile(resolve(output,`icon-${size}.png`),pngIcon(size));
+  const manifestPath=resolve(output,'manifest.webmanifest'), webmanifest=JSON.parse(await readFile(manifestPath,'utf8'));
+  webmanifest.lang='zh-CN';webmanifest.orientation='any';
+  webmanifest.icons.push(...[192,512].map(size=>({src:`icon-${size}.png`,sizes:`${size}x${size}`,type:'image/png',purpose:'any'})));
+  await writeFile(manifestPath,JSON.stringify(webmanifest));
 
   const { fingerprintFiles, renderWorker } = await import(pathToFileURL(resolve(engine, 'tools/pwa.mjs')).href);
   const packagedManifest = JSON.parse(await readFile(resolve(output, 'build-manifest.json'), 'utf8'));

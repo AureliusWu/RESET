@@ -1,0 +1,50 @@
+import assert from 'node:assert/strict';
+import {createServer} from 'node:http';
+import {readFile} from 'node:fs/promises';
+import {resolve,extname,sep} from 'node:path';
+
+export async function verifyPwaUpgrade({browser,dist,previous,fixtures,out,pass}) {
+  let root=resolve(previous);
+  const server=createServer(async(req,res)=>{
+    try{
+      const pathname=decodeURIComponent(new URL(req.url,'http://localhost').pathname);
+      if(!pathname.startsWith('/candidate/'))throw Error();
+      const file=resolve(root,pathname.slice(11)||'index.html');if(!file.startsWith(root+sep))throw Error();
+      const body=await readFile(file);res.writeHead(200,{'Cache-Control':'no-cache','Content-Type':{'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.json':'application/json','.webmanifest':'application/manifest+json','.css':'text/css','.svg':'image/svg+xml','.png':'image/png','.wav':'audio/wav'}[extname(file)]||'application/octet-stream'});res.end(body);
+    }catch{res.writeHead(404);res.end();}
+  });await new Promise(r=>server.listen(0,'127.0.0.1',r));
+  const base=`http://127.0.0.1:${server.address().port}/candidate/`;
+  const context=await browser.newContext({viewport:{width:390,height:844},hasTouch:true,isMobile:true});let page;
+  await context.addInitScript(()=>{if(!localStorage.getItem('vn-engine:reset:settings'))localStorage.setItem('vn-engine:reset:settings',JSON.stringify({textDelayMs:0,reducedMotion:true,music:false,soundEffects:false}));});
+  try{
+    page=await context.newPage();await page.goto(base);await page.locator('.vn-engine').waitFor();
+    assert.equal(await page.evaluate(async()=> (await(await fetch('./project.json')).json()).version),'reset-v1.1.0');
+    await page.locator('[data-control=save]').click();
+    await page.locator('[data-reset-control=slots]').click();await page.locator('[data-slot="1"] [data-slot-action=save]').click();await page.keyboard.press('Escape');
+    const oldEnding=structuredClone(fixtures.endings['normal-linwan']);oldEnding.state.storyVersion='reset-v1.1.0';
+    await page.locator('[data-control=settings]').click();await page.locator('input[type=file]').setInputFiles({name:'old-route.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(oldEnding))});await page.locator('.vn-modal').waitFor({state:'hidden'});
+    await page.waitForFunction(()=>document.getElementById('status').textContent.includes('可离线游玩')&&navigator.serviceWorker.controller);
+    const saved=await page.evaluate(async()=>({quick:localStorage.getItem('vn-engine:reset:save:1'),slots:localStorage.getItem('reset:slots:v1'),caches:await caches.keys()}));
+    await page.evaluate(async()=>{const c=await caches.open('qa-unrelated-cache');await c.put('./unrelated',new Response('keep'));});
+    root=resolve(dist);await page.evaluate(async()=>{const owner=await navigator.serviceWorker.getRegistration();await owner.update();});
+    await page.waitForFunction(async()=>Boolean((await navigator.serviceWorker.getRegistration()).waiting),null,{timeout:90000});
+    assert.equal(await page.evaluate(async()=> (await(await fetch('./project.json')).json()).version),'reset-v1.1.0','the active client must not switch runtime mid-story');
+    await page.close();page=await context.newPage();await page.goto(base);await page.locator('.vn-engine').waitFor();
+    await page.waitForFunction(async()=> (await(await fetch('./project.json')).json()).version==='reset-v1.2.0-dev',null,{timeout:90000});
+    await page.reload();await page.locator('.reset-toolbar-controls').waitFor();
+    assert.equal(await page.evaluate(()=>localStorage.getItem('vn-engine:reset:save:1')),saved.quick);
+    assert.equal(await page.evaluate(()=>localStorage.getItem('reset:slots:v1')),saved.slots);
+    await page.locator('[data-control=load]').click();
+    await page.locator('[data-reset-control=slots]').click();await page.locator('[data-slot="1"] [data-slot-action=load]').click();await page.locator('[data-reset-confirm]').click();
+    await page.locator('[data-reset-control=collection]').click();assert.equal(await page.locator('[data-ending=normal-linwan]').getAttribute('data-unlocked'),'true');await page.keyboard.press('Escape');
+    const keys=await page.evaluate(()=>caches.keys());assert.ok(keys.includes('qa-unrelated-cache'));
+    assert.ok(saved.caches.filter(k=>k.startsWith('vn-self-reset-v2:')).every(k=>!keys.includes(k)));
+    pass('Published v1.1.0 PWA upgrades at the same nested origin after clients close; old quick/manual saves, settings and ending Meta survive');
+    await page.waitForFunction(()=>navigator.serviceWorker.controller&&document.getElementById('status').textContent.includes('可离线游玩'));
+    await context.setOffline(true);await page.reload();await page.locator('.vn-engine').waitFor();
+    await page.locator('[data-control=load]').click();await page.locator('[data-reset-control=slots]').click();await page.locator('[data-slot="1"] [data-slot-action=load]').click();await page.locator('[data-reset-confirm]').click();
+    await page.locator('.vn-background').waitFor({state:'visible'});assert.equal(await page.locator('#error').innerText(),'');
+    await page.screenshot({path:out+'/v110-upgraded-offline.png',fullPage:true});
+    pass('Upgraded candidate reloads offline and reads both real v1.1.0 save formats without clearing other caches');
+  }finally{await context.close();await new Promise(r=>server.close(r));}
+}
