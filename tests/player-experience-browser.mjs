@@ -58,7 +58,33 @@ export async function verifyPlayerExperience({browser,page,base,fixtures,project
       await mobile.locator('.reset-cg-full').waitFor({state:'visible'});
       await mobile.getByRole('button',{name:'返回图鉴',exact:true}).tap();
       assert.equal(await mobile.locator('[data-cg=true-end-riverside-cg]').isDisabled(),true);
-      await mobile.getByRole('button',{name:'关闭',exact:true}).tap();assert.deepEqual(errors,[]);
+      await mobile.getByRole('button',{name:'关闭',exact:true}).tap();
+      if(width===360||width===844){
+        await load(fixtures.combat.faceless_first);await mobile.locator('.reset-combat canvas').waitFor();
+        if(await mobile.locator('[data-combat-resume]').isVisible())await mobile.locator('[data-combat-resume]').click();
+        const canvas=mobile.locator('.reset-combat canvas');
+        const center=()=>canvas.evaluate(canvas=>{
+          const {data,width}=canvas.getContext('2d').getImageData(0,0,960,540);let x=0,count=0;
+          for(let row=100;row<450;row++)for(let col=25;col<935;col++){const i=(row*width+col)*4;if(data[i]===159&&data[i+1]===198&&data[i+2]===220){x+=col;count++;}}
+          return count?x/count:null;
+        });
+        await mobile.waitForTimeout(50);const start=await center();assert.ok(start!==null);
+        const movement=await mobile.locator('.reset-combat [data-key=ArrowRight]').boundingBox();
+        const cdp=await context.newCDPSession(mobile), point={x:movement.x+movement.width/2,y:movement.y+movement.height/2,id:1};
+        await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[point]});await mobile.waitForTimeout(300);
+        await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});const moved=await center();assert.ok(moved>start+20);
+        await mobile.waitForTimeout(120);assert.ok(Math.abs(await center()-moved)<5,'touch release must stop movement');
+        const controls=await mobile.locator('.reset-combat [data-key]').evaluateAll(nodes=>nodes.map(node=>{const r=node.getBoundingClientRect();return{height:r.height,left:r.left,right:r.right,bottom:r.bottom}}));
+        assert.ok(controls.every(r=>r.height>=48&&r.left>=0&&r.right<=width&&r.bottom<=height));
+        await mobile.locator('.reset-combat [data-key=KeyJ]').tap();
+        await mobile.waitForFunction(()=>Number(/体力 (\d+)/.exec(document.querySelector('.reset-combat__state').textContent)?.[1])<100);
+        await mobile.waitForTimeout(650);await mobile.locator('.reset-combat [data-key=KeyK]').tap();
+        await mobile.locator('.reset-combat [data-key=Space]').tap();await mobile.waitForTimeout(50);assert.ok(await center()<moved-60);
+        const rect=await canvas.boundingBox();assert.ok(rect.x>=0&&rect.y>=0&&rect.x+rect.width<=width&&rect.y+rect.height<=height);
+        await mobile.screenshot({path:`${out}/android-${width}x${height}-combat.png`,fullPage:true});await cdp.detach();
+        pass(`Android touch combat ${width}×${height}: native touch hold/release, light/heavy taps, dodge and 48px controls`);
+      }
+      assert.deepEqual(errors,[]);
       pass(`Android emulation ${width}×${height}: longest dialogue, six choices, 44px targets, sticky close, slots and touch gallery`);
     }finally{await context.close();}
   }
