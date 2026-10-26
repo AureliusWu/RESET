@@ -57,14 +57,14 @@ try{
     const result=spawnSync('powershell',['-NoProfile','-File',resolve('tests/windows-window.ps1'),'-Action',action,'-Width',String(width),'-Height',String(height)],{encoding:'utf8'});
     assert.equal(result.status,0,result.stderr);return JSON.parse(result.stdout.trim());
   };
-  for(const [width,height] of [[960,720],[960,540],[700,700]]){
+  for(const [width,height] of [[1024,768],[1024,600],[800,600]]){
     const rect=nativeWindow('resize',width,height);assert.equal(rect.width,width);assert.equal(rect.height,height);
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth&&document.querySelector('.vn-toolbar').getBoundingClientRect().bottom<=innerHeight));
     await page.screenshot({path:out+`/native-${width}x${height}.png`});
   }
   assert.equal(nativeWindow('maximize').maximized,true);
   assert.equal(nativeWindow('minimize').minimized,true);assert.equal(nativeWindow('restore').minimized,false);
-  checks.push('Real Win32 window resize at 4:3, 16:9 and square sizes, maximize, minimize and restore keep the player usable');
+  checks.push('Real Win32 window resize at 1024x768, 1024x600 and the pinned host minimum 800x600, maximize, minimize and restore keep the player usable');
   const dpi=await page.context().newCDPSession(page);
   for(const scale of [1.25,1.5,2]){
     await dpi.send('Emulation.setDeviceMetricsOverride',{width:800,height:600,deviceScaleFactor:scale,mobile:false});

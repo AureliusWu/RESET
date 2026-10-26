@@ -56,7 +56,7 @@ export async function verifyArchive({page,fixtures,project,loadFixture,control,s
   await loadFixture(fixtures.witnesses.route_focus_choice);
   for(let i=0;i<30&&!await page.locator('.vn-actions [data-action]').count();i++)await control('next').click();
   assert.equal(await page.locator('.vn-actions [data-action]').count(),6,'layout fixture must reach the six-way choice');
-  for(const [width,height,label] of [[1024,768,'windows-small'],[390,844,'mobile-portrait'],[844,390,'mobile-landscape']]){
+  for(const [width,height,label] of [[1280,720,'windows-wide'],[900,900,'windows-square'],[1024,768,'windows-small'],[390,844,'mobile-portrait'],[844,390,'mobile-landscape']]){
     await page.setViewportSize({width,height});
     await page.locator('.vn-actions [data-action]').last().scrollIntoViewIfNeeded();
     const bounds=await page.evaluate(()=>{const box=s=>{const r=document.querySelector(s).getBoundingClientRect();return{top:r.top,bottom:r.bottom,left:r.left,right:r.right}};return{toolbar:box('.vn-toolbar'),engine:box('.vn-engine'),width:document.documentElement.scrollWidth,height:document.documentElement.scrollHeight}});

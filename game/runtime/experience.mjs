@@ -23,7 +23,7 @@ export function mountExperienceBridge(game, project) {
       if(previous.visit!==next.visit && view.reason==='restore')animate('.vn-reading',[{boxShadow:'inset 0 2px #9accc5'},{boxShadow:'inset 0 2px transparent'}],340);
     }
     // Don't consume a visual change during a typewriter's incomplete first frame.
-    if(view.ready || !previous)previous=next;
+    if((view.ready && !view.paused) || !previous)previous=next;
   }
   const unsubscribe=session.subscribe(sync);sync();
   return{dispose(){disposed=true;unsubscribe();for(const animation of animations)animation.cancel();animations.clear();delete host.dataset.world;delete host.dataset.reducedMotion;}};

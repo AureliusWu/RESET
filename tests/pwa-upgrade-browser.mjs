@@ -31,7 +31,8 @@ export async function verifyPwaUpgrade({browser,dist,previous,fixtures,out,pass}
     await page.waitForFunction(async()=>Boolean((await navigator.serviceWorker.getRegistration()).waiting),null,{timeout:90000});
     assert.equal(await page.evaluate(async()=> (await(await fetch('./project.json')).json()).version),'reset-v1.1.0','the active client must not switch runtime mid-story');
     const nextWorker=await nextWorkerPromise;
-    await page.close();
+    await nextWorker.evaluate(()=>{self.__qaActivated=new Promise(resolve=>self.addEventListener('activate',()=>resolve(true),{once:true}));});
+    await page.close();await nextWorker.evaluate(()=>self.__qaActivated);
     await nextWorker.evaluate(()=>new Promise((resolve,reject)=>{
       const deadline=Date.now()+30000;
       const check=()=>{if(!self.registration.waiting&&self.registration.active?.state==='activated')resolve(true);else if(Date.now()>deadline)reject(Error('Candidate worker activation timed out'));else setTimeout(check,25);};check();
@@ -55,7 +56,7 @@ export async function verifyPwaUpgrade({browser,dist,previous,fixtures,out,pass}
     pass('Upgraded candidate reloads offline and reads both real v1.1.0 save formats without clearing other caches');
   }catch(error){
     await page?.screenshot({path:out+'/upgrade-failure.png',fullPage:true}).catch(()=>{});
-    const state=await page?.evaluate(async()=>({error:document.querySelector('#error')?.textContent,html:document.body.innerText,cacheKeys:await caches.keys(),controller:navigator.serviceWorker.controller?.state,waiting:(await navigator.serviceWorker.getRegistration())?.waiting?.state})).catch(()=>null);
+    const state=await page?.evaluate(async()=>({error:document.querySelector('#error')?.textContent,html:document.body.innerText,cacheKeys:await caches.keys(),cacheProjects:await Promise.all((await caches.keys()).filter(k=>k.startsWith('vn-self-reset-v2:')).map(async key=>{const cache=await caches.open(key),response=await cache.match(new URL('./project.json',location.href));return {key,version:response?(await response.json()).version:null};})),archiveHasNewControls:(await(await fetch('./archive.mjs')).text()).includes('reset-toolbar-controls'),controller:navigator.serviceWorker.controller?.state,waiting:(await navigator.serviceWorker.getRegistration())?.waiting?.state})).catch(()=>null);
     const {writeFile}=await import('node:fs/promises');await writeFile(out+'/upgrade-failure.json',JSON.stringify({error:error.stack,state},null,2));throw error;
   }finally{await context.close();await new Promise(r=>server.close(r));}
 }
