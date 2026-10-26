@@ -14,7 +14,7 @@
         3840,
         2160
       ],
-      "masterSHA256": "a5479158e272eeb8f28afff6d1c136db9ee65db8f53028486d67fcc4d7b86a2a",
+      "masterSHA256": "01afb7b37a1dcba61495853148e2ed478697f97bf9e67c9f8b91c30c928f48ab",
       "runtime": "game/assets/4k/runtime/cg/letter-1842-cg.webp",
       "runtimeSize": [
         1920,
@@ -31,5 +31,9 @@
       "prompt": "Use case: illustration-story. Final narrative CG for Chinese campus supernatural VN RESET. Top-down close view of a worn cream paper letter on a muted brown school desk, pen and blue notebook corner, cool evening light. Letter fills most of frame. Large readable handwritten Chinese EXACT text on separate lines: 陈渡： / 如果你已经忘了我们的约定， / 就不要再读档。 / ——林晚 / 18:42. No other text. Reference is STYLE only; no character included. Match Linwan's thin confident anime linework, restrained 2-3 level clean shadows, facial abstraction, detailed modest clothes and muted color density. Full-bleed landscape16:9 opaque illustration, not collage, no watermark or UI.",
       "faceComposition": null
     }
-  ]
+  ],
+  "recovery": {
+    "reason": "Recovered master had incomplete PNG IDAT checksum; rebuilt from unchanged intact ChatGPT original with the documented Pillow Lanczos pad workflow. Original and runtime unchanged.",
+    "previousInvalidMasterSHA256": "a5479158e272eeb8f28afff6d1c136db9ee65db8f53028486d67fcc4d7b86a2a"
+  }
 }
