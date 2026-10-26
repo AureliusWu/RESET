@@ -38,7 +38,7 @@ export async function verifyPwaUpgrade({browser,dist,previous,fixtures,out,pass}
       const check=()=>{if(!self.registration.waiting&&self.registration.active?.state==='activated')resolve(true);else if(Date.now()>deadline)reject(Error('Candidate worker activation timed out'));else setTimeout(check,25);};check();
     }));
     page=await context.newPage();await page.goto(base);await page.locator('.vn-engine').waitFor();
-    await page.waitForFunction(async()=> (await(await fetch('./project.json')).json()).version==='reset-v1.2.0-rc.1',null,{timeout:90000});
+    await page.waitForFunction(async()=> (await(await fetch('./project.json')).json()).version==='reset-v1.2.0-rc.2',null,{timeout:90000});
     await page.reload();await page.locator('.reset-toolbar-controls').waitFor();
     assert.equal(await page.evaluate(()=>localStorage.getItem('vn-engine:reset:save:1')),saved.quick);
     assert.equal(await page.evaluate(()=>localStorage.getItem('reset:slots:v1')),saved.slots);

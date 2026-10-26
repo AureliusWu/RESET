@@ -63,7 +63,7 @@ test('every release ending is reached through canonical choices and survives sav
 
 test('all shipped bytes match the build manifest', async () => {
   const manifest = JSON.parse(await readFile(resolve(dist, 'build-manifest.json'), 'utf8'));
-  assert.equal(manifest.version, 'reset-v1.2.0-rc.1'); assert.equal(project.version, manifest.version);
+  assert.equal(manifest.version, 'reset-v1.2.0-rc.2'); assert.equal(project.version, manifest.version);
   for (const f of manifest.files) { const data = await readFile(resolve(dist,f.name)); assert.equal(data.length,f.size,f.name); assert.equal(createHash('sha256').update(data).digest('hex'),f.sha256,f.name); }
 });
 
@@ -87,20 +87,20 @@ test('Meta counts one restore per visit, retains endings and respects paused con
   bridge.dispose(); s.dispose();
 }));
 
-test('published v1.0.0, v1.0.1, v1.1.0 and v1.2.0-dev saves upgrade without changing routes or bypassing validation', () => withMeta(() => {
+test('published v1.0.0, v1.0.1, v1.1.0, v1.2.0-dev and v1.2.0-rc.1 saves upgrade without changing routes or bypassing validation', () => withMeta(() => {
   const s=instance().session, bridge=mountMetaBridge({session:s});
-  for(const version of ['reset-v1.0.0','reset-v1.0.1','reset-v1.1.0','reset-v1.2.0-dev'])for(const id of expected){
+  for(const version of ['reset-v1.0.0','reset-v1.0.1','reset-v1.1.0','reset-v1.2.0-dev','reset-v1.2.0-rc.1'])for(const id of expected){
     s.restart(); const legacy=structuredClone(endings.get(id)); legacy.state.storyVersion=version;
     s.restore(legacy); assert.equal(s.getView().frame.ending,id); assert.equal(legacy.state.storyVersion,version,'import must not mutate the backup');
     if(id==='true-end')assert.throws(()=>s.save(),/不可逆|保存|回退/);
     else assert.equal(s.save().state.storyVersion,project.version);
   }
-  assert.equal(bridge.meta.loads,expected.length*4);
+  assert.equal(bridge.meta.loads,expected.length*5);
   s.restart(); const invalid=structuredClone(endings.get('normal-linwan')); invalid.state.storyVersion='reset-v1.0.0';
   invalid.state.decisions[0].choiceId='invalid-choice'; assert.throws(()=>s.restore(invalid));
   invalid.state.storyVersion='unknown-version'; assert.throws(()=>s.restore(invalid));
   invalid.game='another-game'; invalid.state.storyVersion='reset-v1.0.0'; assert.throws(()=>s.restore(invalid));
-  assert.equal(bridge.meta.loads,expected.length*4,'rejected restores must not increase Meta');
+  assert.equal(bridge.meta.loads,expected.length*5,'rejected restores must not increase Meta');
   bridge.dispose(); s.dispose();
 }));
 

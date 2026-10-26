@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.2.0-rc.2 — Art completeness candidate
+
+- 在 rc.1 已完成的 58 个正式 4K production 引用基础上，补齐独立品牌、7 章章节卡、两类关键剧情道具视觉与六位女主 Q 版角色记忆。
+- PWA 安装图标从 VN Engine 通用 N 几何升级为《回留》专属“回环 / 存档”标记；新增视觉采用分辨率无关几何，避免低分辨率位图放大。
+- 新增美术完整性自动门禁，并兼容 `v1.2.0-rc.1` 存档升级到 rc.2。
+- 正式线上版、正式 Release 与 Pages 仍保持 v1.1.0。
+- 详见 [CHANGELOG_v1.2.0-rc.2.md](CHANGELOG_v1.2.0-rc.2.md)。
+
 ## 1.2.0-rc.1 — Release candidate freeze
 
 - 基于 v1.1.0 的体验修复、剧情闭环和 4K 美术 Round 1–9 已完成并进入首个 RC 冻结候选。

@@ -1,7 +1,7 @@
 import { CGS } from './archive-data.mjs';
 const META_KEY = 'reset:meta:v1';
-const STORY_VERSION = 'reset-v1.2.0-rc.1';
-const LEGACY_VERSIONS = new Set(['reset-v1.0.0','reset-v1.0.1','reset-v1.1.0','reset-v1.2.0-dev']);
+const STORY_VERSION = 'reset-v1.2.0-rc.2';
+const LEGACY_VERSIONS = new Set(['reset-v1.0.0','reset-v1.0.1','reset-v1.1.0','reset-v1.2.0-dev','reset-v1.2.0-rc.1']);
 const CG_IDS = new Set(CGS.map(cg => cg.id));
 export const IRREVERSIBLE_SCENES = Object.freeze(['c6_no_save','c6_walk_forward','c6_escape','c6_echo_goodbye','c6_last_door','c7_morning','c7_after','c7_linwan','c7_credits']);
 const IRREVERSIBLE = new Set(IRREVERSIBLE_SCENES);
@@ -25,8 +25,8 @@ export function mountMetaBridge(game){
         if(name==='save'||name==='restore')throw new Error(message);
         return false;
       }
-      // This patch changes no story nodes or choices. Upgrade only the exact
-      // published predecessor; the engine still validates and replays the save.
+      // This patch changes no story nodes or choices. Upgrade only known
+      // published/development predecessors; the engine still validates and replays the save.
       if(name==='restore'&&args[0]?.schema===1&&args[0]?.game==='reset'&&LEGACY_VERSIONS.has(args[0]?.state?.storyVersion)){
         args[0]={...args[0],state:{...args[0].state,storyVersion:STORY_VERSION}};
       }
