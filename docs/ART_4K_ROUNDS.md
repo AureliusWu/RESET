@@ -192,3 +192,16 @@ Round 8 completed。正式 production 资产引用已全部脱离 legacy SVG；`
 - `audit-4k-art.mjs` 新增永久门禁：迁移完成后若 `game/assets/` 根目录再次出现 retired SVG，审计直接失败；生成器的开发期 `generated-*/*.svg` 不属于 production fallback。
 - 严格 4K 审计、art:check、build、check:release、test:release 全部通过后才提交。
 - 保持 `v1.2.0-dev`，不进入 RC，不覆盖正式 `v1.1.0 Pages`。下一轮为 Round 9 — 全游戏视觉验收。
+
+## Round 9 — 全游戏视觉验收
+
+Round 9 completed。58 / 58 正式 production 4K 引用、5 张 UI 关键视觉与最终 Web / Windows 包完成全游戏视觉验收。
+
+- 验收基线：`fcac4432f0fc0098a692d3b8954fca1209c8b2e3`；Round 9 Workflow Run `40409772370`。
+- 58 个正式 production 引用全部保持 `assets/4k/runtime/`，无 SVG fallback；严格 4K 审计继续为 missing 0 / undersized 0 / missing alpha 0。
+- 浏览器对 53 个非林晚 production 图像逐项真实解码，并用真实剧情存档或明确标记的独立 renderer fixture 显示；林晚 8 个 runtime derivative 另行全部解码并复核五表情、Alpha、深浅底与五组视口。
+- 5 张 UI 关键视觉全部在实际界面显式验收：标题、存档异常、结局收藏、CG 图鉴、战斗 HUD；均为 1920×1080 runtime WebP。
+- Build 回留 Run `40409772492` success；Release 回留 Run `40409772102` Web / Windows success。最终 Web ZIP/PWA/离线/旧版升级与 Windows 原生 host/launcher/WebView2/重启持久化继续全部通过。
+- 完整证据写入 `docs/ROUND9_VISUAL_ACCEPTANCE.md`；截图与 JSON 作为 Round 9 Actions artifact 保存。
+- 保持 `v1.2.0-dev`，不创建 RC、不覆盖正式 `v1.1.0 Pages`。下一轮：Round 10 — 恢复 `v1.2.0-rc.1` 冻结流程。
+
