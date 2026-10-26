@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "generator": "ChatGPT built-in image generation",
+  "workflow": "chatgpt-original-to-processed-4k-master",
+  "native4kClaim": false,
+  "processing": "Pillow Lanczos with premultiplied alpha; aspect-preserving pad",
+  "authorization": "2026-10-26: ChatGPT出原图，做出4K母版",
+  "category": "cg",
+  "id": "letter-1842-cg",
+  "assets": [
+    {
+      "master": "game/assets/4k/cg/letter-1842-cg.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "a5479158e272eeb8f28afff6d1c136db9ee65db8f53028486d67fcc4d7b86a2a",
+      "runtime": "game/assets/4k/runtime/cg/letter-1842-cg.webp",
+      "runtimeSize": [
+        1920,
+        1080
+      ],
+      "runtimeSHA256": "6cb43f4d10ea65cadb086ff5109d54bcf8d48864815a4bfbe8b0089d462522a8",
+      "expression": "original",
+      "original": "game/art-sources/chatgpt/cg/letter-1842-cg/original.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "fc024acc0de86c5d1b8b663208448739ce571da9d2cc9dad454ebd7063b5fa04",
+      "prompt": "Use case: illustration-story. Final narrative CG for Chinese campus supernatural VN RESET. Top-down close view of a worn cream paper letter on a muted brown school desk, pen and blue notebook corner, cool evening light. Letter fills most of frame. Large readable handwritten Chinese EXACT text on separate lines: 陈渡： / 如果你已经忘了我们的约定， / 就不要再读档。 / ——林晚 / 18:42. No other text. Reference is STYLE only; no character included. Match Linwan's thin confident anime linework, restrained 2-3 level clean shadows, facial abstraction, detailed modest clothes and muted color density. Full-bleed landscape16:9 opaque illustration, not collage, no watermark or UI.",
+      "faceComposition": null
+    }
+  ]
+}
