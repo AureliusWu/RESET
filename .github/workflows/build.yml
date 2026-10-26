@@ -76,7 +76,7 @@ jobs:
           test -f dist/assets/generated-scenes/save-room.svg
           test -f dist/assets/generated-scenes/true-dawn.svg
           test -f dist/assets/generated-scenes/true-end-riverside-cg.svg
-          test -f dist/assets/generated-portraits/linwan/smile.svg
+          test -f dist/assets/generated-portraits/linwan-production/smile.webp
           test -f dist/assets/generated-portraits/xuqi/serious.svg
           test -f dist/assets/generated-portraits/xuqi/angry.svg
 
