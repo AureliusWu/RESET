@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.0-dev — Player experience
+
+- 开始基于 v1.1.0 的体验修复周期，继续锁定原引擎。
+- 增加 v1.1.0 存档升级回归；保留全部历史正式版。
+- 开发工作流只生成候选 ZIP 与验收证据，不创建标签或正式 Release。
+- 详见 [CHANGELOG_v1.2.0-dev.md](CHANGELOG_v1.2.0-dev.md)。
+
 ## 1.1.0 — Saves and collection
 
 - 增加 6 个手动存档槽，支持时间/位置/台词预览、读取、覆盖和删除确认；保留快速存档。

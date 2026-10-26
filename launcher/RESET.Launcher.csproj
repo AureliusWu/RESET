@@ -8,6 +8,6 @@
     <Nullable>enable</Nullable>
     <AssemblyName>RESET</AssemblyName>
     <RootNamespace>Huiliu.Launcher</RootNamespace>
-    <Version>1.1.0</Version>
+    <Version>1.2.0-dev</Version>
   </PropertyGroup>
 </Project>

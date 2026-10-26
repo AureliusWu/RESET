@@ -4,11 +4,6 @@ on:
   workflow_dispatch:
   release:
     types: [published]
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/pages.yml'
-      - 'tests/pages-live.mjs'
 
 permissions:
   contents: read
@@ -40,7 +35,7 @@ jobs:
           script: |
             const fs = require('node:fs');
             const crypto = require('node:crypto');
-            const tag = context.payload.release?.tag_name || 'v' + require('./package.json').version;
+            const tag = context.payload.release?.tag_name || (await github.rest.repos.getLatestRelease({owner:context.repo.owner,repo:context.repo.repo})).data.tag_name;
             if (!/^v\d+\.\d+\.\d+$/.test(tag)) throw new Error('A stable release tag is required');
             const {data: release} = await github.rest.repos.getReleaseByTag({owner:context.repo.owner,repo:context.repo.repo,tag});
             if (release.draft || release.prerelease) throw new Error('Release must be public and stable');
@@ -76,9 +71,16 @@ jobs:
           console.log(manifest.version,manifest.contentFingerprint,manifest.files.length,'verified files');
           JS
 
+      - name: Checkout the stable release verifier
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.release.outputs.tag }}
+          path: stable-verifier
+
       - name: Test the exact release runtime
+        working-directory: stable-verifier
         env:
-          RESET_DIST: published
+          RESET_DIST: ../published
         run: npm run test:release
 
       - uses: actions/configure-pages@v5
@@ -109,13 +111,14 @@ jobs:
           VN_ENGINE_PATH: ${{ github.workspace }}/vn-engine
           RESET_LIVE_URL: ${{ steps.deployment.outputs.page_url }}
           RELEASE_TAG: ${{ steps.release.outputs.tag }}
+        working-directory: stable-verifier
         run: node tests/pages-live.mjs
 
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: RESET-pages-live-validation
-          path: test-results/pages-live
+          path: stable-verifier/test-results/pages-live
 
       - name: Report the deployed address
         env:

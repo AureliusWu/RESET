@@ -93,7 +93,7 @@ async function walkFiles(directory) {
 }
 
 async function injectGameRuntime(project) {
-  for (const file of ['README.md', 'LICENSE.md', 'CHANGELOG_v1.1.0.md']) {
+  for (const file of ['README.md', 'LICENSE.md', 'CHANGELOG_v1.2.0-dev.md']) {
     await copyFile(resolve(root, file), resolve(output, file));
   }
   for (const file of ['combat.mjs','meta.mjs','archive.mjs','archive-data.mjs','experience.css']) {
