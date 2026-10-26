@@ -33,8 +33,8 @@
     "faceless-reflection-cg","letter-1842-cg","six-chairs-cg","linwan-1842-cg","true-end-riverside-cg"
   ],
   "anomalies": [
-    {"id":"faceless","current":"assets/ch-faceless.svg","master":"assets/4k/anomalies/faceless.png","runtime":"assets/4k/runtime/anomalies/faceless.webp"},
-    {"id":"echo-chen","current":"assets/ch-echo-chen.svg","master":"assets/4k/anomalies/echo-chen.png","runtime":"assets/4k/runtime/anomalies/echo-chen.webp"}
+    {"id":"faceless","productionId":"faceless/neutral","current":"assets/ch-faceless.svg","master":"assets/4k/anomalies/faceless.png","runtime":"assets/4k/runtime/anomalies/faceless.webp"},
+    {"id":"echo-chen","productionId":"echochen/neutral","current":"assets/ch-echo-chen.svg","master":"assets/4k/anomalies/echo-chen.png","runtime":"assets/4k/runtime/anomalies/echo-chen.webp"}
   ],
   "ui": [
     {"id":"title-key-visual","current":"assets/ui-title-mark.svg","master":"assets/4k/ui/title-key-visual.png","runtime":"assets/4k/runtime/ui/title-key-visual.webp"},
