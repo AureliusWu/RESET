@@ -49,6 +49,7 @@ try{
   const importSave=async save=>{await page.locator('[data-control=settings]').click();await page.locator('input[type=file]').setInputFiles({name:'reset-save.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(save))});await page.locator('.vn-modal').waitFor({state:'hidden'});};
   await verifyLinwanArt({page,project,fixtures,loadFixture:importSave,control:id=>page.locator(`[data-control="${id}"]`),out,pass:name=>checks.push('Native WebView2: '+name),viewports:false});
   await verifyProductionArt({page,project,fixtures,loadFixture:importSave,out,pass:name=>checks.push('Native WebView2: '+name),captureEdges:false});
+  assert.equal(await page.locator('.vn-engine').getAttribute('data-irreversible'),'false','Art QA must leave the main game outside irreversible scenes');
   const cgScene=project.scenes.find(s=>s.cg==='letter-1842-cg');await importSave(fixtures.witnesses[cgScene.id]);
   for(let i=0;i<30;i++){if(await page.locator('.vn-cg').getAttribute('data-asset')==='letter-1842-cg')break;await page.locator('[data-control=next]').click();}
   await page.waitForFunction(()=>JSON.parse(localStorage.getItem('reset:meta:v1')).cgs.includes('letter-1842-cg'));

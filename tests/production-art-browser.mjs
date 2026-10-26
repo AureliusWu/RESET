@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {IRREVERSIBLE_SCENES} from '../game/runtime/meta.mjs';
 import { writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -14,7 +15,9 @@ export async function verifyProductionArt({page,project,fixtures,loadFixture,out
       session.restore(save);const scene=session.getView().frame.sceneId;
       for(let i=0;i<100;i++){
         const f=session.getView().frame;if(f.sceneId!==scene)break;
-        for(const id of [f.stage.portrait,f.stage.background,f.stage.cg])if(id&&!frames.has(id)){
+        // The pure engine session has no work-level Meta guard. Never use its
+        // export from an irreversible scene to drive the live native game.
+        for(const id of [f.stage.portrait,f.stage.background,f.stage.cg])if(id&&!frames.has(id)&&!IRREVERSIBLE_SCENES.includes(f.sceneId)){
           try{frames.set(id,session.save());}catch{/* irreversible art is checked by actual finale traversal */}
         }
         if(!session.next())break;

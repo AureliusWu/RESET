@@ -3,7 +3,8 @@ const META_KEY = 'reset:meta:v1';
 const STORY_VERSION = 'reset-v1.2.0-dev';
 const LEGACY_VERSIONS = new Set(['reset-v1.0.0','reset-v1.0.1','reset-v1.1.0']);
 const CG_IDS = new Set(CGS.map(cg => cg.id));
-const IRREVERSIBLE = new Set(['c6_no_save','c6_walk_forward','c6_escape','c6_echo_goodbye','c6_last_door','c7_morning','c7_after','c7_linwan','c7_credits']);
+export const IRREVERSIBLE_SCENES = Object.freeze(['c6_no_save','c6_walk_forward','c6_escape','c6_echo_goodbye','c6_last_door','c7_morning','c7_after','c7_linwan','c7_credits']);
+const IRREVERSIBLE = new Set(IRREVERSIBLE_SCENES);
 function readMeta(){try{const v=JSON.parse(localStorage.getItem(META_KEY)||'{}');return v&&typeof v==='object'?v:{}}catch{return{}}}
 function writeMeta(v){try{localStorage.setItem(META_KEY,JSON.stringify(v))}catch{}}
 export function mountMetaBridge(game){
