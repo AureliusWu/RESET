@@ -22,6 +22,13 @@ test('galgame completeness layer covers brand, chapters, props and chibi cast', 
   assert.ok(ui.includes('拍摄时间：五分钟后'));
 });
 
+test('gameplay key visual never covers the playable stage and mobile portraits stay bounded', async () => {
+  const css = await readFile(resolve(root, 'game/runtime/experience.css'), 'utf8');
+  assert.ok(css.includes('.reset-title-key-visual{display:none!important}'), 'title key visual can still cover gameplay');
+  assert.ok(css.includes('.vn-engine .vn-stage .vn-portrait{max-height:86%;max-width:min(58%,620px)'), 'desktop portrait composition guard missing');
+  assert.ok(css.includes('.vn-engine .vn-stage .vn-portrait{max-height:74%;max-width:68%'), 'mobile portrait composition guard missing');
+});
+
 test('PWA icon is RESET-branded, deterministic and correctly sized', async () => {
   const source = await readFile(resolve(root, 'scripts/pwa-assets.mjs'), 'utf8');
   assert.ok(source.includes("RESET's own loop/save mark"));
