@@ -5,8 +5,6 @@ on:
   pull_request:
   push:
     branches: [main]
-    tags:
-      - 'v*'
 
 permissions:
   contents: read
@@ -38,59 +36,67 @@ jobs:
         working-directory: vn-engine
         run: npm ci
 
-      - name: Build standalone PWA
+      - name: Build standalone PWA candidate
         working-directory: game-repo
         env:
           VN_ENGINE_PATH: ${{ github.workspace }}/vn-engine
         run: npm run build
 
-      - name: Validate v1.2.0 release content and runtime extensions
+      - name: Validate v1.2.1-dev candidate and report visual blockers
         working-directory: game-repo
         run: |
           npm run check:release
-          node -e "const m=require('./dist/build-manifest.json');const p=require('./dist/project.json');if(m.game!=='reset'||p.version!=='reset-v1.2.0'||m.version!=='reset-v1.2.0')process.exit(1);if(!p.scenes.some(s=>s.ending==='true-end'))process.exit(2);console.log(m.engine,m.contentFingerprint,p.scenes.length,p.assets.length,m.extensions)"
+          node -e "const m=require('./dist/build-manifest.json');const p=require('./dist/project.json');if(m.game!=='reset'||p.version!=='reset-v1.2.1-dev'||m.version!=='reset-v1.2.1-dev')process.exit(1);if(!m.extensions.includes('reset-art-visual-gate-v1'))process.exit(2);if(!p.scenes.some(s=>s.ending==='true-end'))process.exit(3);console.log(m.engine,m.contentFingerprint,p.scenes.length,p.assets.length,m.extensions)"
           test -f dist/index.html
           test -f dist/manifest.webmanifest
           test -f dist/sw.js
           test -f dist/combat.mjs
           test -f dist/meta.mjs
 
-      - name: Archive Web release
+      - name: Archive Web candidate
         working-directory: game-repo
-        run: cd dist && zip -r ../RESET-huiliu-v1.2.0-web.zip .
+        run: cd dist && zip -r ../RESET-huiliu-v1.2.1-dev-web.zip .
 
       - name: Install acceptance browser
         working-directory: vn-engine
         run: npx playwright install --with-deps chromium
 
-      - name: Prepare the immutable v1.1.0 upgrade fixture
+      - name: Prepare immutable v1.1.0 upgrade fixture
         working-directory: game-repo
         run: |
           curl --fail --location --retry 3 https://github.com/AureliusWu/RESET/releases/download/v1.1.0/RESET-huiliu-v1.1.0-web.zip -o previous-web.zip
           echo '6750ed303f1029684418f93449ae3d322f08e294e40926a53529cae81fad8f24  previous-web.zip' | sha256sum --check
           unzip -q previous-web.zip -d previous-web
 
-      - name: Test the extracted final Web ZIP
+      - name: Test extracted final Web candidate ZIP
         working-directory: game-repo
         env:
           RESET_DIST: installed-web
           RESET_PREVIOUS_DIST: previous-web
           VN_ENGINE_PATH: ${{ github.workspace }}/vn-engine
         run: |
-          unzip -q RESET-huiliu-v1.2.0-web.zip -d installed-web
+          unzip -q RESET-huiliu-v1.2.1-dev-web.zip -d installed-web
           npm run test:release
           npm run test:browser
+
+      - name: Confirm stable publication gate is still closed
+        working-directory: game-repo
+        run: |
+          if npm run check:stable; then
+            echo 'Stable gate unexpectedly passed while visual acceptance is BLOCKED' >&2
+            exit 1
+          fi
 
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: RESET-huiliu-v1.2.0-web-validation
+          name: RESET-huiliu-v1.2.1-dev-web-validation
           path: game-repo/test-results
 
       - uses: actions/upload-artifact@v4
         with:
-          name: RESET-huiliu-v1.2.0-web
-          path: game-repo/RESET-huiliu-v1.2.0-web.zip
+          name: RESET-huiliu-v1.2.1-dev-web
+          path: game-repo/RESET-huiliu-v1.2.1-dev-web.zip
 
   windows:
     runs-on: windows-latest
@@ -128,7 +134,7 @@ jobs:
           VN_ENGINE_PATH: ${{ github.workspace }}\vn-engine
         run: npm run build
 
-      - name: Validate composed Windows game content
+      - name: Validate composed Windows candidate
         working-directory: game-repo
         run: npm run check:release
 
@@ -138,7 +144,7 @@ jobs:
       - name: Publish 回留 launcher
         run: dotnet publish game-repo/launcher/RESET.Launcher.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:DebugType=None -p:DebugSymbols=false -o package/launcher
 
-      - name: Assemble Windows release
+      - name: Assemble Windows candidate
         shell: pwsh
         run: |
           New-Item -ItemType Directory -Force package/game | Out-Null
@@ -202,16 +208,17 @@ jobs:
           if ($Spawned.HasExited) { throw 'launcher-spawned VN Engine exited immediately' }
           Get-Process VNEngine -ErrorAction SilentlyContinue | Stop-Process -Force
 
-      - name: Archive Windows release
+      - name: Archive Windows candidate
         shell: pwsh
-        run: Compress-Archive -Path package/* -DestinationPath RESET-huiliu-v1.2.0-win-x64.zip
+        run: Compress-Archive -Path package/* -DestinationPath RESET-huiliu-v1.2.1-dev-win-x64.zip
 
-      - name: Test actual installed Windows ZIP and process restart
+      - name: Test actual installed Windows candidate ZIP and process restart
         working-directory: game-repo
         env:
           VN_ENGINE_PATH: ${{ github.workspace }}\vn-engine
+        shell: pwsh
         run: |
-          Expand-Archive ../RESET-huiliu-v1.2.0-win-x64.zip -DestinationPath ../installed-windows
+          Expand-Archive ../RESET-huiliu-v1.2.1-dev-win-x64.zip -DestinationPath ../installed-windows
           $env:RESET_DIST = '../installed-windows/game'
           npm run test:release
           if ($LASTEXITCODE -ne 0) { throw 'Installed Windows runtime regressions failed' }
@@ -227,10 +234,18 @@ jobs:
             else { Set-ItemProperty -Path $Policy -Name 'VNEngine.exe' -Value $Prior }
           }
 
+      - name: Confirm stable publication gate is still closed
+        working-directory: game-repo
+        shell: pwsh
+        run: |
+          npm run check:stable
+          if ($LASTEXITCODE -eq 0) { throw 'Stable gate unexpectedly passed while visual acceptance is BLOCKED' }
+          Write-Host 'Expected: stable publication remains blocked on manual visual acceptance.'
+
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: RESET-huiliu-v1.2.0-windows-validation
+          name: RESET-huiliu-v1.2.1-dev-windows-validation
           path: |
             test-results/windows/host-policy.json
             game-repo/test-results/windows-installed/*.json
@@ -238,71 +253,8 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: RESET-huiliu-v1.2.0-win-x64
-          path: RESET-huiliu-v1.2.0-win-x64.zip
+          name: RESET-huiliu-v1.2.1-dev-win-x64
+          path: RESET-huiliu-v1.2.1-dev-win-x64.zip
 
-  publish:
-    needs: [web, windows]
-    if: >-
-      github.ref == 'refs/heads/main' && github.event_name == 'push' && startsWith(github.event.head_commit.message, 'release: publish v1.2.0')
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      actions: read
-    steps:
-      - uses: actions/checkout@v4
-      - name: Require the matching main Build CI
-        uses: actions/github-script@v7
-        with:
-          script: |
-            for (let attempt = 0; attempt < 60; attempt++) {
-              const {data} = await github.rest.actions.listWorkflowRuns({owner: context.repo.owner, repo: context.repo.repo, workflow_id: 'build.yml', head_sha: context.sha});
-              const run = data.workflow_runs.find(run => run.head_sha === context.sha && run.event === 'push');
-              if (run?.status === 'completed') {
-                if (run.conclusion !== 'success') throw new Error('Matching Build CI failed');
-                return;
-              }
-              await new Promise(resolve => setTimeout(resolve, 3000));
-            }
-            throw new Error('Matching Build CI did not finish');
-      - uses: actions/download-artifact@v4
-        with:
-          name: RESET-huiliu-v1.2.0-web
-          path: release-assets
-      - uses: actions/download-artifact@v4
-        with:
-          name: RESET-huiliu-v1.2.0-win-x64
-          path: release-assets
-      - name: Create immutable annotated tag after all acceptance gates
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const repo = {owner: context.repo.owner, repo: context.repo.repo};
-            const head = (await github.rest.repos.getBranch({...repo, branch: 'main'})).data.commit.sha;
-            if (head !== context.sha) throw new Error('A newer main commit superseded this candidate; refusing to publish');
-            let ref;
-            try { ref = (await github.rest.git.getRef({...repo, ref: 'tags/v1.2.0'})).data; } catch (e) { if (e.status !== 404) throw e; }
-            if (ref) {
-              const sha = ref.object.type === 'tag' ? (await github.rest.git.getTag({...repo, tag_sha: ref.object.sha})).data.object.sha : ref.object.sha;
-              if (sha !== context.sha) throw new Error('v1.2.0 already points to another commit; never move a published tag');
-            } else {
-              const {data: tag} = await github.rest.git.createTag({...repo, tag: 'v1.2.0', message: '回留 / RESET v1.2.0 — verified Web/PWA and Windows x64', object: context.sha, type: 'commit'});
-              await github.rest.git.createRef({...repo, ref: 'refs/tags/v1.2.0', sha: tag.sha});
-            }
-      - name: Publish verified dual-platform release
-        env:
-          GH_TOKEN: ${{ github.token }}
-          GH_REPO: ${{ github.repository }}
-        shell: bash
-        run: |
-          cd release-assets
-          sha256sum RESET-huiliu-v1.2.0-web.zip RESET-huiliu-v1.2.0-win-x64.zip > SHA256SUMS.txt
-          cd ..
-          if gh release view v1.2.0 --json isDraft > release-state.json 2>/dev/null; then
-            node -e "if(!require('./release-state.json').isDraft)throw Error('v1.2.0 is already public; refusing to replace immutable release assets')"
-          else
-            gh release create v1.2.0 --verify-tag --draft --title '《回留 / RESET》v1.2.0' --notes-file CHANGELOG_v1.2.0.md
-          fi
-          gh release upload v1.2.0 release-assets/RESET-huiliu-v1.2.0-web.zip release-assets/RESET-huiliu-v1.2.0-win-x64.zip release-assets/SHA256SUMS.txt --clobber
-          gh release edit v1.2.0 --draft=false --latest --title '《回留 / RESET》v1.2.0' --notes-file CHANGELOG_v1.2.0.md
-          gh release view v1.2.0 --json url,tagName,isDraft,assets
+# Intentionally no publish job on the v1.2.1 development line.
+# A stable publish job is restored only after visual-acceptance.json is all PASS.
