@@ -72,3 +72,12 @@ main#game{height:calc(100dvh - 30px - env(safe-area-inset-top) - env(safe-area-i
 .reset-combat.reset-round7-ui{background:linear-gradient(rgba(5,8,12,.82),rgba(5,8,12,.94)),url('./assets/4k/runtime/ui/combat-hud-key-visual.webp') center/cover no-repeat!important}
 @media(max-width:700px){.reset-ui-header{height:118px;border-radius:9px;margin-bottom:12px}.reset-title-key-visual{object-position:center}}
 
+/* v1.2.1 visual-regression hotfix: never let decorative release art replace the playable scene. */
+.reset-title-key-visual{display:none!important}
+.vn-engine .vn-stage .vn-portrait{max-height:86%;max-width:min(58%,620px);object-fit:contain;object-position:center bottom}
+@media(max-width:700px){
+  .vn-engine .vn-stage .vn-portrait{max-height:74%;max-width:68%;object-fit:contain;object-position:center bottom}
+  .reset-brand-mark{width:min(42%,270px)!important;left:12px!important;top:12px!important}
+  .reset-toolbar-controls{scrollbar-width:none}
+  .reset-toolbar-controls::-webkit-scrollbar{display:none}
+}
