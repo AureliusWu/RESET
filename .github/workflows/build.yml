@@ -43,7 +43,12 @@ jobs:
           node --check game/runtime/pwa.mjs
           node --check scripts/generate-portraits.mjs
           node --check scripts/generate-scenes.mjs
+          node --check scripts/audit-4k-art.mjs
           node --check scripts/check-release.mjs
+
+      - name: Verify frozen 4K migration map
+        working-directory: game-repo
+        run: npm run art:audit
 
       - name: Compose content and package 回留
         working-directory: game-repo

@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "audio": "node scripts/generate-audio.mjs",
+    "art:audit": "node scripts/audit-4k-art.mjs",
+    "art:audit:write": "node scripts/audit-4k-art.mjs --write",
     "build": "node scripts/build.mjs",
     "check:release": "node scripts/check-release.mjs",
     "test:release": "node --test tests/release.test.mjs tests/combat-input.test.mjs tests/archive.test.mjs tests/pwa.test.mjs tests/experience.test.mjs",

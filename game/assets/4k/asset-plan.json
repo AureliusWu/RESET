@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "status": "v1.2.0-dev-4k-migration",
+  "root": "assets/4k",
+  "policy": {
+    "assetIdsStable": true,
+    "legacySvgFallbackUntilRound8": true,
+    "noUpscaledSvgAsFinalArt": true,
+    "portrait": {"format":"webp","minimumWidth":2160,"minimumHeight":3840,"alpha":true},
+    "background": {"format":"webp","minimumWidth":3840,"minimumHeight":2160},
+    "cg": {"format":"webp","minimumWidth":3840,"minimumHeight":2160},
+    "anomaly": {"format":"webp","minimumWidth":2160,"minimumHeight":3840,"alpha":true},
+    "uiKeyVisual": {"format":"webp","minimumWidth":3840,"minimumHeight":2160}
+  },
+  "characters": [
+    {"id":"linwan","name":"林晚","priority":1,"expressions":["neutral","smile","worried","surprised","serious"],"extras":["sad"]},
+    {"id":"xiaoman","name":"周小满","priority":2,"expressions":["neutral","smile","worried","surprised","serious"],"extras":[]},
+    {"id":"xuqi","name":"许栖","priority":3,"expressions":["neutral","smile","worried","surprised","serious","angry"],"extras":[]},
+    {"id":"tinglan","name":"沈听澜","priority":4,"expressions":["neutral","smile","worried","surprised","serious"],"extras":[]},
+    {"id":"tangli","name":"唐梨","priority":5,"expressions":["neutral","smile","worried","surprised","serious"],"extras":[]},
+    {"id":"nanxing","name":"乔南星","priority":6,"expressions":["neutral","smile","worried","surprised","serious"],"extras":[]}
+  ],
+  "backgrounds": [
+    "classroom-rain","school-gate-rain","school-gate-evening","home-corridor","station-night",
+    "night-wucheng","school-morning","archive-room","cafeteria","rooftop-evening",
+    "stairwell-morning","riverside-dusk","underpass-rain","classroom-dawn","old-art-room",
+    "night-art-room","old-stationery","north-station","save-room","true-dawn"
+  ],
+  "cgs": [
+    "faceless-reflection-cg","letter-1842-cg","six-chairs-cg","linwan-1842-cg","true-end-riverside-cg"
+  ],
+  "anomalies": [
+    {"id":"faceless","current":"assets/ch-faceless.svg","target":"assets/4k/anomalies/faceless.webp"},
+    {"id":"echo-chen","current":"assets/ch-echo-chen.svg","target":"assets/4k/anomalies/echo-chen.webp"}
+  ],
+  "ui": [
+    {"id":"title-key-visual","current":"assets/ui-title-mark.svg","target":"assets/4k/ui/title-key-visual.webp"},
+    {"id":"save-anomaly","current":"assets/ui-save-anomaly.svg","target":"assets/4k/ui/save-anomaly.webp"},
+    {"id":"ending-collection-header","current":null,"target":"assets/4k/ui/ending-collection-header.webp"},
+    {"id":"cg-gallery-header","current":null,"target":"assets/4k/ui/cg-gallery-header.webp"},
+    {"id":"combat-hud-key-visual","current":null,"target":"assets/4k/ui/combat-hud-key-visual.webp"}
+  ],
+  "pathRules": {
+    "portrait": "assets/4k/characters/{character}/{expression}.webp",
+    "background": "assets/4k/backgrounds/{assetId}.webp",
+    "cg": "assets/4k/cg/{assetId}.webp"
+  }
+}
