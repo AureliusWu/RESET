@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "generator": "ChatGPT-authored original vector illustration; deterministic raster master pipeline",
+  "workflow": "round7-new-vector-source-to-processed-4k-master",
+  "native4kClaim": false,
+  "authorization": "2026-10-27: 用户要求继续下一轮 Round 7 并沿用最高权限写入",
+  "category": "ui",
+  "id": "cg-gallery-header",
+  "prompt": "RESET CG gallery key visual: layered surviving frames, rain-dark memory cards, clock and route fragments, archival photographic composition, cool desaturated palette.",
+  "processing": "new ChatGPT-authored vector source -> rsvg 1920x1080 PNG original -> Lanczos 3840x2160 PNG master -> 1920x1080 WebP runtime; legacy UI SVG not used as pixels",
+  "sourceVector": "game/art-sources/chatgpt/ui/cg-gallery-header/source.svg",
+  "sourceVectorSHA256": "74c450bdff9273af85426aa2b21163c940ef74999127441243e6ee107f950cfd",
+  "original": "game/art-sources/chatgpt/ui/cg-gallery-header/original.png",
+  "originalSize": [
+    1920,
+    1080
+  ],
+  "originalSHA256": "f4e07c96365a4e2740b20356e686cf8ca6415c93df4c7587792d4907094b73e6",
+  "master": "game/assets/4k/ui/cg-gallery-header.png",
+  "masterSize": [
+    3840,
+    2160
+  ],
+  "masterSHA256": "500160ffc3db2645d1de60792d1e63ed972c389fee663eaa2c4d5bcc932ed00a",
+  "runtime": "game/assets/4k/runtime/ui/cg-gallery-header.webp",
+  "runtimeSize": [
+    1920,
+    1080
+  ],
+  "runtimeSHA256": "7809cdb59ede7203317f9b124c64967e4a37d12cf2060297ccd8110ada0590c2"
+}

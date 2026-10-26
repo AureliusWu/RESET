@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "generator": "ChatGPT-authored original vector illustration; deterministic raster master pipeline",
+  "workflow": "round7-new-vector-source-to-processed-4k-master",
+  "native4kClaim": false,
+  "authorization": "2026-10-27: 用户要求继续下一轮 Round 7 并沿用最高权限写入",
+  "category": "ui",
+  "id": "save-anomaly",
+  "prompt": "RESET anomaly save key visual: corrupted save-slot architecture, repeated load traces, 10/17 18:42, warning chevrons, cold violet-blue interface ambience, unsettling but readable.",
+  "processing": "new ChatGPT-authored vector source -> rsvg 1920x1080 PNG original -> Lanczos 3840x2160 PNG master -> 1920x1080 WebP runtime; legacy UI SVG not used as pixels",
+  "sourceVector": "game/art-sources/chatgpt/ui/save-anomaly/source.svg",
+  "sourceVectorSHA256": "8f4d8e13f3a8dd79c62df131c0101ec2093fbb7d70a8d1293c456986cb4eb3d2",
+  "original": "game/art-sources/chatgpt/ui/save-anomaly/original.png",
+  "originalSize": [
+    1920,
+    1080
+  ],
+  "originalSHA256": "c7d9834643083fe81e72f489e7f3063796f2f20f6659f68b5d9d01a59d1d6f07",
+  "master": "game/assets/4k/ui/save-anomaly.png",
+  "masterSize": [
+    3840,
+    2160
+  ],
+  "masterSHA256": "ca1fc21e96b2ee63e7d181f4e4003bd638fb936f21ae37cbaeb8353516406042",
+  "runtime": "game/assets/4k/runtime/ui/save-anomaly.webp",
+  "runtimeSize": [
+    1920,
+    1080
+  ],
+  "runtimeSHA256": "e9182f7e5e564f8344ede4626691007ef1b8130bdd5d141c553159bfa3304c0c"
+}
