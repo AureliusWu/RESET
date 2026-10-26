@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+<defs>
+  <radialGradient id="bg"><stop stop-color="#1a2d34"/><stop offset=".58" stop-color="#0b151a"/><stop offset="1" stop-color="#05090d"/></radialGradient>
+  <filter id="glow"><feGaussianBlur stdDeviation="12"/></filter>
+</defs>
+<rect width="1920" height="1080" fill="url(#bg)"/>
+<g transform="translate(960 535)" fill="none">
+  <circle r="318" stroke="#789aa0" stroke-width="3" opacity=".26"/>
+  <circle r="238" stroke="#a9c9c5" stroke-width="5" stroke-dasharray="42 24" opacity=".44"/>
+  <circle r="145" stroke="#c8dad6" stroke-width="3" stroke-dasharray="8 16" opacity=".52"/>
+  <path d="M-380 0h760M0-380v760" stroke="#91b1b4" stroke-width="2" opacity=".22"/>
+  <path d="M-190-190L190 190M190-190L-190 190" stroke="#7e9da2" stroke-width="2" opacity=".18"/>
+</g>
+<g opacity=".28" filter="url(#glow)" fill="#9ac3c7"><ellipse cx="1320" cy="535" rx="88" ry="230"/><ellipse cx="1380" cy="535" rx="62" ry="196"/></g>
+<g opacity=".4" fill="none" stroke="#a7c7c4"><path d="M265 190h410l48 46h220" stroke-width="5"/><path d="M1240 236h420" stroke-width="5"/><path d="M255 875h490" stroke-width="5"/><path d="M1160 875h500" stroke-width="5"/></g>
+<g transform="translate(280 210)"><text fill="#dfe9e7" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="40" letter-spacing="6">观察前摇</text><text y="58" fill="#8fa9aa" font-family="Inter,Arial,sans-serif" font-size="20" letter-spacing="5">READ THE PATTERN</text></g>
+<g transform="translate(1210 210)"><text fill="#dfe9e7" font-family="Noto Sans CJK SC,Microsoft YaHei,sans-serif" font-size="40" letter-spacing="6">改变节奏</text><text y="58" fill="#8fa9aa" font-family="Inter,Arial,sans-serif" font-size="20" letter-spacing="5">BREAK THE LOOP</text></g>
+<g transform="translate(770 860)"><path d="M0 0h380" stroke="#8aa8a8" stroke-width="14" stroke-linecap="round" opacity=".35"/><path d="M0 0h270" stroke="#c1d8d0" stroke-width="14" stroke-linecap="round"/></g>
+<text x="960" y="1000" text-anchor="middle" fill="#789294" font-family="Inter,Arial,sans-serif" font-size="22" letter-spacing="9">18:42 / COMBAT TRACE</text>
+</svg>
