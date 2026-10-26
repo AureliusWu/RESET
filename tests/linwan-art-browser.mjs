@@ -44,12 +44,12 @@ export async function verifyLinwanArt({page,project,fixtures,loadFixture,control
     await control('restart').click();
     for(let count=0;count<20&&!await page.locator('[data-action=watch_linwan]').count();count++)await control('next').click();
     await page.locator('[data-action=watch_linwan]').click();await ready('neutral');
-    await page.screenshot({path:out+'/linwan-first-appearance.png',fullPage:true});
+    await page.screenshot({path:out+'/linwan-first-appearance.png',fullPage:true,animations:'disabled'});
     pass('Lin Wan first appears from New Game through canonical UI choices and decodes the new 1080x1920 WebP');
     for(const expression of formal) {
       assert.ok(frameSaves[`linwan/${expression}`],`missing real story frame for ${expression}`);
       await loadFixture(frameSaves[`linwan/${expression}`]);await ready(expression);
-      await page.screenshot({path:out+`/linwan-${expression}.png`,fullPage:true});
+      await page.screenshot({path:out+`/linwan-${expression}.png`,fullPage:true,animations:'disabled'});
     }
     pass('All five stable Lin Wan asset IDs display their new WebP in real story frames without SVG/old portrait fallback');
     if(viewports) {
@@ -63,7 +63,7 @@ export async function verifyLinwanArt({page,project,fixtures,loadFixture,control
         });
         assert.equal(metrics.overflow,false);assert.ok(metrics.portrait.width>0&&metrics.portrait.height>0);
         assert.ok(metrics.portrait.x>=metrics.stage.x-1&&metrics.portrait.x+metrics.portrait.width<=metrics.stage.x+metrics.stage.width+1,'portrait outside stage');
-        await page.screenshot({path:out+`/linwan-${width}x${height}.png`,fullPage:true});layout.push({width,height,...metrics});
+        await page.screenshot({path:out+`/linwan-${width}x${height}.png`,fullPage:true,animations:'disabled'});layout.push({width,height,...metrics});
       }
       await writeFile(out+'/linwan-layout.json',JSON.stringify(layout,null,2)+'\n');
       pass('Lin Wan renders in 390x844, 844x390, 800x600, 1920x1080 and 3840x2160 browser viewports without horizontal overflow');
@@ -96,6 +96,39 @@ export async function verifyLinwanArt({page,project,fixtures,loadFixture,control
       }return result;
     },derivatives);
     for(const im of decoded){assert.equal(im.width,1080);assert.equal(im.height,1920);assert.ok(im.transparent>0&&im.opaque>0);}
+    const compositing=await page.evaluate(async()=>{
+      const im=new Image();im.src='./assets/4k/runtime/characters/linwan/neutral.webp';await im.decode();
+      const canvas=document.createElement('canvas');canvas.width=1080;canvas.height=1920;const c=canvas.getContext('2d');
+      const probes=[[0,0],[1079,1919],[441,1410],[445,1380]];
+      c.drawImage(im,0,0);const alpha=probes.map(([x,y])=>c.getImageData(x,y,1,1).data[3]);
+      const backgrounds=['#14272e','#dbe3e4'],results=[];
+      for(const background of backgrounds){c.fillStyle=background;c.fillRect(0,0,1080,1920);c.drawImage(im,0,0);results.push({background,pixels:probes.map(([x,y])=>Array.from(c.getImageData(x,y,1,1).data))});}
+      return {probes,alpha,results};
+    });
+    assert.deepEqual(compositing.alpha,[0,0,0,0]);
+    for(const result of compositing.results){const rgb=[1,3,5].map(i=>parseInt(result.background.slice(i,i+2),16));for(const pixel of result.pixels)assert.deepEqual(pixel,[...rgb,255]);}
+    await writeFile(out+'/linwan-alpha-compositing.json',JSON.stringify(compositing,null,2)+'\n');
+    pass('Previously suspected white remnants have alpha zero and composite to exact light/dark background pixels in the real decoder');
+    if(viewports) {
+      // A clearly labelled QA surface, separate from story screenshots: actual
+      // installed images at 1:1 scale over light/dark backgrounds, no filtering.
+      await page.setViewportSize({width:2160,height:1920});
+      try {
+        for(const expression of [...formal,'sad']) {
+          await page.evaluate(async path=>{
+            document.getElementById('__linwanAlphaQA')?.remove();
+            const root=document.createElement('div');root.id='__linwanAlphaQA';root.style.cssText='position:fixed;inset:0;z-index:2147483647;display:flex;pointer-events:none';
+            for(const color of ['#14272e','#dbe3e4']){const panel=document.createElement('div');panel.style.cssText=`width:1080px;height:1920px;flex:none;background:${color}`;const im=new Image(1080,1920);im.src=new URL('./'+path,location.href).href;im.style.cssText='display:block;width:1080px;height:1920px';panel.append(im);root.append(panel);}
+            document.body.append(root);await Promise.all([...root.querySelectorAll('img')].map(im=>im.decode()));
+          },src(expression));
+          await page.screenshot({path:out+`/linwan-alpha-${expression}.png`,animations:'disabled'});
+        }
+      } finally {
+        await page.evaluate(()=>document.getElementById('__linwanAlphaQA')?.remove());
+        if(originalViewport)await page.setViewportSize(originalViewport);
+      }
+      pass('Six distinct Lin Wan sprites captured at natural 1080x1920 size over actual light and dark CSS backgrounds for edge review');
+    }
     await writeFile(out+'/linwan-decode.json',JSON.stringify({decoded,requested,failures},null,2)+'\n');
     assert.deepEqual(failures,[]);
     assert.ok(requested.every(url=>!url.includes('generated-portraits/')&&!url.endsWith('.svg')));
@@ -118,6 +151,6 @@ export async function verifyLinwanOffline({page,loadFixture,fixtures,out,pass}) 
   for(const path of paths)assert.equal(await page.evaluate(async path=>(await fetch('./'+path)).ok,path),true);
   await loadFixture(fixtures.witnesses.linwan_shadow);
   await page.waitForFunction(()=>{const im=document.querySelector('.vn-portrait');return im?.dataset.asset==='linwan/neutral'&&im.complete&&im.naturalWidth===1080;});
-  await page.screenshot({path:out+'/linwan-offline.png',fullPage:true});
+  await page.screenshot({path:out+'/linwan-offline.png',fullPage:true,animations:'disabled'});
   pass('Offline real service-worker cache contains all eight Lin Wan derivatives and displays the new neutral sprite without network');
 }
