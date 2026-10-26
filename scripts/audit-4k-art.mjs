@@ -72,6 +72,8 @@ function minimumFor(id,kind) {
 }
 
 const currentSvg=(await walk(assetsRoot)).filter(p=>p.endsWith('.svg')).map(p=>relative(game,p).split(sep).join('/')).sort();
+const legacyRootSvg=currentSvg.filter(p=>/^assets\/[^/]+\.svg$/i.test(p));
+if (plan.policy.legacySvgRetired && legacyRootSvg.length) throw new Error(`Round 8 policy forbids retired root SVG assets: ${legacyRootSvg.join(', ')}`);
 const rows=[]; let missingMappings=0, missing4k=0, undersized=0, missingAlpha=0;
 for (const asset of production) {
   const target=targetById.get(asset.id);

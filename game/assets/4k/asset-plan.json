@@ -4,44 +4,210 @@
   "root": "assets/4k",
   "policy": {
     "assetIdsStable": true,
-    "legacySvgFallbackUntilRound8": true,
+    "legacySvgFallbackUntilRound8": false,
     "noUpscaledSvgAsFinalArt": true,
     "masterRequired": true,
     "runtimeDerivativesAllowed": true,
-    "generation": {"method":"chatgpt-original-to-processed-4k-master","originalsRetained":true,"native4kClaim":false,"authorization":"2026-10-26 用户授权 ChatGPT出原图，做出4K母版","resize":"alpha-aware Lanczos; no old SVG rasterization"},
-    "portrait": {"masterFormat":"png","runtimeFormat":"webp","minimumWidth":2160,"minimumHeight":3840,"alpha":true},
-    "background": {"masterFormat":"png","runtimeFormat":"webp","minimumWidth":3840,"minimumHeight":2160},
-    "cg": {"masterFormat":"png","runtimeFormat":"webp","minimumWidth":3840,"minimumHeight":2160},
-    "anomaly": {"masterFormat":"png","runtimeFormat":"webp","minimumWidth":2160,"minimumHeight":3840,"alpha":true},
-    "uiKeyVisual": {"masterFormat":"png","runtimeFormat":"webp","minimumWidth":3840,"minimumHeight":2160}
+    "generation": {
+      "method": "chatgpt-original-to-processed-4k-master",
+      "originalsRetained": true,
+      "native4kClaim": false,
+      "authorization": "2026-10-26 用户授权 ChatGPT出原图，做出4K母版",
+      "resize": "alpha-aware Lanczos; no old SVG rasterization"
+    },
+    "portrait": {
+      "masterFormat": "png",
+      "runtimeFormat": "webp",
+      "minimumWidth": 2160,
+      "minimumHeight": 3840,
+      "alpha": true
+    },
+    "background": {
+      "masterFormat": "png",
+      "runtimeFormat": "webp",
+      "minimumWidth": 3840,
+      "minimumHeight": 2160
+    },
+    "cg": {
+      "masterFormat": "png",
+      "runtimeFormat": "webp",
+      "minimumWidth": 3840,
+      "minimumHeight": 2160
+    },
+    "anomaly": {
+      "masterFormat": "png",
+      "runtimeFormat": "webp",
+      "minimumWidth": 2160,
+      "minimumHeight": 3840,
+      "alpha": true
+    },
+    "uiKeyVisual": {
+      "masterFormat": "png",
+      "runtimeFormat": "webp",
+      "minimumWidth": 3840,
+      "minimumHeight": 2160
+    },
+    "legacySvgRetired": true
   },
   "characters": [
-    {"id":"linwan","name":"林晚","priority":1,"expressions":["neutral","smile","worried","surprised","serious"],"extras":["sad"]},
-    {"id":"xiaoman","name":"周小满","priority":2,"expressions":["neutral","smile","worried","surprised","serious"],"extras":[]},
-    {"id":"xuqi","name":"许栖","priority":3,"expressions":["neutral","smile","worried","surprised","serious","angry"],"extras":[]},
-    {"id":"tinglan","name":"沈听澜","priority":4,"expressions":["neutral","smile","worried","surprised","serious"],"extras":[]},
-    {"id":"tangli","name":"唐梨","priority":5,"expressions":["neutral","smile","worried","surprised","serious"],"extras":[]},
-    {"id":"nanxing","name":"乔南星","priority":6,"expressions":["neutral","smile","worried","surprised","serious"],"extras":[]}
+    {
+      "id": "linwan",
+      "name": "林晚",
+      "priority": 1,
+      "expressions": [
+        "neutral",
+        "smile",
+        "worried",
+        "surprised",
+        "serious"
+      ],
+      "extras": [
+        "sad"
+      ]
+    },
+    {
+      "id": "xiaoman",
+      "name": "周小满",
+      "priority": 2,
+      "expressions": [
+        "neutral",
+        "smile",
+        "worried",
+        "surprised",
+        "serious"
+      ],
+      "extras": []
+    },
+    {
+      "id": "xuqi",
+      "name": "许栖",
+      "priority": 3,
+      "expressions": [
+        "neutral",
+        "smile",
+        "worried",
+        "surprised",
+        "serious",
+        "angry"
+      ],
+      "extras": []
+    },
+    {
+      "id": "tinglan",
+      "name": "沈听澜",
+      "priority": 4,
+      "expressions": [
+        "neutral",
+        "smile",
+        "worried",
+        "surprised",
+        "serious"
+      ],
+      "extras": []
+    },
+    {
+      "id": "tangli",
+      "name": "唐梨",
+      "priority": 5,
+      "expressions": [
+        "neutral",
+        "smile",
+        "worried",
+        "surprised",
+        "serious"
+      ],
+      "extras": []
+    },
+    {
+      "id": "nanxing",
+      "name": "乔南星",
+      "priority": 6,
+      "expressions": [
+        "neutral",
+        "smile",
+        "worried",
+        "surprised",
+        "serious"
+      ],
+      "extras": []
+    }
   ],
   "backgrounds": [
-    "classroom-rain","school-gate-rain","school-gate-evening","home-corridor","station-night",
-    "night-wucheng","school-morning","archive-room","cafeteria","rooftop-evening",
-    "stairwell-morning","riverside-dusk","underpass-rain","classroom-dawn","old-art-room",
-    "night-art-room","old-stationery","north-station","save-room","true-dawn"
+    "classroom-rain",
+    "school-gate-rain",
+    "school-gate-evening",
+    "home-corridor",
+    "station-night",
+    "night-wucheng",
+    "school-morning",
+    "archive-room",
+    "cafeteria",
+    "rooftop-evening",
+    "stairwell-morning",
+    "riverside-dusk",
+    "underpass-rain",
+    "classroom-dawn",
+    "old-art-room",
+    "night-art-room",
+    "old-stationery",
+    "north-station",
+    "save-room",
+    "true-dawn"
   ],
   "cgs": [
-    "faceless-reflection-cg","letter-1842-cg","six-chairs-cg","linwan-1842-cg","true-end-riverside-cg"
+    "faceless-reflection-cg",
+    "letter-1842-cg",
+    "six-chairs-cg",
+    "linwan-1842-cg",
+    "true-end-riverside-cg"
   ],
   "anomalies": [
-    {"id":"faceless","productionId":"faceless/neutral","current":"assets/ch-faceless.svg","master":"assets/4k/anomalies/faceless.png","runtime":"assets/4k/runtime/anomalies/faceless.webp"},
-    {"id":"echo-chen","productionId":"echochen/neutral","current":"assets/ch-echo-chen.svg","master":"assets/4k/anomalies/echo-chen.png","runtime":"assets/4k/runtime/anomalies/echo-chen.webp"}
+    {
+      "id": "faceless",
+      "productionId": "faceless/neutral",
+      "current": "assets/4k/runtime/anomalies/faceless.webp",
+      "master": "assets/4k/anomalies/faceless.png",
+      "runtime": "assets/4k/runtime/anomalies/faceless.webp"
+    },
+    {
+      "id": "echo-chen",
+      "productionId": "echochen/neutral",
+      "current": "assets/4k/runtime/anomalies/echo-chen.webp",
+      "master": "assets/4k/anomalies/echo-chen.png",
+      "runtime": "assets/4k/runtime/anomalies/echo-chen.webp"
+    }
   ],
   "ui": [
-    {"id":"title-key-visual","current":"assets/ui-title-mark.svg","master":"assets/4k/ui/title-key-visual.png","runtime":"assets/4k/runtime/ui/title-key-visual.webp"},
-    {"id":"save-anomaly","current":"assets/ui-save-anomaly.svg","master":"assets/4k/ui/save-anomaly.png","runtime":"assets/4k/runtime/ui/save-anomaly.webp"},
-    {"id":"ending-collection-header","current":null,"master":"assets/4k/ui/ending-collection-header.png","runtime":"assets/4k/runtime/ui/ending-collection-header.webp"},
-    {"id":"cg-gallery-header","current":null,"master":"assets/4k/ui/cg-gallery-header.png","runtime":"assets/4k/runtime/ui/cg-gallery-header.webp"},
-    {"id":"combat-hud-key-visual","current":null,"master":"assets/4k/ui/combat-hud-key-visual.png","runtime":"assets/4k/runtime/ui/combat-hud-key-visual.webp"}
+    {
+      "id": "title-key-visual",
+      "current": "assets/4k/runtime/ui/title-key-visual.webp",
+      "master": "assets/4k/ui/title-key-visual.png",
+      "runtime": "assets/4k/runtime/ui/title-key-visual.webp"
+    },
+    {
+      "id": "save-anomaly",
+      "current": "assets/4k/runtime/ui/save-anomaly.webp",
+      "master": "assets/4k/ui/save-anomaly.png",
+      "runtime": "assets/4k/runtime/ui/save-anomaly.webp"
+    },
+    {
+      "id": "ending-collection-header",
+      "current": "assets/4k/runtime/ui/ending-collection-header.webp",
+      "master": "assets/4k/ui/ending-collection-header.png",
+      "runtime": "assets/4k/runtime/ui/ending-collection-header.webp"
+    },
+    {
+      "id": "cg-gallery-header",
+      "current": "assets/4k/runtime/ui/cg-gallery-header.webp",
+      "master": "assets/4k/ui/cg-gallery-header.png",
+      "runtime": "assets/4k/runtime/ui/cg-gallery-header.webp"
+    },
+    {
+      "id": "combat-hud-key-visual",
+      "current": "assets/4k/runtime/ui/combat-hud-key-visual.webp",
+      "master": "assets/4k/ui/combat-hud-key-visual.png",
+      "runtime": "assets/4k/runtime/ui/combat-hud-key-visual.webp"
+    }
   ],
   "pathRules": {
     "portraitMaster": "assets/4k/characters/{character}/{expression}.png",

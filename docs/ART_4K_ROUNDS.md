@@ -182,4 +182,13 @@ Round 7 completed。5 张 UI 关键视觉已制作、接入最终运行时并通
 - Release 回留：Run `40363479047`，Web success、Windows success。Web 最终 ZIP / PWA / 离线浏览器验收通过；Windows 原生 host / RESET.exe 启动链 / 最终 ZIP / 重启持久化验收通过。
 - 保持 `v1.2.0-dev`；未进入 RC，未创建正式 Release，未覆盖正式 `v1.1.0 Pages`。
 - 下一轮：Round 8 — legacy SVG 清理与最终 4K / 引用审计。
+## Round 8 — legacy SVG 清理与最终 4K / 引用审计
 
+Round 8 completed。正式 production 资产引用已全部脱离 legacy SVG；`game/assets/` 根目录旧 SVG 已删除，4K master/runtime 成为唯一正式视觉资产链。
+
+- 清理前以 `art:legacy -- --strict` 核验正式 production overlay，确认 58 个 production 引用不存在 SVG。章节与基础工程中仍可保留被后续 overlay 覆盖的历史定义，但不会进入最终 production。
+- 删除旧背景、CG、角色、异常体及 UI 的根目录 legacy SVG；`game/assets/4k/` 正式 PNG master 与 WebP runtime 不受影响。
+- `asset-plan.json` 冻结 `legacySvgFallbackUntilRound8=false`、`legacySvgRetired=true`；anomaly/UI 的 `current` 更新为正式 runtime。
+- `audit-4k-art.mjs` 新增永久门禁：迁移完成后若 `game/assets/` 根目录再次出现 retired SVG，审计直接失败；生成器的开发期 `generated-*/*.svg` 不属于 production fallback。
+- 严格 4K 审计、art:check、build、check:release、test:release 全部通过后才提交。
+- 保持 `v1.2.0-dev`，不进入 RC，不覆盖正式 `v1.1.0 Pages`。下一轮为 Round 9 — 全游戏视觉验收。

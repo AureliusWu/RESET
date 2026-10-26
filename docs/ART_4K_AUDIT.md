@@ -1,6 +1,6 @@
 # 《回留》4K 美术自动审计
 
-生成时间：2026-10-26T16:48:33.030Z
+生成时间：2026-10-26T22:02:13.968Z
 
 ## 统计
 
@@ -8,7 +8,7 @@
 - 角色差分：33
 - 背景：20
 - CG：5
-- 源树 SVG：35
+- 源树 SVG：0
 - 已建立 4K master 映射：58/58
 - 已存在且达到最低尺寸/Alpha 要求：58
 - 已规划但尚未写入：0
@@ -81,41 +81,6 @@
 
 ## 仍保留的 SVG
 
-- assets/bg-archive.svg
-- assets/bg-cafeteria.svg
-- assets/bg-classroom-dawn.svg
-- assets/bg-classroom-rain.svg
-- assets/bg-home-corridor.svg
-- assets/bg-night-art-room.svg
-- assets/bg-night-wucheng.svg
-- assets/bg-north-station.svg
-- assets/bg-old-art-room.svg
-- assets/bg-old-stationery.svg
-- assets/bg-riverside-dusk.svg
-- assets/bg-rooftop.svg
-- assets/bg-save-room.svg
-- assets/bg-school-gate-evening.svg
-- assets/bg-school-gate-rain.svg
-- assets/bg-school-morning.svg
-- assets/bg-stairwell-morning.svg
-- assets/bg-station.svg
-- assets/bg-true-dawn.svg
-- assets/bg-underpass-rain.svg
-- assets/cg-faceless-reflection.svg
-- assets/cg-letter-1842.svg
-- assets/cg-linwan-1842.svg
-- assets/cg-six-chairs.svg
-- assets/cg-true-end-riverside.svg
-- assets/ch-echo-chen.svg
-- assets/ch-faceless.svg
-- assets/ch-linwan.svg
-- assets/ch-nanxing.svg
-- assets/ch-tangli.svg
-- assets/ch-tinglan.svg
-- assets/ch-xiaoman.svg
-- assets/ch-xuqi.svg
-- assets/ui-save-anomaly.svg
-- assets/ui-title-mark.svg
 
 ## 额外规划资产
 
