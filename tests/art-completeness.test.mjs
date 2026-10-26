@@ -9,7 +9,7 @@ const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
 
 test('galgame completeness layer covers brand, chapters, props and chibi cast', async () => {
   const ui = await readFile(resolve(root, 'game/runtime/ui.mjs'), 'utf8');
-  for (const marker of ['brand-mark','chapter-card','story-prop-erased-map','story-prop-future-phone','memory-cast']) {
+  for (const marker of ['brand-mark','chapter-card','memory-cast','archive_erased_map','underpass_warning','erased-map','future-phone']) {
     assert.ok(ui.includes(marker), `missing art completeness marker: ${marker}`);
   }
   for (const title of ['雨夜存档点','残响','约定','六条路线','10月24日','不保存','明天见']) {
