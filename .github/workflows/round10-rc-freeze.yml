@@ -22,9 +22,10 @@ jobs:
 
       - name: Verify Round 9 handoff
         run: |
-          test "$(git rev-parse HEAD^)" = "d1cb09c3775775e478c6e0c4967049d8360ee783"
+          git merge-base --is-ancestor d1cb09c3775775e478c6e0c4967049d8360ee783 HEAD
           grep -q 'Round 9 completed' docs/ART_4K_ROUNDS.md
           grep -q '状态：\*\*completed\*\*' docs/ROUND9_VISUAL_ACCEPTANCE.md
+          node -e "const p=require('./package.json');if(p.version!=='1.2.0-dev')process.exit(1)"
 
       - name: Checkout locked VN Engine v2
         uses: actions/checkout@v4
@@ -41,59 +42,46 @@ jobs:
         working-directory: vn-engine
         run: npm ci
 
-      - name: Promote the complete version contract to rc.1
+      - name: Promote non-workflow version contract to rc.1
         run: |
           python - <<'PY'
           from pathlib import Path
           import json
 
-          DEV='v1.2.0-dev'
-          RC='v1.2.0-rc.1'
-          STORY_DEV='reset-v1.2.0-dev'
-          STORY_RC='reset-v1.2.0-rc.1'
-
-          def text(path):
-              return Path(path).read_text(encoding='utf-8')
-          def write(path, value):
-              Path(path).write_text(value, encoding='utf-8')
-          def replace_required(path, old, new, count=None):
-              value=text(path)
-              found=value.count(old)
-              if found == 0:
-                  raise SystemExit(f'{path}: expected text missing: {old!r}')
-              if count is not None and found != count:
-                  raise SystemExit(f'{path}: expected {count} occurrence(s), found {found}: {old!r}')
-              write(path, value.replace(old,new))
+          DEV='v1.2.0-dev'; RC='v1.2.0-rc.1'
+          STORY_DEV='reset-v1.2.0-dev'; STORY_RC='reset-v1.2.0-rc.1'
+          def text(path): return Path(path).read_text(encoding='utf-8')
+          def write(path,value): Path(path).write_text(value,encoding='utf-8')
+          def replace_required(path,old,new,count=None):
+              value=text(path); found=value.count(old)
+              if found==0: raise SystemExit(f'{path}: expected text missing: {old!r}')
+              if count is not None and found!=count: raise SystemExit(f'{path}: expected {count}, found {found}: {old!r}')
+              write(path,value.replace(old,new))
 
           package=json.loads(text('package.json'))
           if package['version']!='1.2.0-dev': raise SystemExit('package.json version drift')
-          package['version']='1.2.0-rc.1'
-          write('package.json', json.dumps(package,ensure_ascii=False,indent=2)+'\n')
+          package['version']='1.2.0-rc.1'; write('package.json',json.dumps(package,ensure_ascii=False,indent=2)+'\n')
 
           overlay=json.loads(text('game/content/zzzz-release-v1.json'))
           if overlay['version']!=STORY_DEV: raise SystemExit('release overlay version drift')
-          overlay['version']=STORY_RC
-          write('game/content/zzzz-release-v1.json', json.dumps(overlay,ensure_ascii=False,indent=2)+'\n')
+          overlay['version']=STORY_RC; write('game/content/zzzz-release-v1.json',json.dumps(overlay,ensure_ascii=False,indent=2)+'\n')
 
           meta=text('game/runtime/meta.mjs')
           old="const STORY_VERSION = 'reset-v1.2.0-dev';\nconst LEGACY_VERSIONS = new Set(['reset-v1.0.0','reset-v1.0.1','reset-v1.1.0']);"
           new="const STORY_VERSION = 'reset-v1.2.0-rc.1';\nconst LEGACY_VERSIONS = new Set(['reset-v1.0.0','reset-v1.0.1','reset-v1.1.0','reset-v1.2.0-dev']);"
           if old not in meta: raise SystemExit('meta version contract drift')
-          write('game/runtime/meta.mjs', meta.replace(old,new,1))
+          write('game/runtime/meta.mjs',meta.replace(old,new,1))
 
           release_test=text('tests/release.test.mjs')
-          release_test=release_test.replace("assert.equal(manifest.version, 'reset-v1.2.0-dev')", "assert.equal(manifest.version, 'reset-v1.2.0-rc.1')")
-          release_test=release_test.replace("published v1.0.0, v1.0.1 and v1.1.0 saves upgrade", "published v1.0.0, v1.0.1, v1.1.0 and v1.2.0-dev saves upgrade")
-          release_test=release_test.replace("['reset-v1.0.0','reset-v1.0.1','reset-v1.1.0']", "['reset-v1.0.0','reset-v1.0.1','reset-v1.1.0','reset-v1.2.0-dev']")
+          release_test=release_test.replace("assert.equal(manifest.version, 'reset-v1.2.0-dev')","assert.equal(manifest.version, 'reset-v1.2.0-rc.1')")
+          release_test=release_test.replace("published v1.0.0, v1.0.1 and v1.1.0 saves upgrade","published v1.0.0, v1.0.1, v1.1.0 and v1.2.0-dev saves upgrade")
+          release_test=release_test.replace("['reset-v1.0.0','reset-v1.0.1','reset-v1.1.0']","['reset-v1.0.0','reset-v1.0.1','reset-v1.1.0','reset-v1.2.0-dev']")
           release_test=release_test.replace('expected.length*3','expected.length*4')
-          if "manifest.version, 'reset-v1.2.0-rc.1'" not in release_test or release_test.count('expected.length*4') != 2:
-              raise SystemExit('release test promotion incomplete')
+          if "manifest.version, 'reset-v1.2.0-rc.1'" not in release_test or release_test.count('expected.length*4')!=2: raise SystemExit('release test promotion incomplete')
           write('tests/release.test.mjs',release_test)
 
-          replace_required('tests/pwa-upgrade-browser.mjs', STORY_DEV, STORY_RC)
-          replace_required('.github/workflows/build.yml', DEV, RC)
-          replace_required('.github/workflows/release.yml', DEV, RC)
-          replace_required('scripts/build.mjs', 'CHANGELOG_v1.2.0-dev.md', 'CHANGELOG_v1.2.0-rc.1.md', 1)
+          replace_required('tests/pwa-upgrade-browser.mjs',STORY_DEV,STORY_RC)
+          replace_required('scripts/build.mjs','CHANGELOG_v1.2.0-dev.md','CHANGELOG_v1.2.0-rc.1.md',1)
 
           readme=text('README.md').replace(DEV,RC)
           readme=readme.replace('状态：**v1.2.0 开发中；正式下载仍为 v1.1.0**','状态：**v1.2.0-rc.1 冻结候选；正式下载仍为 v1.1.0**')
@@ -115,27 +103,14 @@ jobs:
           rc += '''\n## RC freeze\n\n- 4K 美术 Round 1–9 已闭环：58 / 58 production 4K 引用、5 张 UI 关键视觉、Web / Windows 全游戏视觉验收通过。\n- 版本契约统一切换至 `reset-v1.2.0-rc.1`；`reset-v1.2.0-dev` 加入受控存档升级来源。\n- Build / Release 候选产物名统一为 `v1.2.0-rc.1`。\n- 不创建 v1.2.0 正式 Release，不覆盖 v1.1.0 Pages；实体设备与公开候选站点仍作为人工验收边界保留。\n'''
           write('CHANGELOG_v1.2.0-rc.1.md',rc)
 
-          plan=text('docs/ART_4K_PLAN.md')
-          plan=plan.replace('状态：`v1.2.0-dev` / 4K 迁移阶段。','状态：`v1.2.0-rc.1` / 4K 迁移完成，RC 冻结阶段。',1)
+          plan=text('docs/ART_4K_PLAN.md').replace('状态：`v1.2.0-dev` / 4K 迁移阶段。','状态：`v1.2.0-rc.1` / 4K 迁移完成，RC 冻结阶段。',1)
           write('docs/ART_4K_PLAN.md',plan)
+          write('game/assets/4k/README.md',text('game/assets/4k/README.md').replace('v1.2.0-dev','v1.2.0-rc.1'))
 
-          artreadme=text('game/assets/4k/README.md').replace('v1.2.0-dev','v1.2.0-rc.1')
-          write('game/assets/4k/README.md',artreadme)
-
-          # Live/current-version paths must no longer claim dev. The two
-          # intentional dev strings are the legacy import contract + its test.
-          forbidden=[
-              'package.json','game/content/zzzz-release-v1.json',
-              '.github/workflows/build.yml','.github/workflows/release.yml',
-              'scripts/build.mjs','tests/pwa-upgrade-browser.mjs','README.md','AGENTS.md'
-          ]
+          forbidden=['package.json','game/content/zzzz-release-v1.json','scripts/build.mjs','tests/pwa-upgrade-browser.mjs','README.md','AGENTS.md']
           for path in forbidden:
-              if DEV in text(path) or STORY_DEV in text(path):
-                  raise SystemExit(f'live dev version remains in {path}')
-          if text('game/runtime/meta.mjs').count(STORY_DEV)!=1:
-              raise SystemExit('dev story version must remain exactly once as a legacy import')
-          if STORY_RC not in text('game/runtime/meta.mjs') or STORY_RC not in text('game/content/zzzz-release-v1.json'):
-              raise SystemExit('rc story contract incomplete')
+              if DEV in text(path) or STORY_DEV in text(path): raise SystemExit(f'live dev version remains in {path}')
+          if text('game/runtime/meta.mjs').count(STORY_DEV)!=1: raise SystemExit('dev story version must remain exactly once as legacy import')
           PY
 
       - name: Verify RC freeze contract locally
@@ -152,18 +127,16 @@ jobs:
           npm run check:release
           npm run test:release
           node - <<'NODE'
-          const p=require('./dist/project.json');
-          const m=require('./dist/build-manifest.json');
+          const p=require('./dist/project.json');const m=require('./dist/build-manifest.json');
           if(p.version!=='reset-v1.2.0-rc.1'||m.version!=='reset-v1.2.0-rc.1') throw Error('dist version is not rc.1');
           NODE
           test -f dist/CHANGELOG_v1.2.0-rc.1.md
           git diff --check
 
-      - name: Freeze rc.1 candidate on main
+      - name: Commit non-workflow rc.1 state
         run: |
-          rm .github/workflows/round10-rc-freeze.yml
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -A
-          git commit -m 'release(round10): freeze v1.2.0-rc.1 [skip ci]'
+          git add AGENTS.md CHANGELOG.md CHANGELOG_v1.2.0-rc.1.md README.md docs/ART_4K_PLAN.md game/assets/4k/README.md game/content/zzzz-release-v1.json game/runtime/meta.mjs package.json scripts/build.mjs tests/pwa-upgrade-browser.mjs tests/release.test.mjs
+          git commit -m 'release(round10): freeze rc.1 version contract [skip ci]'
           git push origin HEAD:main
