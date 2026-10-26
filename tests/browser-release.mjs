@@ -150,7 +150,7 @@ try{
   await control('save').click();await context.setOffline(true);await page.reload();await page.locator('.vn-engine').waitFor();await control('load').click();assert.equal(await scene(),start);
   assert.equal(await page.locator('#error').innerText(),'');await page.locator('.vn-background').waitFor({state:'visible'});
   const resources=await page.evaluate(async()=>{const c=await caches.open((await caches.keys()).find(k=>k.startsWith('vn-self-reset-v2:')));const requests=await c.keys();return requests.map(r=>new URL(r.url).pathname)});
-  assert.ok(resources.some(p=>p.endsWith('/meta.mjs')));assert.ok(resources.some(p=>p.endsWith('/combat.mjs')));assert.ok(resources.some(p=>p.endsWith('/assets/generated-scenes/true-end-riverside-cg.svg')));
+  assert.ok(resources.some(p=>p.endsWith('/meta.mjs')));assert.ok(resources.some(p=>p.endsWith('/combat.mjs')));assert.ok(resources.some(p=>p.endsWith('/assets/4k/runtime/cg/true-end-riverside-cg.webp')));
   assert.ok(resources.some(p=>p.endsWith('/archive.mjs')));assert.ok(resources.some(p=>p.endsWith('/archive-data.mjs')));assert.ok(resources.some(p=>p.endsWith('/experience.css')));
   await page.locator('[data-reset-control=slots]').click();assert.ok(await page.locator('[data-slot="1"] [data-slot-action=load]').isEnabled());await page.keyboard.press('Escape');
   await page.locator('[data-reset-control=collection]').click();assert.equal(await page.locator('.reset-ending[data-unlocked=true]').count(),13);assert.ok(await page.locator('.reset-cg-card img').count());await page.keyboard.press('Escape');
