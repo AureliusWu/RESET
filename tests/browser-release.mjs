@@ -7,6 +7,7 @@ import { pathToFileURL } from 'node:url';
 import { verifyArchive } from './archive-browser.mjs';
 import { verifyPlayerExperience } from './player-experience-browser.mjs';
 import { verifyPwaUpgrade } from './pwa-upgrade-browser.mjs';
+import { verifyStageBridge } from './stage-browser.mjs';
 const engine=resolve(process.env.VN_ENGINE_PATH||'../VN-Engine-v2');
 const {chromium}=await import(pathToFileURL(resolve(engine,'node_modules/playwright/index.mjs')));
 const dist=resolve(process.env.RESET_DIST||'dist'), out=resolve('test-results/browser');await mkdir(out,{recursive:true});
@@ -56,6 +57,7 @@ try{
     const meta=await page.evaluate(()=>JSON.parse(localStorage.getItem('reset:meta:v1')));assert.ok(meta.endings.includes(id));
   }pass('All six Normal Ends and six key Bad Ends render and register Meta from validated route saves');
   await control('settings').click();await page.getByLabel('减少动态效果',{exact:true}).uncheck();await page.getByRole('button',{name:'关闭',exact:true}).click();
+  await verifyStageBridge({page,fixtures,loadFixture,control,pass});
   for(const [id,save] of Object.entries(fixtures.combat)){
     for(const outcome of ['win','lose']){
       await page.bringToFront();await loadFixture(save);await page.locator('.reset-combat canvas').waitFor();
@@ -86,6 +88,16 @@ try{
           if(id==='faceless_second')await page.locator('.reset-combat [data-key=KeyK]').tap({force:true,timeout:1000});else await page.keyboard.press('k');
         }catch(error){if(!await page.locator('.reset-combat').count())break;throw error}
         await page.waitForTimeout(60);
+      }
+      if(outcome==='lose'){
+        await page.waitForFunction(()=>document.querySelector('.reset-combat__state')?.textContent.includes('生命 0/5'),null,{timeout:45000,polling:25});
+        await page.evaluate(()=>dispatchEvent(new CustomEvent('vn-engine-host-visibility',{detail:{hidden:true}})));
+        await page.locator('[data-combat-resume]').waitFor({state:'visible'});
+        await page.waitForTimeout(900);assert.equal(await scene(),id);assert.equal(await page.locator('.reset-combat').count(),1);
+        await page.evaluate(()=>dispatchEvent(new CustomEvent('vn-engine-host-visibility',{detail:{hidden:false}})));
+        await page.waitForTimeout(150);assert.equal(await scene(),id);
+        await page.locator('[data-combat-resume]').click();
+        pass(`Combat ${id}: a native-host pause during the result delay waits for explicit resume`);
       }
       await page.locator('.reset-combat').waitFor({state:'detached',timeout:45000});
       const next=await scene(), expected={faceless_first:{win:'faceless_pattern',lose:'death_fifth'},faceless_second:{win:'breakthrough_first',lose:'death_sixth'},c5_echo_fail:{win:'c5_echo_pattern',lose:'c5_echo_death'}}[id][outcome];
