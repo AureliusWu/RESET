@@ -90,6 +90,6 @@ const counts={productionAssets:production.length,portraits:production.filter(a=>
 const lines=['# 《回留》4K 美术自动审计','',`生成时间：${new Date().toISOString()}`,'','## 统计','',`- 当前 production 资产：${counts.productionAssets}`,`- 角色差分：${counts.portraits}`,`- 背景：${counts.backgrounds}`,`- CG：${counts.cgs}`,`- 源树 SVG：${counts.svgFilesInSourceTree}`,`- 已建立 4K master 映射：${counts.mapped}/${counts.productionAssets}`,`- 已存在且达到最低尺寸/Alpha 要求：${counts.ready4k}`,`- 已规划但尚未写入：${counts.plannedMissing4k}`,`- 尺寸不达标：${counts.undersized}`,`- 缺少透明通道：${counts.missingAlpha}`,`- 额外规划资产：${counts.extraPlanned}`,'','## Production → 4K master 映射','','| Asset ID | Kind | 当前 production | 4K master | 状态 |','| --- | --- | --- | --- | --- |',...rows.map(r=>`| ${r.id} | ${r.kind} | ${r.src} | ${r.target||'—'} | ${r.state}${r.info?` ${r.info.width}×${r.info.height}`:''} |`),'','## 仍保留的 SVG','',...currentSvg.map(p=>`- ${p}`),'','## 额外规划资产','',...extraPlanned.map(([id,target])=>`- ${id} → ${target}`),''];
 const report=lines.join('\n');
 console.log(report);
-if (write) await writeFile(resolve(root,'docs/ART_4K_AUDIT.md'),report+'\n');
+if (write) await writeFile(resolve(root,'docs/ART_4K_AUDIT.md'),report.trimEnd()+'\n');
 if (missingMappings) throw new Error(`4K plan is incomplete: ${missingMappings} production asset(s) have no master mapping`);
 if (strict && (missing4k||undersized||missingAlpha)) throw new Error(`4K strict audit failed: ${missing4k} missing, ${undersized} undersized, ${missingAlpha} missing alpha`);

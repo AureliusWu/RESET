@@ -8,6 +8,7 @@ import { verifyArchive } from './archive-browser.mjs';
 import { verifyPlayerExperience } from './player-experience-browser.mjs';
 import { verifyPwaUpgrade } from './pwa-upgrade-browser.mjs';
 import { verifyStageBridge } from './stage-browser.mjs';
+import { verifyLinwanArt, verifyLinwanOffline } from './linwan-art-browser.mjs';
 const engine=resolve(process.env.VN_ENGINE_PATH||'../VN-Engine-v2');
 const {chromium}=await import(pathToFileURL(resolve(engine,'node_modules/playwright/index.mjs')));
 const dist=resolve(process.env.RESET_DIST||'dist'), out=resolve('test-results/browser');await mkdir(out,{recursive:true});
@@ -38,6 +39,14 @@ try{
   assert.equal(await page.locator('.reset-dialog').evaluate(el=>getComputedStyle(el).position),'absolute','the packaged experience stylesheet must actually apply');
   await page.locator('.vn-background').waitFor({state:'visible'});
   await page.screenshot({path:out+'/desktop.png',fullPage:true});pass('Standalone package loads from /play/ with actual art and no startup error');
+  const artContext=await browser.newContext({viewport:{width:1280,height:900}});
+  try {
+    await artContext.addInitScript(()=>localStorage.setItem('vn-engine:reset:settings',JSON.stringify({textDelayMs:0,reducedMotion:true,music:false,voiceEnabled:false})));
+    const artPage=await artContext.newPage();artPage.on('pageerror',e=>errors.push(e.message));await artPage.goto(base);await artPage.locator('.vn-engine').waitFor();
+    const artControl=id=>artPage.locator(`[data-control="${id}"]`);
+    const artLoad=async save=>{await artControl('settings').click();await artPage.locator('input[type=file]').setInputFiles({name:'art-frame.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(save))});await artPage.locator('.vn-modal').waitFor({state:'hidden'});};
+    await verifyLinwanArt({page:artPage,project,fixtures,loadFixture:artLoad,control:artControl,out,pass});
+  } finally { await artContext.close(); }
   const start=await scene();await control('save').click();await control('next').click();await control('load').click();assert.equal(await scene(),start);
   assert.match(await page.title(),/读取 1/);pass('Save/load restores the paragraph and increments persistent Meta once');
   const legacy=structuredClone(fixtures.witnesses[start]);legacy.state.storyVersion='reset-v1.0.0';
@@ -144,6 +153,7 @@ try{
   await page.locator('[data-reset-control=slots]').click();assert.ok(await page.locator('[data-slot="1"] [data-slot-action=load]').isEnabled());await page.keyboard.press('Escape');
   await page.locator('[data-reset-control=collection]').click();assert.equal(await page.locator('.reset-ending[data-unlocked=true]').count(),13);assert.ok(await page.locator('.reset-cg-card img').count());await page.keyboard.press('Escape');
   await page.screenshot({path:out+'/offline.png',fullPage:true});pass('Real service-worker cache at a nested URL reloads offline with assets, saves and Meta intact');
+  await verifyLinwanOffline({page,loadFixture,fixtures,out,pass});
   if(process.env.RESET_PREVIOUS_DIST)await verifyPwaUpgrade({browser,dist,previous:process.env.RESET_PREVIOUS_DIST,fixtures,out,pass});
   assert.deepEqual(errors,[]);await writeFile(out+'/acceptance.json',JSON.stringify({result:'passed',browser:await browser.version(),checks,errors},null,2)+'\n');
 }catch(e){if(page)await page.screenshot({path:out+'/failure.png',fullPage:true}).catch(()=>{});await writeFile(out+'/failure.json',JSON.stringify({error:e.stack,checks,errors},null,2));throw e;}

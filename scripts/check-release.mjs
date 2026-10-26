@@ -1,6 +1,7 @@
 import { readFile, access } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createHash } from 'node:crypto';
 
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const dist = resolve(root, 'dist');
@@ -46,7 +47,7 @@ const portraitSources = new Set();
 for (const character of cast) for (const expression of expressions) {
   const id = `${character}/${expression}`, asset = assetMap.get(id);
   assert(asset?.kind === 'portrait', `missing production portrait ${id}`);
-  assert(asset.src.includes('generated-portraits/'), `${id} still points at legacy placeholder art`);
+  assert(asset.src.includes('generated-portraits/') || asset.src === `assets/4k/runtime/characters/${character}/${expression}.webp`, `${id} still points at legacy placeholder art`);
   assert(!String(asset.alt ?? '').includes('占位'), `${id} is still labelled placeholder`);
   portraitSources.add(asset.src);
   assert(await exists(resolve(dist, asset.src)), `portrait file missing from package: ${asset.src}`);
@@ -87,6 +88,19 @@ for (const id of finalScenes) assert(scenes.has(id), `missing irreversible/true 
 
 const listed = new Set(manifest.files.map(file => file.name));
 for (const file of ['combat.mjs','meta.mjs','archive.mjs','archive-data.mjs','experience.css','experience.mjs','pwa.mjs','icon-192.png','icon-512.png']) assert(listed.has(file), `${file} absent from integrity manifest`);
+
+// Round 2: verify all eight shipped derivatives, including currently unreferenced
+// sad/base/normal, against their source bytes and the final integrity manifest.
+for (const expression of ['base','normal','neutral','smile','worried','sad','surprised','serious']) {
+  const path = `assets/4k/runtime/characters/linwan/${expression}.webp`;
+  const bytes = await readFile(resolve(dist, path));
+  const source = await readFile(resolve(root, 'game', path));
+  assert(bytes.equals(source), `packaged Lin Wan derivative differs from source: ${path}`);
+  const record = manifest.files.find(file => file.name === path);
+  assert(record?.size === bytes.length && record.sha256 === createHash('sha256').update(bytes).digest('hex'), `Lin Wan derivative missing or stale in manifest: ${path}`);
+  assert(sw.includes(path), `Lin Wan derivative absent from offline cache: ${path}`);
+}
+for (const expression of expressions) assert(assetMap.get(`linwan/${expression}`)?.src === `assets/4k/runtime/characters/linwan/${expression}.webp`, `Lin Wan production reference regressed: ${expression}`);
 
 console.log(JSON.stringify({
   status: 'release-integrity-ok', version: project.version, scenes: project.scenes.length,

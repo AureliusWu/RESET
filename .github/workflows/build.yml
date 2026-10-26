@@ -47,6 +47,7 @@ jobs:
           node --check scripts/check-art-integrity.mjs
           node --check scripts/check-4k-production.mjs
           node --check scripts/check-release.mjs
+          node --check tests/linwan-art-browser.mjs
 
       - name: Verify frozen 4K migration map
         working-directory: game-repo
@@ -78,7 +79,7 @@ jobs:
           test -f dist/assets/generated-scenes/save-room.svg
           test -f dist/assets/generated-scenes/true-dawn.svg
           test -f dist/assets/generated-scenes/true-end-riverside-cg.svg
-          test -f dist/assets/generated-portraits/linwan-production/smile.webp
+          test -f dist/assets/4k/runtime/characters/linwan/smile.webp
           test -f dist/assets/generated-portraits/xuqi/serious.svg
           test -f dist/assets/generated-portraits/xuqi/angry.svg
 

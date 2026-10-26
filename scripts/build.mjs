@@ -94,6 +94,14 @@ async function walkFiles(directory) {
 }
 
 async function injectGameRuntime(project) {
+  // Keep the adopted character's extra expressions/aliases in the installable
+  // runtime and offline cache, without shipping the large archival PNG masters.
+  const portraitDirs = new Set(project.assets.filter(asset => asset.kind === 'portrait' && asset.src.startsWith('assets/4k/runtime/characters/')).map(asset => asset.src.slice(0, asset.src.lastIndexOf('/'))));
+  for (const directory of portraitDirs) {
+    for (const file of await readdir(resolve(root, 'game', directory))) {
+      if (file.endsWith('.webp')) await copyFile(resolve(root, 'game', directory, file), resolve(output, directory, file));
+    }
+  }
   for (const file of ['README.md', 'LICENSE.md', 'CHANGELOG_v1.2.0-dev.md']) {
     await copyFile(resolve(root, file), resolve(output, file));
   }

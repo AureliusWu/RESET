@@ -1,11 +1,11 @@
 {
   "id": "art-production-v1",
   "replaceAssets": [
-    {"id":"linwan/neutral","kind":"portrait","src":"assets/generated-portraits/linwan-production/neutral.webp","alt":"林晚·标准立绘·平静"},
-    {"id":"linwan/smile","kind":"portrait","src":"assets/generated-portraits/linwan-production/smile.webp","alt":"林晚·标准立绘·微笑"},
-    {"id":"linwan/worried","kind":"portrait","src":"assets/generated-portraits/linwan-production/worried.webp","alt":"林晚·标准立绘·担忧"},
-    {"id":"linwan/surprised","kind":"portrait","src":"assets/generated-portraits/linwan-production/surprised.webp","alt":"林晚·标准立绘·惊讶"},
-    {"id":"linwan/serious","kind":"portrait","src":"assets/generated-portraits/linwan-production/serious.webp","alt":"林晚·标准立绘·认真"},
+    {"id":"linwan/neutral","kind":"portrait","src":"assets/4k/runtime/characters/linwan/neutral.webp","alt":"林晚·标准立绘·平静"},
+    {"id":"linwan/smile","kind":"portrait","src":"assets/4k/runtime/characters/linwan/smile.webp","alt":"林晚·标准立绘·微笑"},
+    {"id":"linwan/worried","kind":"portrait","src":"assets/4k/runtime/characters/linwan/worried.webp","alt":"林晚·标准立绘·担忧"},
+    {"id":"linwan/surprised","kind":"portrait","src":"assets/4k/runtime/characters/linwan/surprised.webp","alt":"林晚·标准立绘·惊讶"},
+    {"id":"linwan/serious","kind":"portrait","src":"assets/4k/runtime/characters/linwan/serious.webp","alt":"林晚·标准立绘·认真"},
 
     {"id":"xiaoman/neutral","kind":"portrait","src":"assets/generated-portraits/xiaoman/neutral.svg","alt":"周小满·标准立绘·平静"},
     {"id":"xiaoman/smile","kind":"portrait","src":"assets/generated-portraits/xiaoman/smile.svg","alt":"周小满·标准立绘·微笑"},
