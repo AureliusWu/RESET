@@ -62,3 +62,13 @@ main#game{height:calc(100dvh - 30px - env(safe-area-inset-top) - env(safe-area-i
   .vn-engine .vn-scene-title{font-size:18px}
   .vn-engine .vn-mode{font-size:16px}
 }
+
+/* Round 7: 4K UI key visuals remain decorative; controls and text stay DOM/CSS. */
+.vn-engine .vn-stage{position:relative}
+.reset-title-key-visual{position:absolute;inset:0;z-index:6;width:100%;height:100%;object-fit:cover;pointer-events:none;opacity:.92;filter:saturate(.94)}
+.reset-ui-header{display:block;width:100%;height:clamp(116px,18vw,220px);object-fit:cover;object-position:center;border:1px solid #46616a;border-radius:12px;margin:8px 0 16px;box-shadow:0 12px 32px #0004;background:#0d1a22}
+.reset-ui-header[data-ui-visual=save-anomaly]{object-position:center 48%}
+.reset-ui-header[data-ui-visual=ending-collection-header],.reset-ui-header[data-ui-visual=cg-gallery-header]{margin-top:14px}
+.reset-combat.reset-round7-ui{background:linear-gradient(rgba(5,8,12,.82),rgba(5,8,12,.94)),url('./assets/4k/runtime/ui/combat-hud-key-visual.webp') center/cover no-repeat!important}
+@media(max-width:700px){.reset-ui-header{height:118px;border-radius:9px;margin-bottom:12px}.reset-title-key-visual{object-position:center}}
+

@@ -145,4 +145,23 @@ for (const characterId of adoptedCharacters) {
   }
 }
 
-console.log(`4K production pairing ok: ${adopted} runtime asset(s), ${adoptedCharacters.size} adopted character(s)`);
+let uiReady = 0;
+for (const item of plan.ui) {
+  const masterInfo = await verifyMaster(item.master, plan.policy.uiKeyVisual, item.id);
+  const runtimePath = resolve(game, item.runtime);
+  assert(await exists(runtimePath), `${item.id} runtime derivative missing: ${item.runtime}`);
+  const runtimeInfo = webpInfo(await readFile(runtimePath));
+  assert(runtimeInfo?.width === 1920 && runtimeInfo.height === 1080, `${item.id} runtime must be 1920x1080`);
+  assert(runtimeInfo.width <= masterInfo.width && runtimeInfo.height <= masterInfo.height, `${item.id} runtime exceeds master dimensions`);
+  const provenance = await readJson(resolve(root, `game/art-sources/chatgpt/ui/${item.id}/provenance.json`));
+  assert(provenance.native4kClaim === false, `${item.id}: processed UI master must not claim native 4K`);
+  for (const [pathKey, hashKey] of [['sourceVector','sourceVectorSHA256'],['original','originalSHA256'],['master','masterSHA256'],['runtime','runtimeSHA256']]) {
+    const bytes = await readFile(resolve(root, provenance[pathKey]));
+    assert(createHash('sha256').update(bytes).digest('hex') === provenance[hashKey], `${item.id}: ${pathKey} provenance mismatch`);
+  }
+  const original = pngInfo(await readFile(resolve(root, provenance.original)));
+  assert(original?.width === 1920 && original.height === 1080, `${item.id}: original dimensions mismatch`);
+  uiReady++;
+}
+
+console.log(`4K production pairing ok: ${adopted} runtime asset(s), ${adoptedCharacters.size} adopted character(s), ${uiReady} UI key visual(s)`);

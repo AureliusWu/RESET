@@ -1,4 +1,4 @@
-import { readFile, rm, writeFile, readdir, copyFile } from 'node:fs/promises';
+import { readFile, rm, writeFile, readdir, copyFile, mkdir } from 'node:fs/promises';
 import { resolve, relative, sep } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
@@ -102,10 +102,15 @@ async function injectGameRuntime(project) {
       if (file.endsWith('.webp')) await copyFile(resolve(root, 'game', directory, file), resolve(output, directory, file));
     }
   }
+  const uiRuntimeDir = resolve(root, 'game/assets/4k/runtime/ui'), uiOutputDir = resolve(output, 'assets/4k/runtime/ui');
+  await mkdir(uiOutputDir, { recursive: true });
+  for (const file of ['title-key-visual.webp','save-anomaly.webp','ending-collection-header.webp','cg-gallery-header.webp','combat-hud-key-visual.webp']) {
+    await copyFile(resolve(uiRuntimeDir, file), resolve(uiOutputDir, file));
+  }
   for (const file of ['README.md', 'LICENSE.md', 'CHANGELOG_v1.2.0-dev.md']) {
     await copyFile(resolve(root, file), resolve(output, file));
   }
-  for (const file of ['combat.mjs','meta.mjs','archive.mjs','archive-data.mjs','experience.css','experience.mjs','pwa.mjs']) {
+  for (const file of ['combat.mjs','meta.mjs','archive.mjs','archive-data.mjs','experience.css','experience.mjs','ui.mjs','pwa.mjs']) {
     await copyFile(resolve(root, 'game/runtime', file), resolve(output, file));
   }
   const htmlPath=resolve(output,'index.html');
@@ -114,7 +119,7 @@ async function injectGameRuntime(project) {
   let app = await readFile(appPath, 'utf8');
   const pagehide = "window.addEventListener('pagehide',event=>{if(!event.persisted)game.dispose();});";
   if (!app.includes(pagehide)) throw new Error('VN Engine packaged app entry changed; RESET runtime injection needs review');
-  app = app.replace(pagehide, "const [{mountCombatBridge},{mountMetaBridge},{mountArchiveBridge},{mountExperienceBridge}]=await Promise.all([import('./combat.mjs'),import('./meta.mjs'),import('./archive.mjs'),import('./experience.mjs')]);const combat=mountCombatBridge(game),meta=mountMetaBridge(game),archive=mountArchiveBridge(game,project,meta),experience=mountExperienceBridge(game,project);window.addEventListener('pagehide',event=>{if(!event.persisted){experience.dispose();archive.dispose();meta.dispose();combat.dispose();game.dispose();}});");
+  app = app.replace(pagehide, "const [{mountCombatBridge},{mountMetaBridge},{mountArchiveBridge},{mountExperienceBridge},{mountUiBridge}]=await Promise.all([import('./combat.mjs'),import('./meta.mjs'),import('./archive.mjs'),import('./experience.mjs'),import('./ui.mjs')]);const combat=mountCombatBridge(game),meta=mountMetaBridge(game),archive=mountArchiveBridge(game,project,meta),experience=mountExperienceBridge(game,project),ui=mountUiBridge(game);window.addEventListener('pagehide',event=>{if(!event.persisted){ui.dispose();experience.dispose();archive.dispose();meta.dispose();combat.dispose();game.dispose();}});");
   const workerStart=app.indexOf("if('serviceWorker' in navigator)"), catchStart=app.indexOf('\ncatch(failure)',workerStart);
   if(workerStart<0||catchStart<0)throw new Error('Packaged PWA entry changed; review work-level registration');
   app=app.slice(0,workerStart)+"await (await import('./pwa.mjs')).registerGamePwa();}\n"+app.slice(catchStart);
@@ -138,7 +143,7 @@ async function injectGameRuntime(project) {
     version: project.version,
     engine: packagedManifest.engine,
     contentFingerprint: fingerprint,
-    extensions: ['reset-combat-v1', 'reset-meta-v1', 'reset-portrait-set-v1', 'reset-scene-art-v1', 'reset-archive-v1', 'reset-responsive-v1'],
+    extensions: ['reset-combat-v1', 'reset-meta-v1', 'reset-portrait-set-v1', 'reset-scene-art-v1', 'reset-archive-v1', 'reset-responsive-v1', 'reset-ui-key-visual-v1'],
     files: finalFiles.map(file => ({ name: file.name, size: file.bytes.length, sha256: createHash('sha256').update(file.bytes).digest('hex') }))
   };
   await writeFile(resolve(output, 'build-manifest.json'), JSON.stringify(metadata, null, 2) + '\n');

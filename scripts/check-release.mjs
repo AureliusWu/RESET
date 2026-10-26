@@ -16,14 +16,17 @@ async function exists(path) { try { await access(path); return true; } catch { r
 assert(project.game === 'reset', 'wrong game id');
 assert(project.version === manifest.version, 'project/build manifest version mismatch');
 assert(Array.isArray(manifest.extensions), 'build extensions missing');
-for (const extension of ['reset-combat-v1','reset-meta-v1','reset-portrait-set-v1','reset-scene-art-v1','reset-archive-v1','reset-responsive-v1']) assert(manifest.extensions.includes(extension), `missing extension ${extension}`);
-for (const file of ['combat.mjs','meta.mjs','archive.mjs','archive-data.mjs','experience.css','experience.mjs','pwa.mjs','icon-192.png','icon-512.png','project.json','sw.js','app.mjs','manifest.webmanifest']) assert(await exists(resolve(dist, file)), `missing ${file}`);
+for (const extension of ['reset-combat-v1','reset-meta-v1','reset-portrait-set-v1','reset-scene-art-v1','reset-archive-v1','reset-responsive-v1','reset-ui-key-visual-v1']) assert(manifest.extensions.includes(extension), `missing extension ${extension}`);
+for (const file of ['combat.mjs','meta.mjs','archive.mjs','archive-data.mjs','experience.css','experience.mjs','ui.mjs','pwa.mjs','icon-192.png','icon-512.png','project.json','sw.js','app.mjs','manifest.webmanifest']) assert(await exists(resolve(dist, file)), `missing ${file}`);
 assert(app.includes("import('./combat.mjs')") && app.includes("import('./meta.mjs')"), 'runtime bridges are not mounted');
 assert(sw.includes('combat.mjs') && sw.includes('meta.mjs'), 'runtime bridges are not offline cached');
 assert(app.includes("import('./archive.mjs')"), 'archive runtime is not mounted');
 const html=await readFile(resolve(dist,'index.html'),'utf8');
 assert(html.includes('href="./experience.css"'), 'responsive stylesheet is not loaded');
-for(const file of ['archive.mjs','archive-data.mjs','experience.css','experience.mjs','pwa.mjs','icon-192.png','icon-512.png'])assert(sw.includes(file),`${file} not cached`);
+for(const file of ['archive.mjs','archive-data.mjs','experience.css','experience.mjs','ui.mjs','pwa.mjs','icon-192.png','icon-512.png'])assert(sw.includes(file),`${file} not cached`);
+const uiVisuals=['title-key-visual','save-anomaly','ending-collection-header','cg-gallery-header','combat-hud-key-visual'];
+for(const id of uiVisuals){const path=`assets/4k/runtime/ui/${id}.webp`,bytes=await readFile(resolve(dist,path));const record=manifest.files.find(file=>file.name===path);assert(record?.size===bytes.length&&record.sha256===createHash('sha256').update(bytes).digest('hex'),`UI key visual missing/stale in final manifest: ${id}`);assert(sw.includes(path),`UI key visual not offline cached: ${id}`);}
+const uiRuntime=await readFile(resolve(dist,'ui.mjs'),'utf8');for(const id of uiVisuals)assert(uiRuntime.includes(`${id}.webp`),`UI key visual is not wired: ${id}`);
 
 const scenes = new Map(project.scenes.map(scene => [scene.id, scene]));
 const encounters = [
@@ -94,7 +97,7 @@ const finalScenes = ['c6_no_save','c6_walk_forward','c6_echo_goodbye','c6_last_d
 for (const id of finalScenes) assert(scenes.has(id), `missing irreversible/true ending scene ${id}`);
 
 const listed = new Set(manifest.files.map(file => file.name));
-for (const file of ['combat.mjs','meta.mjs','archive.mjs','archive-data.mjs','experience.css','experience.mjs','pwa.mjs','icon-192.png','icon-512.png']) assert(listed.has(file), `${file} absent from integrity manifest`);
+for (const file of ['combat.mjs','meta.mjs','archive.mjs','archive-data.mjs','experience.css','experience.mjs','ui.mjs','pwa.mjs','icon-192.png','icon-512.png']) assert(listed.has(file), `${file} absent from integrity manifest`);
 
 // Round 2: verify all eight shipped derivatives, including currently unreferenced
 // sad/base/normal, against their source bytes and the final integrity manifest.
