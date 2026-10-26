@@ -100,3 +100,10 @@
 - 已制作周小满 5 表情、许栖 6 表情的 2160×3840 PNG 和 1080×1920 WebP；沈听澜 5 表情制作中，唐梨/乔南星 neutral 原图已生成。
 - 原图、提示词、SHA256、实际原图尺寸与处理方法保存在 game/art-sources/chatgpt/；不宣称原生 4K。
 - 当前为 Round 3 制作检查点，尚未切换其余五位的正式引用，未宣称 Web/Windows 验收完成。
+
+### Round 3 正式接入候选
+
+- 五位新增角色共 26 份 master + 26 份 runtime 已制作，原图与 provenance 完整保留。
+- 六位女主共 31 个正式 asset ID 全部切换至 4K runtime；林晚原图未修改。
+- art:check：56 个 production 引用、31 个已接入 4K 引用通过；六角色 master/runtime pairing 通过。
+- Build、check:release、62/62 Node 回归通过；新提交的 Web/Windows 安装包验收待 Actions 确认，尚未标记 Round 3 completed。

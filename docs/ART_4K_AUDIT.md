@@ -1,6 +1,6 @@
 # 《回留》4K 美术自动审计
 
-生成时间：2026-10-26T06:25:10.541Z
+生成时间：2026-10-26T07:50:44.952Z
 
 ## 统计
 
@@ -10,8 +10,8 @@
 - CG：5
 - 源树 SVG：96
 - 已建立 4K master 映射：56/56
-- 已存在且达到最低尺寸/Alpha 要求：5
-- 已规划但尚未写入：51
+- 已存在且达到最低尺寸/Alpha 要求：31
+- 已规划但尚未写入：25
 - 尺寸不达标：0
 - 缺少透明通道：0
 - 额外规划资产：8
@@ -25,32 +25,32 @@
 | linwan/worried | portrait | assets/4k/runtime/characters/linwan/worried.webp | assets/4k/characters/linwan/worried.png | 4K_READY 2160×3840 |
 | linwan/surprised | portrait | assets/4k/runtime/characters/linwan/surprised.webp | assets/4k/characters/linwan/surprised.png | 4K_READY 2160×3840 |
 | linwan/serious | portrait | assets/4k/runtime/characters/linwan/serious.webp | assets/4k/characters/linwan/serious.png | 4K_READY 2160×3840 |
-| xiaoman/neutral | portrait | assets/generated-portraits/xiaoman/neutral.svg | assets/4k/characters/xiaoman/neutral.png | PLANNED |
-| xiaoman/smile | portrait | assets/generated-portraits/xiaoman/smile.svg | assets/4k/characters/xiaoman/smile.png | PLANNED |
-| xiaoman/worried | portrait | assets/generated-portraits/xiaoman/worried.svg | assets/4k/characters/xiaoman/worried.png | PLANNED |
-| xiaoman/surprised | portrait | assets/generated-portraits/xiaoman/surprised.svg | assets/4k/characters/xiaoman/surprised.png | PLANNED |
-| xiaoman/serious | portrait | assets/generated-portraits/xiaoman/serious.svg | assets/4k/characters/xiaoman/serious.png | PLANNED |
-| xuqi/neutral | portrait | assets/generated-portraits/xuqi/neutral.svg | assets/4k/characters/xuqi/neutral.png | PLANNED |
-| xuqi/smile | portrait | assets/generated-portraits/xuqi/smile.svg | assets/4k/characters/xuqi/smile.png | PLANNED |
-| xuqi/worried | portrait | assets/generated-portraits/xuqi/worried.svg | assets/4k/characters/xuqi/worried.png | PLANNED |
-| xuqi/surprised | portrait | assets/generated-portraits/xuqi/surprised.svg | assets/4k/characters/xuqi/surprised.png | PLANNED |
-| xuqi/serious | portrait | assets/generated-portraits/xuqi/serious.svg | assets/4k/characters/xuqi/serious.png | PLANNED |
-| xuqi/angry | portrait | assets/generated-portraits/xuqi/angry.svg | assets/4k/characters/xuqi/angry.png | PLANNED |
-| tinglan/neutral | portrait | assets/generated-portraits/tinglan/neutral.svg | assets/4k/characters/tinglan/neutral.png | PLANNED |
-| tinglan/smile | portrait | assets/generated-portraits/tinglan/smile.svg | assets/4k/characters/tinglan/smile.png | PLANNED |
-| tinglan/worried | portrait | assets/generated-portraits/tinglan/worried.svg | assets/4k/characters/tinglan/worried.png | PLANNED |
-| tinglan/surprised | portrait | assets/generated-portraits/tinglan/surprised.svg | assets/4k/characters/tinglan/surprised.png | PLANNED |
-| tinglan/serious | portrait | assets/generated-portraits/tinglan/serious.svg | assets/4k/characters/tinglan/serious.png | PLANNED |
-| tangli/neutral | portrait | assets/generated-portraits/tangli/neutral.svg | assets/4k/characters/tangli/neutral.png | PLANNED |
-| tangli/smile | portrait | assets/generated-portraits/tangli/smile.svg | assets/4k/characters/tangli/smile.png | PLANNED |
-| tangli/worried | portrait | assets/generated-portraits/tangli/worried.svg | assets/4k/characters/tangli/worried.png | PLANNED |
-| tangli/surprised | portrait | assets/generated-portraits/tangli/surprised.svg | assets/4k/characters/tangli/surprised.png | PLANNED |
-| tangli/serious | portrait | assets/generated-portraits/tangli/serious.svg | assets/4k/characters/tangli/serious.png | PLANNED |
-| nanxing/neutral | portrait | assets/generated-portraits/nanxing/neutral.svg | assets/4k/characters/nanxing/neutral.png | PLANNED |
-| nanxing/smile | portrait | assets/generated-portraits/nanxing/smile.svg | assets/4k/characters/nanxing/smile.png | PLANNED |
-| nanxing/worried | portrait | assets/generated-portraits/nanxing/worried.svg | assets/4k/characters/nanxing/worried.png | PLANNED |
-| nanxing/surprised | portrait | assets/generated-portraits/nanxing/surprised.svg | assets/4k/characters/nanxing/surprised.png | PLANNED |
-| nanxing/serious | portrait | assets/generated-portraits/nanxing/serious.svg | assets/4k/characters/nanxing/serious.png | PLANNED |
+| xiaoman/neutral | portrait | assets/4k/runtime/characters/xiaoman/neutral.webp | assets/4k/characters/xiaoman/neutral.png | 4K_READY 2160×3840 |
+| xiaoman/smile | portrait | assets/4k/runtime/characters/xiaoman/smile.webp | assets/4k/characters/xiaoman/smile.png | 4K_READY 2160×3840 |
+| xiaoman/worried | portrait | assets/4k/runtime/characters/xiaoman/worried.webp | assets/4k/characters/xiaoman/worried.png | 4K_READY 2160×3840 |
+| xiaoman/surprised | portrait | assets/4k/runtime/characters/xiaoman/surprised.webp | assets/4k/characters/xiaoman/surprised.png | 4K_READY 2160×3840 |
+| xiaoman/serious | portrait | assets/4k/runtime/characters/xiaoman/serious.webp | assets/4k/characters/xiaoman/serious.png | 4K_READY 2160×3840 |
+| xuqi/neutral | portrait | assets/4k/runtime/characters/xuqi/neutral.webp | assets/4k/characters/xuqi/neutral.png | 4K_READY 2160×3840 |
+| xuqi/smile | portrait | assets/4k/runtime/characters/xuqi/smile.webp | assets/4k/characters/xuqi/smile.png | 4K_READY 2160×3840 |
+| xuqi/worried | portrait | assets/4k/runtime/characters/xuqi/worried.webp | assets/4k/characters/xuqi/worried.png | 4K_READY 2160×3840 |
+| xuqi/surprised | portrait | assets/4k/runtime/characters/xuqi/surprised.webp | assets/4k/characters/xuqi/surprised.png | 4K_READY 2160×3840 |
+| xuqi/serious | portrait | assets/4k/runtime/characters/xuqi/serious.webp | assets/4k/characters/xuqi/serious.png | 4K_READY 2160×3840 |
+| xuqi/angry | portrait | assets/4k/runtime/characters/xuqi/angry.webp | assets/4k/characters/xuqi/angry.png | 4K_READY 2160×3840 |
+| tinglan/neutral | portrait | assets/4k/runtime/characters/tinglan/neutral.webp | assets/4k/characters/tinglan/neutral.png | 4K_READY 2160×3840 |
+| tinglan/smile | portrait | assets/4k/runtime/characters/tinglan/smile.webp | assets/4k/characters/tinglan/smile.png | 4K_READY 2160×3840 |
+| tinglan/worried | portrait | assets/4k/runtime/characters/tinglan/worried.webp | assets/4k/characters/tinglan/worried.png | 4K_READY 2160×3840 |
+| tinglan/surprised | portrait | assets/4k/runtime/characters/tinglan/surprised.webp | assets/4k/characters/tinglan/surprised.png | 4K_READY 2160×3840 |
+| tinglan/serious | portrait | assets/4k/runtime/characters/tinglan/serious.webp | assets/4k/characters/tinglan/serious.png | 4K_READY 2160×3840 |
+| tangli/neutral | portrait | assets/4k/runtime/characters/tangli/neutral.webp | assets/4k/characters/tangli/neutral.png | 4K_READY 2160×3840 |
+| tangli/smile | portrait | assets/4k/runtime/characters/tangli/smile.webp | assets/4k/characters/tangli/smile.png | 4K_READY 2160×3840 |
+| tangli/worried | portrait | assets/4k/runtime/characters/tangli/worried.webp | assets/4k/characters/tangli/worried.png | 4K_READY 2160×3840 |
+| tangli/surprised | portrait | assets/4k/runtime/characters/tangli/surprised.webp | assets/4k/characters/tangli/surprised.png | 4K_READY 2160×3840 |
+| tangli/serious | portrait | assets/4k/runtime/characters/tangli/serious.webp | assets/4k/characters/tangli/serious.png | 4K_READY 2160×3840 |
+| nanxing/neutral | portrait | assets/4k/runtime/characters/nanxing/neutral.webp | assets/4k/characters/nanxing/neutral.png | 4K_READY 2160×3840 |
+| nanxing/smile | portrait | assets/4k/runtime/characters/nanxing/smile.webp | assets/4k/characters/nanxing/smile.png | 4K_READY 2160×3840 |
+| nanxing/worried | portrait | assets/4k/runtime/characters/nanxing/worried.webp | assets/4k/characters/nanxing/worried.png | 4K_READY 2160×3840 |
+| nanxing/surprised | portrait | assets/4k/runtime/characters/nanxing/surprised.webp | assets/4k/characters/nanxing/surprised.png | 4K_READY 2160×3840 |
+| nanxing/serious | portrait | assets/4k/runtime/characters/nanxing/serious.webp | assets/4k/characters/nanxing/serious.png | 4K_READY 2160×3840 |
 | classroom-rain | background | assets/generated-scenes/classroom-rain.svg | assets/4k/backgrounds/classroom-rain.png | PLANNED |
 | school-gate-rain | background | assets/generated-scenes/school-gate-rain.svg | assets/4k/backgrounds/school-gate-rain.png | PLANNED |
 | school-gate-evening | background | assets/generated-scenes/school-gate-evening.svg | assets/4k/backgrounds/school-gate-evening.png | PLANNED |

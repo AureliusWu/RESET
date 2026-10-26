@@ -31,6 +31,134 @@
       "originalSHA256": "37be8ba7720169b36bb6d036f488327252208420aea753f9e4e186aa967f71fd",
       "prompt": "Single full-body neutral production Chinese-campus VN character sprite: Qiao Nanxing / 乔南星. A distinct clever information-savvy girl, straight dark navy-black hair, small understated silver star hair clip, muted violet-gray eyes, neutral curious observant expression. Muted navy cardigan over white collared school shirt and pale lavender ribbon, charcoal pleated school skirt, white socks, brown school loafers. A plain smartphone held naturally in one hand at waist, small dark school shoulder bag. Reference Lin Wan is STYLE AND PROPORTION ONLY. Match her thin clean anime line work, facial abstraction, 7-head proportions, restrained cel shadows, subtle gradients, low saturation, fabric detail density and natural even light. Keep every part of the head and both shoes inside the frame with margins. 9:16 portrait, centered, real transparent PNG RGBA, clean fine hair alpha edges. NO words, logos, backdrop, floor shadow, panels, thick painting, realistic face or cinematic backlight.",
       "faceComposition": null
+    },
+    {
+      "master": "game/assets/4k/characters/nanxing/smile.png",
+      "masterSize": [
+        2160,
+        3840
+      ],
+      "masterSHA256": "5506255d955b15d6a81dd8ccf22e385a005166b0e9c56d97cb8737d742c3eee9",
+      "runtime": "game/assets/4k/runtime/characters/nanxing/smile.webp",
+      "runtimeSize": [
+        1080,
+        1920
+      ],
+      "runtimeSHA256": "df6348703649ff029f7300906e595244f96c103f1a4e3d4afea6dcf5bacfa086",
+      "lockedBodySHA256": "812441ab942ce0a3feda7e30f404f0b1eaa4c2e454e6accd017c93d235b24d47",
+      "expression": "smile",
+      "original": "game/art-sources/chatgpt/characters/nanxing/smile.png",
+      "originalSize": [
+        941,
+        1672
+      ],
+      "originalSHA256": "71f757500b78e4ae3d36ec1226bbcc72c425afa49692d331720cf7990562cff6",
+      "prompt": "Precise expression-only edit of the supplied Qiao Nanxing full-body sprite. Change ONLY eyes, eyebrows and mouth to a clearly warm friendly smile, raised mouth corners and relaxed smiling eyes. Preserve exact character identity, facial outline, head angle, all hair/accessories, body proportions, full-body pose, hands/fingers and props, clothes and folds, line weight, restrained cel shading and colors. Keep all pixels outside face as unchanged as possible. Do not change the ponytail/headphones/map for Tang Li or star clip/smartphone for Qiao Nanxing. Preserve full original portrait canvas and both shoes. Genuine transparent background. Single sprite, no text/panels/new objects.",
+      "faceComposition": {
+        "expressionFaceRegion": [
+          391,
+          120,
+          574,
+          268
+        ],
+        "bodyLockedTo": "neutral"
+      }
+    },
+    {
+      "master": "game/assets/4k/characters/nanxing/surprised.png",
+      "masterSize": [
+        2160,
+        3840
+      ],
+      "masterSHA256": "b855781a170926d24f7e38fdbd193fc299a2a5ad989847b4771612ed11faa366",
+      "runtime": "game/assets/4k/runtime/characters/nanxing/surprised.webp",
+      "runtimeSize": [
+        1080,
+        1920
+      ],
+      "runtimeSHA256": "693c9046243fb239d343bcc4759f1b8e0753506b4e530348f554b891d2cb5dd3",
+      "lockedBodySHA256": "812441ab942ce0a3feda7e30f404f0b1eaa4c2e454e6accd017c93d235b24d47",
+      "expression": "surprised",
+      "original": "game/art-sources/chatgpt/characters/nanxing/surprised.png",
+      "originalSize": [
+        941,
+        1672
+      ],
+      "originalSHA256": "bd38f698724284adbae802c6a99b6ffad8b22384cd215c90e4cb917b3719529a",
+      "prompt": "Precise expression-only edit of the supplied Qiao Nanxing full-body sprite. Change ONLY eyes, eyebrows and mouth to clearly surprised wide eyes and small round open mouth. Preserve exact character identity, facial outline, head angle, all hair/accessories, body proportions, full-body pose, hands/fingers and props, clothes and folds, line weight, restrained cel shading and colors. Keep all pixels outside face as unchanged as possible. Do not change the ponytail/headphones/map for Tang Li or star clip/smartphone for Qiao Nanxing. Preserve full original portrait canvas and both shoes. Genuine transparent background. Single sprite, no text/panels/new objects.",
+      "faceComposition": {
+        "expressionFaceRegion": [
+          391,
+          120,
+          574,
+          268
+        ],
+        "bodyLockedTo": "neutral"
+      }
+    },
+    {
+      "master": "game/assets/4k/characters/nanxing/worried.png",
+      "masterSize": [
+        2160,
+        3840
+      ],
+      "masterSHA256": "a17afdce776098b0f7916257f5dec5009f0eddc9d1631c9d3100f2ddfdec14f2",
+      "runtime": "game/assets/4k/runtime/characters/nanxing/worried.webp",
+      "runtimeSize": [
+        1080,
+        1920
+      ],
+      "runtimeSHA256": "3f25f7e54f04e36c8c86f34d07b8ad8a769629b7657afb6d07a3455f8b7161dd",
+      "lockedBodySHA256": "812441ab942ce0a3feda7e30f404f0b1eaa4c2e454e6accd017c93d235b24d47",
+      "expression": "worried",
+      "original": "game/art-sources/chatgpt/characters/nanxing/worried.png",
+      "originalSize": [
+        941,
+        1672
+      ],
+      "originalSHA256": "95810b30620b765e99e33256eb7b76fcdae5fe95129ec425e04168750b3d9d98",
+      "prompt": "Precise expression-only edit of the supplied Qiao Nanxing full-body sprite. Change ONLY eyes, eyebrows and mouth to concerned worried eyes with raised inner brows and a tense downturned mouth. Preserve exact character identity, facial outline, head angle, all hair/accessories, body proportions, full-body pose, hands/fingers and props, clothes and folds, line weight, restrained cel shading and colors. Keep all pixels outside face as unchanged as possible. Do not change the ponytail/headphones/map for Tang Li or star clip/smartphone for Qiao Nanxing. Preserve full original portrait canvas and both shoes. Genuine transparent background. Single sprite, no text/panels/new objects.",
+      "faceComposition": {
+        "expressionFaceRegion": [
+          391,
+          120,
+          574,
+          268
+        ],
+        "bodyLockedTo": "neutral"
+      }
+    },
+    {
+      "master": "game/assets/4k/characters/nanxing/serious.png",
+      "masterSize": [
+        2160,
+        3840
+      ],
+      "masterSHA256": "f3b23e3a97fb22f65449608f6338300648307be3f90ef7c77b66765164d7cb98",
+      "runtime": "game/assets/4k/runtime/characters/nanxing/serious.webp",
+      "runtimeSize": [
+        1080,
+        1920
+      ],
+      "runtimeSHA256": "b8d950fd80e081cbb9918e8a7d5d2ffa192413e0e50d237697947849be4982fb",
+      "lockedBodySHA256": "812441ab942ce0a3feda7e30f404f0b1eaa4c2e454e6accd017c93d235b24d47",
+      "expression": "serious",
+      "original": "game/art-sources/chatgpt/characters/nanxing/serious.png",
+      "originalSize": [
+        941,
+        1672
+      ],
+      "originalSHA256": "cd649391dc251daec3e1c9506744d11742ff6b4757a3052995e5c037ee91d485",
+      "prompt": "Precise expression-only edit of the supplied Qiao Nanxing full-body sprite. Change ONLY eyes, eyebrows and mouth to determined serious focused eyes, firm eyebrows and a straight closed mouth. Preserve exact character identity, facial outline, head angle, all hair/accessories, body proportions, full-body pose, hands/fingers and props, clothes and folds, line weight, restrained cel shading and colors. Keep all pixels outside face as unchanged as possible. Do not change the ponytail/headphones/map for Tang Li or star clip/smartphone for Qiao Nanxing. Preserve full original portrait canvas and both shoes. Genuine transparent background. Single sprite, no text/panels/new objects.",
+      "faceComposition": {
+        "expressionFaceRegion": [
+          391,
+          120,
+          574,
+          268
+        ],
+        "bodyLockedTo": "neutral"
+      }
     }
   ]
 }

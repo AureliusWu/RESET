@@ -8,3 +8,4 @@ game/assets/generated-portraits/
 game/assets/generated-scenes/
 test-results/
 __pycache__/
+*.tmp

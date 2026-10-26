@@ -81,8 +81,8 @@ jobs:
           test -f dist/assets/generated-scenes/true-dawn.svg
           test -f dist/assets/generated-scenes/true-end-riverside-cg.svg
           test -f dist/assets/4k/runtime/characters/linwan/smile.webp
-          test -f dist/assets/generated-portraits/xuqi/serious.svg
-          test -f dist/assets/generated-portraits/xuqi/angry.svg
+          test -f dist/assets/4k/runtime/characters/xuqi/serious.webp
+          test -f dist/assets/4k/runtime/characters/xuqi/angry.webp
 
       - name: Upload standalone build
         uses: actions/upload-artifact@v4

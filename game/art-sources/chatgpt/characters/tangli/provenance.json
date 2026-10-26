@@ -31,6 +31,134 @@
       "originalSHA256": "e50edab2237f214d66db279a3827202cdcbde4d95cf39b6114f4999a98090eda",
       "prompt": "Single full-body neutral production Chinese-campus VN character sprite: Tang Li / 唐梨. A distinct bright sporty girl, auburn high ponytail, warm brown eyes, neutral alert friendly expression. Muted burnt-orange casual zip hoodie over white school shirt, charcoal pleated school skirt, white socks and brown school loafers. A compact pair of dark headphones around neck. Hold a folded unlettered paper street map at waist in one hand, other hand rests naturally at side, confident relaxed standing posture. Reference Lin Wan is STYLE AND PROPORTION ONLY. Match her thin clean anime line work, facial abstraction, 7-head proportions, restrained cel shadows, subtle gradients, low saturation, fabric detail density and natural even light. Keep every part of the head and both shoes inside the frame with margins. 9:16 portrait, centered, real transparent PNG RGBA, clean fine hair alpha edges. NO words, logos, backdrop, floor shadow, panels, thick painting, realistic face or cinematic backlight.",
       "faceComposition": null
+    },
+    {
+      "master": "game/assets/4k/characters/tangli/smile.png",
+      "masterSize": [
+        2160,
+        3840
+      ],
+      "masterSHA256": "4925b7fbd89a6a050ba27890a4e3a1f61d98ac5a6ccfc186600e94d00aaadded",
+      "runtime": "game/assets/4k/runtime/characters/tangli/smile.webp",
+      "runtimeSize": [
+        1080,
+        1920
+      ],
+      "runtimeSHA256": "c374730b20f364be4c4df8c13d4e785d10de96ae948b06402961576de137dd2d",
+      "lockedBodySHA256": "63720b6f1e79717c15f385d1741c0800ba9782711dec7ff92d7e596784d50562",
+      "expression": "smile",
+      "original": "game/art-sources/chatgpt/characters/tangli/smile.png",
+      "originalSize": [
+        941,
+        1671
+      ],
+      "originalSHA256": "42b589efb434e237d8a6a95c51fe0430e4e3fdb3e625adbd3639ef8d81680370",
+      "prompt": "Precise expression-only edit of the supplied Tang Li full-body sprite. Change ONLY eyes, eyebrows and mouth to a clearly warm friendly smile, raised mouth corners and relaxed smiling eyes. Preserve exact character identity, facial outline, head angle, all hair/accessories, body proportions, full-body pose, hands/fingers and props, clothes and folds, line weight, restrained cel shading and colors. Keep all pixels outside face as unchanged as possible. Do not change the ponytail/headphones/map for Tang Li or star clip/smartphone for Qiao Nanxing. Preserve full original portrait canvas and both shoes. Genuine transparent background. Single sprite, no text/panels/new objects.",
+      "faceComposition": {
+        "expressionFaceRegion": [
+          391,
+          120,
+          574,
+          268
+        ],
+        "bodyLockedTo": "neutral"
+      }
+    },
+    {
+      "master": "game/assets/4k/characters/tangli/surprised.png",
+      "masterSize": [
+        2160,
+        3840
+      ],
+      "masterSHA256": "504fe675fbbaf2bc195b535b213d63ef4299b0d1454e25031219bae16c0dc5ca",
+      "runtime": "game/assets/4k/runtime/characters/tangli/surprised.webp",
+      "runtimeSize": [
+        1080,
+        1920
+      ],
+      "runtimeSHA256": "4d4bf154f2d4c10857e8d417fe713c75148d5a7cb08d26c85abf51d26e06809f",
+      "lockedBodySHA256": "63720b6f1e79717c15f385d1741c0800ba9782711dec7ff92d7e596784d50562",
+      "expression": "surprised",
+      "original": "game/art-sources/chatgpt/characters/tangli/surprised.png",
+      "originalSize": [
+        941,
+        1671
+      ],
+      "originalSHA256": "901664b87746ebe9f2b49c492dee3477e4e623e08e56ab1934b0d482e7278f48",
+      "prompt": "Precise expression-only edit of the supplied Tang Li full-body sprite. Change ONLY eyes, eyebrows and mouth to clearly surprised wide eyes and small round open mouth. Preserve exact character identity, facial outline, head angle, all hair/accessories, body proportions, full-body pose, hands/fingers and props, clothes and folds, line weight, restrained cel shading and colors. Keep all pixels outside face as unchanged as possible. Do not change the ponytail/headphones/map for Tang Li or star clip/smartphone for Qiao Nanxing. Preserve full original portrait canvas and both shoes. Genuine transparent background. Single sprite, no text/panels/new objects.",
+      "faceComposition": {
+        "expressionFaceRegion": [
+          391,
+          120,
+          574,
+          268
+        ],
+        "bodyLockedTo": "neutral"
+      }
+    },
+    {
+      "master": "game/assets/4k/characters/tangli/worried.png",
+      "masterSize": [
+        2160,
+        3840
+      ],
+      "masterSHA256": "86806e12b0756d6405edf0781ceaee9f5f43cb9d69b6bf070e6494f7012bd5ba",
+      "runtime": "game/assets/4k/runtime/characters/tangli/worried.webp",
+      "runtimeSize": [
+        1080,
+        1920
+      ],
+      "runtimeSHA256": "04cf073cf0f33bc45e215604ac84a5a704e678f498447d0e5ad3f978aba929bd",
+      "lockedBodySHA256": "63720b6f1e79717c15f385d1741c0800ba9782711dec7ff92d7e596784d50562",
+      "expression": "worried",
+      "original": "game/art-sources/chatgpt/characters/tangli/worried.png",
+      "originalSize": [
+        941,
+        1671
+      ],
+      "originalSHA256": "19df432a7cf91d79987ac279e9cf6db5179c1a3426c64a8fb07a18e650591723",
+      "prompt": "Precise expression-only edit of the supplied Tang Li full-body sprite. Change ONLY eyes, eyebrows and mouth to concerned worried eyes with raised inner brows and a tense downturned mouth. Preserve exact character identity, facial outline, head angle, all hair/accessories, body proportions, full-body pose, hands/fingers and props, clothes and folds, line weight, restrained cel shading and colors. Keep all pixels outside face as unchanged as possible. Do not change the ponytail/headphones/map for Tang Li or star clip/smartphone for Qiao Nanxing. Preserve full original portrait canvas and both shoes. Genuine transparent background. Single sprite, no text/panels/new objects.",
+      "faceComposition": {
+        "expressionFaceRegion": [
+          391,
+          120,
+          574,
+          268
+        ],
+        "bodyLockedTo": "neutral"
+      }
+    },
+    {
+      "master": "game/assets/4k/characters/tangli/serious.png",
+      "masterSize": [
+        2160,
+        3840
+      ],
+      "masterSHA256": "e1116d6f64ea053736501e18eb661ba73c3a941cfd56e27707a8b746171158d0",
+      "runtime": "game/assets/4k/runtime/characters/tangli/serious.webp",
+      "runtimeSize": [
+        1080,
+        1920
+      ],
+      "runtimeSHA256": "03729dadafd1a5d946a21b29558d53474acd4008db9c6172a84e813efbae94cd",
+      "lockedBodySHA256": "63720b6f1e79717c15f385d1741c0800ba9782711dec7ff92d7e596784d50562",
+      "expression": "serious",
+      "original": "game/art-sources/chatgpt/characters/tangli/serious.png",
+      "originalSize": [
+        941,
+        1672
+      ],
+      "originalSHA256": "ef086ffe4c7e14c2312963eb3eb81bb33f068af04463fd0e8d5a1956bbc32a04",
+      "prompt": "Precise expression-only edit of the supplied Tang Li full-body sprite. Change ONLY eyes, eyebrows and mouth to determined serious focused eyes, firm eyebrows and a straight closed mouth. Preserve exact character identity, facial outline, head angle, all hair/accessories, body proportions, full-body pose, hands/fingers and props, clothes and folds, line weight, restrained cel shading and colors. Keep all pixels outside face as unchanged as possible. Do not change the ponytail/headphones/map for Tang Li or star clip/smartphone for Qiao Nanxing. Preserve full original portrait canvas and both shoes. Genuine transparent background. Single sprite, no text/panels/new objects.",
+      "faceComposition": {
+        "expressionFaceRegion": [
+          391,
+          120,
+          574,
+          268
+        ],
+        "bodyLockedTo": "neutral"
+      }
     }
   ]
 }

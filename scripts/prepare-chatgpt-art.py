@@ -24,10 +24,14 @@ def write_asset(image, master, runtime, size, alpha):
     image = ImageOps.pad(image, size, method=Image.Resampling.LANCZOS,
                          color=(0, 0, 0, 0) if alpha else (25, 36, 45))
     image = image.convert('RGBA' if alpha else 'RGB')
-    image.save(master, optimize=True)
+    temporary_master = master.with_suffix('.png.tmp')
+    image.save(temporary_master, format='PNG', optimize=True)
+    temporary_master.replace(master)
     # Half-sized runtime; Pillow resizes RGBA through premultiplied alpha.
+    temporary_runtime = runtime.with_suffix('.webp.tmp')
     image.resize((size[0] // 2, size[1] // 2), Image.Resampling.LANCZOS).save(
-        runtime, 'WEBP', quality=92, method=6, exact=True)
+        temporary_runtime, 'WEBP', quality=92, method=6, exact=True)
+    temporary_runtime.replace(runtime)
     return {'master': str(master.relative_to(ROOT)), 'masterSize': list(size),
             'masterSHA256': digest(master),
             'runtime': str(runtime.relative_to(ROOT)),
@@ -90,7 +94,9 @@ def main():
                        'originalSize': original_size, 'originalSHA256': digest(destination),
                        'prompt': spec.get('prompts', {}).get(expression, ''), 'faceComposition': processing})
         result['assets'].append(record)
-    (source_dir / 'provenance.json').write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')
+    temporary_record = source_dir / 'provenance.json.tmp'
+    temporary_record.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')
+    temporary_record.replace(source_dir / 'provenance.json')
     print(json.dumps({'asset': asset_id, 'count': len(result['assets']), 'master': size, 'native4kClaim': False}))
 
 
