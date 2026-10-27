@@ -42,18 +42,6 @@
       "chapter": 7
     },
     {
-      "path": "zz-art-v1.json",
-      "role": "asset-extension"
-    },
-    {
-      "path": "zzz-scene-art-v1.json",
-      "role": "asset-extension"
-    },
-    {
-      "path": "zzzz-anomaly-art-v1.json",
-      "role": "asset-extension"
-    },
-    {
       "path": "zzzz-release-v1.json",
       "role": "release"
     }
