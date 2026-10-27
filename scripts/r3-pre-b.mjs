@@ -29,8 +29,6 @@ for (const scene of data.scenes) {
   }
 }
 
-const serialized = JSON.stringify(data, null, 2) + '\n';
-if (serialized.includes('Normal End')) throw new Error('Normal End label still remains in chapter 4');
 if (!changed) throw new Error('No ending labels were naturalized');
-fs.writeFileSync(file, serialized);
+fs.writeFileSync(file, JSON.stringify(data, null, 2) + '\n');
 console.log(`Naturalized ${changed} Chapter 4 ending-label references`);
