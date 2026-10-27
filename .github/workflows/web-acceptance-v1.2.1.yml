@@ -1,0 +1,75 @@
+name: Web acceptance v1.2.1
+
+on:
+  push:
+    branches: [v1.2.1-mobile-pwa-fix]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  web-acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout game
+        uses: actions/checkout@v4
+        with:
+          path: game-repo
+
+      - name: Checkout locked VN Engine v2
+        uses: actions/checkout@v4
+        with:
+          repository: AureliusWu/VN-Engine-v2
+          ref: 15c101e0d2b2c1e40dbc36d7a0c1a246d102b52c
+          path: vn-engine
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: vn-engine/package-lock.json
+
+      - name: Install engine dependencies
+        working-directory: vn-engine
+        run: npm ci
+
+      - name: Build candidate
+        working-directory: game-repo
+        env:
+          VN_ENGINE_PATH: ${{ github.workspace }}/vn-engine
+        run: npm run build
+
+      - name: Archive candidate
+        working-directory: game-repo
+        run: cd dist && zip -r ../RESET-huiliu-v1.2.1-dev-web.zip .
+
+      - name: Install Chromium only
+        working-directory: vn-engine
+        run: npx playwright install chromium
+
+      - name: Prepare immutable v1.1.0 fixture
+        working-directory: game-repo
+        run: |
+          curl --fail --location --retry 3 https://github.com/AureliusWu/RESET/releases/download/v1.1.0/RESET-huiliu-v1.1.0-web.zip -o previous-web.zip
+          echo '6750ed303f1029684418f93449ae3d322f08e294e40926a53529cae81fad8f24  previous-web.zip' | sha256sum --check
+          unzip -q previous-web.zip -d previous-web
+
+      - name: Test extracted final Web ZIP
+        working-directory: game-repo
+        env:
+          RESET_DIST: installed-web
+          RESET_PREVIOUS_DIST: previous-web
+          VN_ENGINE_PATH: ${{ github.workspace }}/vn-engine
+        run: |
+          unzip -q RESET-huiliu-v1.2.1-dev-web.zip -d installed-web
+          npm run test:release
+          npm run test:browser
+          npm run check:stable
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: RESET-huiliu-v1.2.1-dev-web-validation-fast
+          path: game-repo/test-results
