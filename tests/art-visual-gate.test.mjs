@@ -16,11 +16,14 @@ test('visual acceptance has one explicit PASS status for every heroine after own
   }
 });
 
-test('production build cannot regenerate placeholder vector portraits', async () => {
+test('production build cannot regenerate or reference placeholder vector portraits', async () => {
   const build = await readFile(resolve(root, 'scripts/build.mjs'), 'utf8');
   assert.equal(build.includes("scripts/generate-portraits.mjs") || build.includes("'generate-portraits.mjs'"), false,
     'production build must not invoke the deterministic placeholder portrait generator');
-  const pack = await readFile(resolve(root, 'game/content/zz-art-v1.json'), 'utf8');
-  assert.ok(pack.includes('assets/4k/runtime/characters/'));
-  assert.equal(pack.includes('generated-portraits'), false);
+  const manifest = JSON.parse(await readFile(resolve(root, 'game/assets/manifest.json'), 'utf8'));
+  const portraits = manifest.production.filter(asset => asset.kind === 'portrait');
+  assert.equal(portraits.length, 33);
+  assert.ok(portraits.every(asset => asset.src.startsWith('assets/4k/runtime/') && asset.src.endsWith('.webp')));
+  assert.equal(JSON.stringify(manifest).includes('generated-portraits'), false);
+  assert.equal(JSON.stringify(manifest).includes('.svg'), false);
 });
