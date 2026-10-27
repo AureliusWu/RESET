@@ -7,7 +7,7 @@
 - 项目为现代中国校园 VN、六角色路线、都市灵异、读档 Meta 与少量实时 2D Boss 战。保留陈渡、林晚、周小满、许栖、沈听澜、唐梨、乔南星及现有剧情骨架。
 - True End 保持“不保存 → 不可逆 → 10 月 25 日 → 明天见”。不可逆限制必须在 runtime 边界真实生效。
 - 引擎继续独立使用 VN Engine v2 0.3.0，精确锁定 `15c101e0d2b2c1e40dbc36d7a0c1a246d102b52c`。普通作品功能放在本仓库，不复制或重构引擎。
-- R1 正式正文以 `game/content/zzzzz-r1-chapter-01.json` 至 `zzzzz-r1-chapter-07.json` 为唯一可编辑事实源；不得用历史生成器覆盖人工修订。
+- R2 起正式正文以 `game/content/chapters/01.json` 至 `07.json` 为唯一可编辑事实源，加载顺序由 `game/content/manifest.json` 显式声明；`game/project.json` 不再保存剧情 Scene，`replaceScenes` 覆盖层不得重新进入 production。
 - 保持场景、台词、选项与资产 ID；修改存档数据结构时必须提供迁移。v1.0.0、v1.0.1、v1.1.0、v1.2.0-dev、v1.2.0-rc.1、v1.2.0-rc.2、v1.2.0、v1.2.1-dev 的备份与六个手动槽必须兼容。旧备份不能原地改写。
 - v1.2.1 标题页必须保持真实可交互；移动端竖屏与短横屏必须保留 44px 触控下限；桌面/4K 布局不得因移动端覆盖规则退化。
 - PWA 安装入口只在浏览器提供 installability prompt 时显示；Service Worker 离线、同源升级、存档与 Meta 持久化均为发布门禁。
