@@ -1,0 +1,44 @@
+name: R3 Apply Narrative Polish
+
+on:
+  push:
+    branches: [r3-narrative-a]
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: ${{ !contains(github.event.head_commit.message, 'chore(r3): apply chapter 1-2 polish') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: r3-narrative-a
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Apply R3 prose polish
+        run: node scripts/r3-polish.mjs
+
+      - name: Validate scenario structure
+        run: npm run scenario:check
+
+      - name: Commit polished chapters
+        shell: bash
+        run: |
+          if git diff --quiet -- game/content/chapters/01.json game/content/chapters/02.json; then
+            echo "No chapter changes produced"
+            exit 1
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add game/content/chapters/01.json game/content/chapters/02.json
+          git diff --cached --check
+          git commit -m "chore(r3): apply chapter 1-2 polish"
+          git push origin HEAD:r3-narrative-a
