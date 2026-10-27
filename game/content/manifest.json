@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "source": "R2 Content Schema",
+  "packs": [
+    {
+      "path": "runtime.json",
+      "role": "runtime"
+    },
+    {
+      "path": "chapters/01.json",
+      "role": "chapter",
+      "chapter": 1
+    },
+    {
+      "path": "chapters/02.json",
+      "role": "chapter",
+      "chapter": 2
+    },
+    {
+      "path": "chapters/03.json",
+      "role": "chapter",
+      "chapter": 3
+    },
+    {
+      "path": "chapters/04.json",
+      "role": "chapter",
+      "chapter": 4
+    },
+    {
+      "path": "chapters/05.json",
+      "role": "chapter",
+      "chapter": 5
+    },
+    {
+      "path": "chapters/06.json",
+      "role": "chapter",
+      "chapter": 6
+    },
+    {
+      "path": "chapters/07.json",
+      "role": "chapter",
+      "chapter": 7
+    },
+    {
+      "path": "zz-art-v1.json",
+      "role": "asset-extension"
+    },
+    {
+      "path": "zzz-scene-art-v1.json",
+      "role": "asset-extension"
+    },
+    {
+      "path": "zzzz-anomaly-art-v1.json",
+      "role": "asset-extension"
+    },
+    {
+      "path": "zzzz-release-v1.json",
+      "role": "release"
+    }
+  ]
+}

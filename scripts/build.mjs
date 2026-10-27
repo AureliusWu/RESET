@@ -5,13 +5,13 @@ import { createHash } from 'node:crypto';
 import { pathToFileURL, fileURLToPath } from 'node:url';
 import process from 'node:process';
 import { pngIcon } from './pwa-assets.mjs';
+import { loadContentPacks } from './content-packs.mjs';
 
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const lock = JSON.parse(await readFile(resolve(root, 'ENGINE.lock.json'), 'utf8'));
 const engine = resolve(process.env.VN_ENGINE_PATH || resolve(root, '..', 'VN-Engine-v2'));
 const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
 const projectFile = resolve(root, 'game/project.json');
-const contentDir = resolve(root, 'game/content');
 const audioFile = resolve(root, 'game/audio.json');
 const buildProjectFile = resolve(root, 'game/.project.build.json');
 const output = resolve(root, 'dist');
@@ -41,20 +41,9 @@ function mergeStage(left = {}, right = {}) {
   };
 }
 
-async function loadContentPacks() {
-  let files = [];
-  try { files = (await readdir(contentDir)).filter(name => name.endsWith('.json') && name !== 'zzzzzz-r1-generated.json').sort(); }
-  catch (error) { if (error.code !== 'ENOENT') throw error; }
-  return Promise.all(files.map(async name => JSON.parse(await readFile(resolve(contentDir, name), 'utf8'))));
-}
-
 function applyPack(project, pack) {
   if (!pack?.id) throw new Error('Content pack is missing id');
   const scenes = new Map(project.scenes.map(scene => [scene.id, scene]));
-  for (const replacement of pack.replaceScenes ?? []) {
-    if (!scenes.has(replacement.id)) throw new Error(`Content pack ${pack.id} cannot replace missing scene ${replacement.id}`);
-    scenes.set(replacement.id, replacement);
-  }
   for (const scene of pack.scenes ?? []) {
     if (scenes.has(scene.id)) throw new Error(`Content pack ${pack.id} duplicates scene ${scene.id}`);
     scenes.set(scene.id, scene);
@@ -156,7 +145,7 @@ if (process.env.ALLOW_ENGINE_DRIFT !== '1') {
 run(process.execPath, [resolve(root, 'scripts/generate-audio.mjs')], root);
 run(process.execPath, [resolve(root, 'scripts/generate-scenes.mjs')], root);
 let project = JSON.parse(await readFile(projectFile, 'utf8'));
-for (const pack of await loadContentPacks()) project = applyPack(project, pack);
+for (const { pack } of (await loadContentPacks(root)).packs) project = applyPack(project, pack);
 const audio = JSON.parse(await readFile(audioFile, 'utf8'));
 const buildProject = {
   ...project,

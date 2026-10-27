@@ -8,7 +8,7 @@ R1 是第一次正式剧本重构轮。目标不是“把原句拉长”，而�
 
 - [x] 建立核心七人之外的常驻配角网络。
 - [x] 建立校园、家庭、食堂、图书馆、江滩、地铁、社团、数字聊天八类生活层。
-- [x] Chapter 1–7 全部场景进入正式扩写覆盖层。
+- [x] Chapter 1–7 全部场景进入正式扩写正文。
 - [x] 保留原 Scene ID / Choice ID / Ending ID / continuation / combat / Meta 相关字段。
 - [x] 六女主各自拥有陈渡之外的人际关系和生活目标。
 - [x] 普通人会受异常后果影响；“拯救梧城”不再只等于七名核心角色存活。
@@ -24,18 +24,18 @@ R1 是第一次正式剧本重构轮。目标不是“把原句拉长”，而�
 
 ## 正式正文
 
-R1 正文已经落盘为：
+R2 Content Schema Consolidation 之后，R1 正文的唯一可编辑事实源为：
 
-- `game/content/zzzzz-r1-chapter-01.json`
-- `game/content/zzzzz-r1-chapter-02.json`
-- `game/content/zzzzz-r1-chapter-03.json`
-- `game/content/zzzzz-r1-chapter-04.json`
-- `game/content/zzzzz-r1-chapter-05.json`
-- `game/content/zzzzz-r1-chapter-06.json`
-- `game/content/zzzzz-r1-chapter-07.json`
+- `game/content/chapters/01.json`
+- `game/content/chapters/02.json`
+- `game/content/chapters/03.json`
+- `game/content/chapters/04.json`
+- `game/content/chapters/05.json`
+- `game/content/chapters/06.json`
+- `game/content/chapters/07.json`
 
-这 7 个文件是后续人工通读、校稿、口吻修订与演出调整的唯一正文源。Build 与 `scenario:check` 直接消费已提交文本；R1 的一次性生成种子和物化工具已经退出主树，需要追溯时使用 Git 历史。
+加载顺序由 `game/content/manifest.json` 显式声明。`game/project.json` 只保存项目级配置，不再保存剧情 Scene；历史 `chapter2–6 + replaceScenes` 双层覆盖结构已经退出 production。Build 与 `scenario:check` 直接消费上述七章 canonical `scenes`，任何新的 `replaceScenes` 都会被 Scenario Gate 阻断。
 
 ## 后续门槛
 
-R1 合入后，任何继续压缩文本、移除配角网络、丢失核心 Ending 或把总汉字量降回 80,000 以下的修改，都应被 `scenario:check` 阻断。
+任何继续压缩文本、移除配角网络、丢失核心 Ending、重新引入覆盖层，或把总汉字量降回 80,000 以下的修改，都应被 `scenario:check` 阻断。

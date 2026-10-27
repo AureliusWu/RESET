@@ -1,8 +1,8 @@
 {
-  "id": "r1-scenario-chapter-04",
+  "id": "chapter-04",
   "chapter": 4,
-  "source": "R1 Scenario Reconstruction — committed source of truth",
-  "replaceScenes": [
+  "source": "R2 canonical scenario source",
+  "scenes": [
     {
       "id": "route_focus_choice",
       "chapter": 4,

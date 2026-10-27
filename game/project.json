@@ -14,246 +14,7 @@
     "nanxing": 0,
     "anomaly": 0
   },
-  "scenes": [
-    {
-      "id": "prologue_1842",
-      "chapter": 1,
-      "title": "雨夜存档点",
-      "location": "梧城一中旧教学楼",
-      "time": "18:42",
-      "background": "classroom-rain",
-      "noSprite": true,
-      "lines": [
-        {"id":"p001","speaker":"旁白","text":"10月17日，18:42。雨水沿着旧教学楼的窗框往下爬。"},
-        {"id":"p002","speaker":"陈渡","text":"这是第四次。"},
-        {"id":"p003","speaker":"旁白","text":"第一次，我死在山南路；第二次，是南湖站；第三次，我看见了人民公园那件红色外套。"},
-        {"id":"p004","speaker":"陈渡","text":"如果这一次还能回去，我至少要弄明白是谁把我送回来的。"}
-      ],
-      "choices": [
-        {"id":"find_xiaoman","text":"去找周小满","next":"xiaoman_rain","effect":{"xiaoman":1}},
-        {"id":"watch_linwan","text":"留下观察林晚","next":"linwan_shadow","effect":{"linwan":1,"anomaly":1}},
-        {"id":"go_home","text":"什么也不做，回家","next":"home_bad"},
-        {"id":"go_station","text":"直接去南湖站","next":"station_fourth","effect":{"anomaly":1}}
-      ]
-    },
-    {
-      "id": "xiaoman_rain",
-      "chapter": 1,
-      "title": "奶茶店门口",
-      "location": "梧城一中东门",
-      "time": "19:03",
-      "background": "school-gate-rain",
-      "character": "xiaoman",
-      "lines": [
-        {"id":"x001","speaker":"周小满","text":"你终于舍得回消息了？我还以为你被雨冲进下水道了。","expression":"smile"},
-        {"id":"x002","speaker":"陈渡","text":"小满，你今天有没有看见一个穿红衣服的女人？"},
-        {"id":"x003","speaker":"周小满","text":"……你怎么知道？","expression":"surprised"},
-        {"id":"x004","speaker":"周小满","text":"她刚才站在马路对面。可我再眨一次眼，她就不见了。","expression":"worried"}
-      ],
-      "next": "after_school_choice"
-    },
-    {
-      "id": "linwan_shadow",
-      "chapter": 1,
-      "title": "窗边的人",
-      "location": "高二（三）班",
-      "time": "18:49",
-      "background": "classroom-rain",
-      "character": "linwan",
-      "lines": [
-        {"id":"l001","speaker":"林晚","text":"你还没走？","expression":"neutral"},
-        {"id":"l002","speaker":"旁白","text":"闪电照亮教室。她低头整理作业，而墙上的影子抬起了头。"},
-        {"id":"l003","speaker":"陈渡","text":"林晚，你刚才动了吗？"},
-        {"id":"l004","speaker":"林晚","text":"没有。可是……我好像梦见过你问这句话。","expression":"worried"}
-      ],
-      "next": "after_school_choice"
-    },
-    {
-      "id": "after_school_choice",
-      "chapter": 1,
-      "title": "同一个目的地",
-      "location": "梧城街头",
-      "time": "19:16",
-      "background": "school-gate-rain",
-      "noSprite": true,
-      "lines": [
-        {"id":"a001","speaker":"旁白","text":"手机震动。地铁运营提醒弹出：南湖站因设备故障临时封闭。"},
-        {"id":"a002","speaker":"陈渡","text":"和第二次死亡前一模一样。"},
-        {"id":"a003","speaker":"旁白","text":"我还是去了南湖站。我记得自己倒在那里的样子。"}
-      ],
-      "next": "station_fourth"
-    },
-    {
-      "id": "home_bad",
-      "chapter": 1,
-      "title": "家里有人",
-      "location": "陈渡家门外",
-      "time": "19:34",
-      "background": "home-corridor",
-      "noSprite": true,
-      "lines": [
-        {"id":"h001","speaker":"旁白","text":"门锁完好，屋里却亮着灯。"},
-        {"id":"h002","speaker":"？？？","text":"陈渡，开门。"},
-        {"id":"h003","speaker":"旁白","text":"门内传出的，是陈渡自己的声音。"},
-        {"id":"h004","speaker":"陈渡","text":"……这一次，原来是这里。"}
-      ],
-      "ending": "bad-home"
-    },
-    {
-      "id": "station_fourth",
-      "chapter": 1,
-      "title": "第四次？",
-      "location": "南湖站",
-      "time": "19:27",
-      "background": "station-night",
-      "character": "xuqi",
-      "lines": [
-        {"id":"s001","speaker":"旁白","text":"封闭的站台尽头，一个银发女生坐在长椅上玩掌机。"},
-        {"id":"s002","speaker":"许栖","text":"第四次？","expression":"neutral"},
-        {"id":"s003","speaker":"陈渡","text":"你认识我？"},
-        {"id":"s004","speaker":"许栖","text":"不认识。只是你身上的存档味，比上次更重。","expression":"serious"},
-        {"id":"s005","speaker":"旁白","text":"她推开员工通道的门。门后没有设备间，只有一条正在下雨的街。"}
-      ],
-      "choices": [
-        {"id":"enter_night","text":"跟许栖进去","next":"night_wucheng","effect":{"xuqi":1,"anomaly":2}},
-        {"id":"refuse_night","text":"离开南湖站","next":"station_refuse"}
-      ]
-    },
-    {
-      "id": "station_refuse",
-      "chapter": 1,
-      "title": "拒绝读取",
-      "location": "南湖站出口",
-      "time": "19:31",
-      "background": "station-night",
-      "noSprite": true,
-      "lines": [
-        {"id":"r001","speaker":"旁白","text":"陈渡转身离开。"},
-        {"id":"r002","speaker":"车站广播","text":"末班车即将到站，请站在黄色安全线以内。"},
-        {"id":"r003","speaker":"陈渡","text":"现在才七点半。"},
-        {"id":"r004","speaker":"旁白","text":"隧道里亮起两盏灯。它们离轨道太高了。"}
-      ],
-      "ending": "bad-station"
-    },
-    {
-      "id": "night_wucheng",
-      "chapter": 1,
-      "title": "夜梧城",
-      "location": "未知街区",
-      "time": "18:42",
-      "background": "night-wucheng",
-      "character": "xuqi",
-      "lines": [
-        {"id":"n001","speaker":"旁白","text":"门外仍是梧城，却没有一辆车，也没有一个行人。远处钟楼停在18:42。"},
-        {"id":"n002","speaker":"许栖","text":"别把这里当成另一个世界。","expression":"serious"},
-        {"id":"n003","speaker":"许栖","text":"更像是被你们丢掉以后，还没来得及消失的那些结果。"},
-        {"id":"n004","speaker":"陈渡","text":"你说“你们”？"},
-        {"id":"n005","speaker":"许栖","text":"先活到明天，再问。还有——别回头。","expression":"worried"}
-      ],
-      "next": "morning_after"
-    },
-    {
-      "id": "morning_after",
-      "chapter": 1,
-      "title": "第二天",
-      "location": "梧城一中教学楼前",
-      "time": "07:46",
-      "background": "school-morning",
-      "character": "xiaoman",
-      "lines": [
-        {"id":"m001","speaker":"旁白","text":"10月18日。时间真的向前走了一天。"},
-        {"id":"m002","speaker":"周小满","text":"你昨天到底去哪了？我给你发了十七条消息。","expression":"worried","variant":{"stat":"xiaoman","min":1,"text":"你昨天后来还是去了南湖站，对吧？我明明没跟着你，却一直梦见那里。"}},
-        {"id":"m003","speaker":"林晚","text":"我也做了一个梦。梦里有个白头发的女生，让你别回头。","expression":"worried"},
-        {"id":"m004","speaker":"陈渡","text":"你知道她叫什么吗？"},
-        {"id":"m005","speaker":"林晚","text":"……许栖。可我应该没见过她。","expression":"surprised"}
-      ],
-      "next": "archive_room"
-    },
-    {
-      "id": "archive_room",
-      "chapter": 1,
-      "title": "不要相信记录",
-      "location": "图书馆旧档案室",
-      "time": "10:25",
-      "background": "archive-room",
-      "character": "tinglan",
-      "lines": [
-        {"id":"t001","speaker":"沈听澜","text":"这行字不是今天写的。纸面的压痕在你前几页笔记之前就存在。","expression":"neutral"},
-        {"id":"t002","speaker":"陈渡","text":"可这本本子是我昨天刚买的。"},
-        {"id":"t003","speaker":"沈听澜","text":"东门那家文具店？","expression":"serious"},
-        {"id":"t004","speaker":"沈听澜","text":"它2009年就关门了。老板失踪的那天，梧城还有六个人一起失踪。"},
-        {"id":"t005","speaker":"旁白","text":"旧报纸被涂黑的标题下，只剩一行时间：18:42。"}
-      ],
-      "next": "cafeteria_path"
-    },
-    {
-      "id": "cafeteria_path",
-      "chapter": 1,
-      "title": "应该走过的路",
-      "location": "食堂二楼",
-      "time": "12:08",
-      "background": "cafeteria",
-      "character": "tangli",
-      "lines": [
-        {"id":"d001","speaker":"唐梨","text":"我们是不是在哪见过？","expression":"smile"},
-        {"id":"d002","speaker":"陈渡","text":"应该没有。"},
-        {"id":"d003","speaker":"唐梨","text":"奇怪。我总觉得昨晚应该在南湖站。可我明明在江滩跑步。","expression":"surprised"},
-        {"id":"d004","speaker":"唐梨","text":"更怪的是，我知道从这里怎么走到一个根本不存在的出口。","expression":"serious"}
-      ],
-      "next": "future_message"
-    },
-    {
-      "id": "future_message",
-      "chapter": 1,
-      "title": "明天发来的照片",
-      "location": "梧城一中东门",
-      "time": "16:32",
-      "background": "school-gate-evening",
-      "character": "nanxing",
-      "lines": [
-        {"id":"q001","speaker":"乔南星","text":"陈渡。有人托我给你看一样东西。","expression":"smile"},
-        {"id":"q002","speaker":"旁白","text":"照片里，六名女生站在南湖站尽头。拍摄角度来自一条没有站台的轨道。"},
-        {"id":"q003","speaker":"陈渡","text":"谁发给你的？"},
-        {"id":"q004","speaker":"乔南星","text":"你。","expression":"serious"},
-        {"id":"q005","speaker":"乔南星","text":"发送时间是明天，18:42。","expression":"surprised"}
-      ],
-      "next": "rooftop_warning"
-    },
-    {
-      "id": "rooftop_warning",
-      "chapter": 1,
-      "title": "六天以后",
-      "location": "教学楼天台",
-      "time": "17:51",
-      "background": "rooftop-evening",
-      "character": "xuqi",
-      "lines": [
-        {"id":"u001","speaker":"许栖","text":"昨天我告诉过你，别回头。","expression":"neutral"},
-        {"id":"u002","speaker":"陈渡","text":"我回头了吗？"},
-        {"id":"u003","speaker":"许栖","text":"看来你连这件事都被修掉了。","expression":"serious"},
-        {"id":"u004","speaker":"旁白","text":"她递来一张日期为10月24日、目的地写着“梧城北站”的地铁票。"},
-        {"id":"u005","speaker":"许栖","text":"六天以后，你会死。这次不是意外。","expression":"worried"},
-        {"id":"u006","speaker":"许栖","text":"而且她们六个里面，有一个人会杀你。"}
-      ],
-      "chapterEnd": true,
-      "continuation": "chapter2_teaser"
-    },
-    {
-      "id": "chapter2_teaser",
-      "chapter": 2,
-      "title": "残响",
-      "location": "未知",
-      "time": "18:42",
-      "background": "night-wucheng",
-      "noSprite": true,
-      "lines": [
-        {"id":"z001","speaker":"系统","text":"当前世界读取次数：4。"},
-        {"id":"z002","speaker":"系统","text":"有人记得你。"},
-        {"id":"z003","speaker":"？？？","text":"这一次，别把我也忘掉。"}
-      ],
-      "ending": "vertical-slice"
-    }
-  ],
+  "scenes": [],
   "stage": {
     "defaults": {
       "background": "classroom-rain"
@@ -267,64 +28,293 @@
       "乔南星": "nanxing"
     },
     "scenes": {
-      "prologue_1842": {"effect":{"type":"fade","durationMs":700}},
-      "night_wucheng": {"effect":{"type":"flash","durationMs":320}},
-      "morning_after": {"effect":{"type":"fade","durationMs":800}},
-      "chapter2_teaser": {"effect":{"type":"fade","durationMs":900}}
+      "prologue_1842": {
+        "effect": {
+          "type": "fade",
+          "durationMs": 700
+        }
+      },
+      "night_wucheng": {
+        "effect": {
+          "type": "flash",
+          "durationMs": 320
+        }
+      },
+      "morning_after": {
+        "effect": {
+          "type": "fade",
+          "durationMs": 800
+        }
+      },
+      "chapter2_teaser": {
+        "effect": {
+          "type": "fade",
+          "durationMs": 900
+        }
+      }
     },
     "lines": {
-      "l002": {"effect":{"type":"flash","durationMs":180}},
-      "n001": {"effect":{"type":"flash","durationMs":260}},
-      "z002": {"effect":{"type":"shake","durationMs":280}}
+      "l002": {
+        "effect": {
+          "type": "flash",
+          "durationMs": 180
+        }
+      },
+      "n001": {
+        "effect": {
+          "type": "flash",
+          "durationMs": 260
+        }
+      },
+      "z002": {
+        "effect": {
+          "type": "shake",
+          "durationMs": 280
+        }
+      }
     }
   },
   "assets": [
-    {"id":"classroom-rain","kind":"background","src":"assets/bg-classroom-rain.svg","alt":"雨夜中的梧城一中教室占位背景"},
-    {"id":"school-gate-rain","kind":"background","src":"assets/bg-school-gate-rain.svg","alt":"雨夜校园东门占位背景"},
-    {"id":"school-gate-evening","kind":"background","src":"assets/bg-school-gate-evening.svg","alt":"傍晚校园东门占位背景"},
-    {"id":"home-corridor","kind":"background","src":"assets/bg-home-corridor.svg","alt":"居民楼走廊占位背景"},
-    {"id":"station-night","kind":"background","src":"assets/bg-station.svg","alt":"南湖站夜间占位背景"},
-    {"id":"night-wucheng","kind":"background","src":"assets/bg-night-wucheng.svg","alt":"夜梧城异常街道占位背景"},
-    {"id":"school-morning","kind":"background","src":"assets/bg-school-morning.svg","alt":"梧城一中清晨占位背景"},
-    {"id":"archive-room","kind":"background","src":"assets/bg-archive.svg","alt":"旧档案室占位背景"},
-    {"id":"cafeteria","kind":"background","src":"assets/bg-cafeteria.svg","alt":"学校食堂占位背景"},
-    {"id":"rooftop-evening","kind":"background","src":"assets/bg-rooftop.svg","alt":"教学楼天台占位背景"},
-
-    {"id":"linwan/neutral","kind":"portrait","src":"assets/ch-linwan.svg","alt":"林晚占位立绘"},
-    {"id":"linwan/smile","kind":"portrait","src":"assets/ch-linwan.svg","alt":"林晚占位立绘"},
-    {"id":"linwan/worried","kind":"portrait","src":"assets/ch-linwan.svg","alt":"林晚占位立绘"},
-    {"id":"linwan/surprised","kind":"portrait","src":"assets/ch-linwan.svg","alt":"林晚占位立绘"},
-    {"id":"linwan/serious","kind":"portrait","src":"assets/ch-linwan.svg","alt":"林晚占位立绘"},
-
-    {"id":"xiaoman/neutral","kind":"portrait","src":"assets/ch-xiaoman.svg","alt":"周小满占位立绘"},
-    {"id":"xiaoman/smile","kind":"portrait","src":"assets/ch-xiaoman.svg","alt":"周小满占位立绘"},
-    {"id":"xiaoman/worried","kind":"portrait","src":"assets/ch-xiaoman.svg","alt":"周小满占位立绘"},
-    {"id":"xiaoman/surprised","kind":"portrait","src":"assets/ch-xiaoman.svg","alt":"周小满占位立绘"},
-    {"id":"xiaoman/serious","kind":"portrait","src":"assets/ch-xiaoman.svg","alt":"周小满占位立绘"},
-
-    {"id":"xuqi/neutral","kind":"portrait","src":"assets/ch-xuqi.svg","alt":"许栖占位立绘"},
-    {"id":"xuqi/smile","kind":"portrait","src":"assets/ch-xuqi.svg","alt":"许栖占位立绘"},
-    {"id":"xuqi/worried","kind":"portrait","src":"assets/ch-xuqi.svg","alt":"许栖占位立绘"},
-    {"id":"xuqi/surprised","kind":"portrait","src":"assets/ch-xuqi.svg","alt":"许栖占位立绘"},
-    {"id":"xuqi/serious","kind":"portrait","src":"assets/ch-xuqi.svg","alt":"许栖占位立绘"},
-
-    {"id":"tinglan/neutral","kind":"portrait","src":"assets/ch-tinglan.svg","alt":"沈听澜占位立绘"},
-    {"id":"tinglan/smile","kind":"portrait","src":"assets/ch-tinglan.svg","alt":"沈听澜占位立绘"},
-    {"id":"tinglan/worried","kind":"portrait","src":"assets/ch-tinglan.svg","alt":"沈听澜占位立绘"},
-    {"id":"tinglan/surprised","kind":"portrait","src":"assets/ch-tinglan.svg","alt":"沈听澜占位立绘"},
-    {"id":"tinglan/serious","kind":"portrait","src":"assets/ch-tinglan.svg","alt":"沈听澜占位立绘"},
-
-    {"id":"tangli/neutral","kind":"portrait","src":"assets/ch-tangli.svg","alt":"唐梨占位立绘"},
-    {"id":"tangli/smile","kind":"portrait","src":"assets/ch-tangli.svg","alt":"唐梨占位立绘"},
-    {"id":"tangli/worried","kind":"portrait","src":"assets/ch-tangli.svg","alt":"唐梨占位立绘"},
-    {"id":"tangli/surprised","kind":"portrait","src":"assets/ch-tangli.svg","alt":"唐梨占位立绘"},
-    {"id":"tangli/serious","kind":"portrait","src":"assets/ch-tangli.svg","alt":"唐梨占位立绘"},
-
-    {"id":"nanxing/neutral","kind":"portrait","src":"assets/ch-nanxing.svg","alt":"乔南星占位立绘"},
-    {"id":"nanxing/smile","kind":"portrait","src":"assets/ch-nanxing.svg","alt":"乔南星占位立绘"},
-    {"id":"nanxing/worried","kind":"portrait","src":"assets/ch-nanxing.svg","alt":"乔南星占位立绘"},
-    {"id":"nanxing/surprised","kind":"portrait","src":"assets/ch-nanxing.svg","alt":"乔南星占位立绘"},
-    {"id":"nanxing/serious","kind":"portrait","src":"assets/ch-nanxing.svg","alt":"乔南星占位立绘"}
+    {
+      "id": "classroom-rain",
+      "kind": "background",
+      "src": "assets/bg-classroom-rain.svg",
+      "alt": "雨夜中的梧城一中教室占位背景"
+    },
+    {
+      "id": "school-gate-rain",
+      "kind": "background",
+      "src": "assets/bg-school-gate-rain.svg",
+      "alt": "雨夜校园东门占位背景"
+    },
+    {
+      "id": "school-gate-evening",
+      "kind": "background",
+      "src": "assets/bg-school-gate-evening.svg",
+      "alt": "傍晚校园东门占位背景"
+    },
+    {
+      "id": "home-corridor",
+      "kind": "background",
+      "src": "assets/bg-home-corridor.svg",
+      "alt": "居民楼走廊占位背景"
+    },
+    {
+      "id": "station-night",
+      "kind": "background",
+      "src": "assets/bg-station.svg",
+      "alt": "南湖站夜间占位背景"
+    },
+    {
+      "id": "night-wucheng",
+      "kind": "background",
+      "src": "assets/bg-night-wucheng.svg",
+      "alt": "夜梧城异常街道占位背景"
+    },
+    {
+      "id": "school-morning",
+      "kind": "background",
+      "src": "assets/bg-school-morning.svg",
+      "alt": "梧城一中清晨占位背景"
+    },
+    {
+      "id": "archive-room",
+      "kind": "background",
+      "src": "assets/bg-archive.svg",
+      "alt": "旧档案室占位背景"
+    },
+    {
+      "id": "cafeteria",
+      "kind": "background",
+      "src": "assets/bg-cafeteria.svg",
+      "alt": "学校食堂占位背景"
+    },
+    {
+      "id": "rooftop-evening",
+      "kind": "background",
+      "src": "assets/bg-rooftop.svg",
+      "alt": "教学楼天台占位背景"
+    },
+    {
+      "id": "linwan/neutral",
+      "kind": "portrait",
+      "src": "assets/ch-linwan.svg",
+      "alt": "林晚占位立绘"
+    },
+    {
+      "id": "linwan/smile",
+      "kind": "portrait",
+      "src": "assets/ch-linwan.svg",
+      "alt": "林晚占位立绘"
+    },
+    {
+      "id": "linwan/worried",
+      "kind": "portrait",
+      "src": "assets/ch-linwan.svg",
+      "alt": "林晚占位立绘"
+    },
+    {
+      "id": "linwan/surprised",
+      "kind": "portrait",
+      "src": "assets/ch-linwan.svg",
+      "alt": "林晚占位立绘"
+    },
+    {
+      "id": "linwan/serious",
+      "kind": "portrait",
+      "src": "assets/ch-linwan.svg",
+      "alt": "林晚占位立绘"
+    },
+    {
+      "id": "xiaoman/neutral",
+      "kind": "portrait",
+      "src": "assets/ch-xiaoman.svg",
+      "alt": "周小满占位立绘"
+    },
+    {
+      "id": "xiaoman/smile",
+      "kind": "portrait",
+      "src": "assets/ch-xiaoman.svg",
+      "alt": "周小满占位立绘"
+    },
+    {
+      "id": "xiaoman/worried",
+      "kind": "portrait",
+      "src": "assets/ch-xiaoman.svg",
+      "alt": "周小满占位立绘"
+    },
+    {
+      "id": "xiaoman/surprised",
+      "kind": "portrait",
+      "src": "assets/ch-xiaoman.svg",
+      "alt": "周小满占位立绘"
+    },
+    {
+      "id": "xiaoman/serious",
+      "kind": "portrait",
+      "src": "assets/ch-xiaoman.svg",
+      "alt": "周小满占位立绘"
+    },
+    {
+      "id": "xuqi/neutral",
+      "kind": "portrait",
+      "src": "assets/ch-xuqi.svg",
+      "alt": "许栖占位立绘"
+    },
+    {
+      "id": "xuqi/smile",
+      "kind": "portrait",
+      "src": "assets/ch-xuqi.svg",
+      "alt": "许栖占位立绘"
+    },
+    {
+      "id": "xuqi/worried",
+      "kind": "portrait",
+      "src": "assets/ch-xuqi.svg",
+      "alt": "许栖占位立绘"
+    },
+    {
+      "id": "xuqi/surprised",
+      "kind": "portrait",
+      "src": "assets/ch-xuqi.svg",
+      "alt": "许栖占位立绘"
+    },
+    {
+      "id": "xuqi/serious",
+      "kind": "portrait",
+      "src": "assets/ch-xuqi.svg",
+      "alt": "许栖占位立绘"
+    },
+    {
+      "id": "tinglan/neutral",
+      "kind": "portrait",
+      "src": "assets/ch-tinglan.svg",
+      "alt": "沈听澜占位立绘"
+    },
+    {
+      "id": "tinglan/smile",
+      "kind": "portrait",
+      "src": "assets/ch-tinglan.svg",
+      "alt": "沈听澜占位立绘"
+    },
+    {
+      "id": "tinglan/worried",
+      "kind": "portrait",
+      "src": "assets/ch-tinglan.svg",
+      "alt": "沈听澜占位立绘"
+    },
+    {
+      "id": "tinglan/surprised",
+      "kind": "portrait",
+      "src": "assets/ch-tinglan.svg",
+      "alt": "沈听澜占位立绘"
+    },
+    {
+      "id": "tinglan/serious",
+      "kind": "portrait",
+      "src": "assets/ch-tinglan.svg",
+      "alt": "沈听澜占位立绘"
+    },
+    {
+      "id": "tangli/neutral",
+      "kind": "portrait",
+      "src": "assets/ch-tangli.svg",
+      "alt": "唐梨占位立绘"
+    },
+    {
+      "id": "tangli/smile",
+      "kind": "portrait",
+      "src": "assets/ch-tangli.svg",
+      "alt": "唐梨占位立绘"
+    },
+    {
+      "id": "tangli/worried",
+      "kind": "portrait",
+      "src": "assets/ch-tangli.svg",
+      "alt": "唐梨占位立绘"
+    },
+    {
+      "id": "tangli/surprised",
+      "kind": "portrait",
+      "src": "assets/ch-tangli.svg",
+      "alt": "唐梨占位立绘"
+    },
+    {
+      "id": "tangli/serious",
+      "kind": "portrait",
+      "src": "assets/ch-tangli.svg",
+      "alt": "唐梨占位立绘"
+    },
+    {
+      "id": "nanxing/neutral",
+      "kind": "portrait",
+      "src": "assets/ch-nanxing.svg",
+      "alt": "乔南星占位立绘"
+    },
+    {
+      "id": "nanxing/smile",
+      "kind": "portrait",
+      "src": "assets/ch-nanxing.svg",
+      "alt": "乔南星占位立绘"
+    },
+    {
+      "id": "nanxing/worried",
+      "kind": "portrait",
+      "src": "assets/ch-nanxing.svg",
+      "alt": "乔南星占位立绘"
+    },
+    {
+      "id": "nanxing/surprised",
+      "kind": "portrait",
+      "src": "assets/ch-nanxing.svg",
+      "alt": "乔南星占位立绘"
+    },
+    {
+      "id": "nanxing/serious",
+      "kind": "portrait",
+      "src": "assets/ch-nanxing.svg",
+      "alt": "乔南星占位立绘"
+    }
   ],
   "settings": {
     "textDelayMs": 24,
