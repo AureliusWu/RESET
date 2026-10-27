@@ -15,8 +15,6 @@ export async function verifyProductionArt({page,project,fixtures,loadFixture,out
       session.restore(save);const scene=session.getView().frame.sceneId;
       for(let i=0;i<100;i++){
         const f=session.getView().frame;if(f.sceneId!==scene)break;
-        // The pure engine session has no work-level Meta guard. Never use its
-        // export from an irreversible scene to drive the live native game.
         for(const id of [f.stage.portrait,f.stage.background,f.stage.cg])if(id&&!frames.has(id)&&!IRREVERSIBLE_SCENES.includes(f.sceneId)){
           try{frames.set(id,session.save());}catch{/* irreversible art is checked by actual finale traversal */}
         }
@@ -49,8 +47,6 @@ export async function verifyProductionArt({page,project,fixtures,loadFixture,out
       if(asset.kind!=='portrait'||asset.id.endsWith('/neutral'))await page.screenshot({path:out+'/production-'+asset.id.replaceAll('/','-')+'.png',animations:'disabled'});
       records.push({id:asset.id,verification:'canonical story save'});
     }else{
-      // Explicit isolated renderer fixture for a formal expression not referenced
-      // by the story. It never changes or appends to shipped narrative content.
       await page.evaluate(async({asset,background})=>{
         const {mountGame}=await import('./lib/index.js');const root=document.createElement('div');root.id='__assetQA';root.style.cssText='position:fixed;inset:0;z-index:2147483647;background:#14272e';document.body.append(root);
         const [character,expression]=asset.id.split('/');
@@ -79,6 +75,35 @@ export async function verifyProductionArt({page,project,fixtures,loadFixture,out
         finally{await page.evaluate(()=>document.getElementById('__productionEdgeQA').remove());}
       }
     }finally{await page.setViewportSize(viewport);}
+
+    const mobileRecords=[];
+    await page.setViewportSize({width:390,height:844});
+    try{
+      for(const asset of project.assets.filter(a=>a.kind==='portrait'&&a.src.includes('/characters/')&&a.id.endsWith('/neutral'))){
+        const witness=frames.get(asset.id) ?? (()=>{
+          for(const save of Object.values(fixtures.witnesses)) if(save?.state?.storyVersion&&save?.state?.sceneId) return null;
+          return null;
+        })();
+        if(!witness)continue;
+        await loadFixture(witness);
+        await page.waitForFunction(id=>{const im=document.querySelector('.vn-portrait');return im?.dataset.asset===id&&im.complete;},asset.id);
+        const geometry=await page.evaluate(()=>{
+          const portrait=document.querySelector('.vn-portrait')?.getBoundingClientRect();
+          const stage=document.querySelector('.vn-stage')?.getBoundingClientRect();
+          const reading=document.querySelector('.vn-reading')?.getBoundingClientRect();
+          if(!portrait||!stage)return null;
+          return {portrait:{x:portrait.x,y:portrait.y,w:portrait.width,h:portrait.height},stage:{x:stage.x,y:stage.y,w:stage.width,h:stage.height},reading:reading?{x:reading.x,y:reading.y,w:reading.width,h:reading.height}:null};
+        });
+        assert.ok(geometry,`mobile geometry missing: ${asset.id}`);
+        const p=geometry.portrait,s=geometry.stage,epsilon=2;
+        assert.ok(p.x>=s.x-epsilon&&p.y>=s.y-epsilon,`mobile portrait escapes stage origin: ${asset.id}`);
+        assert.ok(p.x+p.w<=s.x+s.w+epsilon&&p.y+p.h<=s.y+s.h+epsilon,`mobile portrait escapes stage bounds: ${asset.id}`);
+        await page.screenshot({path:out+'/mobile-production-'+asset.id.replaceAll('/','-')+'.png',animations:'disabled'});
+        mobileRecords.push({id:asset.id,geometry});
+      }
+    }finally{await page.setViewportSize(viewport);}
+    await writeFile(out+'/production-art-mobile.json',JSON.stringify(mobileRecords,null,2)+'\n');
+    pass(`${mobileRecords.length} neutral character portraits captured in 390x844 canonical gameplay frames without escaping the stage`);
   }
   pass(`${assets.length} adopted production art files decode at runtime dimensions; ${records.length} production images render in story or labelled isolated fixtures`);
 }

@@ -47,8 +47,10 @@ jobs:
           node --check scripts/audit-4k-art.mjs
           node --check scripts/check-art-integrity.mjs
           node --check scripts/check-4k-production.mjs
+          node --check scripts/check-art-visual-gate.mjs
           node --check scripts/check-release.mjs
           node --check tests/art-completeness.test.mjs
+          node --check tests/art-visual-gate.test.mjs
           node --check tests/linwan-art-browser.mjs
           node --check tests/production-art-browser.mjs
 
@@ -62,7 +64,7 @@ jobs:
           VN_ENGINE_PATH: ${{ github.workspace }}/vn-engine
         run: npm run build
 
-      - name: Full release integrity audit
+      - name: Candidate integrity and visual-blocker report
         working-directory: game-repo
         run: npm run check:release
 
@@ -70,10 +72,10 @@ jobs:
         working-directory: game-repo
         run: npm run test:release
 
-      - name: Verify v1.2.0 release content
+      - name: Verify v1.2.1-dev content
         working-directory: game-repo
         run: |
-          node -e "const m=require('./dist/build-manifest.json'); const p=require('./dist/project.json'); if(m.game!=='reset'||m.version!=='reset-v1.2.0'||p.version!=='reset-v1.2.0') process.exit(1); const ids=new Set(p.scenes.map(s=>s.id)); for(const id of ['c6_save_again','c6_no_save','c6_echo_goodbye','c7_morning','c7_linwan','c7_credits']) if(!ids.has(id)) process.exit(2); const endings=new Set(p.scenes.map(s=>s.ending).filter(Boolean)); for(const id of ['normal-linwan','normal-xiaoman','normal-xuqi','normal-tinglan','normal-tangli','normal-nanxing','bad-permanent-save','true-end']) if(!endings.has(id)) process.exit(3); console.log(m.engine,m.contentFingerprint,p.scenes.length,p.assets.length,endings.size,m.extensions)"
+          node -e "const m=require('./dist/build-manifest.json'); const p=require('./dist/project.json'); if(m.game!=='reset'||m.version!=='reset-v1.2.1-dev'||p.version!=='reset-v1.2.1-dev') process.exit(1); const ids=new Set(p.scenes.map(s=>s.id)); for(const id of ['c6_save_again','c6_no_save','c6_echo_goodbye','c7_morning','c7_linwan','c7_credits']) if(!ids.has(id)) process.exit(2); const endings=new Set(p.scenes.map(s=>s.ending).filter(Boolean)); for(const id of ['normal-linwan','normal-xiaoman','normal-xuqi','normal-tinglan','normal-tangli','normal-nanxing','bad-permanent-save','true-end']) if(!endings.has(id)) process.exit(3); if(!m.extensions.includes('reset-art-visual-gate-v1')) process.exit(4); console.log(m.engine,m.contentFingerprint,p.scenes.length,p.assets.length,endings.size,m.extensions)"
           test -f dist/index.html
           test -f dist/project.json
           test -f dist/sw.js
@@ -86,8 +88,17 @@ jobs:
           test -f dist/assets/4k/runtime/characters/xuqi/serious.webp
           test -f dist/assets/4k/runtime/characters/xuqi/angry.webp
 
-      - name: Upload standalone build
+      - name: Confirm stable release stays blocked while visual review is incomplete
+        working-directory: game-repo
+        run: |
+          if npm run check:stable; then
+            echo 'Stable gate unexpectedly passed while Round 3 art is BLOCKED' >&2
+            exit 1
+          fi
+          echo 'Expected: stable publication remains blocked on manual visual acceptance.'
+
+      - name: Upload standalone development build
         uses: actions/upload-artifact@v4
         with:
-          name: RESET-huiliu-v1.2.0
+          name: RESET-huiliu-v1.2.1-dev
           path: game-repo/dist
