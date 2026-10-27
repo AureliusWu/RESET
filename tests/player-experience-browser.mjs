@@ -38,6 +38,13 @@ export async function verifyPlayerExperience({browser,page,base,fixtures,project
         await mobile.locator('input[type=file]').setInputFiles({name:'route.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(save))});
         await mobile.locator('.vn-modal').waitFor({state:'hidden'});
       };
+      const advanceUntil=async(predicate,label,max=300)=>{
+        for(let n=0;n<max;n++){
+          if(await predicate())return n;
+          await mobile.locator('[data-control=next]').click();
+        }
+        assert.fail(`Could not reach ${label} within ${max} dialogue advances`);
+      };
       await load(fixtures.witnesses[longest.scene.id]);
       for(let n=0;n<longest.index;n++)await mobile.locator('[data-control=next]').click();
       assert.equal(await mobile.locator('.vn-text').innerText(),longest.scene.lines[longest.index].text);
@@ -45,7 +52,7 @@ export async function verifyPlayerExperience({browser,page,base,fixtures,project
       const sizes=await mobile.locator('.reset-toolbar-controls button').evaluateAll(nodes=>nodes.filter(n=>!n.hidden).map(n=>n.getBoundingClientRect().height));
       assert.ok(sizes.every(size=>size>=44),'Every touch toolbar target must be at least 44px tall');
       await load(fixtures.witnesses.route_focus_choice);
-      for(let n=0;n<20&&!await mobile.locator('.vn-actions [data-action]').count();n++)await mobile.locator('[data-control=next]').click();
+      await advanceUntil(async()=>await mobile.locator('.vn-actions [data-action]').count()===6,'six route choices');
       const options=mobile.locator('.vn-actions [data-action]');assert.equal(await options.count(),6);
       for(const option of await options.all()){
         await option.scrollIntoViewIfNeeded();
@@ -58,7 +65,7 @@ export async function verifyPlayerExperience({browser,page,base,fixtures,project
       assert.match(await mobile.locator('.reset-current-position').innerText(),/第 4 章/);
       await mobile.screenshot({path:`${out}/android-${width}x${height}-slots.png`,fullPage:true});await close.tap();
       const cgScene=project.scenes.find(s=>s.cg==='letter-1842-cg');await load(fixtures.witnesses[cgScene.id]);
-      for(let n=0;n<30&&(await mobile.locator('.vn-cg').getAttribute('data-asset'))!=='letter-1842-cg';n++)await mobile.locator('[data-control=next]').click();
+      await advanceUntil(async()=>await mobile.locator('.vn-cg').getAttribute('data-asset')==='letter-1842-cg','letter 18:42 CG');
       await mobile.locator('[data-reset-control=collection]').tap();await mobile.locator('[data-cg=letter-1842-cg]').tap();
       await mobile.locator('.reset-cg-full').waitFor({state:'visible'});
       await mobile.getByRole('button',{name:'返回图鉴',exact:true}).tap();

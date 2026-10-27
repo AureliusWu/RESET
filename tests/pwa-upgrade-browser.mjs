@@ -25,10 +25,17 @@ export async function verifyPwaUpgrade({browser,dist,previous,fixtures,out,pass}
   await context.addInitScript(()=>{if(!localStorage.getItem('vn-engine:reset:settings'))localStorage.setItem('vn-engine:reset:settings',JSON.stringify({textDelayMs:0,reducedMotion:true,music:false,soundEffects:false}));});
   try{
     page=await context.newPage();await page.goto(base);await page.locator('.vn-engine').waitFor();
-    assert.equal(await page.evaluate(async()=> (await(await fetch('./project.json')).json()).version),'reset-v1.1.0');
+    const previousProject=await page.evaluate(async()=>await(await fetch('./project.json')).json());
+    assert.equal(previousProject.version,'reset-v1.1.0');
     await page.locator('[data-control=save]').click();
     await page.locator('[data-reset-control=slots]').click();await page.locator('[data-slot="1"] [data-slot-action=save]').click();await page.keyboard.press('Escape');
-    const oldEnding=structuredClone(fixtures.endings['normal-linwan']);oldEnding.state.storyVersion='reset-v1.1.0';
+    const oldEnding=structuredClone(fixtures.endings['normal-linwan']);
+    const previousEnding=previousProject.scenes.find(scene=>scene.id===oldEnding.state.sceneId);
+    assert.ok(previousEnding,'v1.1.0 must contain the preserved Lin Wan ending scene');
+    oldEnding.state.storyVersion=previousProject.version;
+    oldEnding.state.line=Math.max(0,(previousEnding.lines?.length??1)-1);
+    oldEnding.state.history=[];
+    if(previousProject.stats)oldEnding.state.stats=Object.fromEntries(Object.entries(previousProject.stats).map(([key,value])=>[key,oldEnding.state.stats?.[key]??value]));
     await page.locator('[data-control=settings]').click();await page.locator('input[type=file]').setInputFiles({name:'old-route.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(oldEnding))});await page.locator('.vn-modal').waitFor({state:'hidden'});
     await page.waitForFunction(()=>document.getElementById('status').textContent.includes('可离线游玩')&&navigator.serviceWorker.controller);
     const saved=await page.evaluate(async()=>({quick:localStorage.getItem('vn-engine:reset:save:1'),slots:localStorage.getItem('reset:slots:v1'),caches:await caches.keys()}));

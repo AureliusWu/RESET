@@ -1,26 +1,33 @@
-# 《回留》v1.1.0 制作状态
+# 《回留 / RESET》制作状态
 
-更新时间：2026-10-25。正式版本和下载以 [v1.1.0 Release](https://github.com/AureliusWu/RESET/releases/tag/v1.1.0) 为准。
+更新时间：2026-10-27。当前正式稳定发行仍为 **v1.2.1**；`main` 已进入发布后的内容增强阶段。R1 Scenario Reconstruction 完成后，主线开发状态定义为 **Content Reconstructed / Voice Not Locked**。
 
-## 已完成
+## 当前完成基线
 
-- 完整共通线、六角色核心、六个 Normal End、六个关键 Bad End、True Route 与 True End。
-- 合成项目包含 82 个场景；79 个场景可由真实运行时抵达，三个被后续章节替代的早期路线开场原型仍保留在源数据，未进入当前主流程。
-- 31 张剧情使用的角色差分、20 个主要背景、5 张关键 CG；沿用正式二维动画感视觉方向。
-- 原创程序音乐/音效与两首独立终局曲，构建时生成并母带化；本版无角色配音。
-- 三处实时战斗，实际胜负调用 VN 原选择；尝试次数跨读档保留。
-- 6 个手动存档槽及独立快速存档；覆盖/删除确认、时间与位置预览，兼容两版旧存档。
-- 13 个结局收藏、5 张已阅读 CG 的图鉴与原图查看；不可逆区间同样限制新存档管理。
-- 小窗口与手机横竖屏阅读布局，工具栏可达；战斗增加弧光、粒子、阶段轮廓和残影，支持减少动态效果。
-- 作品级 Meta、True Route 不可逆区间、结局与通关标题；通关后可开始新游戏。
-- Web/PWA 与 Windows x64 双发行；引擎保持锁定 `15c101e0d2b2c1e40dbc36d7a0c1a246d102b52c`。
+- 82 个合成场景，六角色路线、六个 Normal End、关键 Bad End、True Route / True End 保持原有 Scene / Choice / Ending 接口。
+- R1 将原约 5,850 汉字剧情骨架扩写为 **80,000–120,000 汉字门禁范围**，当前自动统计不少于 80,000 汉字。
+- 新增常驻配角网络与校园、家庭、食堂、图书馆、江滩、地铁、社团、数字聊天等生活层；六位女主均拥有陈渡之外的关系锚点。
+- R1 不改 18:42、读取残响、夜梧城、2009 年、10 月 24 日、True Route 等核心谜底。
+- 31+ 剧情角色差分、20 个主要背景、5 张关键 CG 与完整 4K 映射继续沿用；R1 不因新增无立绘配角而伪造“全 Cast 美术已完成”。
+- 14 个原创程序配乐 cue、7 个核心 SFX，32 kHz / PCM16 / stereo，并进入发行音频门禁。
+- 三处实时战斗、6 个手动存档槽、快速存档、MetaState、Ending Collection、CG Gallery、PWA 离线、Windows x64 原生启动链继续保留。
+- VN Engine v2 仍锁定 `15c101e0d2b2c1e40dbc36d7a0c1a246d102b52c`。
 
-## 发布门禁
+## R1 Scenario Gate
 
-主 Build、最终 Web ZIP 浏览器/离线验收、最终 Windows ZIP 原生启动/进程重启验收全部通过后，发布流水线创建 Tag、正式 Release、两个 ZIP 和 SHA256SUMS。最终结果、截图与报告见对应提交 Actions，不以编译通过代替实机验收。
+`npm run scenario:check` 作为正式门禁验证：
 
-详见 [发布清单](RELEASE_CHECKLIST.md)、[结局矩阵](ENDING_MATRIX.md)、[发行说明](../CHANGELOG_v1.1.0.md)。
+- 总正文汉字 80,000–120,000；
+- VN 单次文本点击不超过 80 字符；
+- 82 个场景不得缩水；
+- 16 个既有 Ending ID 不得丢失；
+- 12 名常驻配角必须持续存在；
+- 六位女主路线必须保留至少一个独立社会关系锚点。
 
-## 后续增强
+该门禁已加入 `check:release` 与 `check:stable`。
 
-全角色配音、4K 重绘、高预算手绘重制、角色与 Boss 专属逐帧动画。以上均不阻断完整无配音 v1.1.0。
+## 当前阶段
+
+**Scenario Reconstruction R1 complete → 人工通读 / 演出修订 → Voice Script Lock → Voice Production。**
+
+全角色配音仍未开始。R1 之后如继续增补文本，应先通读确认节奏和口吻，再进入配音锁稿，避免对未稳定文本提前录音。
