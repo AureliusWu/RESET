@@ -11,6 +11,7 @@
 
 ## 美术与音频
 
+- `game/assets/manifest.json` — R2 静态 production Asset ID / kind / runtime path 唯一事实源。
 - [ART_DIRECTION.md](ART_DIRECTION.md) — 长期视觉方向。
 - [ART_4K_PLAN.md](ART_4K_PLAN.md) — 4K master/runtime 规划。
 - [ART_4K_AUDIT.md](ART_4K_AUDIT.md) — 可重生成的 4K 审计快照。
@@ -25,12 +26,10 @@
 - [PRODUCTION_STATUS.md](PRODUCTION_STATUS.md) — 当前制作状态。
 - [RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.md) — 发布检查项。
 
-## 正式正文
+## R2 正式源
 
-可编辑剧情正文不放在 `docs/`。R2 起唯一事实源为：
+剧情正文：`game/content/chapters/01.json` → `game/content/chapters/07.json`，加载顺序由 `game/content/manifest.json` 显式声明。`game/project.json` 不再承载剧情 Scene，也不允许重新引入 `replaceScenes`。
 
-`game/content/chapters/01.json` → `game/content/chapters/07.json`
+静态 production 资产：`game/assets/manifest.json`。`game/project.json` 与 `game/content/**` 不再承载 `assets` / `replaceAssets`；正式角色、背景与 CG 统一指向 `game/assets/4k/runtime/`。音频继续由 `game/audio.json` 独立管理。
 
-`game/content/manifest.json` 显式声明内容加载顺序；`game/project.json` 不再承载剧情 Scene，也不允许重新引入 `replaceScenes` 覆盖层。
-
-任何会影响场景、结局、存档兼容、美术引用或运行时行为的修改，都应继续由现有 Build / Scenario / Release 门禁验证。
+任何会影响场景、结局、存档兼容、美术引用或运行时行为的修改，都应继续由现有 Build / Scenario / Asset Schema / Release 门禁验证。
