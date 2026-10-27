@@ -1,7 +1,7 @@
 import { CGS } from './archive-data.mjs';
 const META_KEY = 'reset:meta:v1';
-const STORY_VERSION = 'reset-v1.2.1-dev';
-const LEGACY_VERSIONS = new Set(['reset-v1.0.0','reset-v1.0.1','reset-v1.1.0','reset-v1.2.0-dev','reset-v1.2.0-rc.1','reset-v1.2.0-rc.2','reset-v1.2.0']);
+const STORY_VERSION = 'reset-v1.2.1';
+const LEGACY_VERSIONS = new Set(['reset-v1.0.0','reset-v1.0.1','reset-v1.1.0','reset-v1.2.0-dev','reset-v1.2.0-rc.1','reset-v1.2.0-rc.2','reset-v1.2.0','reset-v1.2.1-dev']);
 const CG_IDS = new Set(CGS.map(cg => cg.id));
 export const IRREVERSIBLE_SCENES = Object.freeze(['c6_no_save','c6_walk_forward','c6_escape','c6_echo_goodbye','c6_last_door','c7_morning','c7_after','c7_linwan','c7_credits']);
 const IRREVERSIBLE = new Set(IRREVERSIBLE_SCENES);
@@ -16,7 +16,6 @@ export function mountMetaBridge(game){
   const finished=()=>{const v=session.getView();return v.ready&&v.frame.ending==='true-end'};
   const message='这一段时间不可逆，无法保存或回退。';
   const originals=new Map();
-  // Guard the work's session boundary, including settings backups and history.
   for(const name of ['save','restore','restart','reread']){
     const original=session[name], own=Object.getOwnPropertyDescriptor(session,name);
     const guarded=function(...args){
@@ -25,8 +24,6 @@ export function mountMetaBridge(game){
         if(name==='save'||name==='restore')throw new Error(message);
         return false;
       }
-      // This patch changes no story nodes or choices. Upgrade only known
-      // published/development predecessors; the engine still validates and replays the save.
       if(name==='restore'&&args[0]?.schema===1&&args[0]?.game==='reset'&&LEGACY_VERSIONS.has(args[0]?.state?.storyVersion)){
         args[0]={...args[0],state:{...args[0].state,storyVersion:STORY_VERSION}};
       }
