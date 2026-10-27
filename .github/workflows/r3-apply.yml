@@ -31,9 +31,17 @@ jobs:
           import fs from 'node:fs';
           const file = 'game/content/chapters/01.json';
           const data = JSON.parse(fs.readFileSync(file, 'utf8'));
-          const target = data.scenes.flatMap((scene) => scene.lines || []).find((line) => line.id === 'r1_prologue_1842_pre05_01');
-          if (!target) throw new Error('R3 opening line not found');
-          target.text += ' 教室顶上的日光灯一盏没坏，秒针照常往前走。没有人停下来等他的恐惧，甚至连值日生都只催他把椅子让开。';
+          const lines = data.scenes.flatMap((scene) => scene.lines || []);
+          const replacements = {
+            r1_prologue_1842_pre06_01: '这时的梧城仍像任何一个十月的普通城市：校门口堵着接孩子的车，便利店微波炉叮地一响，雨伞边缘不停往地砖上滴水，晚高峰的人只关心什么时候能回家。',
+            r1_prologue_1842_post03_01: '班群还在不停弹消息：明天要交的练习、体育课会不会改室内、谁把充电器忘在讲台。有人发了个催作业的表情包，下面立刻跟了十几条抱怨。陈渡一条也没屏蔽。',
+          };
+          for (const [id, text] of Object.entries(replacements)) {
+            const target = lines.find((line) => line.id === id);
+            if (!target) throw new Error(`R3 line not found: ${id}`);
+            if (text.length > 80) throw new Error(`R3 replacement too long: ${id}:${text.length}`);
+            target.text = text;
+          }
           fs.writeFileSync(file, JSON.stringify(data, null, 2) + '\n');
           NODE
 
