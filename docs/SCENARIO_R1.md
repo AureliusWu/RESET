@@ -22,9 +22,19 @@ R1 是第一次正式剧本重构轮。目标不是“把原句拉长”，而�
 - 不为凑字数重复解释谜底。新增篇幅优先投入关系、后果、现实流程与城市细节。
 - R1 不进入全角色配音锁稿；Voice Production 必须在 R1 文本回归与人工通读后再开始。
 
-## 兼容策略
+## 正式正文
 
-R1 正式正文已经落盘为 `game/content/zzzzz-r1-chapter-01.json` 至 `zzzzz-r1-chapter-07.json`，这 7 个文件是后续人工通读、校稿、口吻修订与演出调整的唯一正文源。Build 与 `scenario:check` 直接消费这些已提交文本，不再在 `prebuild` 阶段重新生成 8 万字正文。`game/scenario-r1.json` 与 `scripts/r1-scenario.mjs` 仅保留为 R1 重构来源与可追溯工具，不得自动覆盖已人工编辑的正式章节。旧的 `game/content/zzzzzz-r1-generated.json` 继续被忽略且构建明确排除，仅作为历史生成路径兼容项。
+R1 正文已经落盘为：
+
+- `game/content/zzzzz-r1-chapter-01.json`
+- `game/content/zzzzz-r1-chapter-02.json`
+- `game/content/zzzzz-r1-chapter-03.json`
+- `game/content/zzzzz-r1-chapter-04.json`
+- `game/content/zzzzz-r1-chapter-05.json`
+- `game/content/zzzzz-r1-chapter-06.json`
+- `game/content/zzzzz-r1-chapter-07.json`
+
+这 7 个文件是后续人工通读、校稿、口吻修订与演出调整的唯一正文源。Build 与 `scenario:check` 直接消费已提交文本；R1 的一次性生成种子和物化工具已经退出主树，需要追溯时使用 Git 历史。
 
 ## 后续门槛
 
