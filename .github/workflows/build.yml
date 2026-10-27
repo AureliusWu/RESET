@@ -68,14 +68,9 @@ jobs:
           test -f dist/sw.js
           test -f dist/pwa.mjs
           test -f dist/experience.css
-      - name: Confirm stable publication remains blocked pending mobile shell acceptance
+      - name: Require stable art gate after owner approval
         working-directory: game-repo
-        run: |
-          if npm run check:stable; then
-            echo 'Stable gate unexpectedly passed before mobile shell acceptance' >&2
-            exit 1
-          fi
-          echo 'Expected: character art is approved; stable publication is blocked only on title/landscape/PWA acceptance.'
+        run: npm run check:stable
       - name: Upload standalone development build
         uses: actions/upload-artifact@v4
         with:
