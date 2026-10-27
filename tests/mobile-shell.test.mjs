@@ -15,8 +15,8 @@ test('title screen exposes a real enter control above decorative art',()=>{
 
 test('mobile landscape has a dedicated compact playable layout',()=>{
   assert.match(css,/@media\(orientation:landscape\) and \(max-height:600px\)/);
-  assert.match(css,/main#game\{height:100dvh/);
-  assert.match(css,/\.vn-engine \.vn-reading\{flex:0 0 auto;max-height:32%/);
+  assert.match(css,/main#game\{[^}]*height:100dvh/);
+  assert.match(css,/\.vn-engine \.vn-reading\{[^}]*flex:0 0 auto;[^}]*max-height:32%/);
 });
 
 test('PWA install prompt is captured and exposed as an in-game install action',()=>{
