@@ -3,9 +3,11 @@ let deferredInstallPrompt=null;
 function ensureTitleGate(){
   const host=document.querySelector?.('.vn-engine');
   if(!host||host.querySelector('.reset-title-gate'))return;
-  const coarsePointer=globalThis.matchMedia?.('(pointer: coarse)')?.matches===true;
-  if(coarsePointer||Number(globalThis.innerWidth)<=700){
-    host.querySelectorAll?.('.reset-toolbar-controls button').forEach(button=>{button.style.minHeight='44px';});
+  if(!host.querySelector('.reset-touch-floor-style')){
+    const touchStyle=document.createElement('style');
+    touchStyle.className='reset-touch-floor-style';
+    touchStyle.textContent='@media (pointer:coarse),(max-width:700px){.vn-engine .vn-toolbar .reset-toolbar-controls button,.vn-engine .vn-actions button,.vn-engine .reset-panel button,.vn-engine .vn-panel button{min-height:44px!important;touch-action:manipulation}}';
+    host.append(touchStyle);
   }
   const gate=document.createElement('section');
   gate.className='reset-title-gate';
