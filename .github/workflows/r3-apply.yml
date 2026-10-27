@@ -27,6 +27,15 @@ jobs:
         run: |
           sed -i 's/beforeHan \* 0.97/beforeHan * 0.94/' scripts/r3-polish.mjs
           node scripts/r3-polish.mjs
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file = 'game/content/chapters/01.json';
+          const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+          const target = data.scenes.flatMap((scene) => scene.lines || []).find((line) => line.id === 'r1_prologue_1842_pre05_01');
+          if (!target) throw new Error('R3 opening line not found');
+          target.text += ' 教室顶上的日光灯一盏没坏，秒针照常往前走。没有人停下来等他的恐惧，甚至连值日生都只催他把椅子让开。';
+          fs.writeFileSync(file, JSON.stringify(data, null, 2) + '\n');
+          NODE
 
       - name: Validate scenario structure
         run: npm run scenario:check
