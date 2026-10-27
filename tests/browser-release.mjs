@@ -25,6 +25,7 @@ const server=createServer(async(req,res)=>{
 const base=`http://127.0.0.1:${server.address().port}/play/`;
 let browser,context,page;
 const enterTitle=async target=>{
+  await target.waitForFunction(()=>document.querySelector('.reset-title-screen')||sessionStorage.getItem('reset:title-entered')==='1',null,{timeout:10000});
   const title=target.locator('.reset-title-screen');
   if(await title.count()){
     await title.waitFor({state:'visible'});
@@ -72,7 +73,7 @@ try{
   assert.match(await page.locator('.vn-engine').getAttribute('style'),/0.6/);
   await control('history').click();await page.getByLabel('搜索已读记录').fill('10月17日');assert.ok(await page.locator('.vn-record').count());await page.getByRole('button',{name:'关闭',exact:true}).click();
   await control('auto').click();await page.waitForSelector('.vn-actions [data-action]');const choiceScene=await scene();await page.waitForTimeout(500);assert.equal(await scene(),choiceScene);
-  await control('restart').click();await control('skip').click();await page.waitForSelector('.vn-actions [data-action]');assert.equal(await scene(),choiceScene);
+  await control('restart').click();await enterTitle(page);await control('skip').click();await page.waitForSelector('.vn-actions [data-action]');assert.equal(await scene(),choiceScene);
   pass('Settings, history search, auto at choices and read-only skip work in the packaged UI');
   for(const [id,save] of Object.entries(fixtures.endings).filter(([id])=>id!=='true-end')){
     await loadFixture(save);assert.match(await page.locator('.vn-actions').innerText(),/已到达结局/);
@@ -150,7 +151,7 @@ try{
   const meta=await page.evaluate(()=>JSON.parse(localStorage.getItem('reset:meta:v1')));assert.equal(meta.trueEnd,true);assert.ok(meta.endings.includes('true-end'));
   assert.ok(meta.cgs.includes('true-end-riverside-cg'));
   await page.screenshot({path:out+'/true-end.png',fullPage:true});
-  await control('restart').click();assert.equal(await scene(),start);assert.equal(await page.title(),'回留 · 明天见');
+  await control('restart').click();await enterTitle(page);assert.equal(await scene(),start);assert.equal(await page.title(),'回留 · 明天见');
   await page.locator('[data-reset-control=collection]').click();assert.equal(await page.locator('.reset-ending[data-unlocked=true]').count(),13);await page.keyboard.press('Escape');
   pass('True Route blocks toolbar/history/settings bypasses, reaches True End and permits replay with retained Meta');
   await page.setViewportSize({width:390,height:844});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
