@@ -38,7 +38,8 @@ jobs:
           node --check game/runtime/experience.mjs
           node --check game/runtime/ui.mjs
           node --check game/runtime/pwa.mjs
-          node --check scripts/generate-scenes.mjs
+          node --check scripts/assets.mjs
+          node --check scripts/check-asset-schema.mjs
           node --check scripts/audit-4k-art.mjs
           node --check scripts/check-art-integrity.mjs
           node --check scripts/check-4k-production.mjs
@@ -62,7 +63,7 @@ jobs:
       - name: Verify v1.2.1 release content
         working-directory: game-repo
         run: |
-          node -e "const m=require('./dist/build-manifest.json'); const p=require('./dist/project.json'); if(m.game!=='reset'||m.version!=='reset-v1.2.1'||p.version!=='reset-v1.2.1') process.exit(1); if(!m.extensions.includes('reset-art-visual-gate-v1')) process.exit(2); if(!p.scenes.some(s=>s.ending==='true-end')) process.exit(3)"
+          node -e "const m=require('./dist/build-manifest.json'); const p=require('./dist/project.json'); if(m.game!=='reset'||m.version!=='reset-v1.2.1'||p.version!=='reset-v1.2.1') process.exit(1); if(!m.extensions.includes('reset-art-visual-gate-v1')||!m.extensions.includes('reset-asset-schema-v1')) process.exit(2); if(!p.scenes.some(s=>s.ending==='true-end')||p.assets.length!==79) process.exit(3)"
           test -f dist/index.html
           test -f dist/project.json
           test -f dist/sw.js
