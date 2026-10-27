@@ -1,45 +1,41 @@
 # Changelog
 
+本文件记录《回留 / RESET》主线版本演进。已经发布的历史版本细节由对应 Git tag / GitHub Release 永久保存；主分支不再重复保留每个历史版本的独立 Changelog 文件。
+
 ## 1.2.1 — Mobile shell and PWA recovery
 
 - 标题 Key Visual 改为真实可交互标题页，新增明确的「进入游戏」入口。
 - 修复移动端 UI 无法交互、844×390 横屏布局、标题/剧情选项/工具栏触控尺寸问题。
 - 恢复 v1.2.0 桌面与 4K 宽屏布局，避免移动修复影响桌面舞台。
 - 接入 Chromium `beforeinstallprompt`，提供「安装到设备」入口；保留 Service Worker 离线与同源升级能力。
-- 六位角色现有 production 美术由项目所有者确认通过，视觉 Gate 为 `PASS`；本版本不重绘角色正式美术。
-- Web 最终 ZIP、Android 竖/横屏、PWA 升级与离线、Windows x64/WebView2 最终 ZIP 均进入稳定发布门禁。
-- 正式故事版本为 `reset-v1.2.1`，兼容 `reset-v1.2.1-dev` 与既有公开版本存档受控升级。
-- 详见 [CHANGELOG_v1.2.1.md](CHANGELOG_v1.2.1.md)。
+- 六位角色 production 美术由项目所有者确认通过，视觉 Gate 为 `PASS`。
+- Web 最终 ZIP、PWA 升级与离线、Windows x64/WebView2 最终 ZIP 均进入稳定发布门禁。
+- 正式故事版本为 `reset-v1.2.1`，兼容既有公开版本存档受控升级。
+- 当前稳定发行包的详细说明见 [CHANGELOG_v1.2.1.md](CHANGELOG_v1.2.1.md)。
 
 ## 1.2.0 — Stable release
 
-- 正式收口 v1.2.0-dev、rc.1 与 rc.2：体验、战斗、PWA、存档兼容、4K production 技术管线和作品级视觉组件进入稳定发行。
+- 收口 v1.2.0-dev、rc.1 与 rc.2：体验、战斗、PWA、存档兼容、4K production 技术管线和作品级视觉组件进入稳定发行。
 - 58 / 58 production 资产完成 4K master/runtime 技术映射；新增独立品牌、7 章章节卡、剧情道具视觉、六位女主 Q 版角色记忆与《回留》专属安装图标。
 - 正式故事版本为 `reset-v1.2.0`；兼容 v1.0.0 / v1.0.1 / v1.1.0 / v1.2.0-dev / v1.2.0-rc.1 / v1.2.0-rc.2 备份升级。
-- 发布由同 SHA 的 Build、最终 Web ZIP、最终 Windows ZIP 全部验收通过后自动创建不可移动 tag、双平台 Release 与 `SHA256SUMS.txt`；Pages 只从公开 Release 原 ZIP 部署并再次做公网离线回归。
-- 详见 [CHANGELOG_v1.2.0.md](CHANGELOG_v1.2.0.md)。
+- 发布由同 SHA Build、最终 Web ZIP、最终 Windows ZIP 全部验收通过后创建不可移动 tag、双平台 Release 与 `SHA256SUMS.txt`；Pages 只从公开 Release 原 ZIP 部署并再次做公网离线回归。
 
 ## 1.2.0-rc.2 — Art completeness candidate
 
 - 补齐作品品牌、Chapter 01–07 章节卡、关键剧情道具视觉、六位女主 Q 版角色记忆与专属 PWA 图标。
-- 详见 [CHANGELOG_v1.2.0-rc.2.md](CHANGELOG_v1.2.0-rc.2.md)。
 
 ## 1.2.0-rc.1 — Release candidate freeze
 
 - 完成 v1.2.0 体验修复、战斗/PWA 加固与 4K 美术 Round 1–10 RC 冻结。
-- 详见 [CHANGELOG_v1.2.0-rc.1.md](CHANGELOG_v1.2.0-rc.1.md)。
 
 ## 1.1.0 — Saves and collection
 
-- 6 个手动存档槽、13 个结局收藏、5 张 CG 图鉴、自适应阅读与战斗反馈增强。
-- 详见 [CHANGELOG_v1.1.0.md](CHANGELOG_v1.1.0.md)。
+- 增加 6 个手动存档槽、13 个结局收藏、5 张 CG 图鉴，并增强自适应阅读与战斗反馈。
 
 ## 1.0.1 — Combat input patch
 
 - 修复战斗输入、切后台与兼容性问题。
-- 详见 [CHANGELOG_v1.0.1.md](CHANGELOG_v1.0.1.md)。
 
 ## 1.0.0 — Release
 
 - 《回留 / RESET》的第一个完整正式发行版本。
-- 详见 [CHANGELOG_v1.0.0.md](CHANGELOG_v1.0.0.md)。
