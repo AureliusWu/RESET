@@ -40,8 +40,16 @@ export async function verifyLinwanArt({page,project,fixtures,loadFixture,control
     } finally { session.dispose(); }
   }
   const originalViewport=page.viewportSize();
+  const enterTitle=async()=>{
+    const title=page.locator('.reset-title-screen');
+    if(await title.count()){
+      await title.waitFor({state:'visible'});
+      await page.locator('[data-title-start]').click();
+      await title.waitFor({state:'detached'});
+    }
+  };
   try {
-    await control('restart').click();
+    await control('restart').click();await enterTitle();
     for(let count=0;count<20&&!await page.locator('[data-action=watch_linwan]').count();count++)await control('next').click();
     await page.locator('[data-action=watch_linwan]').click();await ready('neutral');
     await page.screenshot({path:out+'/linwan-first-appearance.png',fullPage:true,animations:'disabled'});
