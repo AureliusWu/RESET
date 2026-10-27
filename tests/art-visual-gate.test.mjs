@@ -6,11 +6,10 @@ import { resolve } from 'node:path';
 const root = resolve('.');
 const acceptance = JSON.parse(await readFile(resolve(root, 'game/assets/4k/visual-acceptance.json'), 'utf8'));
 
-test('visual acceptance has one explicit status for every heroine', () => {
+test('visual acceptance has one explicit PASS status for every heroine after owner review', () => {
   const records = new Map(acceptance.characters.map(item => [item.id, item]));
-  assert.equal(records.get('linwan')?.status, 'PASS');
-  for (const id of ['xiaoman','xuqi','tinglan','tangli','nanxing']) assert.equal(records.get(id)?.status, 'BLOCKED', id);
-  assert.equal(acceptance.releaseGate, 'BLOCKED');
+  for (const id of ['linwan','xiaoman','xuqi','tinglan','tangli','nanxing']) assert.equal(records.get(id)?.status, 'PASS', id);
+  assert.equal(acceptance.releaseGate, 'PASS');
   assert.equal(acceptance.principle, 'TECH_READY != ART_READY');
   for (const check of ['identity','styleConsistency','bodyProportion','expressionReadability','desktopComposition','mobileComposition','provenanceTruth']) {
     assert.ok(acceptance.requiredChecks.includes(check), check);

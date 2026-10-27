@@ -28,6 +28,11 @@ export async function verifyPlayerExperience({browser,page,base,fixtures,project
     const mobile=await context.newPage();const errors=[];mobile.on('pageerror',e=>errors.push(e.message));
     try{
       await mobile.goto(base);await mobile.locator('.vn-engine').waitFor();
+      const title=mobile.locator('.reset-title-gate');await title.waitFor({state:'visible'});
+      const enter=mobile.locator('[data-reset-enter]');const enterRect=await enter.boundingBox();
+      assert.ok(enterRect&&enterRect.height>=44&&enterRect.x>=0&&enterRect.x+enterRect.width<=width,'Title enter control must be a visible mobile touch target');
+      await mobile.screenshot({path:`${out}/android-${width}x${height}-title.png`,fullPage:true});
+      await enter.tap();await title.waitFor({state:'detached'});
       const load=async save=>{
         await mobile.locator('[data-control=settings]').click();
         await mobile.locator('input[type=file]').setInputFiles({name:'route.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(save))});
@@ -85,7 +90,7 @@ export async function verifyPlayerExperience({browser,page,base,fixtures,project
         pass(`Android touch combat ${width}×${height}: native touch hold/release, light/heavy taps, dodge and 48px controls`);
       }
       assert.deepEqual(errors,[]);
-      pass(`Android emulation ${width}×${height}: longest dialogue, six choices, 44px targets, sticky close, slots and touch gallery`);
+      pass(`Android emulation ${width}×${height}: title entry, longest dialogue, six choices, 44px targets, sticky close, slots and touch gallery`);
     }finally{await context.close();}
   }
 }

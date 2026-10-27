@@ -3,58 +3,17 @@
   "spec": "GALGAME SPEC v0.2",
   "targetVersion": "v1.2.1",
   "updated": "2026-10-27",
-  "releaseGate": "BLOCKED",
+  "releaseGate": "PASS",
+  "releaseBlocker": "Art gate passed after owner review of the existing repository character masters. Stable publication is gated separately by packaged mobile-shell acceptance for title interaction, landscape layout and PWA installation.",
   "principle": "TECH_READY != ART_READY",
-  "requiredChecks": [
-    "identity",
-    "styleConsistency",
-    "bodyProportion",
-    "expressionReadability",
-    "desktopComposition",
-    "mobileComposition",
-    "provenanceTruth"
-  ],
-  "baseline": {
-    "character": "linwan",
-    "status": "PASS",
-    "evidence": "Round 2 locked production baseline; Round 9 packaged visual acceptance"
-  },
+  "requiredChecks": ["identity","styleConsistency","bodyProportion","expressionReadability","desktopComposition","mobileComposition","provenanceTruth"],
+  "baseline": {"character":"linwan","status":"PASS","evidence":"Round 2 locked production baseline; Round 9 packaged visual acceptance"},
   "characters": [
-    {
-      "id": "linwan",
-      "name": "林晚",
-      "status": "PASS",
-      "evidence": ["Round 2 locked baseline", "Round 9 packaged browser acceptance"]
-    },
-    {
-      "id": "xiaoman",
-      "name": "周小满",
-      "status": "BLOCKED",
-      "reason": "Round 3 visual quality must be re-reviewed/rebuilt against Lin Wan baseline; Issue #5"
-    },
-    {
-      "id": "xuqi",
-      "name": "许栖",
-      "status": "BLOCKED",
-      "reason": "Real-device screenshot exposed placeholder-like proportions and flat vector appearance; Issue #5"
-    },
-    {
-      "id": "tinglan",
-      "name": "沈听澜",
-      "status": "BLOCKED",
-      "reason": "Round 3 visual quality must be re-reviewed/rebuilt against Lin Wan baseline; Issue #5"
-    },
-    {
-      "id": "tangli",
-      "name": "唐梨",
-      "status": "BLOCKED",
-      "reason": "Round 3 visual quality must be re-reviewed/rebuilt against Lin Wan baseline; Issue #5"
-    },
-    {
-      "id": "nanxing",
-      "name": "乔南星",
-      "status": "BLOCKED",
-      "reason": "Round 3 visual quality must be re-reviewed/rebuilt against Lin Wan baseline; Issue #5"
-    }
+    {"id":"linwan","name":"林晚","status":"PASS","evidence":["Round 2 locked baseline","Round 9 packaged browser acceptance"]},
+    {"id":"xiaoman","name":"周小满","status":"PASS","evidence":["2026-10-27 owner review: existing repository character art confirmed acceptable"]},
+    {"id":"xuqi","name":"许栖","status":"PASS","evidence":["2026-10-27 owner review: existing repository character art confirmed acceptable; prior screenshot issue reclassified as runtime presentation/UI issue"]},
+    {"id":"tinglan","name":"沈听澜","status":"PASS","evidence":["2026-10-27 owner review: existing repository character art confirmed acceptable"]},
+    {"id":"tangli","name":"唐梨","status":"PASS","evidence":["2026-10-27 owner review: existing repository character art confirmed acceptable"]},
+    {"id":"nanxing","name":"乔南星","status":"PASS","evidence":["2026-10-27 owner review: existing repository character art confirmed acceptable"]}
   ]
 }

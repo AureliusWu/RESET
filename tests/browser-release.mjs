@@ -23,6 +23,13 @@ const server=createServer(async(req,res)=>{
   }catch{res.writeHead(404);res.end();}
 });await new Promise(r=>server.listen(0,'127.0.0.1',r));
 const base=`http://127.0.0.1:${server.address().port}/play/`;
+const enterTitle=async target=>{
+  const title=target.locator('.reset-title-gate');
+  const enter=target.locator('[data-reset-enter]');
+  await enter.waitFor({state:'visible',timeout:10000});
+  assert.equal(await enter.isEnabled(),true,'Title enter button must be interactable');
+  await enter.click();await title.waitFor({state:'detached'});
+};
 let browser,context,page;
 try{
   browser=await chromium.launch({headless:true,args:['--no-sandbox']});
@@ -37,13 +44,14 @@ try{
     await page.locator('.vn-modal').waitFor({state:'hidden'});await isScene(save.state.sceneId);
   };
   await page.goto(base);await page.locator('.vn-engine').waitFor();assert.equal(await page.locator('#error').innerText(),'');
+  await page.locator('.reset-title-gate').waitFor({state:'visible'});await page.screenshot({path:out+'/title-desktop.png',fullPage:true});await enterTitle(page);
   assert.equal(await page.locator('.reset-dialog').evaluate(el=>getComputedStyle(el).position),'absolute','the packaged experience stylesheet must actually apply');
   await page.locator('.vn-background').waitFor({state:'visible'});
-  await page.screenshot({path:out+'/desktop.png',fullPage:true});pass('Standalone package loads from /play/ with actual art and no startup error');
+  await page.screenshot({path:out+'/desktop.png',fullPage:true});pass('Standalone package enters through the interactive title gate, loads from /play/ with actual art and no startup error');
   const artContext=await browser.newContext({viewport:{width:1280,height:900}});
   try {
     await artContext.addInitScript(()=>localStorage.setItem('vn-engine:reset:settings',JSON.stringify({textDelayMs:0,reducedMotion:true,music:false,voiceEnabled:false})));
-    const artPage=await artContext.newPage();artPage.on('pageerror',e=>errors.push(e.message));await artPage.goto(base);await artPage.locator('.vn-engine').waitFor();
+    const artPage=await artContext.newPage();artPage.on('pageerror',e=>errors.push(e.message));await artPage.goto(base);await artPage.locator('.vn-engine').waitFor();await enterTitle(artPage);
     const artControl=id=>artPage.locator(`[data-control="${id}"]`);
     const artLoad=async save=>{await artControl('settings').click();await artPage.locator('input[type=file]').setInputFiles({name:'art-frame.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(save))});await artPage.locator('.vn-modal').waitFor({state:'hidden'});};
     await verifyLinwanArt({page:artPage,project,fixtures,loadFixture:artLoad,control:artControl,out,pass});
@@ -73,8 +81,6 @@ try{
     for(const outcome of ['win','lose']){
       await page.bringToFront();await loadFixture(save);await page.locator('.reset-combat canvas').waitFor();
       if(await page.locator('[data-combat-resume]').isVisible())await page.locator('[data-combat-resume]').click();
-      // Observe the visible player pixels rather than assume that a CI runner
-      // delivers 60 animation frames per second during a wall-clock key hold.
       const moveTo=async(key,reached)=>{
         await page.keyboard.down(key);
         try{for(let move=0;move<150;move++){
@@ -88,8 +94,6 @@ try{
         finally{await page.keyboard.up(key);}
       };
       if(id==='c5_echo_fail'&&outcome==='win'){
-        // The seventh person predicts straight-line movement. Feint upward
-        // after its opening read, then close within heavy-attack range.
         await moveTo('d',p=>p.x>=380);await moveTo('w',p=>p.y<=205);
       }
       await moveTo('d',p=>p.x>=700);await page.screenshot({path:out+`/combat-${id}-${outcome}.png`});
@@ -147,7 +151,7 @@ try{
   await page.waitForFunction(()=>document.getElementById('status').textContent.includes('可离线游玩'));
   await page.waitForFunction(()=>navigator.serviceWorker.controller!==null);
   const manifest=await page.evaluate(async()=>await(await fetch('./manifest.webmanifest')).json());assert.equal(manifest.display,'standalone');assert.equal(manifest.scope,'./');
-  await control('save').click();await context.setOffline(true);await page.reload();await page.locator('.vn-engine').waitFor();await control('load').click();assert.equal(await scene(),start);
+  await control('save').click();await context.setOffline(true);await page.reload();await page.locator('.vn-engine').waitFor();await enterTitle(page);await control('load').click();assert.equal(await scene(),start);
   assert.equal(await page.locator('#error').innerText(),'');await page.locator('.vn-background').waitFor({state:'visible'});
   const resources=await page.evaluate(async()=>{const c=await caches.open((await caches.keys()).find(k=>k.startsWith('vn-self-reset-v2:')));const requests=await c.keys();return requests.map(r=>new URL(r.url).pathname)});
   assert.ok(resources.some(p=>p.endsWith('/meta.mjs')));assert.ok(resources.some(p=>p.endsWith('/combat.mjs')));assert.ok(resources.some(p=>p.endsWith('/assets/4k/runtime/cg/true-end-riverside-cg.webp')));

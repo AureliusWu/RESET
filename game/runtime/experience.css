@@ -81,3 +81,38 @@ main#game{height:calc(100dvh - 30px - env(safe-area-inset-top) - env(safe-area-i
   .reset-toolbar-controls{scrollbar-width:none}
   .reset-toolbar-controls::-webkit-scrollbar{display:none}
 }
+
+/* v1.2.1 mobile shell: a real interactive title layer plus short-landscape playability. */
+.reset-title-gate{position:absolute;inset:0;z-index:100;display:grid;place-items:center;overflow:hidden;background:#0b1820 url('./assets/4k/runtime/ui/title-key-visual.webp') center/cover no-repeat;touch-action:manipulation}
+.reset-title-gate__shade{position:absolute;inset:0;background:linear-gradient(180deg,#07131a55,#07131acc 62%,#07131af5)}
+.reset-title-gate__content{position:relative;z-index:1;width:min(520px,86%);text-align:center;color:#eef9f6;filter:drop-shadow(0 8px 20px #000a)}
+.reset-title-gate__kicker{font-size:12px;letter-spacing:.28em;color:#a8cbc5}
+.reset-title-gate h1{margin:10px 0 0;font-size:clamp(58px,14vw,112px);line-height:1;letter-spacing:.12em}
+.reset-title-gate__en{margin-top:8px;font-size:18px;letter-spacing:.55em;color:#b7d8d2}
+.reset-title-gate__actions{display:grid;gap:10px;margin:38px auto 0;width:min(320px,100%)}
+.reset-title-gate button{position:relative;z-index:2;min-height:52px;border:1px solid #8fc1b8;border-radius:10px;background:#173a3dcc;color:#effaf7;font-size:16px;letter-spacing:.12em;cursor:pointer;touch-action:manipulation}
+.reset-title-gate button:active{transform:translateY(1px)}
+.reset-title-gate__hint{font-size:11px;color:#9dbab7;letter-spacing:.12em}
+.reset-title-gate.is-leaving{opacity:0;transition:opacity .2s ease;pointer-events:none}
+@media(pointer:coarse),(max-width:700px){.reset-title-gate button{min-height:52px}.reset-title-gate__content{width:min(520px,88%)}}
+@media(orientation:landscape) and (max-height:600px){
+  html,body{overflow:hidden}
+  main#game{width:100%;max-width:none;height:100dvh;margin:0;padding:max(4px,env(safe-area-inset-top)) max(6px,env(safe-area-inset-right)) max(4px,env(safe-area-inset-bottom)) max(6px,env(safe-area-inset-left))}
+  .vn-engine{height:100%;border-radius:0}
+  .vn-engine .vn-stage{min-height:0;flex:1 1 54%}
+  .vn-engine .vn-reading{flex:0 0 auto;max-height:32%;padding:7px 14px 8px}
+  .vn-engine .vn-text{font-size:14px;line-height:1.45;margin-bottom:5px}
+  .vn-engine .vn-speaker{font-size:12px;margin-bottom:2px}
+  .vn-engine .vn-actions{gap:5px}
+  .vn-engine .vn-actions button{min-height:32px;padding:5px 9px;font-size:11px}
+  .vn-engine .vn-toolbar{padding:3px 6px}
+  .vn-engine .vn-toolbar .reset-toolbar-controls button{min-height:32px;font-size:10px;padding:4px 7px}
+  .vn-engine .vn-status,#status{display:none}
+  .reset-title-gate__content{width:min(460px,78%)}
+  .reset-title-gate h1{font-size:clamp(46px,12vh,78px)}
+  .reset-title-gate__actions{margin-top:18px;grid-template-columns:1fr 1fr;width:min(460px,100%)}
+  .reset-title-gate button{min-height:42px}
+  .reset-title-gate__hint{margin:8px 0}
+  .reset-brand-mark{width:min(25%,210px)!important}
+  .vn-engine .vn-stage .vn-portrait{max-height:90%;max-width:42%}
+}

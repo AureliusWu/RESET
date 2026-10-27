@@ -1,71 +1,66 @@
 # 《回留 / RESET》v1.2.1-dev
 
-`v1.2.1` 是 v1.2.0 发布后的视觉回归修复版本。当前处于开发阶段；公开稳定版、GitHub Release 与 Pages 继续保持 v1.2.0，直到本文件列出的视觉阻断全部解除。
+`v1.2.1` 是 v1.2.0 发布后的移动端与标题交互修复版本。当前仍处于开发候选阶段；公开稳定版、GitHub Release 与 Pages 继续保持 v1.2.0，直到本文件列出的移动端发布阻断全部解除。
 
 ## 修复范围
 
-- 修复 Round 7 标题 Key Visual 在可玩剧情场景中全屏覆盖正文的问题。
-- 为桌面与移动端角色立绘增加安全构图边界，避免角色压住阅读区与主要交互。
-- 将周小满、许栖、沈听澜、唐梨、乔南星五位 Round 3 角色重新列为 `ART_BLOCKED`，不得以尺寸、Alpha、SHA256、Decode 或自动渲染成功代替人工美术验收。
-- 生产 Build 不再执行 `scripts/generate-portraits.mjs`；该确定性 SVG 生成器降级为历史/原型工具，禁止进入正式 production 资产链。
-- 新增 `game/assets/4k/visual-acceptance.json`，作为角色人工视觉验收 Single Source of Truth。
-- 新增发布硬门禁：稳定发布时任一角色仍为 `BLOCKED / FAIL / UNVERIFIED`，`check:release` 必须失败。
+- 将 Round 7 Key Visual 从可玩剧情覆盖层改为独立标题 Gate，提供明确的 `进入游戏` 交互。
+- 标题 Gate 退出后从 DOM 移除，避免透明遮罩继续阻挡 VN 工具栏、剧情按钮与触摸操作。
+- 捕获 `beforeinstallprompt`，在浏览器确认 PWA 可安装时提供 `安装到设备` 操作。
+- 增加短高度移动横屏布局，压缩标题、阅读区与工具栏占用，保持舞台和触摸操作可用。
+- 保留 safe-area 与移动触摸目标尺寸约束。
+- 现有六位角色正式美术已由项目所有者确认，`game/assets/4k/visual-acceptance.json` 中角色与 `releaseGate` 均为 `PASS`；本版本不重画角色资产。
+- 生产 Build 继续禁止 `scripts/generate-portraits.mjs` 进入正式资产链。
+- Web / Windows / Android 模拟验收统一先真实通过标题 Gate，再测试底层 VN 交互，避免测试脚本绕过真实启动流程。
 
 ## v0.2 视觉门禁
 
-v1.2.1 按 `GALGAME SPEC v0.2` 的原则执行：
+v1.2.1 继续执行 `GALGAME SPEC v0.2`：
 
 ```text
 TECH_READY != ART_READY
 ```
 
-正式角色必须同时通过：
-
-- Identity
-- Style Consistency
-- Body Proportion
-- Expression Readability
-- Desktop Composition
-- Mobile Composition
-- Provenance Truth
-
-只有全部人工视觉项 `PASS`，才能把 `releaseGate` 从 `BLOCKED` 改为 `PASS`。
-
-## 当前阻断
+当前角色人工视觉 Gate：
 
 ```text
 林晚      PASS
-周小满    BLOCKED
-许栖      BLOCKED
-沈听澜    BLOCKED
-唐梨      BLOCKED
-乔南星    BLOCKED
+周小满    PASS
+许栖      PASS
+沈听澜    PASS
+唐梨      PASS
+乔南星    PASS
 
-RELEASE   BLOCKED
+ART GATE  PASS
 ```
 
-五位 Round 3 角色需以林晚最终正式立绘为唯一角色美术基准，重建 neutral，再从通过验收的 neutral 制作表情差分。真实剧情截图与移动端/桌面端构图证据必须保留。
+`check:stable` 在开发候选阶段只负责生产美术 Gate；`1.2.1-dev` 的稳定语义版本身份由后续正式 tag / publish 流程检查。开发分支仍无 publish job。
 
 ## 兼容性
 
 - 开发故事版本：`reset-v1.2.1-dev`。
-- v1.2.0 正式存档加入受控升级来源；旧备份仍不原地修改，并继续经过引擎路线校验。
+- v1.2.0 正式存档继续作为受控升级来源；旧备份不原地修改，并继续经过引擎路线校验。
 - VN Engine v2 锁定版本不变。
+- 正式线上继续保持 v1.2.0，候选验收完成前不覆盖 Pages。
 
-## 发布条件
+## 当前发布条件
 
-v1.2.1 不得进入正式发布，直到：
+v1.2.1 进入正式发布前必须同时满足：
 
 ```text
-5 位 Round 3 女主重建完成
+标题页真实进入交互 PASS
 +
-人工视觉 Gate 全 PASS
+移动端竖屏 / 横屏场景 PASS
 +
-Provenance 修正
+PWA 安装路径 PASS
 +
-Web / Windows Build PASS
+PWA 离线重载 PASS
 +
-移动端 / 桌面端实际场景视觉验收 PASS
+Web 候选 ZIP PASS
 +
-最终 ZIP 回归 PASS
+Windows 原生候选 ZIP PASS
++
+Build / Release CI 全绿
++
+真机最终复核 PASS
 ```
