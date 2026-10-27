@@ -4,7 +4,6 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "prebuild": "node scripts/materialize-r1.mjs",
     "audio": "node scripts/generate-audio.mjs",
     "audio:check": "node scripts/check-audio.mjs",
     "scenario:check": "node scripts/check-scenario.mjs",

@@ -24,7 +24,7 @@ R1 是第一次正式剧本重构轮。目标不是“把原句拉长”，而�
 
 ## 兼容策略
 
-R1 以 `game/scenario-r1.json`（人物/场景种子）+ `scripts/r1-scenario.mjs`（确定性重构器）存在。`npm run prebuild` 会生成最后覆盖层 `game/content/zzzzzz-r1-generated.json`，只替换 scene 正文对象，并继承当前完整 scene 的选择、下一场、结局、CG、角色、背景和 continuation 字段。生成文件不作为手工编辑源；既有章节源文件继续保留，便于追溯骨架与比较重构前后差异。
+R1 正式正文已经落盘为 `game/content/zzzzz-r1-chapter-01.json` 至 `zzzzz-r1-chapter-07.json`，这 7 个文件是后续人工通读、校稿、口吻修订与演出调整的唯一正文源。Build 与 `scenario:check` 直接消费这些已提交文本，不再在 `prebuild` 阶段重新生成 8 万字正文。`game/scenario-r1.json` 与 `scripts/r1-scenario.mjs` 仅保留为 R1 重构来源与可追溯工具，不得自动覆盖已人工编辑的正式章节。旧的 `game/content/zzzzzz-r1-generated.json` 继续被忽略且构建明确排除，仅作为历史生成路径兼容项。
 
 ## 后续门槛
 

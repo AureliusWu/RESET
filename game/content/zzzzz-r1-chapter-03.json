@@ -1,0 +1,1985 @@
+{
+  "id": "r1-scenario-chapter-03",
+  "chapter": 3,
+  "source": "R1 Scenario Reconstruction — committed source of truth",
+  "replaceScenes": [
+    {
+      "id": "chapter3_gate",
+      "chapter": 3,
+      "title": "没有发生过的约定",
+      "location": "梧城一中·高二（三）班",
+      "time": "06:58",
+      "background": "classroom-dawn",
+      "noSprite": true,
+      "lines": [
+        {
+          "id": "r1_chapter3_gate_pre01_01",
+          "speaker": "旁白",
+          "text": "06:58，梧城一中·高二（三）班。梧城的天气、交通和人群仍按自己的节奏前进。"
+        },
+        {
+          "id": "r1_chapter3_gate_pre01_02",
+          "speaker": "旁白",
+          "text": "路边小店在换班，骑车的人按铃借道，没有谁知道陈渡正在把这些琐碎当成确认现实的坐标。"
+        },
+        {
+          "id": "r1_chapter3_gate_pre02_01",
+          "speaker": "旁白",
+          "text": "这座城市没有因为他的恐惧变得戏剧化。雨还是雨，晚自习还是晚自习，别人甚至会嫌他挡路。正因为如此，他更难把发生的一切归结成梦。"
+        },
+        {
+          "id": "r1_chapter3_gate_pre03_01",
+          "speaker": "陈岚",
+          "text": "饭我给你留着。你最近老说没事，脸色可不像没事。"
+        },
+        {
+          "id": "r1_chapter3_gate_pre04_01",
+          "speaker": "陈渡",
+          "text": "我知道。今晚如果我没回消息，你别一直等。"
+        },
+        {
+          "id": "r1_chapter3_gate_pre05_01",
+          "speaker": "旁白",
+          "text": "这段时间里真正需要处理的是：把调查升级前的夜晚留给普通生活：陈岚问成绩、班群发考试安排，陈渡意识到自己正在隐瞒另一套人生。"
+        },
+        {
+          "id": "r1_chapter3_gate_pre05_02",
+          "speaker": "旁白",
+          "text": " 陈渡不再允许自己只记住“有用线索”。谁在场、谁被吓到、谁因此错过原本的安排，都属于同一件事的后果。"
+        },
+        {
+          "id": "r1_chapter3_gate_pre06_01",
+          "speaker": "旁白",
+          "text": "调查逐渐成形以后，六个人第一次需要把各自的方法放在同一张桌上。梦、情绪、地图、档案和时间戳互相冲突；"
+        },
+        {
+          "id": "r1_chapter3_gate_pre06_02",
+          "speaker": "旁白",
+          "text": "真正困难的地方，是每个人都只能看见自己那一块。"
+        },
+        {
+          "id": "r1_chapter3_gate_pre07_01",
+          "speaker": "旁白",
+          "text": "六个人的意见并不总是一致。有人想继续查，有人更关心先把普通人撤出去，有人坚持证据不足就不能下结论。陈渡开始接受“团队”并不意味着所有人听他的。"
+        },
+        {
+          "id": "c3g001",
+          "speaker": "旁白",
+          "text": "第二天，陈渡的课桌里多了一封信。信封被雨打湿过，边缘却是干的。"
+        },
+        {
+          "id": "c3g002",
+          "speaker": "旁白",
+          "text": "上面写着他的名字，落款是林晚。"
+        },
+        {
+          "id": "c3g003",
+          "speaker": "林晚",
+          "text": "如果你已经忘了我们的约定，就不要再读档。"
+        },
+        {
+          "id": "c3g004",
+          "speaker": "陈渡",
+          "text": "可我连这个约定是什么都不知道。"
+        },
+        {
+          "id": "r1_chapter3_gate_post01_01",
+          "speaker": "陈渡",
+          "text": "我先把能确认的写下来。记不住也没关系，至少别再假装只有我一个人的记忆算数。"
+        },
+        {
+          "id": "r1_chapter3_gate_post02_01",
+          "speaker": "旁白",
+          "text": "他在备忘录最上方写了“没有发生过的约定”。下面没有先写结论，而是列了三个栏目：现实里发生了什么、谁能证明、异常改变了什么。"
+        },
+        {
+          "id": "r1_chapter3_gate_post02_02",
+          "speaker": "旁白",
+          "text": "这个习惯很慢，却让调查第一次不像追逐谜语。"
+        },
+        {
+          "id": "r1_chapter3_gate_post03_01",
+          "speaker": "旁白",
+          "text": "他们开始给证据标来源，而不是只记结论。梦境标“主观残响”，旧纸标“实体证据”，手机记录标“数字记录”，第三方记忆则单独写名字和时间。"
+        },
+        {
+          "id": "r1_chapter3_gate_post04_01",
+          "speaker": "旁白",
+          "text": "这种笨拙的调查方法也让关系变得难堪：有些话一旦记进表格，就像在质疑朋友；有些话不记，又可能在下一轮彻底消失。"
+        },
+        {
+          "id": "r1_chapter3_gate_post05_01",
+          "speaker": "旁白",
+          "text": "梁成在站务交接本上留下当天的异常记录。对他来说“没有发生过的约定”不是什么命运节点，只是一次必须有人签字负责的运营事件。"
+        },
+        {
+          "id": "r1_chapter3_gate_post06_01",
+          "speaker": "旁白",
+          "text": "罗秀梅记不住什么18:42理论，却记得陈渡这周哪天没来食堂。她的记忆琐碎到近乎无用，也因此不容易被主角团自己的推理带偏。"
+        },
+        {
+          "id": "r1_chapter3_gate_post07_01",
+          "speaker": "旁白",
+          "text": "这些关系把陈渡重新拽回人群。梁成和罗秀梅都没有被写进“六位女主”的路线选择里，却会因为他的决定改变自己的时间表、情绪和判断。"
+        },
+        {
+          "id": "r1_chapter3_gate_post07_02",
+          "speaker": "旁白",
+          "text": "世界因此不再只有攻略对象与谜题。"
+        },
+        {
+          "id": "r1_chapter3_gate_post08_01",
+          "speaker": "陈渡",
+          "text": "把梁成和罗秀梅也记进去。不是因为他们掌握答案，是因为如果我们的选择伤到普通人的生活，那也必须算在结果里。"
+        },
+        {
+          "id": "r1_chapter3_gate_post09_01",
+          "speaker": "旁白",
+          "text": "异常退到视野边缘时，生活立刻重新挤回来：未回的消息、明天的安排、家里留的饭。陈渡第一次觉得这些麻烦本身就是好事。"
+        },
+        {
+          "id": "r1_chapter3_gate_post10_01",
+          "speaker": "旁白",
+          "text": "在离开“没有发生过的约定”这一刻之前，陈渡又回头确认了一次周围。"
+        },
+        {
+          "id": "r1_chapter3_gate_post10_02",
+          "speaker": "旁白",
+          "text": "不是为了寻找隐藏线索，只是为了记住：这一轮里，梧城一中·高二（三）班确实有人生活过。"
+        }
+      ],
+      "next": "letter_examination",
+      "cg": "letter-1842-cg",
+      "cgFrom": 1
+    },
+    {
+      "id": "letter_examination",
+      "chapter": 3,
+      "title": "她没有写过的信",
+      "location": "梧城一中·空教室",
+      "time": "07:23",
+      "background": "classroom-dawn",
+      "character": "linwan",
+      "lines": [
+        {
+          "id": "r1_letter_examination_pre01_01",
+          "speaker": "旁白",
+          "text": "07:23，梧城一中·空教室。黑板右上角写着值日名单，窗台堆着没领走的练习册；一切都能被班长、老师和同学共同证明。"
+        },
+        {
+          "id": "r1_letter_examination_pre02_01",
+          "speaker": "旁白",
+          "text": "过去几天里，陈渡养成了一个笨办法：每到一个地方先看人，再看钟，最后看自己。人会记错，钟会坏，而他本人更不值得完全相信。"
+        },
+        {
+          "id": "r1_letter_examination_pre03_01",
+          "speaker": "许蓉",
+          "text": "要查可以，先登记。旧资料不是线索箱，翻坏一页就少一页。"
+        },
+        {
+          "id": "r1_letter_examination_pre04_01",
+          "speaker": "沈砚秋",
+          "text": "记录有来源、有缺口，也有人当年为什么要这样写。别把缺失直接当成阴谋。"
+        },
+        {
+          "id": "r1_letter_examination_pre05_01",
+          "speaker": "旁白",
+          "text": "这段时间里真正需要处理的是：信件通过沈听澜、许蓉、沈砚秋三层核验；林晚的笔迹证据和她本人的记忆冲突。 陈渡不再允许自己只记住“有用线索”。"
+        },
+        {
+          "id": "r1_letter_examination_pre05_02",
+          "speaker": "旁白",
+          "text": "谁在场、谁被吓到、谁因此错过原本的安排，都属于同一件事的后果。"
+        },
+        {
+          "id": "r1_letter_examination_pre06_01",
+          "speaker": "旁白",
+          "text": "调查逐渐成形以后，六个人第一次需要把各自的方法放在同一张桌上。梦、情绪、地图、档案和时间戳互相冲突；"
+        },
+        {
+          "id": "r1_letter_examination_pre06_02",
+          "speaker": "旁白",
+          "text": "真正困难的地方，是每个人都只能看见自己那一块。"
+        },
+        {
+          "id": "r1_letter_examination_pre07_01",
+          "speaker": "旁白",
+          "text": "六个人的意见并不总是一致。有人想继续查，有人更关心先把普通人撤出去，有人坚持证据不足就不能下结论。陈渡开始接受“团队”并不意味着所有人听他的。"
+        },
+        {
+          "id": "c3l001",
+          "speaker": "林晚",
+          "text": "字是我的。连最后那个顿笔都一样。",
+          "expression": "serious"
+        },
+        {
+          "id": "c3l002",
+          "speaker": "陈渡",
+          "text": "你写的吗？"
+        },
+        {
+          "id": "c3l003",
+          "speaker": "林晚",
+          "text": "没有。至少现在的我没有。",
+          "expression": "worried"
+        },
+        {
+          "id": "c3l004",
+          "speaker": "林晚",
+          "text": "可我看到这封信的时候，第一反应不是害怕。"
+        },
+        {
+          "id": "c3l005",
+          "speaker": "林晚",
+          "text": "是觉得你终于收到了。",
+          "expression": "worried"
+        },
+        {
+          "id": "r1_letter_examination_post01_01",
+          "speaker": "陈渡",
+          "text": "我先把能确认的写下来。记不住也没关系，至少别再假装只有我一个人的记忆算数。"
+        },
+        {
+          "id": "r1_letter_examination_post02_01",
+          "speaker": "旁白",
+          "text": "他在备忘录最上方写了“她没有写过的信”。下面没有先写结论，而是列了三个栏目：现实里发生了什么、谁能证明、异常改变了什么。"
+        },
+        {
+          "id": "r1_letter_examination_post02_02",
+          "speaker": "旁白",
+          "text": "这个习惯很慢，却让调查第一次不像追逐谜语。"
+        },
+        {
+          "id": "r1_letter_examination_post03_01",
+          "speaker": "旁白",
+          "text": "他们开始给证据标来源，而不是只记结论。梦境标“主观残响”，旧纸标“实体证据”，手机记录标“数字记录”，第三方记忆则单独写名字和时间。"
+        },
+        {
+          "id": "r1_letter_examination_post04_01",
+          "speaker": "旁白",
+          "text": "这种笨拙的调查方法也让关系变得难堪：有些话一旦记进表格，就像在质疑朋友；有些话不记，又可能在下一轮彻底消失。"
+        },
+        {
+          "id": "r1_letter_examination_post05_01",
+          "speaker": "旁白",
+          "text": "陈岚的未读消息还停在手机上：下班时间可能推迟，冰箱里有饭。对陈渡来说，这种与“她没有写过的信”毫无关系的安排反而最像现实。"
+        },
+        {
+          "id": "r1_letter_examination_post06_01",
+          "speaker": "旁白",
+          "text": "许蓉提醒他们，关于“她没有写过的信”的任何纸质证据都要写清来源。她不参与猜谜，却坚持不能因为着急就破坏以后唯一能复核的东西。"
+        },
+        {
+          "id": "r1_letter_examination_post07_01",
+          "speaker": "旁白",
+          "text": "这些关系把陈渡重新拽回人群。陈岚和许蓉都没有被写进“六位女主”的路线选择里，却会因为他的决定改变自己的时间表、情绪和判断。"
+        },
+        {
+          "id": "r1_letter_examination_post07_02",
+          "speaker": "旁白",
+          "text": "世界因此不再只有攻略对象与谜题。"
+        },
+        {
+          "id": "r1_letter_examination_post08_01",
+          "speaker": "陈渡",
+          "text": "把陈岚和许蓉也记进去。不是因为他们掌握答案，是因为如果我们的选择伤到普通人的生活，那也必须算在结果里。"
+        },
+        {
+          "id": "r1_letter_examination_post09_01",
+          "speaker": "旁白",
+          "text": "没人宣布这一刻有多重要。远处仍有人催作业、回消息、找零钱。陈渡却知道，下一次读取如果把这些细节一起改掉，他至少曾经看见过它们。"
+        },
+        {
+          "id": "r1_letter_examination_post10_01",
+          "speaker": "旁白",
+          "text": "在离开“她没有写过的信”这一刻之前，陈渡又回头确认了一次周围。不是为了寻找隐藏线索，只是为了记住：这一轮里，梧城一中·空教室确实有人生活过。"
+        }
+      ],
+      "next": "route_method_choice"
+    },
+    {
+      "id": "route_method_choice",
+      "chapter": 3,
+      "title": "你相信哪一种残响",
+      "location": "梧城一中·旧美术教室",
+      "time": "12:36",
+      "background": "old-art-room",
+      "noSprite": true,
+      "lines": [
+        {
+          "id": "r1_route_method_choice_pre01_01",
+          "speaker": "旁白",
+          "text": "12:36，梧城一中·旧美术教室。黑板右上角写着值日名单，窗台堆着没领走的练习册；一切都能被班长、老师和同学共同证明。"
+        },
+        {
+          "id": "r1_route_method_choice_pre02_01",
+          "speaker": "旁白",
+          "text": "如果只看手机时间，这一刻和任何一天没有区别。真正让陈渡不安的，是身边的人仍然沿着熟悉的习惯行动，而他的记忆已经不再属于同一条时间线。"
+        },
+        {
+          "id": "r1_route_method_choice_pre03_01",
+          "speaker": "徐嘉树",
+          "text": "你这几天神出鬼没得跟欠了全班作业似的。真出事就说，别每次都用“没事”打发人。"
+        },
+        {
+          "id": "r1_route_method_choice_pre04_01",
+          "speaker": "程妍",
+          "text": "还有，顾老师让我提醒你：请假、迟到、作业，至少选一样按正常流程来。"
+        },
+        {
+          "id": "r1_route_method_choice_pre05_01",
+          "speaker": "旁白",
+          "text": "这段时间里真正需要处理的是：六人第一次就“怎么查”发生方法冲突，体现性格而非只给三个选项。 陈渡不再允许自己只记住“有用线索”。"
+        },
+        {
+          "id": "r1_route_method_choice_pre05_02",
+          "speaker": "旁白",
+          "text": "谁在场、谁被吓到、谁因此错过原本的安排，都属于同一件事的后果。"
+        },
+        {
+          "id": "r1_route_method_choice_pre06_01",
+          "speaker": "旁白",
+          "text": "调查逐渐成形以后，六个人第一次需要把各自的方法放在同一张桌上。梦、情绪、地图、档案和时间戳互相冲突；"
+        },
+        {
+          "id": "r1_route_method_choice_pre06_02",
+          "speaker": "旁白",
+          "text": "真正困难的地方，是每个人都只能看见自己那一块。"
+        },
+        {
+          "id": "r1_route_method_choice_pre07_01",
+          "speaker": "旁白",
+          "text": "六个人的意见并不总是一致。有人想继续查，有人更关心先把普通人撤出去，有人坚持证据不足就不能下结论。陈渡开始接受“团队”并不意味着所有人听他的。"
+        },
+        {
+          "id": "c3m001",
+          "speaker": "旁白",
+          "text": "六位女生第一次和陈渡坐在同一间教室里。谁也没先开口，只有旧风扇还在转。"
+        },
+        {
+          "id": "c3m002",
+          "speaker": "沈听澜",
+          "text": "我们只验证一件事：同一个被覆盖事件，会不会在不同人身上留下不同证据。",
+          "expression": "serious"
+        },
+        {
+          "id": "c3m003",
+          "speaker": "乔南星",
+          "text": "那就选一种最不像巧合的。",
+          "expression": "neutral"
+        },
+        {
+          "id": "r1_route_method_choice_post01_01",
+          "speaker": "陈渡",
+          "text": "我先把能确认的写下来。记不住也没关系，至少别再假装只有我一个人的记忆算数。"
+        },
+        {
+          "id": "r1_route_method_choice_post02_01",
+          "speaker": "旁白",
+          "text": "他在备忘录最上方写了“你相信哪一种残响”。下面没有先写结论，而是列了三个栏目：现实里发生了什么、谁能证明、异常改变了什么。"
+        },
+        {
+          "id": "r1_route_method_choice_post02_02",
+          "speaker": "旁白",
+          "text": "这个习惯很慢，却让调查第一次不像追逐谜语。"
+        },
+        {
+          "id": "r1_route_method_choice_post03_01",
+          "speaker": "旁白",
+          "text": "他们开始给证据标来源，而不是只记结论。梦境标“主观残响”，旧纸标“实体证据”，手机记录标“数字记录”，第三方记忆则单独写名字和时间。"
+        },
+        {
+          "id": "r1_route_method_choice_post04_01",
+          "speaker": "旁白",
+          "text": "这种笨拙的调查方法也让关系变得难堪：有些话一旦记进表格，就像在质疑朋友；有些话不记，又可能在下一轮彻底消失。"
+        },
+        {
+          "id": "r1_route_method_choice_post05_01",
+          "speaker": "旁白",
+          "text": "徐嘉树在班群里追问陈渡“你相信哪一种残响”之后还回不回来打球。他不知道真相，只知道朋友最近总在关键时候消失。"
+        },
+        {
+          "id": "r1_route_method_choice_post06_01",
+          "speaker": "旁白",
+          "text": "程妍把“你相信哪一种残响”发生的时段和班级考勤对了一遍。她只关心谁缺席、谁需要补手续，却因此提供了一份异常很难伪造的集体记录。"
+        },
+        {
+          "id": "r1_route_method_choice_post07_01",
+          "speaker": "旁白",
+          "text": "这些关系把陈渡重新拽回人群。徐嘉树和程妍都没有被写进“六位女主”的路线选择里，却会因为他的决定改变自己的时间表、情绪和判断。"
+        },
+        {
+          "id": "r1_route_method_choice_post07_02",
+          "speaker": "旁白",
+          "text": "世界因此不再只有攻略对象与谜题。"
+        },
+        {
+          "id": "r1_route_method_choice_post08_01",
+          "speaker": "陈渡",
+          "text": "把徐嘉树和程妍也记进去。不是因为他们掌握答案，是因为如果我们的选择伤到普通人的生活，那也必须算在结果里。"
+        },
+        {
+          "id": "r1_route_method_choice_post09_01",
+          "speaker": "旁白",
+          "text": "陈渡把这一幕记了下来。他现在知道，真正可靠的锚点往往不是时间，而是别人对同一件小事的记忆。"
+        },
+        {
+          "id": "r1_route_method_choice_post10_01",
+          "speaker": "旁白",
+          "text": "在离开“你相信哪一种残响”这一刻之前，陈渡又回头确认了一次周围。"
+        },
+        {
+          "id": "r1_route_method_choice_post10_02",
+          "speaker": "旁白",
+          "text": "不是为了寻找隐藏线索，只是为了记住：这一轮里，梧城一中·旧美术教室确实有人生活过。"
+        }
+      ],
+      "choices": [
+        {
+          "id": "trust_memory",
+          "text": "跟林晚追她梦里的约定",
+          "next": "route_linwan_dream",
+          "effect": {
+            "linwan": 2,
+            "memoryKey": 1
+          }
+        },
+        {
+          "id": "trust_feeling",
+          "text": "跟周小满追情绪残留",
+          "next": "route_xiaoman_feeling",
+          "effect": {
+            "xiaoman": 2,
+            "resonanceSense": 1
+          }
+        },
+        {
+          "id": "trust_night",
+          "text": "让许栖带你看夜梧城里的对应位置",
+          "next": "route_xuqi_night",
+          "effect": {
+            "xuqi": 2,
+            "nightAccess": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "route_linwan_dream",
+      "chapter": 3,
+      "title": "梦里的旧文具店",
+      "location": "梧城一中东门旧街",
+      "time": "16:20",
+      "background": "old-stationery",
+      "character": "linwan",
+      "lines": [
+        {
+          "id": "r1_route_linwan_dream_pre01_01",
+          "speaker": "旁白",
+          "text": "16:20，梧城一中东门旧街。梧城的天气、交通和人群仍按自己的节奏前进。"
+        },
+        {
+          "id": "r1_route_linwan_dream_pre01_02",
+          "speaker": "旁白",
+          "text": "路边小店在换班，骑车的人按铃借道，没有谁知道陈渡正在把这些琐碎当成确认现实的坐标。"
+        },
+        {
+          "id": "r1_route_linwan_dream_pre02_01",
+          "speaker": "旁白",
+          "text": "过去几天里，陈渡养成了一个笨办法：每到一个地方先看人，再看钟，最后看自己。人会记错，钟会坏，而他本人更不值得完全相信。"
+        },
+        {
+          "id": "r1_route_linwan_dream_pre03_01",
+          "speaker": "林澄",
+          "text": "晚晚，你小时候一到下雨就做同一个梦。醒来又说记不清，我一直当你怕雷。"
+        },
+        {
+          "id": "r1_route_linwan_dream_pre04_01",
+          "speaker": "林晚",
+          "text": "我现在也希望只是怕雷。"
+        },
+        {
+          "id": "r1_route_linwan_dream_pre05_01",
+          "speaker": "旁白",
+          "text": "这段时间里真正需要处理的是：林晚的梦里也有家庭、上学、表姐林澄和普通约定；异常寄生在这些真实记忆上。 陈渡不再允许自己只记住“有用线索”。"
+        },
+        {
+          "id": "r1_route_linwan_dream_pre05_02",
+          "speaker": "旁白",
+          "text": "谁在场、谁被吓到、谁因此错过原本的安排，都属于同一件事的后果。"
+        },
+        {
+          "id": "r1_route_linwan_dream_pre06_01",
+          "speaker": "旁白",
+          "text": "调查逐渐成形以后，六个人第一次需要把各自的方法放在同一张桌上。梦、情绪、地图、档案和时间戳互相冲突；"
+        },
+        {
+          "id": "r1_route_linwan_dream_pre06_02",
+          "speaker": "旁白",
+          "text": "真正困难的地方，是每个人都只能看见自己那一块。"
+        },
+        {
+          "id": "r1_route_linwan_dream_pre07_01",
+          "speaker": "旁白",
+          "text": "林晚没有把自己摆在“被保护的人”位置。"
+        },
+        {
+          "id": "r1_route_linwan_dream_pre07_02",
+          "speaker": "旁白",
+          "text": "她会停下来确认自己的意见有没有被过去的记忆绑架，也会追问陈渡是不是又把“我以前答应过”当作替现在的人做决定的借口。"
+        },
+        {
+          "id": "c3a001",
+          "speaker": "林晚",
+          "text": "我梦见这里还有一家文具店。",
+          "expression": "worried"
+        },
+        {
+          "id": "c3a002",
+          "speaker": "旁白",
+          "text": "现实里只有一面封死的灰墙。雨水沿着墙缝流下，像一扇门的轮廓。"
+        },
+        {
+          "id": "c3a003",
+          "speaker": "林晚",
+          "text": "梦里的你站在门里，对我说过一句话。",
+          "expression": "serious"
+        },
+        {
+          "id": "c3a004",
+          "speaker": "陈渡",
+          "text": "什么？"
+        },
+        {
+          "id": "c3a005",
+          "speaker": "林晚",
+          "text": "“如果许栖说凶手在我们六个里面，先不要相信她。”",
+          "expression": "worried"
+        },
+        {
+          "id": "c3a006",
+          "speaker": "陈渡",
+          "text": "那时候的我为什么会知道许栖？"
+        },
+        {
+          "id": "r1_route_linwan_dream_post01_01",
+          "speaker": "陈渡",
+          "text": "我先把能确认的写下来。记不住也没关系，至少别再假装只有我一个人的记忆算数。"
+        },
+        {
+          "id": "r1_route_linwan_dream_post02_01",
+          "speaker": "旁白",
+          "text": "他在备忘录最上方写了“梦里的旧文具店”。下面没有先写结论，而是列了三个栏目：现实里发生了什么、谁能证明、异常改变了什么。"
+        },
+        {
+          "id": "r1_route_linwan_dream_post02_02",
+          "speaker": "旁白",
+          "text": "这个习惯很慢，却让调查第一次不像追逐谜语。"
+        },
+        {
+          "id": "r1_route_linwan_dream_post03_01",
+          "speaker": "旁白",
+          "text": "他们开始给证据标来源，而不是只记结论。梦境标“主观残响”，旧纸标“实体证据”，手机记录标“数字记录”，第三方记忆则单独写名字和时间。"
+        },
+        {
+          "id": "r1_route_linwan_dream_post04_01",
+          "speaker": "旁白",
+          "text": "这种笨拙的调查方法也让关系变得难堪：有些话一旦记进表格，就像在质疑朋友；有些话不记，又可能在下一轮彻底消失。"
+        },
+        {
+          "id": "r1_route_linwan_dream_post05_01",
+          "speaker": "旁白",
+          "text": "许蓉提醒他们，关于“梦里的旧文具店”的任何纸质证据都要写清来源。她不参与猜谜，却坚持不能因为着急就破坏以后唯一能复核的东西。"
+        },
+        {
+          "id": "r1_route_linwan_dream_post06_01",
+          "speaker": "旁白",
+          "text": "罗秀梅记不住什么18:42理论，却记得陈渡这周哪天没来食堂。她的记忆琐碎到近乎无用，也因此不容易被主角团自己的推理带偏。"
+        },
+        {
+          "id": "r1_route_linwan_dream_post07_01",
+          "speaker": "旁白",
+          "text": "这些关系把陈渡重新拽回人群。许蓉和罗秀梅都没有被写进“六位女主”的路线选择里，却会因为他的决定改变自己的时间表、情绪和判断。"
+        },
+        {
+          "id": "r1_route_linwan_dream_post07_02",
+          "speaker": "旁白",
+          "text": "世界因此不再只有攻略对象与谜题。"
+        },
+        {
+          "id": "r1_route_linwan_dream_post08_01",
+          "speaker": "陈渡",
+          "text": "把许蓉和罗秀梅也记进去。不是因为他们掌握答案，是因为如果我们的选择伤到普通人的生活，那也必须算在结果里。"
+        },
+        {
+          "id": "r1_route_linwan_dream_post09_01",
+          "speaker": "旁白",
+          "text": "他没有再说“下次再试”。这句话以前像保险，现在听起来更像把别人的这一轮人生提前判成可以作废。"
+        },
+        {
+          "id": "r1_route_linwan_dream_post10_01",
+          "speaker": "旁白",
+          "text": "在离开“梦里的旧文具店”这一刻之前，陈渡又回头确认了一次周围。不是为了寻找隐藏线索，只是为了记住：这一轮里，梧城一中东门旧街确实有人生活过。"
+        }
+      ],
+      "next": "route_merge_message"
+    },
+    {
+      "id": "route_xiaoman_feeling",
+      "chapter": 3,
+      "title": "有人在这里哭过",
+      "location": "梧城一中·旧美术教室",
+      "time": "16:20",
+      "background": "old-art-room",
+      "character": "xiaoman",
+      "lines": [
+        {
+          "id": "r1_route_xiaoman_feeling_pre01_01",
+          "speaker": "旁白",
+          "text": "16:20，梧城一中·旧美术教室。黑板右上角写着值日名单，窗台堆着没领走的练习册；一切都能被班长、老师和同学共同证明。"
+        },
+        {
+          "id": "r1_route_xiaoman_feeling_pre02_01",
+          "speaker": "旁白",
+          "text": "这座城市没有因为他的恐惧变得戏剧化。雨还是雨，晚自习还是晚自习，别人甚至会嫌他挡路。正因为如此，他更难把发生的一切归结成梦。"
+        },
+        {
+          "id": "r1_route_xiaoman_feeling_pre03_01",
+          "speaker": "苏遥",
+          "text": "小满，你答应我的社团海报还差最后一层色。别又陪人乱跑到忘了截稿。"
+        },
+        {
+          "id": "r1_route_xiaoman_feeling_pre04_01",
+          "speaker": "周小满",
+          "text": "知道啦。等我把这件更离谱的事处理完。"
+        },
+        {
+          "id": "r1_route_xiaoman_feeling_pre05_01",
+          "speaker": "旁白",
+          "text": "这段时间里真正需要处理的是：周小满与苏遥、美术社日常建立她自己的生活；她记住的是情绪残响而非完整画面。 陈渡不再允许自己只记住“有用线索”。"
+        },
+        {
+          "id": "r1_route_xiaoman_feeling_pre05_02",
+          "speaker": "旁白",
+          "text": "谁在场、谁被吓到、谁因此错过原本的安排，都属于同一件事的后果。"
+        },
+        {
+          "id": "r1_route_xiaoman_feeling_pre06_01",
+          "speaker": "旁白",
+          "text": "调查逐渐成形以后，六个人第一次需要把各自的方法放在同一张桌上。梦、情绪、地图、档案和时间戳互相冲突；"
+        },
+        {
+          "id": "r1_route_xiaoman_feeling_pre06_02",
+          "speaker": "旁白",
+          "text": "真正困难的地方，是每个人都只能看见自己那一块。"
+        },
+        {
+          "id": "r1_route_xiaoman_feeling_pre07_01",
+          "speaker": "旁白",
+          "text": "周小满最擅长把沉重的话拆成玩笑，但苏遥在旁边时，陈渡能看见她玩笑停下来的瞬间。她也会累，也会嫉妒，也会因为害怕被丢在下一轮而发脾气。"
+        },
+        {
+          "id": "c3b001",
+          "speaker": "周小满",
+          "text": "就是这里。每次走到窗边，我都会很难受。",
+          "expression": "worried"
+        },
+        {
+          "id": "c3b002",
+          "speaker": "陈渡",
+          "text": "像上次楼梯口那样？"
+        },
+        {
+          "id": "c3b003",
+          "speaker": "周小满",
+          "text": "不一样。楼梯口像是有人死了。这里像是有人做了一件她自己也不想做的事。",
+          "expression": "serious"
+        },
+        {
+          "id": "c3b004",
+          "speaker": "旁白",
+          "text": "她把手按在旧画架上，眼泪毫无征兆地落下来。"
+        },
+        {
+          "id": "c3b005",
+          "speaker": "周小满",
+          "text": "陈渡……杀你的人，当时很害怕。",
+          "expression": "worried"
+        },
+        {
+          "id": "c3b006",
+          "speaker": "周小满",
+          "text": "她不是恨你。她是在求你别让她动手。"
+        },
+        {
+          "id": "r1_route_xiaoman_feeling_post01_01",
+          "speaker": "陈渡",
+          "text": "我先把能确认的写下来。记不住也没关系，至少别再假装只有我一个人的记忆算数。"
+        },
+        {
+          "id": "r1_route_xiaoman_feeling_post02_01",
+          "speaker": "旁白",
+          "text": "他在备忘录最上方写了“有人在这里哭过”。下面没有先写结论，而是列了三个栏目：现实里发生了什么、谁能证明、异常改变了什么。"
+        },
+        {
+          "id": "r1_route_xiaoman_feeling_post02_02",
+          "speaker": "旁白",
+          "text": "这个习惯很慢，却让调查第一次不像追逐谜语。"
+        },
+        {
+          "id": "r1_route_xiaoman_feeling_post03_01",
+          "speaker": "旁白",
+          "text": "他们开始给证据标来源，而不是只记结论。梦境标“主观残响”，旧纸标“实体证据”，手机记录标“数字记录”，第三方记忆则单独写名字和时间。"
+        },
+        {
+          "id": "r1_route_xiaoman_feeling_post04_01",
+          "speaker": "旁白",
+          "text": "这种笨拙的调查方法也让关系变得难堪：有些话一旦记进表格，就像在质疑朋友；有些话不记，又可能在下一轮彻底消失。"
+        },
+        {
+          "id": "r1_route_xiaoman_feeling_post05_01",
+          "speaker": "旁白",
+          "text": "何川把跑步群的轨迹截图留了下来。哪怕“有人在这里哭过”与训练无关，连续几天的定位记录也让梧城哪些路真实存在有了第三方参照。"
+        },
+        {
+          "id": "r1_route_xiaoman_feeling_post06_01",
+          "speaker": "旁白",
+          "text": "纪尧习惯在“有人在这里哭过”相关文件旁边写校验时间和设备来源。他反复强调：数字证据不是神谕，只是另一种会坏、但能被比较的记录。"
+        },
+        {
+          "id": "r1_route_xiaoman_feeling_post07_01",
+          "speaker": "旁白",
+          "text": "这些关系把陈渡重新拽回人群。何川和纪尧都没有被写进“六位女主”的路线选择里，却会因为他的决定改变自己的时间表、情绪和判断。"
+        },
+        {
+          "id": "r1_route_xiaoman_feeling_post07_02",
+          "speaker": "旁白",
+          "text": "世界因此不再只有攻略对象与谜题。"
+        },
+        {
+          "id": "r1_route_xiaoman_feeling_post08_01",
+          "speaker": "陈渡",
+          "text": "把何川和纪尧也记进去。不是因为他们掌握答案，是因为如果我们的选择伤到普通人的生活，那也必须算在结果里。"
+        },
+        {
+          "id": "r1_route_xiaoman_feeling_post09_01",
+          "speaker": "旁白",
+          "text": "异常退到视野边缘时，生活立刻重新挤回来：未回的消息、明天的安排、家里留的饭。陈渡第一次觉得这些麻烦本身就是好事。"
+        },
+        {
+          "id": "r1_route_xiaoman_feeling_post10_01",
+          "speaker": "旁白",
+          "text": "在离开“有人在这里哭过”这一刻之前，陈渡又回头确认了一次周围。不是为了寻找隐藏线索，只是为了记住：这一轮里，梧城一中·旧美术教室确实有人生活过。"
+        }
+      ],
+      "next": "route_merge_message"
+    },
+    {
+      "id": "route_xuqi_night",
+      "chapter": 3,
+      "title": "夜梧城里的第七把椅子",
+      "location": "夜梧城·旧美术教室",
+      "time": "18:42",
+      "background": "night-art-room",
+      "character": "xuqi",
+      "lines": [
+        {
+          "id": "r1_route_xuqi_night_pre01_01",
+          "speaker": "旁白",
+          "text": "18:42，夜梧城·旧美术教室。黑板右上角写着值日名单，窗台堆着没领走的练习册；一切都能被班长、老师和同学共同证明。"
+        },
+        {
+          "id": "r1_route_xuqi_night_pre02_01",
+          "speaker": "旁白",
+          "text": "陈渡以前从不注意这些细节。经历几次读取以后，他开始强迫自己记住能被别人共同验证的东西：谁坐在哪一排、谁最后离开、广播播了什么。"
+        },
+        {
+          "id": "r1_route_xuqi_night_pre03_01",
+          "speaker": "梁成",
+          "text": "南湖站的交接本上还有你们那天留下的记录。我不懂你们说的夜梧城，但现实这边有人会记。"
+        },
+        {
+          "id": "r1_route_xuqi_night_pre04_01",
+          "speaker": "许栖",
+          "text": "那就别让那页被撕掉。现实里有人记得，比我在里面多走一条路重要。"
+        },
+        {
+          "id": "r1_route_xuqi_night_pre05_01",
+          "speaker": "旁白",
+          "text": "这段时间里真正需要处理的是：许栖在夜梧城有自己的路线、补给习惯和害怕的角落；她不只是世界观讲解员。 陈渡不再允许自己只记住“有用线索”。"
+        },
+        {
+          "id": "r1_route_xuqi_night_pre05_02",
+          "speaker": "旁白",
+          "text": "谁在场、谁被吓到、谁因此错过原本的安排，都属于同一件事的后果。"
+        },
+        {
+          "id": "r1_route_xuqi_night_pre06_01",
+          "speaker": "旁白",
+          "text": "调查逐渐成形以后，六个人第一次需要把各自的方法放在同一张桌上。梦、情绪、地图、档案和时间戳互相冲突；"
+        },
+        {
+          "id": "r1_route_xuqi_night_pre06_02",
+          "speaker": "旁白",
+          "text": "真正困难的地方，是每个人都只能看见自己那一块。"
+        },
+        {
+          "id": "r1_route_xuqi_night_pre07_01",
+          "speaker": "旁白",
+          "text": "许栖知道的东西很多，却不愿再被当成说明书。她会把路线画在纸上、会算电池够不够，也会在听见正常人说“明天见”时短暂走神。"
+        },
+        {
+          "id": "c3c001",
+          "speaker": "旁白",
+          "text": "现实中的旧美术教室有六把椅子。夜梧城里有七把。"
+        },
+        {
+          "id": "c3c002",
+          "speaker": "陈渡",
+          "text": "多出来的是谁的？"
+        },
+        {
+          "id": "c3c003",
+          "speaker": "许栖",
+          "text": "你问错了。",
+          "expression": "serious"
+        },
+        {
+          "id": "c3c004",
+          "speaker": "许栖",
+          "text": "应该问：是谁每次读档以后，都被从照片里拿掉了？"
+        },
+        {
+          "id": "c3c005",
+          "speaker": "陈渡",
+          "text": "你知道答案？"
+        },
+        {
+          "id": "c3c006",
+          "speaker": "许栖",
+          "text": "我只知道一件事。10月24日杀你的人，会是你亲口请求她动手的。",
+          "expression": "worried"
+        },
+        {
+          "id": "r1_route_xuqi_night_post01_01",
+          "speaker": "陈渡",
+          "text": "我先把能确认的写下来。记不住也没关系，至少别再假装只有我一个人的记忆算数。"
+        },
+        {
+          "id": "r1_route_xuqi_night_post02_01",
+          "speaker": "旁白",
+          "text": "他在备忘录最上方写了“夜梧城里的第七把椅子”。下面没有先写结论，而是列了三个栏目：现实里发生了什么、谁能证明、异常改变了什么。"
+        },
+        {
+          "id": "r1_route_xuqi_night_post02_02",
+          "speaker": "旁白",
+          "text": "这个习惯很慢，却让调查第一次不像追逐谜语。"
+        },
+        {
+          "id": "r1_route_xuqi_night_post03_01",
+          "speaker": "旁白",
+          "text": "他们开始给证据标来源，而不是只记结论。梦境标“主观残响”，旧纸标“实体证据”，手机记录标“数字记录”，第三方记忆则单独写名字和时间。"
+        },
+        {
+          "id": "r1_route_xuqi_night_post04_01",
+          "speaker": "旁白",
+          "text": "这种笨拙的调查方法也让关系变得难堪：有些话一旦记进表格，就像在质疑朋友；有些话不记，又可能在下一轮彻底消失。"
+        },
+        {
+          "id": "r1_route_xuqi_night_post05_01",
+          "speaker": "旁白",
+          "text": "何川把跑步群的轨迹截图留了下来。哪怕“夜梧城里的第七把椅子”与训练无关，连续几天的定位记录也让梧城哪些路真实存在有了第三方参照。"
+        },
+        {
+          "id": "r1_route_xuqi_night_post06_01",
+          "speaker": "旁白",
+          "text": "许蓉提醒他们，关于“夜梧城里的第七把椅子”的任何纸质证据都要写清来源。她不参与猜谜，却坚持不能因为着急就破坏以后唯一能复核的东西。"
+        },
+        {
+          "id": "r1_route_xuqi_night_post07_01",
+          "speaker": "旁白",
+          "text": "这些关系把陈渡重新拽回人群。何川和许蓉都没有被写进“六位女主”的路线选择里，却会因为他的决定改变自己的时间表、情绪和判断。"
+        },
+        {
+          "id": "r1_route_xuqi_night_post07_02",
+          "speaker": "旁白",
+          "text": "世界因此不再只有攻略对象与谜题。"
+        },
+        {
+          "id": "r1_route_xuqi_night_post08_01",
+          "speaker": "陈渡",
+          "text": "把何川和许蓉也记进去。不是因为他们掌握答案，是因为如果我们的选择伤到普通人的生活，那也必须算在结果里。"
+        },
+        {
+          "id": "r1_route_xuqi_night_post09_01",
+          "speaker": "旁白",
+          "text": "陈渡把这一幕记了下来。他现在知道，真正可靠的锚点往往不是时间，而是别人对同一件小事的记忆。"
+        },
+        {
+          "id": "r1_route_xuqi_night_post10_01",
+          "speaker": "旁白",
+          "text": "在离开“夜梧城里的第七把椅子”这一刻之前，陈渡又回头确认了一次周围。"
+        },
+        {
+          "id": "r1_route_xuqi_night_post10_02",
+          "speaker": "旁白",
+          "text": "不是为了寻找隐藏线索，只是为了记住：这一轮里，夜梧城·旧美术教室确实有人生活过。"
+        }
+      ],
+      "next": "route_merge_message"
+    },
+    {
+      "id": "route_merge_message",
+      "chapter": 3,
+      "title": "来自明天的群聊",
+      "location": "梧城一中·旧美术教室",
+      "time": "17:48",
+      "background": "old-art-room",
+      "character": "nanxing",
+      "lines": [
+        {
+          "id": "r1_route_merge_message_pre01_01",
+          "speaker": "旁白",
+          "text": "17:48，梧城一中·旧美术教室。黑板右上角写着值日名单，窗台堆着没领走的练习册；一切都能被班长、老师和同学共同证明。"
+        },
+        {
+          "id": "r1_route_merge_message_pre02_01",
+          "speaker": "旁白",
+          "text": "他把异常暂时压在心里，没有立刻说出口。这里还有太多不知情的人；一句“世界会重来”不能替他们完成眼前的作业、工作和回家路。"
+        },
+        {
+          "id": "r1_route_merge_message_pre03_01",
+          "speaker": "纪尧",
+          "text": "我把设备时间、服务器时间和照片元数据拆开核过了。三个都能错，但不该用同一种方式错。"
+        },
+        {
+          "id": "r1_route_merge_message_pre04_01",
+          "speaker": "乔南星",
+          "text": "所以先别说闹鬼。先承认我们的钟不可靠。"
+        },
+        {
+          "id": "r1_route_merge_message_pre05_01",
+          "speaker": "旁白",
+          "text": "这段时间里真正需要处理的是：三种调查方法带回不同证据，乔南星和纪尧负责把时间戳做成可比对日志。 陈渡不再允许自己只记住“有用线索”。"
+        },
+        {
+          "id": "r1_route_merge_message_pre05_02",
+          "speaker": "旁白",
+          "text": "谁在场、谁被吓到、谁因此错过原本的安排，都属于同一件事的后果。"
+        },
+        {
+          "id": "r1_route_merge_message_pre06_01",
+          "speaker": "旁白",
+          "text": "调查逐渐成形以后，六个人第一次需要把各自的方法放在同一张桌上。梦、情绪、地图、档案和时间戳互相冲突；"
+        },
+        {
+          "id": "r1_route_merge_message_pre06_02",
+          "speaker": "旁白",
+          "text": "真正困难的地方，是每个人都只能看见自己那一块。"
+        },
+        {
+          "id": "r1_route_merge_message_pre07_01",
+          "speaker": "旁白",
+          "text": "六个人的意见并不总是一致。有人想继续查，有人更关心先把普通人撤出去，有人坚持证据不足就不能下结论。陈渡开始接受“团队”并不意味着所有人听他的。"
+        },
+        {
+          "id": "c3d001",
+          "speaker": "乔南星",
+          "text": "都别说话。我的群聊里多了一个人。",
+          "expression": "surprised"
+        },
+        {
+          "id": "c3d002",
+          "speaker": "旁白",
+          "text": "群成员显示七人。可头像栏里只有六张脸。"
+        },
+        {
+          "id": "c3d003",
+          "speaker": "乔南星",
+          "text": "第七个账号叫“陈渡（已离线）”。",
+          "expression": "serious"
+        },
+        {
+          "id": "c3d004",
+          "speaker": "系统",
+          "text": "陈渡（已离线）：别让她们在18:42站成一排。"
+        },
+        {
+          "id": "c3d005",
+          "speaker": "乔南星",
+          "text": "发送时间还是明天。",
+          "expression": "worried"
+        },
+        {
+          "id": "r1_route_merge_message_post01_01",
+          "speaker": "陈渡",
+          "text": "我先把能确认的写下来。记不住也没关系，至少别再假装只有我一个人的记忆算数。"
+        },
+        {
+          "id": "r1_route_merge_message_post02_01",
+          "speaker": "旁白",
+          "text": "他在备忘录最上方写了“来自明天的群聊”。下面没有先写结论，而是列了三个栏目：现实里发生了什么、谁能证明、异常改变了什么。"
+        },
+        {
+          "id": "r1_route_merge_message_post02_02",
+          "speaker": "旁白",
+          "text": "这个习惯很慢，却让调查第一次不像追逐谜语。"
+        },
+        {
+          "id": "r1_route_merge_message_post03_01",
+          "speaker": "旁白",
+          "text": "他们开始给证据标来源，而不是只记结论。梦境标“主观残响”，旧纸标“实体证据”，手机记录标“数字记录”，第三方记忆则单独写名字和时间。"
+        },
+        {
+          "id": "r1_route_merge_message_post04_01",
+          "speaker": "旁白",
+          "text": "这种笨拙的调查方法也让关系变得难堪：有些话一旦记进表格，就像在质疑朋友；有些话不记，又可能在下一轮彻底消失。"
+        },
+        {
+          "id": "r1_route_merge_message_post05_01",
+          "speaker": "旁白",
+          "text": "林澄没有参与调查，却会在林晚回家太晚时打电话。她关心的不是“来自明天的群聊”有什么意义，只关心表妹是不是又一个人把害怕藏起来。"
+        },
+        {
+          "id": "r1_route_merge_message_post06_01",
+          "speaker": "旁白",
+          "text": "罗秀梅记不住什么18:42理论，却记得陈渡这周哪天没来食堂。她的记忆琐碎到近乎无用，也因此不容易被主角团自己的推理带偏。"
+        },
+        {
+          "id": "r1_route_merge_message_post07_01",
+          "speaker": "旁白",
+          "text": "这些关系把陈渡重新拽回人群。林澄和罗秀梅都没有被写进“六位女主”的路线选择里，却会因为他的决定改变自己的时间表、情绪和判断。"
+        },
+        {
+          "id": "r1_route_merge_message_post07_02",
+          "speaker": "旁白",
+          "text": "世界因此不再只有攻略对象与谜题。"
+        },
+        {
+          "id": "r1_route_merge_message_post08_01",
+          "speaker": "陈渡",
+          "text": "把林澄和罗秀梅也记进去。不是因为他们掌握答案，是因为如果我们的选择伤到普通人的生活，那也必须算在结果里。"
+        },
+        {
+          "id": "r1_route_merge_message_post09_01",
+          "speaker": "旁白",
+          "text": "异常退到视野边缘时，生活立刻重新挤回来：未回的消息、明天的安排、家里留的饭。陈渡第一次觉得这些麻烦本身就是好事。"
+        },
+        {
+          "id": "r1_route_merge_message_post10_01",
+          "speaker": "旁白",
+          "text": "在离开“来自明天的群聊”这一刻之前，陈渡又回头确认了一次周围。不是为了寻找隐藏线索，只是为了记住：这一轮里，梧城一中·旧美术教室确实有人生活过。"
+        }
+      ],
+      "next": "six_person_meeting"
+    },
+    {
+      "id": "six_person_meeting",
+      "chapter": 3,
+      "title": "六个人的证词",
+      "location": "梧城一中·旧美术教室",
+      "time": "18:05",
+      "background": "old-art-room",
+      "character": "tinglan",
+      "lines": [
+        {
+          "id": "r1_six_person_meeting_pre01_01",
+          "speaker": "旁白",
+          "text": "18:05，梧城一中·旧美术教室。黑板右上角写着值日名单，窗台堆着没领走的练习册；一切都能被班长、老师和同学共同证明。"
+        },
+        {
+          "id": "r1_six_person_meeting_pre02_01",
+          "speaker": "旁白",
+          "text": "他把异常暂时压在心里，没有立刻说出口。这里还有太多不知情的人；一句“世界会重来”不能替他们完成眼前的作业、工作和回家路。"
+        },
+        {
+          "id": "r1_six_person_meeting_pre03_01",
+          "speaker": "徐嘉树",
+          "text": "你这几天神出鬼没得跟欠了全班作业似的。真出事就说，别每次都用“没事”打发人。"
+        },
+        {
+          "id": "r1_six_person_meeting_pre04_01",
+          "speaker": "程妍",
+          "text": "还有，顾老师让我提醒你：请假、迟到、作业，至少选一样按正常流程来。"
+        },
+        {
+          "id": "r1_six_person_meeting_pre05_01",
+          "speaker": "旁白",
+          "text": "这段时间里真正需要处理的是：六位女主首次以彼此有摩擦、有旧识和不同优先级的群体说话；徐嘉树等人从外围制造现实压力。"
+        },
+        {
+          "id": "r1_six_person_meeting_key01_01",
+          "speaker": "程妍",
+          "text": "我不知道你们在旧美术教室开什么会，但今天值日名单少了四个人。至少给我一个能跟顾老师解释的版本。"
+        },
+        {
+          "id": "r1_six_person_meeting_key02_01",
+          "speaker": "周小满",
+          "text": "就说我们在做……城市怪谈社会实践？"
+        },
+        {
+          "id": "r1_six_person_meeting_key03_01",
+          "speaker": "沈听澜",
+          "text": "这个解释比真相更容易被记过。"
+        },
+        {
+          "id": "r1_six_person_meeting_key04_01",
+          "speaker": "唐梨",
+          "text": "那就先把值日补了。世界晚十分钟再毁。"
+        },
+        {
+          "id": "r1_six_person_meeting_pre05_02",
+          "speaker": "旁白",
+          "text": " 陈渡不再允许自己只记住“有用线索”。谁在场、谁被吓到、谁因此错过原本的安排，都属于同一件事的后果。"
+        },
+        {
+          "id": "r1_six_person_meeting_pre06_01",
+          "speaker": "旁白",
+          "text": "调查逐渐成形以后，六个人第一次需要把各自的方法放在同一张桌上。梦、情绪、地图、档案和时间戳互相冲突；"
+        },
+        {
+          "id": "r1_six_person_meeting_pre06_02",
+          "speaker": "旁白",
+          "text": "真正困难的地方，是每个人都只能看见自己那一块。"
+        },
+        {
+          "id": "r1_six_person_meeting_pre07_01",
+          "speaker": "旁白",
+          "text": "六个人的意见并不总是一致。有人想继续查，有人更关心先把普通人撤出去，有人坚持证据不足就不能下结论。陈渡开始接受“团队”并不意味着所有人听他的。"
+        },
+        {
+          "id": "c3e001",
+          "speaker": "沈听澜",
+          "text": "先把结论拆开。未来的陈渡知道我们会聚在一起。",
+          "expression": "serious"
+        },
+        {
+          "id": "c3e002",
+          "speaker": "唐梨",
+          "text": "而且他觉得“站成一排”本身有危险。",
+          "expression": "serious"
+        },
+        {
+          "id": "c3e003",
+          "speaker": "周小满",
+          "text": "你们有没有觉得，这句话像是在提醒我们拍照？",
+          "expression": "worried"
+        },
+        {
+          "id": "c3e004",
+          "speaker": "林晚",
+          "text": "南湖站那几张照片里，我们正好站成了一排。",
+          "expression": "serious"
+        },
+        {
+          "id": "c3e005",
+          "speaker": "许栖",
+          "text": "那就别拍。",
+          "expression": "worried"
+        },
+        {
+          "id": "c3e006",
+          "speaker": "乔南星",
+          "text": "晚了。手机自己打开相机了。",
+          "expression": "surprised"
+        },
+        {
+          "id": "r1_six_person_meeting_post01_01",
+          "speaker": "陈渡",
+          "text": "我先把能确认的写下来。记不住也没关系，至少别再假装只有我一个人的记忆算数。"
+        },
+        {
+          "id": "r1_six_person_meeting_post02_01",
+          "speaker": "旁白",
+          "text": "他在备忘录最上方写了“六个人的证词”。下面没有先写结论，而是列了三个栏目：现实里发生了什么、谁能证明、异常改变了什么。"
+        },
+        {
+          "id": "r1_six_person_meeting_post02_02",
+          "speaker": "旁白",
+          "text": "这个习惯很慢，却让调查第一次不像追逐谜语。"
+        },
+        {
+          "id": "r1_six_person_meeting_post03_01",
+          "speaker": "旁白",
+          "text": "他们开始给证据标来源，而不是只记结论。梦境标“主观残响”，旧纸标“实体证据”，手机记录标“数字记录”，第三方记忆则单独写名字和时间。"
+        },
+        {
+          "id": "r1_six_person_meeting_post04_01",
+          "speaker": "旁白",
+          "text": "这种笨拙的调查方法也让关系变得难堪：有些话一旦记进表格，就像在质疑朋友；有些话不记，又可能在下一轮彻底消失。"
+        },
+        {
+          "id": "r1_six_person_meeting_post05_01",
+          "speaker": "旁白",
+          "text": "陈岚的未读消息还停在手机上：下班时间可能推迟，冰箱里有饭。对陈渡来说，这种与“六个人的证词”毫无关系的安排反而最像现实。"
+        },
+        {
+          "id": "r1_six_person_meeting_post06_01",
+          "speaker": "旁白",
+          "text": "许蓉提醒他们，关于“六个人的证词”的任何纸质证据都要写清来源。她不参与猜谜，却坚持不能因为着急就破坏以后唯一能复核的东西。"
+        },
+        {
+          "id": "r1_six_person_meeting_post07_01",
+          "speaker": "旁白",
+          "text": "这些关系把陈渡重新拽回人群。陈岚和许蓉都没有被写进“六位女主”的路线选择里，却会因为他的决定改变自己的时间表、情绪和判断。"
+        },
+        {
+          "id": "r1_six_person_meeting_post07_02",
+          "speaker": "旁白",
+          "text": "世界因此不再只有攻略对象与谜题。"
+        },
+        {
+          "id": "r1_six_person_meeting_post08_01",
+          "speaker": "陈渡",
+          "text": "把陈岚和许蓉也记进去。不是因为他们掌握答案，是因为如果我们的选择伤到普通人的生活，那也必须算在结果里。"
+        },
+        {
+          "id": "r1_six_person_meeting_post09_01",
+          "speaker": "旁白",
+          "text": "他们没有因此获得完整答案，只得到一条更窄的路。可比起一个漂亮的解释，能够被几个人共同复核的事实更有用。"
+        },
+        {
+          "id": "r1_six_person_meeting_post10_01",
+          "speaker": "旁白",
+          "text": "在离开“六个人的证词”这一刻之前，陈渡又回头确认了一次周围。不是为了寻找隐藏线索，只是为了记住：这一轮里，梧城一中·旧美术教室确实有人生活过。"
+        }
+      ],
+      "next": "archive_photo"
+    },
+    {
+      "id": "archive_photo",
+      "chapter": 3,
+      "title": "第七个人没有脸",
+      "location": "梧城一中·旧美术教室",
+      "time": "18:42",
+      "background": "old-art-room",
+      "noSprite": true,
+      "cg": "six-chairs-cg",
+      "cgFrom": 1,
+      "lines": [
+        {
+          "id": "r1_archive_photo_pre01_01",
+          "speaker": "旁白",
+          "text": "18:42，梧城一中·旧美术教室。黑板右上角写着值日名单，窗台堆着没领走的练习册；一切都能被班长、老师和同学共同证明。"
+        },
+        {
+          "id": "r1_archive_photo_pre02_01",
+          "speaker": "旁白",
+          "text": "如果只看手机时间，这一刻和任何一天没有区别。真正让陈渡不安的，是身边的人仍然沿着熟悉的习惯行动，而他的记忆已经不再属于同一条时间线。"
+        },
+        {
+          "id": "r1_archive_photo_pre03_01",
+          "speaker": "许蓉",
+          "text": "要查可以，先登记。旧资料不是线索箱，翻坏一页就少一页。"
+        },
+        {
+          "id": "r1_archive_photo_pre04_01",
+          "speaker": "沈砚秋",
+          "text": "记录有来源、有缺口，也有人当年为什么要这样写。别把缺失直接当成阴谋。"
+        },
+        {
+          "id": "r1_archive_photo_pre05_01",
+          "speaker": "旁白",
+          "text": "这段时间里真正需要处理的是：第七把椅子照片通过档案来源、拍摄设备、人物站位三条线核验；没人能简单把“第七人”说成鬼。"
+        },
+        {
+          "id": "r1_archive_photo_pre05_02",
+          "speaker": "旁白",
+          "text": " 陈渡不再允许自己只记住“有用线索”。谁在场、谁被吓到、谁因此错过原本的安排，都属于同一件事的后果。"
+        },
+        {
+          "id": "r1_archive_photo_pre06_01",
+          "speaker": "旁白",
+          "text": "调查逐渐成形以后，六个人第一次需要把各自的方法放在同一张桌上。梦、情绪、地图、档案和时间戳互相冲突；"
+        },
+        {
+          "id": "r1_archive_photo_pre06_02",
+          "speaker": "旁白",
+          "text": "真正困难的地方，是每个人都只能看见自己那一块。"
+        },
+        {
+          "id": "r1_archive_photo_pre07_01",
+          "speaker": "旁白",
+          "text": "六个人的意见并不总是一致。有人想继续查，有人更关心先把普通人撤出去，有人坚持证据不足就不能下结论。陈渡开始接受“团队”并不意味着所有人听他的。"
+        },
+        {
+          "id": "c3f001",
+          "speaker": "旁白",
+          "text": "18:42。快门声响起。没有人碰手机。"
+        },
+        {
+          "id": "c3f002",
+          "speaker": "旁白",
+          "text": "照片里，六名女生站在窗前。陈渡不在画面中。"
+        },
+        {
+          "id": "c3f003",
+          "speaker": "唐梨",
+          "text": "等等。椅子。"
+        },
+        {
+          "id": "c3f004",
+          "speaker": "旁白",
+          "text": "她们身后有七把椅子。第七把椅子上坐着一个被曝光抹白的人形。"
+        },
+        {
+          "id": "c3f005",
+          "speaker": "沈听澜",
+          "text": "这张照片和2009年的旧档案构图一样。",
+          "expression": "surprised"
+        },
+        {
+          "id": "c3f006",
+          "speaker": "陈渡",
+          "text": "所以失踪的第七个人从来没有消失。只是没人能记住他。"
+        },
+        {
+          "id": "r1_archive_photo_post01_01",
+          "speaker": "陈渡",
+          "text": "我先把能确认的写下来。记不住也没关系，至少别再假装只有我一个人的记忆算数。"
+        },
+        {
+          "id": "r1_archive_photo_post02_01",
+          "speaker": "旁白",
+          "text": "他在备忘录最上方写了“第七个人没有脸”。下面没有先写结论，而是列了三个栏目：现实里发生了什么、谁能证明、异常改变了什么。"
+        },
+        {
+          "id": "r1_archive_photo_post02_02",
+          "speaker": "旁白",
+          "text": "这个习惯很慢，却让调查第一次不像追逐谜语。"
+        },
+        {
+          "id": "r1_archive_photo_post03_01",
+          "speaker": "旁白",
+          "text": "他们开始给证据标来源，而不是只记结论。梦境标“主观残响”，旧纸标“实体证据”，手机记录标“数字记录”，第三方记忆则单独写名字和时间。"
+        },
+        {
+          "id": "r1_archive_photo_post04_01",
+          "speaker": "旁白",
+          "text": "这种笨拙的调查方法也让关系变得难堪：有些话一旦记进表格，就像在质疑朋友；有些话不记，又可能在下一轮彻底消失。"
+        },
+        {
+          "id": "r1_archive_photo_post05_01",
+          "speaker": "旁白",
+          "text": "顾明远后来问起梧城一中·旧美术教室的事，第一反应仍是安全问题。他没有相信怪谈，却认真记下学生的异常反应，并要求所有人先保证能回家。"
+        },
+        {
+          "id": "r1_archive_photo_post06_01",
+          "speaker": "旁白",
+          "text": "林澄没有参与调查，却会在林晚回家太晚时打电话。她关心的不是“第七个人没有脸”有什么意义，只关心表妹是不是又一个人把害怕藏起来。"
+        },
+        {
+          "id": "r1_archive_photo_post07_01",
+          "speaker": "旁白",
+          "text": "这些关系把陈渡重新拽回人群。顾明远和林澄都没有被写进“六位女主”的路线选择里，却会因为他的决定改变自己的时间表、情绪和判断。"
+        },
+        {
+          "id": "r1_archive_photo_post07_02",
+          "speaker": "旁白",
+          "text": "世界因此不再只有攻略对象与谜题。"
+        },
+        {
+          "id": "r1_archive_photo_post08_01",
+          "speaker": "陈渡",
+          "text": "把顾明远和林澄也记进去。不是因为他们掌握答案，是因为如果我们的选择伤到普通人的生活，那也必须算在结果里。"
+        },
+        {
+          "id": "r1_archive_photo_post09_01",
+          "speaker": "旁白",
+          "text": "陈渡把这一幕记了下来。他现在知道，真正可靠的锚点往往不是时间，而是别人对同一件小事的记忆。"
+        },
+        {
+          "id": "r1_archive_photo_post10_01",
+          "speaker": "旁白",
+          "text": "在离开“第七个人没有脸”这一刻之前，陈渡又回头确认了一次周围。不是为了寻找隐藏线索，只是为了记住：这一轮里，梧城一中·旧美术教室确实有人生活过。"
+        }
+      ],
+      "next": "future_rule"
+    },
+    {
+      "id": "future_rule",
+      "chapter": 3,
+      "title": "杀你的人不是凶手",
+      "location": "梧城一中·旧美术教室",
+      "time": "18:44",
+      "background": "old-art-room",
+      "character": "nanxing",
+      "lines": [
+        {
+          "id": "r1_future_rule_pre01_01",
+          "speaker": "旁白",
+          "text": "18:44，梧城一中·旧美术教室。黑板右上角写着值日名单，窗台堆着没领走的练习册；一切都能被班长、老师和同学共同证明。"
+        },
+        {
+          "id": "r1_future_rule_pre02_01",
+          "speaker": "旁白",
+          "text": "他把异常暂时压在心里，没有立刻说出口。这里还有太多不知情的人；一句“世界会重来”不能替他们完成眼前的作业、工作和回家路。"
+        },
+        {
+          "id": "r1_future_rule_pre03_01",
+          "speaker": "纪尧",
+          "text": "我把设备时间、服务器时间和照片元数据拆开核过了。三个都能错，但不该用同一种方式错。"
+        },
+        {
+          "id": "r1_future_rule_pre04_01",
+          "speaker": "乔南星",
+          "text": "所以先别说闹鬼。先承认我们的钟不可靠。"
+        },
+        {
+          "id": "r1_future_rule_pre05_01",
+          "speaker": "旁白",
+          "text": "这段时间里真正需要处理的是：未来消息的规则被实验验证，同时展示实验会伤害普通人的生活安排和信任。 陈渡不再允许自己只记住“有用线索”。"
+        },
+        {
+          "id": "r1_future_rule_pre05_02",
+          "speaker": "旁白",
+          "text": "谁在场、谁被吓到、谁因此错过原本的安排，都属于同一件事的后果。"
+        },
+        {
+          "id": "r1_future_rule_pre06_01",
+          "speaker": "旁白",
+          "text": "调查逐渐成形以后，六个人第一次需要把各自的方法放在同一张桌上。梦、情绪、地图、档案和时间戳互相冲突；"
+        },
+        {
+          "id": "r1_future_rule_pre06_02",
+          "speaker": "旁白",
+          "text": "真正困难的地方，是每个人都只能看见自己那一块。"
+        },
+        {
+          "id": "r1_future_rule_pre07_01",
+          "speaker": "旁白",
+          "text": "六个人的意见并不总是一致。有人想继续查，有人更关心先把普通人撤出去，有人坚持证据不足就不能下结论。陈渡开始接受“团队”并不意味着所有人听他的。"
+        },
+        {
+          "id": "c3h001",
+          "speaker": "旁白",
+          "text": "乔南星的手机再次震动。"
+        },
+        {
+          "id": "c3h002",
+          "speaker": "系统",
+          "text": "陈渡（已离线）：杀你的人不是凶手。"
+        },
+        {
+          "id": "c3h003",
+          "speaker": "系统",
+          "text": "陈渡（已离线）：不要阻止她。先弄明白我为什么会求她。"
+        },
+        {
+          "id": "c3h004",
+          "speaker": "陈渡",
+          "text": "……未来的我到底在救谁？刚才那个选择，我明明还没开口。"
+        },
+        {
+          "id": "c3h005",
+          "speaker": "许栖",
+          "text": "也可能是在救世界。也可能只是在救一个人。",
+          "expression": "worried"
+        },
+        {
+          "id": "r1_future_rule_post01_01",
+          "speaker": "陈渡",
+          "text": "我先把能确认的写下来。记不住也没关系，至少别再假装只有我一个人的记忆算数。"
+        },
+        {
+          "id": "r1_future_rule_post02_01",
+          "speaker": "旁白",
+          "text": "他在备忘录最上方写了“杀你的人不是凶手”。下面没有先写结论，而是列了三个栏目：现实里发生了什么、谁能证明、异常改变了什么。"
+        },
+        {
+          "id": "r1_future_rule_post02_02",
+          "speaker": "旁白",
+          "text": "这个习惯很慢，却让调查第一次不像追逐谜语。"
+        },
+        {
+          "id": "r1_future_rule_post03_01",
+          "speaker": "旁白",
+          "text": "他们开始给证据标来源，而不是只记结论。梦境标“主观残响”，旧纸标“实体证据”，手机记录标“数字记录”，第三方记忆则单独写名字和时间。"
+        },
+        {
+          "id": "r1_future_rule_post04_01",
+          "speaker": "旁白",
+          "text": "这种笨拙的调查方法也让关系变得难堪：有些话一旦记进表格，就像在质疑朋友；有些话不记，又可能在下一轮彻底消失。"
+        },
+        {
+          "id": "r1_future_rule_post05_01",
+          "speaker": "旁白",
+          "text": "程妍把“杀你的人不是凶手”发生的时段和班级考勤对了一遍。她只关心谁缺席、谁需要补手续，却因此提供了一份异常很难伪造的集体记录。"
+        },
+        {
+          "id": "r1_future_rule_post06_01",
+          "speaker": "旁白",
+          "text": "陈岚的未读消息还停在手机上：下班时间可能推迟，冰箱里有饭。对陈渡来说，这种与“杀你的人不是凶手”毫无关系的安排反而最像现实。"
+        },
+        {
+          "id": "r1_future_rule_post07_01",
+          "speaker": "旁白",
+          "text": "这些关系把陈渡重新拽回人群。程妍和陈岚都没有被写进“六位女主”的路线选择里，却会因为他的决定改变自己的时间表、情绪和判断。"
+        },
+        {
+          "id": "r1_future_rule_post07_02",
+          "speaker": "旁白",
+          "text": "世界因此不再只有攻略对象与谜题。"
+        },
+        {
+          "id": "r1_future_rule_post08_01",
+          "speaker": "陈渡",
+          "text": "把程妍和陈岚也记进去。不是因为他们掌握答案，是因为如果我们的选择伤到普通人的生活，那也必须算在结果里。"
+        },
+        {
+          "id": "r1_future_rule_post09_01",
+          "speaker": "旁白",
+          "text": "陈渡把这一幕记了下来。他现在知道，真正可靠的锚点往往不是时间，而是别人对同一件小事的记忆。"
+        },
+        {
+          "id": "r1_future_rule_post10_01",
+          "speaker": "旁白",
+          "text": "在离开“杀你的人不是凶手”这一刻之前，陈渡又回头确认了一次周围。"
+        },
+        {
+          "id": "r1_future_rule_post10_02",
+          "speaker": "旁白",
+          "text": "不是为了寻找隐藏线索，只是为了记住：这一轮里，梧城一中·旧美术教室确实有人生活过。"
+        }
+      ],
+      "next": "route_focus_choice"
+    },
+    {
+      "id": "focus_linwan_open",
+      "chapter": 3,
+      "title": "林晚线·门后的雨",
+      "location": "东门旧街",
+      "time": "19:12",
+      "background": "old-stationery",
+      "character": "linwan",
+      "lines": [
+        {
+          "id": "r1_focus_linwan_open_pre01_01",
+          "speaker": "旁白",
+          "text": "19:12，东门旧街。梧城的天气、交通和人群仍按自己的节奏前进。"
+        },
+        {
+          "id": "r1_focus_linwan_open_pre01_02",
+          "speaker": "旁白",
+          "text": "路边小店在换班，骑车的人按铃借道，没有谁知道陈渡正在把这些琐碎当成确认现实的坐标。"
+        },
+        {
+          "id": "r1_focus_linwan_open_pre02_01",
+          "speaker": "旁白",
+          "text": "过去几天里，陈渡养成了一个笨办法：每到一个地方先看人，再看钟，最后看自己。人会记错，钟会坏，而他本人更不值得完全相信。"
+        },
+        {
+          "id": "r1_focus_linwan_open_pre03_01",
+          "speaker": "林澄",
+          "text": "晚晚，你小时候一到下雨就做同一个梦。醒来又说记不清，我一直当你怕雷。"
+        },
+        {
+          "id": "r1_focus_linwan_open_pre04_01",
+          "speaker": "林晚",
+          "text": "我现在也希望只是怕雷。"
+        },
+        {
+          "id": "r1_focus_linwan_open_pre05_01",
+          "speaker": "旁白",
+          "text": "这段时间里真正需要处理的是：保留早期路线入口原型为档案场景，补足林晚对“被选择”的抗拒。 陈渡不再允许自己只记住“有用线索”。"
+        },
+        {
+          "id": "r1_focus_linwan_open_pre05_02",
+          "speaker": "旁白",
+          "text": "谁在场、谁被吓到、谁因此错过原本的安排，都属于同一件事的后果。"
+        },
+        {
+          "id": "r1_focus_linwan_open_pre06_01",
+          "speaker": "旁白",
+          "text": "调查逐渐成形以后，六个人第一次需要把各自的方法放在同一张桌上。梦、情绪、地图、档案和时间戳互相冲突；"
+        },
+        {
+          "id": "r1_focus_linwan_open_pre06_02",
+          "speaker": "旁白",
+          "text": "真正困难的地方，是每个人都只能看见自己那一块。"
+        },
+        {
+          "id": "r1_focus_linwan_open_pre07_01",
+          "speaker": "旁白",
+          "text": "林晚没有把自己摆在“被保护的人”位置。"
+        },
+        {
+          "id": "r1_focus_linwan_open_pre07_02",
+          "speaker": "旁白",
+          "text": "她会停下来确认自己的意见有没有被过去的记忆绑架，也会追问陈渡是不是又把“我以前答应过”当作替现在的人做决定的借口。"
+        },
+        {
+          "id": "c3j001",
+          "speaker": "林晚",
+          "text": "如果那封信真的是另一个我写的，我想知道她为什么这么怕你读档。",
+          "expression": "serious"
+        },
+        {
+          "id": "c3j002",
+          "speaker": "陈渡",
+          "text": "我也想知道，我到底忘了你多少次。"
+        },
+        {
+          "id": "c3j003",
+          "speaker": "旁白",
+          "text": "灰墙里传来卷帘门被拉开的声音。"
+        },
+        {
+          "id": "c3j004",
+          "speaker": "林晚",
+          "text": "陈渡。门出现了。",
+          "expression": "surprised"
+        },
+        {
+          "id": "r1_focus_linwan_open_post01_01",
+          "speaker": "陈渡",
+          "text": "我先把能确认的写下来。记不住也没关系，至少别再假装只有我一个人的记忆算数。"
+        },
+        {
+          "id": "r1_focus_linwan_open_post02_01",
+          "speaker": "旁白",
+          "text": "他在备忘录最上方写了“林晚线·门后的雨”。下面没有先写结论，而是列了三个栏目：现实里发生了什么、谁能证明、异常改变了什么。"
+        },
+        {
+          "id": "r1_focus_linwan_open_post02_02",
+          "speaker": "旁白",
+          "text": "这个习惯很慢，却让调查第一次不像追逐谜语。"
+        },
+        {
+          "id": "r1_focus_linwan_open_post03_01",
+          "speaker": "旁白",
+          "text": "他们开始给证据标来源，而不是只记结论。梦境标“主观残响”，旧纸标“实体证据”，手机记录标“数字记录”，第三方记忆则单独写名字和时间。"
+        },
+        {
+          "id": "r1_focus_linwan_open_post04_01",
+          "speaker": "旁白",
+          "text": "这种笨拙的调查方法也让关系变得难堪：有些话一旦记进表格，就像在质疑朋友；有些话不记，又可能在下一轮彻底消失。"
+        },
+        {
+          "id": "r1_focus_linwan_open_post05_01",
+          "speaker": "旁白",
+          "text": "徐嘉树在班群里追问陈渡“林晚线·门后的雨”之后还回不回来打球。他不知道真相，只知道朋友最近总在关键时候消失。"
+        },
+        {
+          "id": "r1_focus_linwan_open_post06_01",
+          "speaker": "旁白",
+          "text": "苏遥给周小满发来一张没画完的海报，问她什么时候回来收尾。小满盯着“林晚线·门后的雨”的线索时，也仍然欠朋友一个明确的答复。"
+        },
+        {
+          "id": "r1_focus_linwan_open_post07_01",
+          "speaker": "旁白",
+          "text": "这些关系把陈渡重新拽回人群。徐嘉树和苏遥都没有被写进“六位女主”的路线选择里，却会因为他的决定改变自己的时间表、情绪和判断。"
+        },
+        {
+          "id": "r1_focus_linwan_open_post07_02",
+          "speaker": "旁白",
+          "text": "世界因此不再只有攻略对象与谜题。"
+        },
+        {
+          "id": "r1_focus_linwan_open_post08_01",
+          "speaker": "陈渡",
+          "text": "把徐嘉树和苏遥也记进去。不是因为他们掌握答案，是因为如果我们的选择伤到普通人的生活，那也必须算在结果里。"
+        },
+        {
+          "id": "r1_focus_linwan_open_post09_01",
+          "speaker": "旁白",
+          "text": "他们没有因此获得完整答案，只得到一条更窄的路。可比起一个漂亮的解释，能够被几个人共同复核的事实更有用。"
+        },
+        {
+          "id": "r1_focus_linwan_open_post10_01",
+          "speaker": "旁白",
+          "text": "在离开“林晚线·门后的雨”这一刻之前，陈渡又回头确认了一次周围。不是为了寻找隐藏线索，只是为了记住：这一轮里，东门旧街确实有人生活过。"
+        }
+      ],
+      "ending": "route-linwan-open"
+    },
+    {
+      "id": "focus_xiaoman_open",
+      "chapter": 3,
+      "title": "周小满线·不是你的眼泪",
+      "location": "梧城一中·旧美术教室",
+      "time": "19:12",
+      "background": "old-art-room",
+      "character": "xiaoman",
+      "lines": [
+        {
+          "id": "r1_focus_xiaoman_open_pre01_01",
+          "speaker": "旁白",
+          "text": "19:12，梧城一中·旧美术教室。黑板右上角写着值日名单，窗台堆着没领走的练习册；一切都能被班长、老师和同学共同证明。"
+        },
+        {
+          "id": "r1_focus_xiaoman_open_pre02_01",
+          "speaker": "旁白",
+          "text": "如果只看手机时间，这一刻和任何一天没有区别。真正让陈渡不安的，是身边的人仍然沿着熟悉的习惯行动，而他的记忆已经不再属于同一条时间线。"
+        },
+        {
+          "id": "r1_focus_xiaoman_open_pre03_01",
+          "speaker": "苏遥",
+          "text": "小满，你答应我的社团海报还差最后一层色。别又陪人乱跑到忘了截稿。"
+        },
+        {
+          "id": "r1_focus_xiaoman_open_pre04_01",
+          "speaker": "周小满",
+          "text": "知道啦。等我把这件更离谱的事处理完。"
+        },
+        {
+          "id": "r1_focus_xiaoman_open_pre05_01",
+          "speaker": "旁白",
+          "text": "这段时间里真正需要处理的是：补足小满对陈渡把她当“情绪探测器”的不满。 陈渡不再允许自己只记住“有用线索”。"
+        },
+        {
+          "id": "r1_focus_xiaoman_open_pre05_02",
+          "speaker": "旁白",
+          "text": "谁在场、谁被吓到、谁因此错过原本的安排，都属于同一件事的后果。"
+        },
+        {
+          "id": "r1_focus_xiaoman_open_pre06_01",
+          "speaker": "旁白",
+          "text": "调查逐渐成形以后，六个人第一次需要把各自的方法放在同一张桌上。梦、情绪、地图、档案和时间戳互相冲突；"
+        },
+        {
+          "id": "r1_focus_xiaoman_open_pre06_02",
+          "speaker": "旁白",
+          "text": "真正困难的地方，是每个人都只能看见自己那一块。"
+        },
+        {
+          "id": "r1_focus_xiaoman_open_pre07_01",
+          "speaker": "旁白",
+          "text": "周小满最擅长把沉重的话拆成玩笑，但苏遥在旁边时，陈渡能看见她玩笑停下来的瞬间。她也会累，也会嫉妒，也会因为害怕被丢在下一轮而发脾气。"
+        },
+        {
+          "id": "c3k001",
+          "speaker": "周小满",
+          "text": "我不想再把别人的害怕当成自己的。",
+          "expression": "serious"
+        },
+        {
+          "id": "c3k002",
+          "speaker": "陈渡",
+          "text": "那就一起找到是谁留下的。"
+        },
+        {
+          "id": "c3k003",
+          "speaker": "周小满",
+          "text": "找到以后呢？如果真的是我杀了你呢？",
+          "expression": "worried"
+        },
+        {
+          "id": "c3k004",
+          "speaker": "陈渡",
+          "text": "那就先问清楚，我为什么会让你这么做。"
+        },
+        {
+          "id": "r1_focus_xiaoman_open_post01_01",
+          "speaker": "陈渡",
+          "text": "我先把能确认的写下来。记不住也没关系，至少别再假装只有我一个人的记忆算数。"
+        },
+        {
+          "id": "r1_focus_xiaoman_open_post02_01",
+          "speaker": "旁白",
+          "text": "他在备忘录最上方写了“周小满线·不是你的眼泪”。下面没有先写结论，而是列了三个栏目：现实里发生了什么、谁能证明、异常改变了什么。"
+        },
+        {
+          "id": "r1_focus_xiaoman_open_post02_02",
+          "speaker": "旁白",
+          "text": "这个习惯很慢，却让调查第一次不像追逐谜语。"
+        },
+        {
+          "id": "r1_focus_xiaoman_open_post03_01",
+          "speaker": "旁白",
+          "text": "他们开始给证据标来源，而不是只记结论。梦境标“主观残响”，旧纸标“实体证据”，手机记录标“数字记录”，第三方记忆则单独写名字和时间。"
+        },
+        {
+          "id": "r1_focus_xiaoman_open_post04_01",
+          "speaker": "旁白",
+          "text": "这种笨拙的调查方法也让关系变得难堪：有些话一旦记进表格，就像在质疑朋友；有些话不记，又可能在下一轮彻底消失。"
+        },
+        {
+          "id": "r1_focus_xiaoman_open_post05_01",
+          "speaker": "旁白",
+          "text": "沈砚秋对“周小满线·不是你的眼泪”只给出一个原则：能证明到哪一步就说到哪一步。空白可以保留，不能为了让故事好看就擅自补成事实。"
+        },
+        {
+          "id": "r1_focus_xiaoman_open_post06_01",
+          "speaker": "旁白",
+          "text": "梁成在站务交接本上留下当天的异常记录。对他来说“周小满线·不是你的眼泪”不是什么命运节点，只是一次必须有人签字负责的运营事件。"
+        },
+        {
+          "id": "r1_focus_xiaoman_open_post07_01",
+          "speaker": "旁白",
+          "text": "这些关系把陈渡重新拽回人群。沈砚秋和梁成都没有被写进“六位女主”的路线选择里，却会因为他的决定改变自己的时间表、情绪和判断。"
+        },
+        {
+          "id": "r1_focus_xiaoman_open_post07_02",
+          "speaker": "旁白",
+          "text": "世界因此不再只有攻略对象与谜题。"
+        },
+        {
+          "id": "r1_focus_xiaoman_open_post08_01",
+          "speaker": "陈渡",
+          "text": "把沈砚秋和梁成也记进去。不是因为他们掌握答案，是因为如果我们的选择伤到普通人的生活，那也必须算在结果里。"
+        },
+        {
+          "id": "r1_focus_xiaoman_open_post09_01",
+          "speaker": "旁白",
+          "text": "他们没有因此获得完整答案，只得到一条更窄的路。可比起一个漂亮的解释，能够被几个人共同复核的事实更有用。"
+        },
+        {
+          "id": "r1_focus_xiaoman_open_post10_01",
+          "speaker": "旁白",
+          "text": "在离开“周小满线·不是你的眼泪”这一刻之前，陈渡又回头确认了一次周围。"
+        },
+        {
+          "id": "r1_focus_xiaoman_open_post10_02",
+          "speaker": "旁白",
+          "text": "不是为了寻找隐藏线索，只是为了记住：这一轮里，梧城一中·旧美术教室确实有人生活过。"
+        }
+      ],
+      "ending": "route-xiaoman-open"
+    },
+    {
+      "id": "focus_xuqi_open",
+      "chapter": 3,
+      "title": "许栖线·第七把椅子",
+      "location": "夜梧城·旧美术教室",
+      "time": "18:42",
+      "background": "night-art-room",
+      "character": "xuqi",
+      "lines": [
+        {
+          "id": "r1_focus_xuqi_open_pre01_01",
+          "speaker": "旁白",
+          "text": "18:42，夜梧城·旧美术教室。黑板右上角写着值日名单，窗台堆着没领走的练习册；一切都能被班长、老师和同学共同证明。"
+        },
+        {
+          "id": "r1_focus_xuqi_open_pre02_01",
+          "speaker": "旁白",
+          "text": "过去几天里，陈渡养成了一个笨办法：每到一个地方先看人，再看钟，最后看自己。人会记错，钟会坏，而他本人更不值得完全相信。"
+        },
+        {
+          "id": "r1_focus_xuqi_open_pre03_01",
+          "speaker": "梁成",
+          "text": "南湖站的交接本上还有你们那天留下的记录。我不懂你们说的夜梧城，但现实这边有人会记。"
+        },
+        {
+          "id": "r1_focus_xuqi_open_pre04_01",
+          "speaker": "许栖",
+          "text": "那就别让那页被撕掉。现实里有人记得，比我在里面多走一条路重要。"
+        },
+        {
+          "id": "r1_focus_xuqi_open_pre05_01",
+          "speaker": "旁白",
+          "text": "这段时间里真正需要处理的是：补足许栖拒绝继续当导游，她要求陈渡承担进入夜梧城的决定。 陈渡不再允许自己只记住“有用线索”。"
+        },
+        {
+          "id": "r1_focus_xuqi_open_pre05_02",
+          "speaker": "旁白",
+          "text": "谁在场、谁被吓到、谁因此错过原本的安排，都属于同一件事的后果。"
+        },
+        {
+          "id": "r1_focus_xuqi_open_pre06_01",
+          "speaker": "旁白",
+          "text": "调查逐渐成形以后，六个人第一次需要把各自的方法放在同一张桌上。梦、情绪、地图、档案和时间戳互相冲突；"
+        },
+        {
+          "id": "r1_focus_xuqi_open_pre06_02",
+          "speaker": "旁白",
+          "text": "真正困难的地方，是每个人都只能看见自己那一块。"
+        },
+        {
+          "id": "r1_focus_xuqi_open_pre07_01",
+          "speaker": "旁白",
+          "text": "许栖知道的东西很多，却不愿再被当成说明书。她会把路线画在纸上、会算电池够不够，也会在听见正常人说“明天见”时短暂走神。"
+        },
+        {
+          "id": "c3n001",
+          "speaker": "许栖",
+          "text": "进去以后，不要坐第七把椅子。",
+          "expression": "serious"
+        },
+        {
+          "id": "c3n002",
+          "speaker": "陈渡",
+          "text": "为什么？"
+        },
+        {
+          "id": "c3n003",
+          "speaker": "许栖",
+          "text": "因为坐上去的人，会想起所有被删掉的自己。",
+          "expression": "worried"
+        },
+        {
+          "id": "c3n004",
+          "speaker": "旁白",
+          "text": "房间深处，第七把椅子缓慢转向陈渡。"
+        },
+        {
+          "id": "r1_focus_xuqi_open_post01_01",
+          "speaker": "陈渡",
+          "text": "我先把能确认的写下来。记不住也没关系，至少别再假装只有我一个人的记忆算数。"
+        },
+        {
+          "id": "r1_focus_xuqi_open_post02_01",
+          "speaker": "旁白",
+          "text": "他在备忘录最上方写了“许栖线·第七把椅子”。下面没有先写结论，而是列了三个栏目：现实里发生了什么、谁能证明、异常改变了什么。"
+        },
+        {
+          "id": "r1_focus_xuqi_open_post02_02",
+          "speaker": "旁白",
+          "text": "这个习惯很慢，却让调查第一次不像追逐谜语。"
+        },
+        {
+          "id": "r1_focus_xuqi_open_post03_01",
+          "speaker": "旁白",
+          "text": "他们开始给证据标来源，而不是只记结论。梦境标“主观残响”，旧纸标“实体证据”，手机记录标“数字记录”，第三方记忆则单独写名字和时间。"
+        },
+        {
+          "id": "r1_focus_xuqi_open_post04_01",
+          "speaker": "旁白",
+          "text": "这种笨拙的调查方法也让关系变得难堪：有些话一旦记进表格，就像在质疑朋友；有些话不记，又可能在下一轮彻底消失。"
+        },
+        {
+          "id": "r1_focus_xuqi_open_post05_01",
+          "speaker": "旁白",
+          "text": "苏遥给周小满发来一张没画完的海报，问她什么时候回来收尾。小满盯着“许栖线·第七把椅子”的线索时，也仍然欠朋友一个明确的答复。"
+        },
+        {
+          "id": "r1_focus_xuqi_open_post06_01",
+          "speaker": "旁白",
+          "text": "徐嘉树在班群里追问陈渡“许栖线·第七把椅子”之后还回不回来打球。他不知道真相，只知道朋友最近总在关键时候消失。"
+        },
+        {
+          "id": "r1_focus_xuqi_open_post07_01",
+          "speaker": "旁白",
+          "text": "这些关系把陈渡重新拽回人群。苏遥和徐嘉树都没有被写进“六位女主”的路线选择里，却会因为他的决定改变自己的时间表、情绪和判断。"
+        },
+        {
+          "id": "r1_focus_xuqi_open_post07_02",
+          "speaker": "旁白",
+          "text": "世界因此不再只有攻略对象与谜题。"
+        },
+        {
+          "id": "r1_focus_xuqi_open_post08_01",
+          "speaker": "陈渡",
+          "text": "把苏遥和徐嘉树也记进去。不是因为他们掌握答案，是因为如果我们的选择伤到普通人的生活，那也必须算在结果里。"
+        },
+        {
+          "id": "r1_focus_xuqi_open_post09_01",
+          "speaker": "旁白",
+          "text": "他们没有因此获得完整答案，只得到一条更窄的路。可比起一个漂亮的解释，能够被几个人共同复核的事实更有用。"
+        },
+        {
+          "id": "r1_focus_xuqi_open_post10_01",
+          "speaker": "旁白",
+          "text": "在离开“许栖线·第七把椅子”这一刻之前，陈渡又回头确认了一次周围。"
+        },
+        {
+          "id": "r1_focus_xuqi_open_post10_02",
+          "speaker": "旁白",
+          "text": "不是为了寻找隐藏线索，只是为了记住：这一轮里，夜梧城·旧美术教室确实有人生活过。"
+        }
+      ],
+      "ending": "route-xuqi-open"
+    }
+  ]
+}

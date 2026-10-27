@@ -43,7 +43,7 @@ function mergeStage(left = {}, right = {}) {
 
 async function loadContentPacks() {
   let files = [];
-  try { files = (await readdir(contentDir)).filter(name => name.endsWith('.json')).sort(); }
+  try { files = (await readdir(contentDir)).filter(name => name.endsWith('.json') && name !== 'zzzzzz-r1-generated.json').sort(); }
   catch (error) { if (error.code !== 'ENOENT') throw error; }
   return Promise.all(files.map(async name => JSON.parse(await readFile(resolve(contentDir, name), 'utf8'))));
 }

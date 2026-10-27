@@ -6,9 +6,6 @@ on:
   pull_request:
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -17,11 +14,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           path: game-repo
-      # scenario-source-finalize:start
-      - name: Finalize committed R1 scenario source
-        working-directory: game-repo
-        run: node scripts/finalize-scenario-source.mjs
-      # scenario-source-finalize:end
       - name: Checkout VN Engine v2
         uses: actions/checkout@v4
         with:

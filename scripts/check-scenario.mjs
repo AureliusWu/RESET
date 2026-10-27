@@ -1,7 +1,6 @@
 import { readFile, readdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { resolve, dirname } from 'node:path';
-import { applyScenarioR1, loadScenarioR1 } from './r1-scenario.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const contentDir = resolve(root, 'game/content');
@@ -23,7 +22,6 @@ for (const name of files) {
   project = { ...project, ...(pack.version ? { version: pack.version } : {}), stats: { ...(project.stats ?? {}), ...(pack.stats ?? {}) }, scenes: [...scenes.values()] };
 }
 
-project = applyScenarioR1(project, await loadScenarioR1(root));
 const han = /[\u3400-\u9fff]/g;
 const bodyText = project.scenes.flatMap(scene => scene.lines ?? []).map(line => line.text ?? '').join('');
 const searchText = project.scenes.flatMap(scene => scene.lines ?? []).map(line => `${line.speaker ?? ''}${line.text ?? ''}`).join('');
