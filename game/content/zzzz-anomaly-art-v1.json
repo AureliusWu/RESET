@@ -1,7 +1,0 @@
-{
-  "id": "anomaly-production-v1",
-  "replaceAssets": [
-    {"id":"faceless/neutral","kind":"portrait","src":"assets/4k/runtime/anomalies/faceless.webp","alt":"无面行人·正式异常体立绘"},
-    {"id":"echochen/neutral","kind":"portrait","src":"assets/4k/runtime/anomalies/echo-chen.webp","alt":"第七人·历次失败读档残响的正式异常体立绘"}
-  ]
-}
