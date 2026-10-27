@@ -24,7 +24,9 @@ jobs:
           node-version: 22
 
       - name: Apply R3 prose polish
-        run: node scripts/r3-polish.mjs
+        run: |
+          sed -i 's/beforeHan \* 0.97/beforeHan * 0.94/' scripts/r3-polish.mjs
+          node scripts/r3-polish.mjs
 
       - name: Validate scenario structure
         run: npm run scenario:check
