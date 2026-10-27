@@ -18,36 +18,39 @@
 | 类别 | 数量/资产 | 状态 | 说明 |
 | --- | --- | --- | --- |
 | 主要角色 | 6 位女主固定底模 | **production** | 发型、服装、色彩与核心识别点锁定 |
-| 角色立绘 / 表情 | 33 个正式 4K production 引用 | **production** | 当前正史使用集合，透明 WebP runtime + 4K PNG master |
+| 角色立绘 / 表情 | 33 个正式 4K production 引用 | **production** | 30 个五表情 heroine + 许栖 angry + 两个异常体；透明 WebP runtime + PNG master |
 | 背景 | 20 个主要场景 | **production** | 校园、江滩、地铁、夜梧城、北站、存档室、True End 清晨等 |
 | CG | 5 张主线关键 CG | **production** | 无面行人倒影、18:42 来信、第七把椅子、北站约定、True End 江滩 |
-| 异常体 | 无面行人 / 第七人 | **production** | 4K master + runtime，承担剧情与战斗演出 |
 | UI Key Visual | 5 张 | **production** | 标题、异常存档、Ending Collection、CG Gallery、战斗 HUD |
-| 品牌视觉 | 回留 / RESET / 18:42 标记 | **production-candidate** | `art-completeness` 分支新增，分辨率无关 |
+| 品牌视觉 | 回留 / RESET / 18:42 标记 | **production-candidate** | 分辨率无关 DOM 视觉 |
 | 章节视觉 | Chapter 01–07 | **production-candidate** | 根据当前章节自动显示，响应式 |
 | Q 版角色 | 6 位女主角色记忆徽章 | **production-candidate** | 继承正式角色发色、瞳色、服装主色与识别符号 |
-| 剧情道具 | 2009 旧地图、未来手机照片 | **production-candidate** | 对应 `archive_erased_map` / `underpass_warning` |
-| PWA 图标 | 192 / 512 PNG | **production-candidate** | 已从引擎通用 N 标识升级为《回留》回环 / 存档标记 |
-| 音乐 | 8 首原创程序音乐 | **production** | 日常、夜梧城、战斗、路线、悬疑、终局“不保存”、True End“明天见”等 |
+| 剧情道具 | 2009 旧地图、未来手机照片 | **production-candidate** | 对应剧情档案与未来照片演出 |
+| PWA 图标 | 192 / 512 PNG | **production-candidate** | 《回留》回环 / 存档标记 |
+| 音乐 | 14 个原创程序配乐 cue | **production** | 日常、夜梧城、战斗、路线、悬疑、终局“不保存”、True End“明天见”等 |
 | 音效 | 7 组核心系统/战斗音效 | **production** | 读取、残响、冲击、闪避、异常快门、未来消息、异常门 |
 | 语音 | 无 | **optional** | 当前完整版本以无配音成立；全角色配音属于后续增强 |
 
+## R2 Asset Schema
+
+`game/assets/manifest.json` 是静态 production Asset ID、kind 与 runtime path 的唯一事实源：当前固定 **58 个静态 production 引用 = 33 portrait + 20 background + 5 CG**。音频继续由 `game/audio.json` 独立声明，共 21 个 audio asset，构建后的项目总资产数为 79。
+
+`game/project.json` 与 `game/content/**` 不再声明美术资产，也不允许 `replaceAssets`。正式静态 production 全部指向 `assets/4k/runtime/` WebP；历史 SVG / generated fallback / replacement overlay 已退出 production。
+
+林晚的 `base` / `normal` 重复别名已在 R2 删除，`neutral` 是唯一正式基线。`sad` 是独立完成的 extra，master/runtime 源文件继续保留，但当前正文不引用且发行包不携带。
+
 ## 4K 与画质状态
 
-原 RC 已有 **58 个正式 production 图像引用**，全部指向 `assets/4k/runtime/`，没有正式 SVG fallback；对应 4K master / runtime 管线已有尺寸、Alpha、路径与完整性门禁。现有已验收 4K 图像不因“补分类”而重复放大或无依据重绘。
+58 个正式 production 图像引用全部具备 4K master / runtime 配对，并由尺寸、Alpha、路径、SHA256、provenance 与最终发行 manifest 门禁验证。现有已验收 4K 图像不因结构重构而重复放大或无依据重绘。
 
-本轮新增的 LOGO、章节卡、Q 版与剧情道具使用矢量 DOM 几何，因此没有固定像素上限，也不会把低分辨率原图冒充原生 4K。
+LOGO、章节卡、Q 版与剧情道具使用矢量 DOM 几何，因此没有固定像素上限，也不会把低分辨率原图冒充原生 4K。
 
 ## 自动验收
 
-现有美术门禁继续检查正式 4K production 引用、路径、尺寸、Alpha、离线缓存和最终发行 manifest。`tests/art-completeness.test.mjs` 额外检查：
-
-1. 独立作品品牌视觉存在；
-2. Chapter 01–07 章节视觉完整；
-3. 旧地图与未来手机剧情道具存在；
-4. 六位女主 Q 版角色记忆完整；
-5. PWA 图标不再使用引擎通用 N 几何；
-6. 192 / 512 图标尺寸正确且可确定性复现。
+- `npm run asset:schema`：验证 R2 资产所有权、58/21/79 数量基线、禁止 overlay / alias / generated fallback 回归。
+- `npm run art:check`：验证 production 文件、4K master/runtime、尺寸、Alpha、provenance 与人工视觉 PASS。
+- Release Gate：验证最终 ZIP 内实际引用、离线缓存和 manifest，并确认非 production extra 不泄漏进包。
+- `tests/art-completeness.test.mjs`：继续检查品牌视觉、Chapter 01–07、剧情道具、六位女主 Q 版与 PWA 图标。
 
 详细矩阵见 `docs/ART_COMPLETENESS_AUDIT.md`。
 

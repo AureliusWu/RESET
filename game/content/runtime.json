@@ -70,25 +70,5 @@
       "c6l002": {"effect":{"type":"flash","durationMs":250}},
       "c7c005": {"effect":{"type":"flash","durationMs":400}}
     }
-  },
-  "assets": [
-    {"id":"stairwell-morning","kind":"background","src":"assets/bg-stairwell-morning.svg","alt":"梧城一中清晨楼梯间"},
-    {"id":"riverside-dusk","kind":"background","src":"assets/bg-riverside-dusk.svg","alt":"傍晚的梧城江滩"},
-    {"id":"underpass-rain","kind":"background","src":"assets/bg-underpass-rain.svg","alt":"不存在的雨夜下穿通道"},
-    {"id":"faceless/neutral","kind":"portrait","src":"assets/ch-faceless.svg","alt":"无面行人异常体概念立绘"},
-    {"id":"faceless-reflection-cg","kind":"cg","src":"assets/cg-faceless-reflection.svg","alt":"无面行人与积水倒影的事件CG"},
-    {"id":"classroom-dawn","kind":"background","src":"assets/bg-classroom-dawn.svg","alt":"清晨微亮的梧城一中教室"},
-    {"id":"old-art-room","kind":"background","src":"assets/bg-old-art-room.svg","alt":"废弃旧美术教室"},
-    {"id":"night-art-room","kind":"background","src":"assets/bg-night-art-room.svg","alt":"夜梧城中的旧美术教室"},
-    {"id":"old-stationery","kind":"background","src":"assets/bg-old-stationery.svg","alt":"东门旧街消失的文具店位置"},
-    {"id":"letter-1842-cg","kind":"cg","src":"assets/cg-letter-1842.svg","alt":"林晚落款的18:42来信事件CG"},
-    {"id":"six-chairs-cg","kind":"cg","src":"assets/cg-six-chairs.svg","alt":"六名女生与第七把椅子的异常照片CG"},
-    {"id":"xuqi/angry","kind":"portrait","src":"assets/ch-xuqi.svg","alt":"许栖占位立绘 angry 兼容差分"},
-    {"id":"north-station","kind":"background","src":"assets/bg-north-station.svg","alt":"18:42出现的梧城北站"},
-    {"id":"echochen/neutral","kind":"portrait","src":"assets/ch-echo-chen.svg","alt":"由历次读档残响组成的第七人"},
-    {"id":"linwan-1842-cg","kind":"cg","src":"assets/cg-linwan-1842.svg","alt":"梧城北站18:42最终约定事件CG"},
-    {"id":"save-room","kind":"background","src":"assets/bg-save-room.svg","alt":"世界终止后的永久存档界面空间"},
-    {"id":"true-dawn","kind":"background","src":"assets/bg-true-dawn.svg","alt":"True End后的梧城清晨"},
-    {"id":"true-end-riverside-cg","kind":"cg","src":"assets/cg-true-end-riverside.svg","alt":"10月25日江滩的True End事件CG"}
-  ]
+  }
 }

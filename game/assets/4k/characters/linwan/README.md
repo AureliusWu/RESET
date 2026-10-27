@@ -1,8 +1,8 @@
-# 林晚 Round 2 — 4K production set
+# 林晚 4K production set — R2 canonical
 
 - Master: PNG RGBA, 2160×3840
 - Runtime derivative: WebP RGBA, 1080×1920
-- `base.png` / `normal.png` intentionally alias the locked neutral base.
 - Formal story expressions: neutral / smile / worried / surprised / serious.
-- `sad` is completed and retained as an extra; current formal story does not reference `linwan/sad`.
-- Asset IDs remain stable; only `src` changes.
+- R2 retires the historical base / normal aliases; neutral is the single canonical baseline.
+- sad is completed and retained as a source extra, but current story does not reference it and release packages do not ship it.
+- Production Asset IDs and paths are declared only in game/assets/manifest.json.

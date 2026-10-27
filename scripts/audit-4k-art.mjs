@@ -1,6 +1,7 @@
 import { readFile, readdir, stat, writeFile } from 'node:fs/promises';
 import { resolve, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { loadAssetManifest } from './assets.mjs';
 
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const game = resolve(root, 'game');
@@ -11,10 +12,7 @@ const write = process.argv.includes('--write');
 
 const readJson = async p => JSON.parse(await readFile(p, 'utf8'));
 const plan = await readJson(planPath);
-const portraitOverlay = await readJson(resolve(game, 'content/zz-art-v1.json'));
-const sceneOverlay = await readJson(resolve(game, 'content/zzz-scene-art-v1.json'));
-const anomalyOverlay = await readJson(resolve(game, 'content/zzzz-anomaly-art-v1.json'));
-const production = [...portraitOverlay.replaceAssets, ...sceneOverlay.replaceAssets, ...anomalyOverlay.replaceAssets];
+const production = (await loadAssetManifest(root)).production;
 
 const pathFromRule = (rule, vars) => Object.entries(vars).reduce((s,[k,v]) => s.replaceAll(`{${k}}`, v), rule);
 const targetById = new Map();

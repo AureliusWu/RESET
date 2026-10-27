@@ -4,7 +4,7 @@ import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 const formal = ['neutral','smile','worried','surprised','serious'];
-const derivatives = ['base','normal',...formal,'sad'];
+const derivatives = formal;
 const src = expression => `assets/4k/runtime/characters/linwan/${expression}.webp`;
 
 // Shared by the extracted Web ZIP and the actual Windows WebView2 process.
@@ -123,7 +123,7 @@ export async function verifyLinwanArt({page,project,fixtures,loadFixture,control
       // installed images at 1:1 scale over light/dark backgrounds, no filtering.
       await page.setViewportSize({width:2160,height:1920});
       try {
-        for(const expression of [...formal,'sad']) {
+        for(const expression of formal) {
           await page.evaluate(async path=>{
             document.getElementById('__linwanAlphaQA')?.remove();
             const root=document.createElement('div');root.id='__linwanAlphaQA';root.style.cssText='position:fixed;inset:0;z-index:2147483647;display:flex;pointer-events:none';
@@ -136,12 +136,12 @@ export async function verifyLinwanArt({page,project,fixtures,loadFixture,control
         await page.evaluate(()=>document.getElementById('__linwanAlphaQA')?.remove());
         if(originalViewport)await page.setViewportSize(originalViewport);
       }
-      pass('Six distinct Lin Wan sprites captured at natural 1080x1920 size over actual light and dark CSS backgrounds for edge review');
+      pass('Five canonical Lin Wan sprites captured at natural 1080x1920 size over actual light and dark CSS backgrounds for edge review');
     }
     await writeFile(out+'/linwan-decode.json',JSON.stringify({decoded,requested,failures},null,2)+'\n');
     assert.deepEqual(failures,[]);
     assert.ok(requested.every(url=>!url.includes('generated-portraits/')&&!url.endsWith('.svg')));
-    pass('All eight installed Lin Wan WebPs decode with real transparent pixels and no failed image request');
+    pass('All five canonical Lin Wan WebPs decode with real transparent pixels and no failed image request');
   } finally {
     page.off('requestfailed',failed);page.off('response',response);page.off('request',request);
     if(originalViewport&&viewports)await page.setViewportSize(originalViewport);
@@ -161,5 +161,5 @@ export async function verifyLinwanOffline({page,loadFixture,fixtures,out,pass}) 
   await loadFixture(fixtures.witnesses.linwan_shadow);
   await page.waitForFunction(()=>{const im=document.querySelector('.vn-portrait');return im?.dataset.asset==='linwan/neutral'&&im.complete&&im.naturalWidth===1080;});
   await page.screenshot({path:out+'/linwan-offline.png',fullPage:true,animations:'disabled'});
-  pass('Offline real service-worker cache contains all eight Lin Wan derivatives and displays the new neutral sprite without network');
+  pass('Offline real service-worker cache contains all five canonical Lin Wan production sprites and displays neutral without network');
 }
