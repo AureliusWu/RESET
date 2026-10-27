@@ -4,81 +4,180 @@ import { fileURLToPath } from 'node:url';
 
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const out = resolve(root, 'game/assets/generated');
-const sampleRate = 16000;
+const sampleRate = 32000;
+const TAU = Math.PI * 2;
 
-function mastered(samples, peak = .68) {
-  let max = 0;
-  for (const value of samples) max = Math.max(max, Math.abs(value));
-  if (!max) return samples;
-  const gain = Math.min(8, peak / max);
-  const result = new Float64Array(samples.length);
-  for (let i = 0; i < samples.length; i++) result[i] = Math.tanh(samples[i] * gain * 1.08) / Math.tanh(1.08);
-  return result;
+function seeded(seed = 1842) {
+  let state = seed >>> 0;
+  return () => { state = (1664525 * state + 1013904223) >>> 0; return state / 0xffffffff; };
 }
-
-function wav(samples, peak = .68) {
-  const source = mastered(samples, peak);
-  const bytes = Buffer.alloc(44 + source.length * 2);
-  bytes.write('RIFF', 0); bytes.writeUInt32LE(36 + source.length * 2, 4); bytes.write('WAVE', 8);
-  bytes.write('fmt ', 12); bytes.writeUInt32LE(16, 16); bytes.writeUInt16LE(1, 20); bytes.writeUInt16LE(1, 22);
-  bytes.writeUInt32LE(sampleRate, 24); bytes.writeUInt32LE(sampleRate * 2, 28); bytes.writeUInt16LE(2, 32); bytes.writeUInt16LE(16, 34);
-  bytes.write('data', 36); bytes.writeUInt32LE(source.length * 2, 40);
-  for (let i = 0; i < source.length; i++) bytes.writeInt16LE(Math.max(-32767, Math.min(32767, Math.round(source[i] * 32767))), 44 + i * 2);
+function clamp(value, min = -1, max = 1) { return Math.max(min, Math.min(max, value)); }
+function loopFrequency(hz, duration) { return Math.max(1 / duration, Math.round(hz * duration) / duration); }
+function softOsc(phase, color = 0) {
+  const base = Math.sin(phase);
+  const second = Math.sin(phase * 2 + .37) * (.12 + color * .05);
+  const third = Math.sin(phase * 3 + 1.1) * (.035 + color * .02);
+  return base + second + third;
+}
+function triangle(phase) { return Math.asin(Math.sin(phase)) * (2 / Math.PI); }
+function panGains(pan = 0) {
+  const angle = (clamp(pan, -1, 1) + 1) * Math.PI / 4;
+  return [Math.cos(angle), Math.sin(angle)];
+}
+function gate(local) {
+  if (local <= 0 || local >= 1) return 0;
+  return Math.sin(Math.PI * local) ** 2;
+}
+function master(left, right, peak = .68) {
+  let max = 0;
+  for (let i = 0; i < left.length; i++) max = Math.max(max, Math.abs(left[i]), Math.abs(right[i]));
+  if (!max) return { left, right };
+  const gain = Math.min(10, peak / max);
+  const norm = Math.tanh(1.12);
+  for (let i = 0; i < left.length; i++) {
+    left[i] = Math.tanh(left[i] * gain * 1.12) / norm;
+    right[i] = Math.tanh(right[i] * gain * 1.12) / norm;
+  }
+  return { left, right };
+}
+function wavStereo(left, right, peak = .68) {
+  master(left, right, peak);
+  const frames = left.length, bytes = Buffer.alloc(44 + frames * 4);
+  bytes.write('RIFF', 0); bytes.writeUInt32LE(36 + frames * 4, 4); bytes.write('WAVE', 8);
+  bytes.write('fmt ', 12); bytes.writeUInt32LE(16, 16); bytes.writeUInt16LE(1, 20); bytes.writeUInt16LE(2, 22);
+  bytes.writeUInt32LE(sampleRate, 24); bytes.writeUInt32LE(sampleRate * 4, 28); bytes.writeUInt16LE(4, 32); bytes.writeUInt16LE(16, 34);
+  bytes.write('data', 36); bytes.writeUInt32LE(frames * 4, 40);
+  for (let i = 0, offset = 44; i < frames; i++, offset += 4) {
+    bytes.writeInt16LE(Math.round(clamp(left[i]) * 32767), offset);
+    bytes.writeInt16LE(Math.round(clamp(right[i]) * 32767), offset + 2);
+  }
   return bytes;
 }
 
-function seededNoise(seed = 1842) {
-  let state = seed >>> 0;
-  return () => { state = (1664525 * state + 1013904223) >>> 0; return state / 0xffffffff * 2 - 1; };
-}
+function renderMusic({ duration = 16, chord, bass, motif = [], bpm = 84, noise = .0015, shimmer = 0, pulse = 0, seed = 1842, width = .28, peak = .62 }) {
+  const frames = Math.floor(duration * sampleRate), left = new Float64Array(frames), right = new Float64Array(frames);
+  const pad = chord.map((hz, index) => ({
+    frequency: loopFrequency(hz, duration),
+    amplitude: .032 / (1 + index * .18),
+    phase: index * .61,
+    pan: (index - (chord.length - 1) / 2) * width,
+    cycle: index + 1
+  }));
+  const bassFrequency = loopFrequency(bass, duration);
+  const beat = 60 / bpm;
+  const beats = Math.max(1, Math.round(duration / beat));
+  const exactBeat = duration / beats;
+  const noiseRand = seeded(seed + 77);
+  const noiseBands = Array.from({ length: 8 }, (_, i) => ({
+    frequency: loopFrequency(220 + noiseRand() * 5200, duration),
+    amplitude: noise * (.7 + noiseRand() * .5) / (1 + i * .25),
+    phase: noiseRand() * TAU,
+    pan: noiseRand() * 1.4 - .7
+  }));
 
-function synth({ duration, partials, tremolo = 0, noise = 0, attack = .35, release = .45, pulse = 0 }) {
-  const count = Math.floor(duration * sampleRate), result = new Float64Array(count), random = seededNoise();
-  for (let i = 0; i < count; i++) {
+  for (let i = 0; i < frames; i++) {
     const t = i / sampleRate;
-    let value = 0;
-    for (const [frequency, amplitude, phase = 0] of partials) value += Math.sin(Math.PI * 2 * frequency * t + phase) * amplitude;
-    if (tremolo) value *= .72 + .28 * Math.sin(Math.PI * 2 * tremolo * t);
-    if (pulse) value *= .42 + .58 * Math.pow(Math.max(0, Math.sin(Math.PI * 2 * pulse * t)), 3);
-    if (noise) value += random() * noise;
-    const fadeIn = Math.min(1, t / attack), fadeOut = Math.min(1, (duration - t) / release);
-    result[i] = value * Math.max(0, Math.min(fadeIn, fadeOut));
+    let l = 0, r = 0;
+    for (const layer of pad) {
+      const drift = .88 + .12 * (1 + Math.sin(TAU * layer.cycle * t / duration + layer.phase)) / 2;
+      const phaseL = TAU * layer.frequency * t + layer.phase;
+      const phaseR = phaseL + width * .35 * Math.sin(TAU * t / duration + layer.phase);
+      const [gl, gr] = panGains(layer.pan);
+      l += softOsc(phaseL, shimmer) * layer.amplitude * drift * gl;
+      r += softOsc(phaseR, shimmer) * layer.amplitude * drift * gr;
+    }
+    const bassDrift = .82 + .18 * Math.sin(TAU * 2 * t / duration + .4);
+    l += softOsc(TAU * bassFrequency * t, -.2) * .035 * bassDrift;
+    r += softOsc(TAU * bassFrequency * t + .05, -.2) * .035 * bassDrift;
+
+    if (motif.length) {
+      const beatIndex = Math.floor(t / exactBeat) % motif.length;
+      const local = (t % exactBeat) / exactBeat;
+      const note = motif[beatIndex];
+      const env = gate(Math.min(1, local / .84)) * Math.exp(-local * 1.1);
+      const frequency = loopFrequency(note, duration);
+      const phase = TAU * frequency * t;
+      const pan = ((beatIndex % 3) - 1) * .22;
+      const [gl, gr] = panGains(pan);
+      l += (softOsc(phase, .45) + triangle(phase * .5) * .08) * .032 * env * gl;
+      r += (softOsc(phase + .045, .45) + triangle(phase * .5 + .08) * .08) * .032 * env * gr;
+    }
+
+    if (pulse) {
+      const local = (t % exactBeat) / exactBeat;
+      const thump = Math.exp(-Math.max(0, local - .08) * 18) * (local >= .08 ? 1 : 0);
+      const p = Math.sin(TAU * loopFrequency(52, duration) * t) * .055 * thump * pulse;
+      l += p; r += p * .96;
+    }
+
+    for (const band of noiseBands) {
+      const [gl, gr] = panGains(band.pan);
+      const n = Math.sin(TAU * band.frequency * t + band.phase) * band.amplitude;
+      l += n * gl; r += n * gr;
+    }
+    if (shimmer) {
+      const high = Math.sin(TAU * loopFrequency(chord[chord.length - 1] * 4, duration) * t + .8) * .0035 * shimmer;
+      l += high * (.65 + .35 * Math.sin(TAU * t / duration));
+      r += high * (.65 + .35 * Math.sin(TAU * t / duration + 1.7));
+    }
+    left[i] = l; right[i] = r;
   }
-  return result;
+  return wavStereo(left, right, peak);
 }
 
-function progression({ duration, chords, beat = 2, shimmer = false }) {
-  const count = Math.floor(duration * sampleRate), result = new Float64Array(count), random = seededNoise(1025);
-  for (let i = 0; i < count; i++) {
-    const t = i / sampleRate, chord = chords[Math.floor(t / beat) % chords.length];
-    const local = t % beat, envelope = .52 + .48 * Math.exp(-local * 1.7);
+function renderSfx({ duration, peak = .62, seed = 1842, tone = [], noise = 0, sweep, stereo = .16 }) {
+  const frames = Math.floor(duration * sampleRate), left = new Float64Array(frames), right = new Float64Array(frames), random = seeded(seed);
+  let filtered = 0;
+  for (let i = 0; i < frames; i++) {
+    const t = i / sampleRate, x = t / duration;
+    const env = Math.sin(Math.PI * Math.min(1, x)) ** 1.35 * Math.exp(-x * 2.2);
     let value = 0;
-    chord.forEach((f, index) => {
-      value += Math.sin(Math.PI * 2 * f * t + index * .47) * (.032 / (1 + index * .2));
-      value += Math.sin(Math.PI * 2 * f * 2 * t + index) * .006;
-    });
-    if (shimmer) value += Math.sin(Math.PI * 2 * chord[0] * 4 * t) * .004 * (1 + Math.sin(t * .6));
-    value = value * envelope + random() * .0008;
-    const edge = Math.min(1, t / .7, (duration - t) / .9);
-    result[i] = value * Math.max(0, edge);
+    for (const [hz, amp, phase = 0] of tone) value += softOsc(TAU * hz * t + phase, .25) * amp;
+    if (sweep) {
+      const [from, to, amp] = sweep;
+      const hz = from + (to - from) * x;
+      value += Math.sin(TAU * hz * t + x * x * 5) * amp;
+    }
+    if (noise) {
+      filtered = filtered * .82 + (random() * 2 - 1) * .18;
+      value += filtered * noise;
+    }
+    const pan = Math.sin(Math.PI * x) * stereo;
+    const [gl, gr] = panGains(pan);
+    left[i] = value * env * gl;
+    right[i] = value * env * gr;
   }
-  return result;
+  return wavStereo(left, right, peak);
 }
+
+const music = {
+  'music-memory-rain.wav': { duration:16, chord:[196,246.94,293.66,392], bass:98, motif:[392,329.63,293.66,246.94,293.66,329.63,392,493.88], bpm:72, noise:.0012, shimmer:.35, seed:1842, peak:.56 },
+  'music-night-residue.wav': { duration:16, chord:[82.41,98,123.47,164.81], bass:41.2, motif:[164.81,146.83,123.47,98,123.47,110,98,82.41], bpm:64, noise:.0045, seed:4182, width:.38, peak:.58 },
+  'music-fracture-pulse.wav': { duration:12, chord:[73.42,98,110,146.83], bass:36.71, motif:[196,146.83,220,164.81,196,293.66,220,146.83], bpm:108, noise:.006, pulse:1, seed:666, width:.45, peak:.66 },
+  'music-letter-dawn.wav': { duration:16, chord:[261.63,329.63,392,493.88], bass:130.81, motif:[523.25,493.88,392,329.63,392,440,493.88,392], bpm:70, noise:.001, shimmer:.55, seed:1025, peak:.54 },
+  'music-seven-chairs.wav': { duration:16, chord:[98,123.47,146.83,196], bass:49, motif:[293.66,246.94,196,146.83,196,220,174.61,146.83], bpm:76, noise:.0036, seed:7777, width:.42, peak:.58 },
+  'music-route-choice.wav': { duration:16, chord:[174.61,220,261.63,349.23], bass:87.31, motif:[349.23,392,440,349.23,293.66,349.23,392,523.25], bpm:88, noise:.0013, shimmer:.18, seed:3141, peak:.58 },
+  'music-no-save.wav': { duration:20, chord:[110,146.83,164.81,220], bass:55, motif:[220,196,164.81,146.83,164.81,146.83,123.47,110,146.83,164.81], bpm:60, noise:.0024, seed:1017, width:.34, peak:.6 },
+  'music-tomorrow.wav': { duration:24, chord:[196,246.94,293.66,329.63], bass:98, motif:[392,440,493.88,587.33,493.88,440,392,329.63,392,493.88,587.33,659.25], bpm:72, noise:.0008, shimmer:.8, seed:1025, width:.32, peak:.54 },
+  'music-linwan-dream.wav': { duration:16, chord:[196,246.94,329.63,392], bass:98, motif:[493.88,392,329.63,392,440,392,329.63,293.66], bpm:68, noise:.0009, shimmer:.65, seed:1221, width:.36, peak:.54 },
+  'music-xiaoman-forward.wav': { duration:16, chord:[220,277.18,329.63,440], bass:110, motif:[440,493.88,554.37,659.25,554.37,493.88,440,369.99], bpm:96, noise:.0012, shimmer:.22, seed:2401, width:.3, peak:.58 },
+  'music-xuqi-night.wav': { duration:16, chord:[110,138.59,164.81,220], bass:55, motif:[329.63,277.18,220,277.18,329.63,369.99,329.63,220], bpm:82, noise:.0028, seed:7301, width:.48, peak:.57 },
+  'music-tinglan-archive.wav': { duration:16, chord:[146.83,196,246.94,293.66], bass:73.42, motif:[293.66,246.94,220,196,246.94,293.66,329.63,246.94], bpm:66, noise:.0016, seed:5510, width:.26, peak:.55 },
+  'music-tangli-road.wav': { duration:16, chord:[164.81,220,261.63,329.63], bass:82.41, motif:[329.63,392,440,523.25,440,392,329.63,293.66], bpm:104, noise:.0018, pulse:.35, seed:8604, width:.34, peak:.6 },
+  'music-nanxing-message.wav': { duration:16, chord:[174.61,220,293.66,349.23], bass:87.31, motif:[523.25,587.33,659.25,523.25,440,523.25,659.25,783.99], bpm:90, noise:.0015, shimmer:.4, seed:9027, width:.5, peak:.56 }
+};
+
+const sfx = {
+  'sfx-memory-ping.wav': { duration:.46, tone:[[880,.055],[1320,.034,.4],[1760,.015,.8]], sweep:[620,980,.018], noise:.004, peak:.5, seed:11, stereo:.28 },
+  'sfx-load.wav': { duration:.95, tone:[[110,.05],[220,.032,.7],[440,.017,1.4]], sweep:[180,1240,.032], noise:.028, peak:.62, seed:12, stereo:.34 },
+  'sfx-impact.wav': { duration:.38, tone:[[62,.11],[93,.05,.4],[186,.02,1.1]], sweep:[120,42,.028], noise:.095, peak:.74, seed:13, stereo:.12 },
+  'sfx-dodge.wav': { duration:.28, tone:[[420,.02],[760,.014,.6]], sweep:[1280,360,.05], noise:.036, peak:.56, seed:14, stereo:.55 },
+  'sfx-camera-self.wav': { duration:.22, tone:[[1046.5,.038],[1568,.022,.5],[2093,.012,1.1]], noise:.018, peak:.48, seed:15, stereo:.18 },
+  'sfx-message-future.wav': { duration:.5, tone:[[659.25,.032],[987.77,.024,.5],[1318.5,.014,1.1]], sweep:[520,1180,.018], noise:.002, peak:.48, seed:16, stereo:.4 },
+  'sfx-door-ghost.wav': { duration:.82, tone:[[73.42,.045],[110,.022,.9],[220,.009,1.7]], sweep:[96,48,.025], noise:.045, peak:.58, seed:17, stereo:.3 }
+};
 
 await mkdir(out, { recursive: true });
-await writeFile(resolve(out, 'music-memory-rain.wav'), wav(synth({ duration: 8, partials: [[196, .07], [293.66, .045, .8], [392, .028, 1.7], [98, .02, .2]], tremolo: .11, noise: .002 })));
-await writeFile(resolve(out, 'music-night-residue.wav'), wav(synth({ duration: 8, partials: [[55, .065], [82.41, .032, .5], [123.47, .018, 1.1], [220, .008, 2.3]], tremolo: .07, noise: .009 })));
-await writeFile(resolve(out, 'music-fracture-pulse.wav'), wav(synth({ duration: 8, partials: [[49, .08], [73.42, .04, .8], [98, .03, 1.5], [196, .012, 2.2]], pulse: 1.42, noise: .012, attack: .12, release: .6 })));
-await writeFile(resolve(out, 'music-letter-dawn.wav'), wav(synth({ duration: 8, partials: [[261.63, .052], [329.63, .032, .7], [392, .026, 1.4], [130.81, .018, .2]], tremolo: .08, noise: .0015 })));
-await writeFile(resolve(out, 'music-seven-chairs.wav'), wav(synth({ duration: 8, partials: [[65.41, .06], [98, .035, .7], [146.83, .021, 1.6], [293.66, .009, 2.4]], tremolo: .13, noise: .006 })));
-await writeFile(resolve(out, 'music-route-choice.wav'), wav(synth({ duration: 8, partials: [[174.61, .045], [261.63, .034, .6], [349.23, .022, 1.2], [87.31, .018, 2]], tremolo: .09, noise: .002 })));
-await writeFile(resolve(out, 'music-no-save.wav'), wav(progression({ duration: 12, beat: 3, chords: [[110,164.81,220],[98,146.83,196],[82.41,123.47,164.81],[73.42,110,146.83]], shimmer:false }), .62));
-await writeFile(resolve(out, 'music-tomorrow.wav'), wav(progression({ duration: 16, beat: 4, chords: [[196,246.94,293.66],[220,261.63,329.63],[174.61,220,293.66],[196,246.94,329.63]], shimmer:true }), .58));
-await writeFile(resolve(out, 'sfx-memory-ping.wav'), wav(synth({ duration: .42, partials: [[880, .08], [1320, .045, .4], [1760, .02, .8]], attack: .008, release: .32 }), .55));
-await writeFile(resolve(out, 'sfx-load.wav'), wav(synth({ duration: .9, partials: [[110, .07], [220, .045, .7], [440, .025, 1.4], [880, .012, 2.1]], tremolo: 5.4, noise: .018, attack: .01, release: .5 }), .64));
-await writeFile(resolve(out, 'sfx-impact.wav'), wav(synth({ duration: .32, partials: [[62, .13], [93, .065, .4], [186, .028, 1.1]], noise: .07, attack: .004, release: .29 }), .78));
-await writeFile(resolve(out, 'sfx-dodge.wav'), wav(synth({ duration: .22, partials: [[420, .028], [760, .018, .6]], noise: .045, attack: .003, release: .18 }), .58));
-await writeFile(resolve(out, 'sfx-camera-self.wav'), wav(synth({ duration: .28, partials: [[1046.5, .045], [1568, .026, .5]], noise: .012, attack: .002, release: .22 }), .52));
-await writeFile(resolve(out, 'sfx-message-future.wav'), wav(synth({ duration: .48, partials: [[659.25, .04], [987.77, .03, .5], [1318.5, .018, 1.1]], tremolo: 8, attack: .004, release: .3 }), .52));
-await writeFile(resolve(out, 'sfx-door-ghost.wav'), wav(synth({ duration: .7, partials: [[73.42, .06], [110, .028, .9], [220, .013, 1.7]], noise: .035, attack: .03, release: .5 }), .6));
-console.log('Generated and mastered original RESET score/SFX in game/assets/generated');
+for (const [name, config] of Object.entries(music)) await writeFile(resolve(out, name), renderMusic(config));
+for (const [name, config] of Object.entries(sfx)) await writeFile(resolve(out, name), renderSfx(config));
+console.log(`Generated ${Object.keys(music).length} loop-safe stereo score cues and ${Object.keys(sfx).length} stereo SFX at ${sampleRate} Hz`);
