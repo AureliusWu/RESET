@@ -21,6 +21,11 @@ function findButton(doc, selector, text) {
 function createStartupShell(doc, status, requestInstall, isInstalled) {
   const host = doc.querySelector('.vn-engine');
   if (!host || doc.querySelector('.reset-title-screen')) return null;
+  if (globalThis.sessionStorage?.getItem('reset:title-entered') === '1') {
+    host.inert = false;
+    host.dataset.titleDismissed = 'true';
+    return null;
+  }
   installShellStyles(doc);
   const shell = doc.createElement('section');
   shell.className = 'reset-title-screen';
@@ -32,6 +37,7 @@ function createStartupShell(doc, status, requestInstall, isInstalled) {
   const note = shell.querySelector('.reset-title-note');
   host.inert = true;
   const close = async () => {
+    globalThis.sessionStorage?.setItem('reset:title-entered','1');
     host.inert = false;
     host.dataset.titleDismissed = 'true';
     shell.remove();
