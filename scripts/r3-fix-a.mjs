@@ -40,6 +40,13 @@ for (const [file, map] of Object.entries(replacements)) {
       changed += 1;
     }
   }
+  for (const line of lines) {
+    const next = line.text.replaceAll('主角团自己的推理', '他们自己的推理');
+    if (next !== line.text) {
+      line.text = next;
+      changed += 1;
+    }
+  }
   const serialized = JSON.stringify(data, null, 2) + '\n';
   for (const token of forbidden) {
     if (serialized.includes(token)) throw new Error(`meta prose remains in ${file}: ${token}`);
