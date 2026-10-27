@@ -24,6 +24,16 @@ const server=createServer(async(req,res)=>{
 });await new Promise(r=>server.listen(0,'127.0.0.1',r));
 const base=`http://127.0.0.1:${server.address().port}/play/`;
 let browser,context,page;
+const enterTitle=async target=>{
+  const title=target.locator('.reset-title-screen');
+  if(await title.count()){
+    await title.waitFor({state:'visible'});
+    assert.equal(await target.locator('.vn-engine').evaluate(el=>el.inert),true,'title must block gameplay until entry');
+    const start=target.locator('[data-title-start]');assert.equal(await start.isEnabled(),true);
+    await start.click();await title.waitFor({state:'detached'});
+    assert.equal(await target.locator('.vn-engine').evaluate(el=>el.inert),false);
+  }
+};
 try{
   browser=await chromium.launch({headless:true,args:['--no-sandbox']});
   context=await browser.newContext({viewport:{width:1280,height:900},hasTouch:true});
@@ -39,11 +49,12 @@ try{
   await page.goto(base);await page.locator('.vn-engine').waitFor();assert.equal(await page.locator('#error').innerText(),'');
   assert.equal(await page.locator('.reset-dialog').evaluate(el=>getComputedStyle(el).position),'absolute','the packaged experience stylesheet must actually apply');
   await page.locator('.vn-background').waitFor({state:'visible'});
-  await page.screenshot({path:out+'/desktop.png',fullPage:true});pass('Standalone package loads from /play/ with actual art and no startup error');
+  await page.locator('.reset-title-screen').waitFor({state:'visible'});await page.screenshot({path:out+'/title-desktop.png',fullPage:true});await enterTitle(page);
+  await page.screenshot({path:out+'/desktop.png',fullPage:true});pass('Standalone package presents an interactive title screen, enters gameplay from /play/, renders actual art and has no startup error');
   const artContext=await browser.newContext({viewport:{width:1280,height:900}});
   try {
     await artContext.addInitScript(()=>localStorage.setItem('vn-engine:reset:settings',JSON.stringify({textDelayMs:0,reducedMotion:true,music:false,voiceEnabled:false})));
-    const artPage=await artContext.newPage();artPage.on('pageerror',e=>errors.push(e.message));await artPage.goto(base);await artPage.locator('.vn-engine').waitFor();
+    const artPage=await artContext.newPage();artPage.on('pageerror',e=>errors.push(e.message));await artPage.goto(base);await artPage.locator('.vn-engine').waitFor();await enterTitle(artPage);
     const artControl=id=>artPage.locator(`[data-control="${id}"]`);
     const artLoad=async save=>{await artControl('settings').click();await artPage.locator('input[type=file]').setInputFiles({name:'art-frame.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(save))});await artPage.locator('.vn-modal').waitFor({state:'hidden'});};
     await verifyLinwanArt({page:artPage,project,fixtures,loadFixture:artLoad,control:artControl,out,pass});
@@ -147,7 +158,7 @@ try{
   await page.waitForFunction(()=>document.getElementById('status').textContent.includes('可离线游玩'));
   await page.waitForFunction(()=>navigator.serviceWorker.controller!==null);
   const manifest=await page.evaluate(async()=>await(await fetch('./manifest.webmanifest')).json());assert.equal(manifest.display,'standalone');assert.equal(manifest.scope,'./');
-  await control('save').click();await context.setOffline(true);await page.reload();await page.locator('.vn-engine').waitFor();await control('load').click();assert.equal(await scene(),start);
+  await control('save').click();await context.setOffline(true);await page.reload();await page.locator('.vn-engine').waitFor();await enterTitle(page);await control('load').click();assert.equal(await scene(),start);
   assert.equal(await page.locator('#error').innerText(),'');await page.locator('.vn-background').waitFor({state:'visible'});
   const resources=await page.evaluate(async()=>{const c=await caches.open((await caches.keys()).find(k=>k.startsWith('vn-self-reset-v2:')));const requests=await c.keys();return requests.map(r=>new URL(r.url).pathname)});
   assert.ok(resources.some(p=>p.endsWith('/meta.mjs')));assert.ok(resources.some(p=>p.endsWith('/combat.mjs')));assert.ok(resources.some(p=>p.endsWith('/assets/4k/runtime/cg/true-end-riverside-cg.webp')));
