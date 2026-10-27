@@ -3,6 +3,10 @@ let deferredInstallPrompt=null;
 function ensureTitleGate(){
   const host=document.querySelector?.('.vn-engine');
   if(!host||host.querySelector('.reset-title-gate'))return;
+  const coarsePointer=globalThis.matchMedia?.('(pointer: coarse)')?.matches===true;
+  if(coarsePointer||Number(globalThis.innerWidth)<=700){
+    host.querySelectorAll?.('.reset-toolbar-controls button').forEach(button=>{button.style.minHeight='44px';});
+  }
   const gate=document.createElement('section');
   gate.className='reset-title-gate';
   gate.setAttribute('role','dialog');
