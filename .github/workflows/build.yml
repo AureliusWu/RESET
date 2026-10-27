@@ -64,7 +64,7 @@ jobs:
           VN_ENGINE_PATH: ${{ github.workspace }}/vn-engine
         run: npm run build
 
-      - name: Candidate integrity and visual-blocker report
+      - name: Candidate integrity and visual acceptance
         working-directory: game-repo
         run: npm run check:release
 
@@ -88,14 +88,9 @@ jobs:
           test -f dist/assets/4k/runtime/characters/xuqi/serious.webp
           test -f dist/assets/4k/runtime/characters/xuqi/angry.webp
 
-      - name: Confirm stable release stays blocked while visual review is incomplete
+      - name: Confirm stable release gate passes
         working-directory: game-repo
-        run: |
-          if npm run check:stable; then
-            echo 'Stable gate unexpectedly passed while Round 3 art is BLOCKED' >&2
-            exit 1
-          fi
-          echo 'Expected: stable publication remains blocked on manual visual acceptance.'
+        run: npm run check:stable
 
       - name: Upload standalone development build
         uses: actions/upload-artifact@v4
