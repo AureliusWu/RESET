@@ -42,7 +42,7 @@ jobs:
           VN_ENGINE_PATH: ${{ github.workspace }}/vn-engine
         run: npm run build
 
-      - name: Validate v1.2.1-dev candidate and report visual blockers
+      - name: Validate v1.2.1-dev candidate and visual gate
         working-directory: game-repo
         run: |
           npm run check:release
@@ -79,13 +79,9 @@ jobs:
           npm run test:release
           npm run test:browser
 
-      - name: Confirm stable publication gate is still closed
+      - name: Require approved art gate
         working-directory: game-repo
-        run: |
-          if npm run check:stable; then
-            echo 'Stable gate unexpectedly passed while visual acceptance is BLOCKED' >&2
-            exit 1
-          fi
+        run: npm run check:stable
 
       - uses: actions/upload-artifact@v4
         if: always()
@@ -234,11 +230,9 @@ jobs:
             else { Set-ItemProperty -Path $Policy -Name 'VNEngine.exe' -Value $Prior }
           }
 
-      - name: Confirm stable publication gate is still closed
+      - name: Require approved art gate
         working-directory: game-repo
-        shell: pwsh
-        run: |
-          node -e "const {spawnSync}=require('node:child_process');const r=spawnSync(process.platform==='win32'?'npm.cmd':'npm',['run','check:stable'],{stdio:'inherit'});if(r.status===0){console.error('Stable gate unexpectedly passed while visual acceptance is BLOCKED');process.exit(1)}console.log('Expected: stable publication remains blocked on manual visual acceptance.');process.exit(0)"
+        run: npm run check:stable
 
       - uses: actions/upload-artifact@v4
         if: always()
@@ -255,4 +249,4 @@ jobs:
           path: RESET-huiliu-v1.2.1-dev-win-x64.zip
 
 # Intentionally no publish job on the v1.2.1 development line.
-# A stable publish job is restored only after visual-acceptance.json is all PASS.
+# Stable publication is restored only after title interaction, mobile landscape and PWA install pass packaged acceptance and real-device review.
