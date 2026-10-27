@@ -3,7 +3,8 @@
 - 当前稳定发行线为 `v1.2.1`。历史稳定 tag 与 Release 资产不得移动或覆盖；主分支只保留当前开发所需文件，旧阶段资料从 Git 历史追溯。
 - `game/assets/4k/visual-acceptance.json` 是角色人工视觉验收唯一事实源。当前六位角色 production 美术均为 `PASS`；未经新的人工验收，不得擅自替换或重生成。
 - 严格执行 `TECH_READY != ART_READY`。尺寸、Alpha、SHA256、文件存在、Decode、Build、自动截图不能单独把美术标记为 PASS；角色一致性、人体比例、构图、移动端/桌面端观感与 Provenance Truth 必须独立验收。
-- 正式角色美术只允许来自 `game/assets/4k/` master 与 `game/assets/4k/runtime/` 派生链；历史 SVG/占位生成器不得重新进入 production。
+- R2 起静态 production 资产以 `game/assets/manifest.json` 为唯一 Asset ID / kind / runtime path 事实源；`game/project.json` 与 `game/content/**` 不得重新声明 `assets` / `replaceAssets`。正式角色、背景、CG 只允许指向 `game/assets/4k/runtime/` WebP，master 与 provenance 继续保留在 4K / art-sources 链。
+- 林晚正式基线只保留 `neutral`，历史 `base` / `normal` 别名已退役；`sad` 是已完成但当前未引用的 extra，只保留源码，不进入正式发行包。
 - 项目为现代中国校园 VN、六角色路线、都市灵异、读档 Meta 与少量实时 2D Boss 战。保留陈渡、林晚、周小满、许栖、沈听澜、唐梨、乔南星及现有剧情骨架。
 - True End 保持“不保存 → 不可逆 → 10 月 25 日 → 明天见”。不可逆限制必须在 runtime 边界真实生效。
 - 引擎继续独立使用 VN Engine v2 0.3.0，精确锁定 `15c101e0d2b2c1e40dbc36d7a0c1a246d102b52c`。普通作品功能放在本仓库，不复制或重构引擎。
