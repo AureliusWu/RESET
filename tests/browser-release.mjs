@@ -25,12 +25,10 @@ const server=createServer(async(req,res)=>{
 const base=`http://127.0.0.1:${server.address().port}/play/`;
 const enterTitle=async target=>{
   const title=target.locator('.reset-title-gate');
-  if(await title.count()){
-    await title.waitFor({state:'visible'});
-    const enter=target.locator('[data-reset-enter]');
-    assert.equal(await enter.isEnabled(),true,'Title enter button must be interactable');
-    await enter.click();await title.waitFor({state:'detached'});
-  }
+  const enter=target.locator('[data-reset-enter]');
+  await enter.waitFor({state:'visible',timeout:10000});
+  assert.equal(await enter.isEnabled(),true,'Title enter button must be interactable');
+  await enter.click();await title.waitFor({state:'detached'});
 };
 let browser,context,page;
 try{
