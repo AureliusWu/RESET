@@ -1,6 +1,7 @@
 import { readFile, stat } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { loadAssetManifest } from './assets.mjs';
 
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const game = resolve(root, 'game');
@@ -10,10 +11,7 @@ const strictLegacy = process.argv.includes('--strict');
 const readJson = async p => JSON.parse(await readFile(p, 'utf8'));
 const exists = async p => { try { await stat(p); return true; } catch { return false; } };
 const plan = await readJson(resolve(game, 'assets/4k/asset-plan.json'));
-const portraitOverlay = await readJson(resolve(game, 'content/zz-art-v1.json'));
-const sceneOverlay = await readJson(resolve(game, 'content/zzz-scene-art-v1.json'));
-const anomalyOverlay = await readJson(resolve(game, 'content/zzzz-anomaly-art-v1.json'));
-const production = [...portraitOverlay.replaceAssets, ...sceneOverlay.replaceAssets, ...anomalyOverlay.replaceAssets];
+const production = (await loadAssetManifest(root)).production;
 
 const ids = new Set();
 for (const asset of production) {
@@ -68,4 +66,4 @@ for (const asset of adopted4k) {
   }
 }
 
-console.log(`art integrity ok: ${production.length} production refs, ${adopted4k.length} adopted 4K refs`);
+console.log(`art integrity ok: ${production.length} canonical production refs, ${adopted4k.length} adopted 4K refs`);
