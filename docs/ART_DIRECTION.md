@@ -1,6 +1,6 @@
 # 《回留》视觉方向
 
-> 早期设计档案，保留原始阶段描述；文档小版本不代表当前游戏版本。v1.0.0 实装与资产状态以 [制作状态](PRODUCTION_STATUS.md)、[资产状态](ASSET_STATUS.md) 和 [正式发行说明](../CHANGELOG_v1.0.0.md) 为准。
+> 当前实现状态以 [制作状态](PRODUCTION_STATUS.md)、[资产状态](ASSET_STATUS.md)、[4K 规划](ART_4K_PLAN.md) 与 `game/assets/4k/visual-acceptance.json` 为准；历史阶段变化由 Git 记录保存。
 
 ## 已收拢方向
 
@@ -24,6 +24,10 @@
 → UI
 ```
 
-## 当前仓库资产
+## 当前资产事实
 
-`game/assets/` 中的 SVG 只是引擎接入占位图，不是最终美术。此前未经确认的高细节概念海报不进入正式资产管线。
+- 正式 master 位于 `game/assets/4k/`。
+- 运行时派生图位于 `game/assets/4k/runtime/`。
+- 原始图、处理来源与 SHA256 证据位于 `game/art-sources/chatgpt/`。
+- 是否可进入 production 由自动技术门禁与人工 `visual-acceptance.json` 共同决定。
+- 历史占位图和原型生成资产不再作为正式美术来源。
