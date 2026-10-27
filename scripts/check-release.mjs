@@ -16,7 +16,7 @@ async function exists(path) { try { await access(path); return true; } catch { r
 assert(project.game === 'reset', 'wrong game id');
 assert(project.version === manifest.version, 'project/build manifest version mismatch');
 assert(Array.isArray(manifest.extensions), 'build extensions missing');
-for (const extension of ['reset-combat-v1','reset-meta-v1','reset-portrait-set-v1','reset-scene-art-v1','reset-archive-v1','reset-responsive-v1','reset-ui-key-visual-v1']) assert(manifest.extensions.includes(extension), `missing extension ${extension}`);
+for (const extension of ['reset-combat-v1','reset-meta-v1','reset-portrait-set-v1','reset-scene-art-v1','reset-archive-v1','reset-responsive-v1','reset-ui-key-visual-v1','reset-asset-schema-v1']) assert(manifest.extensions.includes(extension), `missing extension ${extension}`);
 for (const file of ['combat.mjs','meta.mjs','archive.mjs','archive-data.mjs','experience.css','experience.mjs','ui.mjs','pwa.mjs','icon-192.png','icon-512.png','project.json','sw.js','app.mjs','manifest.webmanifest']) assert(await exists(resolve(dist, file)), `missing ${file}`);
 assert(app.includes("import('./combat.mjs')") && app.includes("import('./meta.mjs')"), 'runtime bridges are not mounted');
 assert(sw.includes('combat.mjs') && sw.includes('meta.mjs'), 'runtime bridges are not offline cached');
@@ -50,14 +50,14 @@ const portraitSources = new Set();
 for (const character of cast) for (const expression of expressions) {
   const id = `${character}/${expression}`, asset = assetMap.get(id);
   assert(asset?.kind === 'portrait', `missing production portrait ${id}`);
-  assert(asset.src.includes('generated-portraits/') || asset.src === `assets/4k/runtime/characters/${character}/${expression}.webp`, `${id} still points at legacy placeholder art`);
+  assert(asset.src === `assets/4k/runtime/characters/${character}/${expression}.webp`, `${id} is not canonical 4K production art`);
   assert(!String(asset.alt ?? '').includes('占位'), `${id} is still labelled placeholder`);
   portraitSources.add(asset.src);
   assert(await exists(resolve(dist, asset.src)), `portrait file missing from package: ${asset.src}`);
   assert(sw.includes(asset.src), `portrait not offline cached: ${asset.src}`);
 }
 const xuqiAngry = assetMap.get('xuqi/angry');
-assert(xuqiAngry?.src === 'assets/generated-portraits/xuqi/angry.svg' || xuqiAngry?.src === 'assets/4k/runtime/characters/xuqi/angry.webp', 'Xu Qi angry expression is not a production sprite');
+assert(xuqiAngry?.src === 'assets/4k/runtime/characters/xuqi/angry.webp', 'Xu Qi angry expression is not canonical production art');
 assert(await exists(resolve(dist, xuqiAngry.src)), 'Xu Qi angry production sprite missing');
 assert(portraitSources.size === 30, 'five-expression heroine variants are not distinct files');
 for(const asset of project.assets.filter(a=>a.src.startsWith('assets/4k/runtime/'))){
@@ -75,7 +75,7 @@ const productionCgs = ['faceless-reflection-cg','letter-1842-cg','six-chairs-cg'
 for (const id of [...productionScenes, ...productionCgs]) {
   const asset = assetMap.get(id); assert(asset, `missing production scene asset ${id}`);
   const category = productionScenes.includes(id) ? 'backgrounds' : 'cg';
-  assert(asset.src === `assets/4k/runtime/${category}/${id}.webp` || (category==='cg' && asset.src===`assets/generated-scenes/${id}.svg`), `${id} has an unexpected production art path`);
+  assert(asset.src === `assets/4k/runtime/${category}/${id}.webp`, `${id} has an unexpected production art path`);
   assert(!String(asset.alt ?? '').includes('占位'), `${id} is still labelled placeholder`);
   assert(await exists(resolve(dist, asset.src)), `scene art missing from package: ${asset.src}`);
   assert(sw.includes(asset.src), `scene art not offline cached: ${asset.src}`);
@@ -99,18 +99,21 @@ for (const id of finalScenes) assert(scenes.has(id), `missing irreversible/true 
 const listed = new Set(manifest.files.map(file => file.name));
 for (const file of ['combat.mjs','meta.mjs','archive.mjs','archive-data.mjs','experience.css','experience.mjs','ui.mjs','pwa.mjs','icon-192.png','icon-512.png']) assert(listed.has(file), `${file} absent from integrity manifest`);
 
-// Round 2: verify all eight shipped derivatives, including currently unreferenced
-// sad/base/normal, against their source bytes and the final integrity manifest.
-for (const expression of ['base','normal','neutral','smile','worried','sad','surprised','serious']) {
+for (const expression of expressions) {
   const path = `assets/4k/runtime/characters/linwan/${expression}.webp`;
   const bytes = await readFile(resolve(dist, path));
   const source = await readFile(resolve(root, 'game', path));
-  assert(bytes.equals(source), `packaged Lin Wan derivative differs from source: ${path}`);
+  assert(bytes.equals(source), `packaged Lin Wan sprite differs from source: ${path}`);
   const record = manifest.files.find(file => file.name === path);
-  assert(record?.size === bytes.length && record.sha256 === createHash('sha256').update(bytes).digest('hex'), `Lin Wan derivative missing or stale in manifest: ${path}`);
-  assert(sw.includes(path), `Lin Wan derivative absent from offline cache: ${path}`);
+  assert(record?.size === bytes.length && record.sha256 === createHash('sha256').update(bytes).digest('hex'), `Lin Wan sprite missing or stale in manifest: ${path}`);
+  assert(sw.includes(path), `Lin Wan sprite absent from offline cache: ${path}`);
+  assert(assetMap.get(`linwan/${expression}`)?.src === path, `Lin Wan production reference regressed: ${expression}`);
 }
-for (const expression of expressions) assert(assetMap.get(`linwan/${expression}`)?.src === `assets/4k/runtime/characters/linwan/${expression}.webp`, `Lin Wan production reference regressed: ${expression}`);
+for (const expression of ['base','normal','sad']) {
+  const path = `assets/4k/runtime/characters/linwan/${expression}.webp`;
+  assert(!(await exists(resolve(dist, path))), `non-production Lin Wan alias/extra leaked into release: ${path}`);
+  assert(!sw.includes(path), `non-production Lin Wan alias/extra leaked into offline cache: ${path}`);
+}
 
 console.log(JSON.stringify({
   status: 'release-integrity-ok', version: project.version, scenes: project.scenes.length,
