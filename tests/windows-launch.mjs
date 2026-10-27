@@ -38,9 +38,19 @@ const launch=async()=>{
   assert.ok(page,'Native RESET game page missing');page.on('pageerror',e=>errors.push(e.message));await page.locator('.vn-engine').waitFor();
   assert.equal(await page.locator('#error').innerText(),'');await page.locator('.vn-background').waitFor({state:'visible'});return page;
 };
+const enterGame=async()=>{
+  const title=page.locator('.reset-title-screen');
+  if(await title.count()){
+    await title.waitFor({state:'visible'});
+    const start=page.locator('[data-title-start]');
+    assert.equal(await start.isEnabled(),true,'title Start button must be interactable');
+    await start.click();
+    await title.waitFor({state:'detached'});
+  }
+};
 try{
   stop();
-  page=await launch();checks.push('Extracted RESET.exe starts engine/VNEngine.exe and mounts the real game/ content in Windows WebView2 with only system PATH and no SDK overrides');
+  page=await launch();await enterGame();checks.push('Extracted RESET.exe starts engine/VNEngine.exe, presents an interactive title screen, and mounts the real game/ content in Windows WebView2 with only system PATH and no SDK overrides');
   await page.locator('[data-control=settings]').click();await page.getByLabel('文字间隔',{exact:true}).fill('0');await page.getByRole('button',{name:'关闭',exact:true}).click();
   await page.locator('[data-control=next]').click();await page.locator('[data-control=save]').click();const line=await page.locator('.vn-engine').getAttribute('data-line');
   await page.locator('[data-control=next]').click();await page.locator('[data-control=load]').click();assert.equal(await page.locator('.vn-engine').getAttribute('data-line'),line);
@@ -103,7 +113,7 @@ try{
   // taskkill is reserved for disposable runner cleanup, not persistence probes.
   const firstClose=spawnSync('powershell',['-NoProfile','-Command',"Get-Process VNEngine | ForEach-Object { $_.CloseMainWindow() | Out-Null; if (-not $_.WaitForExit(10000)) { throw 'Native window did not close normally' } }"],{encoding:'utf8'});
   assert.equal(firstClose.status,0,firstClose.stderr);await browser.close().catch(()=>{});browser=null;
-  page=await launch();
+  page=await launch();await enterGame();
   assert.ok(await page.evaluate(()=>JSON.parse(localStorage.getItem('reset:meta:v1')).endings.includes('normal-linwan')),'ending survives first normal process restart');
   assert.ok(await page.evaluate(()=>JSON.parse(localStorage.getItem('reset:meta:v1')).cgs.includes('letter-1842-cg')),'CG survives first normal process restart');
   await page.locator('[data-control=load]').click();assert.equal(await page.locator('.vn-engine').getAttribute('data-line'),line);
@@ -113,7 +123,7 @@ try{
   const close=spawnSync('powershell',['-NoProfile','-Command',"Get-Process VNEngine | ForEach-Object { $_.CloseMainWindow() | Out-Null; if (-not $_.WaitForExit(10000)) { throw 'Native window did not close normally' } }"],{encoding:'utf8'});
   assert.equal(close.status,0,close.stderr);await browser.close().catch(()=>{});browser=null;
   await new Promise(r=>setTimeout(r,1500));
-  page=await launch();assert.equal(await page.evaluate(()=>localStorage.getItem('reset:slots:v1')),beforeRestart.slots);
+  page=await launch();await enterGame();assert.equal(await page.evaluate(()=>localStorage.getItem('reset:slots:v1')),beforeRestart.slots);
   await page.locator('[data-reset-control=slots]').click();await page.locator('[data-slot="1"] [data-slot-action=load]').click();await page.locator('[data-reset-confirm]').click();await page.waitForFunction(line=>document.querySelector('.vn-engine')?.dataset.line===line,line);
   assert.equal(await page.title(),`回留 · 读取 ${beforeRestart.loads+1}`);
   await page.locator('[data-control=load]').click();assert.equal(await page.locator('.vn-engine').getAttribute('data-line'),line);
