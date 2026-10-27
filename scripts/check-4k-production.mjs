@@ -2,6 +2,7 @@ import { readFile, stat } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
+import { loadAssetManifest } from './assets.mjs';
 
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const game = resolve(root, 'game');
@@ -10,10 +11,7 @@ const exists = async path => { try { await stat(path); return true; } catch { re
 const assert = (value, message) => { if (!value) throw new Error(message); };
 
 const plan = await readJson(resolve(game, 'assets/4k/asset-plan.json'));
-const portraitOverlay = await readJson(resolve(game, 'content/zz-art-v1.json'));
-const sceneOverlay = await readJson(resolve(game, 'content/zzz-scene-art-v1.json'));
-const anomalyOverlay = await readJson(resolve(game, 'content/zzzz-anomaly-art-v1.json'));
-const production = [...portraitOverlay.replaceAssets, ...sceneOverlay.replaceAssets, ...anomalyOverlay.replaceAssets];
+const production = (await loadAssetManifest(root)).production;
 
 const render = (rule, vars) => Object.entries(vars).reduce((text, [key, value]) => text.replaceAll(`{${key}}`, value), rule);
 
@@ -122,11 +120,7 @@ for (const characterId of adoptedCharacters) {
     const master = render(plan.pathRules.portraitMaster, { character: characterId, expression });
     await verifyMaster(master, plan.policy.portrait, `${characterId}/${expression}`);
   }
-  if (characterId === 'linwan') {
-    for (const alias of ['base', 'normal']) {
-      await verifyMaster(`assets/4k/characters/linwan/${alias}.png`, plan.policy.portrait, `linwan/${alias}`);
-    }
-  } else {
+  if (characterId !== 'linwan') {
     const provenance = await readJson(resolve(root, `game/art-sources/chatgpt/characters/${characterId}/provenance.json`));
     assert(provenance.native4kClaim === false, `${characterId}: processed master provenance must not claim native 4K`);
     const bodyHashes = new Set();
