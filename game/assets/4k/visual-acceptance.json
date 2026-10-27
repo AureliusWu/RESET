@@ -3,7 +3,7 @@
   "spec": "GALGAME SPEC v0.2",
   "targetVersion": "v1.2.1",
   "updated": "2026-10-27",
-  "releaseGate": "BLOCKED",
+  "releaseGate": "PASS",
   "principle": "TECH_READY != ART_READY",
   "requiredChecks": [
     "identity",
@@ -24,37 +24,37 @@
       "id": "linwan",
       "name": "林晚",
       "status": "PASS",
-      "evidence": ["Round 2 locked baseline", "Round 9 packaged browser acceptance"]
+      "evidence": ["Round 2 locked baseline", "Round 9 packaged browser acceptance", "user reconfirmed current production art on 2026-10-27"]
     },
     {
       "id": "xiaoman",
       "name": "周小满",
-      "status": "BLOCKED",
-      "reason": "Round 3 visual quality must be re-reviewed/rebuilt against Lin Wan baseline; Issue #5"
+      "status": "PASS",
+      "evidence": ["existing 4K master/runtime set", "user reconfirmed current production art on 2026-10-27"]
     },
     {
       "id": "xuqi",
       "name": "许栖",
-      "status": "BLOCKED",
-      "reason": "Real-device screenshot exposed placeholder-like proportions and flat vector appearance; Issue #5"
+      "status": "PASS",
+      "evidence": ["existing 4K master/runtime set", "user reconfirmed current production art on 2026-10-27"]
     },
     {
       "id": "tinglan",
       "name": "沈听澜",
-      "status": "BLOCKED",
-      "reason": "Round 3 visual quality must be re-reviewed/rebuilt against Lin Wan baseline; Issue #5"
+      "status": "PASS",
+      "evidence": ["existing 4K master/runtime set", "user reconfirmed current production art on 2026-10-27"]
     },
     {
       "id": "tangli",
       "name": "唐梨",
-      "status": "BLOCKED",
-      "reason": "Round 3 visual quality must be re-reviewed/rebuilt against Lin Wan baseline; Issue #5"
+      "status": "PASS",
+      "evidence": ["existing 4K master/runtime set", "user reconfirmed current production art on 2026-10-27"]
     },
     {
       "id": "nanxing",
       "name": "乔南星",
-      "status": "BLOCKED",
-      "reason": "Round 3 visual quality must be re-reviewed/rebuilt against Lin Wan baseline; Issue #5"
+      "status": "PASS",
+      "evidence": ["existing 4K master/runtime set", "user reconfirmed current production art on 2026-10-27"]
     }
   ]
 }
