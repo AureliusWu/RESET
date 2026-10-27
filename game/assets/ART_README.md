@@ -1,6 +1,6 @@
 # 《回留》美术资产约束
 
-当前目录中的人物与背景 SVG 是运行占位资产，不代表最终美术定案。它们的作用是保证资源 ID、场景切换、立绘显示、离线缓存与打包链在正式美术到来前一直可验证。
+R2 起，正式静态 production 资产由 `game/assets/manifest.json` 统一声明。角色、背景与 CG 的运行时来源必须是 `assets/4k/runtime/` 下的 canonical WebP；4K master、原图与 provenance 继续保留用于审计和再加工。历史 SVG、生成占位图与 asset replacement overlay 不再属于 production 链。
 
 ## 已锁定视觉方向
 
@@ -11,16 +11,14 @@
 - 背景可以比角色稍写实，但仍需二维动画化。
 - 正常世界清透克制；异常只在关键场景增加冷色、紫蓝、错位和局部失真。
 
-## 角色生产顺序
+## 角色资产规则
 
-1. 标准正面 / 3/4 立绘底模。
-2. neutral / smile / worried / surprised / serious 表情差分。
-3. 两种常用姿势差分。
-4. 私服 / 特殊剧情服装。
-5. Q 版。
-6. 关键剧情 CG。
-
-差分必须复用同一底模，不允许每张图重新生成导致脸型和服装漂移。
+1. 正式 heroine 基线表情统一为 neutral / smile / worried / surprised / serious。
+2. 许栖保留剧情实际使用的 angry 差分。
+3. 林晚历史 base / normal 别名已在 R2 退役；neutral 是唯一 baseline。
+4. 林晚 sad 是已完成 extra，保留 master/runtime 源文件，但当前剧情不引用、正式发行包不携带。
+5. 差分必须保持同一角色身份、体型、服装与 body lock，不允许无依据漂移。
+6. 新增 production Asset ID 必须先进入 `game/assets/manifest.json`，不得通过内容 pack 覆盖旧资产。
 
 ## 六位角色识别点
 
@@ -31,8 +29,10 @@
 - 唐梨：红棕高马尾、运动感、橙珊瑚强调色、护膝 / 耳机。
 - 乔南星：黑发带深蓝光泽、紫蓝眼、手机、星形小元素。
 
-## 场景资产优先级
+## 生产与审计
 
-首批正式背景：雨夜教室、校园东门、南湖站、夜梧城街道、档案室、教学楼天台。
-
-第二批：江滩、商业街、旧居民区、人民公园、体育馆后门、梧城北站异常站台。
+- `game/assets/manifest.json`：Asset ID / kind / runtime path 唯一 production 事实源。
+- `game/assets/4k/asset-plan.json`：master/runtime 尺寸与配对规则。
+- `game/assets/4k/visual-acceptance.json`：人工视觉 PASS 事实源。
+- `game/art-sources/chatgpt/**/provenance.json`：原图、master、runtime 的来源与 SHA256。
+- `npm run asset:schema` / `npm run art:check`：结构、文件、尺寸、Alpha、provenance 与视觉门禁。
