@@ -15,6 +15,13 @@ export async function verifyPwaUpgrade({browser,dist,previous,fixtures,out,pass}
   });await new Promise(r=>server.listen(0,'127.0.0.1',r));
   const base=`http://127.0.0.1:${server.address().port}/candidate/`;
   const context=await browser.newContext({viewport:{width:390,height:844},hasTouch:true,isMobile:true});let page;
+  const enterTitle=async()=>{
+    const title=page.locator('.reset-title-gate');
+    await title.waitFor({state:'visible',timeout:10000});
+    const enter=page.locator('[data-reset-enter]');
+    assert.equal(await enter.isEnabled(),true,'upgraded title enter must be interactable');
+    await enter.tap();await title.waitFor({state:'detached'});
+  };
   await context.addInitScript(()=>{if(!localStorage.getItem('vn-engine:reset:settings'))localStorage.setItem('vn-engine:reset:settings',JSON.stringify({textDelayMs:0,reducedMotion:true,music:false,soundEffects:false}));});
   try{
     page=await context.newPage();await page.goto(base);await page.locator('.vn-engine').waitFor();
@@ -39,7 +46,8 @@ export async function verifyPwaUpgrade({browser,dist,previous,fixtures,out,pass}
     }));
     page=await context.newPage();await page.goto(base);await page.locator('.vn-engine').waitFor();
     await page.waitForFunction(async()=> (await(await fetch('./project.json')).json()).version==='reset-v1.2.1-dev',null,{timeout:90000});
-    await page.reload();await page.locator('.reset-toolbar-controls').waitFor();
+    await enterTitle();
+    await page.reload();await page.locator('.vn-engine').waitFor();await enterTitle();await page.locator('.reset-toolbar-controls').waitFor();
     assert.equal(await page.evaluate(()=>localStorage.getItem('vn-engine:reset:save:1')),saved.quick);
     assert.equal(await page.evaluate(()=>localStorage.getItem('reset:slots:v1')),saved.slots);
     await page.locator('[data-control=load]').click();
@@ -49,7 +57,7 @@ export async function verifyPwaUpgrade({browser,dist,previous,fixtures,out,pass}
     assert.ok(saved.caches.filter(k=>k.startsWith('vn-self-reset-v2:')).every(k=>!keys.includes(k)));
     pass('Published v1.1.0 PWA upgrades at the same nested origin to v1.2.1-dev after clients close; old quick/manual saves, settings and ending Meta survive');
     await page.waitForFunction(()=>navigator.serviceWorker.controller&&document.getElementById('status').textContent.includes('可离线游玩'));
-    await context.setOffline(true);await page.reload();await page.locator('.vn-engine').waitFor();
+    await context.setOffline(true);await page.reload();await page.locator('.vn-engine').waitFor();await enterTitle();
     await page.locator('[data-control=load]').click();await page.locator('[data-reset-control=slots]').click();await page.locator('[data-slot="1"] [data-slot-action=load]').click();await page.locator('[data-reset-confirm]').click();
     await page.locator('.vn-background').waitFor({state:'visible'});assert.equal(await page.locator('#error').innerText(),'');
     await page.screenshot({path:out+'/v110-upgraded-offline.png',fullPage:true});
