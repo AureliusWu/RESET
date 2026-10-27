@@ -1,0 +1,52 @@
+name: R2 Asset Alias Cleanup
+
+on:
+  push:
+    branches: [r2-asset-schema]
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: r2-asset-schema
+          fetch-depth: 0
+      - name: Retire physical aliases and legacy generator
+        shell: bash
+        run: |
+          if [ ! -f game/assets/4k/runtime/characters/linwan/base.webp ]; then
+            echo "R2 asset aliases already retired"
+            exit 0
+          fi
+          node --input-type=module <<'NODE'
+          import { readFile, writeFile } from 'node:fs/promises';
+          const path = 'tests/linwan-art-browser.mjs';
+          let text = await readFile(path, 'utf8');
+          const replacements = [
+            ["const derivatives = ['base','normal',...formal,'sad'];", "const derivatives = formal;"],
+            ["for(const expression of [...formal,'sad']) {", "for(const expression of formal) {"],
+            ["Six distinct Lin Wan sprites captured at natural 1080x1920 size over actual light and dark CSS backgrounds for edge review", "Five canonical Lin Wan sprites captured at natural 1080x1920 size over actual light and dark CSS backgrounds for edge review"],
+            ["All eight installed Lin Wan WebPs decode with real transparent pixels and no failed image request", "All five canonical Lin Wan WebPs decode with real transparent pixels and no failed image request"],
+            ["Offline real service-worker cache contains all eight Lin Wan derivatives and displays the new neutral sprite without network", "Offline real service-worker cache contains all five canonical Lin Wan production sprites and displays neutral without network"]
+          ];
+          for (const [from,to] of replacements) {
+            if (!text.includes(from)) throw new Error(`Missing expected Lin Wan browser text: ${from}`);
+            text = text.replace(from,to);
+          }
+          await writeFile(path,text);
+          await writeFile('game/assets/4k/characters/linwan/README.md', `# 林晚 4K production set — R2 canonical\n\n- Master: PNG RGBA, 2160×3840\n- Runtime derivative: WebP RGBA, 1080×1920\n- Formal story expressions: neutral / smile / worried / surprised / serious.\n- R2 retires the historical base / normal aliases; neutral is the single canonical baseline.\n- sad is completed and retained as a source extra, but current story does not reference it and release packages do not ship it.\n- Production Asset IDs and paths are declared only in game/assets/manifest.json.\n`);
+          NODE
+          git rm game/assets/4k/characters/linwan/base.png
+          git rm game/assets/4k/characters/linwan/normal.png
+          git rm game/assets/4k/runtime/characters/linwan/base.webp
+          git rm game/assets/4k/runtime/characters/linwan/normal.webp
+          git rm scripts/generate-scenes.mjs
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "refactor(asset): retire aliases and legacy scene generator"
+          git push origin HEAD:r2-asset-schema
