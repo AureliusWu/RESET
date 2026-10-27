@@ -6,6 +6,7 @@ import { pathToFileURL, fileURLToPath } from 'node:url';
 import process from 'node:process';
 import { pngIcon } from './pwa-assets.mjs';
 import { loadContentPacks } from './content-packs.mjs';
+import { loadAssetManifest } from './assets.mjs';
 
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const lock = JSON.parse(await readFile(resolve(root, 'ENGINE.lock.json'), 'utf8'));
@@ -43,20 +44,13 @@ function mergeStage(left = {}, right = {}) {
 
 function applyPack(project, pack) {
   if (!pack?.id) throw new Error('Content pack is missing id');
+  if ((pack.assets?.length ?? 0) > 0 || (pack.replaceAssets?.length ?? 0) > 0) {
+    throw new Error(`R2 content pack ${pack.id} must not own assets; use game/assets/manifest.json`);
+  }
   const scenes = new Map(project.scenes.map(scene => [scene.id, scene]));
   for (const scene of pack.scenes ?? []) {
     if (scenes.has(scene.id)) throw new Error(`Content pack ${pack.id} duplicates scene ${scene.id}`);
     scenes.set(scene.id, scene);
-  }
-
-  const assets = new Map((project.assets ?? []).map(asset => [asset.id, asset]));
-  for (const replacement of pack.replaceAssets ?? []) {
-    if (!assets.has(replacement.id)) throw new Error(`Content pack ${pack.id} cannot replace missing asset ${replacement.id}`);
-    assets.set(replacement.id, replacement);
-  }
-  for (const asset of pack.assets ?? []) {
-    if (assets.has(asset.id)) throw new Error(`Content pack ${pack.id} duplicates asset ${asset.id}`);
-    assets.set(asset.id, asset);
   }
 
   return {
@@ -64,8 +58,7 @@ function applyPack(project, pack) {
     ...(pack.version ? { version: pack.version } : {}),
     stats: { ...(project.stats ?? {}), ...(pack.stats ?? {}) },
     scenes: [...scenes.values()],
-    stage: mergeStage(project.stage, pack.stage),
-    assets: [...assets.values()]
+    stage: mergeStage(project.stage, pack.stage)
   };
 }
 
@@ -83,12 +76,6 @@ async function walkFiles(directory) {
 }
 
 async function injectGameRuntime(project) {
-  const portraitDirs = new Set(project.assets.filter(asset => asset.kind === 'portrait' && asset.src.startsWith('assets/4k/runtime/characters/')).map(asset => asset.src.slice(0, asset.src.lastIndexOf('/'))));
-  for (const directory of portraitDirs) {
-    for (const file of await readdir(resolve(root, 'game', directory))) {
-      if (file.endsWith('.webp')) await copyFile(resolve(root, 'game', directory, file), resolve(output, directory, file));
-    }
-  }
   const uiRuntimeDir = resolve(root, 'game/assets/4k/runtime/ui'), uiOutputDir = resolve(output, 'assets/4k/runtime/ui');
   await mkdir(uiOutputDir, { recursive: true });
   for (const file of ['title-key-visual.webp','save-anomaly.webp','ending-collection-header.webp','cg-gallery-header.webp','combat-hud-key-visual.webp']) {
@@ -130,7 +117,7 @@ async function injectGameRuntime(project) {
     version: project.version,
     engine: packagedManifest.engine,
     contentFingerprint: fingerprint,
-    extensions: ['reset-combat-v1', 'reset-meta-v1', 'reset-portrait-set-v1', 'reset-scene-art-v1', 'reset-archive-v1', 'reset-responsive-v1', 'reset-ui-key-visual-v1', 'reset-art-completeness-v1', 'reset-art-visual-gate-v1'],
+    extensions: ['reset-combat-v1', 'reset-meta-v1', 'reset-portrait-set-v1', 'reset-scene-art-v1', 'reset-archive-v1', 'reset-responsive-v1', 'reset-ui-key-visual-v1', 'reset-art-completeness-v1', 'reset-art-visual-gate-v1', 'reset-asset-schema-v1'],
     files: finalFiles.map(file => ({ name: file.name, size: file.bytes.length, sha256: createHash('sha256').update(file.bytes).digest('hex') }))
   };
   await writeFile(resolve(output, 'build-manifest.json'), JSON.stringify(metadata, null, 2) + '\n');
@@ -143,9 +130,11 @@ if (process.env.ALLOW_ENGINE_DRIFT !== '1') {
 }
 
 run(process.execPath, [resolve(root, 'scripts/generate-audio.mjs')], root);
-run(process.execPath, [resolve(root, 'scripts/generate-scenes.mjs')], root);
 let project = JSON.parse(await readFile(projectFile, 'utf8'));
+if ((project.assets?.length ?? 0) !== 0) throw new Error('R2 asset schema requires game/project.json assets to stay empty');
 for (const { pack } of (await loadContentPacks(root)).packs) project = applyPack(project, pack);
+const assetManifest = await loadAssetManifest(root);
+project = { ...project, assets: assetManifest.production };
 const audio = JSON.parse(await readFile(audioFile, 'utf8'));
 const buildProject = {
   ...project,
@@ -159,7 +148,7 @@ try {
   await rm(output, { recursive: true, force: true });
   run(process.execPath, [resolve(engine, 'tools/package-game.mjs'), buildProjectFile, output], root);
   await injectGameRuntime(buildProject);
-  console.log(`回留 ${buildProject.version} build completed with VN Engine v2 ${lock.version} @ ${lock.commit.slice(0, 12)} + RESET combat/meta/production-art runtime`);
+  console.log(`回留 ${buildProject.version} build completed with VN Engine v2 ${lock.version} @ ${lock.commit.slice(0, 12)} + RESET combat/meta/canonical-asset runtime`);
 } finally {
   await rm(buildProjectFile, { force: true });
 }
