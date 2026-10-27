@@ -3,6 +3,10 @@
   "source": "R2 Content Schema",
   "packs": [
     {
+      "path": "runtime.json",
+      "role": "runtime"
+    },
+    {
       "path": "chapters/01.json",
       "role": "chapter",
       "chapter": 1
