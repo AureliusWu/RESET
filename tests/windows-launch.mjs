@@ -36,11 +36,20 @@ const launch=async()=>{
   const context=browser.contexts()[0];let page;
   for(let i=0;i<100;i++){page=context.pages().find(p=>p.url().startsWith(gameOrigin));if(page)break;await new Promise(r=>setTimeout(r,100));}
   assert.ok(page,'Native RESET game page missing');page.on('pageerror',e=>errors.push(e.message));await page.locator('.vn-engine').waitFor();
-  assert.equal(await page.locator('#error').innerText(),'');await page.locator('.vn-background').waitFor({state:'visible'});return page;
+  assert.equal(await page.locator('#error').innerText(),'');await page.locator('.vn-background').waitFor({state:'visible'});
+  const title=page.locator('.reset-title-gate');
+  if(await title.count()){
+    await title.waitFor({state:'visible'});
+    const enter=page.locator('[data-reset-enter]');
+    assert.equal(await enter.isEnabled(),true,'Native title enter button must be interactable');
+    await page.screenshot({path:out+'/native-title.png'});
+    await enter.click();await title.waitFor({state:'detached'});
+  }
+  return page;
 };
 try{
   stop();
-  page=await launch();checks.push('Extracted RESET.exe starts engine/VNEngine.exe and mounts the real game/ content in Windows WebView2 with only system PATH and no SDK overrides');
+  page=await launch();checks.push('Extracted RESET.exe starts engine/VNEngine.exe, enters through the interactive title gate and mounts the real game/ content in Windows WebView2 with only system PATH and no SDK overrides');
   await page.locator('[data-control=settings]').click();await page.getByLabel('文字间隔',{exact:true}).fill('0');await page.getByRole('button',{name:'关闭',exact:true}).click();
   await page.locator('[data-control=next]').click();await page.locator('[data-control=save]').click();const line=await page.locator('.vn-engine').getAttribute('data-line');
   await page.locator('[data-control=next]').click();await page.locator('[data-control=load]').click();assert.equal(await page.locator('.vn-engine').getAttribute('data-line'),line);
