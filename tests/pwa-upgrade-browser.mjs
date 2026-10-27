@@ -33,7 +33,7 @@ export async function verifyPwaUpgrade({browser,dist,previous,fixtures,out,pass}
     const previousEnding=previousProject.scenes.find(scene=>scene.id===oldEnding.state.sceneId);
     assert.ok(previousEnding,'v1.1.0 must contain the preserved Lin Wan ending scene');
     oldEnding.state.storyVersion=previousProject.version;
-    oldEnding.state.line=previousEnding.lines?.length??0;
+    oldEnding.state.line=Math.max(0,(previousEnding.lines?.length??1)-1);
     oldEnding.state.history=[];
     if(previousProject.stats)oldEnding.state.stats=Object.fromEntries(Object.entries(previousProject.stats).map(([key,value])=>[key,oldEnding.state.stats?.[key]??value]));
     await page.locator('[data-control=settings]').click();await page.locator('input[type=file]').setInputFiles({name:'old-route.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(oldEnding))});await page.locator('.vn-modal').waitFor({state:'hidden'});
