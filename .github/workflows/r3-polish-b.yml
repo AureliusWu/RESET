@@ -20,7 +20,9 @@ jobs:
         with:
           node-version: 22
       - name: Apply narrative polish
-        run: node scripts/r3-polish-b.mjs
+        run: |
+          node scripts/r3-pre-b.mjs
+          node scripts/r3-polish-b.mjs
       - name: Validate scenario
         run: npm run scenario:check
       - name: Commit polished chapters
