@@ -4,8 +4,14 @@ import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {runInNewContext} from 'node:vm';
 const dist=resolve(process.env.RESET_DIST||'dist');
-const source=readFileSync(resolve(dist,'pwa.mjs'),'utf8').replace('export async function','async function')+'\nregisterGamePwa';
-function harness(navigator){const status={textContent:''};const register=runInNewContext(source,{navigator,document:{getElementById:()=>status},queueMicrotask,addEventListener(){}});return{status,register};}
+const sourceText=readFileSync(resolve(dist,'pwa.mjs'),'utf8');
+const source=sourceText.replace('export async function','async function')+'\nregisterGamePwa';
+function harness(navigator){
+  const status={textContent:''};
+  const document={getElementById:()=>status,querySelector:()=>null};
+  const register=runInNewContext(source,{navigator,document,queueMicrotask,addEventListener(){},removeEventListener(){},matchMedia:()=>({matches:false}),screen:{orientation:{} }});
+  return{status,register};
+}
 test('unsupported or failed offline setup never advertises a completed download or crashes the game',async()=>{
   const missing=harness({});await missing.register();assert.match(missing.status.textContent,/不支持离线缓存/);
   const failed=harness({serviceWorker:{register:async()=>{throw Error('Network')}}});await failed.register();assert.match(failed.status.textContent,/未能下载/);
@@ -22,4 +28,9 @@ test('mobile installation metadata includes valid 192px and 512px PNG icons and 
     const bytes=readFileSync(resolve(dist,icon.src));assert.equal(bytes.subarray(1,4).toString(),'PNG');assert.equal(bytes.readUInt32BE(16),size);assert.equal(bytes.readUInt32BE(20),size);
   }
   assert.equal(manifest.display,'standalone');assert.equal(manifest.scope,'./');assert.match(readFileSync(resolve(dist,'index.html'),'utf8'),/viewport-fit=cover/);
+});
+test('mobile shell exposes an interactive title, install flow and dedicated landscape layout',()=>{
+  for(const marker of ['data-title-start','data-title-continue','data-title-settings','data-title-install','beforeinstallprompt','appinstalled','screen.orientation.lock','@media(orientation:landscape)'])assert.ok(sourceText.includes(marker),marker);
+  assert.ok(sourceText.includes('安装应用'));
+  assert.ok(sourceText.includes('继续 / 读档'));
 });
