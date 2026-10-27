@@ -27,8 +27,10 @@
 
 ## 正式正文
 
-可编辑剧情正文不放在 `docs/`，唯一事实源位于：
+可编辑剧情正文不放在 `docs/`。R2 起唯一事实源为：
 
-`game/content/zzzzz-r1-chapter-01.json` → `game/content/zzzzz-r1-chapter-07.json`
+`game/content/chapters/01.json` → `game/content/chapters/07.json`
+
+`game/content/manifest.json` 显式声明内容加载顺序；`game/project.json` 不再承载剧情 Scene，也不允许重新引入 `replaceScenes` 覆盖层。
 
 任何会影响场景、结局、存档兼容、美术引用或运行时行为的修改，都应继续由现有 Build / Scenario / Release 门禁验证。
