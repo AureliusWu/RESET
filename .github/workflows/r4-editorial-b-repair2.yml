@@ -1,0 +1,35 @@
+name: R4 Editorial B Repair v2
+
+on:
+  push:
+    branches:
+      - r4-editorial-b
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: r4-editorial-b
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Restore route-scene density with short concrete details
+        run: python scripts/r4-editorial-b-repair2.py
+      - name: Commit repaired chapter
+        shell: bash
+        run: |
+          if git diff --quiet -- game/content/chapters/04.json; then
+            echo "No repair changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add game/content/chapters/04.json
+          git commit -m "refactor(editorial): restore R4 route scene density v2"
+          git push origin HEAD:r4-editorial-b
