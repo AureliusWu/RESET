@@ -15,6 +15,7 @@ const {chromium}=await import(pathToFileURL(resolve(engine,'node_modules/playwri
 const dist=resolve(process.env.RESET_DIST||'dist'), out=resolve('test-results/browser');await mkdir(out,{recursive:true});
 const fixtures=JSON.parse(await readFile('test-results/route-fixtures.json','utf8'));
 const project=JSON.parse(await readFile(resolve(dist,'project.json'),'utf8'));
+const storyStepBudget=Math.max(300,project.scenes.reduce((sum,s)=>sum+(s.lines?.length??0)+(s.choices?.length??0)+2,0));
 const checks=[], errors=[];const pass=name=>{checks.push(name);console.log('PASS',name)};
 const server=createServer(async(req,res)=>{
   try{const pathname=decodeURIComponent(new URL(req.url,'http://localhost').pathname);if(!pathname.startsWith('/play/'))throw Error();
@@ -43,6 +44,13 @@ try{
     await control('settings').click();await page.locator('input[type=file]').setInputFiles({name:'reset-save.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(save))});
     await page.locator('.vn-modal').waitFor({state:'hidden'});await isScene(save.state.sceneId);
   };
+  const advanceUntil=async(predicate,label,max=storyStepBudget)=>{
+    for(let count=0;count<max;count++){
+      if(await predicate())return count;
+      await control('next').click();
+    }
+    assert.fail(`Could not reach ${label} within ${max} canonical dialogue advances`);
+  };
   await page.goto(base);await page.locator('.vn-engine').waitFor();assert.equal(await page.locator('#error').innerText(),'');
   await page.locator('.reset-title-gate').waitFor({state:'visible'});await page.screenshot({path:out+'/title-desktop.png',fullPage:true});await enterTitle(page);
   assert.equal(await page.locator('.reset-dialog').evaluate(el=>getComputedStyle(el).position),'absolute','the packaged experience stylesheet must actually apply');
@@ -67,7 +75,10 @@ try{
   await control('settings').click();assert.equal(await control('save').isDisabled(),true);
   await page.getByLabel('阅读区透明度').fill('0.6');await page.getByRole('button',{name:'关闭',exact:true}).click();
   assert.match(await page.locator('.vn-engine').getAttribute('style'),/0.6/);
-  await control('history').click();await page.getByLabel('搜索已读记录').fill('10月17日');assert.ok(await page.locator('.vn-record').count());await page.getByRole('button',{name:'关闭',exact:true}).click();
+  await control('history').click();
+  const firstHistory=page.locator('.vn-record').first();assert.ok(await firstHistory.count(),'history must contain at least one actually read record');
+  const historyProbe=(await firstHistory.innerText()).trim().slice(0,6);assert.ok(historyProbe.length>0);
+  await page.getByLabel('搜索已读记录').fill(historyProbe);assert.ok(await page.locator('.vn-record').count());await page.getByRole('button',{name:'关闭',exact:true}).click();
   await control('auto').click();await page.waitForSelector('.vn-actions [data-action]');const choiceScene=await scene();await page.waitForTimeout(500);assert.equal(await scene(),choiceScene);
   await control('restart').click();await control('skip').click();await page.waitForSelector('.vn-actions [data-action]');assert.equal(await scene(),choiceScene);
   pass('Settings, history search, auto at choices and read-only skip work in the packaged UI');
@@ -119,7 +130,7 @@ try{
       assert.equal(next,expected,`${id} ${outcome}`);
       assert.equal(await page.locator('.vn-engine').getAttribute('data-paused'),'false');
       if(outcome==='lose'&&id!=='c5_echo_fail'){
-        for(let count=0;count<20&&!await page.locator('.vn-actions [data-action="@continue"]').count();count++)await control('next').click();
+        await advanceUntil(async()=>await page.locator('.vn-actions [data-action="@continue"]').count()>0,`${id} retry action`);
         assert.equal(await page.locator('.vn-actions [data-action="@continue"]').innerText(),'重新尝试');
       }
       pass(`Combat ${id}: actual ${outcome} returns to ${expected}`);
@@ -135,7 +146,7 @@ try{
   await control('history').click();await page.locator('.vn-record').first().click();assert.equal(await scene(),'c6_no_save');await page.getByRole('button',{name:'关闭',exact:true}).click();
   await control('settings').click();assert.equal(await page.locator('.vn-backup').isHidden(),true);await page.getByRole('button',{name:'关闭',exact:true}).click();
   await page.screenshot({path:out+'/irreversible.png',fullPage:true});
-  for(let count=0;count<100;count++){
+  for(let count=0;count<storyStepBudget;count++){
     if(await page.locator('.vn-actions').innerText().then(t=>t.includes('已到达结局')))break;
     const choice=page.locator('[data-action=confirm_no_save]');if(await choice.count())await choice.click();else await control('next').click();
   }
