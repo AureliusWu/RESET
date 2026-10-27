@@ -1,8 +1,8 @@
 {
-  "id": "r1-scenario-chapter-01",
+  "id": "chapter-01",
   "chapter": 1,
-  "source": "R1 Scenario Reconstruction — committed source of truth",
-  "replaceScenes": [
+  "source": "R2 canonical scenario source",
+  "scenes": [
     {
       "id": "prologue_1842",
       "chapter": 1,
