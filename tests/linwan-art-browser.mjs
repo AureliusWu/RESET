@@ -23,6 +23,13 @@ export async function verifyLinwanArt({page,project,fixtures,loadFixture,control
     },{id:`linwan/${expression}`,path:src(expression)});
     assert.equal(await portrait.isVisible(),true);
   };
+  const advanceUntil=async(predicate,label,max=250)=>{
+    for(let count=0;count<max;count++){
+      if(await predicate())return count;
+      await control('next').click();
+    }
+    assert.fail(`Could not reach ${label} within ${max} canonical dialogue advances`);
+  };
   const frameSaves={};
   // Find genuine expression frames by replaying valid witnessed saves in the
   // packaged engine, never by assigning DOM src or fabricating story scenes.
@@ -31,7 +38,7 @@ export async function verifyLinwanArt({page,project,fixtures,loadFixture,control
     const {session}=createProject(project,'https://reset.test/',{settings:{textDelayMs:0,reducedMotion:true}});
     try {
       session.restore(save);const scene=session.getView().frame.sceneId;
-      for(let count=0;count<100;count++) {
+      for(let count=0;count<Math.max(100,project.scenes.find(item=>item.id===scene)?.lines?.length??0);count++) {
         const frame=session.getView().frame;
         if(frame.sceneId!==scene)break;
         if(frame.stage.portrait?.startsWith('linwan/'))frameSaves[frame.stage.portrait]??=session.save();
@@ -42,7 +49,7 @@ export async function verifyLinwanArt({page,project,fixtures,loadFixture,control
   const originalViewport=page.viewportSize();
   try {
     await control('restart').click();
-    for(let count=0;count<20&&!await page.locator('[data-action=watch_linwan]').count();count++)await control('next').click();
+    await advanceUntil(async()=>await page.locator('[data-action=watch_linwan]').count()>0,'watch_linwan choice');
     await page.locator('[data-action=watch_linwan]').click();await ready('neutral');
     await page.screenshot({path:out+'/linwan-first-appearance.png',fullPage:true,animations:'disabled'});
     pass('Lin Wan first appears from New Game through canonical UI choices and decodes the new 1080x1920 WebP');
@@ -79,7 +86,8 @@ export async function verifyLinwanArt({page,project,fixtures,loadFixture,control
     });
     try {
       await loadFixture(fixtures.witnesses.linwan_shadow);await ready('neutral');
-      for(let count=0;count<3;count++)await control('next').click();await ready('worried');
+      await advanceUntil(async()=>await portrait.getAttribute('data-asset')==='linwan/worried','Lin Wan worried expression');
+      await ready('worried');
       assert.ok(await page.evaluate(()=>window.__linwanAnimationCalls.length>0));
     } finally {
       await page.evaluate(()=>{Element.prototype.animate=window.__linwanAnimate;delete window.__linwanAnimate;delete window.__linwanAnimationCalls;});
@@ -143,7 +151,7 @@ export async function verifyLinwanArt({page,project,fixtures,loadFixture,control
 export async function verifyLinwanOffline({page,loadFixture,fixtures,out,pass}) {
   const paths=derivatives.map(src);
   const cachePaths=await page.evaluate(async()=>{
-    const registration=await navigator.serviceWorker.ready;
+    await navigator.serviceWorker.ready;
     const keys=(await caches.keys()).filter(key=>key.startsWith('vn-self-reset-v2:'));
     const found=[];for(const key of keys){const cache=await caches.open(key);for(const request of await cache.keys())found.push(new URL(request.url).pathname);}
     return found;
