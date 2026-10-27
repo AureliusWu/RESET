@@ -1,9 +1,118 @@
 html,body{height:100%;height:100dvh;overflow:hidden}body{font-family:system-ui,-apple-system,"Microsoft YaHei",sans-serif}main#game{width:min(1280px,100%);height:calc(100dvh - 30px);box-sizing:border-box;padding:8px;margin:0 auto}#status{height:18px;line-height:18px;margin:0 12px;font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}#error:empty{display:none}#error:not(:empty){position:fixed;inset:auto 10px 10px;z-index:1000;padding:12px;background:#4c2525;border-radius:8px}
-.vn-engine{height:100%;display:flex;flex-direction:column}.vn-engine .vn-stage{flex:1;min-height:0;aspect-ratio:auto;position:relative}.vn-engine .vn-toolbar{flex:none;gap:6px;padding:9px 12px}.vn-engine .vn-toolbar button{font-size:12px;padding:6px 9px;min-height:32px}.vn-engine .vn-status{font-size:11px;min-height:16px;line-height:16px;margin:0}.vn-engine .vn-reading{min-height:0;max-height:55%;overflow:auto;scrollbar-width:thin;padding:16px 24px 18px}.vn-engine .vn-text{min-height:0;line-height:1.8;font-size:clamp(16px,1.6vw,20px);margin-bottom:12px}.vn-engine .vn-speaker{margin-bottom:7px}.vn-engine .vn-actions button{min-height:36px}.vn-engine .vn-chat{bottom:calc(var(--reset-reading,220px) + 16px)}.vn-engine .vn-document{bottom:calc(var(--reset-reading,220px) + 20px)}.vn-engine .vn-portrait{max-height:95%}.vn-engine .vn-panel{overscroll-behavior:contain}.vn-engine:fullscreen{height:100dvh}
+.vn-engine{height:100%;display:flex;flex-direction:column}.vn-engine .vn-stage{flex:1;min-height:0;aspect-ratio:auto}.vn-engine .vn-toolbar{flex:none;gap:6px;padding:9px 12px}.vn-engine .vn-toolbar button{font-size:12px;padding:6px 9px;min-height:32px}.vn-engine .vn-status{font-size:11px;min-height:16px;line-height:16px;margin:0}.vn-engine .vn-reading{min-height:0;max-height:55%;overflow:auto;scrollbar-width:thin;padding:16px 24px 18px}.vn-engine .vn-text{min-height:0;line-height:1.8;font-size:clamp(16px,1.6vw,20px);margin-bottom:12px}.vn-engine .vn-speaker{margin-bottom:7px}.vn-engine .vn-actions button{min-height:36px}.vn-engine .vn-chat{bottom:calc(var(--reset-reading,220px) + 16px)}.vn-engine .vn-document{bottom:calc(var(--reset-reading,220px) + 20px)}.vn-engine .vn-portrait{max-height:95%}.vn-engine .vn-panel{overscroll-behavior:contain}.vn-engine:fullscreen{height:100dvh}
 .reset-dialog{position:absolute;inset:0;z-index:30;display:flex;align-items:center;justify-content:center;padding:22px;background:#07121ce8;backdrop-filter:blur(12px)}.reset-panel{width:min(920px,100%);max-height:100%;overflow:auto;overscroll-behavior:contain;scrollbar-width:thin;border:1px solid #536e79;border-radius:14px;padding:22px;background:#152833;box-shadow:0 20px 60px #0005}.reset-panel-head{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-bottom:14px}.reset-panel h2{font-size:21px;margin:0}.reset-panel h3{font-size:15px;margin:0 0 8px}.reset-panel>h3{margin-top:24px}.reset-panel p{font-size:13px;line-height:1.8;white-space:pre-wrap}.reset-muted{color:#b1c7cb;font-size:12px}.reset-progress{color:#b4e3d5;letter-spacing:1px}.reset-slot-grid,.reset-ending-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.reset-slot,.reset-ending{min-width:0;padding:16px;border:1px solid #3c5864;border-radius:10px;background:#10222d}.reset-slot-head{display:flex;gap:10px;justify-content:space-between;align-items:baseline;flex-wrap:wrap}.reset-slot-head h3{margin:0}.reset-slot-title{color:#d4e9e6}.reset-excerpt{color:#b7c8cd;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:3.6em;overflow-wrap:anywhere}.reset-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.reset-row button{min-height:36px}.reset-note{min-height:1.8em;color:#b7ead8}.reset-ending small{color:#a5c6c2;font-size:11px;letter-spacing:1px}.reset-ending[data-unlocked=false]{opacity:.55}.reset-ending h3{margin:6px 0 0;font-weight:500}.reset-cg-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.vn-engine button.reset-cg-card{padding:0;overflow:hidden;background:#10222d;display:flex;flex-direction:column;border-color:#3c5864}.reset-cg-card img,.reset-cg-locked{width:100%;aspect-ratio:16/9;object-fit:cover}.reset-cg-locked{display:grid;place-items:center;background:linear-gradient(140deg,#243c46,#101f29);color:#91adb3;letter-spacing:3px}.reset-cg-card>span:last-child{padding:10px 12px;font-size:12px}.reset-cg-full{display:block;width:100%;max-height:60dvh;object-fit:contain;margin-bottom:14px}
-main#game{height:calc(100dvh - 30px - env(safe-area-inset-top) - env(safe-area-inset-bottom));margin-top:env(safe-area-inset-top);padding-left:max(5px,env(safe-area-inset-left));padding-right:max(5px,env(safe-area-inset-right))}.vn-engine .vn-toolbar{display:grid;grid-template-columns:minmax(0,1fr)}.reset-toolbar-controls{display:flex;flex-wrap:wrap;gap:6px;min-width:0;align-items:center}.vn-engine .vn-text,.vn-engine .vn-speaker,.vn-engine .vn-actions button{overflow-wrap:anywhere;word-break:normal}.vn-engine .vn-reading{overscroll-behavior:contain;scroll-padding:10px}.reset-panel,.vn-engine .vn-panel{box-sizing:border-box;scroll-padding-top:64px;overflow-wrap:anywhere}.reset-panel-head,.vn-engine .vn-panel-head{position:sticky;top:0;z-index:2;background:#152833;padding:8px 0;border-bottom:1px solid #3c5864}.reset-current-position{color:#d4e9e6;font-size:13px}.reset-ending-groups{display:grid;gap:20px}.reset-dialog,.vn-modal{box-sizing:border-box}.vn-engine button:focus-visible,.reset-combat button:focus-visible{outline:2px solid #b4e3d5;outline-offset:3px}
-.reset-title-key-visual{display:none!important}.reset-title-gate{position:absolute;inset:0;z-index:100;display:grid;place-items:center;overflow:hidden;background:#0b1820 url('./assets/4k/runtime/ui/title-key-visual.webp') center/cover no-repeat;touch-action:manipulation}.reset-title-gate__shade{position:absolute;inset:0;background:linear-gradient(180deg,#07131a55,#07131acc 62%,#07131af5)}.reset-title-gate__content{position:relative;z-index:1;width:min(520px,86%);text-align:center;color:#eef9f6;filter:drop-shadow(0 8px 20px #000a)}.reset-title-gate__kicker{font-size:12px;letter-spacing:.28em;color:#a8cbc5}.reset-title-gate h1{margin:10px 0 0;font-size:clamp(58px,14vw,112px);line-height:1;letter-spacing:.12em}.reset-title-gate__en{margin-top:8px;font-size:18px;letter-spacing:.55em;color:#b7d8d2}.reset-title-gate__actions{display:grid;gap:10px;margin:38px auto 0;width:min(320px,100%)}.reset-title-gate button{position:relative;z-index:2;min-height:52px;border:1px solid #8fc1b8;border-radius:10px;background:#173a3dcc;color:#effaf7;font-size:16px;letter-spacing:.12em;cursor:pointer;touch-action:manipulation}.reset-title-gate button:active{transform:translateY(1px)}.reset-title-gate__hint{font-size:11px;color:#9dbab7;letter-spacing:.12em}.reset-title-gate.is-leaving{opacity:0;transition:opacity .2s ease;pointer-events:none}
-.vn-engine .vn-stage .vn-portrait{max-height:86%;max-width:min(58%,620px);object-fit:contain;object-position:center bottom}.reset-brand-mark{width:min(42%,270px)!important;left:12px!important;top:12px!important;pointer-events:none!important}
-@media(pointer:coarse),(max-width:700px){.reset-toolbar-controls{flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;padding:2px 0 5px;scroll-snap-type:x proximity}.reset-toolbar-controls::-webkit-scrollbar{display:none}.vn-engine .vn-toolbar .reset-toolbar-controls button{flex:none;min-height:44px;min-width:44px;font-size:12px;scroll-snap-align:start;touch-action:manipulation}.vn-engine .vn-actions button,.vn-engine .reset-panel button,.vn-engine .vn-panel button{min-height:44px;touch-action:manipulation}.vn-engine .vn-toolbar{gap:2px;padding:5px 7px}.vn-engine .vn-stage .vn-portrait{max-height:74%;max-width:68%;object-fit:contain;object-position:center bottom}.reset-dialog{padding:10px}.reset-panel{padding:15px}.reset-slot-grid,.reset-ending-grid{grid-template-columns:1fr}.reset-cg-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(orientation:landscape) and (max-height:600px){html,body{overflow:hidden}main#game{height:100dvh;margin:0;padding:max(4px,env(safe-area-inset-top)) max(6px,env(safe-area-inset-right)) max(4px,env(safe-area-inset-bottom)) max(6px,env(safe-area-inset-left))}.vn-engine{height:100%;border-radius:0}.vn-engine .vn-stage{min-height:0;flex:1 1 54%}.vn-engine .vn-reading{flex:0 0 auto;max-height:32%;padding:7px 14px 8px}.vn-engine .vn-text{font-size:14px;line-height:1.45;margin-bottom:5px}.vn-engine .vn-speaker{font-size:12px;margin-bottom:2px}.vn-engine .vn-actions{gap:5px}.vn-engine .vn-actions button{min-height:32px;padding:5px 9px;font-size:11px}.vn-engine .vn-toolbar{padding:3px 6px}.vn-engine .vn-toolbar .reset-toolbar-controls button{min-height:32px;font-size:10px;padding:4px 7px}.vn-engine .vn-status{display:none}#status{display:none}.reset-title-gate__content{width:min(460px,78%)}.reset-title-gate h1{font-size:clamp(46px,12vh,78px)}.reset-title-gate__actions{margin-top:18px;grid-template-columns:1fr 1fr;width:min(460px,100%)}.reset-title-gate button{min-height:42px}.reset-title-gate__hint{margin:8px 0}.reset-brand-mark{width:min(25%,210px)!important}.vn-engine .vn-stage .vn-portrait{max-height:90%;max-width:42%}}
-.reset-combat.reset-combat__root canvas{width:min(1100px,100%,calc((100dvh - 168px)*16/9));height:auto;max-height:none}.reset-combat.reset-combat__root{grid-template-rows:auto minmax(0,1fr) auto;overflow:auto}.reset-combat__state{flex-basis:100%;text-align:center;min-height:20px;font-size:12px;color:#c7dfdc;line-height:1.6}.reset-combat [hidden]{display:none!important}.vn-engine[data-world=anomaly] .vn-background{filter:saturate(.88)}.vn-engine[data-reduced-motion=true] .vn-image{transition:none;animation:none}@media(prefers-reduced-motion:reduce){.vn-engine .vn-image{transition:none!important;animation:none!important}}
+@media(max-width:700px){main#game{padding:5px;height:calc(100dvh - 26px)}.vn-engine{border-radius:12px}.vn-engine .vn-toolbar{gap:5px;padding:7px}.vn-engine .vn-toolbar button{padding:6px 7px;min-height:34px;font-size:11px}.vn-engine .vn-reading{padding:12px 16px 14px;max-height:56%}.vn-engine .vn-text{font-size:16px;line-height:1.8}.vn-engine .vn-actions{gap:6px}.vn-engine .vn-actions button{font-size:12px;padding:8px 10px}.reset-dialog{padding:10px}.reset-panel{padding:15px}.reset-panel h2{font-size:18px}.reset-slot-grid,.reset-ending-grid{grid-template-columns:1fr}.reset-cg-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.reset-slot{padding:13px}.reset-panel-head{gap:10px}}
+@media(max-height:480px){main#game{padding:4px;height:calc(100dvh - 22px)}#status{height:14px;line-height:14px;font-size:10px}.vn-engine .vn-toolbar{gap:4px;padding:4px 7px}.vn-engine .vn-toolbar button{min-height:27px;font-size:10px;padding:4px 6px}.vn-engine .vn-status{min-height:12px;line-height:12px;font-size:10px}.vn-engine .vn-reading{padding:8px 15px;max-height:70%}.vn-engine .vn-text{font-size:15px;line-height:1.6;margin-bottom:7px}.vn-engine .vn-speaker{font-size:12px;margin-bottom:3px}.vn-engine .vn-actions button{min-height:29px;font-size:11px;padding:5px 8px}.vn-engine .vn-scene-title{top:10px;left:14px}.vn-engine .vn-mode{top:12px}.reset-dialog{padding:8px}.reset-panel{padding:13px}.reset-panel-head{margin-bottom:8px}.reset-slot-grid,.reset-ending-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.reset-combat.reset-combat__root canvas{width:min(1100px,100%,calc((100dvh - 168px)*16/9));height:auto;max-height:none}.reset-combat.reset-combat__root{grid-template-rows:auto minmax(0,1fr) auto;overflow:auto}
+@media(max-width:700px){.reset-combat.reset-combat__root canvas{width:min(100%,calc((100dvh - 230px)*16/9))}.reset-combat__hint{font-size:10px;line-height:1.4}}
+
+/* v1.2: keep text and touch controls usable in narrow/short player windows. */
+main#game{height:calc(100dvh - 30px - env(safe-area-inset-top) - env(safe-area-inset-bottom));margin-top:env(safe-area-inset-top);padding-left:max(5px,env(safe-area-inset-left));padding-right:max(5px,env(safe-area-inset-right))}
+.vn-engine .vn-toolbar{display:grid;grid-template-columns:minmax(0,1fr)}
+.reset-toolbar-controls{display:flex;flex-wrap:wrap;gap:6px;min-width:0;align-items:center}
+.vn-engine .vn-text,.vn-engine .vn-speaker,.vn-engine .vn-actions button{overflow-wrap:anywhere;word-break:normal}
+.vn-engine .vn-reading{overscroll-behavior:contain;scroll-padding:10px}
+.reset-panel,.vn-engine .vn-panel{box-sizing:border-box;scroll-padding-top:64px;overflow-wrap:anywhere}
+.reset-panel-head,.vn-engine .vn-panel-head{position:sticky;top:0;z-index:2;background:#152833;padding:8px 0;border-bottom:1px solid #3c5864}
+.reset-panel-head button,.vn-panel-head button{flex:none}
+.reset-current-position{color:#d4e9e6;font-size:13px}
+.reset-ending-groups{display:grid;gap:20px}
+.reset-dialog,.vn-modal{box-sizing:border-box}
+.vn-engine button:focus-visible,.reset-combat button:focus-visible{outline:2px solid #b4e3d5;outline-offset:3px}
+@media(pointer:coarse),(max-width:700px){
+  .reset-toolbar-controls{flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin;padding:2px 0 5px;scroll-snap-type:x proximity}
+  .vn-engine .vn-toolbar .reset-toolbar-controls button{flex:none;min-height:44px;min-width:44px;font-size:12px;scroll-snap-align:start;touch-action:manipulation}
+  .vn-engine .vn-actions button,.vn-engine .reset-panel button,.vn-engine .vn-panel button{min-height:44px;touch-action:manipulation}
+  .vn-engine .vn-toolbar{gap:2px;padding:5px 7px}
+  .vn-engine .vn-setting{grid-template-columns:minmax(0,1fr) minmax(0,1.3fr)}
+  .vn-engine .vn-panel input{min-height:36px}
+  .reset-combat .reset-combat__controls button{min-height:48px;min-width:48px;touch-action:none}
+}
+@media(max-height:480px){
+  main#game{height:calc(100dvh - 22px - env(safe-area-inset-top) - env(safe-area-inset-bottom))}
+  .reset-toolbar-controls{flex-wrap:nowrap;overflow-x:auto;padding-bottom:3px}
+  .vn-engine .vn-toolbar .reset-toolbar-controls button{flex:none}
+  .vn-engine .vn-panel{padding:12px;max-height:100%}
+  .vn-engine .vn-modal{padding:8px}
+}
+
+.reset-combat__state{flex-basis:100%;text-align:center;min-height:20px;font-size:12px;color:#c7dfdc;line-height:1.6}
+.reset-combat button[data-combat-resume]{background:#31574f;border-color:#8db7a7}
+.reset-combat button:disabled{opacity:.38}
+.reset-combat.reset-combat__root{padding-top:max(10px,env(safe-area-inset-top));padding-bottom:max(10px,env(safe-area-inset-bottom));padding-left:max(10px,env(safe-area-inset-left));padding-right:max(10px,env(safe-area-inset-right))}
+@media(max-height:480px){.reset-combat.reset-combat__root canvas{width:min(100%,calc((100dvh - 180px)*16/9))}.reset-combat__head{gap:6px}.reset-combat__title{font-size:14px}.reset-combat .reset-combat__hint{font-size:10px}.reset-combat__controls{margin-top:4px;gap:4px}}
+
+.reset-combat [hidden]{display:none!important}
+
+.vn-engine[data-world=anomaly] .vn-background{filter:saturate(.88)}
+.vn-engine[data-reduced-motion=true] .vn-image{transition:none;animation:none}
+@media(prefers-reduced-motion:reduce){.vn-engine .vn-image{transition:none!important;animation:none!important}}
+
+/* Large desktop viewports need a wider stage and readable controls, rather
+   than stretching the 1280px reading window into a tall strip. */
+@media(min-width:2000px) and (min-height:1000px){
+  main#game{width:min(3200px,100%);max-width:3200px}
+  .vn-engine .vn-reading{padding:24px 40px 28px}
+  .vn-engine .vn-text{font-size:clamp(22px,.8vw,30px)}
+  .vn-engine .vn-speaker{font-size:20px}
+  .vn-engine .vn-actions button{font-size:18px;min-height:48px}
+  .vn-engine .vn-toolbar{padding:14px 20px}
+  .vn-engine .vn-toolbar button{font-size:18px;min-height:48px;padding:10px 14px}
+  .vn-engine .vn-status{font-size:14px;min-height:20px;line-height:20px}
+  .vn-engine .vn-scene-title{font-size:18px}
+  .vn-engine .vn-mode{font-size:16px}
+}
+
+/* Round 7: 4K UI key visuals remain decorative; controls and text stay DOM/CSS. */
+.vn-engine .vn-stage{position:relative}
+.reset-title-key-visual{position:absolute;inset:0;z-index:6;width:100%;height:100%;object-fit:cover;pointer-events:none;opacity:.92;filter:saturate(.94)}
+.reset-ui-header{display:block;width:100%;height:clamp(116px,18vw,220px);object-fit:cover;object-position:center;border:1px solid #46616a;border-radius:12px;margin:8px 0 16px;box-shadow:0 12px 32px #0004;background:#0d1a22}
+.reset-ui-header[data-ui-visual=save-anomaly]{object-position:center 48%}
+.reset-ui-header[data-ui-visual=ending-collection-header],.reset-ui-header[data-ui-visual=cg-gallery-header]{margin-top:14px}
+.reset-combat.reset-round7-ui{background:linear-gradient(rgba(5,8,12,.82),rgba(5,8,12,.94)),url('./assets/4k/runtime/ui/combat-hud-key-visual.webp') center/cover no-repeat!important}
+@media(max-width:700px){.reset-ui-header{height:118px;border-radius:9px;margin-bottom:12px}.reset-title-key-visual{object-position:center}}
+
+/* v1.2.1 visual-regression hotfix: never let decorative release art replace the playable scene. */
+.reset-title-key-visual{display:none!important}
+.vn-engine .vn-stage .vn-portrait{max-height:86%;max-width:min(58%,620px);object-fit:contain;object-position:center bottom}
+@media(max-width:700px){
+  .vn-engine .vn-stage .vn-portrait{max-height:74%;max-width:68%;object-fit:contain;object-position:center bottom}
+  .reset-brand-mark{width:min(42%,270px)!important;left:12px!important;top:12px!important}
+  .reset-toolbar-controls{scrollbar-width:none}
+  .reset-toolbar-controls::-webkit-scrollbar{display:none}
+}
+
+/* v1.2.1 mobile shell: a real interactive title layer plus short-landscape playability. */
+.reset-title-gate{position:absolute;inset:0;z-index:100;display:grid;place-items:center;overflow:hidden;background:#0b1820 url('./assets/4k/runtime/ui/title-key-visual.webp') center/cover no-repeat;touch-action:manipulation}
+.reset-title-gate__shade{position:absolute;inset:0;background:linear-gradient(180deg,#07131a55,#07131acc 62%,#07131af5)}
+.reset-title-gate__content{position:relative;z-index:1;width:min(520px,86%);text-align:center;color:#eef9f6;filter:drop-shadow(0 8px 20px #000a)}
+.reset-title-gate__kicker{font-size:12px;letter-spacing:.28em;color:#a8cbc5}
+.reset-title-gate h1{margin:10px 0 0;font-size:clamp(58px,14vw,112px);line-height:1;letter-spacing:.12em}
+.reset-title-gate__en{margin-top:8px;font-size:18px;letter-spacing:.55em;color:#b7d8d2}
+.reset-title-gate__actions{display:grid;gap:10px;margin:38px auto 0;width:min(320px,100%)}
+.reset-title-gate button{position:relative;z-index:2;min-height:52px;border:1px solid #8fc1b8;border-radius:10px;background:#173a3dcc;color:#effaf7;font-size:16px;letter-spacing:.12em;cursor:pointer;touch-action:manipulation}
+.reset-title-gate button:active{transform:translateY(1px)}
+.reset-title-gate__hint{font-size:11px;color:#9dbab7;letter-spacing:.12em}
+.reset-title-gate.is-leaving{opacity:0;transition:opacity .2s ease;pointer-events:none}
+@media(pointer:coarse),(max-width:700px){.reset-title-gate button{min-height:52px}.reset-title-gate__content{width:min(520px,88%)}}
+@media(orientation:landscape) and (max-height:600px){
+  html,body{overflow:hidden}
+  main#game{width:100%;max-width:none;height:100dvh;margin:0;padding:max(4px,env(safe-area-inset-top)) max(6px,env(safe-area-inset-right)) max(4px,env(safe-area-inset-bottom)) max(6px,env(safe-area-inset-left))}
+  .vn-engine{height:100%;border-radius:0}
+  .vn-engine .vn-stage{min-height:0;flex:1 1 54%}
+  .vn-engine .vn-reading{flex:0 0 auto;max-height:32%;padding:7px 14px 8px}
+  .vn-engine .vn-text{font-size:14px;line-height:1.45;margin-bottom:5px}
+  .vn-engine .vn-speaker{font-size:12px;margin-bottom:2px}
+  .vn-engine .vn-actions{gap:5px}
+  .vn-engine .vn-actions button{min-height:32px;padding:5px 9px;font-size:11px}
+  .vn-engine .vn-toolbar{padding:3px 6px}
+  .vn-engine .vn-toolbar .reset-toolbar-controls button{min-height:32px;font-size:10px;padding:4px 7px}
+  .vn-engine .vn-status,#status{display:none}
+  .reset-title-gate__content{width:min(460px,78%)}
+  .reset-title-gate h1{font-size:clamp(46px,12vh,78px)}
+  .reset-title-gate__actions{margin-top:18px;grid-template-columns:1fr 1fr;width:min(460px,100%)}
+  .reset-title-gate button{min-height:42px}
+  .reset-title-gate__hint{margin:8px 0}
+  .reset-brand-mark{width:min(25%,210px)!important}
+  .vn-engine .vn-stage .vn-portrait{max-height:90%;max-width:42%}
+}
