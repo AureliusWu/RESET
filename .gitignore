@@ -3,9 +3,7 @@ _engine/
 node_modules/
 .DS_Store
 game/.project.build.json
-game/content/zzzzzz-r1-generated.json
 game/assets/generated/
-game/assets/generated-portraits/
 game/assets/generated-scenes/
 test-results/
 __pycache__/
