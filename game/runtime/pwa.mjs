@@ -10,8 +10,9 @@ function ensureTitleGate(){
   gate.innerHTML=`<div class="reset-title-gate__shade"></div><div class="reset-title-gate__content"><div class="reset-title-gate__kicker">18:42 · 有人记得你</div><h1>回留</h1><div class="reset-title-gate__en">RESET</div><div class="reset-title-gate__actions"><button type="button" data-reset-enter>进入游戏</button><button type="button" data-reset-install hidden>安装到设备</button></div><p class="reset-title-gate__hint">建议全屏游玩 · 支持离线</p></div>`;
   host.append(gate);
   const enter=gate.querySelector('[data-reset-enter]');
-  enter.addEventListener('click',()=>{gate.classList.add('is-leaving');setTimeout(()=>gate.remove(),220);},{once:true});
   const install=gate.querySelector('[data-reset-install]');
+  enter.style.minHeight='44px';install.style.minHeight='44px';
+  enter.addEventListener('click',()=>{gate.classList.add('is-leaving');setTimeout(()=>gate.remove(),220);},{once:true});
   const syncInstall=()=>{install.hidden=!deferredInstallPrompt;};
   install.addEventListener('click',async()=>{if(!deferredInstallPrompt)return;const prompt=deferredInstallPrompt;deferredInstallPrompt=null;syncInstall();await prompt.prompt();try{await prompt.userChoice;}catch{}});
   addEventListener('reset-install-available',syncInstall);syncInstall();
