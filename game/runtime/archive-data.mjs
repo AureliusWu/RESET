@@ -24,7 +24,13 @@ export const CGS = [
   ['letter-1842-cg','18:42 的来信'],
   ['six-chairs-cg','第七把椅子'],
   ['linwan-1842-cg','没有发生过的约定'],
-  ['true-end-riverside-cg','明天见']
+  ['true-end-riverside-cg','明天见'],
+  ['route-linwan-end-cg','林晚 · 这一轮也算数'],
+  ['route-xiaoman-end-cg','周小满 · 今天别重来'],
+  ['route-xuqi-end-cg','许栖 · 留在被放弃的世界'],
+  ['route-tinglan-end-cg','沈听澜 · 未归档的人'],
+  ['route-tangli-end-cg','唐梨 · 向前跑'],
+  ['route-nanxing-end-cg','乔南星 · 已读不回']
 ].map(([id,title]) => Object.freeze({id,title}));
 
 // The UI never trusts imported display markup. The actual save is validated and

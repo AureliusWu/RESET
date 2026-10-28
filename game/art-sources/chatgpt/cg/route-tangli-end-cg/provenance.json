@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "assetId": "route-tangli-end-cg",
+  "sourceType": "deterministic-composite-from-approved-production-art",
+  "native4kClaim": false,
+  "inputs": {
+    "background": "game/assets/4k/backgrounds/riverside-dusk.png",
+    "portrait": "game/assets/4k/characters/tangli/smile.png",
+    "ending": "normal-tangli",
+    "scene": "end_tangli"
+  },
+  "assets": [
+    {
+      "original": "game/art-sources/chatgpt/cg/route-tangli-end-cg/original.png",
+      "originalSHA256": "16f6688ab6145bbe38752c77f093dae12e4579f3983cef473d544829aebf805d",
+      "originalSize": [
+        1920,
+        1080
+      ],
+      "master": "game/assets/4k/cg/route-tangli-end-cg.png",
+      "masterSHA256": "5c3cc9d09ba62d827ab1bb83503e3d0b30744267a52eb983b41cb97ff14c4e30",
+      "runtime": "game/assets/4k/runtime/cg/route-tangli-end-cg.webp",
+      "runtimeSHA256": "a60b3315295ae185b19d31670ab2cf90ef0b354fd2eab0636439a0b3cf78ca76"
+    }
+  ]
+}

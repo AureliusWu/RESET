@@ -623,7 +623,8 @@
           "text": "不是为了寻找隐藏线索，只是为了记住：这一轮里，梧城江滩确实有人生活过。"
         }
       ],
-      "ending": "normal-linwan"
+      "ending": "normal-linwan",
+      "cg": "route-linwan-end-cg"
     },
     {
       "id": "c4_xiaoman_1",
@@ -1031,7 +1032,8 @@
           "text": "不是为了寻找隐藏线索，只是为了记住：这一轮里，学校天台确实有人生活过。"
         }
       ],
-      "ending": "normal-xiaoman"
+      "ending": "normal-xiaoman",
+      "cg": "route-xiaoman-end-cg"
     },
     {
       "id": "c4_xuqi_1",
@@ -1449,7 +1451,8 @@
           "text": "不是为了寻找隐藏线索，只是为了记住：这一轮里，夜梧城·钟楼下确实有人生活过。"
         }
       ],
-      "ending": "normal-xuqi"
+      "ending": "normal-xuqi",
+      "cg": "route-xuqi-end-cg"
     },
     {
       "id": "c4_tinglan_1",
@@ -1887,7 +1890,8 @@
           "text": "不是为了寻找隐藏线索，只是为了记住：这一轮里，市档案馆确实有人生活过。"
         }
       ],
-      "ending": "normal-tinglan"
+      "ending": "normal-tinglan",
+      "cg": "route-tinglan-end-cg"
     },
     {
       "id": "c4_tangli_1",
@@ -2310,7 +2314,8 @@
           "text": "不是为了寻找隐藏线索，只是为了记住：这一轮里，城外江堤确实有人生活过。"
         }
       ],
-      "ending": "normal-tangli"
+      "ending": "normal-tangli",
+      "cg": "route-tangli-end-cg"
     },
     {
       "id": "c4_nanxing_1",
@@ -2753,7 +2758,8 @@
           "text": "不是为了寻找隐藏线索，只是为了记住：这一轮里，信息楼天台确实有人生活过。"
         }
       ],
-      "ending": "normal-nanxing"
+      "ending": "normal-nanxing",
+      "cg": "route-nanxing-end-cg"
     },
     {
       "id": "route_convergence",

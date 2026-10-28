@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "assetId": "route-xuqi-end-cg",
+  "sourceType": "deterministic-composite-from-approved-production-art",
+  "native4kClaim": false,
+  "inputs": {
+    "background": "game/assets/4k/backgrounds/night-wucheng.png",
+    "portrait": "game/assets/4k/characters/xuqi/serious.png",
+    "ending": "normal-xuqi",
+    "scene": "end_xuqi"
+  },
+  "assets": [
+    {
+      "original": "game/art-sources/chatgpt/cg/route-xuqi-end-cg/original.png",
+      "originalSHA256": "8b0d63a6c2ccec57a4cfe03dff05a93e64ca9044e5045592843698e7de40ea87",
+      "originalSize": [
+        1920,
+        1080
+      ],
+      "master": "game/assets/4k/cg/route-xuqi-end-cg.png",
+      "masterSHA256": "d0f49ef79c7cf27a7c3e2067aa8e65bc24be80c49f8b33c080d8705ad2c393cf",
+      "runtime": "game/assets/4k/runtime/cg/route-xuqi-end-cg.webp",
+      "runtimeSHA256": "3148cf0829b06dbe96a6ae12020fb44d8b32d291b2da1da9d7b0f7192707de8c"
+    }
+  ]
+}

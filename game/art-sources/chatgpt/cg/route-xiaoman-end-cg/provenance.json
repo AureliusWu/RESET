@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "assetId": "route-xiaoman-end-cg",
+  "sourceType": "deterministic-composite-from-approved-production-art",
+  "native4kClaim": false,
+  "inputs": {
+    "background": "game/assets/4k/backgrounds/rooftop-evening.png",
+    "portrait": "game/assets/4k/characters/xiaoman/smile.png",
+    "ending": "normal-xiaoman",
+    "scene": "end_xiaoman"
+  },
+  "assets": [
+    {
+      "original": "game/art-sources/chatgpt/cg/route-xiaoman-end-cg/original.png",
+      "originalSHA256": "a38f4cb66414b46abbb237047c2a65d0c1c080ddedcaa326b18bbf9fce49b34f",
+      "originalSize": [
+        1920,
+        1080
+      ],
+      "master": "game/assets/4k/cg/route-xiaoman-end-cg.png",
+      "masterSHA256": "1696ee7968427aa5e40cc7d42b28e23dfce871fb13db89bbd0f724f7f02d9c10",
+      "runtime": "game/assets/4k/runtime/cg/route-xiaoman-end-cg.webp",
+      "runtimeSHA256": "f76a450f83cbad79e313b540f2f3bec71f5e0379483b0afcda9c9b45f37a9220"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "assetId": "route-nanxing-end-cg",
+  "sourceType": "deterministic-composite-from-approved-production-art",
+  "native4kClaim": false,
+  "inputs": {
+    "background": "game/assets/4k/backgrounds/rooftop-evening.png",
+    "portrait": "game/assets/4k/characters/nanxing/serious.png",
+    "ending": "normal-nanxing",
+    "scene": "end_nanxing"
+  },
+  "assets": [
+    {
+      "original": "game/art-sources/chatgpt/cg/route-nanxing-end-cg/original.png",
+      "originalSHA256": "4d330c199080a5e5792fbf4e0b7fc32f428a202e93400fe498d5645c0077b7df",
+      "originalSize": [
+        1920,
+        1080
+      ],
+      "master": "game/assets/4k/cg/route-nanxing-end-cg.png",
+      "masterSHA256": "77eecd1801aeeba37b691d541f96e80d372245d5db9e9847d9ae209c7d17ac02",
+      "runtime": "game/assets/4k/runtime/cg/route-nanxing-end-cg.webp",
+      "runtimeSHA256": "ed188c5d1b1875e5b3871167a7d65e62a1ecbd98910e9f06501f1c30a30aacea"
+    }
+  ]
+}

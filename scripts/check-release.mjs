@@ -71,7 +71,7 @@ const productionScenes = [
   'classroom-rain','school-gate-rain','school-gate-evening','home-corridor','station-night','night-wucheng','school-morning','archive-room','cafeteria','rooftop-evening',
   'stairwell-morning','riverside-dusk','underpass-rain','classroom-dawn','old-art-room','night-art-room','old-stationery','north-station','save-room','true-dawn'
 ];
-const productionCgs = ['faceless-reflection-cg','letter-1842-cg','six-chairs-cg','linwan-1842-cg','true-end-riverside-cg'];
+const productionCgs = ['faceless-reflection-cg','letter-1842-cg','six-chairs-cg','linwan-1842-cg','true-end-riverside-cg','route-linwan-end-cg','route-xiaoman-end-cg','route-xuqi-end-cg','route-tinglan-end-cg','route-tangli-end-cg','route-nanxing-end-cg'];
 for (const id of [...productionScenes, ...productionCgs]) {
   const asset = assetMap.get(id); assert(asset, `missing production scene asset ${id}`);
   const category = productionScenes.includes(id) ? 'backgrounds' : 'cg';

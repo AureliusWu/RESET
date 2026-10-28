@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "assetId": "route-linwan-end-cg",
+  "sourceType": "deterministic-composite-from-approved-production-art",
+  "native4kClaim": false,
+  "inputs": {
+    "background": "game/assets/4k/backgrounds/riverside-dusk.png",
+    "portrait": "game/assets/4k/characters/linwan/smile.png",
+    "ending": "normal-linwan",
+    "scene": "end_linwan"
+  },
+  "assets": [
+    {
+      "original": "game/art-sources/chatgpt/cg/route-linwan-end-cg/original.png",
+      "originalSHA256": "97907ad129429a7e09218fe096901ad6f71e2614a82953a075d1310af1c023ec",
+      "originalSize": [
+        1920,
+        1080
+      ],
+      "master": "game/assets/4k/cg/route-linwan-end-cg.png",
+      "masterSHA256": "b3ac6934d676aca1860aa59f8061123344bcedb205fb0dda9f2414fb27af0d9c",
+      "runtime": "game/assets/4k/runtime/cg/route-linwan-end-cg.webp",
+      "runtimeSHA256": "7b1daa21a7fa291586548fdf52067232cfeb6022d2034e479553d98ee36987e8"
+    }
+  ]
+}
