@@ -11,79 +11,13 @@ const errors = [];
 const fail = message => errors.push(message);
 const readJson = async path => JSON.parse(await readFile(path, 'utf8'));
 const exists = async path => { try { await stat(path); return true; } catch { return false; } };
-
-const manifest = await loadAssetManifest(root);
-const production = manifest.production;
-const productionById = new Map(production.map(asset => [asset.id, asset]));
-const sourceSet = new Set(production.map(asset => asset.src));
-const counts = production.reduce((acc, asset) => ({ ...acc, [asset.kind]: (acc[asset.kind] ?? 0) + 1 }), {});
-
-if (production.length !== 76) fail(`static production asset count must be 76, got ${production.length}`);
-if (counts.portrait !== 45 || counts.background !== 20 || counts.cg !== 11) fail(`visual kind counts drift: ${JSON.stringify(counts)}`);
-if (sourceSet.size !== production.length) fail('production visual sources must be unique');
-for (const asset of production) {
-  const serialized = JSON.stringify(asset).toLowerCase();
-  if (serialized.includes('placeholder') || serialized.includes('fallback') || serialized.includes('.svg') || serialized.includes('generated-portraits')) {
-    fail(`${asset.id}: production visual contains forbidden placeholder/fallback/vector marker`);
-  }
-  if (!asset.src.startsWith('assets/4k/runtime/') || !asset.src.endsWith('.webp')) fail(`${asset.id}: noncanonical runtime visual path ${asset.src}`);
-  if (!await exists(resolve(dist, asset.src))) fail(`${asset.id}: packaged runtime visual missing from dist`);
-}
-
-const project = await readJson(resolve(dist, 'project.json'));
-const sourceProject = await readJson(resolve(game, 'project.json'));
-const { packs } = await loadContentPacks(root);
-const scenes = packs.filter(({ entry }) => entry.role === 'chapter').flatMap(({ pack }) => pack.scenes ?? []);
-const runtimeSpeakers = Object.assign({}, sourceProject.stage?.speakers ?? {}, ...packs.map(({ pack }) => pack.stage?.speakers ?? {}));
-const policy = await readJson(resolve(game, 'visual/r5-speaker-policy.json'));
-const support = await readJson(resolve(game, 'visual/r5-supporting-cast-plan.json'));
-const cgPlan = await readJson(resolve(game, 'visual/r5-key-cg-plan.json'));
-const { CGS } = await import(pathToFileURL(resolve(game, 'runtime/archive-data.mjs')).href);
-
-if (scenes.length !== 82 || project.scenes?.length !== 82) fail(`canonical/packaged scene count must be 82, got ${scenes.length}/${project.scenes?.length ?? 0}`);
-if (project.assets?.length !== 97) fail(`packaged runtime assets must be 97, got ${project.assets?.length ?? 0}`);
-const packagedIds = new Set((project.assets ?? []).map(asset => asset.id));
-for (const asset of production) if (!packagedIds.has(asset.id)) fail(`${asset.id}: production visual omitted from packaged project assets`);
-
-const backgroundScenes = scenes.filter(scene => scene.background && productionById.get(scene.background)?.kind === 'background');
-if (backgroundScenes.length !== 82) fail(`scene background coverage must be 82/82, got ${backgroundScenes.length}/82`);
-const triggeredCgs = new Set(scenes.map(scene => scene.cg).filter(Boolean));
-if (triggeredCgs.size !== 11) fail(`story-triggered CG coverage must be 11, got ${triggeredCgs.size}`);
-if (CGS.length !== 11) fail(`CG Gallery coverage must be 11, got ${CGS.length}`);
-for (const item of CGS) if (!triggeredCgs.has(item.id) || productionById.get(item.id)?.kind !== 'cg') fail(`${item.id}: Gallery CG is not both story-triggered and production-backed`);
-for (const item of cgPlan.requiredEndingCgs ?? []) {
-  const scene = scenes.find(candidate => candidate.ending === item.ending);
-  if (scene?.cg !== item.asset) fail(`${item.ending}: final route CG mapping drift`);
-}
-
-const pending = Object.entries(policy.speakers ?? {}).filter(([, rule]) => rule.mode === 'pending-support-portrait');
-if (pending.length) fail(`pending supporting portrait policies remain: ${pending.map(([name]) => name).join(', ')}`);
-const portraitPolicies = Object.entries(policy.speakers ?? {}).filter(([, rule]) => rule.mode === 'portrait');
-for (const [name, rule] of portraitPolicies) {
-  if (runtimeSpeakers[name] !== rule.character) fail(`${name}: final runtime speaker mapping drift`);
-  if (productionById.get(`${rule.character}/neutral`)?.kind !== 'portrait') fail(`${name}: final neutral portrait missing for ${rule.character}`);
-}
-if (portraitPolicies.length !== 20) fail(`final portrait speaker policy count must be 20, got ${portraitPolicies.length}`);
-if ((support.characters ?? []).length !== 12) fail(`supporting cast must be 12, got ${support.characters?.length ?? 0}`);
-
-const sw = await readFile(resolve(dist, 'sw.js'), 'utf8');
-for (const asset of production) if (!sw.includes(asset.src)) fail(`${asset.id}: production visual omitted from offline cache`);
-
-if (errors.length) throw new Error(`R5 Final Visual Integration failed:\n${errors.join('\n')}`);
-console.log(JSON.stringify({
-  status: 'r5-final-visual-integration-ok',
-  scenes: '82/82',
-  portraitSpeakerMappings: `${portraitPolicies.length}/${portraitPolicies.length}`,
-  supportingCast: '12/12',
-  backgrounds: '82/82',
-  keyCgs: '11/11',
-  staticProductionVisuals: production.length,
-  productionPortraits: counts.portrait,
-  productionBackgrounds: counts.background,
-  productionCgs: counts.cg,
-  packagedRuntimeAssets: project.assets.length,
-  missingRuntimeVisualAssets: 0,
-  brokenVisualReferences: 0,
-  placeholderOrFallbackProductionVisuals: 0,
-  offlineCachedProductionVisuals: production.length
-}, null, 2));
+const manifest = await loadAssetManifest(root); const production=manifest.production; const productionById=new Map(production.map(asset=>[asset.id,asset])); const sourceSet=new Set(production.map(asset=>asset.src)); const counts=production.reduce((acc,asset)=>({...acc,[asset.kind]:(acc[asset.kind]??0)+1}),{});
+if(production.length!==76)fail(`static production asset count must be 76, got ${production.length}`);if(counts.portrait!==45||counts.background!==20||counts.cg!==11)fail(`visual kind counts drift: ${JSON.stringify(counts)}`);if(sourceSet.size!==production.length)fail('production visual sources must be unique');
+for(const asset of production){const serialized=JSON.stringify(asset).toLowerCase();if(serialized.includes('placeholder')||serialized.includes('fallback')||serialized.includes('.svg')||serialized.includes('generated-portraits'))fail(`${asset.id}: production visual contains forbidden placeholder/fallback/vector marker`);if(!asset.src.startsWith('assets/4k/runtime/')||!asset.src.endsWith('.webp'))fail(`${asset.id}: noncanonical runtime visual path ${asset.src}`);if(!await exists(resolve(dist,asset.src)))fail(`${asset.id}: packaged runtime visual missing from dist`);}
+const project=await readJson(resolve(dist,'project.json'));const sourceProject=await readJson(resolve(game,'project.json'));const {packs}=await loadContentPacks(root);const scenes=packs.filter(({entry})=>entry.role==='chapter').flatMap(({pack})=>pack.scenes??[]);const runtimeSpeakers=Object.assign({},sourceProject.stage?.speakers??{},...packs.map(({pack})=>pack.stage?.speakers??{}));const policy=await readJson(resolve(game,'visual/r5-speaker-policy.json'));const support=await readJson(resolve(game,'visual/r5-supporting-cast-plan.json'));const cgPlan=await readJson(resolve(game,'visual/r5-key-cg-plan.json'));const {CGS}=await import(pathToFileURL(resolve(game,'runtime/archive-data.mjs')).href);
+if(scenes.length!==82||project.scenes?.length!==82)fail(`canonical/packaged scene count must be 82, got ${scenes.length}/${project.scenes?.length??0}`);if(project.assets?.length!==97)fail(`packaged runtime assets must be 97, got ${project.assets?.length??0}`);const packagedIds=new Set((project.assets??[]).map(asset=>asset.id));for(const asset of production)if(!packagedIds.has(asset.id))fail(`${asset.id}: production visual omitted from packaged project assets`);
+const backgroundScenes=scenes.filter(scene=>scene.background&&productionById.get(scene.background)?.kind==='background');if(backgroundScenes.length!==82)fail(`scene background coverage must be 82/82, got ${backgroundScenes.length}/82`);const triggeredCgs=new Set(scenes.map(scene=>scene.cg).filter(Boolean));if(triggeredCgs.size!==11)fail(`story-triggered CG coverage must be 11, got ${triggeredCgs.size}`);if(CGS.length!==11)fail(`CG Gallery coverage must be 11, got ${CGS.length}`);for(const item of CGS)if(!triggeredCgs.has(item.id)||productionById.get(item.id)?.kind!=='cg')fail(`${item.id}: Gallery CG is not both story-triggered and production-backed`);for(const item of cgPlan.requiredEndingCgs??[]){const scene=scenes.find(candidate=>candidate.ending===item.ending);if(scene?.cg!==item.asset)fail(`${item.ending}: final route CG mapping drift`);}
+const pending=Object.entries(policy.speakers??{}).filter(([,rule])=>rule.mode==='pending-support-portrait');if(pending.length)fail(`pending supporting portrait policies remain: ${pending.map(([name])=>name).join(', ')}`);const portraitPolicies=Object.entries(policy.speakers??{}).filter(([,rule])=>rule.mode==='portrait');for(const [name,rule] of portraitPolicies){if(runtimeSpeakers[name]!==rule.character)fail(`${name}: final runtime speaker mapping drift`);if(productionById.get(`${rule.character}/neutral`)?.kind!=='portrait')fail(`${name}: final neutral portrait missing for ${rule.character}`);}if(portraitPolicies.length!==8)fail(`approved runtime portrait speaker policy count must be 8, got ${portraitPolicies.length}`);
+const supportNames=new Set((support.characters??[]).map(item=>item.name));for(const name of supportNames){if(runtimeSpeakers[name])fail(`${name}: legacy reduced-detail supporting portrait leaked into runtime mapping`);const rule=policy.speakers?.[name];if(rule?.mode==='portrait')fail(`${name}: legacy supporting portrait must remain hidden until approved 4K original replacement`);}if((support.characters??[]).length!==12)fail(`tracked supporting cast must be 12, got ${support.characters?.length??0}`);
+const sw=await readFile(resolve(dist,'sw.js'),'utf8');for(const asset of production)if(!sw.includes(asset.src))fail(`${asset.id}: production visual omitted from offline cache`);if(errors.length)throw new Error(`R5 Final Visual Integration failed:\n${errors.join('\n')}`);
+console.log(JSON.stringify({status:'r5-final-visual-integration-ok',scenes:'82/82',approvedPortraitSpeakerMappings:`${portraitPolicies.length}/${portraitPolicies.length}`,supportingCastTracked:'12/12',legacyStylizedSupportingPortraitsVisible:0,portraitRuntimePolicy:'approved-4k-original-or-hidden',backgrounds:'82/82',keyCgs:'11/11',staticProductionVisuals:production.length,productionPortraits:counts.portrait,productionBackgrounds:counts.background,productionCgs:counts.cg,packagedRuntimeAssets:project.assets.length,missingRuntimeVisualAssets:0,brokenVisualReferences:0,placeholderOrFallbackProductionVisuals:0,offlineCachedProductionVisuals:production.length},null,2));

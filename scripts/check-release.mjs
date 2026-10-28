@@ -9,7 +9,6 @@ const project = JSON.parse(await readFile(resolve(dist, 'project.json'), 'utf8')
 const manifest = JSON.parse(await readFile(resolve(dist, 'build-manifest.json'), 'utf8'));
 const app = await readFile(resolve(dist, 'app.mjs'), 'utf8');
 const sw = await readFile(resolve(dist, 'sw.js'), 'utf8');
-
 function assert(condition, message) { if (!condition) throw new Error(message); }
 async function exists(path) { try { await access(path); return true; } catch { return false; } }
 
@@ -29,97 +28,27 @@ for(const id of uiVisuals){const path=`assets/4k/runtime/ui/${id}.webp`,bytes=aw
 const uiRuntime=await readFile(resolve(dist,'ui.mjs'),'utf8');for(const id of uiVisuals)assert(uiRuntime.includes(`${id}.webp`),`UI key visual is not wired: ${id}`);
 
 const scenes = new Map(project.scenes.map(scene => [scene.id, scene]));
-const encounters = [
-  ['faceless_first','watch_reflection','rush_forward'],
-  ['faceless_second','change_read','repeat_old'],
-  ['c5_echo_fail','break_habit','repeat_dodge']
-];
-for (const [sceneId, win, lose] of encounters) {
-  const scene = scenes.get(sceneId); assert(scene, `missing combat scene ${sceneId}`);
-  const actions = new Set((scene.choices ?? []).map(choice => choice.id));
-  assert(actions.has(win) && actions.has(lose), `combat scene ${sceneId} lost canonical win/lose actions`);
-}
+const encounters = [['faceless_first','watch_reflection','rush_forward'],['faceless_second','change_read','repeat_old'],['c5_echo_fail','break_habit','repeat_dodge']];
+for (const [sceneId, win, lose] of encounters) { const scene=scenes.get(sceneId); assert(scene,`missing combat scene ${sceneId}`); const actions=new Set((scene.choices??[]).map(choice=>choice.id)); assert(actions.has(win)&&actions.has(lose),`combat scene ${sceneId} lost canonical win/lose actions`); }
+const endings=new Set(project.scenes.map(scene=>scene.ending).filter(Boolean));
+for(const id of ['normal-linwan','normal-xiaoman','normal-xuqi','normal-tinglan','normal-tangli','normal-nanxing','bad-permanent-save','true-end'])assert(endings.has(id),`missing ending ${id}`);
 
-const endings = new Set(project.scenes.map(scene => scene.ending).filter(Boolean));
-for (const id of ['normal-linwan','normal-xiaoman','normal-xuqi','normal-tinglan','normal-tangli','normal-nanxing','bad-permanent-save','true-end']) assert(endings.has(id), `missing ending ${id}`);
+const cast=['linwan','xiaoman','xuqi','tinglan','tangli','nanxing']; const expressions=['neutral','smile','worried','surprised','serious']; const assetMap=new Map(project.assets.map(asset=>[asset.id,asset])); const portraitSources=new Set();
+for(const character of cast)for(const expression of expressions){const id=`${character}/${expression}`,asset=assetMap.get(id);assert(asset?.kind==='portrait',`missing production portrait ${id}`);assert(asset.src===`assets/4k/runtime/characters/${character}/${expression}.webp`,`${id} is not canonical 4K production art`);assert(!String(asset.alt??'').includes('占位'),`${id} is still labelled placeholder`);portraitSources.add(asset.src);assert(await exists(resolve(dist,asset.src)),`portrait file missing from package: ${asset.src}`);assert(sw.includes(asset.src),`portrait not offline cached: ${asset.src}`);}
+const supportPortraits=['xujiashu','chengyan','gumingyuan','chenlan','xurong','luoxiumei','suyao','hechuan','jiyao','lincheng','shenyanqiu','liangcheng'];
+const forbiddenSupportNames=['徐嘉树','程妍','顾明远','陈岚','许蓉','罗秀梅','苏遥','何川','纪尧','林澄','沈砚秋','梁成'];
+for(const name of forbiddenSupportNames)assert(!project.stage?.speakers?.[name],`unapproved supporting portrait is runtime-visible: ${name}`);
+for(const character of supportPortraits){const asset=assetMap.get(`${character}/neutral`);assert(asset?.kind==='portrait',`tracked legacy supporting portrait missing ${character}`);assert(await exists(resolve(dist,asset.src)),`tracked legacy supporting portrait missing from package: ${character}`);}
+const xuqiAngry=assetMap.get('xuqi/angry'); assert(xuqiAngry?.src==='assets/4k/runtime/characters/xuqi/angry.webp','Xu Qi angry expression is not canonical production art'); assert(await exists(resolve(dist,xuqiAngry.src)),'Xu Qi angry production sprite missing'); assert(portraitSources.size===30,'five-expression heroine variants are not distinct files');
+for(const asset of project.assets.filter(a=>a.src.startsWith('assets/4k/runtime/'))){const bytes=await readFile(resolve(dist,asset.src));const record=manifest.files.find(f=>f.name===asset.src);assert(record?.size===bytes.length&&record.sha256===createHash('sha256').update(bytes).digest('hex'),`4K runtime missing/stale in final manifest: ${asset.id}`);assert(sw.includes(asset.src),`4K runtime missing from offline cache: ${asset.id}`);}
 
-const cast = ['linwan','xiaoman','xuqi','tinglan','tangli','nanxing'];
-const expressions = ['neutral','smile','worried','surprised','serious'];
-const assetMap = new Map(project.assets.map(asset => [asset.id, asset]));
-const portraitSources = new Set();
-for (const character of cast) for (const expression of expressions) {
-  const id = `${character}/${expression}`, asset = assetMap.get(id);
-  assert(asset?.kind === 'portrait', `missing production portrait ${id}`);
-  assert(asset.src === `assets/4k/runtime/characters/${character}/${expression}.webp`, `${id} is not canonical 4K production art`);
-  assert(!String(asset.alt ?? '').includes('占位'), `${id} is still labelled placeholder`);
-  portraitSources.add(asset.src);
-  assert(await exists(resolve(dist, asset.src)), `portrait file missing from package: ${asset.src}`);
-  assert(sw.includes(asset.src), `portrait not offline cached: ${asset.src}`);
-}
-const supportPortraits = ["xujiashu", "chengyan", "gumingyuan", "chenlan", "xurong", "luoxiumei", "suyao", "hechuan", "jiyao", "lincheng", "shenyanqiu", "liangcheng"];
-for (const character of supportPortraits) { const asset=assetMap.get(`${character}/neutral`); assert(asset?.kind==='portrait',`missing supporting portrait ${character}`); assert(asset.src===`assets/4k/runtime/characters/${character}/neutral.webp`,`supporting portrait path drift: ${character}`); assert(await exists(resolve(dist,asset.src)),`supporting portrait missing from package: ${character}`); assert(sw.includes(asset.src),`supporting portrait not offline cached: ${character}`); }
-const xuqiAngry = assetMap.get('xuqi/angry');
-assert(xuqiAngry?.src === 'assets/4k/runtime/characters/xuqi/angry.webp', 'Xu Qi angry expression is not canonical production art');
-assert(await exists(resolve(dist, xuqiAngry.src)), 'Xu Qi angry production sprite missing');
-assert(portraitSources.size === 30, 'five-expression heroine variants are not distinct files');
-for(const asset of project.assets.filter(a=>a.src.startsWith('assets/4k/runtime/'))){
-  const bytes=await readFile(resolve(dist,asset.src));
-  const record=manifest.files.find(f=>f.name===asset.src);
-  assert(record?.size===bytes.length&&record.sha256===createHash('sha256').update(bytes).digest('hex'),`4K runtime missing/stale in final manifest: ${asset.id}`);
-  assert(sw.includes(asset.src),`4K runtime missing from offline cache: ${asset.id}`);
-}
-
-const productionScenes = [
-  'classroom-rain','school-gate-rain','school-gate-evening','home-corridor','station-night','night-wucheng','school-morning','archive-room','cafeteria','rooftop-evening',
-  'stairwell-morning','riverside-dusk','underpass-rain','classroom-dawn','old-art-room','night-art-room','old-stationery','north-station','save-room','true-dawn'
-];
-const productionCgs = ['faceless-reflection-cg','letter-1842-cg','six-chairs-cg','linwan-1842-cg','true-end-riverside-cg','route-linwan-end-cg','route-xiaoman-end-cg','route-xuqi-end-cg','route-tinglan-end-cg','route-tangli-end-cg','route-nanxing-end-cg'];
-for (const id of [...productionScenes, ...productionCgs]) {
-  const asset = assetMap.get(id); assert(asset, `missing production scene asset ${id}`);
-  const category = productionScenes.includes(id) ? 'backgrounds' : 'cg';
-  assert(asset.src === `assets/4k/runtime/${category}/${id}.webp`, `${id} has an unexpected production art path`);
-  assert(!String(asset.alt ?? '').includes('占位'), `${id} is still labelled placeholder`);
-  assert(await exists(resolve(dist, asset.src)), `scene art missing from package: ${asset.src}`);
-  assert(sw.includes(asset.src), `scene art not offline cached: ${asset.src}`);
-}
-
-const finaleScore = ['music-no-save','music-tomorrow'];
-for (const id of finaleScore) {
-  const asset = assetMap.get(id);
-  assert(asset?.kind === 'audio', `missing finale score ${id}`);
-  assert(await exists(resolve(dist, asset.src)), `finale score missing from package: ${asset.src}`);
-  assert(sw.includes(asset.src), `finale score not offline cached: ${asset.src}`);
-}
-const noSaveMusicScenes = ['c5_anchor_truth','c5_request','c5_1842','chapter6_gate','c6_no_save','c6_echo_goodbye'];
-const tomorrowMusicScenes = ['c7_morning','c7_after','c7_linwan','c7_credits'];
-for (const id of noSaveMusicScenes) assert(project.stage?.scenes?.[id]?.music === 'music-no-save', `no-save theme missing from ${id}`);
-for (const id of tomorrowMusicScenes) assert(project.stage?.scenes?.[id]?.music === 'music-tomorrow', `tomorrow theme missing from ${id}`);
-
-const finalScenes = ['c6_no_save','c6_walk_forward','c6_echo_goodbye','c6_last_door','c7_morning','c7_linwan','c7_credits'];
-for (const id of finalScenes) assert(scenes.has(id), `missing irreversible/true ending scene ${id}`);
-
-const listed = new Set(manifest.files.map(file => file.name));
-for (const file of ['combat.mjs','meta.mjs','archive.mjs','archive-data.mjs','experience.css','experience.mjs','ui.mjs','pwa.mjs','icon-192.png','icon-512.png']) assert(listed.has(file), `${file} absent from integrity manifest`);
-
-for (const expression of expressions) {
-  const path = `assets/4k/runtime/characters/linwan/${expression}.webp`;
-  const bytes = await readFile(resolve(dist, path));
-  const source = await readFile(resolve(root, 'game', path));
-  assert(bytes.equals(source), `packaged Lin Wan sprite differs from source: ${path}`);
-  const record = manifest.files.find(file => file.name === path);
-  assert(record?.size === bytes.length && record.sha256 === createHash('sha256').update(bytes).digest('hex'), `Lin Wan sprite missing or stale in manifest: ${path}`);
-  assert(sw.includes(path), `Lin Wan sprite absent from offline cache: ${path}`);
-  assert(assetMap.get(`linwan/${expression}`)?.src === path, `Lin Wan production reference regressed: ${expression}`);
-}
-for (const expression of ['base','normal','sad']) {
-  const path = `assets/4k/runtime/characters/linwan/${expression}.webp`;
-  assert(!(await exists(resolve(dist, path))), `non-production Lin Wan alias/extra leaked into release: ${path}`);
-  assert(!sw.includes(path), `non-production Lin Wan alias/extra leaked into offline cache: ${path}`);
-}
-
-console.log(JSON.stringify({
-  status: 'release-integrity-ok', version: project.version, scenes: project.scenes.length,
-  assets: project.assets.length, endings: endings.size, productionPortraits: portraitSources.size + 1,
-  productionBackgrounds: productionScenes.length, productionCGs: productionCgs.length,
-  finaleScore: finaleScore.length, extensions: manifest.extensions
-}, null, 2));
+const productionScenes=['classroom-rain','school-gate-rain','school-gate-evening','home-corridor','station-night','night-wucheng','school-morning','archive-room','cafeteria','rooftop-evening','stairwell-morning','riverside-dusk','underpass-rain','classroom-dawn','old-art-room','night-art-room','old-stationery','north-station','save-room','true-dawn'];
+const productionCgs=['faceless-reflection-cg','letter-1842-cg','six-chairs-cg','linwan-1842-cg','true-end-riverside-cg','route-linwan-end-cg','route-xiaoman-end-cg','route-xuqi-end-cg','route-tinglan-end-cg','route-tangli-end-cg','route-nanxing-end-cg'];
+for(const id of [...productionScenes,...productionCgs]){const asset=assetMap.get(id);assert(asset,`missing production scene asset ${id}`);const category=productionScenes.includes(id)?'backgrounds':'cg';assert(asset.src===`assets/4k/runtime/${category}/${id}.webp`,`${id} has an unexpected production art path`);assert(!String(asset.alt??'').includes('占位'),`${id} is still labelled placeholder`);assert(await exists(resolve(dist,asset.src)),`scene art missing from package: ${asset.src}`);assert(sw.includes(asset.src),`scene art not offline cached: ${asset.src}`);}
+const finaleScore=['music-no-save','music-tomorrow'];for(const id of finaleScore){const asset=assetMap.get(id);assert(asset?.kind==='audio',`missing finale score ${id}`);assert(await exists(resolve(dist,asset.src)),`finale score missing from package: ${asset.src}`);assert(sw.includes(asset.src),`finale score not offline cached: ${asset.src}`);}
+const noSaveMusicScenes=['c5_anchor_truth','c5_request','c5_1842','chapter6_gate','c6_no_save','c6_echo_goodbye'];const tomorrowMusicScenes=['c7_morning','c7_after','c7_linwan','c7_credits'];for(const id of noSaveMusicScenes)assert(project.stage?.scenes?.[id]?.music==='music-no-save',`no-save theme missing from ${id}`);for(const id of tomorrowMusicScenes)assert(project.stage?.scenes?.[id]?.music==='music-tomorrow',`tomorrow theme missing from ${id}`);
+const finalScenes=['c6_no_save','c6_walk_forward','c6_echo_goodbye','c6_last_door','c7_morning','c7_linwan','c7_credits'];for(const id of finalScenes)assert(scenes.has(id),`missing irreversible/true ending scene ${id}`);
+const listed=new Set(manifest.files.map(file=>file.name));for(const file of ['combat.mjs','meta.mjs','archive.mjs','archive-data.mjs','experience.css','experience.mjs','ui.mjs','pwa.mjs','icon-192.png','icon-512.png'])assert(listed.has(file),`${file} absent from integrity manifest`);
+for(const expression of expressions){const path=`assets/4k/runtime/characters/linwan/${expression}.webp`;const bytes=await readFile(resolve(dist,path));const source=await readFile(resolve(root,'game',path));assert(bytes.equals(source),`packaged Lin Wan sprite differs from source: ${path}`);const record=manifest.files.find(file=>file.name===path);assert(record?.size===bytes.length&&record.sha256===createHash('sha256').update(bytes).digest('hex'),`Lin Wan sprite missing or stale in manifest: ${path}`);assert(sw.includes(path),`Lin Wan sprite absent from offline cache: ${path}`);assert(assetMap.get(`linwan/${expression}`)?.src===path,`Lin Wan production reference regressed: ${expression}`);}
+for(const expression of ['base','normal','sad']){const path=`assets/4k/runtime/characters/linwan/${expression}.webp`;assert(!(await exists(resolve(dist,path))),`non-production Lin Wan alias/extra leaked into release: ${path}`);assert(!sw.includes(path),`non-production Lin Wan alias/extra leaked into offline cache: ${path}`);}
+console.log(JSON.stringify({status:'release-integrity-ok',version:project.version,scenes:project.scenes.length,assets:project.assets.length,endings:endings.size,productionPortraits:portraitSources.size+1,productionBackgrounds:productionScenes.length,productionCGs:productionCgs.length,finaleScore:finaleScore.length,extensions:manifest.extensions,supportingPortraitRuntimePolicy:'approved-4k-original-or-hidden'},null,2));

@@ -1,6 +1,6 @@
 {
   "id": "runtime-content",
-  "source": "R2 canonical non-scene runtime metadata",
+  "source": "R2 canonical non-scene runtime metadata; R7 portrait quality hotfix",
   "stats": {
     "combatInsight": 0,
     "loopPressure": 0,
@@ -18,299 +18,57 @@
   "stage": {
     "speakers": {
       "无面行人": "faceless",
-      "第七人": "echochen",
-      "徐嘉树": "xujiashu",
-      "程妍": "chengyan",
-      "顾明远": "gumingyuan",
-      "陈岚": "chenlan",
-      "许蓉": "xurong",
-      "罗秀梅": "luoxiumei",
-      "苏遥": "suyao",
-      "何川": "hechuan",
-      "纪尧": "jiyao",
-      "林澄": "lincheng",
-      "沈砚秋": "shenyanqiu",
-      "梁成": "liangcheng"
+      "第七人": "echochen"
     },
     "scenes": {
-      "residue_homeroom": {
-        "effect": {
-          "type": "fade",
-          "durationMs": 650
-        }
-      },
-      "underpass_warning": {
-        "effect": {
-          "type": "fade",
-          "durationMs": 500
-        }
-      },
-      "faceless_first": {
-        "effect": {
-          "type": "shake",
-          "durationMs": 220
-        }
-      },
-      "load_fifth": {
-        "effect": {
-          "type": "flash",
-          "durationMs": 420
-        }
-      },
-      "faceless_second": {
-        "effect": {
-          "type": "shake",
-          "durationMs": 160
-        }
-      },
-      "chapter3_gate": {
-        "effect": {
-          "type": "fade",
-          "durationMs": 800
-        }
-      },
-      "route_linwan_dream": {
-        "effect": {
-          "type": "fade",
-          "durationMs": 500
-        }
-      },
-      "route_xiaoman_feeling": {
-        "effect": {
-          "type": "fade",
-          "durationMs": 500
-        }
-      },
-      "route_xuqi_night": {
-        "effect": {
-          "type": "flash",
-          "durationMs": 260
-        }
-      },
-      "archive_photo": {
-        "effect": {
-          "type": "flash",
-          "durationMs": 220
-        }
-      },
-      "future_rule": {
-        "effect": {
-          "type": "shake",
-          "durationMs": 160
-        }
-      },
-      "focus_xuqi_open": {
-        "effect": {
-          "type": "flash",
-          "durationMs": 240
-        }
-      },
-      "route_focus_choice": {
-        "effect": {
-          "type": "fade",
-          "durationMs": 500
-        }
-      },
-      "c4_xuqi_1": {
-        "effect": {
-          "type": "flash",
-          "durationMs": 220
-        }
-      },
-      "route_convergence": {
-        "effect": {
-          "type": "fade",
-          "durationMs": 700
-        }
-      },
-      "chapter5_gate": {
-        "effect": {
-          "type": "fade",
-          "durationMs": 900
-        }
-      },
-      "c5_north_station": {
-        "effect": {
-          "type": "fade",
-          "durationMs": 700
-        }
-      },
-      "c5_echo_chen": {
-        "effect": {
-          "type": "shake",
-          "durationMs": 160
-        }
-      },
-      "c5_echo_death": {
-        "effect": {
-          "type": "flash",
-          "durationMs": 250
-        }
-      },
-      "c5_1842": {
-        "effect": {
-          "type": "flash",
-          "durationMs": 700
-        }
-      },
-      "chapter6_gate": {
-        "effect": {
-          "type": "fade",
-          "durationMs": 1000
-        }
-      },
-      "c6_save_again": {
-        "effect": {
-          "type": "flash",
-          "durationMs": 500
-        }
-      },
-      "c6_walk_forward": {
-        "effect": {
-          "type": "fade",
-          "durationMs": 700
-        }
-      },
-      "c6_echo_goodbye": {
-        "effect": {
-          "type": "fade",
-          "durationMs": 800
-        }
-      },
-      "c7_morning": {
-        "effect": {
-          "type": "fade",
-          "durationMs": 1200
-        }
-      },
-      "c7_linwan": {
-        "effect": {
-          "type": "fade",
-          "durationMs": 900
-        }
-      },
-      "c7_credits": {
-        "effect": {
-          "type": "fade",
-          "durationMs": 1400
-        }
-      }
+      "residue_homeroom": {"effect":{"type":"fade","durationMs":650}},
+      "underpass_warning": {"effect":{"type":"fade","durationMs":500}},
+      "faceless_first": {"effect":{"type":"shake","durationMs":220}},
+      "load_fifth": {"effect":{"type":"flash","durationMs":420}},
+      "faceless_second": {"effect":{"type":"shake","durationMs":160}},
+      "chapter3_gate": {"effect":{"type":"fade","durationMs":800}},
+      "route_linwan_dream": {"effect":{"type":"fade","durationMs":500}},
+      "route_xiaoman_feeling": {"effect":{"type":"fade","durationMs":500}},
+      "route_xuqi_night": {"effect":{"type":"flash","durationMs":260}},
+      "archive_photo": {"effect":{"type":"flash","durationMs":220}},
+      "future_rule": {"effect":{"type":"shake","durationMs":160}},
+      "focus_xuqi_open": {"effect":{"type":"flash","durationMs":240}},
+      "route_focus_choice": {"effect":{"type":"fade","durationMs":500}},
+      "c4_xuqi_1": {"effect":{"type":"flash","durationMs":220}},
+      "route_convergence": {"effect":{"type":"fade","durationMs":700}},
+      "chapter5_gate": {"effect":{"type":"fade","durationMs":900}},
+      "c5_north_station": {"effect":{"type":"fade","durationMs":700}},
+      "c5_echo_chen": {"effect":{"type":"shake","durationMs":160}},
+      "c5_echo_death": {"effect":{"type":"flash","durationMs":250}},
+      "c5_1842": {"effect":{"type":"flash","durationMs":700}},
+      "chapter6_gate": {"effect":{"type":"fade","durationMs":1000}},
+      "c6_save_again": {"effect":{"type":"flash","durationMs":500}},
+      "c6_walk_forward": {"effect":{"type":"fade","durationMs":700}},
+      "c6_echo_goodbye": {"effect":{"type":"fade","durationMs":800}},
+      "c7_morning": {"effect":{"type":"fade","durationMs":1200}},
+      "c7_linwan": {"effect":{"type":"fade","durationMs":900}},
+      "c7_credits": {"effect":{"type":"fade","durationMs":1400}}
     },
     "lines": {
-      "c2f004": {
-        "effect": {
-          "type": "shake",
-          "durationMs": 180
-        }
-      },
-      "c2x003": {
-        "effect": {
-          "type": "flash",
-          "durationMs": 220
-        }
-      },
-      "c2l001": {
-        "effect": {
-          "type": "flash",
-          "durationMs": 300
-        }
-      },
-      "c2s002": {
-        "effect": {
-          "type": "shake",
-          "durationMs": 140
-        }
-      },
-      "c3g003": {
-        "effect": {
-          "type": "flash",
-          "durationMs": 180
-        }
-      },
-      "c3d004": {
-        "effect": {
-          "type": "flash",
-          "durationMs": 160
-        }
-      },
-      "c3f001": {
-        "effect": {
-          "type": "flash",
-          "durationMs": 200
-        }
-      },
-      "c3h002": {
-        "effect": {
-          "type": "shake",
-          "durationMs": 140
-        }
-      },
-      "c3j003": {
-        "effect": {
-          "type": "shake",
-          "durationMs": 120
-        }
-      },
-      "c3n004": {
-        "effect": {
-          "type": "shake",
-          "durationMs": 180
-        }
-      },
-      "c4q102": {
-        "effect": {
-          "type": "flash",
-          "durationMs": 180
-        }
-      },
-      "c4t003": {
-        "effect": {
-          "type": "shake",
-          "durationMs": 140
-        }
-      },
-      "c4n103": {
-        "effect": {
-          "type": "flash",
-          "durationMs": 180
-        }
-      },
-      "c5x003": {
-        "effect": {
-          "type": "shake",
-          "durationMs": 220
-        }
-      },
-      "c5z008": {
-        "effect": {
-          "type": "flash",
-          "durationMs": 500
-        }
-      },
-      "c6s004": {
-        "effect": {
-          "type": "shake",
-          "durationMs": 240
-        }
-      },
-      "c6n002": {
-        "effect": {
-          "type": "flash",
-          "durationMs": 200
-        }
-      },
-      "c6l002": {
-        "effect": {
-          "type": "flash",
-          "durationMs": 250
-        }
-      },
-      "c7c005": {
-        "effect": {
-          "type": "flash",
-          "durationMs": 400
-        }
-      }
+      "c2f004": {"effect":{"type":"shake","durationMs":180}},
+      "c2x003": {"effect":{"type":"flash","durationMs":220}},
+      "c2l001": {"effect":{"type":"flash","durationMs":300}},
+      "c2s002": {"effect":{"type":"shake","durationMs":140}},
+      "c3g003": {"effect":{"type":"flash","durationMs":180}},
+      "c3d004": {"effect":{"type":"flash","durationMs":160}},
+      "c3f001": {"effect":{"type":"flash","durationMs":200}},
+      "c3h002": {"effect":{"type":"shake","durationMs":140}},
+      "c3j003": {"effect":{"type":"shake","durationMs":120}},
+      "c3n004": {"effect":{"type":"shake","durationMs":180}},
+      "c4q102": {"effect":{"type":"flash","durationMs":180}},
+      "c4t003": {"effect":{"type":"shake","durationMs":140}},
+      "c4n103": {"effect":{"type":"flash","durationMs":180}},
+      "c5x003": {"effect":{"type":"shake","durationMs":220}},
+      "c5z008": {"effect":{"type":"flash","durationMs":500}},
+      "c6s004": {"effect":{"type":"shake","durationMs":240}},
+      "c6n002": {"effect":{"type":"flash","durationMs":200}},
+      "c6l002": {"effect":{"type":"flash","durationMs":250}},
+      "c7c005": {"effect":{"type":"flash","durationMs":400}}
     }
   }
 }
