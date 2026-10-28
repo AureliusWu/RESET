@@ -240,10 +240,6 @@ jobs:
         with:
           name: RESET-huiliu-v1.2.2-web
           path: release-assets
-      - uses: actions/download-artifact@v4
-        with:
-          name: RESET-huiliu-v1.2.2-win-x64
-          path: release-assets
       - name: Create immutable annotated tag after all acceptance gates
         uses: actions/github-script@v7
         with:
@@ -257,23 +253,23 @@ jobs:
               const sha = ref.object.type === 'tag' ? (await github.rest.git.getTag({...repo, tag_sha: ref.object.sha})).data.object.sha : ref.object.sha;
               if (sha !== context.sha) throw new Error('v1.2.2 already points to another commit; never move a published tag');
             } else {
-              const {data: tag} = await github.rest.git.createTag({...repo, tag: 'v1.2.2', message: '回留 / RESET v1.2.2 — verified mobile shell, Web/PWA and Windows x64', object: context.sha, type: 'commit'});
+              const {data: tag} = await github.rest.git.createTag({...repo, tag: 'v1.2.2', message: '回留 / RESET v1.2.2 — verified R5 Visual Coverage Web/PWA release', object: context.sha, type: 'commit'});
               await github.rest.git.createRef({...repo, ref: 'refs/tags/v1.2.2', sha: tag.sha});
             }
-      - name: Publish verified dual-platform release
+      - name: Publish verified Web/PWA-only release
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
         shell: bash
         run: |
           cd release-assets
-          sha256sum RESET-huiliu-v1.2.2-web.zip RESET-huiliu-v1.2.2-win-x64.zip > SHA256SUMS.txt
+          sha256sum RESET-huiliu-v1.2.2-web.zip > SHA256SUMS.txt
           cd ..
           if gh release view v1.2.2 --json isDraft > release-state.json 2>/dev/null; then
             node -e "if(!require('./release-state.json').isDraft)throw Error('v1.2.2 is already public; refusing to replace immutable release assets')"
           else
-            gh release create v1.2.2 --verify-tag --draft --title '《回留 / RESET》v1.2.2' --notes-file CHANGELOG_v1.2.2.md
+            gh release create v1.2.2 --verify-tag --draft --title '《回留 / RESET》v1.2.2 — Web/PWA' --notes-file CHANGELOG_v1.2.2.md
           fi
-          gh release upload v1.2.2 release-assets/RESET-huiliu-v1.2.2-web.zip release-assets/RESET-huiliu-v1.2.2-win-x64.zip release-assets/SHA256SUMS.txt --clobber
-          gh release edit v1.2.2 --draft=false --latest --title '《回留 / RESET》v1.2.2' --notes-file CHANGELOG_v1.2.2.md
+          gh release upload v1.2.2 release-assets/RESET-huiliu-v1.2.2-web.zip release-assets/SHA256SUMS.txt --clobber
+          gh release edit v1.2.2 --draft=false --latest --title '《回留 / RESET》v1.2.2 — Web/PWA' --notes-file CHANGELOG_v1.2.2.md
           gh release view v1.2.2 --json url,tagName,isDraft,assets
