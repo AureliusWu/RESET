@@ -385,6 +385,78 @@
       "kind": "cg",
       "src": "assets/4k/runtime/cg/route-nanxing-end-cg.webp",
       "alt": "乔南星 · 已读不回"
+    },
+    {
+      "id": "xujiashu/neutral",
+      "kind": "portrait",
+      "src": "assets/4k/runtime/characters/xujiashu/neutral.webp",
+      "alt": "徐嘉树立绘"
+    },
+    {
+      "id": "chengyan/neutral",
+      "kind": "portrait",
+      "src": "assets/4k/runtime/characters/chengyan/neutral.webp",
+      "alt": "程妍立绘"
+    },
+    {
+      "id": "gumingyuan/neutral",
+      "kind": "portrait",
+      "src": "assets/4k/runtime/characters/gumingyuan/neutral.webp",
+      "alt": "顾明远立绘"
+    },
+    {
+      "id": "chenlan/neutral",
+      "kind": "portrait",
+      "src": "assets/4k/runtime/characters/chenlan/neutral.webp",
+      "alt": "陈岚立绘"
+    },
+    {
+      "id": "xurong/neutral",
+      "kind": "portrait",
+      "src": "assets/4k/runtime/characters/xurong/neutral.webp",
+      "alt": "许蓉立绘"
+    },
+    {
+      "id": "luoxiumei/neutral",
+      "kind": "portrait",
+      "src": "assets/4k/runtime/characters/luoxiumei/neutral.webp",
+      "alt": "罗秀梅立绘"
+    },
+    {
+      "id": "suyao/neutral",
+      "kind": "portrait",
+      "src": "assets/4k/runtime/characters/suyao/neutral.webp",
+      "alt": "苏遥立绘"
+    },
+    {
+      "id": "hechuan/neutral",
+      "kind": "portrait",
+      "src": "assets/4k/runtime/characters/hechuan/neutral.webp",
+      "alt": "何川立绘"
+    },
+    {
+      "id": "jiyao/neutral",
+      "kind": "portrait",
+      "src": "assets/4k/runtime/characters/jiyao/neutral.webp",
+      "alt": "纪尧立绘"
+    },
+    {
+      "id": "lincheng/neutral",
+      "kind": "portrait",
+      "src": "assets/4k/runtime/characters/lincheng/neutral.webp",
+      "alt": "林澄立绘"
+    },
+    {
+      "id": "shenyanqiu/neutral",
+      "kind": "portrait",
+      "src": "assets/4k/runtime/characters/shenyanqiu/neutral.webp",
+      "alt": "沈砚秋立绘"
+    },
+    {
+      "id": "liangcheng/neutral",
+      "kind": "portrait",
+      "src": "assets/4k/runtime/characters/liangcheng/neutral.webp",
+      "alt": "梁成立绘"
     }
   ],
   "extras": [

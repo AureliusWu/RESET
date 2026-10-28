@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "character": "lincheng",
+  "name": "林澄",
+  "sourceType": "chatgpt-authored-procedural-raster-illustration",
+  "visualTier": "supporting-cast-stylized-bust",
+  "native4kClaim": false,
+  "designPlan": "game/visual/r5-supporting-cast-plan.json",
+  "assets": [
+    {
+      "expression": "neutral",
+      "original": "game/art-sources/chatgpt/characters/lincheng/neutral.png",
+      "originalSHA256": "0ec41bf3af2d26636766c2570fd6fba7e6649282290c0b7ddf9ba2dfc5a69280",
+      "originalSize": [
+        1080,
+        1920
+      ],
+      "master": "game/assets/4k/characters/lincheng/neutral.png",
+      "masterSHA256": "94028d01c4c8a51ff525aa4ad09999db8cee4a7cf96e7402797b23c386660671",
+      "runtime": "game/assets/4k/runtime/characters/lincheng/neutral.webp",
+      "runtimeSHA256": "c8fff92619c7eb26d10a6adf191063f465d895bf31f05b7074c29535013eb95d",
+      "lockedBodySHA256": "0ec41bf3af2d26636766c2570fd6fba7e6649282290c0b7ddf9ba2dfc5a69280"
+    }
+  ]
+}

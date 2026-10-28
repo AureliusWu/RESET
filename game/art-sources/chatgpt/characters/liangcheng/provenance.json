@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "character": "liangcheng",
+  "name": "梁成",
+  "sourceType": "chatgpt-authored-procedural-raster-illustration",
+  "visualTier": "supporting-cast-stylized-bust",
+  "native4kClaim": false,
+  "designPlan": "game/visual/r5-supporting-cast-plan.json",
+  "assets": [
+    {
+      "expression": "neutral",
+      "original": "game/art-sources/chatgpt/characters/liangcheng/neutral.png",
+      "originalSHA256": "ae301f3d922effe22649adf23df432a4ae902823d8cb03f83ba769128b2c1f18",
+      "originalSize": [
+        1080,
+        1920
+      ],
+      "master": "game/assets/4k/characters/liangcheng/neutral.png",
+      "masterSHA256": "71cadd4e3626ba18b71d9612053ffddbad066e447918954eb08eaa34355cbe91",
+      "runtime": "game/assets/4k/runtime/characters/liangcheng/neutral.webp",
+      "runtimeSHA256": "55944b932d0b6369c85f120ddb03b64c3df328724034a724da219d63f6707db3",
+      "lockedBodySHA256": "ae301f3d922effe22649adf23df432a4ae902823d8cb03f83ba769128b2c1f18"
+    }
+  ]
+}

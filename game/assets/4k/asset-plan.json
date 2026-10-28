@@ -130,6 +130,126 @@
         "serious"
       ],
       "extras": []
+    },
+    {
+      "id": "xujiashu",
+      "name": "徐嘉树",
+      "priority": 20,
+      "expressions": [
+        "neutral"
+      ],
+      "extras": [],
+      "tier": "supporting"
+    },
+    {
+      "id": "chengyan",
+      "name": "程妍",
+      "priority": 21,
+      "expressions": [
+        "neutral"
+      ],
+      "extras": [],
+      "tier": "supporting"
+    },
+    {
+      "id": "gumingyuan",
+      "name": "顾明远",
+      "priority": 22,
+      "expressions": [
+        "neutral"
+      ],
+      "extras": [],
+      "tier": "supporting"
+    },
+    {
+      "id": "chenlan",
+      "name": "陈岚",
+      "priority": 23,
+      "expressions": [
+        "neutral"
+      ],
+      "extras": [],
+      "tier": "supporting"
+    },
+    {
+      "id": "xurong",
+      "name": "许蓉",
+      "priority": 24,
+      "expressions": [
+        "neutral"
+      ],
+      "extras": [],
+      "tier": "supporting"
+    },
+    {
+      "id": "luoxiumei",
+      "name": "罗秀梅",
+      "priority": 25,
+      "expressions": [
+        "neutral"
+      ],
+      "extras": [],
+      "tier": "supporting"
+    },
+    {
+      "id": "suyao",
+      "name": "苏遥",
+      "priority": 26,
+      "expressions": [
+        "neutral"
+      ],
+      "extras": [],
+      "tier": "supporting"
+    },
+    {
+      "id": "hechuan",
+      "name": "何川",
+      "priority": 27,
+      "expressions": [
+        "neutral"
+      ],
+      "extras": [],
+      "tier": "supporting"
+    },
+    {
+      "id": "jiyao",
+      "name": "纪尧",
+      "priority": 28,
+      "expressions": [
+        "neutral"
+      ],
+      "extras": [],
+      "tier": "supporting"
+    },
+    {
+      "id": "lincheng",
+      "name": "林澄",
+      "priority": 29,
+      "expressions": [
+        "neutral"
+      ],
+      "extras": [],
+      "tier": "supporting"
+    },
+    {
+      "id": "shenyanqiu",
+      "name": "沈砚秋",
+      "priority": 30,
+      "expressions": [
+        "neutral"
+      ],
+      "extras": [],
+      "tier": "supporting"
+    },
+    {
+      "id": "liangcheng",
+      "name": "梁成",
+      "priority": 31,
+      "expressions": [
+        "neutral"
+      ],
+      "extras": [],
+      "tier": "supporting"
     }
   ],
   "backgrounds": [

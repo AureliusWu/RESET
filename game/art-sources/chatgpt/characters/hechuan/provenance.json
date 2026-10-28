@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "character": "hechuan",
+  "name": "何川",
+  "sourceType": "chatgpt-authored-procedural-raster-illustration",
+  "visualTier": "supporting-cast-stylized-bust",
+  "native4kClaim": false,
+  "designPlan": "game/visual/r5-supporting-cast-plan.json",
+  "assets": [
+    {
+      "expression": "neutral",
+      "original": "game/art-sources/chatgpt/characters/hechuan/neutral.png",
+      "originalSHA256": "75bd66c2a744fba6a9a2c57c39fb69ca141db995eaf23039d533f494b788a7f6",
+      "originalSize": [
+        1080,
+        1920
+      ],
+      "master": "game/assets/4k/characters/hechuan/neutral.png",
+      "masterSHA256": "5f2444f64c6046b56b318cad19db1d8453fcad622cd2d161c7d3899c925ca64f",
+      "runtime": "game/assets/4k/runtime/characters/hechuan/neutral.webp",
+      "runtimeSHA256": "a9fea2190cf5a9c78ab7f55527ea6cd4f0e245f4f308ab056a4e5a6ca2d8f873",
+      "lockedBodySHA256": "75bd66c2a744fba6a9a2c57c39fb69ca141db995eaf23039d533f494b788a7f6"
+    }
+  ]
+}

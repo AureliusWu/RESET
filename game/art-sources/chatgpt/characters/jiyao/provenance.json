@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "character": "jiyao",
+  "name": "纪尧",
+  "sourceType": "chatgpt-authored-procedural-raster-illustration",
+  "visualTier": "supporting-cast-stylized-bust",
+  "native4kClaim": false,
+  "designPlan": "game/visual/r5-supporting-cast-plan.json",
+  "assets": [
+    {
+      "expression": "neutral",
+      "original": "game/art-sources/chatgpt/characters/jiyao/neutral.png",
+      "originalSHA256": "195f93c5e82d14bbb9d13cd8ec21f9127894149304b66d4ed15cd03a4932dec7",
+      "originalSize": [
+        1080,
+        1920
+      ],
+      "master": "game/assets/4k/characters/jiyao/neutral.png",
+      "masterSHA256": "e79eacd25ded88f68a0cbd626d4caec0e05055df3ae4d2fc6fbba41c5e020547",
+      "runtime": "game/assets/4k/runtime/characters/jiyao/neutral.webp",
+      "runtimeSHA256": "4eaad19da134fdf81361f7b667d2e376f8ef676528c9e34746dad73efd7ffed5",
+      "lockedBodySHA256": "195f93c5e82d14bbb9d13cd8ec21f9127894149304b66d4ed15cd03a4932dec7"
+    }
+  ]
+}

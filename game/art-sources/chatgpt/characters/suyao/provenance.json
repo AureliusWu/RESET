@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "character": "suyao",
+  "name": "苏遥",
+  "sourceType": "chatgpt-authored-procedural-raster-illustration",
+  "visualTier": "supporting-cast-stylized-bust",
+  "native4kClaim": false,
+  "designPlan": "game/visual/r5-supporting-cast-plan.json",
+  "assets": [
+    {
+      "expression": "neutral",
+      "original": "game/art-sources/chatgpt/characters/suyao/neutral.png",
+      "originalSHA256": "ac14cfec9f9fbfe3139c94020989a692033137c9092cee6831f687684e5435fe",
+      "originalSize": [
+        1080,
+        1920
+      ],
+      "master": "game/assets/4k/characters/suyao/neutral.png",
+      "masterSHA256": "b5b3d9cb26ca6fbc5c10acbaf0a97893e3a6dc713f65d1964de6c7683148c387",
+      "runtime": "game/assets/4k/runtime/characters/suyao/neutral.webp",
+      "runtimeSHA256": "ed2ec6ba597581608ef2d52b440f5008d2e7a852e595a13f94bbadc4a9e64c38",
+      "lockedBodySHA256": "ac14cfec9f9fbfe3139c94020989a692033137c9092cee6831f687684e5435fe"
+    }
+  ]
+}

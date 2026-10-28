@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "character": "xurong",
+  "name": "许蓉",
+  "sourceType": "chatgpt-authored-procedural-raster-illustration",
+  "visualTier": "supporting-cast-stylized-bust",
+  "native4kClaim": false,
+  "designPlan": "game/visual/r5-supporting-cast-plan.json",
+  "assets": [
+    {
+      "expression": "neutral",
+      "original": "game/art-sources/chatgpt/characters/xurong/neutral.png",
+      "originalSHA256": "4af298ad3ac504e5b0836f3485b53103469562ce8db0d5f31277cee511d407ea",
+      "originalSize": [
+        1080,
+        1920
+      ],
+      "master": "game/assets/4k/characters/xurong/neutral.png",
+      "masterSHA256": "1b4da5dbb199024a1119853298a45f47913e821c263c0fe7b1312bae398b3b53",
+      "runtime": "game/assets/4k/runtime/characters/xurong/neutral.webp",
+      "runtimeSHA256": "69c6c84eea3efea1449ff452e42153c4be88697920422f131cbde587ce9b596a",
+      "lockedBodySHA256": "4af298ad3ac504e5b0836f3485b53103469562ce8db0d5f31277cee511d407ea"
+    }
+  ]
+}

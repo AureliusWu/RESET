@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "character": "chengyan",
+  "name": "程妍",
+  "sourceType": "chatgpt-authored-procedural-raster-illustration",
+  "visualTier": "supporting-cast-stylized-bust",
+  "native4kClaim": false,
+  "designPlan": "game/visual/r5-supporting-cast-plan.json",
+  "assets": [
+    {
+      "expression": "neutral",
+      "original": "game/art-sources/chatgpt/characters/chengyan/neutral.png",
+      "originalSHA256": "21d3da34a3182bca1e8b6cb21072e3fe7ebc36f41f6f75b07c54a5f26954175f",
+      "originalSize": [
+        1080,
+        1920
+      ],
+      "master": "game/assets/4k/characters/chengyan/neutral.png",
+      "masterSHA256": "28360e75f1f32b350fb6c77aea0e47c122af15e05667b7916cb60a86bf1219f8",
+      "runtime": "game/assets/4k/runtime/characters/chengyan/neutral.webp",
+      "runtimeSHA256": "0463dda51879f821ccefb4e8a41f2cf2f1388a337ad6b858815f31c4a825b0d8",
+      "lockedBodySHA256": "21d3da34a3182bca1e8b6cb21072e3fe7ebc36f41f6f75b07c54a5f26954175f"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "character": "chenlan",
+  "name": "陈岚",
+  "sourceType": "chatgpt-authored-procedural-raster-illustration",
+  "visualTier": "supporting-cast-stylized-bust",
+  "native4kClaim": false,
+  "designPlan": "game/visual/r5-supporting-cast-plan.json",
+  "assets": [
+    {
+      "expression": "neutral",
+      "original": "game/art-sources/chatgpt/characters/chenlan/neutral.png",
+      "originalSHA256": "1dbb4e1f43d8719feec62317e843a1aac9220a0019a4183e07e0b69f5d7c80c3",
+      "originalSize": [
+        1080,
+        1920
+      ],
+      "master": "game/assets/4k/characters/chenlan/neutral.png",
+      "masterSHA256": "7eb38177277ac31aee5c6e444214e46704bf937c3f42222bccf712020942e8a1",
+      "runtime": "game/assets/4k/runtime/characters/chenlan/neutral.webp",
+      "runtimeSHA256": "385577c875bd5dc7ef776518f226f62a86aaa3018eff7c1eb4fb81fa5af54a31",
+      "lockedBodySHA256": "1dbb4e1f43d8719feec62317e843a1aac9220a0019a4183e07e0b69f5d7c80c3"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "character": "shenyanqiu",
+  "name": "沈砚秋",
+  "sourceType": "chatgpt-authored-procedural-raster-illustration",
+  "visualTier": "supporting-cast-stylized-bust",
+  "native4kClaim": false,
+  "designPlan": "game/visual/r5-supporting-cast-plan.json",
+  "assets": [
+    {
+      "expression": "neutral",
+      "original": "game/art-sources/chatgpt/characters/shenyanqiu/neutral.png",
+      "originalSHA256": "7e21727a66d166029bead51866210be7c5af5754784edbcf67e456f085cb683b",
+      "originalSize": [
+        1080,
+        1920
+      ],
+      "master": "game/assets/4k/characters/shenyanqiu/neutral.png",
+      "masterSHA256": "bd2935cad19aef587a2d75e645d7607b9c01f51c9cb163513f4b63b25dc18d90",
+      "runtime": "game/assets/4k/runtime/characters/shenyanqiu/neutral.webp",
+      "runtimeSHA256": "ebaab2f3aed9d82ec01a9d7352f73da474d815d356e93497e66f746169a41cae",
+      "lockedBodySHA256": "7e21727a66d166029bead51866210be7c5af5754784edbcf67e456f085cb683b"
+    }
+  ]
+}

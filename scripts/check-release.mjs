@@ -56,6 +56,8 @@ for (const character of cast) for (const expression of expressions) {
   assert(await exists(resolve(dist, asset.src)), `portrait file missing from package: ${asset.src}`);
   assert(sw.includes(asset.src), `portrait not offline cached: ${asset.src}`);
 }
+const supportPortraits = ["xujiashu", "chengyan", "gumingyuan", "chenlan", "xurong", "luoxiumei", "suyao", "hechuan", "jiyao", "lincheng", "shenyanqiu", "liangcheng"];
+for (const character of supportPortraits) { const asset=assetMap.get(`${character}/neutral`); assert(asset?.kind==='portrait',`missing supporting portrait ${character}`); assert(asset.src===`assets/4k/runtime/characters/${character}/neutral.webp`,`supporting portrait path drift: ${character}`); assert(await exists(resolve(dist,asset.src)),`supporting portrait missing from package: ${character}`); assert(sw.includes(asset.src),`supporting portrait not offline cached: ${character}`); }
 const xuqiAngry = assetMap.get('xuqi/angry');
 assert(xuqiAngry?.src === 'assets/4k/runtime/characters/xuqi/angry.webp', 'Xu Qi angry expression is not canonical production art');
 assert(await exists(resolve(dist, xuqiAngry.src)), 'Xu Qi angry production sprite missing');
