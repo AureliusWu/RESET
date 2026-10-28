@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "round": "R5",
+  "phase": "D-route-story-key-cg-expansion",
+  "requiredEndingCgs": [
+    {"ending":"normal-linwan","asset":"route-linwan-end-cg","character":"linwan","expression":"smile","title":"林晚 · 这一轮也算数","position":"right"},
+    {"ending":"normal-xiaoman","asset":"route-xiaoman-end-cg","character":"xiaoman","expression":"smile","title":"周小满 · 今天别重来","position":"left"},
+    {"ending":"normal-xuqi","asset":"route-xuqi-end-cg","character":"xuqi","expression":"serious","title":"许栖 · 留在被放弃的世界","position":"right"},
+    {"ending":"normal-tinglan","asset":"route-tinglan-end-cg","character":"tinglan","expression":"serious","title":"沈听澜 · 未归档的人","position":"left"},
+    {"ending":"normal-tangli","asset":"route-tangli-end-cg","character":"tangli","expression":"smile","title":"唐梨 · 向前跑","position":"right"},
+    {"ending":"normal-nanxing","asset":"route-nanxing-end-cg","character":"nanxing","expression":"serious","title":"乔南星 · 已读不回","position":"left"}
+  ]
+}
