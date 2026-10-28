@@ -43,7 +43,7 @@ test('invalid slots, wrong-game envelopes and oversized saves are rejected befor
   assert.throws(()=>slots.put(1,{...save,game:'another-game'},frame));
   assert.throws(()=>slots.put(1,{...save,padding:'x'.repeat(2_000_001)},frame));
   assert.equal(storage.getItem(SLOT_KEY),null);
-  assert.equal(new Set(ENDINGS.map(e=>e.id)).size,13);assert.equal(new Set(CGS.map(c=>c.id)).size,5);
+  assert.equal(new Set(ENDINGS.map(e=>e.id)).size,13);assert.equal(new Set(CGS.map(c=>c.id)).size,11);
 });
 
 
