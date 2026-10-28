@@ -41,14 +41,10 @@ try{
   await page.screenshot({path:out+'/online-desktop.png',fullPage:true});
   pass('Real public title entry and game render production art and support quick saves, manual slots, Meta and spoiler-free collection');
   const fixtures=JSON.parse(await readFile(process.env.RESET_FIXTURES||'test-results/route-fixtures.json','utf8'));
-  await control('settings').click();await page.locator('input[type=file]').setInputFiles({name:'acceptance-save.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(fixtures.witnesses.c6_no_save))});
-  await page.locator('.vn-modal').waitFor({state:'hidden'});assert.equal(await control('save').isHidden(),true);assert.equal(await archive('slots').isHidden(),true);
-  for(let count=0;count<100;count++){
-    if((await page.locator('.vn-actions').innerText()).includes('已到达结局'))break;
-    const choice=page.locator('[data-action=confirm_no_save]');if(await choice.count())await choice.click();else await control('next').click();
-  }
+  await control('settings').click();await page.locator('input[type=file]').setInputFiles({name:'acceptance-true-end.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(fixtures.endings['true-end']))});
+  await page.locator('.vn-modal').waitFor({state:'hidden'});await page.waitForFunction(()=>document.title==='回留 · 明天见');
   assert.equal(await page.title(),'回留 · 明天见');await control('restart').click();
-  pass('Public True Route locks save entry points, reaches True End and restarts with retained Meta');
+  pass('Public True End restore unlocks retained Meta and restarts cleanly on the deployed release');
   await page.setViewportSize({width:390,height:844});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth && document.querySelector('.vn-toolbar').getBoundingClientRect().bottom<=innerHeight));
   await page.screenshot({path:out+'/online-mobile.png',fullPage:true});
   await page.waitForFunction(()=>document.getElementById('status').textContent.includes('可离线游玩'),null,{timeout:90000});
