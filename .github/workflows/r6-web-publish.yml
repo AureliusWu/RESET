@@ -1,0 +1,150 @@
+name: Publish R6 Web/PWA
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  publish-web:
+    if: startsWith(github.event.head_commit.message, 'release(web): publish v1.2.2')
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout release candidate
+        uses: actions/checkout@v4
+
+      - name: Checkout locked VN Engine v2
+        uses: actions/checkout@v4
+        with:
+          repository: AureliusWu/VN-Engine-v2
+          ref: 15c101e0d2b2c1e40dbc36d7a0c1a246d102b52c
+          path: vn-engine
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: vn-engine/package-lock.json
+
+      - name: Install engine dependencies
+        working-directory: vn-engine
+        run: npm ci
+
+      - name: Build final Web/PWA candidate
+        env:
+          VN_ENGINE_PATH: ${{ github.workspace }}/vn-engine
+        run: npm run build
+
+      - name: Verify stable R5/R6 gates and v1.2.2 identity
+        run: |
+          npm run check:stable
+          node - <<'NODE'
+          const m=require('./dist/build-manifest.json');
+          const p=require('./dist/project.json');
+          if(m.game!=='reset'||m.version!=='reset-v1.2.2'||p.version!=='reset-v1.2.2') process.exit(1);
+          if(p.scenes.length!==82||p.assets.length!==97) process.exit(2);
+          if(!m.extensions.includes('reset-art-visual-gate-v1')||!m.extensions.includes('reset-asset-schema-v1')) process.exit(3);
+          NODE
+          test -f dist/index.html
+          test -f dist/manifest.webmanifest
+          test -f dist/sw.js
+          test -f dist/pwa.mjs
+
+      - name: Archive exact Web/PWA release
+        run: cd dist && zip -r ../RESET-huiliu-v1.2.2-web.zip .
+
+      - name: Install acceptance browser
+        working-directory: vn-engine
+        run: npx playwright install --with-deps chromium
+
+      - name: Prepare immutable v1.1.0 PWA upgrade fixture
+        run: |
+          curl --fail --location --retry 3 https://github.com/AureliusWu/RESET/releases/download/v1.1.0/RESET-huiliu-v1.1.0-web.zip -o previous-web.zip
+          echo '6750ed303f1029684418f93449ae3d322f08e294e40926a53529cae81fad8f24  previous-web.zip' | sha256sum --check
+          unzip -q previous-web.zip -d previous-web
+
+      - name: Test the exact extracted release ZIP
+        env:
+          RESET_DIST: installed-web
+          RESET_PREVIOUS_DIST: previous-web
+          VN_ENGINE_PATH: ${{ github.workspace }}/vn-engine
+        run: |
+          unzip -q RESET-huiliu-v1.2.2-web.zip -d installed-web
+          npm run test:release
+          npm run test:browser
+
+      - name: Require matching main Build CI
+        uses: actions/github-script@v7
+        with:
+          script: |
+            for (let attempt = 0; attempt < 90; attempt++) {
+              const {data} = await github.rest.actions.listWorkflowRuns({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                workflow_id: 'build.yml',
+                head_sha: context.sha
+              });
+              const run = data.workflow_runs.find(run => run.head_sha === context.sha && run.event === 'push');
+              if (run?.status === 'completed') {
+                if (run.conclusion !== 'success') throw new Error('Matching Build CI failed');
+                core.notice(`Matching Build CI passed: ${run.html_url}`);
+                return;
+              }
+              await new Promise(resolve => setTimeout(resolve, 3000));
+            }
+            throw new Error('Matching Build CI did not finish');
+
+      - name: Create immutable v1.2.2 tag
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const repo = {owner: context.repo.owner, repo: context.repo.repo};
+            const head = (await github.rest.repos.getBranch({...repo, branch: 'main'})).data.commit.sha;
+            if (head !== context.sha) throw new Error('A newer main commit superseded this Web candidate; refusing to publish');
+            let ref;
+            try {
+              ref = (await github.rest.git.getRef({...repo, ref: 'tags/v1.2.2'})).data;
+            } catch (error) {
+              if (error.status !== 404) throw error;
+            }
+            if (ref) {
+              const sha = ref.object.type === 'tag'
+                ? (await github.rest.git.getTag({...repo, tag_sha: ref.object.sha})).data.object.sha
+                : ref.object.sha;
+              if (sha !== context.sha) throw new Error('v1.2.2 already points to another commit; refusing to move it');
+              return;
+            }
+            const {data: tag} = await github.rest.git.createTag({
+              ...repo,
+              tag: 'v1.2.2',
+              message: '回留 / RESET v1.2.2 — R5 Visual Coverage Web/PWA release',
+              object: context.sha,
+              type: 'commit'
+            });
+            await github.rest.git.createRef({...repo, ref: 'refs/tags/v1.2.2', sha: tag.sha});
+
+      - name: Publish verified Web/PWA-only release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          sha256sum RESET-huiliu-v1.2.2-web.zip > SHA256SUMS.txt
+          if gh release view v1.2.2 --json isDraft > release-state.json 2>/dev/null; then
+            node -e "if(!require('./release-state.json').isDraft)throw Error('v1.2.2 is already public; refusing to replace immutable release assets')"
+          else
+            gh release create v1.2.2 --verify-tag --draft --title '《回留 / RESET》v1.2.2 — Web/PWA' --notes-file CHANGELOG_v1.2.2.md
+          fi
+          gh release upload v1.2.2 RESET-huiliu-v1.2.2-web.zip SHA256SUMS.txt --clobber
+          gh release edit v1.2.2 --draft=false --latest --title '《回留 / RESET》v1.2.2 — Web/PWA' --notes-file CHANGELOG_v1.2.2.md
+          gh release view v1.2.2 --json url,tagName,isDraft,isPrerelease,assets
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: RESET-r6-v1.2.2-web-validation
+          path: test-results
