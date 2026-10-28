@@ -24,7 +24,10 @@ function ensureTitleGate(archive){
     setTimeout(()=>{gate.remove();after?.();},220);
   };
   newGame.addEventListener('click',()=>leave(),{once:true});
-  loadGame.addEventListener('click',()=>leave(()=>archive?.openSlots?.()),{once:true});
+  loadGame.addEventListener('click',()=>leave(()=>{
+    if(archive?.openSlots)archive.openSlots();
+    else host.querySelector('[data-reset-control="slots"]')?.click();
+  }),{once:true});
   const syncInstall=()=>{install.hidden=!deferredInstallPrompt;};
   install.addEventListener('click',async()=>{if(!deferredInstallPrompt)return;const prompt=deferredInstallPrompt;deferredInstallPrompt=null;syncInstall();await prompt.prompt();try{await prompt.userChoice;}catch{}});
   addEventListener('reset-install-available',syncInstall);syncInstall();
