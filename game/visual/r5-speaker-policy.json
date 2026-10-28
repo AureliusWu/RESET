@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "round": "R5",
+  "phase": "A-dialogue-character-visual-mapping",
+  "principle": "Every named dialogue speaker is classified as portrait, protagonist, narrator, functional voice, or pending supporting portrait.",
+  "speakers": {
+    "旁白": {"mode": "narrator"},
+    "陈渡": {"mode": "protagonist"},
+    "林晚": {"mode": "portrait", "character": "linwan"},
+    "周小满": {"mode": "portrait", "character": "xiaoman"},
+    "许栖": {"mode": "portrait", "character": "xuqi"},
+    "沈听澜": {"mode": "portrait", "character": "tinglan"},
+    "唐梨": {"mode": "portrait", "character": "tangli"},
+    "乔南星": {"mode": "portrait", "character": "nanxing"},
+    "徐嘉树": {"mode": "pending-support-portrait", "character": "xujiashu"},
+    "程妍": {"mode": "pending-support-portrait", "character": "chengyan"},
+    "顾明远": {"mode": "pending-support-portrait", "character": "gumingyuan"},
+    "陈岚": {"mode": "pending-support-portrait", "character": "chenlan"},
+    "许蓉": {"mode": "pending-support-portrait", "character": "xurong"},
+    "罗秀梅": {"mode": "pending-support-portrait", "character": "luoxiumei"},
+    "苏遥": {"mode": "pending-support-portrait", "character": "suyao"},
+    "何川": {"mode": "pending-support-portrait", "character": "hechuan"},
+    "纪尧": {"mode": "pending-support-portrait", "character": "jiyao"},
+    "林澄": {"mode": "pending-support-portrait", "character": "lincheng"},
+    "沈砚秋": {"mode": "pending-support-portrait", "character": "shenyanqiu"},
+    "梁成": {"mode": "pending-support-portrait", "character": "liangcheng"},
+    "无面行人": {"mode": "portrait", "character": "faceless"},
+    "第七人": {"mode": "portrait", "character": "echochen"}
+  },
+  "functionalSpeakerPatterns": [
+    "^(系统|广播|广播声|班群|群消息|消息|电话)",
+    "^(同学|学生|老师|店员|站务员|工作人员|乘客|路人|护士|医生|保安)",
+    "^(男声|女声|少年|少女|男人|女人|孩子|人群)"
+  ]
+}
