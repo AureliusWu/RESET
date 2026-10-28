@@ -21,7 +21,8 @@ test('dialogue advances from reading surface or Enter/Space without a visible ne
   assert.match(experience,/event\.key!==['"]Enter['"]/);
   assert.match(experience,/event\.code!==['"]Space['"]/);
   assert.match(pwa,/data-control=\\?"next/);
-  assert.match(pwa,/display:none!important/);
+  assert.match(pwa,/opacity:0!important/);
+  assert.match(pwa,/width:1px!important;height:1px!important/);
 });
 
 test('R7 keeps story props below portraits and moves the mobile map into a safe side area',()=>{
