@@ -1,7 +1,7 @@
 // Work-level stage polish; story identity and the independent engine stay intact.
 export function mountExperienceBridge(game, project) {
   const host=game.renderer.element, session=game.session;
-  const doc=host.ownerDocument, view=doc.defaultView;
+  const doc=host.ownerDocument??globalThis.document;
   const scenes=new Map(project.scenes.map(scene=>[scene.id,scene]));
   const animations=new Set();let disposed=false, previous, observedVisit;
   function cancelAnimations() { for(const animation of animations)animation.cancel();animations.clear(); }
@@ -10,26 +10,24 @@ export function mountExperienceBridge(game, project) {
     const animation=element.animate(frames,{duration,easing:'ease-out'});animations.add(animation);
     animation.onfinish=animation.oncancel=()=>animations.delete(animation);
   }
-  const visible = node => Boolean(node && !node.hidden && !node.disabled && node.getClientRects().length);
+  const visible = node => Boolean(node && !node.hidden && !node.disabled && (!node.getClientRects || node.getClientRects().length));
+  const interactive = target => Boolean(target?.closest?.('button,a,input,textarea,select,label,[contenteditable="true"],[role="button"]'));
   function advanceDialogue() {
     if(disposed || host.querySelector('.reset-title-gate') || session.getView().paused)return false;
-    const choice=[...host.querySelectorAll('.vn-actions [data-action]')].find(visible);
+    const choice=[...(host.querySelectorAll?.('.vn-actions [data-action]')??[])].find(visible);
     if(choice)return false;
     const next=host.querySelector('[data-control="next"]');
-    if(!next || next.disabled)return false;
+    if(!next || next.disabled || typeof next.click!=='function')return false;
     next.click();return true;
   }
   function clickReading(event) {
-    if(event.defaultPrevented || event.button>0)return;
-    const target=event.target;
-    if(target instanceof view.Element && target.closest('button,a,input,textarea,select,label,[contenteditable="true"],[role="button"]'))return;
+    if(event.defaultPrevented || event.button>0 || interactive(event.target))return;
     advanceDialogue();
   }
   function keyAdvance(event) {
     if(event.defaultPrevented || event.repeat || event.altKey || event.ctrlKey || event.metaKey)return;
     if(event.key!=='Enter' && event.key!==' ' && event.code!=='Space')return;
-    const target=event.target;
-    if(target instanceof view.Element && target.closest('button,a,input,textarea,select,[contenteditable="true"],[role="button"]'))return;
+    if(interactive(event.target))return;
     if(advanceDialogue()){event.preventDefault();event.stopPropagation();}
   }
   function sync() {
@@ -52,9 +50,8 @@ export function mountExperienceBridge(game, project) {
       }
     }
     if(!current.settings.reducedMotion && previous && current.ready && !current.paused){
-      // Portraits are intentionally stable between dialogue lines. Sliding a
-      // newly rendered expression by a few pixels made every advance look like
-      // the sprite jumped, especially on mobile. Background/CG transitions stay.
+      // Portraits stay spatially stable between dialogue lines. A previous 6px
+      // slide-in on every expression swap made the sprite visibly jump.
       if(previous.background!==next.background)animate('.vn-background',[{opacity:.8},{opacity:1}],240);
       if(previous.cg!==next.cg && next.cg)animate('.vn-cg',[{opacity:.65},{opacity:1}],260);
       if(previous.visit!==next.visit && current.reason==='restore')animate('.vn-reading',[{boxShadow:'inset 0 2px #9accc5'},{boxShadow:'inset 0 2px transparent'}],340);
@@ -63,13 +60,14 @@ export function mountExperienceBridge(game, project) {
     if((current.ready && !current.paused) || !previous)previous=next;
   }
   const unsubscribe=session.subscribe(sync);
-  host.querySelector('.vn-reading')?.addEventListener('click',clickReading);
-  doc.addEventListener('keydown',keyAdvance,true);
+  const reading=host.querySelector('.vn-reading');
+  reading?.addEventListener?.('click',clickReading);
+  doc?.addEventListener?.('keydown',keyAdvance,true);
   sync();
   return{dispose(){
     disposed=true;unsubscribe();cancelAnimations();
-    host.querySelector('.vn-reading')?.removeEventListener('click',clickReading);
-    doc.removeEventListener('keydown',keyAdvance,true);
+    reading?.removeEventListener?.('click',clickReading);
+    doc?.removeEventListener?.('keydown',keyAdvance,true);
     delete host.dataset.world;delete host.dataset.reducedMotion;delete host.dataset.dialogAdvance;
   }};
 }
