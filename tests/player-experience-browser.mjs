@@ -29,8 +29,12 @@ export async function verifyPlayerExperience({browser,page,base,fixtures,project
     try{
       await mobile.goto(base);await mobile.locator('.vn-engine').waitFor();
       const title=mobile.locator('.reset-title-gate');await title.waitFor({state:'visible'});
-      const enter=mobile.locator('[data-reset-enter]');const enterRect=await enter.boundingBox();
-      assert.ok(enterRect&&enterRect.height>=44&&enterRect.x>=0&&enterRect.x+enterRect.width<=width,'Title enter control must be a visible mobile touch target');
+      const enter=mobile.locator('[data-reset-enter]'), titleLoad=mobile.locator('[data-reset-load-game]');
+      for(const button of [enter,titleLoad]){
+        const rect=await button.boundingBox();
+        assert.ok(rect&&rect.height>=44&&rect.x>=0&&rect.x+rect.width<=width,'Title action must be a visible mobile touch target');
+      }
+      assert.equal(await enter.innerText(),'新游戏');assert.equal(await titleLoad.innerText(),'读取存档');
       await mobile.screenshot({path:`${out}/android-${width}x${height}-title.png`,fullPage:true});
       await enter.tap();await title.waitFor({state:'detached'});
       const load=async save=>{
@@ -45,6 +49,18 @@ export async function verifyPlayerExperience({browser,page,base,fixtures,project
         }
         assert.fail(`Could not reach ${label} within ${max} dialogue advances`);
       };
+      if(width===390){
+        await load(fixtures.witnesses.linwan_shadow);
+        const legacyNext=mobile.locator('[data-control=next]');
+        const nextStyle=await legacyNext.evaluate(el=>{const s=getComputedStyle(el),r=el.getBoundingClientRect();return{opacity:s.opacity,width:r.width,height:r.height};});
+        assert.equal(nextStyle.opacity,'0');assert.ok(nextStyle.width<=1.1&&nextStyle.height<=1.1,'legacy next control must not occupy player-facing layout');
+        const current=()=>mobile.locator('.vn-engine').getAttribute('data-line');
+        const changed=async(before,label)=>mobile.waitForFunction(({before,label})=>{const host=document.querySelector('.vn-engine');if(host?.dataset.line===before)throw new Error(label);return true;},{before,label});
+        let start=await current();await mobile.locator('.vn-text').tap();await changed(start,'dialogue click did not advance');
+        start=await current();await mobile.keyboard.press('Enter');await changed(start,'Enter did not advance dialogue');
+        start=await current();await mobile.keyboard.press('Space');await changed(start,'Space did not advance dialogue');
+        pass('R7 mobile dialogue advances by reading-box tap, Enter and Space while the legacy next control stays out of layout');
+      }
       await load(fixtures.witnesses[longest.scene.id]);
       for(let n=0;n<longest.index;n++)await mobile.locator('[data-control=next]').click();
       assert.equal(await mobile.locator('.vn-text').innerText(),longest.scene.lines[longest.index].text);
@@ -97,7 +113,7 @@ export async function verifyPlayerExperience({browser,page,base,fixtures,project
         pass(`Android touch combat ${width}×${height}: native touch hold/release, light/heavy taps, dodge and 48px controls`);
       }
       assert.deepEqual(errors,[]);
-      pass(`Android emulation ${width}×${height}: title entry, longest dialogue, six choices, 44px targets, sticky close, slots and touch gallery`);
+      pass(`Android emulation ${width}×${height}: title actions, longest dialogue, six choices, 44px targets, sticky close, slots and touch gallery`);
     }finally{await context.close();}
   }
 }
