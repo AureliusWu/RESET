@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "round": "R8",
+  "character": "xujiashu",
+  "name": "徐嘉树",
+  "expression": "neutral",
+  "status": "generated-awaiting-binary-ingest",
+  "sourceType": "chatgpt-native-image-generation",
+  "visualTier": "production-character-sprite",
+  "referencePolicy": "match existing protagonist/heroine production art direction",
+  "generationFile": "full_body_anime_style_illustration_on_a_transparen.png",
+  "sourcePixelSize": {
+    "width": 1024,
+    "height": 1536
+  },
+  "alpha": true,
+  "sha256": "7ea1222c111234025b2954cd8028e6f2a8d5ae95fafab9ebe816be1abef21bd6",
+  "byteSize": 1540090,
+  "targetMaster": "game/assets/4k/characters/xujiashu/neutral.png",
+  "targetRuntime": "game/assets/4k/runtime/characters/xujiashu/neutral.webp",
+  "rules": {
+    "noProceduralCharacterRaster": true,
+    "noSvgCharacterArt": true,
+    "noFallbackPortrait": true,
+    "noLineupCropAsProduction": true,
+    "noBase64AssetTransport": true
+  },
+  "note": "Binary image is intentionally not embedded in this JSON. It must be ingested as a binary file through a Git-capable workspace, preserving the no-Base64 R8 rule."
+}
