@@ -15,7 +15,7 @@ R5 的目标不是增加“看起来很多”的美术文件，而是让玩家�
 
 ## PR B — Supporting Cast Portraits
 
-状态：**IMPLEMENTED / CI VERIFYING**。
+状态：**COMPLETED**，合入 `main@1511151c60ab77c8af4e09fd21de918931006251`。
 
 12 名常驻配角均已有正式 neutral portrait：
 
@@ -30,6 +30,7 @@ R5 的目标不是增加“看起来很多”的美术文件，而是让玩家�
 - `game/assets/manifest.json`、4K plan、speaker policy、runtime `stage.speakers` 已同步。
 - 116 条常驻配角直接对白全部获得 portrait speaker 映射。
 - `scripts/check-r5-supporting-cast.mjs` 要求 12 / 12、12 个不同 master、116 条对白覆盖、production/runtime/provenance 全链一致。
+- PR B 已通过 Build、最终 Web ZIP 浏览器验收、Windows 原生启动与实际安装 ZIP/进程重启验收。
 
 R5 将 R1 的“常驻配角允许无立绘”历史规则升级为：上述 12 名常驻配角必须有正式 supporting portrait；普通功能 NPC 仍可无立绘。
 
@@ -56,18 +57,21 @@ R5 将 R1 的“常驻配角允许无立绘”历史规则升级为：上述 12 
 
 ## Final Visual Integration
 
-最终门禁：
+状态：**IMPLEMENTED / FINAL CI VERIFYING**。
+
+`npm run visual:r5:final` 已升级为正式硬门禁，并由 Build / release / stable 全部直接调用。最终门禁同时检查 source 与已经打包到 `dist` 的实际产物：
 
 - Dialogue visual mapping：100%
+- Portrait speaker mappings：20 / 20
 - Supporting cast portrait strategy：12 / 12
 - Scene background coverage：82 / 82
 - Required key CG coverage：11 / 11
-- Static production visual assets：76
+- Static production visual assets：76（45 portrait + 20 background + 11 CG）
 - Runtime assets（含 21 audio）：97
 - Missing runtime visual assets：0
 - Broken visual references：0
-- Placeholder/fallback assets：0
-- `npm run visual:r5:final`：PASS
-- Build / Web / Windows / PWA / Save / Meta / Gallery：PASS
+- Placeholder/fallback production visuals：0
+- Production visual offline cache：76 / 76
+- Build / Web / Windows / PWA / Save / Meta / Gallery：必须全部 PASS
 
 R5 不移动或覆盖已发布的 `v1.2.1` tag / Release / Pages；完成后再决定下一版本发布线。
