@@ -63,7 +63,7 @@ test('every release ending is reached through canonical choices and survives sav
 
 test('all shipped bytes match the build manifest', async () => {
   const manifest = JSON.parse(await readFile(resolve(dist, 'build-manifest.json'), 'utf8'));
-  assert.equal(manifest.version, 'reset-v1.2.1'); assert.equal(project.version, manifest.version);
+  assert.equal(manifest.version, 'reset-v1.2.2'); assert.equal(project.version, manifest.version);
   for (const f of manifest.files) { const data = await readFile(resolve(dist,f.name)); assert.equal(data.length,f.size,f.name); assert.equal(createHash('sha256').update(data).digest('hex'),f.sha256,f.name); }
 });
 
@@ -89,7 +89,7 @@ test('Meta counts one restore per visit, retains endings and respects paused con
 
 test('published and development predecessor saves upgrade without changing routes or bypassing validation', () => withMeta(() => {
   const s=instance().session, bridge=mountMetaBridge({session:s});
-  const versions=['reset-v1.0.0','reset-v1.0.1','reset-v1.1.0','reset-v1.2.0-dev','reset-v1.2.0-rc.1','reset-v1.2.0-rc.2','reset-v1.2.0','reset-v1.2.1-dev'];
+  const versions=['reset-v1.0.0','reset-v1.0.1','reset-v1.1.0','reset-v1.2.0-dev','reset-v1.2.0-rc.1','reset-v1.2.0-rc.2','reset-v1.2.0','reset-v1.2.1-dev','reset-v1.2.1'];
   for(const version of versions)for(const id of expected){
     s.restart(); const legacy=structuredClone(endings.get(id)); legacy.state.storyVersion=version;
     s.restore(legacy); assert.equal(s.getView().frame.ending,id); assert.equal(legacy.state.storyVersion,version,'import must not mutate the backup');
