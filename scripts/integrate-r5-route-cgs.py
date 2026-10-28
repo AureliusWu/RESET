@@ -97,7 +97,7 @@ require(old in release_check or new in release_check, "check-release productionC
 release_check = release_check.replace(old, new)
 release_check_path.write_text(release_check, encoding="utf-8")
 
-# Wire the dedicated R5 key-CG gate into every build/release path.
+# Wire the dedicated R5 key-CG gate into package-level build/release paths.
 package_path = ROOT / "package.json"
 package = read_json(package_path)
 scripts = package["scripts"]
@@ -108,18 +108,9 @@ for key in ["build", "check:release", "check:stable"]:
         scripts[key] += " && npm run visual:r5:cgs"
 write_json(package_path, package)
 
-build_path = ROOT / ".github/workflows/build.yml"
-build = build_path.read_text(encoding="utf-8")
-if "node --check scripts/check-r5-key-cg-coverage.mjs" not in build:
-    anchor = "          node --check scripts/check-r5-background-coverage.mjs\n"
-    require(anchor in build, "build syntax-check anchor missing")
-    build = build.replace(anchor, anchor + "          node --check scripts/check-r5-key-cg-coverage.mjs\n")
-build = build.replace("p.assets.length!==79", "p.assets.length!==85")
-build_path.write_text(build, encoding="utf-8")
-
 print(json.dumps({
     "status": "r5-route-cgs-integrated",
     "routeCgs": len(ITEMS),
     "staticProduction": len(production),
-    "expectedRuntimeAssets": len(production) + 1 + 21,
+    "expectedRuntimeAssets": len(production) + 21,
 }, ensure_ascii=False, indent=2))
