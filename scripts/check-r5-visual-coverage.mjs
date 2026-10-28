@@ -13,12 +13,19 @@ const assetManifest = await loadAssetManifest(root);
 const assets = new Map(assetManifest.production.map(asset => [asset.id, asset]));
 const { packs } = await loadContentPacks(root);
 const scenes = packs.filter(({ entry }) => entry.role === 'chapter').flatMap(({ pack }) => pack.scenes ?? []);
+const project = JSON.parse(await readFile(resolve(game, 'project.json'), 'utf8'));
+const runtimeSpeakerMap = Object.assign(
+  {},
+  project.stage?.speakers ?? {},
+  ...packs.map(({ pack }) => pack.stage?.speakers ?? {})
+);
 
 const fail = message => { throw new Error(message); };
 const speakerCounts = new Map();
 const unknownSpeakers = new Map();
 const pendingSpeakers = new Map();
 const missingPortraits = [];
+const runtimeMappingMisses = [];
 const expressionMisses = [];
 const backgroundMisses = [];
 const cgMisses = [];
@@ -65,6 +72,7 @@ for (const scene of scenes) {
       portraitLines++;
       const neutralId = `${rule.character}/neutral`;
       if (assets.get(neutralId)?.kind !== 'portrait') missingPortraits.push(`${speaker}->${neutralId}`);
+      if (runtimeSpeakerMap[speaker] !== rule.character) runtimeMappingMisses.push(`${speaker}->${rule.character}`);
       if (line.expression) {
         const expressionId = `${rule.character}/${line.expression}`;
         if (assets.get(expressionId)?.kind !== 'portrait') expressionMisses.push(`${scene.id}:${line.id ?? '<line>'}:${speaker}->${expressionId}`);
@@ -82,6 +90,7 @@ if (backgroundMisses.length) fail(`R5 background coverage missing/invalid: ${bac
 if (cgMisses.length) fail(`R5 CG references missing/invalid: ${cgMisses.slice(0, 12).join(', ')}`);
 if (unknownSpeakers.size) fail(`R5 unclassified dialogue speakers: ${[...unknownSpeakers].map(([name,count]) => `${name}(${count})`).join(', ')}`);
 if (missingPortraits.length) fail(`R5 mapped portrait missing neutral asset: ${[...new Set(missingPortraits)].join(', ')}`);
+if (runtimeMappingMisses.length) fail(`R5 portrait policy is not wired into runtime stage.speakers: ${[...new Set(runtimeMappingMisses)].join(', ')}`);
 if (expressionMisses.length) fail(`R5 expression mapping misses: ${expressionMisses.slice(0, 12).join(', ')}`);
 if (finalMode && pendingSpeakers.size) fail(`R5 final gate still has pending supporting portraits: ${[...pendingSpeakers].map(([name,count]) => `${name}(${count})`).join(', ')}`);
 
@@ -92,6 +101,7 @@ const summary = {
   explicitCgScenes,
   dialogueLines,
   portraitLines,
+  runtimePortraitSpeakers: Object.keys(runtimeSpeakerMap).length,
   deliberatelyNoPortraitLines,
   pendingSupportingSpeakers: Object.fromEntries([...pendingSpeakers].sort(([a],[b]) => a.localeCompare(b, 'zh-CN'))),
   classifiedSpeakers: Object.fromEntries([...speakerCounts].sort(([a],[b]) => a.localeCompare(b, 'zh-CN')))
