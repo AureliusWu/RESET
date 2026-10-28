@@ -47,6 +47,7 @@ jobs:
           node --check scripts/check-r5-visual-coverage.mjs
           node --check scripts/check-r5-background-coverage.mjs
           node --check scripts/check-r5-key-cg-coverage.mjs
+          node --check scripts/check-r5-supporting-cast.mjs
           node --check scripts/check-release.mjs
           node --check tests/mobile-shell.test.mjs
       - name: Verify frozen 4K migration map
@@ -66,7 +67,7 @@ jobs:
       - name: Verify v1.2.1 release content
         working-directory: game-repo
         run: |
-          node -e "const m=require('./dist/build-manifest.json'); const p=require('./dist/project.json'); if(m.game!=='reset'||m.version!=='reset-v1.2.1'||p.version!=='reset-v1.2.1') process.exit(1); if(!m.extensions.includes('reset-art-visual-gate-v1')||!m.extensions.includes('reset-asset-schema-v1')) process.exit(2); if(!p.scenes.some(s=>s.ending==='true-end')||p.assets.length!==85) process.exit(3)"
+          node -e "const m=require('./dist/build-manifest.json'); const p=require('./dist/project.json'); if(m.game!=='reset'||m.version!=='reset-v1.2.1'||p.version!=='reset-v1.2.1') process.exit(1); if(!m.extensions.includes('reset-art-visual-gate-v1')||!m.extensions.includes('reset-asset-schema-v1')) process.exit(2); if(!p.scenes.some(s=>s.ending==='true-end')||p.assets.length!==97) process.exit(3)"
           test -f dist/index.html
           test -f dist/project.json
           test -f dist/sw.js
