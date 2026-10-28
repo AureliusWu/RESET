@@ -20,34 +20,42 @@ function harness() {
   return {animations,host,retry,bridge,update,get view(){return view;},get subscribers(){return subscribers.size;}};
 }
 
-test('a restored visual change waits through panel pause and typewriting, then plays once',()=>{
+test('a restored visual change waits through panel pause and typewriting, then plays once without moving the portrait',()=>{
   const h=harness();
   const frame={sceneId:'night',stage:{portrait:'serious',background:'river',cg:'letter'}};
   h.update({visit:2,reason:'restore',ready:false,paused:true,frame});
   assert.equal(h.host.dataset.world,'anomaly');assert.equal(h.animations.length,0);
   h.update({paused:false});assert.equal(h.animations.length,0);
-  h.update({ready:true});assert.equal(h.animations.length,4);
-  assert.deepEqual(h.animations.map(a=>a.selector).sort(),['.vn-background','.vn-cg','.vn-portrait','.vn-reading']);
-  h.update({settings:{reducedMotion:false,volume:.4}});assert.equal(h.animations.length,4);
+  h.update({ready:true});assert.equal(h.animations.length,3);
+  assert.deepEqual(h.animations.map(a=>a.selector).sort(),['.vn-background','.vn-cg','.vn-reading']);
+  assert.equal(h.animations.some(a=>a.selector==='.vn-portrait'),false);
+  h.update({settings:{reducedMotion:false,volume:.4}});assert.equal(h.animations.length,3);
   h.bridge.dispose();
 });
 
+test('portrait expression swaps stay spatially stable between dialogue lines',()=>{
+  const h=harness();
+  h.update({frame:{sceneId:'opening',stage:{portrait:'smile',background:'classroom'}}});
+  h.update({frame:{sceneId:'opening',stage:{portrait:'serious',background:'classroom'}}});
+  assert.equal(h.animations.length,0);h.bridge.dispose();
+});
+
 test('opening a panel or pausing the host freezes work-level stage animations and resumes them',()=>{
-  const h=harness();h.update({visit:2,frame:{sceneId:'opening',stage:{portrait:'smile',background:'classroom'}}});
+  const h=harness();h.update({visit:2,frame:{sceneId:'opening',stage:{portrait:'smile',background:'hallway'}}});
   assert.equal(h.animations.length,1);const animation=h.animations[0];
   h.update({paused:true});assert.equal(animation.playState,'paused');
   h.update({paused:false});assert.equal(animation.playState,'running');assert.equal(h.animations.length,1);h.bridge.dispose();
 });
 
 test('leaving a visit cancels its animation before a delayed or paused replacement becomes ready',()=>{
-  const h=harness();h.update({visit:2,frame:{sceneId:'opening',stage:{portrait:'smile',background:'classroom'}}});
+  const h=harness();h.update({visit:2,frame:{sceneId:'opening',stage:{portrait:'smile',background:'hallway'}}});
   const old=h.animations[0];h.update({visit:3,ready:false,paused:true,frame:{sceneId:'night',stage:{portrait:'serious',background:'river'}}});
   assert.equal(old.playState,'idle');assert.equal(h.animations.length,1);
-  h.update({ready:true,paused:false});assert.equal(h.animations.length,3);h.bridge.dispose();
+  h.update({ready:true,paused:false});assert.equal(h.animations.length,2);h.bridge.dispose();
 });
 
 test('reduced motion and disposal cancel effects without consuming story state or keeping subscriptions',()=>{
-  const h=harness();h.update({visit:2,frame:{sceneId:'opening',stage:{portrait:'smile',background:'classroom'}}});
+  const h=harness();h.update({visit:2,frame:{sceneId:'opening',stage:{portrait:'smile',background:'hallway'}}});
   h.update({settings:{reducedMotion:true}});assert.equal(h.animations[0].playState,'idle');
   h.update({visit:3,frame:{sceneId:'night',stage:{portrait:'serious',background:'river',cg:'letter'}}});assert.equal(h.animations.length,1);
   const before=structuredClone(h.view);h.bridge.dispose();assert.equal(h.subscribers,0);assert.deepEqual(h.view,before);assert.deepEqual(h.host.dataset,{});
