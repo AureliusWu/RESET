@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "round": "R5",
+  "phase": "B-supporting-cast-portraits",
+  "visualTier": "supporting-cast-stylized-bust",
+  "artDirection": "Secondary-character portraits use a deliberate reduced-detail cel-shaded bust system: transparent background, muted Wucheng palette, clean linework, distinct silhouette/accessory per identity. They are production portraits, not placeholders, and do not reuse heroine bodies.",
+  "characters": [
+    {"id":"xujiashu","name":"徐嘉树","gender":"male","age":17,"hairStyle":"short","hair":"#303746","outfit":"#263d59","inner":"#e5ebf2","accent":"#c66b3d","accessory":"basketball","eye":"#526b86"},
+    {"id":"chengyan","name":"程妍","gender":"female","age":17,"hairStyle":"ponytail","hair":"#342f39","outfit":"#384c66","inner":"#f0edf0","accent":"#5e8fb0","accessory":"clipboard","eye":"#554f72"},
+    {"id":"gumingyuan","name":"顾明远","gender":"male","age":35,"hairStyle":"short","hair":"#31343a","outfit":"#465363","inner":"#e7e8e2","accent":"#6d8294","accessory":"tie","eye":"#4d5963","glasses":true},
+    {"id":"chenlan","name":"陈岚","gender":"female","age":42,"hairStyle":"bun","hair":"#40383b","outfit":"#607a86","inner":"#dfeceb","accent":"#7ca8aa","accessory":"scrubs","eye":"#5d626a"},
+    {"id":"xurong","name":"许蓉","gender":"female","age":29,"hairStyle":"bob","hair":"#403b3d","outfit":"#6a6256","inner":"#ebe3d4","accent":"#7d9271","accessory":"book","eye":"#645849","glasses":true},
+    {"id":"luoxiumei","name":"罗秀梅","gender":"female","age":48,"hairStyle":"short-wave","hair":"#42383a","outfit":"#665b54","inner":"#eee0d2","accent":"#a77d59","accessory":"apron","eye":"#65534c"},
+    {"id":"suyao","name":"苏遥","gender":"female","age":17,"hairStyle":"bob","hair":"#4d3e4d","outfit":"#596173","inner":"#e8e4e4","accent":"#8c78a8","accessory":"art","eye":"#695c83"},
+    {"id":"hechuan","name":"何川","gender":"male","age":18,"hairStyle":"short","hair":"#292f38","outfit":"#314b54","inner":"#dfe7e7","accent":"#4e968d","accessory":"whistle","eye":"#476c73"},
+    {"id":"jiyao","name":"纪尧","gender":"male","age":17,"hairStyle":"short-side","hair":"#323843","outfit":"#414a5f","inner":"#dfe4ec","accent":"#5d7fa4","accessory":"lanyard","eye":"#50647b","glasses":true},
+    {"id":"lincheng","name":"林澄","gender":"female","age":19,"hairStyle":"long","hair":"#3e353d","outfit":"#5d5366","inner":"#ece7ef","accent":"#927aa0","accessory":"tote","eye":"#695876"},
+    {"id":"shenyanqiu","name":"沈砚秋","gender":"female","age":39,"hairStyle":"long-tie","hair":"#3a3738","outfit":"#554f49","inner":"#e9e2d8","accent":"#8a7561","accessory":"folder","eye":"#62584f","glasses":true},
+    {"id":"liangcheng","name":"梁成","gender":"male","age":33,"hairStyle":"short","hair":"#303338","outfit":"#344a55","inner":"#dfe7e9","accent":"#4f7b8c","accessory":"station","eye":"#4b5c65"}
+  ]
+}

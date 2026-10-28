@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "character": "luoxiumei",
+  "name": "罗秀梅",
+  "sourceType": "chatgpt-authored-procedural-raster-illustration",
+  "visualTier": "supporting-cast-stylized-bust",
+  "native4kClaim": false,
+  "designPlan": "game/visual/r5-supporting-cast-plan.json",
+  "assets": [
+    {
+      "expression": "neutral",
+      "original": "game/art-sources/chatgpt/characters/luoxiumei/neutral.png",
+      "originalSHA256": "1befdbd7fb5558b21aca9139750b87d460296c31508d3de94c7002cdfe5c44d4",
+      "originalSize": [
+        1080,
+        1920
+      ],
+      "master": "game/assets/4k/characters/luoxiumei/neutral.png",
+      "masterSHA256": "326e2fac551e5eb58da33b1ebfeb00aec50bb159a1f9fdcd4fcd2d36f9134f2c",
+      "runtime": "game/assets/4k/runtime/characters/luoxiumei/neutral.webp",
+      "runtimeSHA256": "eaf56d64037fdd93c5d4a2a8b10ada41cb5cde2e3dc469cb5d2bcead816d1ef0",
+      "lockedBodySHA256": "1befdbd7fb5558b21aca9139750b87d460296c31508d3de94c7002cdfe5c44d4"
+    }
+  ]
+}

@@ -22,7 +22,7 @@ test('production build cannot regenerate or reference placeholder vector portrai
     'production build must not invoke the deterministic placeholder portrait generator');
   const manifest = JSON.parse(await readFile(resolve(root, 'game/assets/manifest.json'), 'utf8'));
   const portraits = manifest.production.filter(asset => asset.kind === 'portrait');
-  assert.equal(portraits.length, 33);
+  assert.equal(portraits.length, 45);
   assert.ok(portraits.every(asset => asset.src.startsWith('assets/4k/runtime/') && asset.src.endsWith('.webp')));
   assert.equal(JSON.stringify(manifest).includes('generated-portraits'), false);
   assert.equal(JSON.stringify(manifest).includes('.svg'), false);

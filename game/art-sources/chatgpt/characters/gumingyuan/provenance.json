@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "character": "gumingyuan",
+  "name": "顾明远",
+  "sourceType": "chatgpt-authored-procedural-raster-illustration",
+  "visualTier": "supporting-cast-stylized-bust",
+  "native4kClaim": false,
+  "designPlan": "game/visual/r5-supporting-cast-plan.json",
+  "assets": [
+    {
+      "expression": "neutral",
+      "original": "game/art-sources/chatgpt/characters/gumingyuan/neutral.png",
+      "originalSHA256": "1f9dbf36679fc7fc84179c936d3c8c89b199583dc181d62087cd04967ffe96ee",
+      "originalSize": [
+        1080,
+        1920
+      ],
+      "master": "game/assets/4k/characters/gumingyuan/neutral.png",
+      "masterSHA256": "370c0d7ce9e0bec202946f7a8b7fccd399fb60f86ea502b098c1e16e19ae8026",
+      "runtime": "game/assets/4k/runtime/characters/gumingyuan/neutral.webp",
+      "runtimeSHA256": "37235a88223bf37735c10eab94ea89a4a26e77088d5199d894351341027598c1",
+      "lockedBodySHA256": "1f9dbf36679fc7fc84179c936d3c8c89b199583dc181d62087cd04967ffe96ee"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "character": "xujiashu",
+  "name": "徐嘉树",
+  "sourceType": "chatgpt-authored-procedural-raster-illustration",
+  "visualTier": "supporting-cast-stylized-bust",
+  "native4kClaim": false,
+  "designPlan": "game/visual/r5-supporting-cast-plan.json",
+  "assets": [
+    {
+      "expression": "neutral",
+      "original": "game/art-sources/chatgpt/characters/xujiashu/neutral.png",
+      "originalSHA256": "f176658f2020cc6386c1ccc7436a7ca1eca545ca96f95377f629e88a45425d74",
+      "originalSize": [
+        1080,
+        1920
+      ],
+      "master": "game/assets/4k/characters/xujiashu/neutral.png",
+      "masterSHA256": "eb124a8555e8c5fbac4af9fa7c08e81ea8bd47413a703e51b84ffa7be12a5061",
+      "runtime": "game/assets/4k/runtime/characters/xujiashu/neutral.webp",
+      "runtimeSHA256": "4d2af7e30a41d27c8ebcc9d1237220f48ca50aed40a501aa972b58e3c523db7e",
+      "lockedBodySHA256": "f176658f2020cc6386c1ccc7436a7ca1eca545ca96f95377f629e88a45425d74"
+    }
+  ]
+}

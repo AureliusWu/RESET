@@ -5,8 +5,8 @@ export async function loadAssetManifest(root) {
   const path = resolve(root, 'game/assets/manifest.json');
   const manifest = JSON.parse(await readFile(path, 'utf8'));
   if (manifest.schema !== 1) throw new Error('game/assets/manifest.json must use schema 1');
-  if (!Array.isArray(manifest.production) || manifest.production.length !== 64) {
-    throw new Error(`R5 visual coverage requires exactly 64 static production assets, got ${manifest.production?.length ?? 0}`);
+  if (!Array.isArray(manifest.production) || manifest.production.length !== 76) {
+    throw new Error(`R5 visual coverage requires exactly 76 static production assets, got ${manifest.production?.length ?? 0}`);
   }
   if (!Array.isArray(manifest.extras)) throw new Error('game/assets/manifest.json extras must be an array');
 
@@ -24,7 +24,7 @@ export async function loadAssetManifest(root) {
     if (sources.has(asset.src)) throw new Error(`Production source reused by multiple asset IDs: ${asset.src}`);
     sources.add(asset.src);
   }
-  if (counts.portrait !== 33 || counts.background !== 20 || counts.cg !== 11) {
+  if (counts.portrait !== 45 || counts.background !== 20 || counts.cg !== 11) {
     throw new Error(`Production asset count drift: ${JSON.stringify(counts)}`);
   }
 
