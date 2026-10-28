@@ -60,6 +60,19 @@ export async function verifyPlayerExperience({browser,page,base,fixtures,project
         start=await current();await mobile.keyboard.press('Enter');await changed(start);
         start=await current();await mobile.keyboard.press('Space');await changed(start);
         pass('R7 mobile dialogue advances by reading-box tap, Enter and Space while the legacy next control stays out of layout');
+
+        await load(fixtures.witnesses.archive_erased_map);
+        const map=mobile.locator('.reset-story-prop-map');await map.waitFor({state:'visible'});await mobile.locator('.vn-portrait').waitFor({state:'visible'});
+        const layering=await mobile.evaluate(()=>{
+          const map=document.querySelector('.reset-story-prop-map'), portrait=document.querySelector('.vn-portrait'), stage=document.querySelector('.vn-stage');
+          const m=map.getBoundingClientRect(),p=portrait.getBoundingClientRect(),s=stage.getBoundingClientRect();
+          return{mapZ:Number(getComputedStyle(map).zIndex),portraitZ:Number(getComputedStyle(portrait).zIndex),map:{x:m.x,y:m.y,width:m.width,height:m.height,right:m.right},portrait:{x:p.x,y:p.y,width:p.width,height:p.height},stage:{x:s.x,y:s.y,width:s.width,height:s.height}};
+        });
+        assert.ok(layering.mapZ<layering.portraitZ,'map SVG must render below the character portrait');
+        assert.ok(layering.map.width<=layering.stage.width*.39+1,'mobile map must remain within the 38% safe-side width');
+        assert.ok(layering.map.right<=layering.stage.x+layering.stage.width*.48,'mobile map must stay on the left side instead of covering the speaker focus area');
+        await mobile.screenshot({path:`${out}/android-390x844-map-layer.png`,fullPage:true});
+        pass('R7 erased-map SVG stays in the mobile safe-side area and renders below the character portrait');
       }
       await load(fixtures.witnesses[longest.scene.id]);
       for(let n=0;n<longest.index;n++)await mobile.locator('[data-control=next]').click();
