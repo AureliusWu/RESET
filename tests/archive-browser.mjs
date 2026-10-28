@@ -9,7 +9,7 @@ export async function verifyArchive({page,fixtures,project,loadFixture,control,s
   await archive('collection').click();
   assert.equal(await page.locator('.reset-ending[data-unlocked=true]').count(),0);
   assert.equal(await page.locator('.reset-cg-card img').count(),0);
-  assert.equal(await page.locator('.reset-cg-card:disabled').count(),5);
+  assert.equal(await page.locator('.reset-cg-card:disabled').count(),11);
   await page.keyboard.press('Tab');assert.equal(await page.evaluate(()=>document.activeElement?.hasAttribute('data-reset-close')),true);
   await page.keyboard.press('Shift+Tab');assert.equal(await page.evaluate(()=>document.activeElement?.hasAttribute('data-reset-close')),true);
   await page.keyboard.press('Escape');assert.equal(await scene(),start);assert.equal(await loads(),initialLoads);
