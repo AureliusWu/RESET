@@ -3,11 +3,26 @@ let deferredInstallPrompt=null;
 function ensureTitleGate(archive){
   const host=document.querySelector?.('.vn-engine');
   if(!host||host.querySelector('.reset-title-gate'))return;
-  if(!host.querySelector('.reset-touch-floor-style')){
-    const touchStyle=document.createElement('style');
-    touchStyle.className='reset-touch-floor-style';
-    touchStyle.textContent='@media (pointer:coarse),(max-width:700px){.vn-engine .vn-toolbar .reset-toolbar-controls button,.vn-engine .vn-actions button,.vn-engine .reset-panel button,.vn-engine .vn-panel button,.vn-engine .reset-title-gate button{min-height:44px!important;touch-action:manipulation}}';
-    host.append(touchStyle);
+  if(!host.querySelector('.reset-r7-style')){
+    const style=document.createElement('style');
+    style.className='reset-r7-style';
+    style.textContent=`
+      .vn-engine[data-dialog-advance="true"] .vn-reading{cursor:pointer}
+      .vn-engine .vn-actions:has(> [data-control="next"]:only-child){display:none!important}
+      .vn-engine .vn-actions [data-control="next"]{display:none!important}
+      .vn-engine .vn-stage .vn-portrait{z-index:4!important;animation:none!important;transition:none!important}
+      .vn-engine .vn-stage .reset-story-prop{z-index:2!important}
+      .vn-engine .vn-stage .reset-story-prop-map{left:clamp(12px,3vw,44px)!important;right:auto!important;width:min(36%,460px)!important;top:clamp(60px,9vh,96px)!important}
+      .vn-engine .vn-stage .reset-story-prop-phone{left:clamp(12px,3vw,44px)!important;right:auto!important;width:min(24%,300px)!important}
+      .reset-title-gate [data-reset-new-game]{font-weight:700}
+      .reset-title-gate [data-reset-load-game]{background:rgba(18,42,53,.88);border-color:#547684}
+      @media (pointer:coarse),(max-width:700px){
+        .vn-engine .vn-toolbar .reset-toolbar-controls button,.vn-engine .vn-actions button,.vn-engine .reset-panel button,.vn-engine .vn-panel button,.vn-engine .reset-title-gate button{min-height:44px!important;touch-action:manipulation}
+        .vn-engine .vn-stage .reset-story-prop-map{left:10px!important;right:auto!important;top:64px!important;width:min(38%,260px)!important;max-height:28%!important}
+        .vn-engine .vn-stage .reset-story-prop-phone{left:10px!important;right:auto!important;width:min(30%,210px)!important;max-height:32%!important}
+      }
+    `;
+    host.append(style);
   }
   const gate=document.createElement('section');
   gate.className='reset-title-gate';
