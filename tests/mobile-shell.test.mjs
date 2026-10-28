@@ -4,13 +4,32 @@ import {readFileSync} from 'node:fs';
 
 const css=readFileSync('game/runtime/experience.css','utf8');
 const pwa=readFileSync('game/runtime/pwa.mjs','utf8');
+const experience=readFileSync('game/runtime/experience.mjs','utf8');
 
-test('title screen exposes a real enter control above decorative art',()=>{
-  assert.match(pwa,/data-reset-enter/);
+test('title screen exposes new game and load-save actions above decorative art',()=>{
+  assert.match(pwa,/data-reset-enter data-reset-new-game>新游戏/);
+  assert.match(pwa,/data-reset-load-game>读取存档/);
+  assert.match(pwa,/data-reset-control=\\?"slots/);
   assert.match(pwa,/gate\.remove\(\)/);
   assert.match(css,/\.reset-title-gate\{[^}]*z-index:100/);
   assert.match(css,/\.reset-title-gate button\{[^}]*touch-action:manipulation/);
   assert.match(css,/\.reset-title-key-visual\{display:none!important\}/);
+});
+
+test('dialogue advances from reading surface or Enter/Space without a visible next-line button',()=>{
+  assert.match(experience,/addEventListener\?\.\('click',clickReading\)/);
+  assert.match(experience,/event\.key!==['"]Enter['"]/);
+  assert.match(experience,/event\.code!==['"]Space['"]/);
+  assert.match(pwa,/data-control=\\?"next/);
+  assert.match(pwa,/opacity:0!important/);
+  assert.match(pwa,/width:1px!important;height:1px!important/);
+});
+
+test('R7 keeps story props below portraits and moves the mobile map into a safe side area',()=>{
+  assert.match(pwa,/\.vn-engine \.vn-stage \.vn-portrait\{z-index:4!important/);
+  assert.match(pwa,/\.vn-engine \.vn-stage \.reset-story-prop\{z-index:2!important/);
+  assert.match(pwa,/reset-story-prop-map\{left:10px!important;right:auto!important;top:64px!important;width:min\(38%,260px\)!important/);
+  assert.match(pwa,/\.vn-engine \.vn-stage \.vn-portrait\{[^}]*animation:none!important;transition:none!important/);
 });
 
 test('mobile landscape has a dedicated compact playable layout',()=>{

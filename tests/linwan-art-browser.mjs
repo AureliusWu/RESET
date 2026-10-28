@@ -77,8 +77,9 @@ export async function verifyLinwanArt({page,project,fixtures,loadFixture,control
       pass('Lin Wan renders in 390x844, 844x390, 800x600, 1920x1080 and 3840x2160 browser viewports without horizontal overflow');
       if(originalViewport)await page.setViewportSize(originalViewport);
     }
-    // Observe real animation objects while a canonical dialogue line changes
-    // neutral to worried, and compare with the reduced-motion setting.
+    // R7 explicitly keeps portrait geometry stable across dialogue/expression
+    // changes. Instrument the real Web Animations API and compare the rendered
+    // box while a canonical line changes neutral to worried.
     await control('settings').click();await page.getByLabel('减少动态效果',{exact:true}).uncheck();await page.getByRole('button',{name:'关闭',exact:true}).click();
     await page.evaluate(()=>{
       window.__linwanAnimationCalls=[];window.__linwanAnimate=Element.prototype.animate;
@@ -86,14 +87,18 @@ export async function verifyLinwanArt({page,project,fixtures,loadFixture,control
     });
     try {
       await loadFixture(fixtures.witnesses.linwan_shadow);await ready('neutral');
+      const before=await portrait.evaluate(im=>{const r=im.getBoundingClientRect();return{x:r.x,y:r.y,width:r.width,height:r.height};});
       await advanceUntil(async()=>await portrait.getAttribute('data-asset')==='linwan/worried','Lin Wan worried expression');
       await ready('worried');
-      assert.ok(await page.evaluate(()=>window.__linwanAnimationCalls.length>0));
+      const after=await portrait.evaluate(im=>{const r=im.getBoundingClientRect();return{x:r.x,y:r.y,width:r.width,height:r.height};});
+      const delta=key=>Math.abs(after[key]-before[key]);
+      assert.equal(await page.evaluate(()=>window.__linwanAnimationCalls.length),0,'portrait expression swap must not start a movement animation');
+      for(const key of ['x','y','width','height'])assert.ok(delta(key)<=0.5,`portrait ${key} shifted by ${delta(key)}px across one dialogue advance`);
     } finally {
       await page.evaluate(()=>{Element.prototype.animate=window.__linwanAnimate;delete window.__linwanAnimate;delete window.__linwanAnimationCalls;});
     }
     await control('settings').click();await page.getByLabel('减少动态效果',{exact:true}).check();await page.getByRole('button',{name:'关闭',exact:true}).click();
-    pass('Canonical Lin Wan expression transition plays real stage animation and supports reduced motion');
+    pass('Canonical Lin Wan expression transition keeps identical portrait geometry and starts no portrait movement animation');
     const decoded=await page.evaluate(async expressions=>{
       const result=[];
       for(const expression of expressions){
