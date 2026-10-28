@@ -44,6 +44,7 @@ jobs:
           node --check scripts/check-art-integrity.mjs
           node --check scripts/check-4k-production.mjs
           node --check scripts/check-art-visual-gate.mjs
+          node --check scripts/check-r5-visual-coverage.mjs
           node --check scripts/check-release.mjs
           node --check tests/mobile-shell.test.mjs
       - name: Verify frozen 4K migration map
