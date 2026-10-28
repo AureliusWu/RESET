@@ -48,6 +48,7 @@ jobs:
           node --check scripts/check-r5-background-coverage.mjs
           node --check scripts/check-r5-key-cg-coverage.mjs
           node --check scripts/check-r5-supporting-cast.mjs
+          node --check scripts/check-r5-final-integration.mjs
           node --check scripts/check-release.mjs
           node --check tests/mobile-shell.test.mjs
       - name: Verify frozen 4K migration map
