@@ -25,7 +25,9 @@
     "沈砚秋": {"mode": "pending-support-portrait", "character": "shenyanqiu"},
     "梁成": {"mode": "pending-support-portrait", "character": "liangcheng"},
     "无面行人": {"mode": "portrait", "character": "faceless"},
-    "第七人": {"mode": "portrait", "character": "echochen"}
+    "第七人": {"mode": "portrait", "character": "echochen"},
+    "？？？": {"mode": "functional", "role": "unidentified-voice"},
+    "车站广播": {"mode": "functional", "role": "public-address"}
   },
   "functionalSpeakerPatterns": [
     "^(系统|广播|广播声|班群|群消息|消息|电话)",
