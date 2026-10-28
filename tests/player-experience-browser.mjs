@@ -55,10 +55,10 @@ export async function verifyPlayerExperience({browser,page,base,fixtures,project
         const nextStyle=await legacyNext.evaluate(el=>{const s=getComputedStyle(el),r=el.getBoundingClientRect();return{opacity:s.opacity,width:r.width,height:r.height};});
         assert.equal(nextStyle.opacity,'0');assert.ok(nextStyle.width<=1.1&&nextStyle.height<=1.1,'legacy next control must not occupy player-facing layout');
         const current=()=>mobile.locator('.vn-engine').getAttribute('data-line');
-        const changed=async(before,label)=>mobile.waitForFunction(({before,label})=>{const host=document.querySelector('.vn-engine');if(host?.dataset.line===before)throw new Error(label);return true;},{before,label});
-        let start=await current();await mobile.locator('.vn-text').tap();await changed(start,'dialogue click did not advance');
-        start=await current();await mobile.keyboard.press('Enter');await changed(start,'Enter did not advance dialogue');
-        start=await current();await mobile.keyboard.press('Space');await changed(start,'Space did not advance dialogue');
+        const changed=async before=>mobile.waitForFunction(before=>document.querySelector('.vn-engine')?.dataset.line!==before,before);
+        let start=await current();await mobile.locator('.vn-text').tap();await changed(start);
+        start=await current();await mobile.keyboard.press('Enter');await changed(start);
+        start=await current();await mobile.keyboard.press('Space');await changed(start);
         pass('R7 mobile dialogue advances by reading-box tap, Enter and Space while the legacy next control stays out of layout');
       }
       await load(fixtures.witnesses[longest.scene.id]);
