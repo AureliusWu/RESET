@@ -1,0 +1,121 @@
+{
+  "schema": 1,
+  "reason": "Replace mismatched location/time reuse with dedicated native background candidates; preserve Scene and Line IDs.",
+  "mappings": [
+    {
+      "scene": "after_school_choice",
+      "previousBackground": "school-gate-rain",
+      "background": "wucheng-street-evening"
+    },
+    {
+      "scene": "c4_tinglan_1",
+      "previousBackground": "archive-room",
+      "background": "municipal-archive-basement"
+    },
+    {
+      "scene": "c4_tinglan_2",
+      "previousBackground": "rooftop-evening",
+      "background": "archive-rooftop-evening"
+    },
+    {
+      "scene": "c4_tangli_2",
+      "previousBackground": "station-night",
+      "background": "abandoned-station-entrance"
+    },
+    {
+      "scene": "c4_nanxing_1",
+      "previousBackground": "old-art-room",
+      "background": "information-lab"
+    },
+    {
+      "scene": "chapter5_gate",
+      "previousBackground": "home-corridor",
+      "background": "chendu-home-morning"
+    },
+    {
+      "scene": "c5_city_desync",
+      "previousBackground": "school-gate-evening",
+      "background": "city-desync-afternoon"
+    },
+    {
+      "scene": "c5_anchor_truth",
+      "previousBackground": "north-station",
+      "background": "north-station-control"
+    },
+    {
+      "scene": "c6_echo_goodbye",
+      "previousBackground": "night-wucheng",
+      "background": "night-school-corridor"
+    },
+    {
+      "scene": "c6_last_door",
+      "previousBackground": "night-wucheng",
+      "background": "night-school-exit"
+    },
+    {
+      "scene": "c4_xuqi_1",
+      "previousBackground": "night-wucheng",
+      "background": "night-nanhu-station"
+    },
+    {
+      "scene": "c4_xuqi_2",
+      "previousBackground": "night-wucheng",
+      "background": "night-clocktower"
+    },
+    {
+      "scene": "end_xuqi",
+      "previousBackground": "night-wucheng",
+      "background": "night-clocktower"
+    },
+    {
+      "scene": "end_tangli",
+      "previousBackground": "riverside-dusk",
+      "background": "river-levee-evening"
+    },
+    {
+      "scene": "end_tinglan",
+      "previousBackground": "archive-room",
+      "background": "municipal-archive-workroom"
+    },
+    {
+      "scene": "station_refuse",
+      "previousBackground": "station-night",
+      "background": "nanhu-station-exit"
+    },
+    {
+      "scene": "c4_nanxing_2",
+      "previousBackground": "rooftop-evening",
+      "background": "information-rooftop-evening"
+    },
+    {
+      "scene": "end_nanxing",
+      "previousBackground": "rooftop-evening",
+      "background": "information-rooftop-evening"
+    },
+    {
+      "scene": "focus_xiaoman_open",
+      "previousBackground": "old-art-room",
+      "background": "old-art-room-evening"
+    },
+    {
+      "scene": "route_convergence",
+      "previousBackground": "old-art-room",
+      "background": "old-art-room-evening"
+    },
+    {
+      "scene": "breakthrough_first",
+      "previousBackground": "riverside-dusk",
+      "background": "underpass-exit-evening"
+    },
+    {
+      "scene": "c6_walk_forward",
+      "previousBackground": "north-station",
+      "background": "north-station-after1842"
+    },
+    {
+      "scene": "c6_escape",
+      "previousBackground": "north-station",
+      "background": "north-station-vanishing"
+    }
+  ]
+}
