@@ -109,25 +109,26 @@
       "c7_credits": {"music":"music-tomorrow"}
     },
     "lines": {
+      "a001": {"sound":"sfx-memory-ping"},
+      "s005": {"sound":"sfx-door-ghost"},
       "z002": {"sound":"sfx-memory-ping"},
       "c2f004": {"sound":"sfx-impact"},
-      "c2p003": {"sound":"sfx-dodge"},
       "c2x002": {"sound":"sfx-impact"},
       "c2x004": {"sound":"sfx-load"},
       "c2l001": {"sound":"sfx-load"},
       "c2s002": {"sound":"sfx-memory-ping"},
       "c2y001": {"sound":"sfx-impact"},
+      "c2y004": {"sound":"sfx-memory-ping"},
       "c3d004": {"sound":"sfx-message-future"},
       "c3f001": {"sound":"sfx-camera-self"},
-      "c3h002": {"sound":"sfx-message-future"},
+      "c3h001": {"sound":"sfx-message-future"},
       "c3j003": {"sound":"sfx-door-ghost"},
-      "c3n004": {"sound":"sfx-door-ghost"},
-      "c4n103": {"sound":"sfx-message-future"},
-      "c5d003": {"sound":"sfx-message-future"},
-      "c5x003": {"sound":"sfx-load"},
+      "c5d003": {"sound":"sfx-memory-ping"},
+      "c5x003": {"sound":"sfx-memory-ping"},
       "c5z008": {"sound":"sfx-memory-ping"},
       "c6s004": {"sound":"sfx-load"},
       "c6l002": {"sound":"sfx-memory-ping"},
+      "c6l005": {"sound":"sfx-door-ghost"},
       "c7c005": {"sound":"sfx-memory-ping"}
     }
   }

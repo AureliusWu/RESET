@@ -1,0 +1,138 @@
+{
+  "schema": 1,
+  "bindings": [
+    {
+      "lineId": "a001",
+      "sfxId": "sfx-memory-ping",
+      "sceneId": "after_school_choice",
+      "text": "手机震动。地铁运营提醒弹出：南湖站因设备故障临时封闭。"
+    },
+    {
+      "lineId": "s005",
+      "sfxId": "sfx-door-ghost",
+      "sceneId": "station_fourth",
+      "text": "她推开员工通道的门。门后没有设备间，只有一条正在下雨的街。"
+    },
+    {
+      "lineId": "z002",
+      "sfxId": "sfx-memory-ping",
+      "sceneId": "chapter2_teaser",
+      "text": "有人记得你。"
+    },
+    {
+      "lineId": "c2f004",
+      "sfxId": "sfx-impact",
+      "sceneId": "faceless_first",
+      "text": "它没有迈步，距离却瞬间缩短了一半。"
+    },
+    {
+      "lineId": "c2x002",
+      "sfxId": "sfx-impact",
+      "sceneId": "death_fifth",
+      "text": "胸口没有疼痛。世界先黑了一步。"
+    },
+    {
+      "lineId": "c2x004",
+      "sfxId": "sfx-load",
+      "sceneId": "death_fifth",
+      "text": "读取中。"
+    },
+    {
+      "lineId": "c2l001",
+      "sfxId": "sfx-load",
+      "sceneId": "load_fifth",
+      "text": "读取完成。"
+    },
+    {
+      "lineId": "c2s002",
+      "sfxId": "sfx-memory-ping",
+      "sceneId": "faceless_second",
+      "text": "又是你。"
+    },
+    {
+      "lineId": "c2y001",
+      "sfxId": "sfx-impact",
+      "sceneId": "death_sixth",
+      "text": "陈渡向左闪开的瞬间，无面行人却提前一步站在了那里。"
+    },
+    {
+      "lineId": "c2y004",
+      "sfxId": "sfx-memory-ping",
+      "sceneId": "death_sixth",
+      "text": "读取次数增加。世界压力上升。"
+    },
+    {
+      "lineId": "c3d004",
+      "sfxId": "sfx-message-future",
+      "sceneId": "route_merge_message",
+      "text": "陈渡（已离线）：别让她们在18:42站成一排。"
+    },
+    {
+      "lineId": "c3f001",
+      "sfxId": "sfx-camera-self",
+      "sceneId": "archive_photo",
+      "text": "18:42。快门声响起。没有人碰手机。"
+    },
+    {
+      "lineId": "c3h001",
+      "sfxId": "sfx-message-future",
+      "sceneId": "future_rule",
+      "text": "乔南星的手机再次震动。"
+    },
+    {
+      "lineId": "c3j003",
+      "sfxId": "sfx-door-ghost",
+      "sceneId": "focus_linwan_open",
+      "text": "灰墙里传来卷帘门被拉开的声音。"
+    },
+    {
+      "lineId": "c5d003",
+      "sfxId": "sfx-memory-ping",
+      "sceneId": "c5_north_station",
+      "text": "手机恢复信号了。可运营商显示的是“RESET”。"
+    },
+    {
+      "lineId": "c5x003",
+      "sfxId": "sfx-memory-ping",
+      "sceneId": "c5_echo_death",
+      "text": "读取请求被拒绝。"
+    },
+    {
+      "lineId": "c5z008",
+      "sfxId": "sfx-memory-ping",
+      "sceneId": "c5_1842",
+      "text": "白光吞没站台。陈渡没有感到疼痛，只听见一个从游戏之外传来的提示音。"
+    },
+    {
+      "lineId": "c6s004",
+      "sfxId": "sfx-load",
+      "sceneId": "c6_save_again",
+      "text": "10月17日 18:42。世界读取次数：8。"
+    },
+    {
+      "lineId": "c6l002",
+      "sfxId": "sfx-memory-ping",
+      "sceneId": "c6_last_door",
+      "text": "读取功能已终止。"
+    },
+    {
+      "lineId": "c6l005",
+      "sfxId": "sfx-door-ghost",
+      "sceneId": "c6_last_door",
+      "text": "他推开门，没有再确认身后有什么。"
+    },
+    {
+      "lineId": "c7c005",
+      "sfxId": "sfx-memory-ping",
+      "sceneId": "c7_credits",
+      "text": "TRUE END · 回留"
+    }
+  ],
+  "silentLines": [
+    "c2p003",
+    "c3n004",
+    "c4n103",
+    "c6w001"
+  ],
+  "note": "Bind current audible events or explicit system cues; an unsent message, description of a remembered action, or a stated absence stays silent."
+}

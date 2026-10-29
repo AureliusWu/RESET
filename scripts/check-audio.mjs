@@ -1,3 +1,4 @@
+import { checkSfxPackage } from './check-sfx.mjs';
 import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -74,3 +75,5 @@ const report = { schema: 1, status: 'PASS', revision: 'music-r1', scoreSha256: m
 await mkdir(resolve(root, 'test-results/music-r1'), { recursive: true });
 await writeFile(resolve(root, 'test-results/music-r1/audio-report.json'), JSON.stringify(report, null, 2) + '\n');
 console.log(JSON.stringify({ status: 'audio-ok', music: tracks.length, sfx: effects.length, explicitSceneScores: project.scenes.length, durationSeconds: [Math.min(...tracks.map(t => t.duration)), Math.max(...tracks.map(t => t.duration))], rmsSpreadDb, maxInternalStep: Math.max(...tracks.map(t => t.maxStep)), maxLoopStep: Math.max(...tracks.map(t => t.seamStep)), totalBytes }, null, 2));
+
+await checkSfxPackage(dist);

@@ -1,0 +1,195 @@
+{
+  "schema": 1,
+  "baselineCommit": "6dbfe14f8a5faf572e9ab7bd9b787c1ae8a31ddd",
+  "effects": [
+    {
+      "id": "sfx-memory-ping",
+      "beforeSha256": "acd852be2e346e290a4c041f0f1d947071f237c5f602c4dc7bafeedc17013c11",
+      "afterSha256": "24fc2f50edad64e7e6ee01081f2149af5074200662a6ea93d0cd4fa52e19a827",
+      "before": {
+        "duration": 0.46,
+        "peakDbfs": -5.396771501376208,
+        "rmsDbfs": -18.45496719566967,
+        "peakMs": 142.96875,
+        "onsetMs": 15.6875,
+        "maxStep": 0.149993896484375,
+        "startPeak": 0.000152587890625,
+        "endPeak": 0.00042724609375,
+        "dc": 0.0002773844677469005
+      },
+      "after": {
+        "duration": 0.42,
+        "peakDbfs": -11.000260703669156,
+        "rmsDbfs": -23.370274948438222,
+        "peakMs": 4.78125,
+        "onsetMs": 1.28125,
+        "maxStep": 0.057342529296875,
+        "startPeak": 0.001800537109375,
+        "endPeak": 0.000213623046875,
+        "dc": 8.401416596912203e-8
+      }
+    },
+    {
+      "id": "sfx-load",
+      "beforeSha256": "781d922dfad1e85322c3f3b35e3780a022b0559a3c970ee78ac4d16ae96bc93b",
+      "afterSha256": "71c68d252d29893876cd870673b8fc5884427d76ace955158864027ce863e84d",
+      "before": {
+        "duration": 0.95,
+        "peakDbfs": -4.769198911829741,
+        "rmsDbfs": -17.890696381993244,
+        "peakMs": 353.125,
+        "onsetMs": 34.8125,
+        "maxStep": 0.074859619140625,
+        "startPeak": 0.0001220703125,
+        "endPeak": 0.000152587890625,
+        "dc": 0.0001367348118832237
+      },
+      "after": {
+        "duration": 0.72,
+        "peakDbfs": -11.000260703669156,
+        "rmsDbfs": -23.612664008621437,
+        "peakMs": 9.46875,
+        "onsetMs": 1.59375,
+        "maxStep": 0.022064208984375,
+        "startPeak": 0.0006103515625,
+        "endPeak": 0.000152587890625,
+        "dc": 0.0000011417600843641493
+      }
+    },
+    {
+      "id": "sfx-impact",
+      "beforeSha256": "9397d346480993f32472e1dee49d832c475e30a74606a150117791ceaa198c0d",
+      "afterSha256": "fc929f11af4a7cacf3051699c6ef63304f4b6c1166ba55d54318aec95d2207c4",
+      "before": {
+        "duration": 0.38,
+        "peakDbfs": -1.7586273719072418,
+        "rmsDbfs": -12.810616744694304,
+        "peakMs": 126,
+        "onsetMs": 20.40625,
+        "maxStep": 0.10400390625,
+        "startPeak": 0.000579833984375,
+        "endPeak": 0.000885009765625,
+        "dc": 0.001789487035650956
+      },
+      "after": {
+        "duration": 0.24,
+        "peakDbfs": -11.000260703669156,
+        "rmsDbfs": -24.57758322726166,
+        "peakMs": 1.78125,
+        "onsetMs": 0.65625,
+        "maxStep": 0.0379638671875,
+        "startPeak": 0.008514404296875,
+        "endPeak": 0.000274658203125,
+        "dc": 0.0000069499015808105465
+      }
+    },
+    {
+      "id": "sfx-dodge",
+      "beforeSha256": "62b796bcdd594b2493d89b4382ccf9278628feba421d68f7d56874ffef81e0b4",
+      "afterSha256": "49239ce5c86e9db21869cea61434ed6a27d7a0161bfa32d8be83a38ab4fb110a",
+      "before": {
+        "duration": 0.28,
+        "peakDbfs": -7.185287242374856,
+        "rmsDbfs": -20.543576734666864,
+        "peakMs": 90.8125,
+        "onsetMs": 12.21875,
+        "maxStep": 0.08612060546875,
+        "startPeak": 0.000244140625,
+        "endPeak": 0.00067138671875,
+        "dc": 0.00023713793073381695
+      },
+      "after": {
+        "duration": 0.2,
+        "peakDbfs": -11.000260703669156,
+        "rmsDbfs": -25.218807879785345,
+        "peakMs": 18.90625,
+        "onsetMs": 1.375,
+        "maxStep": 0.105438232421875,
+        "startPeak": 0.000579833984375,
+        "endPeak": 0.000335693359375,
+        "dc": 0.000004835128784179688
+      }
+    },
+    {
+      "id": "sfx-camera-self",
+      "beforeSha256": "07fb963970a81ababe27a3da3f79184a990ef46c833703644a6ea2ff421eac5f",
+      "afterSha256": "121f6fe2aa47b2e0f4897dce7e21a5ff2066a143fa8845f5ff91d79c3a0bd019",
+      "before": {
+        "duration": 0.22,
+        "peakDbfs": -10.016908030473338,
+        "rmsDbfs": -21.755831264083838,
+        "peakMs": 72.46875,
+        "onsetMs": 7.40625,
+        "maxStep": 0.101531982421875,
+        "startPeak": 0.00018310546875,
+        "endPeak": 0.00079345703125,
+        "dc": 0.0000617460771040483
+      },
+      "after": {
+        "duration": 0.16,
+        "peakDbfs": -11.000260703669156,
+        "rmsDbfs": -25.1680619665073,
+        "peakMs": 6.09375,
+        "onsetMs": 0.65625,
+        "maxStep": 0.135467529296875,
+        "startPeak": 0.0111083984375,
+        "endPeak": 0.000244140625,
+        "dc": 0.0000026404857635498045
+      }
+    },
+    {
+      "id": "sfx-message-future",
+      "beforeSha256": "f800e1a847caa8f1b2443962dbe82f9c7c6b63c5c6c4cbc96f3d770a7ac9bf63",
+      "afterSha256": "c7bdc240db7568a04dad3052516b048bdfcda7270cbaa452b506f2febb1cf5de",
+      "before": {
+        "duration": 0.5,
+        "peakDbfs": -8.489737167279726,
+        "rmsDbfs": -21.859916178029806,
+        "peakMs": 157.5,
+        "onsetMs": 17.84375,
+        "maxStep": 0.068695068359375,
+        "startPeak": 0.0001220703125,
+        "endPeak": 0.000213623046875,
+        "dc": 0.000065093994140625
+      },
+      "after": {
+        "duration": 0.38,
+        "peakDbfs": -11.000260703669156,
+        "rmsDbfs": -23.278216344826937,
+        "peakMs": 67.8125,
+        "onsetMs": 0.90625,
+        "maxStep": 0.047882080078125,
+        "startPeak": 0.006683349609375,
+        "endPeak": 0.000091552734375,
+        "dc": 0.000007737310309159128
+      }
+    },
+    {
+      "id": "sfx-door-ghost",
+      "beforeSha256": "e9ccd3596b77dea4607512f7ca4c6a61a37311e0b65ce16707ab673dc834525d",
+      "afterSha256": "33e6be98356df2f8b1ae54e25b52c855acf48cef5879e2aac6f66127edbce2f2",
+      "before": {
+        "duration": 0.82,
+        "peakDbfs": -6.01794959450946,
+        "rmsDbfs": -19.40463759334337,
+        "peakMs": 269.1875,
+        "onsetMs": 39.03125,
+        "maxStep": 0.05267333984375,
+        "startPeak": 0.000091552734375,
+        "endPeak": 0.0001220703125,
+        "dc": 0.0005371337983666397
+      },
+      "after": {
+        "duration": 0.88,
+        "peakDbfs": -11.000260703669156,
+        "rmsDbfs": -24.820852511449296,
+        "peakMs": 13.96875,
+        "onsetMs": 2.5,
+        "maxStep": 0.02862548828125,
+        "startPeak": 0.00018310546875,
+        "endPeak": 0.00006103515625,
+        "dc": 9.861859408291904e-7
+      }
+    }
+  ]
+}

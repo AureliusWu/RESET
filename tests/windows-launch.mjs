@@ -8,6 +8,7 @@ import { createHash } from 'node:crypto';
 import { verifyLinwanArt } from './linwan-art-browser.mjs';
 import { verifyProductionArt } from './production-art-browser.mjs';
 import { verifyMusicDecoding } from './music-browser.mjs';
+import { verifySfxDecoding } from './sfx-browser.mjs';
 const {chromium}=await import(pathToFileURL(resolve(process.env.VN_ENGINE_PATH,'node_modules/playwright/index.mjs')));
 const root=resolve(process.argv[2]), out=resolve('test-results/windows-installed');await mkdir(out,{recursive:true});
 const checks=[],errors=[],limitations=[];let browser,page;
@@ -59,6 +60,9 @@ try{
   const importSave=async save=>{await page.locator('[data-control=settings]').click();await page.locator('input[type=file]').setInputFiles({name:'reset-save.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(save))});await page.locator('.vn-modal').waitFor({state:'hidden'});};
   await verifyLinwanArt({page,project,fixtures,loadFixture:importSave,control:id=>page.locator(`[data-control="${id}"]`),out,pass:name=>checks.push('Native WebView2: '+name),viewports:false});
   await verifyProductionArt({page,project,fixtures,loadFixture:importSave,out,pass:name=>checks.push('Native WebView2: '+name),captureEdges:false});
+  const sfxDecodes = await verifySfxDecoding(page, name => checks.push('Native WebView2 decoder: '+name));
+  await mkdir('test-results/sfx-r1', {recursive:true});
+  await writeFile('test-results/sfx-r1/windows-decoder.json',JSON.stringify({status:'PASS',platform:process.platform,effects:sfxDecodes,physicalListening:'NOT_CLAIMED'},null,2)+'\n');
   const musicDecodes = await verifyMusicDecoding(page, name => checks.push('Native WebView2 decoder: '+name));
   await mkdir('test-results/music-r1', {recursive:true});
   await writeFile('test-results/music-r1/windows-decoder.json',JSON.stringify({status:'PASS',platform:process.platform,checks:musicDecodes,physicalListening:'NOT_CLAIMED'},null,2)+'\n');

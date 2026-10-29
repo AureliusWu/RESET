@@ -37,6 +37,10 @@ jobs:
           node --check game/runtime/archive-data.mjs
           node --check game/runtime/experience.mjs
           node --check game/runtime/ui.mjs
+          node --check game/runtime/sfx.mjs
+          node --check scripts/sfx-design.mjs
+          node --check scripts/check-sfx.mjs
+          node --check tests/sfx-browser.mjs
           node --check scripts/music-score.mjs
           node --check scripts/audio-metrics.mjs
           node --check tests/music-browser.mjs
@@ -91,6 +95,18 @@ jobs:
         run: |
           npm run audio:measure
           npm run test:music:browser
+      - name: SFX R1 real story and combat playback
+        working-directory: game-repo
+        env:
+          VN_ENGINE_PATH: ${{ github.workspace }}/vn-engine
+        run: npm run test:sfx:browser
+      - name: Upload SFX measurements and playback evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: RESET-sfx-r1-audit
+          path: game-repo/test-results/sfx-r1
+          if-no-files-found: error
       - name: Upload music measurements and playback evidence
         if: always()
         uses: actions/upload-artifact@v4

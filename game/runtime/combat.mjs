@@ -12,7 +12,7 @@ function readMeta() {
 }
 function writeMeta(value) { try { localStorage.setItem(META_KEY, JSON.stringify(value)); } catch {} }
 
-export function mountCombatBridge(game) {
+export function mountCombatBridge(game, audio = {}) {
   const session = game.session;
   let active = null, disposed = false, lastVisit = -1, activeScene, pendingResult;
   const externallyPaused = view => view.hidden || view.pauseReasons?.some(reason => reason !== 'reset-combat');
@@ -53,14 +53,16 @@ export function mountCombatBridge(game) {
       pendingResult = { visit: view.visit, scene: view.frame.sceneId, action: result === 'win' ? config.win : config.lose };
       session.pause('reset-combat', false);
       check();
-    }, view.settings, () => !externallyPaused(session.getView()));
+    }, view.settings, () => !externallyPaused(session.getView()), audio);
     session.pause('reset-combat', true);
   }
 
   return { dispose() { disposed = true; unsubscribe(); if (active) active.dispose(); session.pause('reset-combat', false); } };
 }
 
-function createCombat(config, encounterId, done, settings = {}, canResume = () => true) {
+function createCombat(config, encounterId, done, settings = {}, canResume = () => true, audio = {}) {
+  const cue=id=>{try{audio.playSfx?.(id);}catch{/* Audio never interrupts combat. */}};
+  const stopAudio=()=>{try{audio.stopSfx?.();}catch{}};
   const meta = readMeta();
   meta[encounterId] = (Number(meta[encounterId]) || 0) + 1;
   writeMeta(meta);
@@ -96,7 +98,7 @@ function createCombat(config, encounterId, done, settings = {}, canResume = () =
   const keyup = e => keys.delete(e.code);
   const clearInput = () => { keys.clear(); presses.clear(); touchKeys.clear(); touchPresses.clear(); };
   const blur = () => {
-    clearInput();
+    stopAudio();clearInput();
     if (finishTimer !== undefined) {
       finishRemaining = Math.max(0, finishDue-performance.now());
       clearTimeout(finishTimer); finishTimer = undefined;
@@ -133,7 +135,7 @@ function createCombat(config, encounterId, done, settings = {}, canResume = () =
     player.stamina -= cost; player.attackCd = heavy ? .62 : .34;
     if (!reducedMotion) swing = {angle:Math.atan2(boss.y-player.y,boss.x-player.x),life:heavy?.23:.15,total:heavy?.23:.15,heavy};
     if (distance(player, boss) < (heavy ? 112 : 92)) {
-      boss.hp = Math.max(0, boss.hp - (heavy ? 2 : 1)); boss.flash = .12;
+      boss.hp = Math.max(0, boss.hp - (heavy ? 2 : 1)); boss.flash = .12;cue('sfx-impact');
       impact(boss.x,boss.y,'#e3c3aa');
       message = heavy ? '重击命中。' : '命中。'; messageTime = .5;
       if (boss.hp <= boss.maxHp / 2 && boss.phase === 1) { boss.phase = 2; message = config.mode === 'adaptive' ? '它记住了你的节奏。' : '第二阶段。'; messageTime = 1.4; }
@@ -146,7 +148,7 @@ function createCombat(config, encounterId, done, settings = {}, canResume = () =
     if (player.stamina < 26) { message = '体力不足，暂时无法闪避。'; messageTime = .9; return; }
     if (!dx && !dy) { dx = player.x-boss.x; dy = player.y-boss.y; }
     message = '闪避。'; messageTime = .35;
-    player.stamina -= 26; player.iframes = .36;
+    player.stamina -= 26; player.iframes = .36;cue('sfx-dodge');
     const before = {x:player.x,y:player.y};
     const len = Math.hypot(dx, dy) || 1; player.x = clamp(player.x + dx / len * 92, 32, 928); player.y = clamp(player.y + dy / len * 92, 32, 508);
     if (!reducedMotion) for(let i=0;i<4;i++)trails.push({x:before.x+(player.x-before.x)*i/4,y:before.y+(player.y-before.y)*i/4,life:.28});
@@ -169,7 +171,7 @@ function createCombat(config, encounterId, done, settings = {}, canResume = () =
     if (telegraph.type === 'ring') hit = distance(player, boss) < (boss.phase === 2 ? 190 : 160);
     else if (telegraph.type === 'dash') hit = Math.abs(player.y - boss.y) < 58;
     else hit = Math.hypot(player.x - telegraph.target.x, player.y - telegraph.target.y) < 92;
-    if (hit && player.iframes <= 0) { player.hp--; player.flash = .18; impact(player.x,player.y,'#aacbdc'); message = config.mode === 'echo' ? '旧选择提前等在了那里。' : '受击。'; messageTime = .9; if (player.hp <= 0) finish('lose'); }
+    if (hit && player.iframes <= 0) { cue('sfx-impact');player.hp--; player.flash = .18; impact(player.x,player.y,'#aacbdc'); message = config.mode === 'echo' ? '旧选择提前等在了那里。' : '受击。'; messageTime = .9; if (player.hp <= 0) finish('lose'); }
     telegraph = null;
     attackClock = config.tempo * (boss.phase === 2 ? .68 : 1) * Math.max(.72, 1 - (attempt - 1) * .035);
   }
@@ -239,6 +241,6 @@ function createCombat(config, encounterId, done, settings = {}, canResume = () =
   function loop(now) { if (ended) { draw(); return; } const dt = Math.min(.033,(now-last)/1000); last=now; if(!suspended) update(dt); draw(); raf=requestAnimationFrame(loop); }
   if(document.hidden || document.hasFocus?.()===false)blur();
   raf=requestAnimationFrame(loop);
-  function cleanup(){ cancelAnimationFrame(raf); clearTimeout(finishTimer); removeEventListener('keydown',keydown,true);removeEventListener('keyup',keyup,true);removeEventListener('blur',blur);document.removeEventListener('visibilitychange',visibility);clearInput();resumeButton.removeEventListener('click',resume);overlay.remove(); }
+  function cleanup(){ stopAudio();cancelAnimationFrame(raf); clearTimeout(finishTimer); removeEventListener('keydown',keydown,true);removeEventListener('keyup',keyup,true);removeEventListener('blur',blur);document.removeEventListener('visibilitychange',visibility);clearInput();resumeButton.removeEventListener('click',resume);overlay.remove(); }
   return { suspend: blur, dispose(){ ended=true;cleanup(); } };
 }
