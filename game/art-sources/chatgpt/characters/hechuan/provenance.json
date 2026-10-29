@@ -2,24 +2,64 @@
   "schema": 1,
   "character": "hechuan",
   "name": "何川",
-  "sourceType": "chatgpt-authored-procedural-raster-illustration",
-  "visualTier": "supporting-cast-stylized-bust",
+  "category": "characters",
+  "id": "hechuan",
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
   "native4kClaim": false,
-  "designPlan": "game/visual/r5-supporting-cast-plan.json",
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-79f1f94d-ab98-4e1d-8e1b-eb7c0f5fc774.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/characters/hechuan/prompt-neutral.txt",
+  "promptSHA256": "0f2133e4411ecf947639223be920c1670be6a223731448ce59b3761985259073",
+  "spec": "game/art-sources/chatgpt/characters/hechuan/spec.json",
+  "specSHA256": "0629e5c9caa799025cd2123dbaa38ccd1b768eec20a01808661c4b180955e733",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "cropBounds": [
+      151,
+      0,
+      794,
+      1671
+    ],
+    "framingAlphaThreshold": 8,
+    "offset": [
+      387,
+      130
+    ],
+    "scaledSize": [
+      1385,
+      3600
+    ],
+    "resize": "premultiplied-alpha Lanczos"
+  },
   "assets": [
     {
       "expression": "neutral",
       "original": "game/art-sources/chatgpt/characters/hechuan/neutral.png",
-      "originalSHA256": "75bd66c2a744fba6a9a2c57c39fb69ca141db995eaf23039d533f494b788a7f6",
       "originalSize": [
+        940,
+        1672
+      ],
+      "originalSHA256": "de26d73f0062e04465d9e0b24b0871c84f6e07cfd40b36af2cd5792765e1b8c0",
+      "master": "game/assets/4k/characters/hechuan/neutral.png",
+      "masterSize": [
+        2160,
+        3840
+      ],
+      "masterSHA256": "0dd53c762bbd1b1eeec8eba0a6a9f2746f8dd10ffbd0f23a0d3ddc892998b0b0",
+      "runtime": "game/assets/4k/runtime/characters/hechuan/neutral.webp",
+      "runtimeSize": [
         1080,
         1920
       ],
-      "master": "game/assets/4k/characters/hechuan/neutral.png",
-      "masterSHA256": "5f2444f64c6046b56b318cad19db1d8453fcad622cd2d161c7d3899c925ca64f",
-      "runtime": "game/assets/4k/runtime/characters/hechuan/neutral.webp",
-      "runtimeSHA256": "a9fea2190cf5a9c78ab7f55527ea6cd4f0e245f4f308ab056a4e5a6ca2d8f873",
-      "lockedBodySHA256": "75bd66c2a744fba6a9a2c57c39fb69ca141db995eaf23039d533f494b788a7f6"
+      "runtimeSHA256": "5a108ade7b701300de5e015194f85ba8104abd8cb5fbe236e27137f809c2ee3d",
+      "lockedBodySHA256": "b55b8fc6fdf6cd2fab3493acd9b2d028e52e8ebd526223f67ae260507ffea96b"
     }
   ]
 }

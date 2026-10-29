@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "id": "jiyao",
+  "name": "纪尧",
+  "kind": "portrait",
+  "expression": "neutral",
+  "canonRole": "17岁男生，信息技术兴趣小组，乔南星搭档，安静理性，整理日志而非万能黑客",
+  "visualProposal": "侧分短黑发，深色细框眼镜，藏蓝学校外套、白衬衣、深色长裤、简单运动鞋，胸前无字学生卡绳，一手拿小型平板和折起的记录纸；不是黑客装束",
+  "sourceCommit": "5eeea12921cb8e07b4e0ba64a8a37b91730954a9",
+  "sourceDocs": [
+    "docs/CAST_BIBLE_R1.md",
+    "docs/R8_ART_RECONSTRUCTION.md",
+    "docs/ART_DIRECTION.md"
+  ],
+  "storyEvidence": [
+    {
+      "path": "game/content/chapters/01.json",
+      "sceneId": "future_message",
+      "lineId": "r1_future_message_pre03_01",
+      "text": "我把设备时间、服务器时间和照片元数据拆开核过了。三个都能错，但不该用同一种方式错。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/03.json",
+      "sceneId": "route_merge_message",
+      "lineId": "r1_route_merge_message_pre03_01",
+      "text": "我把设备时间、服务器时间和照片元数据拆开核过了。三个都能错，但不该用同一种方式错。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/03.json",
+      "sceneId": "future_rule",
+      "lineId": "r1_future_rule_pre03_01",
+      "text": "我把设备时间、服务器时间和照片元数据拆开核过了。三个都能错，但不该用同一种方式错。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/04.json",
+      "sceneId": "c4_nanxing_1",
+      "lineId": "r1_c4_nanxing_1_pre03_01",
+      "text": "我把设备时间、服务器时间和照片元数据拆开核过了。三个都能错，但不该用同一种方式错。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/04.json",
+      "sceneId": "c4_nanxing_2",
+      "lineId": "r1_c4_nanxing_2_pre03_01",
+      "text": "我把设备时间、服务器时间和照片元数据拆开核过了。三个都能错，但不该用同一种方式错。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/04.json",
+      "sceneId": "end_nanxing",
+      "lineId": "r1_end_nanxing_pre03_01",
+      "text": "我把设备时间、服务器时间和照片元数据拆开核过了。三个都能错，但不该用同一种方式错。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/07.json",
+      "sceneId": "c7_credits",
+      "lineId": "r1_c7_credits_key03_01",
+      "text": "南星，我把异常日志离线封存了。下次社团课我们只修打印机，谁都不准碰时间旅行。",
+      "noSprite": true
+    }
+  ],
+  "generation": "ChatGPT native image_gen.imagegen",
+  "reviewStatus": "UNVERIFIED",
+  "native4kClaim": false
+}

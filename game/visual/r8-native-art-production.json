@@ -55,7 +55,7 @@
       "id": "hechuan",
       "name": "何川",
       "kind": "portrait",
-      "status": "TO_GENERATE",
+      "status": "UPLOADED",
       "prompt": "game/art-sources/chatgpt/characters/hechuan/prompt-neutral.txt",
       "spec": "game/art-sources/chatgpt/characters/hechuan/spec.json"
     },
@@ -63,7 +63,7 @@
       "id": "jiyao",
       "name": "纪尧",
       "kind": "portrait",
-      "status": "TO_GENERATE",
+      "status": "UPLOADED",
       "prompt": "game/art-sources/chatgpt/characters/jiyao/prompt-neutral.txt",
       "spec": "game/art-sources/chatgpt/characters/jiyao/spec.json"
     },
@@ -71,7 +71,7 @@
       "id": "lincheng",
       "name": "林澄",
       "kind": "portrait",
-      "status": "TO_GENERATE",
+      "status": "UPLOADED",
       "prompt": "game/art-sources/chatgpt/characters/lincheng/prompt-neutral.txt",
       "spec": "game/art-sources/chatgpt/characters/lincheng/spec.json"
     },

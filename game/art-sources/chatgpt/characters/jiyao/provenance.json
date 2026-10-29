@@ -2,24 +2,64 @@
   "schema": 1,
   "character": "jiyao",
   "name": "纪尧",
-  "sourceType": "chatgpt-authored-procedural-raster-illustration",
-  "visualTier": "supporting-cast-stylized-bust",
+  "category": "characters",
+  "id": "jiyao",
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
   "native4kClaim": false,
-  "designPlan": "game/visual/r5-supporting-cast-plan.json",
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-05421b3e-f695-4bba-ac05-93f77124b352.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/characters/jiyao/prompt-neutral.txt",
+  "promptSHA256": "f231fc4da15bc3d5b69ca96cf43f89d399fb4b0a72c5bee2bab719b7142c57ea",
+  "spec": "game/art-sources/chatgpt/characters/jiyao/spec.json",
+  "specSHA256": "efdbffc14d158bb930513d91f17176405d9e8301b3192befb23bf9138f65a67f",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "cropBounds": [
+      212,
+      9,
+      729,
+      1660
+    ],
+    "framingAlphaThreshold": 8,
+    "offset": [
+      516,
+      130
+    ],
+    "scaledSize": [
+      1127,
+      3600
+    ],
+    "resize": "premultiplied-alpha Lanczos"
+  },
   "assets": [
     {
       "expression": "neutral",
       "original": "game/art-sources/chatgpt/characters/jiyao/neutral.png",
-      "originalSHA256": "195f93c5e82d14bbb9d13cd8ec21f9127894149304b66d4ed15cd03a4932dec7",
       "originalSize": [
+        941,
+        1672
+      ],
+      "originalSHA256": "b0fb5484a1f380e3a62791ef6481e2ad3375d17a16ce464087870e3cb31b751f",
+      "master": "game/assets/4k/characters/jiyao/neutral.png",
+      "masterSize": [
+        2160,
+        3840
+      ],
+      "masterSHA256": "509d9776b57cab367cdf8fcc6650d21a820312832fc521f7c86be7574fd2aaab",
+      "runtime": "game/assets/4k/runtime/characters/jiyao/neutral.webp",
+      "runtimeSize": [
         1080,
         1920
       ],
-      "master": "game/assets/4k/characters/jiyao/neutral.png",
-      "masterSHA256": "e79eacd25ded88f68a0cbd626d4caec0e05055df3ae4d2fc6fbba41c5e020547",
-      "runtime": "game/assets/4k/runtime/characters/jiyao/neutral.webp",
-      "runtimeSHA256": "4eaad19da134fdf81361f7b667d2e376f8ef676528c9e34746dad73efd7ffed5",
-      "lockedBodySHA256": "195f93c5e82d14bbb9d13cd8ec21f9127894149304b66d4ed15cd03a4932dec7"
+      "runtimeSHA256": "1df92de522b74ec49fc5dbd6c01bd727682dcff5f055bed489ef4c55c4e665fb",
+      "lockedBodySHA256": "0276b37f8e59fbbdf97b2d6a71273b25684c00ee137df031c858da4bcd576baa"
     }
   ]
 }

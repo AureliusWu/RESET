@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "id": "lincheng",
+  "name": "林澄",
+  "kind": "portrait",
+  "expression": "neutral",
+  "canonRole": "19岁女生，林晚表姐，大学一年级，成熟一点但仍年轻，偶尔来校门口接表妹",
+  "visualProposal": "深棕色柔顺中长发，淡灰紫针织外套、象牙白内搭、深棕直筒长裤、平底休闲鞋，肩挂普通帆布托特包，一只手自然扶包带；年轻大学生，不能像林晚的复制体",
+  "sourceCommit": "5eeea12921cb8e07b4e0ba64a8a37b91730954a9",
+  "sourceDocs": [
+    "docs/CAST_BIBLE_R1.md",
+    "docs/R8_ART_RECONSTRUCTION.md",
+    "docs/ART_DIRECTION.md"
+  ],
+  "storyEvidence": [
+    {
+      "path": "game/content/chapters/01.json",
+      "sceneId": "linwan_shadow",
+      "lineId": "r1_linwan_shadow_pre03_01",
+      "text": "晚晚，你小时候一到下雨就做同一个梦。醒来又说记不清，我一直当你怕雷。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/03.json",
+      "sceneId": "route_linwan_dream",
+      "lineId": "r1_route_linwan_dream_pre03_01",
+      "text": "晚晚，你小时候一到下雨就做同一个梦。醒来又说记不清，我一直当你怕雷。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/03.json",
+      "sceneId": "focus_linwan_open",
+      "lineId": "r1_focus_linwan_open_pre03_01",
+      "text": "晚晚，你小时候一到下雨就做同一个梦。醒来又说记不清，我一直当你怕雷。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/04.json",
+      "sceneId": "c4_linwan_1",
+      "lineId": "r1_c4_linwan_1_pre03_01",
+      "text": "晚晚，你小时候一到下雨就做同一个梦。醒来又说记不清，我一直当你怕雷。",
+      "noSprite": false
+    }
+  ],
+  "generation": "ChatGPT native image_gen.imagegen",
+  "reviewStatus": "UNVERIFIED",
+  "native4kClaim": false
+}

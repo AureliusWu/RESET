@@ -223,23 +223,65 @@
     {
       "id": "hechuan",
       "name": "何川",
-      "status": "BLOCKED",
-      "reason": "Approved native replacement not yet supplied.",
-      "review": null
+      "status": "UNVERIFIED",
+      "reason": "Native candidate generated; owner visual review pending.",
+      "review": null,
+      "artifacts": {
+        "original": {
+          "path": "game/art-sources/chatgpt/characters/hechuan/neutral.png",
+          "sha256": "de26d73f0062e04465d9e0b24b0871c84f6e07cfd40b36af2cd5792765e1b8c0"
+        },
+        "master": {
+          "path": "game/assets/4k/characters/hechuan/neutral.png",
+          "sha256": "0dd53c762bbd1b1eeec8eba0a6a9f2746f8dd10ffbd0f23a0d3ddc892998b0b0"
+        },
+        "runtime": {
+          "path": "game/assets/4k/runtime/characters/hechuan/neutral.webp",
+          "sha256": "5a108ade7b701300de5e015194f85ba8104abd8cb5fbe236e27137f809c2ee3d"
+        }
+      }
     },
     {
       "id": "jiyao",
       "name": "纪尧",
-      "status": "BLOCKED",
-      "reason": "Approved native replacement not yet supplied.",
-      "review": null
+      "status": "UNVERIFIED",
+      "reason": "Native candidate generated; owner visual review pending.",
+      "review": null,
+      "artifacts": {
+        "original": {
+          "path": "game/art-sources/chatgpt/characters/jiyao/neutral.png",
+          "sha256": "b0fb5484a1f380e3a62791ef6481e2ad3375d17a16ce464087870e3cb31b751f"
+        },
+        "master": {
+          "path": "game/assets/4k/characters/jiyao/neutral.png",
+          "sha256": "509d9776b57cab367cdf8fcc6650d21a820312832fc521f7c86be7574fd2aaab"
+        },
+        "runtime": {
+          "path": "game/assets/4k/runtime/characters/jiyao/neutral.webp",
+          "sha256": "1df92de522b74ec49fc5dbd6c01bd727682dcff5f055bed489ef4c55c4e665fb"
+        }
+      }
     },
     {
       "id": "lincheng",
       "name": "林澄",
-      "status": "BLOCKED",
-      "reason": "Approved native replacement not yet supplied.",
-      "review": null
+      "status": "UNVERIFIED",
+      "reason": "Native candidate generated; owner visual review pending.",
+      "review": null,
+      "artifacts": {
+        "original": {
+          "path": "game/art-sources/chatgpt/characters/lincheng/neutral.png",
+          "sha256": "3b94ee0a49e39e2484e30d0fd9a3037b519c9df7916606c892b0fbe494e4d1e3"
+        },
+        "master": {
+          "path": "game/assets/4k/characters/lincheng/neutral.png",
+          "sha256": "090dd5637a2aac0273ca5e246cf188905d980a511ec9bc6f7f7a62e4d154e265"
+        },
+        "runtime": {
+          "path": "game/assets/4k/runtime/characters/lincheng/neutral.webp",
+          "sha256": "c353eb6a60e1d5fcf0e30182a481ef0ea8c60f0c75e24bd5266e5fac049e62e6"
+        }
+      }
     },
     {
       "id": "shenyanqiu",
