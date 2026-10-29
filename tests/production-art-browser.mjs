@@ -69,10 +69,13 @@ export async function verifyProductionArt({page,project,fixtures,loadFixture,out
   const cgWitness=assets.find(asset=>asset.kind==='cg'&&frames.has(asset.id));
   if(viewport&&cgWitness) {
     try {
+      // The renderer clears src/sets hidden while an async image probe loads.
+      // complete alone is also true for an empty src, so wait for real pixels.
       for(const [width,height] of [[390,844],[844,390]]) {
         await page.setViewportSize({width,height});await loadFixture(frames.get(cgWitness.id));
-        await page.waitForFunction(id=>{const image=document.querySelector('.vn-cg');return image?.dataset.asset===id&&image.complete;},cgWitness.id);
-        assert.equal(await page.locator('.vn-cg').isVisible(),true);
+        await page.waitForFunction(id=>{const image=document.querySelector('.vn-cg');return image?.dataset.asset===id&&!image.hidden&&image.complete&&image.naturalWidth===1920;},cgWitness.id);
+        await page.locator('.vn-cg').waitFor({state:'visible'});
+        assert.equal(await page.locator('.vn-cg').isVisible(),true,`story CG must be visible at ${width}x${height}`);
         assert.equal(await page.locator('.vn-portrait').isVisible(),false,'mobile CG must not show a duplicate regular portrait');
         await page.screenshot({path:out+`/cg-composition-${width}x${height}.png`,animations:'disabled'});
       }
@@ -80,7 +83,8 @@ export async function verifyProductionArt({page,project,fixtures,loadFixture,out
     const portraitWitness=assets.find(asset=>asset.kind==='portrait'&&frames.has(asset.id));
     if(portraitWitness) {
       await loadFixture(frames.get(portraitWitness.id));
-      await page.waitForFunction(id=>{const image=document.querySelector('.vn-portrait');return image?.dataset.asset===id&&image.complete;},portraitWitness.id);
+      await page.waitForFunction(id=>{const image=document.querySelector('.vn-portrait');return image?.dataset.asset===id&&!image.hidden&&image.complete&&image.naturalWidth===1080;},portraitWitness.id);
+      await page.locator('.vn-portrait').waitFor({state:'visible'});
       assert.equal(await page.locator('.vn-cg').isVisible(),false);
       assert.equal(await page.locator('.vn-portrait').isVisible(),true,'normal dialogue must restore portraits after leaving a CG');
     }
