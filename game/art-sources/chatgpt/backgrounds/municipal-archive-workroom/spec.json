@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "id": "municipal-archive-workroom",
+  "name": "市档案馆修复工作室",
+  "kind": "background",
+  "sourceCommit": "8d190ebec6fb8c91b2f6c984bd6010b1d4de6005",
+  "canonSources": [
+    "docs/ART_DIRECTION.md",
+    "game/content/chapters/04.json"
+  ],
+  "sceneEvidence": [
+    {
+      "scene": "end_tinglan",
+      "path": "game/content/chapters/04.json",
+      "location": "市档案馆",
+      "time": "10月24日 18:43",
+      "previousBackground": "archive-room",
+      "sampleLines": [
+        {
+          "id": "r1_end_tinglan_pre01_01",
+          "text": "10月24日 18:43，市档案馆。空气里有纸张、灰尘和除湿机的味道，铅笔印能擦掉。"
+        },
+        {
+          "id": "r1_end_tinglan_pre01_02",
+          "text": "每一册资料都带编号、借阅章和前一个人的指纹，想伪造一段历史并不比伪造一张纸简单，她没替活人下结论。"
+        }
+      ]
+    }
+  ],
+  "designProposal": "10月24日18:43的市档案馆文献修复工作室，宽阔实木工作桌、素白空纸、修复刷、棉手套、纸张托盘、档案柜与暖色台灯，窗外自然傍晚，旧纸质感和真实工作秩序；没有人物，前景留一张可坐下交谈的桌子。",
+  "reviewStatus": "UNVERIFIED",
+  "native4kClaim": false
+}

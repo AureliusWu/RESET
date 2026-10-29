@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "id": "night-clocktower",
+  "name": "夜梧城钟楼下",
+  "kind": "background",
+  "sourceCommit": "8d190ebec6fb8c91b2f6c984bd6010b1d4de6005",
+  "canonSources": [
+    "docs/ART_DIRECTION.md",
+    "game/content/chapters/04.json",
+    "game/content/chapters/04.json"
+  ],
+  "sceneEvidence": [
+    {
+      "scene": "c4_xuqi_2",
+      "path": "game/content/chapters/04.json",
+      "location": "夜梧城·钟楼下",
+      "time": "18:42",
+      "previousBackground": "night-wucheng",
+      "sampleLines": [
+        {
+          "id": "r1_c4_xuqi_2_pre01_01",
+          "text": "18:42，夜梧城·钟楼下。店招还亮着，广告屏仍按白天的轮播顺序闪烁，共享单车却全部停在原位。这里复制了城市的外壳，却复制不出人为什么要出门，旧街没有名字。"
+        },
+        {
+          "id": "r1_c4_xuqi_2_pre02_01",
+          "text": "如果只看手机时间，这一刻和任何一天没有区别。真正让陈渡不安的，是身边的人仍然沿着熟悉的习惯行动，而他的记忆已经不再属于同一条时间线，她没说这里是假的。"
+        }
+      ]
+    },
+    {
+      "scene": "end_xuqi",
+      "path": "game/content/chapters/04.json",
+      "location": "夜梧城·钟楼下",
+      "time": "永远的18:42",
+      "previousBackground": "night-wucheng",
+      "sampleLines": [
+        {
+          "id": "r1_end_xuqi_pre01_01",
+          "text": "永远的18:42，夜梧城·钟楼下。店招还亮着，广告屏仍按白天的轮播顺序闪烁，共享单车却全部停在原位，她记得哪边会塌。"
+        },
+        {
+          "id": "r1_end_xuqi_pre01_02",
+          "text": "这里复制了城市的外壳，却复制不出人为什么要出门，路边广告还褪色。"
+        }
+      ]
+    }
+  ],
+  "designProposal": "永远18:42的夜梧城钟楼街口，老式砖石钟楼、空无行人的普通中国城市老街、亮着的店铺橱窗、共享单车静止、湿路面和微弱紫蓝边缘失真。钟盘仅画指针约六点四十二、无需数字文字。冷蓝低饱和，不能画霓虹赛博朋克。",
+  "reviewStatus": "UNVERIFIED",
+  "native4kClaim": false
+}

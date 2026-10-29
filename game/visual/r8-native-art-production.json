@@ -310,7 +310,7 @@
       "id": "night-clocktower",
       "name": "夜梧城钟楼下",
       "kind": "background",
-      "status": "TO_GENERATE",
+      "status": "UPLOADED",
       "scenes": [
         "c4_xuqi_2",
         "end_xuqi"
@@ -333,7 +333,7 @@
       "id": "municipal-archive-workroom",
       "name": "市档案馆修复工作室",
       "kind": "background",
-      "status": "TO_GENERATE",
+      "status": "UPLOADED",
       "scenes": [
         "end_tinglan"
       ],
@@ -355,7 +355,7 @@
       "id": "information-rooftop-evening",
       "name": "信息楼天台",
       "kind": "background",
-      "status": "TO_GENERATE",
+      "status": "UPLOADED",
       "scenes": [
         "c4_nanxing_2",
         "end_nanxing"

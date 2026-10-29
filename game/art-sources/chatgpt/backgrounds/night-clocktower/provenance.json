@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "character": null,
+  "name": "night-clocktower",
+  "category": "backgrounds",
+  "id": "night-clocktower",
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
+  "native4kClaim": false,
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-80babe04-fe0e-47e4-8f50-0d5e4c5f3065.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/backgrounds/night-clocktower/prompt.txt",
+  "promptSHA256": "81682e987b21d12cfc03a9bec68f9211bcc5f12348d840b5a48fc5e0422d7ef3",
+  "spec": "game/art-sources/chatgpt/backgrounds/night-clocktower/spec.json",
+  "specSHA256": "1c5c9af6e1ce3e2557e415d1f9266bf7a0154f2aadc22590b8c8212b281600b4",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "resize": "aspect-fill Lanczos",
+    "sourceSize": [
+      1672,
+      941
+    ]
+  },
+  "assets": [
+    {
+      "expression": "night-clocktower",
+      "original": "game/art-sources/chatgpt/backgrounds/night-clocktower/original.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "516fd50978495f146d793ef8854fffdb80b8e0f142fa8758be67d826c48afa3c",
+      "master": "game/assets/4k/backgrounds/night-clocktower.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "55fbc2a6317a3bf505ec94d17d7cef97af52db03104a6ebe2375ff934ccf84b8",
+      "runtime": "game/assets/4k/runtime/backgrounds/night-clocktower.webp",
+      "runtimeSize": [
+        1920,
+        1080
+      ],
+      "runtimeSHA256": "1bad57ac21b448d0aadcccd844ccfd5ad3b856b3fa3d0acb0e314dfccb0805b0"
+    }
+  ]
+}

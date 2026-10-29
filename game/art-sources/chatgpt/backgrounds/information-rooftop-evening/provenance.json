@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "character": null,
+  "name": "information-rooftop-evening",
+  "category": "backgrounds",
+  "id": "information-rooftop-evening",
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
+  "native4kClaim": false,
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-a65d52ad-1cd3-4638-b523-a0595c03a10c.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/backgrounds/information-rooftop-evening/prompt.txt",
+  "promptSHA256": "2982ddc7d9403dd85d84db1c21521359b949a99e781c390f63ea564c7d19edcd",
+  "spec": "game/art-sources/chatgpt/backgrounds/information-rooftop-evening/spec.json",
+  "specSHA256": "e535e9f0b1795e8f52dc11d28a1e477e98c604c0a8f24061b2d5b3cf2ba1a168",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "resize": "aspect-fill Lanczos",
+    "sourceSize": [
+      1672,
+      941
+    ]
+  },
+  "assets": [
+    {
+      "expression": "information-rooftop-evening",
+      "original": "game/art-sources/chatgpt/backgrounds/information-rooftop-evening/original.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "d602ac5db5e7733379c0b73cceed80ecb8d0a148382622bbd6af00558cb98391",
+      "master": "game/assets/4k/backgrounds/information-rooftop-evening.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "19bd7f5a178f114729785a1d35aa89ab0d5032a67b5bb632387f2f1cf53a7575",
+      "runtime": "game/assets/4k/runtime/backgrounds/information-rooftop-evening.webp",
+      "runtimeSize": [
+        1920,
+        1080
+      ],
+      "runtimeSHA256": "df6e2229432c60a9ae1caffb1296b0e8b52f33e448711965ec65b6dd2d8346e6"
+    }
+  ]
+}
