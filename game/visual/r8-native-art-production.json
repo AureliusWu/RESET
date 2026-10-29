@@ -211,7 +211,7 @@
       "id": "archive-rooftop-evening",
       "name": "市档案馆楼顶",
       "kind": "background",
-      "status": "TO_GENERATE",
+      "status": "UPLOADED",
       "scenes": [
         "c4_tinglan_2"
       ],
@@ -244,7 +244,7 @@
       "id": "chendu-home-morning",
       "name": "陈渡家清晨",
       "kind": "background",
-      "status": "TO_GENERATE",
+      "status": "UPLOADED",
       "scenes": [
         "chapter5_gate"
       ],
