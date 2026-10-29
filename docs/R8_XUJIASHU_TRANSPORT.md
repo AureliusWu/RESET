@@ -14,4 +14,4 @@
 
 当前仍为美术候选，owner 视觉审核尚未获得；生产 speaker mapping 保持 hidden。本次提交不是稳定发布，R8 整体门禁继续执行，不覆盖公开 Pages。
 
-下一步：远端回读解码与 SHA256 验证；恢复候选接入与审核保护；在具体图片获得 owner 视觉批准后应用映射并复验 Build / browser QA。
+远端回读解码与 SHA256 验证已经通过；候选接入、审核保护及四视口/离线检查已恢复。接入规则和真实剩余工作见 [R8_XUJIASHU_NEUTRAL.md](R8_XUJIASHU_NEUTRAL.md)。

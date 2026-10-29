@@ -2,18 +2,174 @@
   "schema": 1,
   "spec": "GALGAME SPEC v0.2",
   "targetVersion": "v1.2.1",
-  "updated": "2026-10-27",
-  "releaseGate": "PASS",
-  "releaseBlocker": "Art gate passed after owner review of the existing repository character masters. Stable publication is gated separately by packaged mobile-shell acceptance for title interaction, landscape layout and PWA installation.",
+  "updated": "2026-10-29",
+  "releaseGate": "BLOCKED",
+  "releaseBlocker": "R8 requires independent owner visual acceptance for all 12 supporting characters. Xu Jiashu native files are uploaded and technically verifiable; no owner art approval has been recorded.",
   "principle": "TECH_READY != ART_READY",
-  "requiredChecks": ["identity","styleConsistency","bodyProportion","expressionReadability","desktopComposition","mobileComposition","provenanceTruth"],
-  "baseline": {"character":"linwan","status":"PASS","evidence":"Round 2 locked production baseline; Round 9 packaged visual acceptance"},
+  "requiredChecks": [
+    "identity",
+    "styleConsistency",
+    "bodyProportion",
+    "expressionReadability",
+    "desktopComposition",
+    "mobileComposition",
+    "provenanceTruth"
+  ],
+  "baseline": {
+    "character": "linwan",
+    "status": "PASS",
+    "evidence": "Round 2 locked production baseline; Round 9 packaged visual acceptance"
+  },
   "characters": [
-    {"id":"linwan","name":"林晚","status":"PASS","evidence":["Round 2 locked baseline","Round 9 packaged browser acceptance"]},
-    {"id":"xiaoman","name":"周小满","status":"PASS","evidence":["2026-10-27 owner review: existing repository character art confirmed acceptable"]},
-    {"id":"xuqi","name":"许栖","status":"PASS","evidence":["2026-10-27 owner review: existing repository character art confirmed acceptable; prior screenshot issue reclassified as runtime presentation/UI issue"]},
-    {"id":"tinglan","name":"沈听澜","status":"PASS","evidence":["2026-10-27 owner review: existing repository character art confirmed acceptable"]},
-    {"id":"tangli","name":"唐梨","status":"PASS","evidence":["2026-10-27 owner review: existing repository character art confirmed acceptable"]},
-    {"id":"nanxing","name":"乔南星","status":"PASS","evidence":["2026-10-27 owner review: existing repository character art confirmed acceptable"]}
+    {
+      "id": "linwan",
+      "name": "林晚",
+      "status": "PASS",
+      "evidence": [
+        "Round 2 locked baseline",
+        "Round 9 packaged browser acceptance"
+      ]
+    },
+    {
+      "id": "xiaoman",
+      "name": "周小满",
+      "status": "PASS",
+      "evidence": [
+        "2026-10-27 owner review: existing repository character art confirmed acceptable"
+      ]
+    },
+    {
+      "id": "xuqi",
+      "name": "许栖",
+      "status": "PASS",
+      "evidence": [
+        "2026-10-27 owner review: existing repository character art confirmed acceptable; prior screenshot issue reclassified as runtime presentation/UI issue"
+      ]
+    },
+    {
+      "id": "tinglan",
+      "name": "沈听澜",
+      "status": "PASS",
+      "evidence": [
+        "2026-10-27 owner review: existing repository character art confirmed acceptable"
+      ]
+    },
+    {
+      "id": "tangli",
+      "name": "唐梨",
+      "status": "PASS",
+      "evidence": [
+        "2026-10-27 owner review: existing repository character art confirmed acceptable"
+      ]
+    },
+    {
+      "id": "nanxing",
+      "name": "乔南星",
+      "status": "PASS",
+      "evidence": [
+        "2026-10-27 owner review: existing repository character art confirmed acceptable"
+      ]
+    }
+  ],
+  "supportingRequiredForRelease": true,
+  "supportingCharacters": [
+    {
+      "id": "xujiashu",
+      "name": "徐嘉树",
+      "status": "UNVERIFIED",
+      "reason": "Native candidate uploaded; independent owner visual review pending.",
+      "review": null,
+      "artifacts": {
+        "original": {
+          "path": "game/art-sources/chatgpt/characters/xujiashu/neutral.png",
+          "sha256": "d8f1508e1f7974f7efd5cdf6a1512bcc8c31cf43f00c3744347decf04b556b5a"
+        },
+        "master": {
+          "path": "game/assets/4k/characters/xujiashu/neutral.png",
+          "sha256": "6894ef6088583daf27188cd27ad323e007ecc2985bcc6084e87b54ac9936b8e9"
+        },
+        "runtime": {
+          "path": "game/assets/4k/runtime/characters/xujiashu/neutral.webp",
+          "sha256": "cbc74d63768ab147ded207c1d4835d7ead1c7ae5800e8f2701d764cc80c86892"
+        }
+      }
+    },
+    {
+      "id": "chengyan",
+      "name": "程妍",
+      "status": "BLOCKED",
+      "reason": "Approved native replacement not yet supplied.",
+      "review": null
+    },
+    {
+      "id": "gumingyuan",
+      "name": "顾明远",
+      "status": "BLOCKED",
+      "reason": "Approved native replacement not yet supplied.",
+      "review": null
+    },
+    {
+      "id": "chenlan",
+      "name": "陈岚",
+      "status": "BLOCKED",
+      "reason": "Approved native replacement not yet supplied.",
+      "review": null
+    },
+    {
+      "id": "xurong",
+      "name": "许蓉",
+      "status": "BLOCKED",
+      "reason": "Approved native replacement not yet supplied.",
+      "review": null
+    },
+    {
+      "id": "luoxiumei",
+      "name": "罗秀梅",
+      "status": "BLOCKED",
+      "reason": "Approved native replacement not yet supplied.",
+      "review": null
+    },
+    {
+      "id": "suyao",
+      "name": "苏遥",
+      "status": "BLOCKED",
+      "reason": "Approved native replacement not yet supplied.",
+      "review": null
+    },
+    {
+      "id": "hechuan",
+      "name": "何川",
+      "status": "BLOCKED",
+      "reason": "Approved native replacement not yet supplied.",
+      "review": null
+    },
+    {
+      "id": "jiyao",
+      "name": "纪尧",
+      "status": "BLOCKED",
+      "reason": "Approved native replacement not yet supplied.",
+      "review": null
+    },
+    {
+      "id": "lincheng",
+      "name": "林澄",
+      "status": "BLOCKED",
+      "reason": "Approved native replacement not yet supplied.",
+      "review": null
+    },
+    {
+      "id": "shenyanqiu",
+      "name": "沈砚秋",
+      "status": "BLOCKED",
+      "reason": "Approved native replacement not yet supplied.",
+      "review": null
+    },
+    {
+      "id": "liangcheng",
+      "name": "梁成",
+      "status": "BLOCKED",
+      "reason": "Approved native replacement not yet supplied.",
+      "review": null
+    }
   ]
 }

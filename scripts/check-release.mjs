@@ -2,6 +2,7 @@ import { readFile, access } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
+import { loadSupportingArt, assertSupportingMappings } from './supporting-art.mjs';
 
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const dist = resolve(root, 'dist');
@@ -36,8 +37,9 @@ for(const id of ['normal-linwan','normal-xiaoman','normal-xuqi','normal-tinglan'
 const cast=['linwan','xiaoman','xuqi','tinglan','tangli','nanxing']; const expressions=['neutral','smile','worried','surprised','serious']; const assetMap=new Map(project.assets.map(asset=>[asset.id,asset])); const portraitSources=new Set();
 for(const character of cast)for(const expression of expressions){const id=`${character}/${expression}`,asset=assetMap.get(id);assert(asset?.kind==='portrait',`missing production portrait ${id}`);assert(asset.src===`assets/4k/runtime/characters/${character}/${expression}.webp`,`${id} is not canonical 4K production art`);assert(!String(asset.alt??'').includes('占位'),`${id} is still labelled placeholder`);portraitSources.add(asset.src);assert(await exists(resolve(dist,asset.src)),`portrait file missing from package: ${asset.src}`);assert(sw.includes(asset.src),`portrait not offline cached: ${asset.src}`);}
 const supportPortraits=['xujiashu','chengyan','gumingyuan','chenlan','xurong','luoxiumei','suyao','hechuan','jiyao','lincheng','shenyanqiu','liangcheng'];
-const forbiddenSupportNames=['徐嘉树','程妍','顾明远','陈岚','许蓉','罗秀梅','苏遥','何川','纪尧','林澄','沈砚秋','梁成'];
-for(const name of forbiddenSupportNames)assert(!project.stage?.speakers?.[name],`unapproved supporting portrait is runtime-visible: ${name}`);
+const supportingArt = await loadSupportingArt(root);
+const supportingPolicy = JSON.parse(await readFile(resolve(root,'game/visual/r5-speaker-policy.json'),'utf8'));
+assertSupportingMappings(supportingArt, project.stage?.speakers ?? {}, supportingPolicy);
 for(const character of supportPortraits){const asset=assetMap.get(`${character}/neutral`);assert(asset?.kind==='portrait',`tracked legacy supporting portrait missing ${character}`);assert(await exists(resolve(dist,asset.src)),`tracked legacy supporting portrait missing from package: ${character}`);}
 const xuqiAngry=assetMap.get('xuqi/angry'); assert(xuqiAngry?.src==='assets/4k/runtime/characters/xuqi/angry.webp','Xu Qi angry expression is not canonical production art'); assert(await exists(resolve(dist,xuqiAngry.src)),'Xu Qi angry production sprite missing'); assert(portraitSources.size===30,'five-expression heroine variants are not distinct files');
 for(const asset of project.assets.filter(a=>a.src.startsWith('assets/4k/runtime/'))){const bytes=await readFile(resolve(dist,asset.src));const record=manifest.files.find(f=>f.name===asset.src);assert(record?.size===bytes.length&&record.sha256===createHash('sha256').update(bytes).digest('hex'),`4K runtime missing/stale in final manifest: ${asset.id}`);assert(sw.includes(asset.src),`4K runtime missing from offline cache: ${asset.id}`);}

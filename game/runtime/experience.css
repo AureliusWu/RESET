@@ -116,3 +116,15 @@ main#game{height:calc(100dvh - 30px - env(safe-area-inset-top) - env(safe-area-i
   .reset-brand-mark{width:min(25%,210px)!important}
   .vn-engine .vn-stage .vn-portrait{max-height:90%;max-width:42%}
 }
+/* Keep this full-body candidate above the reading box at a stable anchor. */
+.vn-engine .vn-stage .vn-portrait[data-asset="xujiashu/neutral"] {
+  --reset-xu-reading-space: clamp(180px, 24dvh, 240px);
+  bottom: var(--reset-xu-reading-space);
+  height: calc(100% - var(--reset-xu-reading-space));
+  max-height: calc(100% - var(--reset-xu-reading-space));
+}
+@media (orientation: landscape) and (max-height: 600px) {
+  .vn-engine .vn-stage .vn-portrait[data-asset="xujiashu/neutral"] {
+    --reset-xu-reading-space: 110px;
+  }
+}

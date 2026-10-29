@@ -2,6 +2,7 @@ import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadContentPacks } from './content-packs.mjs';
+import { loadSupportingArt, assertSupportingMappings } from './supporting-art.mjs';
 
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const game = resolve(root, 'game');
@@ -12,22 +13,11 @@ const { packs } = await loadContentPacks(root);
 const project = await readJson(resolve(game, 'project.json'));
 const runtimeSpeakers = Object.assign({}, project.stage?.speakers ?? {}, ...packs.map(({ pack }) => pack.stage?.speakers ?? {}));
 const errors = [];
+const art = await loadSupportingArt(root);
+assertSupportingMappings(art, runtimeSpeakers, speakerPolicy);
 let dialogueLines = 0;
 
 for (const item of supportPlan.characters ?? []) {
-  const policy = speakerPolicy.speakers?.[item.name];
-  if (policy?.mode === 'portrait') {
-    errors.push(`${item.name}: reduced-detail supporting portrait must not be runtime-visible; replace with approved 4K original before restoring portrait mode`);
-  }
-  if (runtimeSpeakers[item.name]) {
-    errors.push(`${item.name}: runtime speaker mapping must be absent until an approved 4K original portrait exists`);
-  }
-  const provenance = await readJson(resolve(game, `art-sources/chatgpt/characters/${item.id}/provenance.json`));
-  if (provenance.visualTier === 'supporting-cast-stylized-bust' || provenance.native4kClaim === false) {
-    // Known legacy R5 asset: retained in source history/package for compatibility, but forbidden from runtime speaker mapping.
-  } else {
-    errors.push(`${item.id}: unexpected supporting portrait provenance; review quality policy before enabling`);
-  }
   for (const { pack } of packs) for (const scene of pack.scenes ?? []) for (const line of scene.lines ?? []) if (line.speaker === item.name) dialogueLines++;
 }
 

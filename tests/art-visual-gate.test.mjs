@@ -9,7 +9,8 @@ const acceptance = JSON.parse(await readFile(resolve(root, 'game/assets/4k/visua
 test('visual acceptance has one explicit PASS status for every heroine after owner review', () => {
   const records = new Map(acceptance.characters.map(item => [item.id, item]));
   for (const id of ['linwan','xiaoman','xuqi','tinglan','tangli','nanxing']) assert.equal(records.get(id)?.status, 'PASS', id);
-  assert.equal(acceptance.releaseGate, 'PASS');
+  const statuses = [...acceptance.characters, ...(acceptance.supportingCharacters ?? [])];
+  assert.equal(acceptance.releaseGate, statuses.every(item => item.status === 'PASS') ? 'PASS' : 'BLOCKED');
   assert.equal(acceptance.principle, 'TECH_READY != ART_READY');
   for (const check of ['identity','styleConsistency','bodyProportion','expressionReadability','desktopComposition','mobileComposition','provenanceTruth']) {
     assert.ok(acceptance.requiredChecks.includes(check), check);

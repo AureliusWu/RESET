@@ -2,6 +2,13 @@
 
 本文件记录《回留 / RESET》主线版本演进。已经发布的历史版本细节由对应 Git tag / GitHub Release 永久保存；主分支不再重复保留每个历史版本的独立 Changelog 文件。
 
+## Unreleased — R8 徐嘉树 neutral 候选
+
+- 首张 ChatGPT 原生徐嘉树立绘以真实 PNG / WebP 入库，保留原图、处理脚本、提示词、规格与哈希来源链；processed master 不声明 native 4K。
+- 配角映射按具体文件的 owner 视觉验收逐个启用，未批准候选继续隐藏；自动技术检查不能替代人工 PASS。
+- 增加徐嘉树全身构图的稳定阅读区、真实剧情候选四视口和离线字节检查。
+- 当前不创建稳定版本、不部署 Pages；R8 全部配角与平台门禁仍待完成。
+
 ## 1.2.1 — Mobile shell and PWA recovery
 
 - 标题 Key Visual 改为真实可交互标题页，新增明确的「进入游戏」入口。
