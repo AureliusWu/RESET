@@ -189,7 +189,7 @@
       "id": "wucheng-street-evening",
       "name": "梧城雨后街头",
       "kind": "background",
-      "status": "TO_GENERATE",
+      "status": "UPLOADED",
       "scenes": [
         "after_school_choice"
       ],
@@ -200,7 +200,7 @@
       "id": "municipal-archive-basement",
       "name": "市档案馆地下库",
       "kind": "background",
-      "status": "TO_GENERATE",
+      "status": "UPLOADED",
       "scenes": [
         "c4_tinglan_1"
       ],

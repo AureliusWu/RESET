@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "character": null,
+  "name": "municipal-archive-basement",
+  "category": "backgrounds",
+  "id": "municipal-archive-basement",
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
+  "native4kClaim": false,
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-7432fef3-6d64-47c3-a3cf-6e5d01122709.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/backgrounds/municipal-archive-basement/prompt.txt",
+  "promptSHA256": "7fa4f70fb2ffbc78f537c99df1339a45ac91f9b30eaffd15d2bab15f78dd847b",
+  "spec": "game/art-sources/chatgpt/backgrounds/municipal-archive-basement/spec.json",
+  "specSHA256": "ed25f4a5e50c986122868d01535ab291f5c120885be2ba96399a7c4d46c38262",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "resize": "aspect-fill Lanczos",
+    "sourceSize": [
+      1672,
+      941
+    ]
+  },
+  "assets": [
+    {
+      "expression": "municipal-archive-basement",
+      "original": "game/art-sources/chatgpt/backgrounds/municipal-archive-basement/original.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "144b20847b54ff46bdbc5534edc6c5fa78c673024588604d23000d30126108f0",
+      "master": "game/assets/4k/backgrounds/municipal-archive-basement.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "06d74e91692964c4cd90de3581c1134033212713b72090652c30dd91af35cd7c",
+      "runtime": "game/assets/4k/runtime/backgrounds/municipal-archive-basement.webp",
+      "runtimeSize": [
+        1920,
+        1080
+      ],
+      "runtimeSHA256": "32a57d200ec720a6de63dfe9f79c6cd16f4537ae4d42bec8011eaf8a4d46e2a4"
+    }
+  ]
+}

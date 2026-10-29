@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "character": null,
+  "name": "wucheng-street-evening",
+  "category": "backgrounds",
+  "id": "wucheng-street-evening",
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
+  "native4kClaim": false,
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-d6a54ae5-9ce3-4552-b1b2-82ba2cd4c13d.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/backgrounds/wucheng-street-evening/prompt.txt",
+  "promptSHA256": "fbc1725900189009c340e86433e285cca396eda88132b58662e0b5e5037427e3",
+  "spec": "game/art-sources/chatgpt/backgrounds/wucheng-street-evening/spec.json",
+  "specSHA256": "b3cfeedecfce6f0ea848473be9ac06d3c11908908702cfb50be24b738c7aa105",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "resize": "aspect-fill Lanczos",
+    "sourceSize": [
+      1672,
+      941
+    ]
+  },
+  "assets": [
+    {
+      "expression": "wucheng-street-evening",
+      "original": "game/art-sources/chatgpt/backgrounds/wucheng-street-evening/original.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "941df2dd79a70b62e7b9d2e2e6f469a82b4bfb7b527922e13fdbf47c82199d8e",
+      "master": "game/assets/4k/backgrounds/wucheng-street-evening.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "7e71b2519a1f7409f11035d6caa3f108988253f822c8e867a49ecbbbb153575c",
+      "runtime": "game/assets/4k/runtime/backgrounds/wucheng-street-evening.webp",
+      "runtimeSize": [
+        1920,
+        1080
+      ],
+      "runtimeSHA256": "112619923b50026e6a9d6403dea2f51f6ff6f5a17a3c9862b0a33ce6678eca5c"
+    }
+  ]
+}
