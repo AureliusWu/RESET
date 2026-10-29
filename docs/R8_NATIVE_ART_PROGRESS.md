@@ -1,6 +1,6 @@
 # R8 原生美术补齐候选进度
 
-状态：候选集成；尚未完成稳定发布闭环。
+状态：原生素材 46/46 已入库；本轮授权 AI 模拟人工美术验收 12/12 PASS，最终包回归见当前 PR Checks。
 
 ## 文件落地
 
@@ -22,7 +22,7 @@
 - `r8-scene-background-plan.json` 的 23 处背景映射已应用；82 个 Scene、Line/choice/asset ID 与正文逻辑保留。
 - manifest 现在含 45 立绘、40 背景、11 CG；加上 21 音频为 117 项。另有 5 张 UI 装饰图。
 - 六位女主已批准 runtime 图片保持原 SHA256。8 张 CG 保留原 Asset ID，通过新 WebP 接入原剧情引用。
-- 配角仍由 `visual-acceptance.json` 决定显示。12 人均未获 owner PASS，production speaker mapping 继续隐藏；候选浏览器审核使用明确标记的临时映射，不写入正文。
+- 配角仍由 `visual-acceptance.json` 决定显示。2026-10-29 用户明确要求“验收由你来模拟人类执行”；12 人已完成有逐项观察、授权和报告/图片 SHA256 绑定的 AI 模拟人工审核，生产 speaker mapping 由既有工具启用。owner 本人审核 0、AI 模拟人工审核 12，分别记录。
 - 陈岚只出现在 `noSprite` 正文场景；保留此规则，在独立审核 fixture 预览其立绘。
 - 下列 3 场景没有现有路线 witness：`focus_linwan_open`、`focus_xiaoman_open`、`focus_xuqi_open`。审核分别记录 79 个真实路线 witness 与 3 个独立背景 fixture，不伪造可达存档。
 
@@ -31,14 +31,14 @@
 - `npm run art:r8` 严格检查全部 46 项原生来源链；当前 46/46、missing=[]。映射检查在严格与 `--partial` 两种模式均执行。
 - `npm run build`、`npm run check:release` 为候选技术检查；`npm run check:stable` 保留人工验收门禁并严格要求全部原生资源。
 - `npm run test:art:r8` 从最终解压 Web 包检查图片解码、Alpha、82 场景背景、4 种视窗中的配角/异常体布局、真实离线哈希及 reload；输出 `test-results/r8-art/audit.json` 和截图。仅退出 0 与报告存在才可记技术通过。
-- Release 工作流在 PR / 普通开发提交执行候选技术验收、严格 `art:r8`、最终 Web ZIP 浏览器验收与 Windows 原生 ZIP 验收。正式发布提交在 Web/Windows 打包前仍强制 `check:stable`，publish 在任何 tag/Release 写入前再次强制人工角色视觉门禁；PR 绿色只代表候选技术检查通过。
-- 本地完整 UI 候选 Build、check:release、严格 art:r8 与 78/78 回归通过；check:stable 仍以 12 个未签收角色返回 exit 2。远端同提交平台结果见 PR Checks，未结束前不记通过。
+- Release 工作流在 PR / 普通开发提交执行候选技术验收、严格 `art:r8`、最终 Web ZIP 浏览器验收与 Windows 原生 ZIP 验收。正式发布提交在 Web/Windows 打包前仍强制 `check:stable`，publish 在任何 tag/Release 写入前再次校验已记录的授权视觉验收；PR 绿色只代表候选技术检查通过。
+- 既有完整 UI 候选 78/78 回归通过。本轮增加授权审核校验与剧情 CG 重复立绘回归，修改后的严格检查和最终包结果见当前 PR Checks；结束前不记通过。
 - 浏览器视窗模拟不等于 Android 实机或 Windows 原生验收；Windows CI 通过也不冒充实体 Windows/DPI 或 Android 实机签收。
-- 按 AGENTS.md / R8 发布边界：自动截图、Build、SHA256 不授予人工 ART_PASS。当前不覆盖稳定 tag、Release 或 Pages。
+- 按 AGENTS.md / R8 发布边界：自动截图、Build、SHA256 不单独授予 ART_PASS；本轮根据用户明确授权完成 AI 模拟人工视觉审阅，详见 `R8_AI_REVIEW.md`。当前不覆盖稳定 tag、Release 或 Pages。
 
 ## 已入库素材审核入口
 
-所有下列资源均为候选，视觉签收待定。
+下列原生资源已进行 AI 模拟人工视觉审核；12 名配角 PASS 已记录，最终包技术状态由当前 PR Checks 提供。
 
 ### portraits
 

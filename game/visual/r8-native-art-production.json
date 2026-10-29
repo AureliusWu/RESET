@@ -457,6 +457,8 @@
     "runtimeAssetsIncludingAudio": 117,
     "supportingOwnerApproved": 0,
     "pendingUITransport": 0,
-    "releaseStatus": "CANDIDATE_ONLY"
+    "releaseStatus": "VISUAL_ACCEPTED_PACKAGE_REGRESSION_REQUIRED",
+    "supportingAiSimulatedApproved": 12,
+    "supportingApproved": 12
   }
 }

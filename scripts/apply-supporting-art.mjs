@@ -23,4 +23,4 @@ for (const item of art.characters) {
 assertSupportingMappings(art, runtime.stage.speakers, policy);
 await writeFile(policyPath, JSON.stringify(policy, null, 2) + '\n');
 await writeFile(runtimePath, JSON.stringify(runtime, null, 2) + '\n');
-console.log(JSON.stringify({ status: 'existing-owner-approvals-applied', approved: [...art.approved] }));
+console.log(JSON.stringify({ status: 'recorded-visual-approvals-applied', approved: [...art.approved], ownerApproved: [...art.ownerApproved], aiSimulatedApproved: [...art.simulatedApproved] }));

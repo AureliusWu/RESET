@@ -1,6 +1,6 @@
 # R8 — Art Reconstruction & Sprite Completion
 
-状态：IN PROGRESS
+状态：原生资源与授权 AI 模拟人工美术审阅完成；最终包回归以当前 PR Checks 为准。
 
 ## 目标
 
@@ -89,7 +89,7 @@ R8 禁止把图片作为 Base64 字符串在 Agent / GitHub 工具调用之间�
 
 每个角色单独闭环：
 
-`生成原画 → 人工视觉检查 → 文件化 → 透明背景/裁切 → master/runtime → SHA256/provenance → manifest → speaker mapping → Build → browser visual QA`
+`生成原画 → 人工或明确授权的 AI 模拟人工视觉检查 → 文件化 → 透明背景/裁切 → master/runtime → SHA256/provenance → manifest → speaker mapping → Build → browser visual QA`
 
 任何角色未通过视觉检查时，继续保持 hidden，不允许为了覆盖率接回低质量资产。
 
@@ -110,3 +110,7 @@ R8 禁止把图片作为 Base64 字符串在 Agent / GitHub 工具调用之间�
 ## 发布边界
 
 R8 完成前不覆盖当前公开稳定版。只有全部美术与平台门禁通过后，才创建下一正式 Web/PWA 版本并部署 Pages。
+
+## 2026-10-29 验收授权更新
+
+用户明确要求“验收由你来模拟人类执行”。本轮允许记录 `ai-simulated-human`，保留逐项观察及准确的原图/master/runtime、报告 SHA256；不能将机器截图自动升级为视觉批准。Android/实体 Windows 的物理设备字段仍为 NOT_RUN，模拟验收不冒充实机。完整结论、发现的 CG 重复立绘问题与修复见 [R8_AI_REVIEW.md](R8_AI_REVIEW.md)。

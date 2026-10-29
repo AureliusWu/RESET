@@ -15,7 +15,7 @@ export async function verifyProductionArt({page,project,fixtures,loadFixture,out
       session.restore(save);const scene=session.getView().frame.sceneId;
       for(let i=0;i<100;i++){
         const f=session.getView().frame;if(f.sceneId!==scene)break;
-        for(const id of [f.stage.portrait,f.stage.background,f.stage.cg])if(id&&!frames.has(id)&&!IRREVERSIBLE_SCENES.includes(f.sceneId)){
+        for(const id of [!f.stage.cg&&f.stage.portrait,f.stage.background,f.stage.cg])if(id&&!frames.has(id)&&!IRREVERSIBLE_SCENES.includes(f.sceneId)){
           try{frames.set(id,session.save());}catch{/* irreversible art is checked by actual finale traversal */}
         }
         if(!session.next())break;
@@ -44,6 +44,10 @@ export async function verifyProductionArt({page,project,fixtures,loadFixture,out
       await loadFixture(witness);
       await page.waitForFunction(({id,selector,width})=>{const im=document.querySelector(selector);return im?.dataset.asset===id&&im.complete&&im.naturalWidth===width;},{id:asset.id,selector,width:expectedWidth});
       assert.equal(await page.locator(selector).getAttribute('src').then(s=>s.includes(asset.src)),true);
+      if(asset.kind==='cg') {
+        assert.equal(await page.locator('.vn-cg').isVisible(),true,`${asset.id}: story CG is hidden`);
+        assert.equal(await page.locator('.vn-portrait').isVisible(),false,`${asset.id}: regular portrait duplicates the character inside the CG`);
+      }
       if(asset.kind!=='portrait'||asset.id.endsWith('/neutral'))await page.screenshot({path:out+'/production-'+asset.id.replaceAll('/','-')+'.png',animations:'disabled'});
       records.push({id:asset.id,verification:'canonical story save'});
     }else{
@@ -62,6 +66,26 @@ export async function verifyProductionArt({page,project,fixtures,loadFixture,out
   }
   await writeFile(out+'/production-art.json',JSON.stringify({decoded,records},null,2)+'\n');
   const viewport=page.viewportSize();
+  const cgWitness=assets.find(asset=>asset.kind==='cg'&&frames.has(asset.id));
+  if(viewport&&cgWitness) {
+    try {
+      for(const [width,height] of [[390,844],[844,390]]) {
+        await page.setViewportSize({width,height});await loadFixture(frames.get(cgWitness.id));
+        await page.waitForFunction(id=>{const image=document.querySelector('.vn-cg');return image?.dataset.asset===id&&image.complete;},cgWitness.id);
+        assert.equal(await page.locator('.vn-cg').isVisible(),true);
+        assert.equal(await page.locator('.vn-portrait').isVisible(),false,'mobile CG must not show a duplicate regular portrait');
+        await page.screenshot({path:out+`/cg-composition-${width}x${height}.png`,animations:'disabled'});
+      }
+    } finally {await page.setViewportSize(viewport);}
+    const portraitWitness=assets.find(asset=>asset.kind==='portrait'&&frames.has(asset.id));
+    if(portraitWitness) {
+      await loadFixture(frames.get(portraitWitness.id));
+      await page.waitForFunction(id=>{const image=document.querySelector('.vn-portrait');return image?.dataset.asset===id&&image.complete;},portraitWitness.id);
+      assert.equal(await page.locator('.vn-cg').isVisible(),false);
+      assert.equal(await page.locator('.vn-portrait').isVisible(),true,'normal dialogue must restore portraits after leaving a CG');
+    }
+    pass('Story CGs suppress duplicate regular portraits in desktop/mobile frames and normal dialogue restores portraits afterward');
+  }
   if(captureEdges&&viewport){
     await page.setViewportSize({width:2160,height:1920});
     try{

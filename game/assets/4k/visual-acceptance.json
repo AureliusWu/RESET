@@ -1,10 +1,10 @@
 {
   "schema": 1,
   "spec": "GALGAME SPEC v0.2",
-  "targetVersion": "v1.2.1",
+  "targetVersion": "R8 accepted candidate; next unpublished release version not frozen",
   "updated": "2026-10-29",
-  "releaseGate": "BLOCKED",
-  "releaseBlocker": "R8 requires independent owner visual acceptance for all 12 supporting characters. Xu Jiashu native files are uploaded and technically verifiable; no owner art approval has been recorded.",
+  "releaseGate": "PASS",
+  "releaseBlocker": null,
   "principle": "TECH_READY != ART_READY",
   "requiredChecks": [
     "identity",
@@ -76,9 +76,32 @@
     {
       "id": "xujiashu",
       "name": "徐嘉树",
-      "status": "UNVERIFIED",
-      "reason": "Native candidate uploaded; independent owner visual review pending.",
-      "review": null,
+      "status": "PASS",
+      "reason": "User-authorized AI simulated human visual review completed; exact artifact and report hashes bound.",
+      "review": {
+        "type": "ai-simulated-human",
+        "name": "Codex (user-authorized simulated human reviewer)",
+        "completedAt": "2026-10-29T13:23:49+00:00",
+        "authorizationId": "RESET-R8-AI-HUMAN-2026-10-29",
+        "checks": {
+          "identity": "PASS",
+          "styleConsistency": "PASS",
+          "bodyProportion": "PASS",
+          "expressionReadability": "PASS",
+          "desktopComposition": "PASS",
+          "mobileComposition": "PASS",
+          "provenanceTruth": "PASS"
+        },
+        "artifactSHA256": {
+          "original": "d8f1508e1f7974f7efd5cdf6a1512bcc8c31cf43f00c3744347decf04b556b5a",
+          "master": "6894ef6088583daf27188cd27ad323e007ecc2985bcc6084e87b54ac9936b8e9",
+          "runtime": "cbc74d63768ab147ded207c1d4835d7ead1c7ae5800e8f2701d764cc80c86892"
+        },
+        "report": {
+          "path": "docs/evidence/r8-ai-review/review.json",
+          "sha256": "c0a7160eb78d42dce90693879fee8d8a287b34dea1bf8ed3be296e443a7e9c62"
+        }
+      },
       "artifacts": {
         "original": {
           "path": "game/art-sources/chatgpt/characters/xujiashu/neutral.png",
@@ -97,9 +120,32 @@
     {
       "id": "chengyan",
       "name": "程妍",
-      "status": "UNVERIFIED",
-      "reason": "Native candidate generated; owner visual review pending.",
-      "review": null,
+      "status": "PASS",
+      "reason": "User-authorized AI simulated human visual review completed; exact artifact and report hashes bound.",
+      "review": {
+        "type": "ai-simulated-human",
+        "name": "Codex (user-authorized simulated human reviewer)",
+        "completedAt": "2026-10-29T13:23:49+00:00",
+        "authorizationId": "RESET-R8-AI-HUMAN-2026-10-29",
+        "checks": {
+          "identity": "PASS",
+          "styleConsistency": "PASS",
+          "bodyProportion": "PASS",
+          "expressionReadability": "PASS",
+          "desktopComposition": "PASS",
+          "mobileComposition": "PASS",
+          "provenanceTruth": "PASS"
+        },
+        "artifactSHA256": {
+          "original": "db7b513b82806fc897bc06de17b481b071fa73f9a270525becec76e934266fab",
+          "master": "0a814c501d138870dec351a8e598ec4bf03efc3a92201a078375fdffd472db66",
+          "runtime": "1a44ebe0dea91ec7560ea08c2e3153c020dbd603301d641db12a7f6284d1c04e"
+        },
+        "report": {
+          "path": "docs/evidence/r8-ai-review/review.json",
+          "sha256": "c0a7160eb78d42dce90693879fee8d8a287b34dea1bf8ed3be296e443a7e9c62"
+        }
+      },
       "artifacts": {
         "original": {
           "path": "game/art-sources/chatgpt/characters/chengyan/neutral.png",
@@ -118,9 +164,32 @@
     {
       "id": "gumingyuan",
       "name": "顾明远",
-      "status": "UNVERIFIED",
-      "reason": "Native candidate generated; owner visual review pending.",
-      "review": null,
+      "status": "PASS",
+      "reason": "User-authorized AI simulated human visual review completed; exact artifact and report hashes bound.",
+      "review": {
+        "type": "ai-simulated-human",
+        "name": "Codex (user-authorized simulated human reviewer)",
+        "completedAt": "2026-10-29T13:23:49+00:00",
+        "authorizationId": "RESET-R8-AI-HUMAN-2026-10-29",
+        "checks": {
+          "identity": "PASS",
+          "styleConsistency": "PASS",
+          "bodyProportion": "PASS",
+          "expressionReadability": "PASS",
+          "desktopComposition": "PASS",
+          "mobileComposition": "PASS",
+          "provenanceTruth": "PASS"
+        },
+        "artifactSHA256": {
+          "original": "db37e706bf2c46d6d14f7c0a8779ac00901f407bce4ea4d71ef7d3e5bdce90fd",
+          "master": "9a6ee854d3ebb273f68279386c2a4cc471a3f595597cdeedb42397061ddc2b4e",
+          "runtime": "a74f93d7b739f45a24ee9935612b1a67716277550910f5d17bc4f0563a1f396c"
+        },
+        "report": {
+          "path": "docs/evidence/r8-ai-review/review.json",
+          "sha256": "c0a7160eb78d42dce90693879fee8d8a287b34dea1bf8ed3be296e443a7e9c62"
+        }
+      },
       "artifacts": {
         "original": {
           "path": "game/art-sources/chatgpt/characters/gumingyuan/neutral.png",
@@ -139,9 +208,32 @@
     {
       "id": "chenlan",
       "name": "陈岚",
-      "status": "UNVERIFIED",
-      "reason": "Native candidate generated; owner visual review pending.",
-      "review": null,
+      "status": "PASS",
+      "reason": "User-authorized AI simulated human visual review completed; exact artifact and report hashes bound.",
+      "review": {
+        "type": "ai-simulated-human",
+        "name": "Codex (user-authorized simulated human reviewer)",
+        "completedAt": "2026-10-29T13:23:49+00:00",
+        "authorizationId": "RESET-R8-AI-HUMAN-2026-10-29",
+        "checks": {
+          "identity": "PASS",
+          "styleConsistency": "PASS",
+          "bodyProportion": "PASS",
+          "expressionReadability": "PASS",
+          "desktopComposition": "PASS",
+          "mobileComposition": "PASS",
+          "provenanceTruth": "PASS"
+        },
+        "artifactSHA256": {
+          "original": "097368b328c790336e6084f58aabb85422bb2b964a146990a1b99a2147bb8bcb",
+          "master": "b77daa48d3f7bfe04be49c48b196800452271b04ca45042597fef53f87525d1d",
+          "runtime": "fe0f22abc5d59113d2e84620db78615722bc2a952c979fa0bf3ddebde36c3ec4"
+        },
+        "report": {
+          "path": "docs/evidence/r8-ai-review/review.json",
+          "sha256": "c0a7160eb78d42dce90693879fee8d8a287b34dea1bf8ed3be296e443a7e9c62"
+        }
+      },
       "artifacts": {
         "original": {
           "path": "game/art-sources/chatgpt/characters/chenlan/neutral.png",
@@ -160,9 +252,32 @@
     {
       "id": "xurong",
       "name": "许蓉",
-      "status": "UNVERIFIED",
-      "reason": "Native candidate generated; owner visual review pending.",
-      "review": null,
+      "status": "PASS",
+      "reason": "User-authorized AI simulated human visual review completed; exact artifact and report hashes bound.",
+      "review": {
+        "type": "ai-simulated-human",
+        "name": "Codex (user-authorized simulated human reviewer)",
+        "completedAt": "2026-10-29T13:23:49+00:00",
+        "authorizationId": "RESET-R8-AI-HUMAN-2026-10-29",
+        "checks": {
+          "identity": "PASS",
+          "styleConsistency": "PASS",
+          "bodyProportion": "PASS",
+          "expressionReadability": "PASS",
+          "desktopComposition": "PASS",
+          "mobileComposition": "PASS",
+          "provenanceTruth": "PASS"
+        },
+        "artifactSHA256": {
+          "original": "eac0644abd10e39f2255d4882e2f30b430bb16dd1c5f9cc3ebeca410e63e0cce",
+          "master": "cf9b3e04fa33479038846b54ca8eb810865160d15415e42c04716db27b400b64",
+          "runtime": "cf94728f0962ac5c01664f27f0227e5118bd0351fbf0170959aaf1396c6c3d46"
+        },
+        "report": {
+          "path": "docs/evidence/r8-ai-review/review.json",
+          "sha256": "c0a7160eb78d42dce90693879fee8d8a287b34dea1bf8ed3be296e443a7e9c62"
+        }
+      },
       "artifacts": {
         "original": {
           "path": "game/art-sources/chatgpt/characters/xurong/neutral.png",
@@ -181,9 +296,32 @@
     {
       "id": "luoxiumei",
       "name": "罗秀梅",
-      "status": "UNVERIFIED",
-      "reason": "Native candidate generated; owner visual review pending.",
-      "review": null,
+      "status": "PASS",
+      "reason": "User-authorized AI simulated human visual review completed; exact artifact and report hashes bound.",
+      "review": {
+        "type": "ai-simulated-human",
+        "name": "Codex (user-authorized simulated human reviewer)",
+        "completedAt": "2026-10-29T13:23:49+00:00",
+        "authorizationId": "RESET-R8-AI-HUMAN-2026-10-29",
+        "checks": {
+          "identity": "PASS",
+          "styleConsistency": "PASS",
+          "bodyProportion": "PASS",
+          "expressionReadability": "PASS",
+          "desktopComposition": "PASS",
+          "mobileComposition": "PASS",
+          "provenanceTruth": "PASS"
+        },
+        "artifactSHA256": {
+          "original": "ac59a2f3641a8f870123e53cb76a3184a2b5ad0a1453d669dece4882b9189dc3",
+          "master": "f1604def90c42c25e445c452dc342c347d91874267d67fad4bb52cb92e211609",
+          "runtime": "753a64a4a1971c83fa052c019874fe6b3a17b5868ce0de7271c3c07e08e35f5e"
+        },
+        "report": {
+          "path": "docs/evidence/r8-ai-review/review.json",
+          "sha256": "c0a7160eb78d42dce90693879fee8d8a287b34dea1bf8ed3be296e443a7e9c62"
+        }
+      },
       "artifacts": {
         "original": {
           "path": "game/art-sources/chatgpt/characters/luoxiumei/neutral.png",
@@ -202,9 +340,32 @@
     {
       "id": "suyao",
       "name": "苏遥",
-      "status": "UNVERIFIED",
-      "reason": "Native candidate generated; owner visual review pending.",
-      "review": null,
+      "status": "PASS",
+      "reason": "User-authorized AI simulated human visual review completed; exact artifact and report hashes bound.",
+      "review": {
+        "type": "ai-simulated-human",
+        "name": "Codex (user-authorized simulated human reviewer)",
+        "completedAt": "2026-10-29T13:23:49+00:00",
+        "authorizationId": "RESET-R8-AI-HUMAN-2026-10-29",
+        "checks": {
+          "identity": "PASS",
+          "styleConsistency": "PASS",
+          "bodyProportion": "PASS",
+          "expressionReadability": "PASS",
+          "desktopComposition": "PASS",
+          "mobileComposition": "PASS",
+          "provenanceTruth": "PASS"
+        },
+        "artifactSHA256": {
+          "original": "7d3576ff427ff1b81f38c073f845d28fdc65b1d5c3d9813d4baa9b72ae92cefd",
+          "master": "d37abc33e82d9b4f97e58e6807643ba5675b567c8d66bcde6803e09b9d6ba959",
+          "runtime": "8084a85bb7cd9ef190cc69897327fbe626fceccacb2c8bc54f148c9d6712c758"
+        },
+        "report": {
+          "path": "docs/evidence/r8-ai-review/review.json",
+          "sha256": "c0a7160eb78d42dce90693879fee8d8a287b34dea1bf8ed3be296e443a7e9c62"
+        }
+      },
       "artifacts": {
         "original": {
           "path": "game/art-sources/chatgpt/characters/suyao/neutral.png",
@@ -223,9 +384,32 @@
     {
       "id": "hechuan",
       "name": "何川",
-      "status": "UNVERIFIED",
-      "reason": "Native candidate generated; owner visual review pending.",
-      "review": null,
+      "status": "PASS",
+      "reason": "User-authorized AI simulated human visual review completed; exact artifact and report hashes bound.",
+      "review": {
+        "type": "ai-simulated-human",
+        "name": "Codex (user-authorized simulated human reviewer)",
+        "completedAt": "2026-10-29T13:23:49+00:00",
+        "authorizationId": "RESET-R8-AI-HUMAN-2026-10-29",
+        "checks": {
+          "identity": "PASS",
+          "styleConsistency": "PASS",
+          "bodyProportion": "PASS",
+          "expressionReadability": "PASS",
+          "desktopComposition": "PASS",
+          "mobileComposition": "PASS",
+          "provenanceTruth": "PASS"
+        },
+        "artifactSHA256": {
+          "original": "de26d73f0062e04465d9e0b24b0871c84f6e07cfd40b36af2cd5792765e1b8c0",
+          "master": "0dd53c762bbd1b1eeec8eba0a6a9f2746f8dd10ffbd0f23a0d3ddc892998b0b0",
+          "runtime": "5a108ade7b701300de5e015194f85ba8104abd8cb5fbe236e27137f809c2ee3d"
+        },
+        "report": {
+          "path": "docs/evidence/r8-ai-review/review.json",
+          "sha256": "c0a7160eb78d42dce90693879fee8d8a287b34dea1bf8ed3be296e443a7e9c62"
+        }
+      },
       "artifacts": {
         "original": {
           "path": "game/art-sources/chatgpt/characters/hechuan/neutral.png",
@@ -244,9 +428,32 @@
     {
       "id": "jiyao",
       "name": "纪尧",
-      "status": "UNVERIFIED",
-      "reason": "Native candidate generated; owner visual review pending.",
-      "review": null,
+      "status": "PASS",
+      "reason": "User-authorized AI simulated human visual review completed; exact artifact and report hashes bound.",
+      "review": {
+        "type": "ai-simulated-human",
+        "name": "Codex (user-authorized simulated human reviewer)",
+        "completedAt": "2026-10-29T13:23:49+00:00",
+        "authorizationId": "RESET-R8-AI-HUMAN-2026-10-29",
+        "checks": {
+          "identity": "PASS",
+          "styleConsistency": "PASS",
+          "bodyProportion": "PASS",
+          "expressionReadability": "PASS",
+          "desktopComposition": "PASS",
+          "mobileComposition": "PASS",
+          "provenanceTruth": "PASS"
+        },
+        "artifactSHA256": {
+          "original": "b0fb5484a1f380e3a62791ef6481e2ad3375d17a16ce464087870e3cb31b751f",
+          "master": "509d9776b57cab367cdf8fcc6650d21a820312832fc521f7c86be7574fd2aaab",
+          "runtime": "1df92de522b74ec49fc5dbd6c01bd727682dcff5f055bed489ef4c55c4e665fb"
+        },
+        "report": {
+          "path": "docs/evidence/r8-ai-review/review.json",
+          "sha256": "c0a7160eb78d42dce90693879fee8d8a287b34dea1bf8ed3be296e443a7e9c62"
+        }
+      },
       "artifacts": {
         "original": {
           "path": "game/art-sources/chatgpt/characters/jiyao/neutral.png",
@@ -265,9 +472,32 @@
     {
       "id": "lincheng",
       "name": "林澄",
-      "status": "UNVERIFIED",
-      "reason": "Native candidate generated; owner visual review pending.",
-      "review": null,
+      "status": "PASS",
+      "reason": "User-authorized AI simulated human visual review completed; exact artifact and report hashes bound.",
+      "review": {
+        "type": "ai-simulated-human",
+        "name": "Codex (user-authorized simulated human reviewer)",
+        "completedAt": "2026-10-29T13:23:49+00:00",
+        "authorizationId": "RESET-R8-AI-HUMAN-2026-10-29",
+        "checks": {
+          "identity": "PASS",
+          "styleConsistency": "PASS",
+          "bodyProportion": "PASS",
+          "expressionReadability": "PASS",
+          "desktopComposition": "PASS",
+          "mobileComposition": "PASS",
+          "provenanceTruth": "PASS"
+        },
+        "artifactSHA256": {
+          "original": "3b94ee0a49e39e2484e30d0fd9a3037b519c9df7916606c892b0fbe494e4d1e3",
+          "master": "090dd5637a2aac0273ca5e246cf188905d980a511ec9bc6f7f7a62e4d154e265",
+          "runtime": "c353eb6a60e1d5fcf0e30182a481ef0ea8c60f0c75e24bd5266e5fac049e62e6"
+        },
+        "report": {
+          "path": "docs/evidence/r8-ai-review/review.json",
+          "sha256": "c0a7160eb78d42dce90693879fee8d8a287b34dea1bf8ed3be296e443a7e9c62"
+        }
+      },
       "artifacts": {
         "original": {
           "path": "game/art-sources/chatgpt/characters/lincheng/neutral.png",
@@ -286,9 +516,32 @@
     {
       "id": "shenyanqiu",
       "name": "沈砚秋",
-      "status": "UNVERIFIED",
-      "reason": "Native candidate generated; owner visual review pending.",
-      "review": null,
+      "status": "PASS",
+      "reason": "User-authorized AI simulated human visual review completed; exact artifact and report hashes bound.",
+      "review": {
+        "type": "ai-simulated-human",
+        "name": "Codex (user-authorized simulated human reviewer)",
+        "completedAt": "2026-10-29T13:23:49+00:00",
+        "authorizationId": "RESET-R8-AI-HUMAN-2026-10-29",
+        "checks": {
+          "identity": "PASS",
+          "styleConsistency": "PASS",
+          "bodyProportion": "PASS",
+          "expressionReadability": "PASS",
+          "desktopComposition": "PASS",
+          "mobileComposition": "PASS",
+          "provenanceTruth": "PASS"
+        },
+        "artifactSHA256": {
+          "original": "89bfc4d23edbb5d0682f6d04e603ce787012944f9719b09ed3bd304dc6bbe3d4",
+          "master": "bd0b0622b3d7a04029828a6d0dd8d10f083565e10a8f0753931e9522da986d40",
+          "runtime": "a1a93a858088a63900baf0fdd0908e6fe3e6677dbcff20203d0260561c67a715"
+        },
+        "report": {
+          "path": "docs/evidence/r8-ai-review/review.json",
+          "sha256": "c0a7160eb78d42dce90693879fee8d8a287b34dea1bf8ed3be296e443a7e9c62"
+        }
+      },
       "artifacts": {
         "original": {
           "path": "game/art-sources/chatgpt/characters/shenyanqiu/neutral.png",
@@ -307,9 +560,32 @@
     {
       "id": "liangcheng",
       "name": "梁成",
-      "status": "UNVERIFIED",
-      "reason": "Native candidate generated; owner visual review pending.",
-      "review": null,
+      "status": "PASS",
+      "reason": "User-authorized AI simulated human visual review completed; exact artifact and report hashes bound.",
+      "review": {
+        "type": "ai-simulated-human",
+        "name": "Codex (user-authorized simulated human reviewer)",
+        "completedAt": "2026-10-29T13:23:49+00:00",
+        "authorizationId": "RESET-R8-AI-HUMAN-2026-10-29",
+        "checks": {
+          "identity": "PASS",
+          "styleConsistency": "PASS",
+          "bodyProportion": "PASS",
+          "expressionReadability": "PASS",
+          "desktopComposition": "PASS",
+          "mobileComposition": "PASS",
+          "provenanceTruth": "PASS"
+        },
+        "artifactSHA256": {
+          "original": "4b3e64a2aab077594dd463fb2fd866b433646721e70c7a2a90daebb010e435c3",
+          "master": "1ed72c068f848a0fef3b5ef1eeddf78505da8b54d129b71d07761a88821036c0",
+          "runtime": "fb44f23da214cf9143c31055c620035f04c6f5902ce2e66b0e711b21956b8e64"
+        },
+        "report": {
+          "path": "docs/evidence/r8-ai-review/review.json",
+          "sha256": "c0a7160eb78d42dce90693879fee8d8a287b34dea1bf8ed3be296e443a7e9c62"
+        }
+      },
       "artifacts": {
         "original": {
           "path": "game/art-sources/chatgpt/characters/liangcheng/neutral.png",
@@ -325,5 +601,28 @@
         }
       }
     }
-  ]
+  ],
+  "simulatedHumanReviewAuthorization": {
+    "id": "RESET-R8-AI-HUMAN-2026-10-29",
+    "mode": "user-authorized-ai-simulated-human",
+    "instruction": "验收由你来模拟人类执行",
+    "authorizedAt": "2026-10-29",
+    "timePrecision": "day",
+    "characterIds": [
+      "xujiashu",
+      "chengyan",
+      "gumingyuan",
+      "chenlan",
+      "xurong",
+      "luoxiumei",
+      "suyao",
+      "hechuan",
+      "jiyao",
+      "lincheng",
+      "shenyanqiu",
+      "liangcheng"
+    ],
+    "scope": "R8 visual review and simulated player/platform acceptance; existing heroine artwork is not replaced",
+    "platformMode": "AI simulated human review with actual Web and Windows CI evidence; physical-device flags remain truthful"
+  }
 }

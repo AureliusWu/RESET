@@ -235,7 +235,7 @@ jobs:
       actions: read
     steps:
       - uses: actions/checkout@v4
-      - name: Require owner visual acceptance before publication
+      - name: Require recorded visual acceptance before publication
         run: npm run art:visual:release
       - name: Require matching main Build CI
         uses: actions/github-script@v7

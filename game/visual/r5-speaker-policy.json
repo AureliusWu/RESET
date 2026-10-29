@@ -4,30 +4,100 @@
   "phase": "production-portrait-quality-policy",
   "principle": "A named speaker may render a portrait only when that portrait is approved 4K production artwork. Reduced-detail, procedural, stylized-bust, placeholder, or fallback portraits are forbidden at runtime; when approved art is unavailable, dialogue renders without a portrait.",
   "speakers": {
-    "旁白": {"mode": "narrator"},
-    "陈渡": {"mode": "protagonist"},
-    "林晚": {"mode": "portrait", "character": "linwan"},
-    "周小满": {"mode": "portrait", "character": "xiaoman"},
-    "许栖": {"mode": "portrait", "character": "xuqi"},
-    "沈听澜": {"mode": "portrait", "character": "tinglan"},
-    "唐梨": {"mode": "portrait", "character": "tangli"},
-    "乔南星": {"mode": "portrait", "character": "nanxing"},
-    "徐嘉树": {"mode": "functional", "role": "awaiting-approved-4k-portrait"},
-    "程妍": {"mode": "functional", "role": "awaiting-approved-4k-portrait"},
-    "顾明远": {"mode": "functional", "role": "awaiting-approved-4k-portrait"},
-    "陈岚": {"mode": "functional", "role": "awaiting-approved-4k-portrait"},
-    "许蓉": {"mode": "functional", "role": "awaiting-approved-4k-portrait"},
-    "罗秀梅": {"mode": "functional", "role": "awaiting-approved-4k-portrait"},
-    "苏遥": {"mode": "functional", "role": "awaiting-approved-4k-portrait"},
-    "何川": {"mode": "functional", "role": "awaiting-approved-4k-portrait"},
-    "纪尧": {"mode": "functional", "role": "awaiting-approved-4k-portrait"},
-    "林澄": {"mode": "functional", "role": "awaiting-approved-4k-portrait"},
-    "沈砚秋": {"mode": "functional", "role": "awaiting-approved-4k-portrait"},
-    "梁成": {"mode": "functional", "role": "awaiting-approved-4k-portrait"},
-    "无面行人": {"mode": "portrait", "character": "faceless"},
-    "第七人": {"mode": "portrait", "character": "echochen"},
-    "？？？": {"mode": "functional", "role": "unidentified-voice"},
-    "车站广播": {"mode": "functional", "role": "public-address"}
+    "旁白": {
+      "mode": "narrator"
+    },
+    "陈渡": {
+      "mode": "protagonist"
+    },
+    "林晚": {
+      "mode": "portrait",
+      "character": "linwan"
+    },
+    "周小满": {
+      "mode": "portrait",
+      "character": "xiaoman"
+    },
+    "许栖": {
+      "mode": "portrait",
+      "character": "xuqi"
+    },
+    "沈听澜": {
+      "mode": "portrait",
+      "character": "tinglan"
+    },
+    "唐梨": {
+      "mode": "portrait",
+      "character": "tangli"
+    },
+    "乔南星": {
+      "mode": "portrait",
+      "character": "nanxing"
+    },
+    "徐嘉树": {
+      "mode": "portrait",
+      "character": "xujiashu"
+    },
+    "程妍": {
+      "mode": "portrait",
+      "character": "chengyan"
+    },
+    "顾明远": {
+      "mode": "portrait",
+      "character": "gumingyuan"
+    },
+    "陈岚": {
+      "mode": "portrait",
+      "character": "chenlan"
+    },
+    "许蓉": {
+      "mode": "portrait",
+      "character": "xurong"
+    },
+    "罗秀梅": {
+      "mode": "portrait",
+      "character": "luoxiumei"
+    },
+    "苏遥": {
+      "mode": "portrait",
+      "character": "suyao"
+    },
+    "何川": {
+      "mode": "portrait",
+      "character": "hechuan"
+    },
+    "纪尧": {
+      "mode": "portrait",
+      "character": "jiyao"
+    },
+    "林澄": {
+      "mode": "portrait",
+      "character": "lincheng"
+    },
+    "沈砚秋": {
+      "mode": "portrait",
+      "character": "shenyanqiu"
+    },
+    "梁成": {
+      "mode": "portrait",
+      "character": "liangcheng"
+    },
+    "无面行人": {
+      "mode": "portrait",
+      "character": "faceless"
+    },
+    "第七人": {
+      "mode": "portrait",
+      "character": "echochen"
+    },
+    "？？？": {
+      "mode": "functional",
+      "role": "unidentified-voice"
+    },
+    "车站广播": {
+      "mode": "functional",
+      "role": "public-address"
+    }
   },
   "functionalSpeakerPatterns": [
     "^(系统|广播|广播声|班群|群消息|消息|电话)",

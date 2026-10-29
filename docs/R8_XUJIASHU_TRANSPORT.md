@@ -1,5 +1,7 @@
 # R8 徐嘉树 neutral：真实二进制入库
 
+> 先导阶段历史记录。本次最新状态：用户授权 AI 模拟人工验收已完成，徐嘉树 PASS，生产映射已启用；下文的待 owner 审核状态属于历史断点。当前事实见 [R8_AI_REVIEW.md](R8_AI_REVIEW.md) 与 `visual-acceptance.json`。
+
 2026-10-29，手机端完成 Work 云浏览器 GitHub 登录后，通过 GitHub 网页文件选择器上传三份真实图片。图片没有以 Base64 / data URI 在 Agent 或 GitHub 工具参数之间传递。
 
 首次二进制提交：`1f2073de6c89484a6828016709294c8d4b9c4205`，候选分支 `r8-xujiashu-neutral`。后续通过 Git tree 复用已存在的 blob SHA，移动到规范资产路径，同时移除根目录临时文件名。

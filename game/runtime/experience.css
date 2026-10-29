@@ -65,6 +65,10 @@ main#game{height:calc(100dvh - 30px - env(safe-area-inset-top) - env(safe-area-i
 
 /* Round 7: 4K UI key visuals remain decorative; controls and text stay DOM/CSS. */
 .vn-engine .vn-stage{position:relative}
+/* Story CGs contain the character artwork already; suppress the regular sprite
+   only while the real renderer's CG layer is visible. Gallery images do not
+   affect this rule, and normal dialogue restores the sprite automatically. */
+.vn-engine .vn-stage:has(.vn-cg:not([hidden])) .vn-portrait{display:none!important}
 .reset-title-key-visual{position:absolute;inset:0;z-index:6;width:100%;height:100%;object-fit:cover;pointer-events:none;opacity:.92;filter:saturate(.94)}
 .reset-ui-header{display:block;width:100%;height:clamp(116px,18vw,220px);object-fit:cover;object-position:center;border:1px solid #46616a;border-radius:12px;margin:8px 0 16px;box-shadow:0 12px 32px #0004;background:#0d1a22}
 .reset-ui-header[data-ui-visual=save-anomaly]{object-position:center 48%}

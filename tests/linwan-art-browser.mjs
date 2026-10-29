@@ -41,7 +41,7 @@ export async function verifyLinwanArt({page,project,fixtures,loadFixture,control
       for(let count=0;count<Math.max(100,project.scenes.find(item=>item.id===scene)?.lines?.length??0);count++) {
         const frame=session.getView().frame;
         if(frame.sceneId!==scene)break;
-        if(frame.stage.portrait?.startsWith('linwan/'))frameSaves[frame.stage.portrait]??=session.save();
+        if(!frame.stage.cg&&frame.stage.portrait?.startsWith('linwan/'))frameSaves[frame.stage.portrait]??=session.save();
         if(!session.next())break;
       }
     } finally { session.dispose(); }

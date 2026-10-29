@@ -8,7 +8,8 @@ const json = async path => JSON.parse(await readFile(path, 'utf8'));
 const digest = bytes => createHash('sha256').update(bytes).digest('hex');
 
 // Approval is bound to the exact native source, processed master and runtime.
-// This validates an existing owner decision; it never produces that decision.
+// Validate a recorded owner decision or an explicitly user-authorized simulated
+// human review. Mechanical checks alone never produce either decision.
 export async function loadSupportingArt(root) {
   const plan = await json(resolve(root, 'game/visual/r5-supporting-cast-plan.json'));
   const acceptance = await json(resolve(root, 'game/assets/4k/visual-acceptance.json'));
@@ -19,6 +20,9 @@ export async function loadSupportingArt(root) {
   const byId = new Map(records.map(item => [item.id, item]));
   assert.equal(byId.size, records.length, 'duplicate supporting visual acceptance record');
   const approved = new Set();
+  const ownerApproved = new Set();
+  const simulatedApproved = new Set();
+  const reports = new Map();
   for (const character of characters) {
     const item = byId.get(character.id);
     assert.ok(item, `missing supporting acceptance: ${character.id}`);
@@ -46,20 +50,48 @@ export async function loadSupportingArt(root) {
       const sha256 = digest(await readFile(resolve(root, path)));
       assert.equal(artifact.sha256, sha256, `${character.id}: ${kind} artifact SHA256 mismatch`);
       assert.equal(asset[`${kind}SHA256`], sha256, `${character.id}: ${kind} provenance SHA256 mismatch`);
-      if (item.status === 'PASS') assert.equal(item.review?.artifactSHA256?.[kind], sha256, `${character.id}: owner review does not bind ${kind}`);
+      if (item.status === 'PASS') assert.equal(item.review?.artifactSHA256?.[kind], sha256, `${character.id}: review does not bind ${kind}`);
     }
     for (const field of ['prompt','spec']) {
       assert.ok(typeof provenance[field] === 'string' && provenance[field].startsWith(sourceDir) && !provenance[field].slice(sourceDir.length).includes('/'), `${character.id}: noncanonical ${field} path`);
       assert.equal(digest(await readFile(resolve(root, provenance[field]))), provenance[`${field}SHA256`], `${character.id}: ${field} SHA256 mismatch`);
     }
     if (item.status !== 'PASS') continue;
-    assert.equal(item.review?.type, 'owner', `${character.id}: independent owner review required`);
-    assert.ok(typeof item.review.name === 'string' && item.review.name.trim(), `${character.id}: owner reviewer missing`);
-    assert.ok(Number.isFinite(Date.parse(item.review.completedAt)), `${character.id}: owner review timestamp missing`);
-    for (const check of visualChecks) assert.equal(item.review.checks?.[check], 'PASS', `${character.id}: owner visual check incomplete: ${check}`);
+    const review = item.review;
+    assert.ok(['owner','ai-simulated-human'].includes(review?.type), `${character.id}: owner or user-authorized AI simulated human review required`);
+    assert.ok(typeof review.name === 'string' && review.name.trim(), `${character.id}: reviewer missing`);
+    assert.ok(Number.isFinite(Date.parse(review.completedAt)), `${character.id}: review timestamp missing`);
+    for (const check of visualChecks) assert.equal(review.checks?.[check], 'PASS', `${character.id}: visual check incomplete: ${check}`);
+    if (review.type === 'ai-simulated-human') {
+      const authorization = acceptance.simulatedHumanReviewAuthorization;
+      assert.equal(authorization?.mode, 'user-authorized-ai-simulated-human', `${character.id}: explicit user authorization required`);
+      assert.ok(typeof authorization.instruction === 'string' && authorization.instruction.trim(), `${character.id}: user instruction missing`);
+      assert.ok(Number.isFinite(Date.parse(authorization.authorizedAt)), `${character.id}: authorization date missing`);
+      assert.ok(typeof authorization.id === 'string' && authorization.id.length > 0 && review.authorizationId === authorization.id, `${character.id}: review authorization mismatch`);
+      assert.ok(authorization.characterIds?.includes(character.id), `${character.id}: outside authorized review scope`);
+      const evidence = review.report;
+      assert.ok(typeof evidence?.path === 'string' && /^docs\/evidence\/[a-zA-Z0-9_/-]+\.json$/.test(evidence.path), `${character.id}: canonical review report required`);
+      if (!reports.has(evidence.path)) reports.set(evidence.path, await readFile(resolve(root, evidence.path)));
+      const bytes = reports.get(evidence.path);
+      assert.equal(digest(bytes), evidence.sha256, `${character.id}: review report SHA256 mismatch`);
+      const report = JSON.parse(bytes.toString('utf8'));
+      assert.equal(report.schema, 1, `${character.id}: unsupported review report schema`);
+      assert.equal(report.reviewType, 'ai-simulated-human', `${character.id}: report reviewer type mismatch`);
+      assert.equal(report.authorizationId, authorization.id, `${character.id}: report authorization mismatch`);
+      const matches = report.characters?.filter(value => value.id === character.id) ?? [];
+      assert.equal(matches.length, 1, `${character.id}: unique individual review required`);
+      const verdict = matches[0];
+      assert.equal(verdict.status, 'PASS', `${character.id}: report verdict is not PASS`);
+      for (const kind of ['original','master','runtime']) assert.equal(verdict.artifactSHA256?.[kind], item.artifacts[kind].sha256, `${character.id}: report does not bind ${kind}`);
+      for (const check of visualChecks) {
+        assert.equal(verdict.checks?.[check]?.status, 'PASS', `${character.id}: report check incomplete: ${check}`);
+        assert.ok(typeof verdict.checks[check].observation === 'string' && verdict.checks[check].observation.trim(), `${character.id}: individual observation missing: ${check}`);
+      }
+      simulatedApproved.add(character.id);
+    } else ownerApproved.add(character.id);
     approved.add(character.id);
   }
-  return { characters, records, approved, acceptance };
+  return { characters, records, approved, ownerApproved, simulatedApproved, acceptance };
 }
 
 export function assertSupportingMappings(art, speakers, policy) {
