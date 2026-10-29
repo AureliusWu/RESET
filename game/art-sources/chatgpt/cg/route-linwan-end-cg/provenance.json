@@ -1,26 +1,53 @@
 {
   "schema": 1,
-  "assetId": "route-linwan-end-cg",
-  "sourceType": "deterministic-composite-from-approved-production-art",
+  "character": null,
+  "name": "这一轮也算数",
+  "category": "cg",
+  "id": "route-linwan-end-cg",
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
   "native4kClaim": false,
-  "inputs": {
-    "background": "game/assets/4k/backgrounds/riverside-dusk.png",
-    "portrait": "game/assets/4k/characters/linwan/smile.png",
-    "ending": "normal-linwan",
-    "scene": "end_linwan"
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-b9b9d3bc-6d59-4935-bf9f-d3e345d10866.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/cg/route-linwan-end-cg/prompt.txt",
+  "promptSHA256": "5156160b4dc9104895fc657c5dbca7f21131cd9bb4116fd65bfc29e767582b4e",
+  "spec": "game/art-sources/chatgpt/cg/route-linwan-end-cg/spec.json",
+  "specSHA256": "f7042828bc54b8a89e84ceed3908dbf48a4c324765c37c464600456308b5f018",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "resize": "aspect-fill Lanczos",
+    "sourceSize": [
+      1672,
+      941
+    ]
   },
   "assets": [
     {
+      "expression": "route-linwan-end-cg",
       "original": "game/art-sources/chatgpt/cg/route-linwan-end-cg/original.png",
-      "originalSHA256": "97907ad129429a7e09218fe096901ad6f71e2614a82953a075d1310af1c023ec",
       "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "2bd5f8fb0e545c20fc7899e7fd7f75109f6e4e45c6af9e72601ec55f5cae45c0",
+      "master": "game/assets/4k/cg/route-linwan-end-cg.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "9cd881ae0f11942e78e1e3686ac5dca381162020a988c51f218646de8380b15f",
+      "runtime": "game/assets/4k/runtime/cg/route-linwan-end-cg.webp",
+      "runtimeSize": [
         1920,
         1080
       ],
-      "master": "game/assets/4k/cg/route-linwan-end-cg.png",
-      "masterSHA256": "b3ac6934d676aca1860aa59f8061123344bcedb205fb0dda9f2414fb27af0d9c",
-      "runtime": "game/assets/4k/runtime/cg/route-linwan-end-cg.webp",
-      "runtimeSHA256": "7b1daa21a7fa291586548fdf52067232cfeb6022d2034e479553d98ee36987e8"
+      "runtimeSHA256": "84a6563f7fa427c91e233368fdbe981341266ff8fc17fda17fd7c8906767095d"
     }
   ]
 }

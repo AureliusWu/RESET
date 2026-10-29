@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "id": "route-linwan-end-cg",
+  "name": "这一轮也算数",
+  "kind": "cg",
+  "scene": "end_linwan",
+  "canon": {
+    "path": "game/content/chapters/04.json",
+    "title": "林晚 · 这一轮也算数",
+    "location": "梧城江滩",
+    "time": "10月24日 18:43",
+    "dialogue": [
+      {
+        "id": "r1_end_linwan_pre04_01",
+        "speaker": "唐梨",
+        "text": "知道。今天不争快慢，先把人带回来。"
+      },
+      {
+        "id": "e4l002",
+        "speaker": "林晚",
+        "text": "你还记得那封信吗？"
+      },
+      {
+        "id": "e4l003",
+        "speaker": "陈渡",
+        "text": "记得。也记得我答应你，至少把这一轮活完。"
+      },
+      {
+        "id": "r1_end_linwan_post01_01",
+        "speaker": "陈渡",
+        "text": "这页到这里就够了。关于林晚，不用再写一个能把一切解释完的结论。"
+      },
+      {
+        "id": "r1_end_linwan_post08_01",
+        "speaker": "陈渡",
+        "text": "把徐嘉树和罗秀梅也记进去。不是因为他们掌握答案，是因为如果我们的选择伤到普通人的生活，那也必须算在结果里。"
+      }
+    ]
+  },
+  "designProposal": "10月24日18:43雨停后的梧城江滩，林晚在画面右侧回望，温柔但有自己决定的浅笑，手中一封折好的旧信；左侧展开江面、普通桥梁与岸边步道，湿栏杆还有水珠，自然余晖。",
+  "references": [
+    "game/assets/4k/runtime/cg/route-linwan-end-cg.webp",
+    "game/assets/4k/runtime/characters/linwan/smile.webp"
+  ],
+  "characterIdentityMustMatch": "linwan",
+  "reviewStatus": "UNVERIFIED",
+  "native4kClaim": false
+}

@@ -115,7 +115,7 @@
       "id": "linwan-1842-cg",
       "name": "北站18:42最终约定",
       "kind": "cg",
-      "status": "TO_GENERATE",
+      "status": "UPLOADED",
       "scene": "c5_1842",
       "prompt": "game/art-sources/chatgpt/cg/linwan-1842-cg/prompt.txt",
       "spec": "game/art-sources/chatgpt/cg/linwan-1842-cg/spec.json"
@@ -124,7 +124,7 @@
       "id": "true-end-riverside-cg",
       "name": "雨停以后·明天见",
       "kind": "cg",
-      "status": "TO_GENERATE",
+      "status": "UPLOADED",
       "scene": "c7_linwan",
       "prompt": "game/art-sources/chatgpt/cg/true-end-riverside-cg/prompt.txt",
       "spec": "game/art-sources/chatgpt/cg/true-end-riverside-cg/spec.json"
@@ -133,7 +133,7 @@
       "id": "route-linwan-end-cg",
       "name": "这一轮也算数",
       "kind": "cg",
-      "status": "TO_GENERATE",
+      "status": "UPLOADED",
       "scene": "end_linwan",
       "prompt": "game/art-sources/chatgpt/cg/route-linwan-end-cg/prompt.txt",
       "spec": "game/art-sources/chatgpt/cg/route-linwan-end-cg/spec.json"

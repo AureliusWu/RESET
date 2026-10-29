@@ -1,39 +1,53 @@
 {
   "schema": 1,
-  "generator": "deterministic composite from approved ChatGPT-origin 4K production assets",
-  "workflow": "approved-4k-background-plus-approved-4k-linwan-composite",
-  "native4kClaim": false,
-  "processing": "Pillow 4K composite canvas from approved production assets; deterministic lighting/weather layers",
-  "authorization": "2026-10-26: Round 5 收尾，保持人物身份、画风与 4K 正式资产链",
+  "character": null,
+  "name": "北站最终约定",
   "category": "cg",
   "id": "linwan-1842-cg",
-  "sources": [
-    "game/assets/4k/backgrounds/north-station.png",
-    "game/assets/4k/characters/linwan/worried.png"
-  ],
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
+  "native4kClaim": false,
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-cad0b5f1-d53a-446a-8a1d-45253de15b55.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/cg/linwan-1842-cg/prompt.txt",
+  "promptSHA256": "8effa47d86aa50875781c6f60ceaba91965d2a2c5d26cf1a225e6bcba7e5feb4",
+  "spec": "game/art-sources/chatgpt/cg/linwan-1842-cg/spec.json",
+  "specSHA256": "f9efcada3de16d1c9f784cd7f91f3970773225f10a23d41f76a05ff02365f90f",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "resize": "aspect-fill Lanczos",
+    "sourceSize": [
+      1672,
+      941
+    ]
+  },
   "assets": [
     {
+      "expression": "linwan-1842-cg",
+      "original": "game/art-sources/chatgpt/cg/linwan-1842-cg/original.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "26b692ba4592f347bb608fc87b45a0b226db58e9d3eb4aa8413229744037ef1b",
       "master": "game/assets/4k/cg/linwan-1842-cg.png",
       "masterSize": [
         3840,
         2160
       ],
-      "masterSHA256": "525f0df6e1815772deff7391ca5069717c286220ea0def7ae535aaf8d67f353b",
+      "masterSHA256": "4ab088817c40355e7993cdbef8db17d6b851a7cef51610c8862cbe4d5a417a4c",
       "runtime": "game/assets/4k/runtime/cg/linwan-1842-cg.webp",
       "runtimeSize": [
         1920,
         1080
       ],
-      "runtimeSHA256": "f1fe3a2a750a7cf09cd2efb6ab01d8a753473d5e1de47c5c94a1d837e8fadf4f",
-      "expression": "composite",
-      "original": "game/art-sources/chatgpt/cg/linwan-1842-cg/original.png",
-      "originalSize": [
-        3840,
-        2160
-      ],
-      "originalSHA256": "525f0df6e1815772deff7391ca5069717c286220ea0def7ae535aaf8d67f353b",
-      "prompt": "18:42 climax: Linwan at Wucheng North Station in unmistakable heavy rain at night; soaked, frightened but resolute; cold blue-gray station light, wet reflections, dark tunnel. No dusk treatment.",
-      "faceComposition": null
+      "runtimeSHA256": "3d7f08a8a2e7965c762b1356cb5261c37a7fe4613cfd81f86573a55a26d7c435"
     }
   ]
 }
