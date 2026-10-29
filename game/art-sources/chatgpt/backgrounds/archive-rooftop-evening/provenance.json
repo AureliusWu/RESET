@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "character": null,
+  "name": "archive-rooftop-evening",
+  "category": "backgrounds",
+  "id": "archive-rooftop-evening",
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
+  "native4kClaim": false,
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-2976cfdc-f3b4-4139-820b-ac10b9508961.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/backgrounds/archive-rooftop-evening/prompt.txt",
+  "promptSHA256": "0f9c76e76796627521c2be45fb5569e2aa783f89d654e633535e7998045308c1",
+  "spec": "game/art-sources/chatgpt/backgrounds/archive-rooftop-evening/spec.json",
+  "specSHA256": "5c481c735450582b8e395e29867bf54b65ca2650b01b5675b36b27d8a0cd813f",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "resize": "aspect-fill Lanczos",
+    "sourceSize": [
+      1672,
+      941
+    ]
+  },
+  "assets": [
+    {
+      "expression": "archive-rooftop-evening",
+      "original": "game/art-sources/chatgpt/backgrounds/archive-rooftop-evening/original.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "5d54a9a4b27c5ed65be0c4e55b85424e2366b1c95ae365afffac75510cbf40ef",
+      "master": "game/assets/4k/backgrounds/archive-rooftop-evening.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "499cc7574dfa0d579beba89895f47ac827703cd2b4e9c064036284bfe726edc5",
+      "runtime": "game/assets/4k/runtime/backgrounds/archive-rooftop-evening.webp",
+      "runtimeSize": [
+        1920,
+        1080
+      ],
+      "runtimeSHA256": "1917c02016f7dde4d39ea1308a9ba7273d332c482cad40933258cb8323d3e5c9"
+    }
+  ]
+}

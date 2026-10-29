@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "id": "municipal-archive-basement",
+  "name": "市档案馆地下库",
+  "kind": "background",
+  "sourceCommit": "8d190ebec6fb8c91b2f6c984bd6010b1d4de6005",
+  "canonSources": [
+    "docs/ART_DIRECTION.md",
+    "game/content/chapters/04.json"
+  ],
+  "sceneEvidence": [
+    {
+      "scene": "c4_tinglan_1",
+      "path": "game/content/chapters/04.json",
+      "location": "市档案馆地下库",
+      "time": "14:05",
+      "previousBackground": "archive-room",
+      "sampleLines": [
+        {
+          "id": "r1_c4_tinglan_1_pre01_01",
+          "text": "14:05，市档案馆地下库。空气里有纸张、灰尘和除湿机的味道。每一册资料都带编号、借阅章和前一个人的指纹，想伪造一段历史并不比伪造一张纸简单，她先核日期。"
+        },
+        {
+          "id": "r1_c4_tinglan_1_pre02_01",
+          "text": "这座城市没有因为他的恐惧变得戏剧化。雨还是雨，晚自习还是晚自习，别人甚至会嫌他挡路。正因为如此，他更难把发生的一切归结成梦，铅笔停在页边。"
+        }
+      ]
+    }
+  ],
+  "designProposal": "14:05，市档案馆地下文献库，无大窗，混凝土地面、密集移动式金属档案架、泛黄档案盒、除湿机、顶面管线、白色荧光灯，留出宽通道与一张阅档小桌，干燥纸张与旧建筑的年代感。不是学校图书馆。",
+  "reviewStatus": "UNVERIFIED",
+  "native4kClaim": false
+}

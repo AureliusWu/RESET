@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "character": null,
+  "name": "river-levee-evening",
+  "category": "backgrounds",
+  "id": "river-levee-evening",
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
+  "native4kClaim": false,
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-d8ace208-413f-455a-a866-0a5612896fc2.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/backgrounds/river-levee-evening/prompt.txt",
+  "promptSHA256": "8327b8f4cfd035581a2c43716e26256370f53b0850899dd8a6fa565d7f6969b2",
+  "spec": "game/art-sources/chatgpt/backgrounds/river-levee-evening/spec.json",
+  "specSHA256": "136b8fa17a703a9ef1211fa7f2f2569eb5eaf6c2fd32fc2025456eacdd755b7e",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "resize": "aspect-fill Lanczos",
+    "sourceSize": [
+      1672,
+      941
+    ]
+  },
+  "assets": [
+    {
+      "expression": "river-levee-evening",
+      "original": "game/art-sources/chatgpt/backgrounds/river-levee-evening/original.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "97c1a93cd95551d34eae1b70c96076d76ed9e4829575c60faa8d8a56d57264aa",
+      "master": "game/assets/4k/backgrounds/river-levee-evening.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "a0c0095c2b50272ba12d6f901733902ba8021c7000253b32aa386e0b6d604e92",
+      "runtime": "game/assets/4k/runtime/backgrounds/river-levee-evening.webp",
+      "runtimeSize": [
+        1920,
+        1080
+      ],
+      "runtimeSHA256": "b2b36903213b17f8e1201854eb9321b112d3cdd7ad9b36e2571d5474b69cd9dd"
+    }
+  ]
+}

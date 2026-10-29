@@ -1,0 +1,1508 @@
+{
+  "schema": 1,
+  "reviewType": "ai-simulated-human",
+  "reviewer": "Codex, acting under explicit user authorization; not a human or owner-signed review",
+  "authorizationId": "RESET-R8-AI-HUMAN-2026-10-29",
+  "completedAt": "2026-10-29T13:23:49+00:00",
+  "inspectedCommit": "4e48db8004c25d7d2c964b8d3c85289a2a2a18e7",
+  "decision": "AI_VISUAL_PASS_TECHNICAL_CHECKS_SEPARATE",
+  "method": [
+    "Inspect each of the 12 runtime portraits at native size against the locked Lin Wan baseline.",
+    "Inspect all 56 portrait/anomaly viewport screenshots and all 82 scene screenshots from immutable same-commit CI evidence.",
+    "Inspect all 20 new backgrounds, 8 replacement CGs and 5 UI illustrations; cross-check CG identity and Chapter 07 time against current canon.",
+    "Record the duplicate CG portrait defect, implement a work-level rendering fix and require real final-package browser/native regression before declaring technical completion."
+  ],
+  "sourceEvidence": {
+    "workflowRun": 40874877833,
+    "artifactId": 12898380461,
+    "artifactSHA256": "0677dbd9c52fb399e06697389d3399186d622a149af40508d92a8614d5af460f",
+    "archiveName": "RESET-R8-4e48db8-visual-audit.zip",
+    "webWindowsRun": 40874877832
+  },
+  "characters": [
+    {
+      "id": "xujiashu",
+      "name": "徐嘉树",
+      "status": "PASS",
+      "artifactSHA256": {
+        "original": "d8f1508e1f7974f7efd5cdf6a1512bcc8c31cf43f00c3744347decf04b556b5a",
+        "master": "6894ef6088583daf27188cd27ad323e007ecc2985bcc6084e87b54ac9936b8e9",
+        "runtime": "cbc74d63768ab147ded207c1d4835d7ead1c7ae5800e8f2701d764cc80c86892"
+      },
+      "checks": {
+        "identity": {
+          "status": "PASS",
+          "observation": "短黑发、蓝白运动校服与篮球明确对应同桌/篮球队替补，未借用其他角色身体。"
+        },
+        "styleConsistency": {
+          "status": "PASS",
+          "observation": "与锁定林晚基准对照：细线稿、低饱和校服/日常服装、柔和块面阴影和现代中国校园的视觉世界一致；成人角色适度减弱大眼比例。"
+        },
+        "bodyProportion": {
+          "status": "PASS",
+          "observation": "持球手与球体遮挡自然，口袋手有合理遮挡，肩颈、膝踝和鞋部完整。"
+        },
+        "expressionReadability": {
+          "status": "PASS",
+          "observation": "平静略警觉的眼神，与同桌身份一致；没有默认眨眼或夸张张嘴。"
+        },
+        "desktopComposition": {
+          "status": "PASS",
+          "observation": "逐张检查 1280×900 与 3840×2160 实际渲染截图：全身边界完整，对话区和工具栏没有被人物覆盖。4K 下人物相对偏小记录为非阻断构图建议。"
+        },
+        "mobileComposition": {
+          "status": "PASS",
+          "observation": "逐张检查 390×844 竖屏及 844×390 短横屏截图：面部、道具与完整轮廓可读，手脚没有意外裁切，也不遮挡台词和控件。"
+        },
+        "provenanceTruth": {
+          "status": "PASS",
+          "observation": "原图/master/runtime 与实际 prompt/spec 的 SHA256、原生图像来源及透明通道已严格核对；明确为原生图像生成后标准化母版，不声称 native 4K。"
+        }
+      },
+      "screenEvidence": [
+        "test-results/r8-art/desktop/xujiashu-neutral.png",
+        "test-results/r8-art/desktop-4k/xujiashu-neutral.png",
+        "test-results/r8-art/mobile-portrait/xujiashu-neutral.png",
+        "test-results/r8-art/mobile-landscape/xujiashu-neutral.png"
+      ],
+      "storyPresentation": "canonical story witnesses; full-body neutral anchor compared across dialogue lines"
+    },
+    {
+      "id": "chengyan",
+      "name": "程妍",
+      "status": "PASS",
+      "artifactSHA256": {
+        "original": "db7b513b82806fc897bc06de17b481b071fa73f9a270525becec76e934266fab",
+        "master": "0a814c501d138870dec351a8e598ec4bf03efc3a92201a078375fdffd472db66",
+        "runtime": "1a44ebe0dea91ec7560ea08c2e3153c020dbd603301d641db12a7f6284d1c04e"
+      },
+      "checks": {
+        "identity": {
+          "status": "PASS",
+          "observation": "高马尾、整齐校服和夹板对应班长；与林晚长直发、抱书姿态区分明确。"
+        },
+        "styleConsistency": {
+          "status": "PASS",
+          "observation": "与锁定林晚基准对照：细线稿、低饱和校服/日常服装、柔和块面阴影和现代中国校园的视觉世界一致；成人角色适度减弱大眼比例。"
+        },
+        "bodyProportion": {
+          "status": "PASS",
+          "observation": "夹板两侧双手的握持和袖口衔接合理，裙摆、双腿与鞋均完整。"
+        },
+        "expressionReadability": {
+          "status": "PASS",
+          "observation": "眼神克制、嘴角收敛，秩序感可读，缩小后脸部仍可分辨。"
+        },
+        "desktopComposition": {
+          "status": "PASS",
+          "observation": "逐张检查 1280×900 与 3840×2160 实际渲染截图：全身边界完整，对话区和工具栏没有被人物覆盖。4K 下人物相对偏小记录为非阻断构图建议。"
+        },
+        "mobileComposition": {
+          "status": "PASS",
+          "observation": "逐张检查 390×844 竖屏及 844×390 短横屏截图：面部、道具与完整轮廓可读，手脚没有意外裁切，也不遮挡台词和控件。"
+        },
+        "provenanceTruth": {
+          "status": "PASS",
+          "observation": "原图/master/runtime 与实际 prompt/spec 的 SHA256、原生图像来源及透明通道已严格核对；明确为原生图像生成后标准化母版，不声称 native 4K。"
+        }
+      },
+      "screenEvidence": [
+        "test-results/r8-art/desktop/chengyan-neutral.png",
+        "test-results/r8-art/desktop-4k/chengyan-neutral.png",
+        "test-results/r8-art/mobile-portrait/chengyan-neutral.png",
+        "test-results/r8-art/mobile-landscape/chengyan-neutral.png"
+      ],
+      "storyPresentation": "canonical story witnesses; full-body neutral anchor compared across dialogue lines"
+    },
+    {
+      "id": "gumingyuan",
+      "name": "顾明远",
+      "status": "PASS",
+      "artifactSHA256": {
+        "original": "db37e706bf2c46d6d14f7c0a8779ac00901f407bce4ea4d71ef7d3e5bdce90fd",
+        "master": "9a6ee854d3ebb273f68279386c2a4cc471a3f595597cdeedb42397061ddc2b4e",
+        "runtime": "a74f93d7b739f45a24ee9935612b1a67716277550910f5d17bc4f0563a1f396c"
+      },
+      "checks": {
+        "identity": {
+          "status": "PASS",
+          "observation": "眼镜、西装领带和教学资料明确对应成年物理教师，与学生运动校服不同。"
+        },
+        "styleConsistency": {
+          "status": "PASS",
+          "observation": "与锁定林晚基准对照：细线稿、低饱和校服/日常服装、柔和块面阴影和现代中国校园的视觉世界一致；成人角色适度减弱大眼比例。"
+        },
+        "bodyProportion": {
+          "status": "PASS",
+          "observation": "持资料手、另一侧口袋手与手表位置自然，双肩和长裤比例一致。"
+        },
+        "expressionReadability": {
+          "status": "PASS",
+          "observation": "眼镜下视线清楚，严肃但非敌意，符合班主任的理性气质。"
+        },
+        "desktopComposition": {
+          "status": "PASS",
+          "observation": "逐张检查 1280×900 与 3840×2160 实际渲染截图：全身边界完整，对话区和工具栏没有被人物覆盖。4K 下人物相对偏小记录为非阻断构图建议。"
+        },
+        "mobileComposition": {
+          "status": "PASS",
+          "observation": "逐张检查 390×844 竖屏及 844×390 短横屏截图：面部、道具与完整轮廓可读，手脚没有意外裁切，也不遮挡台词和控件。"
+        },
+        "provenanceTruth": {
+          "status": "PASS",
+          "observation": "原图/master/runtime 与实际 prompt/spec 的 SHA256、原生图像来源及透明通道已严格核对；明确为原生图像生成后标准化母版，不声称 native 4K。"
+        }
+      },
+      "screenEvidence": [
+        "test-results/r8-art/desktop/gumingyuan-neutral.png",
+        "test-results/r8-art/desktop-4k/gumingyuan-neutral.png",
+        "test-results/r8-art/mobile-portrait/gumingyuan-neutral.png",
+        "test-results/r8-art/mobile-landscape/gumingyuan-neutral.png"
+      ],
+      "storyPresentation": "canonical story witnesses; full-body neutral anchor compared across dialogue lines"
+    },
+    {
+      "id": "chenlan",
+      "name": "陈岚",
+      "status": "PASS",
+      "artifactSHA256": {
+        "original": "097368b328c790336e6084f58aabb85422bb2b964a146990a1b99a2147bb8bcb",
+        "master": "b77daa48d3f7bfe04be49c48b196800452271b04ca45042597fef53f87525d1d",
+        "runtime": "fe0f22abc5d59113d2e84620db78615722bc2a952c979fa0bf3ddebde36c3ec4"
+      },
+      "checks": {
+        "identity": {
+          "status": "PASS",
+          "observation": "护士上衣、胸牌和抱着的深色外套对应夜班护士及陈渡母亲，成熟轮廓区别于学生。"
+        },
+        "styleConsistency": {
+          "status": "PASS",
+          "observation": "与锁定林晚基准对照：细线稿、低饱和校服/日常服装、柔和块面阴影和现代中国校园的视觉世界一致；成人角色适度减弱大眼比例。"
+        },
+        "bodyProportion": {
+          "status": "PASS",
+          "observation": "双手交叠与外套有合理遮挡，身体重心、裤脚和白鞋完整。"
+        },
+        "expressionReadability": {
+          "status": "PASS",
+          "observation": "温和微笑与略疲惫的眼神可读；正文所有 noSprite 场景仍不显示她。"
+        },
+        "desktopComposition": {
+          "status": "PASS",
+          "observation": "逐张检查 1280×900 与 3840×2160 实际渲染截图：全身边界完整，对话区和工具栏没有被人物覆盖。4K 下人物相对偏小记录为非阻断构图建议。"
+        },
+        "mobileComposition": {
+          "status": "PASS",
+          "observation": "逐张检查 390×844 竖屏及 844×390 短横屏截图：面部、道具与完整轮廓可读，手脚没有意外裁切，也不遮挡台词和控件。"
+        },
+        "provenanceTruth": {
+          "status": "PASS",
+          "observation": "原图/master/runtime 与实际 prompt/spec 的 SHA256、原生图像来源及透明通道已严格核对；明确为原生图像生成后标准化母版，不声称 native 4K。"
+        }
+      },
+      "screenEvidence": [
+        "test-results/r8-art/desktop/chenlan-neutral.png",
+        "test-results/r8-art/desktop-4k/chenlan-neutral.png",
+        "test-results/r8-art/mobile-portrait/chenlan-neutral.png",
+        "test-results/r8-art/mobile-landscape/chenlan-neutral.png"
+      ],
+      "storyPresentation": "isolated asset fixture only; all canonical noSprite rules retained"
+    },
+    {
+      "id": "xurong",
+      "name": "许蓉",
+      "status": "PASS",
+      "artifactSHA256": {
+        "original": "eac0644abd10e39f2255d4882e2f30b430bb16dd1c5f9cc3ebeca410e63e0cce",
+        "master": "cf9b3e04fa33479038846b54ca8eb810865160d15415e42c04716db27b400b64",
+        "runtime": "cf94728f0962ac5c01664f27f0227e5118bd0351fbf0170959aaf1396c6c3d46"
+      },
+      "checks": {
+        "identity": {
+          "status": "PASS",
+          "observation": "短棕发、圆框眼镜、针织开衫与书册对应图书管理员，与沈砚秋盘发/档案夹区分。"
+        },
+        "styleConsistency": {
+          "status": "PASS",
+          "observation": "与锁定林晚基准对照：细线稿、低饱和校服/日常服装、柔和块面阴影和现代中国校园的视觉世界一致；成人角色适度减弱大眼比例。"
+        },
+        "bodyProportion": {
+          "status": "PASS",
+          "observation": "两手抱书的掌指遮挡合理，裙摆完整，双脚和肩颈无明显畸形。"
+        },
+        "expressionReadability": {
+          "status": "PASS",
+          "observation": "安静的浅笑、清楚的镜框与眼神支持克制的管理员形象。"
+        },
+        "desktopComposition": {
+          "status": "PASS",
+          "observation": "逐张检查 1280×900 与 3840×2160 实际渲染截图：全身边界完整，对话区和工具栏没有被人物覆盖。4K 下人物相对偏小记录为非阻断构图建议。"
+        },
+        "mobileComposition": {
+          "status": "PASS",
+          "observation": "逐张检查 390×844 竖屏及 844×390 短横屏截图：面部、道具与完整轮廓可读，手脚没有意外裁切，也不遮挡台词和控件。"
+        },
+        "provenanceTruth": {
+          "status": "PASS",
+          "observation": "原图/master/runtime 与实际 prompt/spec 的 SHA256、原生图像来源及透明通道已严格核对；明确为原生图像生成后标准化母版，不声称 native 4K。"
+        }
+      },
+      "screenEvidence": [
+        "test-results/r8-art/desktop/xurong-neutral.png",
+        "test-results/r8-art/desktop-4k/xurong-neutral.png",
+        "test-results/r8-art/mobile-portrait/xurong-neutral.png",
+        "test-results/r8-art/mobile-landscape/xurong-neutral.png"
+      ],
+      "storyPresentation": "canonical story witnesses; full-body neutral anchor compared across dialogue lines"
+    },
+    {
+      "id": "luoxiumei",
+      "name": "罗秀梅",
+      "status": "PASS",
+      "artifactSHA256": {
+        "original": "ac59a2f3641a8f870123e53cb76a3184a2b5ad0a1453d669dece4882b9189dc3",
+        "master": "f1604def90c42c25e445c452dc342c347d91874267d67fad4bb52cb92e211609",
+        "runtime": "753a64a4a1971c83fa052c019874fe6b3a17b5868ce0de7271c3c07e08e35f5e"
+      },
+      "checks": {
+        "identity": {
+          "status": "PASS",
+          "observation": "中年卷短发、围裙与汤勺对应食堂阿姨；生活化衣着与校园角色明确区分。"
+        },
+        "styleConsistency": {
+          "status": "PASS",
+          "observation": "与锁定林晚基准对照：细线稿、低饱和校服/日常服装、柔和块面阴影和现代中国校园的视觉世界一致；成人角色适度减弱大眼比例。"
+        },
+        "bodyProportion": {
+          "status": "PASS",
+          "observation": "握勺手、扶围裙手、围裙系带和站立重心合理，宽松裤装完整。"
+        },
+        "expressionReadability": {
+          "status": "PASS",
+          "observation": "温暖笑容与较成熟面部形态可读，不将她画成同龄学生。"
+        },
+        "desktopComposition": {
+          "status": "PASS",
+          "observation": "逐张检查 1280×900 与 3840×2160 实际渲染截图：全身边界完整，对话区和工具栏没有被人物覆盖。4K 下人物相对偏小记录为非阻断构图建议。"
+        },
+        "mobileComposition": {
+          "status": "PASS",
+          "observation": "逐张检查 390×844 竖屏及 844×390 短横屏截图：面部、道具与完整轮廓可读，手脚没有意外裁切，也不遮挡台词和控件。"
+        },
+        "provenanceTruth": {
+          "status": "PASS",
+          "observation": "原图/master/runtime 与实际 prompt/spec 的 SHA256、原生图像来源及透明通道已严格核对；明确为原生图像生成后标准化母版，不声称 native 4K。"
+        }
+      },
+      "screenEvidence": [
+        "test-results/r8-art/desktop/luoxiumei-neutral.png",
+        "test-results/r8-art/desktop-4k/luoxiumei-neutral.png",
+        "test-results/r8-art/mobile-portrait/luoxiumei-neutral.png",
+        "test-results/r8-art/mobile-landscape/luoxiumei-neutral.png"
+      ],
+      "storyPresentation": "canonical story witnesses; full-body neutral anchor compared across dialogue lines"
+    },
+    {
+      "id": "suyao",
+      "name": "苏遥",
+      "status": "PASS",
+      "artifactSHA256": {
+        "original": "7d3576ff427ff1b81f38c073f845d28fdc65b1d5c3d9813d4baa9b72ae92cefd",
+        "master": "d37abc33e82d9b4f97e58e6807643ba5675b567c8d66bcde6803e09b9d6ba959",
+        "runtime": "8084a85bb7cd9ef190cc69897327fbe626fceccacb2c8bc54f148c9d6712c758"
+      },
+      "checks": {
+        "identity": {
+          "status": "PASS",
+          "observation": "短发发夹、速写本、铅笔和书包挂件对应美术社学生，与程妍/周小满区分。"
+        },
+        "styleConsistency": {
+          "status": "PASS",
+          "observation": "与锁定林晚基准对照：细线稿、低饱和校服/日常服装、柔和块面阴影和现代中国校园的视觉世界一致；成人角色适度减弱大眼比例。"
+        },
+        "bodyProportion": {
+          "status": "PASS",
+          "observation": "抱本手与持笔手位置自然，画册透视、针织袖口、裙摆及鞋完整。"
+        },
+        "expressionReadability": {
+          "status": "PASS",
+          "observation": "含蓄、略思考的神情清楚；小尺寸仍保留短发/画册识别点。"
+        },
+        "desktopComposition": {
+          "status": "PASS",
+          "observation": "逐张检查 1280×900 与 3840×2160 实际渲染截图：全身边界完整，对话区和工具栏没有被人物覆盖。4K 下人物相对偏小记录为非阻断构图建议。"
+        },
+        "mobileComposition": {
+          "status": "PASS",
+          "observation": "逐张检查 390×844 竖屏及 844×390 短横屏截图：面部、道具与完整轮廓可读，手脚没有意外裁切，也不遮挡台词和控件。"
+        },
+        "provenanceTruth": {
+          "status": "PASS",
+          "observation": "原图/master/runtime 与实际 prompt/spec 的 SHA256、原生图像来源及透明通道已严格核对；明确为原生图像生成后标准化母版，不声称 native 4K。"
+        }
+      },
+      "screenEvidence": [
+        "test-results/r8-art/desktop/suyao-neutral.png",
+        "test-results/r8-art/desktop-4k/suyao-neutral.png",
+        "test-results/r8-art/mobile-portrait/suyao-neutral.png",
+        "test-results/r8-art/mobile-landscape/suyao-neutral.png"
+      ],
+      "storyPresentation": "canonical story witnesses; full-body neutral anchor compared across dialogue lines"
+    },
+    {
+      "id": "hechuan",
+      "name": "何川",
+      "status": "PASS",
+      "artifactSHA256": {
+        "original": "de26d73f0062e04465d9e0b24b0871c84f6e07cfd40b36af2cd5792765e1b8c0",
+        "master": "0dd53c762bbd1b1eeec8eba0a6a9f2746f8dd10ffbd0f23a0d3ddc892998b0b0",
+        "runtime": "5a108ade7b701300de5e015194f85ba8104abd8cb5fbe236e27137f809c2ee3d"
+      },
+      "checks": {
+        "identity": {
+          "status": "PASS",
+          "observation": "灰白运动服、秒表、哨子和运动鞋对应田径社学长；道具与徐嘉树篮球区分。"
+        },
+        "styleConsistency": {
+          "status": "PASS",
+          "observation": "与锁定林晚基准对照：细线稿、低饱和校服/日常服装、柔和块面阴影和现代中国校园的视觉世界一致；成人角色适度减弱大眼比例。"
+        },
+        "bodyProportion": {
+          "status": "PASS",
+          "observation": "握秒表手与挂绳、口袋手、运动服关节结构合理，没有额外肢体。"
+        },
+        "expressionReadability": {
+          "status": "PASS",
+          "observation": "稳健略自信的表情与学长身份一致，脸部与徐嘉树并非同一张脸。"
+        },
+        "desktopComposition": {
+          "status": "PASS",
+          "observation": "逐张检查 1280×900 与 3840×2160 实际渲染截图：全身边界完整，对话区和工具栏没有被人物覆盖。4K 下人物相对偏小记录为非阻断构图建议。"
+        },
+        "mobileComposition": {
+          "status": "PASS",
+          "observation": "逐张检查 390×844 竖屏及 844×390 短横屏截图：面部、道具与完整轮廓可读，手脚没有意外裁切，也不遮挡台词和控件。"
+        },
+        "provenanceTruth": {
+          "status": "PASS",
+          "observation": "原图/master/runtime 与实际 prompt/spec 的 SHA256、原生图像来源及透明通道已严格核对；明确为原生图像生成后标准化母版，不声称 native 4K。"
+        }
+      },
+      "screenEvidence": [
+        "test-results/r8-art/desktop/hechuan-neutral.png",
+        "test-results/r8-art/desktop-4k/hechuan-neutral.png",
+        "test-results/r8-art/mobile-portrait/hechuan-neutral.png",
+        "test-results/r8-art/mobile-landscape/hechuan-neutral.png"
+      ],
+      "storyPresentation": "canonical story witnesses; full-body neutral anchor compared across dialogue lines"
+    },
+    {
+      "id": "jiyao",
+      "name": "纪尧",
+      "status": "PASS",
+      "artifactSHA256": {
+        "original": "b0fb5484a1f380e3a62791ef6481e2ad3375d17a16ce464087870e3cb31b751f",
+        "master": "509d9776b57cab367cdf8fcc6650d21a820312832fc521f7c86be7574fd2aaab",
+        "runtime": "1df92de522b74ec49fc5dbd6c01bd727682dcff5f055bed489ef4c55c4e665fb"
+      },
+      "checks": {
+        "identity": {
+          "status": "PASS",
+          "observation": "眼镜、学生证、平板与方格本对应信息兴趣小组，仍为普通学生而非黑客造型。"
+        },
+        "styleConsistency": {
+          "status": "PASS",
+          "observation": "与锁定林晚基准对照：细线稿、低饱和校服/日常服装、柔和块面阴影和现代中国校园的视觉世界一致；成人角色适度减弱大眼比例。"
+        },
+        "bodyProportion": {
+          "status": "PASS",
+          "observation": "平板与本子的叠放、持物手、背包带及双腿结构合理。"
+        },
+        "expressionReadability": {
+          "status": "PASS",
+          "observation": "视线集中、嘴角平直，技术型学生的安静气质可读。"
+        },
+        "desktopComposition": {
+          "status": "PASS",
+          "observation": "逐张检查 1280×900 与 3840×2160 实际渲染截图：全身边界完整，对话区和工具栏没有被人物覆盖。4K 下人物相对偏小记录为非阻断构图建议。"
+        },
+        "mobileComposition": {
+          "status": "PASS",
+          "observation": "逐张检查 390×844 竖屏及 844×390 短横屏截图：面部、道具与完整轮廓可读，手脚没有意外裁切，也不遮挡台词和控件。"
+        },
+        "provenanceTruth": {
+          "status": "PASS",
+          "observation": "原图/master/runtime 与实际 prompt/spec 的 SHA256、原生图像来源及透明通道已严格核对；明确为原生图像生成后标准化母版，不声称 native 4K。"
+        }
+      },
+      "screenEvidence": [
+        "test-results/r8-art/desktop/jiyao-neutral.png",
+        "test-results/r8-art/desktop-4k/jiyao-neutral.png",
+        "test-results/r8-art/mobile-portrait/jiyao-neutral.png",
+        "test-results/r8-art/mobile-landscape/jiyao-neutral.png"
+      ],
+      "storyPresentation": "canonical story witnesses; full-body neutral anchor compared across dialogue lines"
+    },
+    {
+      "id": "lincheng",
+      "name": "林澄",
+      "status": "PASS",
+      "artifactSHA256": {
+        "original": "3b94ee0a49e39e2484e30d0fd9a3037b519c9df7916606c892b0fbe494e4d1e3",
+        "master": "090dd5637a2aac0273ca5e246cf188905d980a511ec9bc6f7f7a62e4d154e265",
+        "runtime": "c353eb6a60e1d5fcf0e30182a481ef0ea8c60f0c75e24bd5266e5fac049e62e6"
+      },
+      "checks": {
+        "identity": {
+          "status": "PASS",
+          "observation": "长棕发、宽松开衫、长裤与帆布包对应大学生表姐，与林晚的中学校服区分。"
+        },
+        "styleConsistency": {
+          "status": "PASS",
+          "observation": "与锁定林晚基准对照：细线稿、低饱和校服/日常服装、柔和块面阴影和现代中国校园的视觉世界一致；成人角色适度减弱大眼比例。"
+        },
+        "bodyProportion": {
+          "status": "PASS",
+          "observation": "提包手、垂下的手与袖口衔接自然，长裤和帆布鞋完整。"
+        },
+        "expressionReadability": {
+          "status": "PASS",
+          "observation": "较放松的温和表情与年轻成年身份一致，不强行继承林晚表情。"
+        },
+        "desktopComposition": {
+          "status": "PASS",
+          "observation": "逐张检查 1280×900 与 3840×2160 实际渲染截图：全身边界完整，对话区和工具栏没有被人物覆盖。4K 下人物相对偏小记录为非阻断构图建议。"
+        },
+        "mobileComposition": {
+          "status": "PASS",
+          "observation": "逐张检查 390×844 竖屏及 844×390 短横屏截图：面部、道具与完整轮廓可读，手脚没有意外裁切，也不遮挡台词和控件。"
+        },
+        "provenanceTruth": {
+          "status": "PASS",
+          "observation": "原图/master/runtime 与实际 prompt/spec 的 SHA256、原生图像来源及透明通道已严格核对；明确为原生图像生成后标准化母版，不声称 native 4K。"
+        }
+      },
+      "screenEvidence": [
+        "test-results/r8-art/desktop/lincheng-neutral.png",
+        "test-results/r8-art/desktop-4k/lincheng-neutral.png",
+        "test-results/r8-art/mobile-portrait/lincheng-neutral.png",
+        "test-results/r8-art/mobile-landscape/lincheng-neutral.png"
+      ],
+      "storyPresentation": "canonical story witnesses; full-body neutral anchor compared across dialogue lines"
+    },
+    {
+      "id": "shenyanqiu",
+      "name": "沈砚秋",
+      "status": "PASS",
+      "artifactSHA256": {
+        "original": "89bfc4d23edbb5d0682f6d04e603ce787012944f9719b09ed3bd304dc6bbe3d4",
+        "master": "bd0b0622b3d7a04029828a6d0dd8d10f083565e10a8f0753931e9522da986d40",
+        "runtime": "a1a93a858088a63900baf0fdd0908e6fe3e6677dbcff20203d0260561c67a715"
+      },
+      "checks": {
+        "identity": {
+          "status": "PASS",
+          "observation": "盘起头发、眼镜、长开衫与旧档案夹对应文献修复员，与许蓉短发/书册区分。"
+        },
+        "styleConsistency": {
+          "status": "PASS",
+          "observation": "与锁定林晚基准对照：细线稿、低饱和校服/日常服装、柔和块面阴影和现代中国校园的视觉世界一致；成人角色适度减弱大眼比例。"
+        },
+        "bodyProportion": {
+          "status": "PASS",
+          "observation": "双手托档案夹、手表、衣摆与鞋的关系自然，体态完整。"
+        },
+        "expressionReadability": {
+          "status": "PASS",
+          "observation": "沉静而成熟的眼神、柔和嘴角符合修复员，眼镜不遮没五官。"
+        },
+        "desktopComposition": {
+          "status": "PASS",
+          "observation": "逐张检查 1280×900 与 3840×2160 实际渲染截图：全身边界完整，对话区和工具栏没有被人物覆盖。4K 下人物相对偏小记录为非阻断构图建议。"
+        },
+        "mobileComposition": {
+          "status": "PASS",
+          "observation": "逐张检查 390×844 竖屏及 844×390 短横屏截图：面部、道具与完整轮廓可读，手脚没有意外裁切，也不遮挡台词和控件。"
+        },
+        "provenanceTruth": {
+          "status": "PASS",
+          "observation": "原图/master/runtime 与实际 prompt/spec 的 SHA256、原生图像来源及透明通道已严格核对；明确为原生图像生成后标准化母版，不声称 native 4K。"
+        }
+      },
+      "screenEvidence": [
+        "test-results/r8-art/desktop/shenyanqiu-neutral.png",
+        "test-results/r8-art/desktop-4k/shenyanqiu-neutral.png",
+        "test-results/r8-art/mobile-portrait/shenyanqiu-neutral.png",
+        "test-results/r8-art/mobile-landscape/shenyanqiu-neutral.png"
+      ],
+      "storyPresentation": "canonical story witnesses; full-body neutral anchor compared across dialogue lines"
+    },
+    {
+      "id": "liangcheng",
+      "name": "梁成",
+      "status": "PASS",
+      "artifactSHA256": {
+        "original": "4b3e64a2aab077594dd463fb2fd866b433646721e70c7a2a90daebb010e435c3",
+        "master": "1ed72c068f848a0fef3b5ef1eeddf78505da8b54d129b71d07761a88821036c0",
+        "runtime": "fb44f23da214cf9143c31055c620035f04c6f5902ce2e66b0e711b21956b8e64"
+      },
+      "checks": {
+        "identity": {
+          "status": "PASS",
+          "observation": "深蓝站务制服、胸牌与对讲机对应南湖站站务员，未使用军警或夸张科幻装束。"
+        },
+        "styleConsistency": {
+          "status": "PASS",
+          "observation": "与锁定林晚基准对照：细线稿、低饱和校服/日常服装、柔和块面阴影和现代中国校园的视觉世界一致；成人角色适度减弱大眼比例。"
+        },
+        "bodyProportion": {
+          "status": "PASS",
+          "observation": "对讲机握持、肩袖、口袋手和制服长裤比例合理，皮鞋完整。"
+        },
+        "expressionReadability": {
+          "status": "PASS",
+          "observation": "开放而可靠的浅笑可读，与剧情中的普通成年站务员身份一致。"
+        },
+        "desktopComposition": {
+          "status": "PASS",
+          "observation": "逐张检查 1280×900 与 3840×2160 实际渲染截图：全身边界完整，对话区和工具栏没有被人物覆盖。4K 下人物相对偏小记录为非阻断构图建议。"
+        },
+        "mobileComposition": {
+          "status": "PASS",
+          "observation": "逐张检查 390×844 竖屏及 844×390 短横屏截图：面部、道具与完整轮廓可读，手脚没有意外裁切，也不遮挡台词和控件。"
+        },
+        "provenanceTruth": {
+          "status": "PASS",
+          "observation": "原图/master/runtime 与实际 prompt/spec 的 SHA256、原生图像来源及透明通道已严格核对；明确为原生图像生成后标准化母版，不声称 native 4K。"
+        }
+      },
+      "screenEvidence": [
+        "test-results/r8-art/desktop/liangcheng-neutral.png",
+        "test-results/r8-art/desktop-4k/liangcheng-neutral.png",
+        "test-results/r8-art/mobile-portrait/liangcheng-neutral.png",
+        "test-results/r8-art/mobile-landscape/liangcheng-neutral.png"
+      ],
+      "storyPresentation": "canonical story witnesses; full-body neutral anchor compared across dialogue lines"
+    }
+  ],
+  "otherNativeAssets": [
+    {
+      "id": "faceless",
+      "category": "anomalies",
+      "status": "PASS",
+      "runtime": "game/assets/4k/runtime/anomalies/faceless.webp",
+      "runtimeSHA256": "cb6fe9d887e917df283da13fa27247196fc42018bdf90c84de4a77c10e23b6cf",
+      "observation": "无五官成年人、长外套、压低头部和空白脸部是异常体的有意设计，不误判为缺脸生成错误。"
+    },
+    {
+      "id": "echo-chen",
+      "category": "anomalies",
+      "status": "PASS",
+      "runtime": "game/assets/4k/runtime/anomalies/echo-chen.webp",
+      "runtimeSHA256": "9f54a3bb5729b0d18acdeaa04b8d84a26ac0abb19e88a4396c048d49d201f5d4",
+      "observation": "陈渡残响的透明重影与重复轮廓是异常体设计，中心主体、四肢和透明边缘可读，不误判为人物复制错误。"
+    },
+    {
+      "id": "linwan-1842-cg",
+      "category": "cg",
+      "status": "PASS",
+      "runtime": "game/assets/4k/runtime/cg/linwan-1842-cg.webp",
+      "runtimeSHA256": "3d7f08a8a2e7965c762b1356cb5261c37a7fe4613cfd81f86573a55a26d7c435",
+      "observation": "林晚身份与雨夜站台一致，雨线、湿发、冷灰光和握衣动作可读。"
+    },
+    {
+      "id": "true-end-riverside-cg",
+      "category": "cg",
+      "status": "PASS",
+      "runtime": "game/assets/4k/runtime/cg/true-end-riverside-cg.webp",
+      "runtimeSHA256": "b97d08c189ab8469fe435d40246f43ab14f0a48fa2e0c1184a7fff1dfc766bea",
+      "observation": "严格按当前 Chapter 07 c7_linwan 的 17:58 傍晚核对：雨后江滩、暖色落日、回头挥手与“明天见”一致。没有按旧阶段描述擅改当前正文时刻。"
+    },
+    {
+      "id": "route-linwan-end-cg",
+      "category": "cg",
+      "status": "PASS",
+      "runtime": "game/assets/4k/runtime/cg/route-linwan-end-cg.webp",
+      "runtimeSHA256": "84a6563f7fa427c91e233368fdbe981341266ff8fc17fda17fd7c8906767095d",
+      "observation": "长黑发、米色开衫、信封与江边夕照保持林晚身份，双手持信封关系自然。"
+    },
+    {
+      "id": "route-xiaoman-end-cg",
+      "category": "cg",
+      "status": "PASS",
+      "runtime": "game/assets/4k/runtime/cg/route-xiaoman-end-cg.webp",
+      "runtimeSHA256": "38ba62a386216f2d45ea7b867309dcca7ff62f5da165b6022afb72a7cdeb8939",
+      "observation": "短棕发、绿色发夹和速写本对应周小满，天台夕照与路线收束环境一致。"
+    },
+    {
+      "id": "route-xuqi-end-cg",
+      "category": "cg",
+      "status": "PASS",
+      "runtime": "game/assets/4k/runtime/cg/route-xuqi-end-cg.webp",
+      "runtimeSHA256": "3e2d57ee8ee58a81b3201cfb2d2f367ee5e70bd29fafa0d30c9738d333eeb3d6",
+      "observation": "银发、金色眼睛、深色开衫与递出的钥匙对应许栖，夜城钟楼气氛一致。"
+    },
+    {
+      "id": "route-tinglan-end-cg",
+      "category": "cg",
+      "status": "PASS",
+      "runtime": "game/assets/4k/runtime/cg/route-tinglan-end-cg.webp",
+      "runtimeSHA256": "aa51ca272e8475b2fcaa0b23ce20f1528c2831f8242fe4fb881ad2565c6a9c27",
+      "observation": "眼镜、长黑发、绿色开衫、档案纸与修复工作室对应沈听澜；伸手递纸透视可读。"
+    },
+    {
+      "id": "route-tangli-end-cg",
+      "category": "cg",
+      "status": "PASS",
+      "runtime": "game/assets/4k/runtime/cg/route-tangli-end-cg.webp",
+      "runtimeSHA256": "154c3e7466a8e6a9ee5ccd91c0fe834ef736f5a559e0afd38d943d06a60e9d4f",
+      "observation": "橘色外套、耳机、红棕马尾与伸出的手对应唐梨，江堤夕照与运动感一致。"
+    },
+    {
+      "id": "route-nanxing-end-cg",
+      "category": "cg",
+      "status": "PASS",
+      "runtime": "game/assets/4k/runtime/cg/route-nanxing-end-cg.webp",
+      "runtimeSHA256": "ca2d117b526519e4d9c5a01385838f9a8b703ca2bd1e5fe6ffec2f1eba5a74ce",
+      "observation": "星形发夹、深色外套、手机与楼顶设备对应乔南星，身份不混用。"
+    },
+    {
+      "id": "wucheng-street-evening",
+      "category": "backgrounds",
+      "status": "PASS",
+      "runtime": "game/assets/4k/runtime/backgrounds/wucheng-street-evening.webp",
+      "runtimeSHA256": "112619923b50026e6a9d6403dea2f51f6ff6f5a17a3c9862b0a33ce6678eca5c",
+      "observation": "梧城雨后街头：构图、空间透视和时间/光线与该资源规格及其场景映射一致；无可见占位画面。使用于 82 Scene 截图中的登记场景。"
+    },
+    {
+      "id": "municipal-archive-basement",
+      "category": "backgrounds",
+      "status": "PASS",
+      "runtime": "game/assets/4k/runtime/backgrounds/municipal-archive-basement.webp",
+      "runtimeSHA256": "32a57d200ec720a6de63dfe9f79c6cd16f4537ae4d42bec8011eaf8a4d46e2a4",
+      "observation": "市档案馆地下库：构图、空间透视和时间/光线与该资源规格及其场景映射一致；无可见占位画面。使用于 82 Scene 截图中的登记场景。"
+    },
+    {
+      "id": "archive-rooftop-evening",
+      "category": "backgrounds",
+      "status": "PASS",
+      "runtime": "game/assets/4k/runtime/backgrounds/archive-rooftop-evening.webp",
+      "runtimeSHA256": "1917c02016f7dde4d39ea1308a9ba7273d332c482cad40933258cb8323d3e5c9",
+      "observation": "市档案馆楼顶：构图、空间透视和时间/光线与该资源规格及其场景映射一致；无可见占位画面。使用于 82 Scene 截图中的登记场景。"
+    },
+    {
+      "id": "abandoned-station-entrance",
+      "category": "backgrounds",
+      "status": "PASS",
+      "runtime": "game/assets/4k/runtime/backgrounds/abandoned-station-entrance.webp",
+      "runtimeSHA256": "5f6527b83183b39462f3a1b5d369f84170166044253bade358c268a8c5a2cdc1",
+      "observation": "废弃站口：构图、空间透视和时间/光线与该资源规格及其场景映射一致；无可见占位画面。使用于 82 Scene 截图中的登记场景。"
+    },
+    {
+      "id": "information-lab",
+      "category": "backgrounds",
+      "status": "PASS",
+      "runtime": "game/assets/4k/runtime/backgrounds/information-lab.webp",
+      "runtimeSHA256": "77ac32938ee7a0a4d7806ad7dae37acfc0cd9d12cacc6ef40b2fac241f692748",
+      "observation": "梧城一中信息教室：构图、空间透视和时间/光线与该资源规格及其场景映射一致；无可见占位画面。使用于 82 Scene 截图中的登记场景。"
+    },
+    {
+      "id": "chendu-home-morning",
+      "category": "backgrounds",
+      "status": "PASS",
+      "runtime": "game/assets/4k/runtime/backgrounds/chendu-home-morning.webp",
+      "runtimeSHA256": "d55d77297c255880b2803e130382bc8c71f961686f3a1fcea7da017c9b3994ca",
+      "observation": "陈渡家清晨：构图、空间透视和时间/光线与该资源规格及其场景映射一致；无可见占位画面。使用于 82 Scene 截图中的登记场景。"
+    },
+    {
+      "id": "city-desync-afternoon",
+      "category": "backgrounds",
+      "status": "PASS",
+      "runtime": "game/assets/4k/runtime/backgrounds/city-desync-afternoon.webp",
+      "runtimeSHA256": "3b1eacc882f9c749dc602e7435423ca93cd42252121a6b759e2c4e3b8ba974cb",
+      "observation": "梧城市区错位：构图、空间透视和时间/光线与该资源规格及其场景映射一致；无可见占位画面。使用于 82 Scene 截图中的登记场景。"
+    },
+    {
+      "id": "north-station-control",
+      "category": "backgrounds",
+      "status": "PASS",
+      "runtime": "game/assets/4k/runtime/backgrounds/north-station-control.webp",
+      "runtimeSHA256": "f03767b0dc83d1afdd1e01745be7823e4ce99486b9e6c536912bfb2ca7f2be0f",
+      "observation": "梧城北站控制室：构图、空间透视和时间/光线与该资源规格及其场景映射一致；无可见占位画面。使用于 82 Scene 截图中的登记场景。"
+    },
+    {
+      "id": "night-school-corridor",
+      "category": "backgrounds",
+      "status": "PASS",
+      "runtime": "game/assets/4k/runtime/backgrounds/night-school-corridor.webp",
+      "runtimeSHA256": "90e4a42ea3826aeaab8f010a87fdd8c79e3114f401c2043e60d249acf64c82dc",
+      "observation": "夜梧城旧教学楼走廊：构图、空间透视和时间/光线与该资源规格及其场景映射一致；无可见占位画面。使用于 82 Scene 截图中的登记场景。"
+    },
+    {
+      "id": "night-school-exit",
+      "category": "backgrounds",
+      "status": "PASS",
+      "runtime": "game/assets/4k/runtime/backgrounds/night-school-exit.webp",
+      "runtimeSHA256": "3fb79749e3bd98738a6696e14ec5f412f4d4e0933ea9826ea8ff2a42c3904f82",
+      "observation": "夜梧城旧教学楼出口：构图、空间透视和时间/光线与该资源规格及其场景映射一致；无可见占位画面。使用于 82 Scene 截图中的登记场景。"
+    },
+    {
+      "id": "night-nanhu-station",
+      "category": "backgrounds",
+      "status": "PASS",
+      "runtime": "game/assets/4k/runtime/backgrounds/night-nanhu-station.webp",
+      "runtimeSHA256": "835d45cb51c049677ea1564fd151cbc1dc2471e9120aed37ba1f3c9ae65bc2f3",
+      "observation": "夜梧城南湖站：构图、空间透视和时间/光线与该资源规格及其场景映射一致；无可见占位画面。使用于 82 Scene 截图中的登记场景。"
+    },
+    {
+      "id": "night-clocktower",
+      "category": "backgrounds",
+      "status": "PASS",
+      "runtime": "game/assets/4k/runtime/backgrounds/night-clocktower.webp",
+      "runtimeSHA256": "1bad57ac21b448d0aadcccd844ccfd5ad3b856b3fa3d0acb0e314dfccb0805b0",
+      "observation": "夜梧城钟楼下：构图、空间透视和时间/光线与该资源规格及其场景映射一致；无可见占位画面。使用于 82 Scene 截图中的登记场景。"
+    },
+    {
+      "id": "river-levee-evening",
+      "category": "backgrounds",
+      "status": "PASS",
+      "runtime": "game/assets/4k/runtime/backgrounds/river-levee-evening.webp",
+      "runtimeSHA256": "b2b36903213b17f8e1201854eb9321b112d3cdd7ad9b36e2571d5474b69cd9dd",
+      "observation": "城外江堤：构图、空间透视和时间/光线与该资源规格及其场景映射一致；无可见占位画面。使用于 82 Scene 截图中的登记场景。"
+    },
+    {
+      "id": "municipal-archive-workroom",
+      "category": "backgrounds",
+      "status": "PASS",
+      "runtime": "game/assets/4k/runtime/backgrounds/municipal-archive-workroom.webp",
+      "runtimeSHA256": "059410bac05d86f0d712ca278226f8b5c42adbcc1db1d5ef89d9b55a8a445863",
+      "observation": "市档案馆修复工作室：构图、空间透视和时间/光线与该资源规格及其场景映射一致；无可见占位画面。使用于 82 Scene 截图中的登记场景。"
+    },
+    {
+      "id": "nanhu-station-exit",
+      "category": "backgrounds",
+      "status": "PASS",
+      "runtime": "game/assets/4k/runtime/backgrounds/nanhu-station-exit.webp",
+      "runtimeSHA256": "c32098163abb4688c69a183f77ffa2786226a9aff993f24670c648cfb689a684",
+      "observation": "南湖站出口：构图、空间透视和时间/光线与该资源规格及其场景映射一致；无可见占位画面。使用于 82 Scene 截图中的登记场景。"
+    },
+    {
+      "id": "information-rooftop-evening",
+      "category": "backgrounds",
+      "status": "PASS",
+      "runtime": "game/assets/4k/runtime/backgrounds/information-rooftop-evening.webp",
+      "runtimeSHA256": "df6e2229432c60a9ae1caffb1296b0e8b52f33e448711965ec65b6dd2d8346e6",
+      "observation": "信息楼天台：构图、空间透视和时间/光线与该资源规格及其场景映射一致；无可见占位画面。使用于 82 Scene 截图中的登记场景。"
+    },
+    {
+      "id": "old-art-room-evening",
+      "category": "backgrounds",
+      "status": "PASS",
+      "runtime": "game/assets/4k/runtime/backgrounds/old-art-room-evening.webp",
+      "runtimeSHA256": "6564ce741fe041a6b7ed95969516f4ccdb3834e4ee2a2d3353b8599382d742de",
+      "observation": "旧美术教室夜间：构图、空间透视和时间/光线与该资源规格及其场景映射一致；无可见占位画面。使用于 82 Scene 截图中的登记场景。"
+    },
+    {
+      "id": "underpass-exit-evening",
+      "category": "backgrounds",
+      "status": "PASS",
+      "runtime": "game/assets/4k/runtime/backgrounds/underpass-exit-evening.webp",
+      "runtimeSHA256": "881ad618af6569b45c097dc04796c330bfa26b7ffde030fcb01ebbeed3813b86",
+      "observation": "下穿通道出口：构图、空间透视和时间/光线与该资源规格及其场景映射一致；无可见占位画面。使用于 82 Scene 截图中的登记场景。"
+    },
+    {
+      "id": "north-station-after1842",
+      "category": "backgrounds",
+      "status": "PASS",
+      "runtime": "game/assets/4k/runtime/backgrounds/north-station-after1842.webp",
+      "runtimeSHA256": "9a6f91983537b6747f3dee3d9c6eb82499cf2ccbca17863e2466fa0e026e7ef1",
+      "observation": "北站时间向前：构图、空间透视和时间/光线与该资源规格及其场景映射一致；无可见占位画面。使用于 82 Scene 截图中的登记场景。"
+    },
+    {
+      "id": "north-station-vanishing",
+      "category": "backgrounds",
+      "status": "PASS",
+      "runtime": "game/assets/4k/runtime/backgrounds/north-station-vanishing.webp",
+      "runtimeSHA256": "1dabf91136df9ac5f375e2459e8fa92bac50dd5a5229eff3d32f55cddadb22af",
+      "observation": "正在消失的北站：构图、空间透视和时间/光线与该资源规格及其场景映射一致；无可见占位画面。使用于 82 Scene 截图中的登记场景。"
+    },
+    {
+      "id": "title-key-visual",
+      "category": "ui",
+      "status": "PASS",
+      "runtime": "game/assets/4k/runtime/ui/title-key-visual.webp",
+      "runtimeSHA256": "66af915a65646e71b5008c55c482e72801c333bbba9342c4b9f60176dd918ed2",
+      "observation": "标题页主视觉：只作装饰背景，中央留白、低饱和氛围与作品一致；真实文字和按钮由运行时组件提供，不烘焙虚假控件。"
+    },
+    {
+      "id": "save-anomaly",
+      "category": "ui",
+      "status": "PASS",
+      "runtime": "game/assets/4k/runtime/ui/save-anomaly.webp",
+      "runtimeSHA256": "1d853b9d9d4c3da03274bd500368b8e3f10c8b7b7274d8e9004593b54c57e908",
+      "observation": "存档异常主视觉：只作装饰背景，中央留白、低饱和氛围与作品一致；真实文字和按钮由运行时组件提供，不烘焙虚假控件。"
+    },
+    {
+      "id": "ending-collection-header",
+      "category": "ui",
+      "status": "PASS",
+      "runtime": "game/assets/4k/runtime/ui/ending-collection-header.webp",
+      "runtimeSHA256": "4c6882a0ff02db7938fc120f3d52bd2fa395ec34b5744ea7cdeea1cfd3ccc15b",
+      "observation": "结局收藏主视觉：只作装饰背景，中央留白、低饱和氛围与作品一致；真实文字和按钮由运行时组件提供，不烘焙虚假控件。"
+    },
+    {
+      "id": "cg-gallery-header",
+      "category": "ui",
+      "status": "PASS",
+      "runtime": "game/assets/4k/runtime/ui/cg-gallery-header.webp",
+      "runtimeSHA256": "7f255291a16fec50d9659eaa313e7b48a56318d75264e13fbaea68e4570979c1",
+      "observation": "CG画廊主视觉：只作装饰背景，中央留白、低饱和氛围与作品一致；真实文字和按钮由运行时组件提供，不烘焙虚假控件。"
+    },
+    {
+      "id": "combat-hud-key-visual",
+      "category": "ui",
+      "status": "PASS",
+      "runtime": "game/assets/4k/runtime/ui/combat-hud-key-visual.webp",
+      "runtimeSHA256": "93bab2c7a96baa6660e2f826d47a2112c7a47a41ac7a461e3496507a690ebccd",
+      "observation": "战斗页面主视觉：只作装饰背景，中央留白、低饱和氛围与作品一致；真实文字和按钮由运行时组件提供，不烘焙虚假控件。"
+    }
+  ],
+  "screenshotsInspected": [
+    {
+      "path": "test-results/r8-art/desktop/chengyan-neutral.png",
+      "sha256": "24934f9a23ea8f6c4ffe3ac8f2ba7fdbffb3fb299a7e69bb108319df17665146"
+    },
+    {
+      "path": "test-results/r8-art/desktop/chenlan-neutral.png",
+      "sha256": "5977f1897f69423ca027e35aa7bcfa515763706c8deea6a521da9c33f2321297"
+    },
+    {
+      "path": "test-results/r8-art/desktop/echochen-neutral.png",
+      "sha256": "2799a87d1edd707d78369109145f264a667bc135fe33fffe6529aa60f21f26a7"
+    },
+    {
+      "path": "test-results/r8-art/desktop/faceless-neutral.png",
+      "sha256": "f1c497bf3070fb86eea22f1236137de3ecb5ef2eef750bf6045ba8238d960434"
+    },
+    {
+      "path": "test-results/r8-art/desktop/gumingyuan-neutral.png",
+      "sha256": "7c313f82202edccdc89d276adc82591b3578b19ff03d3fac5cbd05582a9ffdb7"
+    },
+    {
+      "path": "test-results/r8-art/desktop/hechuan-neutral.png",
+      "sha256": "970c3ecbf702bf8ad4475fe62841238afbc6be4047ad1e88886bca130b15e879"
+    },
+    {
+      "path": "test-results/r8-art/desktop/jiyao-neutral.png",
+      "sha256": "9cbfdb6f1f609903dc8ba6cf3239b804c5994f1ebf1108f2749f00781c9ce25b"
+    },
+    {
+      "path": "test-results/r8-art/desktop/liangcheng-neutral.png",
+      "sha256": "04ab838c55a25d9b559d1cdbf8e3a0969f65aeb87685b960a66f02c704220a50"
+    },
+    {
+      "path": "test-results/r8-art/desktop/lincheng-neutral.png",
+      "sha256": "cdfb86dad5f9dec317a4931fa2345d89ffd2f1dcc2ad45893a59a3a54b3b9a64"
+    },
+    {
+      "path": "test-results/r8-art/desktop/luoxiumei-neutral.png",
+      "sha256": "d3f14ac5c382a3de7e0bc632e6bfad75a5dea6e81282ff086ea2cf4550379a53"
+    },
+    {
+      "path": "test-results/r8-art/desktop/shenyanqiu-neutral.png",
+      "sha256": "9972cac1dd0823f33c45e783cb1ce516ae8748131a2c2b879c8d16e2517ba67b"
+    },
+    {
+      "path": "test-results/r8-art/desktop/suyao-neutral.png",
+      "sha256": "4faf29fd747c0b73519c880c2fbf32e8e4156150744952c0b64cfcfef9a6cb4c"
+    },
+    {
+      "path": "test-results/r8-art/desktop/xujiashu-neutral.png",
+      "sha256": "c23ad72e66d12f1c890c842dd33f84c7c1c5f02ad059338c1f96f21dbfd45e59"
+    },
+    {
+      "path": "test-results/r8-art/desktop/xurong-neutral.png",
+      "sha256": "960fbbe0627958e3ec86638bc996b78a5dc91299ce484b338e70b2da2111c84f"
+    },
+    {
+      "path": "test-results/r8-art/desktop-4k/chengyan-neutral.png",
+      "sha256": "9b7d078e7b11cf7a0387602573b2194b78b53c8f361f767f0cc7bc91c6b108fd"
+    },
+    {
+      "path": "test-results/r8-art/desktop-4k/chenlan-neutral.png",
+      "sha256": "f65e12bf55f74d905accc2bba4a1175d990ea0e7cbd7f50264f7419cfdf814fa"
+    },
+    {
+      "path": "test-results/r8-art/desktop-4k/echochen-neutral.png",
+      "sha256": "6f8fa9cd443d63f5dfa177ae2d1a8f853a96690e3ec154f027fc82c794f556d6"
+    },
+    {
+      "path": "test-results/r8-art/desktop-4k/faceless-neutral.png",
+      "sha256": "1dcb9f7e510c0819454d2fe3d667964e9ea07c818dbf11d8ace25ac449175bdb"
+    },
+    {
+      "path": "test-results/r8-art/desktop-4k/gumingyuan-neutral.png",
+      "sha256": "1ddf9c44048291ac47b3de6d7c7b8410804195042d2d9c624dfc59b47c2230b0"
+    },
+    {
+      "path": "test-results/r8-art/desktop-4k/hechuan-neutral.png",
+      "sha256": "c3b5b406e1f71265b86722a646c932880dea1ef2946cd6fadd119a5a6c0cc765"
+    },
+    {
+      "path": "test-results/r8-art/desktop-4k/jiyao-neutral.png",
+      "sha256": "6070937ce80e35acd0cf02435549bda2ef2fb42fc66fb45a8bcc32af9971916e"
+    },
+    {
+      "path": "test-results/r8-art/desktop-4k/liangcheng-neutral.png",
+      "sha256": "254bd91c77d5cd2712b2e9ceeaf7b876d0e31c83c1cbe2c99d18fc4e0e5fb987"
+    },
+    {
+      "path": "test-results/r8-art/desktop-4k/lincheng-neutral.png",
+      "sha256": "5c2ae94aaa17c3e9a6dec7bdd60e081de73bac933ef015c6866cf3a1f5055dcd"
+    },
+    {
+      "path": "test-results/r8-art/desktop-4k/luoxiumei-neutral.png",
+      "sha256": "517c75540a0582718dacbd4600b6c69ab5db5790edaaa5705eda64cb2ae8ff27"
+    },
+    {
+      "path": "test-results/r8-art/desktop-4k/shenyanqiu-neutral.png",
+      "sha256": "16136e6b244446cabcb1d151deada691b2c74953846fc1162f8806603d27967e"
+    },
+    {
+      "path": "test-results/r8-art/desktop-4k/suyao-neutral.png",
+      "sha256": "53a509eec93937ee21eba2de2af6da1358673ef40f2f4f226c70e5358493ff72"
+    },
+    {
+      "path": "test-results/r8-art/desktop-4k/xujiashu-neutral.png",
+      "sha256": "fe492004d27a0c1c41ee45bf74fe244e12271de17265d3ad404abdd9197ac8fd"
+    },
+    {
+      "path": "test-results/r8-art/desktop-4k/xurong-neutral.png",
+      "sha256": "d50e6eda22dd437f5dcd7e5a257dd6c3c44cc6342144f1db936055db7bff6987"
+    },
+    {
+      "path": "test-results/r8-art/mobile-landscape/chengyan-neutral.png",
+      "sha256": "bf110ad827e35bd31b0b0c7b2a6f37e8c3753c42d94aa5b81170d21a645ab98e"
+    },
+    {
+      "path": "test-results/r8-art/mobile-landscape/chenlan-neutral.png",
+      "sha256": "3599f5d92f1fe6484c26b1137cd06119f35ab3953811668044a6c1fbe6ef0f6d"
+    },
+    {
+      "path": "test-results/r8-art/mobile-landscape/echochen-neutral.png",
+      "sha256": "eb1df889e23adc948c33735c2d772d51b4206c025d3d12e04e6404146b410d3d"
+    },
+    {
+      "path": "test-results/r8-art/mobile-landscape/faceless-neutral.png",
+      "sha256": "7f3ec0538aa47ca14580d0cbfd246bd01aa65ff543e2da6faa2f9ec639010e0b"
+    },
+    {
+      "path": "test-results/r8-art/mobile-landscape/gumingyuan-neutral.png",
+      "sha256": "ae61369a84bdaf3ad4f36545f7faa4aee7bca70b2f7901c37affac70eee5dc91"
+    },
+    {
+      "path": "test-results/r8-art/mobile-landscape/hechuan-neutral.png",
+      "sha256": "a73db22dcac4489a9510e620e2335d1e12350742a735522d8fea7f8959340dde"
+    },
+    {
+      "path": "test-results/r8-art/mobile-landscape/jiyao-neutral.png",
+      "sha256": "0c4c91c6ca6f1a8903aa86526a78ba7360f8993aaad12980d5cd76a2eaea36bf"
+    },
+    {
+      "path": "test-results/r8-art/mobile-landscape/liangcheng-neutral.png",
+      "sha256": "f402bd30adb7b084a44f1f7f2de5cc24775e78d7dc9ad32d10b27251c1ba8454"
+    },
+    {
+      "path": "test-results/r8-art/mobile-landscape/lincheng-neutral.png",
+      "sha256": "36b16eebeff868ae59ed8c7aa86018aabddbca816f429097a56f34a4fadcc6c5"
+    },
+    {
+      "path": "test-results/r8-art/mobile-landscape/luoxiumei-neutral.png",
+      "sha256": "d673f2578f03913db5932dbf7bb5faa7cc87bee60a88e2f4c90ca64b34132de8"
+    },
+    {
+      "path": "test-results/r8-art/mobile-landscape/shenyanqiu-neutral.png",
+      "sha256": "6fada4971a434bec226689245106a611dc45ee82ebcfa04f6752011faf7d9315"
+    },
+    {
+      "path": "test-results/r8-art/mobile-landscape/suyao-neutral.png",
+      "sha256": "677a8f05c80e64242679c8bdc32842dcaccdc87e76746552ec0219ebf5ecc38b"
+    },
+    {
+      "path": "test-results/r8-art/mobile-landscape/xujiashu-neutral.png",
+      "sha256": "c76c9b7fb03366cdabc3c3ddd63fcda5980224408551e06c88f8c182bdcf0ac7"
+    },
+    {
+      "path": "test-results/r8-art/mobile-landscape/xurong-neutral.png",
+      "sha256": "144daba86fe34e9fbe571552c538c16e0856b1a39709cb018990e01b0e78f1d7"
+    },
+    {
+      "path": "test-results/r8-art/mobile-portrait/chengyan-neutral.png",
+      "sha256": "13ad340a493faba80b92fc0a8eb532563b519e01c4cbba93028990369bc09b47"
+    },
+    {
+      "path": "test-results/r8-art/mobile-portrait/chenlan-neutral.png",
+      "sha256": "127c23df8c8f9c3ca92614d53b7df2a0fc90e759e170f363da2ea7f28eb41b1a"
+    },
+    {
+      "path": "test-results/r8-art/mobile-portrait/echochen-neutral.png",
+      "sha256": "6ef02781bd84da9a3de1fe2364f6973e620000270b0ae6d326b992a2ff1a1755"
+    },
+    {
+      "path": "test-results/r8-art/mobile-portrait/faceless-neutral.png",
+      "sha256": "b8d9f0c4e02fbafe14ad038709cba2e56778dd29292a254ce01d7f7e4d4a4fdb"
+    },
+    {
+      "path": "test-results/r8-art/mobile-portrait/gumingyuan-neutral.png",
+      "sha256": "e358f47d5097e6c17fce3ebce5173efa5f6ea9a78005b482b4b29f5ae476783d"
+    },
+    {
+      "path": "test-results/r8-art/mobile-portrait/hechuan-neutral.png",
+      "sha256": "f06e259ed6147185ad4b8434d97502bb78c94d33433b580aec937554ca71d511"
+    },
+    {
+      "path": "test-results/r8-art/mobile-portrait/jiyao-neutral.png",
+      "sha256": "61ecdf96bbecbe0900353d4cc717a055c36fb5c89760255b45b839729df5bd30"
+    },
+    {
+      "path": "test-results/r8-art/mobile-portrait/liangcheng-neutral.png",
+      "sha256": "a0c232214aa8aa4590d8242bd04bdf637a6bd285ad62ee0d9d424b9e2ab3344b"
+    },
+    {
+      "path": "test-results/r8-art/mobile-portrait/lincheng-neutral.png",
+      "sha256": "24857d0ba5110f76b856d7caf973a372440f2c46a170123b3eb3dba676d020c4"
+    },
+    {
+      "path": "test-results/r8-art/mobile-portrait/luoxiumei-neutral.png",
+      "sha256": "2ed18fdb4ef3725d9e3526126f88642d885fca11066ce346e127521e7b4f6e9e"
+    },
+    {
+      "path": "test-results/r8-art/mobile-portrait/shenyanqiu-neutral.png",
+      "sha256": "78a71a7d052b5441c808af0e1aa7772c3b13b03c4ff53cf6fdfce92c81fc016a"
+    },
+    {
+      "path": "test-results/r8-art/mobile-portrait/suyao-neutral.png",
+      "sha256": "55ce24369957c250acd288ed0f24589d84c4d4a4f70e43dab2895ab77f80c7f7"
+    },
+    {
+      "path": "test-results/r8-art/mobile-portrait/xujiashu-neutral.png",
+      "sha256": "0e79bf5c69861d2e964c5cf431dfc19bc1d04a2660e879d79d8789e4f3fe907e"
+    },
+    {
+      "path": "test-results/r8-art/mobile-portrait/xurong-neutral.png",
+      "sha256": "56940cf3575af9abe48554fbfaa5f68abde57fa632c010df652b041e8df087a5"
+    },
+    {
+      "path": "test-results/r8-art/offline-reload.png",
+      "sha256": "553f73d8bf42e1d85a9bdbf4b0b4f38d89483e75f2fcb39869c02a2b3d6bf225"
+    },
+    {
+      "path": "test-results/r8-art/scenes/after_school_choice.png",
+      "sha256": "af834537dbaa2d9efe53c72005f9913d22b2d402a071a35f52cd5ca27ff61303"
+    },
+    {
+      "path": "test-results/r8-art/scenes/archive_erased_map.png",
+      "sha256": "6fee75e9050fd67893891058e941086f03237737db12ca9d64c01ad4d8531151"
+    },
+    {
+      "path": "test-results/r8-art/scenes/archive_photo.png",
+      "sha256": "259b9f75a4ffe4968d6548fd12b17c9a68e7b4b9c9cc12b2609ae0c3fa1037e8"
+    },
+    {
+      "path": "test-results/r8-art/scenes/archive_room.png",
+      "sha256": "ef76f0bf8108693be5f044fa9d2875b43905e43a2ea5929a43eccf35ca6c9538"
+    },
+    {
+      "path": "test-results/r8-art/scenes/breakthrough_first.png",
+      "sha256": "a07cdaa00f8a660b7f3df6f740deb8a1bd02c362708e93f52a578358fc3332e0"
+    },
+    {
+      "path": "test-results/r8-art/scenes/c4_linwan_1.png",
+      "sha256": "4367d349a55e881c53498388812fde5604c686324bb511c1faa55c9eb59181a6"
+    },
+    {
+      "path": "test-results/r8-art/scenes/c4_linwan_2.png",
+      "sha256": "1dfb9fd0b3f8356f02fdd5394c56ac8363f042218b327b465981e82dcf94f1f4"
+    },
+    {
+      "path": "test-results/r8-art/scenes/c4_nanxing_1.png",
+      "sha256": "c2ae3b270702f54d98acffdd2308db22e551aa16be4e46e9c4ca598937dee1d6"
+    },
+    {
+      "path": "test-results/r8-art/scenes/c4_nanxing_2.png",
+      "sha256": "e184f35a6783e779208a1d419385142f38ccc1bfb7e4d05cb2abfe4d53307c0d"
+    },
+    {
+      "path": "test-results/r8-art/scenes/c4_tangli_1.png",
+      "sha256": "fc63e16c660c03ea24992830207535d62bcdbc580e70816d1e1b5b95877e76f4"
+    },
+    {
+      "path": "test-results/r8-art/scenes/c4_tangli_2.png",
+      "sha256": "3f8d0a3dd92f63eff0147e3b697e6bd4c333867d174663df9a7d3079fec7a120"
+    },
+    {
+      "path": "test-results/r8-art/scenes/c4_tinglan_1.png",
+      "sha256": "07556eabe67a7f6f6376e283b7ac961742b90d29243be683ffe9e6b374ec6377"
+    },
+    {
+      "path": "test-results/r8-art/scenes/c4_tinglan_2.png",
+      "sha256": "a84b4f9501531df1b6f986fe5a750f2de490b2187babf59913372464f9e93d95"
+    },
+    {
+      "path": "test-results/r8-art/scenes/c4_xiaoman_1.png",
+      "sha256": "103af70e955dec25fb71f6178435626c65dc8d3d7b5e6cab75b9c18fa08b209c"
+    },
+    {
+      "path": "test-results/r8-art/scenes/c4_xiaoman_2.png",
+      "sha256": "4706b29ea101977deb4dd1a59de85359cb4a4e1296c7f8b89d6e8bc07920bc1b"
+    },
+    {
+      "path": "test-results/r8-art/scenes/c4_xuqi_1.png",
+      "sha256": "ff07cb4138d7d76691566d37ac2c036d188f6ef243b139f5e6691d252c936d89"
+    },
+    {
+      "path": "test-results/r8-art/scenes/c4_xuqi_2.png",
+      "sha256": "5c7e104f1cf359fa8cec5f7e41e32d59c1d81926fe69dd812f7355053929a183"
+    },
+    {
+      "path": "test-results/r8-art/scenes/c5_1842.png",
+      "sha256": "c6ad4b0f034c568200abba7538b22db093cc109b25052c22bc02d0a6387db4a2"
+    },
+    {
+      "path": "test-results/r8-art/scenes/c5_anchor_truth.png",
+      "sha256": "9eeb86f7e9b64d86fb349945fa8258dc49416bc909ed36bd98a2fdc127ac488c"
+    },
+    {
+      "path": "test-results/r8-art/scenes/c5_city_desync.png",
+      "sha256": "922c965329d0fd453a39603d0c86566dcab6c4c8ccbb7b4602f7134b694f350a"
+    },
+    {
+      "path": "test-results/r8-art/scenes/c5_countdown.png",
+      "sha256": "8c7378e9383d8de188b1b669bce300ee2043023f9aedfde208497dbc15a5b892"
+    },
+    {
+      "path": "test-results/r8-art/scenes/c5_echo_chen.png",
+      "sha256": "2799a87d1edd707d78369109145f264a667bc135fe33fffe6529aa60f21f26a7"
+    },
+    {
+      "path": "test-results/r8-art/scenes/c5_echo_death.png",
+      "sha256": "8f849da130d52c95ed2f0bee68afd90675d791792339e332ab9c6744ce7e7a40"
+    },
+    {
+      "path": "test-results/r8-art/scenes/c5_echo_fail.png",
+      "sha256": "17638d52f0f2208e5ef3a38743b4989e644b6d910874c3c8cace5c07916bc304"
+    },
+    {
+      "path": "test-results/r8-art/scenes/c5_echo_pattern.png",
+      "sha256": "0abde505942b1e7a00b751daea8f9b41d68b7c972719c165927f6152e6998dbd"
+    },
+    {
+      "path": "test-results/r8-art/scenes/c5_north_station.png",
+      "sha256": "cbd9eb4666810918edd4ab5ae237f0312e438c838f0a10d151ee7100681242aa"
+    },
+    {
+      "path": "test-results/r8-art/scenes/c5_path_to_north.png",
+      "sha256": "04e84ae99615980d5492aa60018ca420f6e03ec83a85e4483b6ce75f09a798f1"
+    },
+    {
+      "path": "test-results/r8-art/scenes/c5_request.png",
+      "sha256": "a56dcb2e172e2f4479cdbc326ee6a0f476a654e7166e327e9df2ea4344d898b1"
+    },
+    {
+      "path": "test-results/r8-art/scenes/c5_team_morning.png",
+      "sha256": "738071fbef80e4e72ee68d05bfc520e5c96a2f0eaca852c1e269e01442ec4c55"
+    },
+    {
+      "path": "test-results/r8-art/scenes/c6_echo_goodbye.png",
+      "sha256": "3b440eb47641a18f81601f67c9610b81683a427d08f23ed4be2e6f9a7f3182d2"
+    },
+    {
+      "path": "test-results/r8-art/scenes/c6_escape.png",
+      "sha256": "e73e5c43d7135524b103d2049004a2cca3c6e5d19058841ca5ae46b40d484235"
+    },
+    {
+      "path": "test-results/r8-art/scenes/c6_last_door.png",
+      "sha256": "a10504d6edc0d0745d263af93eb8b69fb40ef48fc3604577688205cab4454ab9"
+    },
+    {
+      "path": "test-results/r8-art/scenes/c6_no_save.png",
+      "sha256": "14835f87376481a9fffba10399b0f62aaf2eb0c377282deb56c6811db1151cc7"
+    },
+    {
+      "path": "test-results/r8-art/scenes/c6_save_again.png",
+      "sha256": "def64d145c1e01a60466626f515605508e2da0e462ceb41e37d62c50741a8cb9"
+    },
+    {
+      "path": "test-results/r8-art/scenes/c6_walk_forward.png",
+      "sha256": "e39e8467571e9294083aba208d160c195ba240574c124ff512134e5c67c27fd6"
+    },
+    {
+      "path": "test-results/r8-art/scenes/c7_after.png",
+      "sha256": "ef8281763509ab8eae69841b1b6629418f6de9ba59dd730251356093bc7d899f"
+    },
+    {
+      "path": "test-results/r8-art/scenes/c7_credits.png",
+      "sha256": "0ac2364633bbb4a5296bf976c996995b18c1f4f8983580490b1a4bbc6f48b541"
+    },
+    {
+      "path": "test-results/r8-art/scenes/c7_linwan.png",
+      "sha256": "770f512af135b4850e03065dfc84c9bfba5e3465e7d2a98de1f030bc4615b251"
+    },
+    {
+      "path": "test-results/r8-art/scenes/c7_morning.png",
+      "sha256": "07618abc78862a3cfd4ddcd49b396c6ac1d4f155c742413942274560b3eb51d9"
+    },
+    {
+      "path": "test-results/r8-art/scenes/cafeteria_path.png",
+      "sha256": "cce85a0b9154917523d34916338eecaef85d0be8669acc0e5189529c041eeb5b"
+    },
+    {
+      "path": "test-results/r8-art/scenes/chapter2_teaser.png",
+      "sha256": "0c8c00c5c0f2914cb8e5a87256f96d7775d7c79dfbc203dca1e8c32608cb3ad8"
+    },
+    {
+      "path": "test-results/r8-art/scenes/chapter3_gate.png",
+      "sha256": "25cc9b4a0f6375589f6d17f50eb049c203c6267b293c662893e3cdb566e9333b"
+    },
+    {
+      "path": "test-results/r8-art/scenes/chapter5_gate.png",
+      "sha256": "b3768ffc65a9435c6c77045945d89eb01e0eb15778f19b771c0d05b70e995888"
+    },
+    {
+      "path": "test-results/r8-art/scenes/chapter6_gate.png",
+      "sha256": "35fd5d86bce52ee7ac1616d1a149cf9203963c2ad8d466ce630bbb6448b0a3c6"
+    },
+    {
+      "path": "test-results/r8-art/scenes/death_fifth.png",
+      "sha256": "94bf8ba84c7d8e659ad9aac29c08722362012d2d5dc95ecc2a0e2fc75139c85e"
+    },
+    {
+      "path": "test-results/r8-art/scenes/death_sixth.png",
+      "sha256": "e76cb21839e876bb147f5a0803eddc95da00fcf08026ffe183f50a47ca6e447f"
+    },
+    {
+      "path": "test-results/r8-art/scenes/end_linwan.png",
+      "sha256": "09c1aef37777b0b87f52e838e3af38bbb3e70f246c04934f5350b39868975aa4"
+    },
+    {
+      "path": "test-results/r8-art/scenes/end_nanxing.png",
+      "sha256": "3d9ce973bdfc615e0c9c259df9ac1904ef3749cf3c74227dc15e9c1ba1f9b9d8"
+    },
+    {
+      "path": "test-results/r8-art/scenes/end_tangli.png",
+      "sha256": "0374e16ff80b2e3968734e2dd7730b8a53697a2d889d90c6b6892e2b1a872063"
+    },
+    {
+      "path": "test-results/r8-art/scenes/end_tinglan.png",
+      "sha256": "1cb1285c73cceb7f2027863c023fe41827826ec1d85de92d88bd401d08531114"
+    },
+    {
+      "path": "test-results/r8-art/scenes/end_xiaoman.png",
+      "sha256": "5e0c9904087b948db6fc97ab24549bebde478a5063d96aab3d5c8ead90543081"
+    },
+    {
+      "path": "test-results/r8-art/scenes/end_xuqi.png",
+      "sha256": "2dd97f108cd543f5c07cdbdca1efe74034ea0296226448701b0666108a984558"
+    },
+    {
+      "path": "test-results/r8-art/scenes/faceless_first.png",
+      "sha256": "f1c497bf3070fb86eea22f1236137de3ecb5ef2eef750bf6045ba8238d960434"
+    },
+    {
+      "path": "test-results/r8-art/scenes/faceless_pattern.png",
+      "sha256": "121fc1b9f868023a3aec80f5c27e0f52c6e5ddcdf59ced15457132f608ab94c2"
+    },
+    {
+      "path": "test-results/r8-art/scenes/faceless_second.png",
+      "sha256": "6344c75adc1941f443a71ca4515a6ab13bdd3a12be1266b47cdc4a71cefa12ca"
+    },
+    {
+      "path": "test-results/r8-art/scenes/focus_linwan_open.png",
+      "sha256": "d69a6631967b0e181835cc63e0a5213698c8df865c21b946b6194e546a840b47"
+    },
+    {
+      "path": "test-results/r8-art/scenes/focus_xiaoman_open.png",
+      "sha256": "3b97d6163ffd97341844807e17d7eee6873283b0c373fb4b56f050dcc26661be"
+    },
+    {
+      "path": "test-results/r8-art/scenes/focus_xuqi_open.png",
+      "sha256": "1619c2961b0df6fe80a5a56c14d4dceedf38c4c2ba4f177b17d2ffc0fce0d175"
+    },
+    {
+      "path": "test-results/r8-art/scenes/future_message.png",
+      "sha256": "c711f25d2391e0c9f2f2e344e5ee23af66ab36ebae214d6b95bfe175c601a510"
+    },
+    {
+      "path": "test-results/r8-art/scenes/future_rule.png",
+      "sha256": "29511486f2f4d4572ea97a58d34c646c683c2d44ec3963dcf6d944fe60b5b4d0"
+    },
+    {
+      "path": "test-results/r8-art/scenes/home_bad.png",
+      "sha256": "c30b83ee38fb66f243993c440f3f09d58513122da2d54daadf5e814647b1524c"
+    },
+    {
+      "path": "test-results/r8-art/scenes/letter_examination.png",
+      "sha256": "7d4f4f410830079dff3c6cad1cfe8590a1284119ceaf5f2bed237cbc8072eb93"
+    },
+    {
+      "path": "test-results/r8-art/scenes/linwan_shadow.png",
+      "sha256": "e241d0736ba0c6b1d03de47b52b2c75a8d2c24d47dac08c1582438c9bb95194d"
+    },
+    {
+      "path": "test-results/r8-art/scenes/load_fifth.png",
+      "sha256": "e30c6e0ad49f81e43bda0564b625d5620f6bba5a4d06480833e4d011a00879db"
+    },
+    {
+      "path": "test-results/r8-art/scenes/morning_after.png",
+      "sha256": "d51659afec80d373038f7848628cf708cf101737461bc27f9c6cea3422398124"
+    },
+    {
+      "path": "test-results/r8-art/scenes/night_wucheng.png",
+      "sha256": "03cdb0a6eac89731b86e63e30f38a77ba827a05b7a31701cd4b260fc23ebeccb"
+    },
+    {
+      "path": "test-results/r8-art/scenes/prologue_1842.png",
+      "sha256": "9acb4b56fe9d2ac77706cfc14f6d59428a627a31996a16929bc5d9f4745246b8"
+    },
+    {
+      "path": "test-results/r8-art/scenes/residue_homeroom.png",
+      "sha256": "9bfe98777236aff516148ff1f3d31e944611720a7c2c329178d21967a1664d13"
+    },
+    {
+      "path": "test-results/r8-art/scenes/riverside_wrong_turn.png",
+      "sha256": "1e11718891530e4a7f3f318bac4238c04301db16e5ccf10f2b6163fb93de48a7"
+    },
+    {
+      "path": "test-results/r8-art/scenes/rooftop_warning.png",
+      "sha256": "dbdce89413f153266c20be3d1e563ce6bf2b54f905783d538e7eeb8591798c7a"
+    },
+    {
+      "path": "test-results/r8-art/scenes/route_convergence.png",
+      "sha256": "d2ded3adc751a9989594756d8e50e073dcef219ae7975b7b8ff24cc4b714d63c"
+    },
+    {
+      "path": "test-results/r8-art/scenes/route_focus_choice.png",
+      "sha256": "b2de35ba614035ed5440444a3d2dd11f8d80d67f1f8e73493b1da4ef91a76c75"
+    },
+    {
+      "path": "test-results/r8-art/scenes/route_linwan_dream.png",
+      "sha256": "8782d13dc0d41e6ee588672520d7447068bcfcb5912b6fe21adcedf6920a90d2"
+    },
+    {
+      "path": "test-results/r8-art/scenes/route_merge_message.png",
+      "sha256": "f8300ec5863b79ed98af3b1147645e64703c3048dbfb4f319d27774648820fee"
+    },
+    {
+      "path": "test-results/r8-art/scenes/route_method_choice.png",
+      "sha256": "10b542ef4c9c7f162a4b9fe0c4e72cbcbabfb733210c8ff90ee1cacf2bad7fe5"
+    },
+    {
+      "path": "test-results/r8-art/scenes/route_xiaoman_feeling.png",
+      "sha256": "93100745ae2ef04e6cd38fe3e3b6bfd68c3506aae3367f23c6bc66107c68c3d8"
+    },
+    {
+      "path": "test-results/r8-art/scenes/route_xuqi_night.png",
+      "sha256": "5dbaa56fc61fbcd8d5c72ab34e4f231c73d1de0a1fb54cd8c9fe2c395d04d473"
+    },
+    {
+      "path": "test-results/r8-art/scenes/six_person_meeting.png",
+      "sha256": "8a2a1237f0899d4f773b9a6463f93dc7009e68480509bc25e56c3703bc2b4d86"
+    },
+    {
+      "path": "test-results/r8-art/scenes/station_fourth.png",
+      "sha256": "9c194a8c0b081efd9b5025daccbc1321d07bff1a943cf3aeab2a9cd27febb090"
+    },
+    {
+      "path": "test-results/r8-art/scenes/station_refuse.png",
+      "sha256": "19c59f87ac00bc029d15756a035f3ccf07a19ab53750c22729a570979d452f03"
+    },
+    {
+      "path": "test-results/r8-art/scenes/underpass_warning.png",
+      "sha256": "677f39ae74f5e81f3ede36a683e421b4a1b98abae791b15c88202226b3e070d3"
+    },
+    {
+      "path": "test-results/r8-art/scenes/xiaoman_rain.png",
+      "sha256": "43c85016758ddb2b25518b5b6483a6a454cdec2468105e4e596f1be24c97e96d"
+    },
+    {
+      "path": "test-results/r8-art/title-desktop.png",
+      "sha256": "99ea2b56ac8fa3cdbc91596b01e6b8dee4c5f8c4ea403b4bf36d0a5a100e65aa"
+    },
+    {
+      "path": "test-results/r8-art/ui-cg-gallery-header.png",
+      "sha256": "15b5ad187a5b705fa7579b1df5cff9a05587fa048bd31bec78eb7fa837562718"
+    },
+    {
+      "path": "test-results/r8-art/ui-combat-hud-key-visual.png",
+      "sha256": "4db036aea5e56905db0ff7a017ff071950cdfaeedf433096d011818595a3530e"
+    },
+    {
+      "path": "test-results/r8-art/ui-ending-collection-header.png",
+      "sha256": "61eeb5c06a483651710ab0e3b6194d4adc5f5b41ac22596a568fb2a208300ab7"
+    },
+    {
+      "path": "test-results/r8-art/ui-save-anomaly.png",
+      "sha256": "da0dca59a4a2a245ace9c9c6cad8270b967f041129b8562d4b9667800333739d"
+    },
+    {
+      "path": "test-results/r8-art/ui-title-key-visual.png",
+      "sha256": "55c8946c6059842429a7efabc77d960a14efb3638e4d5772313241ba167986cf"
+    }
+  ],
+  "findings": [
+    {
+      "id": "R8-CG-DUPLICATE-PORTRAIT",
+      "severity": "blocking until final package regression passes",
+      "state": "FIX_IMPLEMENTED",
+      "affectedScenes": [
+        "end_linwan",
+        "end_xiaoman",
+        "end_xuqi",
+        "end_tinglan",
+        "end_tangli",
+        "end_nanxing"
+      ],
+      "observation": "Normal route ending screenshots show a regular heroine sprite over the heroine already painted inside the CG.",
+      "resolution": "Suppress .vn-portrait only while the actual story .vn-cg layer is visible; preserve all source image files, noSprite and dialogue/scene IDs.",
+      "regression": "tests/production-art-browser.mjs asserts CG visible and regular portrait hidden for actual story CG witnesses, including mobile portrait and landscape; passing Checks on the containing commit is required.",
+      "verification": "Enforced by real final-package Web and Windows acceptance in the Checks for the containing commit; not inferred from a screenshot or this report."
+    },
+    {
+      "id": "R8-QA-TITLE-CAPTURE-RACE",
+      "severity": "P2 audit evidence quality",
+      "state": "FIX_IMPLEMENTED",
+      "observation": "The old audit title-desktop.png was captured before the async work-level title gate had mounted, so it showed the transient engine shell rather than the actual title. The independent final Web ZIP test and offline reload screenshot show the correct title.",
+      "resolution": "Wait for the actual .reset-title-gate to be visible before capturing the title audit screenshot.",
+      "verification": "New same-commit audit must contain the mounted title UI; inspect the regenerated image."
+    }
+  ],
+  "nonblockingNotes": [
+    "Some full-body portraits appear relatively small in 4K or short landscape views; all silhouettes remain complete and dialogue is unobstructed. This is an optional later composition refinement, not a falsified automatic pass.",
+    "Students with short dark hair and blue-white school sportswear remain distinguishable by face, glasses and identity props (basketball, stopwatch/whistle, tablet/student card).",
+    "True End time is validated against the current chapter (Oct 25, 17:58); current story canon takes precedence over historical stage notes."
+  ],
+  "platformAcceptance": {
+    "mode": "user-authorized simulated human acceptance",
+    "webFinalZip": {
+      "status": "PASS",
+      "evidenceRun": 40874877832
+    },
+    "windowsNativeFinalZip": {
+      "status": "PASS",
+      "evidenceRun": 40874877832,
+      "scope": "actual Windows CI WebView2 host startup, final ZIP and process restart"
+    },
+    "androidSimulatedPlayerReview": {
+      "status": "PASS",
+      "viewports": [
+        "390x844",
+        "844x390"
+      ],
+      "scope": "visual inspection plus actual browser touch/keyboard/save/offline test evidence"
+    },
+    "androidPhysicalDevice": false,
+    "windowsPhysicalDeviceDPI": false,
+    "physicalDeviceStatus": "NOT_RUN; user requested simulated acceptance, not a claim of physical device testing"
+  },
+  "publication": "Not performed by this acceptance; published version/tag/assets remain immutable."
+}

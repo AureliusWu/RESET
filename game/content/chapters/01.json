@@ -506,7 +506,7 @@
       "title": "同一个目的地",
       "location": "梧城街头",
       "time": "19:16",
-      "background": "school-gate-rain",
+      "background": "wucheng-street-evening",
       "noSprite": true,
       "lines": [
         {
@@ -954,7 +954,7 @@
       "title": "拒绝读取",
       "location": "南湖站出口",
       "time": "19:31",
-      "background": "station-night",
+      "background": "nanhu-station-exit",
       "noSprite": true,
       "lines": [
         {

@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "character": null,
+  "name": "underpass-exit-evening",
+  "category": "backgrounds",
+  "id": "underpass-exit-evening",
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
+  "native4kClaim": false,
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-92042a0d-4af5-4dae-abbb-c2e04de5a9ac.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/backgrounds/underpass-exit-evening/prompt.txt",
+  "promptSHA256": "4be413ac6d517618636e8978dc8c5d834973cf9b5df677d313388ecabee20ef3",
+  "spec": "game/art-sources/chatgpt/backgrounds/underpass-exit-evening/spec.json",
+  "specSHA256": "d0087939102cc4c2d89718a5c93a5e347413fafa67bd381256a4e12452c9fd78",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "resize": "aspect-fill Lanczos",
+    "sourceSize": [
+      1672,
+      941
+    ]
+  },
+  "assets": [
+    {
+      "expression": "underpass-exit-evening",
+      "original": "game/art-sources/chatgpt/backgrounds/underpass-exit-evening/original.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "45e5961e7b66be0b06b0e929ec3c89510dfd4ecb356ba9242f140aa1e2d3380f",
+      "master": "game/assets/4k/backgrounds/underpass-exit-evening.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "8357d00ac3a022fd49ab67ddbdc9db6973d3cb9080af46bb7a85ca493860904f",
+      "runtime": "game/assets/4k/runtime/backgrounds/underpass-exit-evening.webp",
+      "runtimeSize": [
+        1920,
+        1080
+      ],
+      "runtimeSHA256": "881ad618af6569b45c097dc04796c330bfa26b7ffde030fcb01ebbeed3813b86"
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "schema": 1,
+  "id": "linwan-1842-cg",
+  "name": "北站18:42最终约定",
+  "kind": "cg",
+  "scene": "c5_1842",
+  "canon": {
+    "path": "game/content/chapters/05.json",
+    "title": "18:42",
+    "location": "梧城北站·站台",
+    "time": "18:42",
+    "dialogue": [
+      {
+        "id": "r1_c5_1842_pre04_01",
+        "speaker": "陈渡",
+        "text": "如果答案不是一个物件，那就从留下来的记忆和时间开始找。"
+      },
+      {
+        "id": "c5z002",
+        "speaker": "林晚",
+        "text": "陈渡。最后问一次。"
+      },
+      {
+        "id": "c5z003",
+        "speaker": "林晚",
+        "text": "你要我结束这一轮吗？"
+      },
+      {
+        "id": "c5z004",
+        "speaker": "陈渡",
+        "text": "不是结束我。是让明天终于不用从我这里开始。"
+      },
+      {
+        "id": "c5z006",
+        "speaker": "林晚",
+        "text": "那你也必须答应我。不要再回来替现在的你后悔。"
+      },
+      {
+        "id": "c5z007",
+        "speaker": "陈渡",
+        "text": "我答应。"
+      },
+      {
+        "id": "r1_c5_1842_post01_01",
+        "speaker": "陈渡",
+        "text": "我先把能确认的写下来。记不住也没关系，至少别再假装只有我一个人的记忆算数。"
+      },
+      {
+        "id": "r1_c5_1842_post08_01",
+        "speaker": "陈渡",
+        "text": "把林澄和徐嘉树也记进去。不是因为他们掌握答案，是因为如果我们的选择伤到普通人的生活，那也必须算在结果里。"
+      }
+    ]
+  },
+  "designProposal": "旧地铁站站台，冷白顶灯与远处即将吞没站台的柔白光，林晚在画面右侧前景半身，刚睁眼、平静坚定而不哭泣，看向镜头外陈渡。手自然握紧校服下摆。背景是站台轨道、普通站务设施与细微静止雨雾，紧张克制，不画武器或血腥，不画拥抱。",
+  "references": [
+    "game/assets/4k/runtime/cg/linwan-1842-cg.webp",
+    "game/assets/4k/runtime/characters/linwan/serious.webp"
+  ],
+  "characterIdentityMustMatch": "linwan",
+  "reviewStatus": "UNVERIFIED",
+  "native4kClaim": false,
+  "referenceInputs": [
+    {
+      "path": "game/assets/4k/runtime/cg/linwan-1842-cg.webp",
+      "commit": "5eeea12921cb8e07b4e0ba64a8a37b91730954a9",
+      "sha256": "f1fe3a2a750a7cf09cd2efb6ab01d8a753473d5e1de47c5c94a1d837e8fadf4f"
+    },
+    {
+      "path": "game/assets/4k/runtime/characters/linwan/serious.webp",
+      "commit": "5eeea12921cb8e07b4e0ba64a8a37b91730954a9",
+      "sha256": "7d4c7eba7d05d3cb7ab9e2bd062e3fb1943cba55957b2acd85aaf45ff92f5c00"
+    }
+  ]
+}

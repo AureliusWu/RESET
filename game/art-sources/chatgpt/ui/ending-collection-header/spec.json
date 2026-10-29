@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "id": "ending-collection-header",
+  "name": "结局收藏主视觉",
+  "kind": "ui-key-visual",
+  "canonSources": [
+    "docs/ART_DIRECTION.md",
+    "game/runtime/experience.css",
+    "game/assets/4k/asset-plan.json"
+  ],
+  "designProposal": "一间雨后明亮的空教室，六把普通木椅围在一张宽桌旁，窗边一只空的旧木相框象征未被归档的第七人，柔和青灰色自然光和纸张记忆气氛，平静留白，主体在横向中部，适合裁成页面顶部横幅。没有人物、没有可读文字、没有UI。",
+  "constraints": [
+    "Illustrative background only; controls and text remain real runtime UI",
+    "1920x1080 runtime; processed 3840x2160 master",
+    "No native 4K claim"
+  ],
+  "reviewStatus": "UNVERIFIED",
+  "native4kClaim": false
+}

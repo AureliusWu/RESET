@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "id": "luoxiumei",
+  "name": "罗秀梅",
+  "kind": "portrait",
+  "expression": "neutral",
+  "canonRole": "48岁女性食堂二楼窗口工作人员，朴实温暖，认得学生的口味和胃口",
+  "visualProposal": "深褐短卷发，明显中年温和圆脸，普通棕色长袖、浅褐围裙、黑色宽松长裤、防滑平底工作鞋，一手持小饭勺自然垂下，另一手搭围裙；中年生活感而非少女脸",
+  "sourceCommit": "5eeea12921cb8e07b4e0ba64a8a37b91730954a9",
+  "sourceDocs": [
+    "docs/CAST_BIBLE_R1.md",
+    "docs/R8_ART_RECONSTRUCTION.md",
+    "docs/ART_DIRECTION.md"
+  ],
+  "storyEvidence": [
+    {
+      "path": "game/content/chapters/01.json",
+      "sceneId": "cafeteria_path",
+      "lineId": "r1_cafeteria_path_pre03_01",
+      "text": "陈渡，今天还是不要香菜？你同学都换了三拨了，就你这个记得最牢。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/07.json",
+      "sceneId": "c7_credits",
+      "lineId": "r1_c7_credits_key01_01",
+      "text": "今天怎么七个人一起来？先说好，窗口快收了，没那么多鸡腿。",
+      "noSprite": true
+    }
+  ],
+  "generation": "ChatGPT native image_gen.imagegen",
+  "reviewStatus": "UNVERIFIED",
+  "native4kClaim": false
+}

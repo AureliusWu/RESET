@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "id": "chendu-home-morning",
+  "name": "陈渡家清晨",
+  "kind": "background",
+  "sourceCommit": "8d190ebec6fb8c91b2f6c984bd6010b1d4de6005",
+  "canonSources": [
+    "docs/ART_DIRECTION.md",
+    "game/content/chapters/05.json"
+  ],
+  "sceneEvidence": [
+    {
+      "scene": "chapter5_gate",
+      "path": "game/content/chapters/05.json",
+      "location": "陈渡家",
+      "time": "06:00",
+      "previousBackground": "home-corridor",
+      "sampleLines": [
+        {
+          "id": "r1_chapter5_gate_pre01_01",
+          "text": "06:00，陈渡家。玄关里有两双常穿的鞋，冰箱门贴着缴费单和医院排班表；所谓“回家”首先意味着有人知道你几点该回来。"
+        },
+        {
+          "id": "r1_chapter5_gate_pre02_01",
+          "text": "陈渡没有解释世界会怎样。他只把鞋带重新系紧，因为厨房里的人真正想知道的是另一件事：今晚他回不回来。门口那双湿过几次的运动鞋还没干透，陈渡换了一双，动作比平时慢。"
+        }
+      ]
+    }
+  ],
+  "designProposal": "06:00，陈渡与夜班护士母亲住的普通中国城市小户型家，卧室通向小客厅，书桌、床边手机、晾衣架、桌上的饭盒和保温杯，窗外灰蓝晨光，普通温暖生活，前景有进出门的空间。不画人物，不画精装豪宅。",
+  "reviewStatus": "UNVERIFIED",
+  "native4kClaim": false
+}

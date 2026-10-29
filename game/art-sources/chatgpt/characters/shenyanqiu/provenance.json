@@ -2,24 +2,64 @@
   "schema": 1,
   "character": "shenyanqiu",
   "name": "沈砚秋",
-  "sourceType": "chatgpt-authored-procedural-raster-illustration",
-  "visualTier": "supporting-cast-stylized-bust",
+  "category": "characters",
+  "id": "shenyanqiu",
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
   "native4kClaim": false,
-  "designPlan": "game/visual/r5-supporting-cast-plan.json",
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-4d222279-1d80-4cd0-9307-7d0a99c26899.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/characters/shenyanqiu/prompt-neutral.txt",
+  "promptSHA256": "f89f58ca64a7d984dc3d2073782c7f07f902bbcf9d00f35cf59759e84e99cb5a",
+  "spec": "game/art-sources/chatgpt/characters/shenyanqiu/spec.json",
+  "specSHA256": "2d54c42892e563667d0dab45bda5dbe4971a73f984967185f12dc60d0e12746d",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "cropBounds": [
+      229,
+      5,
+      737,
+      1663
+    ],
+    "framingAlphaThreshold": 8,
+    "offset": [
+      528,
+      130
+    ],
+    "scaledSize": [
+      1103,
+      3600
+    ],
+    "resize": "premultiplied-alpha Lanczos"
+  },
   "assets": [
     {
       "expression": "neutral",
       "original": "game/art-sources/chatgpt/characters/shenyanqiu/neutral.png",
-      "originalSHA256": "7e21727a66d166029bead51866210be7c5af5754784edbcf67e456f085cb683b",
       "originalSize": [
+        941,
+        1672
+      ],
+      "originalSHA256": "89bfc4d23edbb5d0682f6d04e603ce787012944f9719b09ed3bd304dc6bbe3d4",
+      "master": "game/assets/4k/characters/shenyanqiu/neutral.png",
+      "masterSize": [
+        2160,
+        3840
+      ],
+      "masterSHA256": "bd0b0622b3d7a04029828a6d0dd8d10f083565e10a8f0753931e9522da986d40",
+      "runtime": "game/assets/4k/runtime/characters/shenyanqiu/neutral.webp",
+      "runtimeSize": [
         1080,
         1920
       ],
-      "master": "game/assets/4k/characters/shenyanqiu/neutral.png",
-      "masterSHA256": "bd2935cad19aef587a2d75e645d7607b9c01f51c9cb163513f4b63b25dc18d90",
-      "runtime": "game/assets/4k/runtime/characters/shenyanqiu/neutral.webp",
-      "runtimeSHA256": "ebaab2f3aed9d82ec01a9d7352f73da474d815d356e93497e66f746169a41cae",
-      "lockedBodySHA256": "7e21727a66d166029bead51866210be7c5af5754784edbcf67e456f085cb683b"
+      "runtimeSHA256": "a1a93a858088a63900baf0fdd0908e6fe3e6677dbcff20203d0260561c67a715",
+      "lockedBodySHA256": "be632a577c114f3081ff19f8f5b8935c51193b4cd77c74754ae06a3d8f7d9349"
     }
   ]
 }

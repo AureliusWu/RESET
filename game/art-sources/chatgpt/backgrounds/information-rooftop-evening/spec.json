@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "id": "information-rooftop-evening",
+  "name": "信息楼天台",
+  "kind": "background",
+  "sourceCommit": "8d190ebec6fb8c91b2f6c984bd6010b1d4de6005",
+  "canonSources": [
+    "docs/ART_DIRECTION.md",
+    "game/content/chapters/04.json",
+    "game/content/chapters/04.json"
+  ],
+  "sceneEvidence": [
+    {
+      "scene": "c4_nanxing_2",
+      "path": "game/content/chapters/04.json",
+      "location": "信息楼天台",
+      "time": "18:10",
+      "previousBackground": "rooftop-evening",
+      "sampleLines": [
+        {
+          "id": "r1_c4_nanxing_2_pre01_01",
+          "text": "18:10，信息楼天台。梧城的天气、交通和人群仍按自己的节奏前进，日志停在18点42。"
+        },
+        {
+          "id": "r1_c4_nanxing_2_pre01_02",
+          "text": "路边小店在换班，骑车的人按铃借道，没有谁知道陈渡正在把这些琐碎当成确认现实的坐标，纪尧问硒鼓型号。"
+        }
+      ]
+    },
+    {
+      "scene": "end_nanxing",
+      "path": "game/content/chapters/04.json",
+      "location": "信息楼天台",
+      "time": "10月24日 18:43",
+      "previousBackground": "rooftop-evening",
+      "sampleLines": [
+        {
+          "id": "r1_end_nanxing_pre01_01",
+          "text": "10月24日 18:43，信息楼天台。梧城的天气、交通和人群仍按自己的节奏前进，屏幕终于黑了。"
+        },
+        {
+          "id": "r1_end_nanxing_pre01_02",
+          "text": "路边小店在换班，骑车的人按铃借道，没有谁知道陈渡正在把这些琐碎当成确认现实的坐标，她先听完陈渡。"
+        }
+      ]
+    }
+  ],
+  "designProposal": "18:10至18:43的梧城一中信息楼天台，与普通学校天台有所区别：小型通信天线、线路盒、设备管道、安全护栏、远处教学楼和居民楼，夕阳暖光与灰蓝阴影，前景有可倚靠的水泥矮墙，生活化而非科幻。",
+  "reviewStatus": "UNVERIFIED",
+  "native4kClaim": false
+}

@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "character": null,
+  "name": "north-station-after1842",
+  "category": "backgrounds",
+  "id": "north-station-after1842",
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
+  "native4kClaim": false,
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-07e079d2-5b11-4df3-9288-fbb5f7e01ebd.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/backgrounds/north-station-after1842/prompt.txt",
+  "promptSHA256": "7fea60c87b8c2936dbba268c9c7daed424fae45c9db7f19967eb7320e3497dc4",
+  "spec": "game/art-sources/chatgpt/backgrounds/north-station-after1842/spec.json",
+  "specSHA256": "63f99ada4d3b60cf8cba4efd0f36329d013e37aa0a096f55369c4b9fd3398e25",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "resize": "aspect-fill Lanczos",
+    "sourceSize": [
+      1672,
+      941
+    ]
+  },
+  "assets": [
+    {
+      "expression": "north-station-after1842",
+      "original": "game/art-sources/chatgpt/backgrounds/north-station-after1842/original.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "44cd9045cef3480a8c831b8497efee9315a2810cb8a647aa7cfd3f7be588d958",
+      "master": "game/assets/4k/backgrounds/north-station-after1842.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "312d44ee214a69b553fbec05adc0e5a58c4d464f693ffc5da010c617af4eb00f",
+      "runtime": "game/assets/4k/runtime/backgrounds/north-station-after1842.webp",
+      "runtimeSize": [
+        1920,
+        1080
+      ],
+      "runtimeSHA256": "9a6f91983537b6747f3dee3d9c6eb82499cf2ccbca17863e2466fa0e026e7ef1"
+    }
+  ]
+}

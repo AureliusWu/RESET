@@ -15,7 +15,7 @@ export async function verifyProductionArt({page,project,fixtures,loadFixture,out
       session.restore(save);const scene=session.getView().frame.sceneId;
       for(let i=0;i<100;i++){
         const f=session.getView().frame;if(f.sceneId!==scene)break;
-        for(const id of [f.stage.portrait,f.stage.background,f.stage.cg])if(id&&!frames.has(id)&&!IRREVERSIBLE_SCENES.includes(f.sceneId)){
+        for(const id of [!f.stage.cg&&f.stage.portrait,f.stage.background,f.stage.cg])if(id&&!frames.has(id)&&!IRREVERSIBLE_SCENES.includes(f.sceneId)){
           try{frames.set(id,session.save());}catch{/* irreversible art is checked by actual finale traversal */}
         }
         if(!session.next())break;
@@ -44,24 +44,52 @@ export async function verifyProductionArt({page,project,fixtures,loadFixture,out
       await loadFixture(witness);
       await page.waitForFunction(({id,selector,width})=>{const im=document.querySelector(selector);return im?.dataset.asset===id&&im.complete&&im.naturalWidth===width;},{id:asset.id,selector,width:expectedWidth});
       assert.equal(await page.locator(selector).getAttribute('src').then(s=>s.includes(asset.src)),true);
+      if(asset.kind==='cg') {
+        assert.equal(await page.locator('.vn-cg').isVisible(),true,`${asset.id}: story CG is hidden`);
+        assert.equal(await page.locator('.vn-portrait').isVisible(),false,`${asset.id}: regular portrait duplicates the character inside the CG`);
+      }
       if(asset.kind!=='portrait'||asset.id.endsWith('/neutral'))await page.screenshot({path:out+'/production-'+asset.id.replaceAll('/','-')+'.png',animations:'disabled'});
       records.push({id:asset.id,verification:'canonical story save'});
     }else{
       await page.evaluate(async({asset,background})=>{
         const {mountGame}=await import('./lib/index.js');const root=document.createElement('div');root.id='__assetQA';root.style.cssText='position:fixed;inset:0;z-index:2147483647;background:#14272e';document.body.append(root);
         const [character,expression]=asset.id.split('/');
-        const fixture={schema:1,game:'reset-isolated-art-qa',version:'qa',title:'Isolated art QA',type:'narrative',entry:'qa',stats:{},assets:[asset,...(asset.id===background.id?[]:[background])],stage:{scenes:{qa:{[asset.kind==='portrait'?'portrait':asset.kind]:asset.id}}},scenes:[{id:'qa',title:'Formal expression renderer fixture',character,background:background.id,lines:[{id:'qa-line',speaker:'QA',text:'此差分暂未在剧情使用；独立渲染验收。',expression}],ending:'qa'}]};
+        const fixture={schema:1,game:'reset-isolated-art-qa',version:'qa',title:'Isolated art QA',type:'narrative',entry:'qa',stats:{},assets:[asset,...(asset.id===background.id?[]:[background])],stage:{scenes:{qa:{[asset.kind==='portrait'?'portrait':asset.kind]:asset.id}}},scenes:[{id:'qa',title:'Formal expression renderer fixture',character,background:background.id,lines:[{id:'qa-line',speaker:'QA',text:'此素材当前未在剧情中单独展示；独立渲染验收。',expression}],ending:'qa'}]};
         window.__assetQAGame=mountGame(root,fixture,{baseURL:new URL('./',location.href),storage:null,audio:false});window.__assetQAGame.session.configure({textDelayMs:0,reducedMotion:true});
       },{asset,background:project.assets.find(a=>a.kind==='background')});
       try{
         await page.waitForFunction(({id,selector,width})=>{const im=document.querySelector('#__assetQA '+selector);return im?.dataset.asset===id&&im.complete&&im.naturalWidth===width;},{id:asset.id,selector,width:expectedWidth});
         await page.screenshot({path:out+'/fixture-'+asset.id.replaceAll('/','-')+'.png',animations:'disabled'});
       }finally{await page.evaluate(()=>{window.__assetQAGame.dispose();delete window.__assetQAGame;document.getElementById('__assetQA').remove();});}
-      records.push({id:asset.id,verification:'isolated packaged renderer fixture; unused in story'});
+      records.push({id:asset.id,verification:'isolated packaged renderer fixture; not shown as a standalone story image'});
     }
   }
   await writeFile(out+'/production-art.json',JSON.stringify({decoded,records},null,2)+'\n');
   const viewport=page.viewportSize();
+  const cgWitness=assets.find(asset=>asset.kind==='cg'&&frames.has(asset.id));
+  if(viewport&&cgWitness) {
+    try {
+      // The renderer clears src/sets hidden while an async image probe loads.
+      // complete alone is also true for an empty src, so wait for real pixels.
+      for(const [width,height] of [[390,844],[844,390]]) {
+        await page.setViewportSize({width,height});await loadFixture(frames.get(cgWitness.id));
+        await page.waitForFunction(id=>{const image=document.querySelector('.vn-cg');return image?.dataset.asset===id&&!image.hidden&&image.complete&&image.naturalWidth===1920;},cgWitness.id);
+        await page.locator('.vn-cg').waitFor({state:'visible'});
+        assert.equal(await page.locator('.vn-cg').isVisible(),true,`story CG must be visible at ${width}x${height}`);
+        assert.equal(await page.locator('.vn-portrait').isVisible(),false,'mobile CG must not show a duplicate regular portrait');
+        await page.screenshot({path:out+`/cg-composition-${width}x${height}.png`,animations:'disabled'});
+      }
+    } finally {await page.setViewportSize(viewport);}
+    const portraitWitness=assets.find(asset=>asset.kind==='portrait'&&frames.has(asset.id));
+    if(portraitWitness) {
+      await loadFixture(frames.get(portraitWitness.id));
+      await page.waitForFunction(id=>{const image=document.querySelector('.vn-portrait');return image?.dataset.asset===id&&!image.hidden&&image.complete&&image.naturalWidth===1080;},portraitWitness.id);
+      await page.locator('.vn-portrait').waitFor({state:'visible'});
+      assert.equal(await page.locator('.vn-cg').isVisible(),false);
+      assert.equal(await page.locator('.vn-portrait').isVisible(),true,'normal dialogue must restore portraits after leaving a CG');
+    }
+    pass('Story CGs suppress duplicate regular portraits in desktop/mobile frames and normal dialogue restores portraits afterward');
+  }
   if(captureEdges&&viewport){
     await page.setViewportSize({width:2160,height:1920});
     try{

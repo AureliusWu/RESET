@@ -1,26 +1,54 @@
 {
   "schema": 1,
-  "assetId": "route-tinglan-end-cg",
-  "sourceType": "deterministic-composite-from-approved-production-art",
+  "character": null,
+  "name": "未归档的人",
+  "category": "cg",
+  "id": "route-tinglan-end-cg",
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
   "native4kClaim": false,
-  "inputs": {
-    "background": "game/assets/4k/backgrounds/archive-room.png",
-    "portrait": "game/assets/4k/characters/tinglan/serious.png",
-    "ending": "normal-tinglan",
-    "scene": "end_tinglan"
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-9f29b638-addf-4130-926b-4bede4722199.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/cg/route-tinglan-end-cg/prompt.txt",
+  "promptSHA256": "6d04143f807495f1d1c556e4750c003ea86b763e1fa349a8db6912e5d8c218b9",
+  "spec": "game/art-sources/chatgpt/cg/route-tinglan-end-cg/spec.json",
+  "specSHA256": "d22671fed9589d8b469e6bf4156cb777ce6bd5659ecb7af7f142479282074aad",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "resize": "aspect-fill Lanczos",
+    "sourceSize": [
+      1672,
+      941
+    ]
   },
   "assets": [
     {
-      "original": "game/art-sources/chatgpt/cg/route-tinglan-end-cg/original.png",
-      "originalSHA256": "c93a49c71ce9b08764dbdee2e8a295db60cf7a9d32c11775a0cc9015d4b80ac7",
+      "expression": "route-tinglan-end-cg",
       "originalSize": [
+        1672,
+        941
+      ],
+      "original": "game/art-sources/chatgpt/cg/route-tinglan-end-cg/original.png",
+      "originalSHA256": "13eec21a31f318b98c044028b70f95d62958870ada861c8d34f918dfe5e00ab4",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "master": "game/assets/4k/cg/route-tinglan-end-cg.png",
+      "masterSHA256": "59b6b5094ecebab94890e3c2b65083a6e570577b40d1be262374c8beb9ea2e37",
+      "runtimeSize": [
         1920,
         1080
       ],
-      "master": "game/assets/4k/cg/route-tinglan-end-cg.png",
-      "masterSHA256": "88800ca3922f20c138c792d4c156c9ab1b8fd76289d91b1d0fef0a6c2c9a2d09",
       "runtime": "game/assets/4k/runtime/cg/route-tinglan-end-cg.webp",
-      "runtimeSHA256": "95d8750ae6ace8bc76d5e820a53e79893843a76de864dd49606a16a2f44088d4"
+      "runtimeSHA256": "aa51ca272e8475b2fcaa0b23ce20f1528c2831f8242fe4fb881ad2565c6a9c27"
     }
-  ]
+  ],
+  "recoveryNote": "Binary originals and derivatives recovered unchanged from GitHub upload commit 065ac5a; prompt/spec reconstructed from producing-turn record after scratch reset. Native output filename and source hash match original tool output."
 }

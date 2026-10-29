@@ -2,24 +2,64 @@
   "schema": 1,
   "character": "lincheng",
   "name": "林澄",
-  "sourceType": "chatgpt-authored-procedural-raster-illustration",
-  "visualTier": "supporting-cast-stylized-bust",
+  "category": "characters",
+  "id": "lincheng",
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
   "native4kClaim": false,
-  "designPlan": "game/visual/r5-supporting-cast-plan.json",
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-d658de11-31da-4996-bee0-6d6a94dcca60.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/characters/lincheng/prompt-neutral.txt",
+  "promptSHA256": "65357bd3ccc52014ae33a252b83def007fa54d08f102ca7c6b41e7500c654e91",
+  "spec": "game/art-sources/chatgpt/characters/lincheng/spec.json",
+  "specSHA256": "01bb35dbaf9de492a452441d697e5f91fbae4716fbbd20868d7b709c46e5c405",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "cropBounds": [
+      217,
+      9,
+      733,
+      1662
+    ],
+    "framingAlphaThreshold": 8,
+    "offset": [
+      518,
+      130
+    ],
+    "scaledSize": [
+      1124,
+      3600
+    ],
+    "resize": "premultiplied-alpha Lanczos"
+  },
   "assets": [
     {
       "expression": "neutral",
       "original": "game/art-sources/chatgpt/characters/lincheng/neutral.png",
-      "originalSHA256": "0ec41bf3af2d26636766c2570fd6fba7e6649282290c0b7ddf9ba2dfc5a69280",
       "originalSize": [
+        941,
+        1672
+      ],
+      "originalSHA256": "3b94ee0a49e39e2484e30d0fd9a3037b519c9df7916606c892b0fbe494e4d1e3",
+      "master": "game/assets/4k/characters/lincheng/neutral.png",
+      "masterSize": [
+        2160,
+        3840
+      ],
+      "masterSHA256": "090dd5637a2aac0273ca5e246cf188905d980a511ec9bc6f7f7a62e4d154e265",
+      "runtime": "game/assets/4k/runtime/characters/lincheng/neutral.webp",
+      "runtimeSize": [
         1080,
         1920
       ],
-      "master": "game/assets/4k/characters/lincheng/neutral.png",
-      "masterSHA256": "94028d01c4c8a51ff525aa4ad09999db8cee4a7cf96e7402797b23c386660671",
-      "runtime": "game/assets/4k/runtime/characters/lincheng/neutral.webp",
-      "runtimeSHA256": "c8fff92619c7eb26d10a6adf191063f465d895bf31f05b7074c29535013eb95d",
-      "lockedBodySHA256": "0ec41bf3af2d26636766c2570fd6fba7e6649282290c0b7ddf9ba2dfc5a69280"
+      "runtimeSHA256": "c353eb6a60e1d5fcf0e30182a481ef0ea8c60f0c75e24bd5266e5fac049e62e6",
+      "lockedBodySHA256": "5c19d616474b3e27ccd65a9ef6831544550e47361fcc5cceec418316770ace09"
     }
   ]
 }

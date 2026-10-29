@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "id": "abandoned-station-entrance",
+  "name": "废弃站口",
+  "kind": "background",
+  "sourceCommit": "8d190ebec6fb8c91b2f6c984bd6010b1d4de6005",
+  "canonSources": [
+    "docs/ART_DIRECTION.md",
+    "game/content/chapters/04.json"
+  ],
+  "sceneEvidence": [
+    {
+      "scene": "c4_tangli_2",
+      "path": "game/content/chapters/04.json",
+      "location": "废弃站口",
+      "time": "17:02",
+      "previousBackground": "station-night",
+      "sampleLines": [
+        {
+          "id": "r1_c4_tangli_2_pre01_01",
+          "text": "17:02，废弃站口。闸机、摄像头、广播、站务日志和列车时刻共同构成秩序。只要其中一个东西不对，工作人员就会留下记录，她先走十米。"
+        },
+        {
+          "id": "r1_c4_tangli_2_pre02_01",
+          "text": "过去几天里，陈渡养成了一个笨办法：每到一个地方先看人，再看钟，最后看自己。人会记错，钟会坏，而他本人更不值得完全相信，又回头数一遍。"
+        }
+      ]
+    }
+  ],
+  "designProposal": "17:02，城市边缘一座封闭废弃地铁站入口，半落卷帘门、锈蚀护栏、通向地下的湿台阶、杂草、施工围挡、积水、褪色但不可读的指示牌，阴天傍晚自然光，站外视角，带现实生活的荒置感。不是运营中的站台。",
+  "reviewStatus": "UNVERIFIED",
+  "native4kClaim": false
+}

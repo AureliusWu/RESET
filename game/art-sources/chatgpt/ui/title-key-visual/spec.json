@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "id": "title-key-visual",
+  "name": "标题页主视觉",
+  "kind": "ui-key-visual",
+  "canonSources": [
+    "docs/ART_DIRECTION.md",
+    "game/runtime/experience.css",
+    "game/assets/4k/asset-plan.json"
+  ],
+  "designProposal": "现代中国梧城雨夜的十字路口和远处旧教学楼，湿路面映出一盏冷白街灯，建筑玻璃里出现一层微弱错位倒影，远处普通钟楼仅作轮廓，蓝灰和少量暖色。中央55%保持低细节、较暗留白供真实标题菜单叠加。不要人物、不要钟面数字。",
+  "constraints": [
+    "Illustrative background only; controls and text remain real runtime UI",
+    "1920x1080 runtime; processed 3840x2160 master",
+    "No native 4K claim"
+  ],
+  "reviewStatus": "UNVERIFIED",
+  "native4kClaim": false
+}

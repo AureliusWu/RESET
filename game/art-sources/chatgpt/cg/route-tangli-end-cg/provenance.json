@@ -1,26 +1,54 @@
 {
   "schema": 1,
-  "assetId": "route-tangli-end-cg",
-  "sourceType": "deterministic-composite-from-approved-production-art",
+  "character": null,
+  "name": "向前跑",
+  "category": "cg",
+  "id": "route-tangli-end-cg",
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
   "native4kClaim": false,
-  "inputs": {
-    "background": "game/assets/4k/backgrounds/riverside-dusk.png",
-    "portrait": "game/assets/4k/characters/tangli/smile.png",
-    "ending": "normal-tangli",
-    "scene": "end_tangli"
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-c41f22d6-bcf9-44d7-a589-683f0f958919.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/cg/route-tangli-end-cg/prompt.txt",
+  "promptSHA256": "2af95483bcb55634017e4183d3197655958b27a398a1f15108f1ee4ea9b90c17",
+  "spec": "game/art-sources/chatgpt/cg/route-tangli-end-cg/spec.json",
+  "specSHA256": "41b44b6eae9baae1ef07ed2a167d186f803efe133b9f0c863c74fdffd348af01",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "resize": "aspect-fill Lanczos",
+    "sourceSize": [
+      1672,
+      941
+    ]
   },
   "assets": [
     {
+      "expression": "route-tangli-end-cg",
       "original": "game/art-sources/chatgpt/cg/route-tangli-end-cg/original.png",
-      "originalSHA256": "16f6688ab6145bbe38752c77f093dae12e4579f3983cef473d544829aebf805d",
       "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "5a6b08c2c2fe4691f5ab2ee2f9773cba5988b5d0b6e94c21d5ad243a5cad32ff",
+      "master": "game/assets/4k/cg/route-tangli-end-cg.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "4e6015e08b09e95cd5f1d499812b4b33b5136dec2e7a5accc5acc5c827967fd2",
+      "runtime": "game/assets/4k/runtime/cg/route-tangli-end-cg.webp",
+      "runtimeSize": [
         1920,
         1080
       ],
-      "master": "game/assets/4k/cg/route-tangli-end-cg.png",
-      "masterSHA256": "5c3cc9d09ba62d827ab1bb83503e3d0b30744267a52eb983b41cb97ff14c4e30",
-      "runtime": "game/assets/4k/runtime/cg/route-tangli-end-cg.webp",
-      "runtimeSHA256": "a60b3315295ae185b19d31670ab2cf90ef0b354fd2eab0636439a0b3cf78ca76"
+      "runtimeSHA256": "154c3e7466a8e6a9ee5ccd91c0fe834ef736f5a559e0afd38d943d06a60e9d4f"
     }
-  ]
+  ],
+  "recoveryNote": "Native edit of the most recent conversation image, num_last_images_to_include=1, preserving the prior Tang Li CG composition and correcting fingers. Previous draft file was lost on scratch reset before upload; this is a new native output, not the lost file."
 }

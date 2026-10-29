@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "character": null,
+  "name": "old-art-room-evening",
+  "category": "backgrounds",
+  "id": "old-art-room-evening",
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
+  "native4kClaim": false,
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-6918e929-95c8-4ced-8837-f376e2f65579.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/backgrounds/old-art-room-evening/prompt.txt",
+  "promptSHA256": "55f12d91e2cf21dd95bd0351c8a9ade711d143c8ddf37ae60e8b1aebb9ac52b9",
+  "spec": "game/art-sources/chatgpt/backgrounds/old-art-room-evening/spec.json",
+  "specSHA256": "cf518bd46adf15af66c46c807f63ec054b3feac04aa7bb40a24d5862295535f1",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "resize": "aspect-fill Lanczos",
+    "sourceSize": [
+      1672,
+      941
+    ]
+  },
+  "assets": [
+    {
+      "expression": "old-art-room-evening",
+      "original": "game/art-sources/chatgpt/backgrounds/old-art-room-evening/original.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "3831e1769225ca4fe5bff27f51a737d9d7933b6589c8f5290df1e9f69bc55144",
+      "master": "game/assets/4k/backgrounds/old-art-room-evening.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "cbc4d3933c08198e439dba7769ba52f32418fdb7eedfae132f0d10b67abdc5d7",
+      "runtime": "game/assets/4k/runtime/backgrounds/old-art-room-evening.webp",
+      "runtimeSize": [
+        1920,
+        1080
+      ],
+      "runtimeSHA256": "6564ce741fe041a6b7ed95969516f4ccdb3834e4ee2a2d3353b8599382d742de"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "character": null,
+  "name": "north-station-vanishing",
+  "category": "backgrounds",
+  "id": "north-station-vanishing",
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
+  "native4kClaim": false,
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-2a65e612-bffc-4b10-b5f6-5e1d4b588d6b.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/backgrounds/north-station-vanishing/prompt.txt",
+  "promptSHA256": "d036552360fe1e0e2389b0a310ba23db87530d5bdb2d8010cf489e9b388c7b90",
+  "spec": "game/art-sources/chatgpt/backgrounds/north-station-vanishing/spec.json",
+  "specSHA256": "8a3bcd8e8046caa0b0c19d06cd92537944b65c12a816bc7cae5c4373e96dc756",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "resize": "aspect-fill Lanczos",
+    "sourceSize": [
+      1672,
+      941
+    ]
+  },
+  "assets": [
+    {
+      "expression": "north-station-vanishing",
+      "original": "game/art-sources/chatgpt/backgrounds/north-station-vanishing/original.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "c21230a48c5e20824a9770bd18c5c1b0eea1d975e40bbb73569ce25490086a65",
+      "master": "game/assets/4k/backgrounds/north-station-vanishing.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "93e8b4e31c2c4304aed6091b57e4c58500420c9cd390d687251595c1a51209ab",
+      "runtime": "game/assets/4k/runtime/backgrounds/north-station-vanishing.webp",
+      "runtimeSize": [
+        1920,
+        1080
+      ],
+      "runtimeSHA256": "1dabf91136df9ac5f375e2459e8fa92bac50dd5a5229eff3d32f55cddadb22af"
+    }
+  ]
+}

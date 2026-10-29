@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "character": null,
+  "name": "chendu-home-morning",
+  "category": "backgrounds",
+  "id": "chendu-home-morning",
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
+  "native4kClaim": false,
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-22a6e4ec-3cad-42c5-b77d-22bcd292733c.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/backgrounds/chendu-home-morning/prompt.txt",
+  "promptSHA256": "5efe7467e2becf337676a1e59a606d4613bfbc11efedbf3fd38ea5243bb1dec1",
+  "spec": "game/art-sources/chatgpt/backgrounds/chendu-home-morning/spec.json",
+  "specSHA256": "ced2c2831c7920902116e32db01a8ac450a09b2ecbf3f0db1ed3450ec205bfa1",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "resize": "aspect-fill Lanczos",
+    "sourceSize": [
+      1672,
+      941
+    ]
+  },
+  "assets": [
+    {
+      "expression": "chendu-home-morning",
+      "original": "game/art-sources/chatgpt/backgrounds/chendu-home-morning/original.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "7eb5c8aa52b5aec9feb03c37b27ce847aefe5d4f68af5f6a8fc13d5dd74997b4",
+      "master": "game/assets/4k/backgrounds/chendu-home-morning.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "88e5fe08f68049be4e62bc8ee51fc87f4fc9743d8a0bbf2190f9c5c684e5d71c",
+      "runtime": "game/assets/4k/runtime/backgrounds/chendu-home-morning.webp",
+      "runtimeSize": [
+        1920,
+        1080
+      ],
+      "runtimeSHA256": "d55d77297c255880b2803e130382bc8c71f961686f3a1fcea7da017c9b3994ca"
+    }
+  ]
+}

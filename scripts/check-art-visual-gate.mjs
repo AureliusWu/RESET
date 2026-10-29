@@ -1,6 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { loadSupportingArt } from './supporting-art.mjs';
 
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const releaseMode = process.argv.includes('--release');
@@ -18,13 +19,14 @@ for (const id of expected) {
   if (!item) throw new Error(`missing visual acceptance record: ${id}`);
   if (!allowed.has(item.status)) throw new Error(`invalid visual acceptance status: ${id}=${item.status}`);
 }
-const blockers = expected.map(id => records.get(id)).filter(item => item.status !== 'PASS');
+const supporting = await loadSupportingArt(root);
+if (acceptance.supportingRequiredForRelease !== true) throw new Error('R8 supporting cast must be required for release');
+const blockers = [...expected.map(id => records.get(id)), ...supporting.records].filter(item => item.status !== 'PASS');
 const computed = blockers.length ? 'BLOCKED' : 'PASS';
 if (acceptance.releaseGate !== computed) throw new Error(`releaseGate=${acceptance.releaseGate} disagrees with computed=${computed}`);
 
-for (const id of expected) {
-  const item = records.get(id);
-  console.log(`${item.status.padEnd(10)} ${id.padEnd(10)} ${item.name}${item.reason ? ` — ${item.reason}` : ''}`);
+for (const item of [...expected.map(id => records.get(id)), ...supporting.records]) {
+  console.log(`${item.status.padEnd(10)} ${item.id.padEnd(10)} ${item.name}${item.reason ? ` — ${item.reason}` : ''}`);
 }
 console.log(`Visual gate: ${computed}; target=${acceptance.targetVersion}; package=${pkg.version}`);
 

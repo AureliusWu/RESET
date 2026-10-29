@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "character": null,
+  "name": "night-school-corridor",
+  "category": "backgrounds",
+  "id": "night-school-corridor",
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
+  "native4kClaim": false,
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-60f48793-031d-474c-9613-e352d0a84711.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/backgrounds/night-school-corridor/prompt.txt",
+  "promptSHA256": "c1e4014d2affa0fe8c19279ab8adf325643366c2aabab609a21415507c51d9d8",
+  "spec": "game/art-sources/chatgpt/backgrounds/night-school-corridor/spec.json",
+  "specSHA256": "cecd574a3fb0a44c21d0cec85783ccc0ca60fc38a4b629c843d2e914d6b1a97a",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "resize": "aspect-fill Lanczos",
+    "sourceSize": [
+      1672,
+      941
+    ]
+  },
+  "assets": [
+    {
+      "expression": "night-school-corridor",
+      "original": "game/art-sources/chatgpt/backgrounds/night-school-corridor/original.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "98836322faa0ef7c96d9189487f75ce7345fa4afbcf54629629c16a7059c5853",
+      "master": "game/assets/4k/backgrounds/night-school-corridor.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "7f712b0cd83958dbc1ec5e6874573086c4c12bfb8390171b0948cb2f51af40f6",
+      "runtime": "game/assets/4k/runtime/backgrounds/night-school-corridor.webp",
+      "runtimeSize": [
+        1920,
+        1080
+      ],
+      "runtimeSHA256": "90e4a42ea3826aeaab8f010a87fdd8c79e3114f401c2043e60d249acf64c82dc"
+    }
+  ]
+}

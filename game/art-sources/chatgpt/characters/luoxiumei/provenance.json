@@ -2,24 +2,64 @@
   "schema": 1,
   "character": "luoxiumei",
   "name": "罗秀梅",
-  "sourceType": "chatgpt-authored-procedural-raster-illustration",
-  "visualTier": "supporting-cast-stylized-bust",
+  "category": "characters",
+  "id": "luoxiumei",
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
   "native4kClaim": false,
-  "designPlan": "game/visual/r5-supporting-cast-plan.json",
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-b21effd1-734a-4040-9171-15f79c528360.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/characters/luoxiumei/prompt-neutral.txt",
+  "promptSHA256": "9e1d191449c14fdbcd498e2549b862b63ab01ac23891aaf86294639b48e41719",
+  "spec": "game/art-sources/chatgpt/characters/luoxiumei/spec.json",
+  "specSHA256": "b51b95407a727417253f26dd46b0324b13c2468b6ef0c7aed397b62746cab6e2",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "cropBounds": [
+      223,
+      27,
+      730,
+      1646
+    ],
+    "framingAlphaThreshold": 8,
+    "offset": [
+      516,
+      130
+    ],
+    "scaledSize": [
+      1127,
+      3600
+    ],
+    "resize": "premultiplied-alpha Lanczos"
+  },
   "assets": [
     {
       "expression": "neutral",
       "original": "game/art-sources/chatgpt/characters/luoxiumei/neutral.png",
-      "originalSHA256": "1befdbd7fb5558b21aca9139750b87d460296c31508d3de94c7002cdfe5c44d4",
       "originalSize": [
+        940,
+        1672
+      ],
+      "originalSHA256": "ac59a2f3641a8f870123e53cb76a3184a2b5ad0a1453d669dece4882b9189dc3",
+      "master": "game/assets/4k/characters/luoxiumei/neutral.png",
+      "masterSize": [
+        2160,
+        3840
+      ],
+      "masterSHA256": "f1604def90c42c25e445c452dc342c347d91874267d67fad4bb52cb92e211609",
+      "runtime": "game/assets/4k/runtime/characters/luoxiumei/neutral.webp",
+      "runtimeSize": [
         1080,
         1920
       ],
-      "master": "game/assets/4k/characters/luoxiumei/neutral.png",
-      "masterSHA256": "326e2fac551e5eb58da33b1ebfeb00aec50bb159a1f9fdcd4fcd2d36f9134f2c",
-      "runtime": "game/assets/4k/runtime/characters/luoxiumei/neutral.webp",
-      "runtimeSHA256": "eaf56d64037fdd93c5d4a2a8b10ada41cb5cde2e3dc469cb5d2bcead816d1ef0",
-      "lockedBodySHA256": "1befdbd7fb5558b21aca9139750b87d460296c31508d3de94c7002cdfe5c44d4"
+      "runtimeSHA256": "753a64a4a1971c83fa052c019874fe6b3a17b5868ce0de7271c3c07e08e35f5e",
+      "lockedBodySHA256": "3dab3c6a133c4f25d2b3b6b2f3808aef611beace9434691c8a9eccfa06f631b8"
     }
   ]
 }

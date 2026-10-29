@@ -2,6 +2,19 @@
 
 本文件记录《回留 / RESET》主线版本演进。已经发布的历史版本细节由对应 Git tag / GitHub Release 永久保存；主分支不再重复保留每个历史版本的独立 Changelog 文件。
 
+## 1.2.3 — R8 原生美术与双平台发布
+
+- 12 名配角完成用户授权的 AI 模拟人工审核并启用；全部 47 个原生美术来源链入库，包含新背景、异常体、CG 与 UI。
+- 修复 CG 重复立绘和审计标题截图时序；保留既有女主图片、正文 noSprite 与存档/Meta/不可逆规则。
+- Web/PWA 与 Windows x64 同步提供，v1.2.2 存档加入受控升级；实际公开 v1.2.2 PWA 的同源升级和离线重载纳入最终包验收。
+- 85 项回归、严格视觉/来源链、同 SHA Build / Web ZIP / Windows ZIP 门禁后发布；Pages 使用公开 Release 原 ZIP。
+- 详细说明见 [CHANGELOG_v1.2.3.md](CHANGELOG_v1.2.3.md)。
+
+## 1.2.2 — Visual Coverage Web/PWA
+
+- R5 配角、82 场景背景和路线 CG 覆盖进入 Web/PWA 正式发行；保留原 v1.2.1 Windows 包。
+- 历史发布详情见 [CHANGELOG_v1.2.2.md](CHANGELOG_v1.2.2.md) 与对应不可变 Release。
+
 ## 1.2.1 — Mobile shell and PWA recovery
 
 - 标题 Key Visual 改为真实可交互标题页，新增明确的「进入游戏」入口。

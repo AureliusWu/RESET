@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "id": "wucheng-street-evening",
+  "name": "梧城雨后街头",
+  "kind": "background",
+  "sourceCommit": "8d190ebec6fb8c91b2f6c984bd6010b1d4de6005",
+  "canonSources": [
+    "docs/ART_DIRECTION.md",
+    "game/content/chapters/01.json"
+  ],
+  "sceneEvidence": [
+    {
+      "scene": "after_school_choice",
+      "path": "game/content/chapters/01.json",
+      "location": "梧城街头",
+      "time": "19:16",
+      "previousBackground": "school-gate-rain",
+      "sampleLines": [
+        {
+          "id": "r1_after_school_choice_pre01_01",
+          "text": "19:16，梧城街头。梧城的天气、交通和人群仍按自己的节奏前进。"
+        },
+        {
+          "id": "r1_after_school_choice_pre01_02",
+          "text": "路边小店在换班，骑车的人按铃借道，没有谁知道陈渡正在把这些琐碎当成确认现实的坐标。"
+        }
+      ]
+    }
+  ],
+  "designProposal": "19:16的现代中国江城普通街头，刚入夜的老街十字路口，雨后湿路、公交站棚、居民楼空调外机、共享单车和暖色小店灯，远处有人生活的城市气息但不画可辨识人物，前景人行道开阔。不是学校大门。",
+  "reviewStatus": "UNVERIFIED",
+  "native4kClaim": false
+}

@@ -16,12 +16,12 @@ export async function verifyLinwanArt({page,project,fixtures,loadFixture,control
   const request = request => { if(/linwan/.test(request.url()))requested.push(request.url()); };
   page.on('requestfailed',failed);page.on('response',response);page.on('request',request);
   const portrait=page.locator('.vn-portrait');
-  const ready=async expression=>{
+  const ready=async(expression,visible=true)=>{
     await page.waitForFunction(({id,path})=>{
       const im=document.querySelector('.vn-portrait');
       return im?.dataset.asset===id&&im.complete&&im.naturalWidth===1080&&im.naturalHeight===1920&&new URL(im.currentSrc).pathname.endsWith('/'+path);
     },{id:`linwan/${expression}`,path:src(expression)});
-    assert.equal(await portrait.isVisible(),true);
+    assert.equal(await portrait.isVisible(),visible);
   };
   const advanceUntil=async(predicate,label,max=250)=>{
     for(let count=0;count<max;count++){
@@ -41,7 +41,10 @@ export async function verifyLinwanArt({page,project,fixtures,loadFixture,control
       for(let count=0;count<Math.max(100,project.scenes.find(item=>item.id===scene)?.lines?.length??0);count++) {
         const frame=session.getView().frame;
         if(frame.sceneId!==scene)break;
-        if(frame.stage.portrait?.startsWith('linwan/'))frameSaves[frame.stage.portrait]??=session.save();
+        if(frame.stage.portrait?.startsWith('linwan/')) {
+          const previous=frameSaves[frame.stage.portrait];
+          if(!previous||(previous.cg&&!frame.stage.cg))frameSaves[frame.stage.portrait]={save:session.save(),cg:frame.stage.cg||null,sceneId:frame.sceneId,lineId:frame.lineId};
+        }
         if(!session.next())break;
       }
     } finally { session.dispose(); }
@@ -55,12 +58,18 @@ export async function verifyLinwanArt({page,project,fixtures,loadFixture,control
     pass('Lin Wan first appears from New Game through canonical UI choices and decodes the new 1080x1920 WebP');
     for(const expression of formal) {
       assert.ok(frameSaves[`linwan/${expression}`],`missing real story frame for ${expression}`);
-      await loadFixture(frameSaves[`linwan/${expression}`]);await ready(expression);
+      const witness=frameSaves[`linwan/${expression}`];
+      await loadFixture(witness.save);await ready(expression,!witness.cg);
+      if(witness.cg) {
+        await page.waitForFunction(id=>{const image=document.querySelector('.vn-cg');return image?.dataset.asset===id&&image.complete&&image.naturalWidth===1920;},witness.cg);
+        assert.equal(await page.locator('.vn-cg').isVisible(),true,'CG-only expression must keep the story CG visible without a duplicate sprite');
+      }
       await page.screenshot({path:out+`/linwan-${expression}.png`,fullPage:true,animations:'disabled'});
     }
-    pass('All five stable Lin Wan asset IDs display their new WebP in real story frames without SVG/old portrait fallback');
+    await writeFile(out+'/linwan-story-frames.json',JSON.stringify(Object.fromEntries(Object.entries(frameSaves).map(([id,{save,...frame}])=>[id,{...frame,portraitVisible:!frame.cg} ])),null,2)+'\n');
+    pass('All five stable Lin Wan WebPs decode in canonical story frames; CG-only expressions stay hidden under their visible story CG without old portrait fallback');
     if(viewports) {
-      await loadFixture(frameSaves['linwan/neutral']);await ready('neutral');
+      await loadFixture(frameSaves['linwan/neutral'].save);await ready('neutral');
       const sizes=[[390,844],[844,390],[800,600],[1920,1080],[3840,2160]], layout=[];
       for(const [width,height] of sizes) {
         await page.setViewportSize({width,height});

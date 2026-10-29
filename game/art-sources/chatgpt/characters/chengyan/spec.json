@@ -1,0 +1,125 @@
+{
+  "schema": 1,
+  "id": "chengyan",
+  "name": "程妍",
+  "kind": "portrait",
+  "expression": "neutral",
+  "canonRole": "高二三班班长，17岁女生，整洁、秩序感，做事有表格和截止时间",
+  "visualProposal": "黑色利落高马尾，深蓝灰学生西装外套，白衬衣，整齐蓝色领结，及膝百褶裙，深袜便鞋，双手自然持无字点名夹板；专注平静的中性表情",
+  "sourceCommit": "5eeea12921cb8e07b4e0ba64a8a37b91730954a9",
+  "sourceDocs": [
+    "docs/CAST_BIBLE_R1.md",
+    "docs/R8_ART_RECONSTRUCTION.md",
+    "docs/ART_DIRECTION.md"
+  ],
+  "storyEvidence": [
+    {
+      "path": "game/content/chapters/01.json",
+      "sceneId": "prologue_1842",
+      "lineId": "r1_prologue_1842_pre04_01",
+      "text": "还有，顾老师让我提醒你：请假、迟到、作业，至少选一样按正常流程来。",
+      "noSprite": true
+    },
+    {
+      "path": "game/content/chapters/01.json",
+      "sceneId": "prologue_1842",
+      "lineId": "r1_prologue_1842_key02_01",
+      "text": "陈渡，化学卷子我先替你压讲台下面。明早没交我就按没交记，别指望世界末日能免作业。",
+      "noSprite": true
+    },
+    {
+      "path": "game/content/chapters/01.json",
+      "sceneId": "morning_after",
+      "lineId": "r1_morning_after_pre04_01",
+      "text": "还有，顾老师让我提醒你：请假、迟到、作业，至少选一样按正常流程来。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/01.json",
+      "sceneId": "rooftop_warning",
+      "lineId": "r1_rooftop_warning_pre04_01",
+      "text": "还有，顾老师让我提醒你：请假、迟到、作业，至少选一样按正常流程来。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/02.json",
+      "sceneId": "residue_homeroom",
+      "lineId": "r1_residue_homeroom_pre04_01",
+      "text": "还有，顾老师让我提醒你：请假、迟到、作业，至少选一样按正常流程来。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/02.json",
+      "sceneId": "load_fifth",
+      "lineId": "r1_load_fifth_pre04_01",
+      "text": "还有，顾老师让我提醒你：请假、迟到、作业，至少选一样按正常流程来。",
+      "noSprite": true
+    },
+    {
+      "path": "game/content/chapters/03.json",
+      "sceneId": "route_method_choice",
+      "lineId": "r1_route_method_choice_pre04_01",
+      "text": "还有，顾老师让我提醒你：请假、迟到、作业，至少选一样按正常流程来。",
+      "noSprite": true
+    },
+    {
+      "path": "game/content/chapters/03.json",
+      "sceneId": "six_person_meeting",
+      "lineId": "r1_six_person_meeting_pre04_01",
+      "text": "还有，顾老师让我提醒你：请假、迟到、作业，至少选一样按正常流程来。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/03.json",
+      "sceneId": "six_person_meeting",
+      "lineId": "r1_six_person_meeting_key01_01",
+      "text": "我不知道你们在旧美术教室开什么会，但今天值日名单少了四个人。至少给我一个能跟顾老师解释的版本。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/04.json",
+      "sceneId": "route_focus_choice",
+      "lineId": "r1_route_focus_choice_pre04_01",
+      "text": "还有，顾老师让我提醒你：请假、迟到、作业，至少选一样按正常流程来。",
+      "noSprite": true
+    },
+    {
+      "path": "game/content/chapters/04.json",
+      "sceneId": "route_convergence",
+      "lineId": "r1_route_convergence_pre04_01",
+      "text": "还有，顾老师让我提醒你：请假、迟到、作业，至少选一样按正常流程来。",
+      "noSprite": true
+    },
+    {
+      "path": "game/content/chapters/05.json",
+      "sceneId": "c5_team_morning",
+      "lineId": "r1_c5_team_morning_pre04_01",
+      "text": "还有，顾老师让我提醒你：请假、迟到、作业，至少选一样按正常流程来。",
+      "noSprite": true
+    },
+    {
+      "path": "game/content/chapters/06.json",
+      "sceneId": "c6_echo_goodbye",
+      "lineId": "r1_c6_echo_goodbye_pre04_01",
+      "text": "还有，顾老师让我提醒你：请假、迟到、作业，至少选一样按正常流程来。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/06.json",
+      "sceneId": "c6_last_door",
+      "lineId": "r1_c6_last_door_pre04_01",
+      "text": "还有，顾老师让我提醒你：请假、迟到、作业，至少选一样按正常流程来。",
+      "noSprite": true
+    },
+    {
+      "path": "game/content/chapters/07.json",
+      "sceneId": "c7_after",
+      "lineId": "r1_c7_after_pre04_01",
+      "text": "还有，顾老师让我提醒你：请假、迟到、作业，至少选一样按正常流程来。",
+      "noSprite": true
+    }
+  ],
+  "generation": "ChatGPT native image_gen.imagegen",
+  "reviewStatus": "UNVERIFIED",
+  "native4kClaim": false
+}

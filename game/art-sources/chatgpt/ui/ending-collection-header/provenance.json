@@ -1,31 +1,53 @@
 {
   "schema": 1,
-  "generator": "ChatGPT-authored original vector illustration; deterministic raster master pipeline",
-  "workflow": "round7-new-vector-source-to-processed-4k-master",
-  "native4kClaim": false,
-  "authorization": "2026-10-27: 用户要求继续下一轮 Round 7 并沿用最高权限写入",
+  "character": null,
+  "name": "ending-collection-header",
   "category": "ui",
   "id": "ending-collection-header",
-  "prompt": "RESET ending collection key visual: six route seats and a seventh empty archive frame, memory residue, calm teal-gray gallery ambience, route-completion symbolism.",
-  "processing": "new ChatGPT-authored vector source -> rsvg 1920x1080 PNG original -> Lanczos 3840x2160 PNG master -> 1920x1080 WebP runtime; legacy UI SVG not used as pixels",
-  "sourceVector": "game/art-sources/chatgpt/ui/ending-collection-header/source.svg",
-  "sourceVectorSHA256": "f77a2d08c0e7bbe7018669115c5242a2f35db2e1871a6b775b5e145a623f5858",
-  "original": "game/art-sources/chatgpt/ui/ending-collection-header/original.png",
-  "originalSize": [
-    1920,
-    1080
-  ],
-  "originalSHA256": "5645b7a5d47a768649fa7eb352fcbb4a2e2c4a9d20bb9404c55294500a88ee57",
-  "master": "game/assets/4k/ui/ending-collection-header.png",
-  "masterSize": [
-    3840,
-    2160
-  ],
-  "masterSHA256": "16fc8605294f10037f70bfa74f4a117e19fb1a09204c89656b5ab00c6fa7d8a1",
-  "runtime": "game/assets/4k/runtime/ui/ending-collection-header.webp",
-  "runtimeSize": [
-    1920,
-    1080
-  ],
-  "runtimeSHA256": "d42fc97c5d0a32da6e785b96b8a15a9170959bde3d6844d463292b31b2fff8ec"
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
+  "native4kClaim": false,
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-85137202-0620-4dba-be2f-7bc484a7bad6.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/ui/ending-collection-header/prompt.txt",
+  "promptSHA256": "08912d10a74945df0e2e588105d1cefd6dd975b363c00a717479caa3235610c1",
+  "spec": "game/art-sources/chatgpt/ui/ending-collection-header/spec.json",
+  "specSHA256": "28797d1b879ee0ab1eb8ac1d24d512c143a6a75337d97fb977679cd8c1926d35",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "resize": "aspect-fill Lanczos",
+    "sourceSize": [
+      1672,
+      940
+    ]
+  },
+  "assets": [
+    {
+      "expression": "ending-collection-header",
+      "original": "game/art-sources/chatgpt/ui/ending-collection-header/original.png",
+      "originalSize": [
+        1672,
+        940
+      ],
+      "originalSHA256": "ae7d9df6d6fa2ee10f9cbfe21a16fffe95b3a5aef8023ead84ff719561842159",
+      "master": "game/assets/4k/ui/ending-collection-header.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "77e329cc3cd8010918848cf4777c5745bd542386cda5daf812e3193a88c811cc",
+      "runtime": "game/assets/4k/runtime/ui/ending-collection-header.webp",
+      "runtimeSize": [
+        1920,
+        1080
+      ],
+      "runtimeSHA256": "4c6882a0ff02db7938fc120f3d52bd2fa395ec34b5744ea7cdeea1cfd3ccc15b"
+    }
+  ]
 }

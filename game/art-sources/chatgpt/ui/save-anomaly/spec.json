@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "id": "save-anomaly",
+  "name": "存档异常主视觉",
+  "kind": "ui-key-visual",
+  "canonSources": [
+    "docs/ART_DIRECTION.md",
+    "game/runtime/experience.css",
+    "game/assets/4k/asset-plan.json"
+  ],
+  "designProposal": "一间无人的旧教室在窗玻璃中重复成几层若隐若现的空间，桌上一只合着的普通记录本与细微错位光影，冷蓝灰加少许暗紫，安静不安。作为存读档页面的背景横幅，中间横向带留白，不能画虚假的存档按钮、文字、警告符号或矩形卡片UI。",
+  "constraints": [
+    "Illustrative background only; controls and text remain real runtime UI",
+    "1920x1080 runtime; processed 3840x2160 master",
+    "No native 4K claim"
+  ],
+  "reviewStatus": "UNVERIFIED",
+  "native4kClaim": false
+}

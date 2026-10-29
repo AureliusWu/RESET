@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "id": "gumingyuan",
+  "name": "顾明远",
+  "kind": "portrait",
+  "expression": "neutral",
+  "canonRole": "35岁男性班主任兼物理老师，理性克制，成熟可靠，面对异常先处理现实责任",
+  "visualProposal": "短黑发略有自然发际线，细矩形眼镜，灰蓝衬衫、深色领带、炭灰休闲西装和直筒长裤、皮鞋，一手持薄物理教案，另一手自然放松；脸部有成年棱角而非学生脸",
+  "sourceCommit": "5eeea12921cb8e07b4e0ba64a8a37b91730954a9",
+  "sourceDocs": [
+    "docs/CAST_BIBLE_R1.md",
+    "docs/R8_ART_RECONSTRUCTION.md",
+    "docs/ART_DIRECTION.md"
+  ],
+  "storyEvidence": [
+    {
+      "path": "game/content/chapters/01.json",
+      "sceneId": "morning_after",
+      "lineId": "r1_morning_after_key01_01",
+      "text": "昨晚南湖站封闭，有谁绕路回家超过十点，课间到办公室登记一下。别拿安全问题开玩笑。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/07.json",
+      "sceneId": "c7_after",
+      "lineId": "r1_c7_after_key01_01",
+      "text": "你们几个的请假说明我不追问细节，但该补的课和作业一项不少。还有，谁再往封闭施工区钻，我先通知家长。",
+      "noSprite": true
+    }
+  ],
+  "generation": "ChatGPT native image_gen.imagegen",
+  "reviewStatus": "UNVERIFIED",
+  "native4kClaim": false
+}

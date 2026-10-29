@@ -1,0 +1,86 @@
+{
+  "schema": 1,
+  "id": "true-end-riverside-cg",
+  "name": "雨停以后·明天见",
+  "kind": "cg",
+  "scene": "c7_linwan",
+  "canon": {
+    "path": "game/content/chapters/07.json",
+    "title": "雨停以后",
+    "location": "梧城江滩",
+    "time": "17:58",
+    "dialogue": [
+      {
+        "id": "r1_c7_linwan_pre04_01",
+        "speaker": "唐梨",
+        "text": "知道。今天不争快慢，先把人带回来。"
+      },
+      {
+        "id": "c7l001",
+        "speaker": "林晚",
+        "text": "我昨晚做了一个梦。"
+      },
+      {
+        "id": "c7l002",
+        "speaker": "陈渡",
+        "text": "梦见什么？"
+      },
+      {
+        "id": "c7l003",
+        "speaker": "林晚",
+        "text": "梦见我做了一件很难过的事。醒来以后细节全忘了。"
+      },
+      {
+        "id": "c7l004",
+        "speaker": "陈渡",
+        "text": "那就别想了。"
+      },
+      {
+        "id": "c7l005",
+        "speaker": "林晚",
+        "text": "可是我还记得一句话。有人答应我，不会回来替现在的自己后悔。"
+      },
+      {
+        "id": "c7l007",
+        "speaker": "林晚",
+        "text": "明天见。"
+      },
+      {
+        "id": "c7l008",
+        "speaker": "陈渡",
+        "text": "明天见。"
+      },
+      {
+        "id": "r1_c7_linwan_post01_01",
+        "speaker": "陈渡",
+        "text": "有些事不需要再记成证据。"
+      },
+      {
+        "id": "r1_c7_linwan_post08_01",
+        "speaker": "陈渡",
+        "text": "把何川和梁成也记进去。不是因为他们掌握答案，是因为如果我们的选择伤到普通人的生活，那也必须算在结果里。"
+      }
+    ]
+  },
+  "designProposal": "10月25日17:58，雨停后的梧城江滩傍晚，晚霞缓缓沉下、桥灯逐盏亮起，时间正常流动。林晚已往前走几步，转身朝陈渡轻轻挥手，神情放松含蓄，发梢被江风轻拂。校服与人设一致，普通城市车流和水面没有异常倒影。叙事重点是明天见后的普通未来，不画清晨，不画永恒停时。",
+  "references": [
+    "game/assets/4k/runtime/cg/true-end-riverside-cg.webp",
+    "game/assets/4k/runtime/characters/linwan/smile.webp"
+  ],
+  "characterIdentityMustMatch": "linwan",
+  "reviewStatus": "UNVERIFIED",
+  "native4kClaim": false,
+  "canonNote": "Current chapter c7_linwan explicitly states 17:58 and evening sunset; follow current chapter, retaining Oct25 future and 明天见.",
+  "referenceInputs": [
+    {
+      "path": "game/assets/4k/runtime/cg/true-end-riverside-cg.webp",
+      "commit": "5eeea12921cb8e07b4e0ba64a8a37b91730954a9",
+      "sha256": "3d714e6b2c139880621ce598adc5aba0cd594568b839d9cb75b0b4078ada75a4"
+    },
+    {
+      "path": "game/assets/4k/runtime/characters/linwan/smile.webp",
+      "commit": "5eeea12921cb8e07b4e0ba64a8a37b91730954a9",
+      "sha256": "4264cdcc34c8ee108d408ee19a16969316bb82b9bd655e2f0c04a35b9de5f488"
+    }
+  ]
+}

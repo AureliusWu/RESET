@@ -1,0 +1,90 @@
+{
+  "schema": 1,
+  "id": "hechuan",
+  "name": "何川",
+  "kind": "portrait",
+  "expression": "neutral",
+  "canonRole": "18岁男生，田径社学长、江滩夜跑组织者，健壮精干，信赖配速记录",
+  "visualProposal": "短黑发，身形高挑结实，青灰学校田径运动外套、灰色运动长裤、跑鞋，胸前细哨绳，手上简洁秒表；克制自信，双脚站稳",
+  "sourceCommit": "5eeea12921cb8e07b4e0ba64a8a37b91730954a9",
+  "sourceDocs": [
+    "docs/CAST_BIBLE_R1.md",
+    "docs/R8_ART_RECONSTRUCTION.md",
+    "docs/ART_DIRECTION.md"
+  ],
+  "storyEvidence": [
+    {
+      "path": "game/content/chapters/02.json",
+      "sceneId": "riverside_wrong_turn",
+      "lineId": "r1_riverside_wrong_turn_pre03_01",
+      "text": "唐梨，今天别冲配速。路面湿，江边施工段还没撤。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/02.json",
+      "sceneId": "underpass_warning",
+      "lineId": "r1_underpass_warning_pre03_01",
+      "text": "唐梨，今天别冲配速。路面湿，江边施工段还没撤。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/04.json",
+      "sceneId": "c4_linwan_2",
+      "lineId": "r1_c4_linwan_2_pre03_01",
+      "text": "唐梨，今天别冲配速。路面湿，江边施工段还没撤。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/04.json",
+      "sceneId": "end_linwan",
+      "lineId": "r1_end_linwan_pre03_01",
+      "text": "唐梨，今天别冲配速。路面湿，江边施工段还没撤。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/04.json",
+      "sceneId": "c4_tangli_1",
+      "lineId": "r1_c4_tangli_1_pre03_01",
+      "text": "唐梨，今天别冲配速。路面湿，江边施工段还没撤。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/04.json",
+      "sceneId": "c4_tangli_2",
+      "lineId": "r1_c4_tangli_2_pre03_01",
+      "text": "唐梨，今天别冲配速。路面湿，江边施工段还没撤。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/04.json",
+      "sceneId": "end_tangli",
+      "lineId": "r1_end_tangli_pre03_01",
+      "text": "唐梨，今天别冲配速。路面湿，江边施工段还没撤。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/05.json",
+      "sceneId": "c5_path_to_north",
+      "lineId": "r1_c5_path_to_north_pre03_01",
+      "text": "唐梨，今天别冲配速。路面湿，江边施工段还没撤。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/07.json",
+      "sceneId": "c7_linwan",
+      "lineId": "r1_c7_linwan_pre03_01",
+      "text": "唐梨，今天别冲配速。路面湿，江边施工段还没撤。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/07.json",
+      "sceneId": "c7_credits",
+      "lineId": "r1_c7_credits_key02_01",
+      "text": "唐梨，周末六点江滩集合，别因为拯救过世界就迟到。",
+      "noSprite": true
+    }
+  ],
+  "generation": "ChatGPT native image_gen.imagegen",
+  "reviewStatus": "UNVERIFIED",
+  "native4kClaim": false
+}

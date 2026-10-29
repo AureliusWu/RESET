@@ -1,0 +1,464 @@
+{
+  "schema": 1,
+  "scope": "all missing or non-native production art",
+  "baseCommit": "5eeea12921cb8e07b4e0ba64a8a37b91730954a9",
+  "portraits": [
+    {
+      "id": "chengyan",
+      "name": "程妍",
+      "kind": "portrait",
+      "status": "UPLOADED",
+      "prompt": "game/art-sources/chatgpt/characters/chengyan/prompt-neutral.txt",
+      "spec": "game/art-sources/chatgpt/characters/chengyan/spec.json"
+    },
+    {
+      "id": "gumingyuan",
+      "name": "顾明远",
+      "kind": "portrait",
+      "status": "UPLOADED",
+      "prompt": "game/art-sources/chatgpt/characters/gumingyuan/prompt-neutral.txt",
+      "spec": "game/art-sources/chatgpt/characters/gumingyuan/spec.json"
+    },
+    {
+      "id": "chenlan",
+      "name": "陈岚",
+      "kind": "portrait",
+      "status": "UPLOADED",
+      "prompt": "game/art-sources/chatgpt/characters/chenlan/prompt-neutral.txt",
+      "spec": "game/art-sources/chatgpt/characters/chenlan/spec.json"
+    },
+    {
+      "id": "xurong",
+      "name": "许蓉",
+      "kind": "portrait",
+      "status": "UPLOADED",
+      "prompt": "game/art-sources/chatgpt/characters/xurong/prompt-neutral.txt",
+      "spec": "game/art-sources/chatgpt/characters/xurong/spec.json"
+    },
+    {
+      "id": "luoxiumei",
+      "name": "罗秀梅",
+      "kind": "portrait",
+      "status": "UPLOADED",
+      "prompt": "game/art-sources/chatgpt/characters/luoxiumei/prompt-neutral.txt",
+      "spec": "game/art-sources/chatgpt/characters/luoxiumei/spec.json"
+    },
+    {
+      "id": "suyao",
+      "name": "苏遥",
+      "kind": "portrait",
+      "status": "UPLOADED",
+      "prompt": "game/art-sources/chatgpt/characters/suyao/prompt-neutral.txt",
+      "spec": "game/art-sources/chatgpt/characters/suyao/spec.json"
+    },
+    {
+      "id": "hechuan",
+      "name": "何川",
+      "kind": "portrait",
+      "status": "UPLOADED",
+      "prompt": "game/art-sources/chatgpt/characters/hechuan/prompt-neutral.txt",
+      "spec": "game/art-sources/chatgpt/characters/hechuan/spec.json"
+    },
+    {
+      "id": "jiyao",
+      "name": "纪尧",
+      "kind": "portrait",
+      "status": "UPLOADED",
+      "prompt": "game/art-sources/chatgpt/characters/jiyao/prompt-neutral.txt",
+      "spec": "game/art-sources/chatgpt/characters/jiyao/spec.json"
+    },
+    {
+      "id": "lincheng",
+      "name": "林澄",
+      "kind": "portrait",
+      "status": "UPLOADED",
+      "prompt": "game/art-sources/chatgpt/characters/lincheng/prompt-neutral.txt",
+      "spec": "game/art-sources/chatgpt/characters/lincheng/spec.json"
+    },
+    {
+      "id": "shenyanqiu",
+      "name": "沈砚秋",
+      "kind": "portrait",
+      "status": "UPLOADED",
+      "prompt": "game/art-sources/chatgpt/characters/shenyanqiu/prompt-neutral.txt",
+      "spec": "game/art-sources/chatgpt/characters/shenyanqiu/spec.json"
+    },
+    {
+      "id": "liangcheng",
+      "name": "梁成",
+      "kind": "portrait",
+      "status": "UPLOADED",
+      "prompt": "game/art-sources/chatgpt/characters/liangcheng/prompt-neutral.txt",
+      "spec": "game/art-sources/chatgpt/characters/liangcheng/spec.json"
+    }
+  ],
+  "anomalies": [
+    {
+      "id": "faceless",
+      "name": "无面行人",
+      "kind": "anomaly",
+      "status": "UPLOADED",
+      "prompt": "game/art-sources/chatgpt/anomalies/faceless/prompt.txt",
+      "spec": "game/art-sources/chatgpt/anomalies/faceless/spec.json"
+    },
+    {
+      "id": "echo-chen",
+      "name": "第七人 / 陈渡残响",
+      "kind": "anomaly",
+      "status": "UPLOADED",
+      "prompt": "game/art-sources/chatgpt/anomalies/echo-chen/prompt.txt",
+      "spec": "game/art-sources/chatgpt/anomalies/echo-chen/spec.json"
+    }
+  ],
+  "cgs": [
+    {
+      "id": "linwan-1842-cg",
+      "name": "北站18:42最终约定",
+      "kind": "cg",
+      "status": "UPLOADED",
+      "scene": "c5_1842",
+      "prompt": "game/art-sources/chatgpt/cg/linwan-1842-cg/prompt.txt",
+      "spec": "game/art-sources/chatgpt/cg/linwan-1842-cg/spec.json"
+    },
+    {
+      "id": "true-end-riverside-cg",
+      "name": "雨停以后·明天见",
+      "kind": "cg",
+      "status": "UPLOADED",
+      "scene": "c7_linwan",
+      "prompt": "game/art-sources/chatgpt/cg/true-end-riverside-cg/prompt.txt",
+      "spec": "game/art-sources/chatgpt/cg/true-end-riverside-cg/spec.json"
+    },
+    {
+      "id": "route-linwan-end-cg",
+      "name": "这一轮也算数",
+      "kind": "cg",
+      "status": "UPLOADED",
+      "scene": "end_linwan",
+      "prompt": "game/art-sources/chatgpt/cg/route-linwan-end-cg/prompt.txt",
+      "spec": "game/art-sources/chatgpt/cg/route-linwan-end-cg/spec.json"
+    },
+    {
+      "id": "route-xiaoman-end-cg",
+      "name": "今天别重来",
+      "kind": "cg",
+      "status": "UPLOADED",
+      "scene": "end_xiaoman",
+      "prompt": "game/art-sources/chatgpt/cg/route-xiaoman-end-cg/prompt.txt",
+      "spec": "game/art-sources/chatgpt/cg/route-xiaoman-end-cg/spec.json"
+    },
+    {
+      "id": "route-xuqi-end-cg",
+      "name": "留在被放弃的世界",
+      "kind": "cg",
+      "status": "UPLOADED",
+      "scene": "end_xuqi",
+      "prompt": "game/art-sources/chatgpt/cg/route-xuqi-end-cg/prompt.txt",
+      "spec": "game/art-sources/chatgpt/cg/route-xuqi-end-cg/spec.json"
+    },
+    {
+      "id": "route-tinglan-end-cg",
+      "name": "未归档的人",
+      "kind": "cg",
+      "status": "UPLOADED",
+      "scene": "end_tinglan",
+      "prompt": "game/art-sources/chatgpt/cg/route-tinglan-end-cg/prompt.txt",
+      "spec": "game/art-sources/chatgpt/cg/route-tinglan-end-cg/spec.json"
+    },
+    {
+      "id": "route-tangli-end-cg",
+      "name": "向前跑",
+      "kind": "cg",
+      "status": "UPLOADED",
+      "scene": "end_tangli",
+      "prompt": "game/art-sources/chatgpt/cg/route-tangli-end-cg/prompt.txt",
+      "spec": "game/art-sources/chatgpt/cg/route-tangli-end-cg/spec.json"
+    },
+    {
+      "id": "route-nanxing-end-cg",
+      "name": "已读不回",
+      "kind": "cg",
+      "status": "UPLOADED",
+      "scene": "end_nanxing",
+      "prompt": "game/art-sources/chatgpt/cg/route-nanxing-end-cg/prompt.txt",
+      "spec": "game/art-sources/chatgpt/cg/route-nanxing-end-cg/spec.json"
+    }
+  ],
+  "backgrounds": [
+    {
+      "id": "wucheng-street-evening",
+      "name": "梧城雨后街头",
+      "kind": "background",
+      "status": "UPLOADED",
+      "scenes": [
+        "after_school_choice"
+      ],
+      "prompt": "game/art-sources/chatgpt/backgrounds/wucheng-street-evening/prompt.txt",
+      "spec": "game/art-sources/chatgpt/backgrounds/wucheng-street-evening/spec.json"
+    },
+    {
+      "id": "municipal-archive-basement",
+      "name": "市档案馆地下库",
+      "kind": "background",
+      "status": "UPLOADED",
+      "scenes": [
+        "c4_tinglan_1"
+      ],
+      "prompt": "game/art-sources/chatgpt/backgrounds/municipal-archive-basement/prompt.txt",
+      "spec": "game/art-sources/chatgpt/backgrounds/municipal-archive-basement/spec.json"
+    },
+    {
+      "id": "archive-rooftop-evening",
+      "name": "市档案馆楼顶",
+      "kind": "background",
+      "status": "UPLOADED",
+      "scenes": [
+        "c4_tinglan_2"
+      ],
+      "prompt": "game/art-sources/chatgpt/backgrounds/archive-rooftop-evening/prompt.txt",
+      "spec": "game/art-sources/chatgpt/backgrounds/archive-rooftop-evening/spec.json"
+    },
+    {
+      "id": "abandoned-station-entrance",
+      "name": "废弃站口",
+      "kind": "background",
+      "status": "UPLOADED",
+      "scenes": [
+        "c4_tangli_2"
+      ],
+      "prompt": "game/art-sources/chatgpt/backgrounds/abandoned-station-entrance/prompt.txt",
+      "spec": "game/art-sources/chatgpt/backgrounds/abandoned-station-entrance/spec.json"
+    },
+    {
+      "id": "information-lab",
+      "name": "梧城一中信息教室",
+      "kind": "background",
+      "status": "UPLOADED",
+      "scenes": [
+        "c4_nanxing_1"
+      ],
+      "prompt": "game/art-sources/chatgpt/backgrounds/information-lab/prompt.txt",
+      "spec": "game/art-sources/chatgpt/backgrounds/information-lab/spec.json"
+    },
+    {
+      "id": "chendu-home-morning",
+      "name": "陈渡家清晨",
+      "kind": "background",
+      "status": "UPLOADED",
+      "scenes": [
+        "chapter5_gate"
+      ],
+      "prompt": "game/art-sources/chatgpt/backgrounds/chendu-home-morning/prompt.txt",
+      "spec": "game/art-sources/chatgpt/backgrounds/chendu-home-morning/spec.json"
+    },
+    {
+      "id": "city-desync-afternoon",
+      "name": "梧城市区错位",
+      "kind": "background",
+      "status": "UPLOADED",
+      "scenes": [
+        "c5_city_desync"
+      ],
+      "prompt": "game/art-sources/chatgpt/backgrounds/city-desync-afternoon/prompt.txt",
+      "spec": "game/art-sources/chatgpt/backgrounds/city-desync-afternoon/spec.json"
+    },
+    {
+      "id": "north-station-control",
+      "name": "梧城北站控制室",
+      "kind": "background",
+      "status": "UPLOADED",
+      "scenes": [
+        "c5_anchor_truth"
+      ],
+      "prompt": "game/art-sources/chatgpt/backgrounds/north-station-control/prompt.txt",
+      "spec": "game/art-sources/chatgpt/backgrounds/north-station-control/spec.json"
+    },
+    {
+      "id": "night-school-corridor",
+      "name": "夜梧城旧教学楼走廊",
+      "kind": "background",
+      "status": "UPLOADED",
+      "scenes": [
+        "c6_echo_goodbye"
+      ],
+      "prompt": "game/art-sources/chatgpt/backgrounds/night-school-corridor/prompt.txt",
+      "spec": "game/art-sources/chatgpt/backgrounds/night-school-corridor/spec.json"
+    },
+    {
+      "id": "night-school-exit",
+      "name": "夜梧城旧教学楼出口",
+      "kind": "background",
+      "status": "UPLOADED",
+      "scenes": [
+        "c6_last_door"
+      ],
+      "prompt": "game/art-sources/chatgpt/backgrounds/night-school-exit/prompt.txt",
+      "spec": "game/art-sources/chatgpt/backgrounds/night-school-exit/spec.json"
+    },
+    {
+      "id": "night-nanhu-station",
+      "name": "夜梧城南湖站",
+      "kind": "background",
+      "status": "UPLOADED",
+      "scenes": [
+        "c4_xuqi_1"
+      ],
+      "prompt": "game/art-sources/chatgpt/backgrounds/night-nanhu-station/prompt.txt",
+      "spec": "game/art-sources/chatgpt/backgrounds/night-nanhu-station/spec.json"
+    },
+    {
+      "id": "night-clocktower",
+      "name": "夜梧城钟楼下",
+      "kind": "background",
+      "status": "UPLOADED",
+      "scenes": [
+        "c4_xuqi_2",
+        "end_xuqi"
+      ],
+      "prompt": "game/art-sources/chatgpt/backgrounds/night-clocktower/prompt.txt",
+      "spec": "game/art-sources/chatgpt/backgrounds/night-clocktower/spec.json"
+    },
+    {
+      "id": "river-levee-evening",
+      "name": "城外江堤",
+      "kind": "background",
+      "status": "UPLOADED",
+      "scenes": [
+        "end_tangli"
+      ],
+      "prompt": "game/art-sources/chatgpt/backgrounds/river-levee-evening/prompt.txt",
+      "spec": "game/art-sources/chatgpt/backgrounds/river-levee-evening/spec.json"
+    },
+    {
+      "id": "municipal-archive-workroom",
+      "name": "市档案馆修复工作室",
+      "kind": "background",
+      "status": "UPLOADED",
+      "scenes": [
+        "end_tinglan"
+      ],
+      "prompt": "game/art-sources/chatgpt/backgrounds/municipal-archive-workroom/prompt.txt",
+      "spec": "game/art-sources/chatgpt/backgrounds/municipal-archive-workroom/spec.json"
+    },
+    {
+      "id": "nanhu-station-exit",
+      "name": "南湖站出口",
+      "kind": "background",
+      "status": "UPLOADED",
+      "scenes": [
+        "station_refuse"
+      ],
+      "prompt": "game/art-sources/chatgpt/backgrounds/nanhu-station-exit/prompt.txt",
+      "spec": "game/art-sources/chatgpt/backgrounds/nanhu-station-exit/spec.json"
+    },
+    {
+      "id": "information-rooftop-evening",
+      "name": "信息楼天台",
+      "kind": "background",
+      "status": "UPLOADED",
+      "scenes": [
+        "c4_nanxing_2",
+        "end_nanxing"
+      ],
+      "prompt": "game/art-sources/chatgpt/backgrounds/information-rooftop-evening/prompt.txt",
+      "spec": "game/art-sources/chatgpt/backgrounds/information-rooftop-evening/spec.json"
+    },
+    {
+      "id": "old-art-room-evening",
+      "name": "旧美术教室夜间",
+      "kind": "background",
+      "status": "UPLOADED",
+      "scenes": [
+        "focus_xiaoman_open",
+        "route_convergence"
+      ],
+      "prompt": "game/art-sources/chatgpt/backgrounds/old-art-room-evening/prompt.txt",
+      "spec": "game/art-sources/chatgpt/backgrounds/old-art-room-evening/spec.json"
+    },
+    {
+      "id": "underpass-exit-evening",
+      "name": "下穿通道出口",
+      "kind": "background",
+      "status": "UPLOADED",
+      "scenes": [
+        "breakthrough_first"
+      ],
+      "prompt": "game/art-sources/chatgpt/backgrounds/underpass-exit-evening/prompt.txt",
+      "spec": "game/art-sources/chatgpt/backgrounds/underpass-exit-evening/spec.json"
+    },
+    {
+      "id": "north-station-after1842",
+      "name": "北站时间向前",
+      "kind": "background",
+      "status": "UPLOADED",
+      "scenes": [
+        "c6_walk_forward"
+      ],
+      "prompt": "game/art-sources/chatgpt/backgrounds/north-station-after1842/prompt.txt",
+      "spec": "game/art-sources/chatgpt/backgrounds/north-station-after1842/spec.json"
+    },
+    {
+      "id": "north-station-vanishing",
+      "name": "正在消失的北站",
+      "kind": "background",
+      "status": "UPLOADED",
+      "scenes": [
+        "c6_escape"
+      ],
+      "prompt": "game/art-sources/chatgpt/backgrounds/north-station-vanishing/prompt.txt",
+      "spec": "game/art-sources/chatgpt/backgrounds/north-station-vanishing/spec.json"
+    }
+  ],
+  "ui": [
+    {
+      "id": "title-key-visual",
+      "name": "标题页主视觉",
+      "kind": "ui",
+      "status": "UPLOADED",
+      "prompt": "game/art-sources/chatgpt/ui/title-key-visual/prompt.txt",
+      "spec": "game/art-sources/chatgpt/ui/title-key-visual/spec.json"
+    },
+    {
+      "id": "save-anomaly",
+      "name": "存档异常主视觉",
+      "kind": "ui",
+      "status": "UPLOADED",
+      "prompt": "game/art-sources/chatgpt/ui/save-anomaly/prompt.txt",
+      "spec": "game/art-sources/chatgpt/ui/save-anomaly/spec.json"
+    },
+    {
+      "id": "ending-collection-header",
+      "name": "结局收藏主视觉",
+      "kind": "ui",
+      "status": "UPLOADED",
+      "prompt": "game/art-sources/chatgpt/ui/ending-collection-header/prompt.txt",
+      "spec": "game/art-sources/chatgpt/ui/ending-collection-header/spec.json"
+    },
+    {
+      "id": "cg-gallery-header",
+      "name": "CG画廊主视觉",
+      "kind": "ui",
+      "status": "UPLOADED",
+      "prompt": "game/art-sources/chatgpt/ui/cg-gallery-header/prompt.txt",
+      "spec": "game/art-sources/chatgpt/ui/cg-gallery-header/spec.json"
+    },
+    {
+      "id": "combat-hud-key-visual",
+      "name": "战斗页面主视觉",
+      "kind": "ui",
+      "status": "UPLOADED",
+      "prompt": "game/art-sources/chatgpt/ui/combat-hud-key-visual/prompt.txt",
+      "spec": "game/art-sources/chatgpt/ui/combat-hud-key-visual/spec.json"
+    }
+  ],
+  "integration": {
+    "sceneBackgroundMappings": 23,
+    "productionAssets": 96,
+    "runtimeAssetsIncludingAudio": 117,
+    "supportingOwnerApproved": 0,
+    "pendingUITransport": 0,
+    "releaseStatus": "VISUAL_ACCEPTED_PACKAGE_REGRESSION_REQUIRED",
+    "supportingAiSimulatedApproved": 12,
+    "supportingApproved": 12
+  }
+}

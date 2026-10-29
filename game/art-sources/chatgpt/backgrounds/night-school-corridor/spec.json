@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "id": "night-school-corridor",
+  "name": "夜梧城旧教学楼走廊",
+  "kind": "background",
+  "sourceCommit": "8d190ebec6fb8c91b2f6c984bd6010b1d4de6005",
+  "canonSources": [
+    "docs/ART_DIRECTION.md",
+    "game/content/chapters/06.json"
+  ],
+  "sceneEvidence": [
+    {
+      "scene": "c6_echo_goodbye",
+      "path": "game/content/chapters/06.json",
+      "location": "夜梧城·旧教学楼",
+      "time": "18:42之后",
+      "previousBackground": "night-wucheng",
+      "sampleLines": [
+        {
+          "id": "r1_c6_echo_goodbye_pre01_01",
+          "text": "18:42之后，夜梧城·旧教学楼。拖把水还没干，值日生把椅子一张张放回桌下；有人背单词，有人趴着补觉，楼下篮球砸地的声音隔着雨传上来。"
+        },
+        {
+          "id": "r1_c6_echo_goodbye_pre02_01",
+          "text": "陈渡以前从不注意这些细节。经历几次读取以后，他开始强迫自己记住能被别人共同验证的东西：谁坐在哪一排、谁最后离开、广播播了什么。"
+        }
+      ]
+    }
+  ],
+  "designProposal": "18:42之后的夜梧城旧教学楼内部走廊，中国旧高中建筑，空教室门、磨旧水磨石地面、蓝灰窗光、尽头一盏普通灯、轻微重复门框错位像失败读档的残响正在退去，幽静克制，无怪物无血腥，前景通道开阔。",
+  "reviewStatus": "UNVERIFIED",
+  "native4kClaim": false
+}

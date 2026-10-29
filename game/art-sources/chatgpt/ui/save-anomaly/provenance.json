@@ -1,31 +1,53 @@
 {
   "schema": 1,
-  "generator": "ChatGPT-authored original vector illustration; deterministic raster master pipeline",
-  "workflow": "round7-new-vector-source-to-processed-4k-master",
-  "native4kClaim": false,
-  "authorization": "2026-10-27: 用户要求继续下一轮 Round 7 并沿用最高权限写入",
+  "character": null,
+  "name": "save-anomaly",
   "category": "ui",
   "id": "save-anomaly",
-  "prompt": "RESET anomaly save key visual: corrupted save-slot architecture, repeated load traces, 10/17 18:42, warning chevrons, cold violet-blue interface ambience, unsettling but readable.",
-  "processing": "new ChatGPT-authored vector source -> rsvg 1920x1080 PNG original -> Lanczos 3840x2160 PNG master -> 1920x1080 WebP runtime; legacy UI SVG not used as pixels",
-  "sourceVector": "game/art-sources/chatgpt/ui/save-anomaly/source.svg",
-  "sourceVectorSHA256": "8f4d8e13f3a8dd79c62df131c0101ec2093fbb7d70a8d1293c456986cb4eb3d2",
-  "original": "game/art-sources/chatgpt/ui/save-anomaly/original.png",
-  "originalSize": [
-    1920,
-    1080
-  ],
-  "originalSHA256": "c7d9834643083fe81e72f489e7f3063796f2f20f6659f68b5d9d01a59d1d6f07",
-  "master": "game/assets/4k/ui/save-anomaly.png",
-  "masterSize": [
-    3840,
-    2160
-  ],
-  "masterSHA256": "ca1fc21e96b2ee63e7d181f4e4003bd638fb936f21ae37cbaeb8353516406042",
-  "runtime": "game/assets/4k/runtime/ui/save-anomaly.webp",
-  "runtimeSize": [
-    1920,
-    1080
-  ],
-  "runtimeSHA256": "e9182f7e5e564f8344ede4626691007ef1b8130bdd5d141c553159bfa3304c0c"
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
+  "native4kClaim": false,
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-b9256837-7faf-4020-873e-c5cb31891d44.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/ui/save-anomaly/prompt.txt",
+  "promptSHA256": "8e5ba33ae89dbd95a965fe28d177dac76c32e56bd83db20326057c6f1d9fc66b",
+  "spec": "game/art-sources/chatgpt/ui/save-anomaly/spec.json",
+  "specSHA256": "2c72f6bc590753ab6751c71415312e57400d922a54c888ed9448b636d457f041",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "resize": "aspect-fill Lanczos",
+    "sourceSize": [
+      1672,
+      941
+    ]
+  },
+  "assets": [
+    {
+      "expression": "save-anomaly",
+      "original": "game/art-sources/chatgpt/ui/save-anomaly/original.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "746fa503d392cff9d3e8e4c5bba43c124ecf1f0db37eaed35b8a68624e2f0b42",
+      "master": "game/assets/4k/ui/save-anomaly.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "a74e8c38c00f1e28626957d4232c37eb8b37b1a5bcd4b65120f2cc030485363b",
+      "runtime": "game/assets/4k/runtime/ui/save-anomaly.webp",
+      "runtimeSize": [
+        1920,
+        1080
+      ],
+      "runtimeSHA256": "1d853b9d9d4c3da03274bd500368b8e3f10c8b7b7274d8e9004593b54c57e908"
+    }
+  ]
 }

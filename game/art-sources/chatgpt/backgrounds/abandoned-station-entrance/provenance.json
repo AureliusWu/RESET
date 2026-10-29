@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "character": null,
+  "name": "abandoned-station-entrance",
+  "category": "backgrounds",
+  "id": "abandoned-station-entrance",
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
+  "native4kClaim": false,
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-f612d629-4825-4c16-904d-e622c22f42e7.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/backgrounds/abandoned-station-entrance/prompt.txt",
+  "promptSHA256": "ed1afa1c02dab14809ad470c917148f97bac67b8f1798c4bfb038b9f280245f8",
+  "spec": "game/art-sources/chatgpt/backgrounds/abandoned-station-entrance/spec.json",
+  "specSHA256": "083db5e54632728ffca53cddb41f81d98a8e493f67161fbf48609a1b48b6d260",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "resize": "aspect-fill Lanczos",
+    "sourceSize": [
+      1672,
+      941
+    ]
+  },
+  "assets": [
+    {
+      "expression": "abandoned-station-entrance",
+      "original": "game/art-sources/chatgpt/backgrounds/abandoned-station-entrance/original.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "c2472a802584dd6c1517483949b9b87825e5c01e5f5aa10cf1e243d0971f9748",
+      "master": "game/assets/4k/backgrounds/abandoned-station-entrance.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "a4bf4f7d9819fb1c7a01878cc03c8c6cd8bc2bc2cd4981296256e2ed82178d2b",
+      "runtime": "game/assets/4k/runtime/backgrounds/abandoned-station-entrance.webp",
+      "runtimeSize": [
+        1920,
+        1080
+      ],
+      "runtimeSHA256": "5f6527b83183b39462f3a1b5d369f84170166044253bade358c268a8c5a2cdc1"
+    }
+  ]
+}

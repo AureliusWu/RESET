@@ -1,31 +1,53 @@
 {
   "schema": 1,
-  "generator": "ChatGPT-authored original vector illustration; deterministic raster master pipeline",
-  "workflow": "round7-new-vector-source-to-processed-4k-master",
-  "native4kClaim": false,
-  "authorization": "2026-10-27: 用户要求继续下一轮 Round 7 并沿用最高权限写入",
+  "character": null,
+  "name": "combat-hud-key-visual",
   "category": "ui",
   "id": "combat-hud-key-visual",
-  "prompt": "RESET combat HUD key visual: temporal targeting reticle, offset echo silhouette, stamina trace, pattern-reading and loop-breaking motifs, minimal cold blue-gray combat interface.",
-  "processing": "new ChatGPT-authored vector source -> rsvg 1920x1080 PNG original -> Lanczos 3840x2160 PNG master -> 1920x1080 WebP runtime; legacy UI SVG not used as pixels",
-  "sourceVector": "game/art-sources/chatgpt/ui/combat-hud-key-visual/source.svg",
-  "sourceVectorSHA256": "4752d21f9cd2640f879464209a59d5a8dcfca16418b5ddc8b8e12cc1ca9dfe8f",
-  "original": "game/art-sources/chatgpt/ui/combat-hud-key-visual/original.png",
-  "originalSize": [
-    1920,
-    1080
-  ],
-  "originalSHA256": "b7fa9230dfc3c06d9d35b1b9e934743674bcabf6c21614e1ad01f49afbd34d34",
-  "master": "game/assets/4k/ui/combat-hud-key-visual.png",
-  "masterSize": [
-    3840,
-    2160
-  ],
-  "masterSHA256": "7fe2e3d8e9d22df552563b23446c37b3c0cd73fe5ad9e1c12f4c9f6a1e11e997",
-  "runtime": "game/assets/4k/runtime/ui/combat-hud-key-visual.webp",
-  "runtimeSize": [
-    1920,
-    1080
-  ],
-  "runtimeSHA256": "91dea7417da077300bb59c700447616453221a31e40fc97cfeb98bcf1621f318"
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
+  "native4kClaim": false,
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-df072fd4-f7ca-433b-b7f3-c75c72c6524d.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/ui/combat-hud-key-visual/prompt.txt",
+  "promptSHA256": "e25a686e02a39caef9da2e0d8d7f0cfb0e5583ef69eb121ece09e36195c1d295",
+  "spec": "game/art-sources/chatgpt/ui/combat-hud-key-visual/spec.json",
+  "specSHA256": "c2296d6bb3c4da1986183dda851c72eee75d0c3b2cee732598d09938f6d63a93",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "resize": "aspect-fill Lanczos",
+    "sourceSize": [
+      1672,
+      941
+    ]
+  },
+  "assets": [
+    {
+      "expression": "combat-hud-key-visual",
+      "original": "game/art-sources/chatgpt/ui/combat-hud-key-visual/original.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "79a54277d79830687cea76bedfc1a85c5098cc7342e7327000529834904cb1f0",
+      "master": "game/assets/4k/ui/combat-hud-key-visual.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "7809baa367935252b2e9c6f6e3185c0662f45ef16934a4a03d0aff48712a3b84",
+      "runtime": "game/assets/4k/runtime/ui/combat-hud-key-visual.webp",
+      "runtimeSize": [
+        1920,
+        1080
+      ],
+      "runtimeSHA256": "93bab2c7a96baa6660e2f826d47a2112c7a47a41ac7a461e3496507a690ebccd"
+    }
+  ]
 }

@@ -1,0 +1,88 @@
+{
+  "status": "TECH_PASS_ART_UNVERIFIED",
+  "browser": "153.0.8010.0",
+  "source": "built-package",
+  "candidateProjectOverride": true,
+  "productionCandidateLeak": false,
+  "sceneId": "morning_after",
+  "lineId": "r1_morning_after_pre03_01",
+  "noSpriteOpeningPreserved": true,
+  "viewports": [
+    {
+      "name": "desktop",
+      "width": 1280,
+      "height": 900,
+      "portrait": {
+        "x": 576.609375,
+        "y": 9,
+        "width": 595.953125,
+        "height": 565
+      },
+      "reading": {
+        "x": 6,
+        "y": 676.90625,
+        "width": 1268,
+        "height": 113.09375
+      },
+      "stableAnchor": true
+    },
+    {
+      "name": "mobile-portrait",
+      "width": 390,
+      "height": 844,
+      "portrait": {
+        "x": 126.96875,
+        "y": 6.015625,
+        "width": 257.03125,
+        "height": 521.4375
+      },
+      "reading": {
+        "x": 6,
+        "y": 603.3125,
+        "width": 378,
+        "height": 126.6875
+      },
+      "stableAnchor": true
+    },
+    {
+      "name": "mobile-landscape",
+      "width": 844,
+      "height": 390,
+      "portrait": {
+        "x": 422.015625,
+        "y": 5,
+        "width": 348.59375,
+        "height": 230
+      },
+      "reading": {
+        "x": 7,
+        "y": 281.90625,
+        "width": 830,
+        "height": 63.09375
+      },
+      "stableAnchor": true
+    },
+    {
+      "name": "desktop-4k",
+      "width": 3840,
+      "height": 2160,
+      "portrait": {
+        "x": 2638.96875,
+        "y": 9,
+        "width": 620,
+        "height": 1770
+      },
+      "reading": {
+        "x": 326,
+        "y": 1860,
+        "width": 3188,
+        "height": 159
+      },
+      "stableAnchor": true
+    }
+  ],
+  "offlineSpriteVerified": true,
+  "runtimeSHA256": "cbc74d63768ab147ded207c1d4835d7ead1c7ae5800e8f2701d764cc80c86892",
+  "androidPhysicalDevice": false,
+  "windowsNative": false
+}

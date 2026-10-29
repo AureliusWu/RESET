@@ -1,39 +1,53 @@
 {
   "schema": 1,
-  "generator": "deterministic composite from approved ChatGPT-origin 4K production assets",
-  "workflow": "approved-4k-background-plus-approved-4k-linwan-composite",
-  "native4kClaim": false,
-  "processing": "Pillow 4K composite canvas from approved production assets; deterministic lighting/weather layers",
-  "authorization": "2026-10-26: Round 5 收尾，保持人物身份、画风与 4K 正式资产链",
+  "character": null,
+  "name": "雨停以后明天见",
   "category": "cg",
   "id": "true-end-riverside-cg",
-  "sources": [
-    "game/assets/4k/backgrounds/true-dawn.png",
-    "game/assets/4k/characters/linwan/smile.png"
-  ],
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
+  "native4kClaim": false,
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-83d02484-960e-4f8f-865b-61b43c547944.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/cg/true-end-riverside-cg/prompt.txt",
+  "promptSHA256": "b0766004058efbd9a610129b22f3d6ec987a64d77c9f6aea6f5051ebe54eabd2",
+  "spec": "game/art-sources/chatgpt/cg/true-end-riverside-cg/spec.json",
+  "specSHA256": "cb1fb763a36fb12ad3abe932f93bac408da26f0cd5df982d029b4bdd20ab0062",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "resize": "aspect-fill Lanczos",
+    "sourceSize": [
+      1672,
+      941
+    ]
+  },
   "assets": [
     {
+      "expression": "true-end-riverside-cg",
+      "original": "game/art-sources/chatgpt/cg/true-end-riverside-cg/original.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "735ae5b04aeda949ec1d04fad20af577229116ccc2ef4f02b54fb4a6302d45e3",
       "master": "game/assets/4k/cg/true-end-riverside-cg.png",
       "masterSize": [
         3840,
         2160
       ],
-      "masterSHA256": "930220ca02a207ce52dccdd13ffb63da58bf57b0ca2517a5ab0319e7ca8a28ff",
+      "masterSHA256": "f478ccdf9d41d3b5530dc0255fbe2c7e81de191535a04ce0f152301f3709cf45",
       "runtime": "game/assets/4k/runtime/cg/true-end-riverside-cg.webp",
       "runtimeSize": [
         1920,
         1080
       ],
-      "runtimeSHA256": "3d714e6b2c139880621ce598adc5aba0cd594568b839d9cb75b0b4078ada75a4",
-      "expression": "composite",
-      "original": "game/art-sources/chatgpt/cg/true-end-riverside-cg/original.png",
-      "originalSize": [
-        3840,
-        2160
-      ],
-      "originalSHA256": "930220ca02a207ce52dccdd13ffb63da58bf57b0ca2517a5ab0319e7ca8a28ff",
-      "prompt": "True End, October 25 morning: Linwan smiling after the loop is broken; clear warm morning light and fresh dawn atmosphere, explicitly not dusk or sunset.",
-      "faceComposition": null
+      "runtimeSHA256": "b97d08c189ab8469fe435d40246f43ab14f0a48fa2e0c1184a7fff1dfc766bea"
     }
   ]
 }

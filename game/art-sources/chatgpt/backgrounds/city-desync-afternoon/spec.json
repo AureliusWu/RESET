@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "id": "city-desync-afternoon",
+  "name": "梧城市区错位",
+  "kind": "background",
+  "sourceCommit": "8d190ebec6fb8c91b2f6c984bd6010b1d4de6005",
+  "canonSources": [
+    "docs/ART_DIRECTION.md",
+    "game/content/chapters/05.json"
+  ],
+  "sceneEvidence": [
+    {
+      "scene": "c5_city_desync",
+      "path": "game/content/chapters/05.json",
+      "location": "梧城市区",
+      "time": "14:26",
+      "previousBackground": "school-gate-evening",
+      "sampleLines": [
+        {
+          "id": "r1_c5_city_desync_pre01_01",
+          "text": "14:26，梧城市区。梧城的天气、交通和人群仍按自己的节奏前进。"
+        },
+        {
+          "id": "r1_c5_city_desync_pre01_02",
+          "text": "路边小店在换班，骑车的人按铃借道，没有谁知道陈渡正在把这些琐碎当成确认现实的坐标。"
+        }
+      ]
+    }
+  ],
+  "designProposal": "14:26，现代中国梧城市区十字路口，正常午后街道与夜梧城开始重叠：楼体边缘出现轻微错位双影，一部分路面是白天干燥光、一部分反射夜雨的冷蓝光，公交站和普通店铺仍可辨认，恐惧来自生活秩序错位，不画赛博城市或魔法传送门。",
+  "reviewStatus": "UNVERIFIED",
+  "native4kClaim": false
+}

@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "character": null,
+  "name": "city-desync-afternoon",
+  "category": "backgrounds",
+  "id": "city-desync-afternoon",
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
+  "native4kClaim": false,
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-bc3ff6f2-bf8f-48d0-a970-4fbda9f1c9b2.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/backgrounds/city-desync-afternoon/prompt.txt",
+  "promptSHA256": "5a6990e5df124068a096d5ff1548641410722a7b08c356a3a16bc1827eecd78a",
+  "spec": "game/art-sources/chatgpt/backgrounds/city-desync-afternoon/spec.json",
+  "specSHA256": "d9bfbbf7375aa7cc54880a0f1bf8fa914bbd82ca38afb01cf3dfaa079bb88620",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "resize": "aspect-fill Lanczos",
+    "sourceSize": [
+      1672,
+      941
+    ]
+  },
+  "assets": [
+    {
+      "expression": "city-desync-afternoon",
+      "original": "game/art-sources/chatgpt/backgrounds/city-desync-afternoon/original.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "03a3a74afad2dd17dd1da8374e939ea0bedda9724cc5f435141b4ded44fa8b7c",
+      "master": "game/assets/4k/backgrounds/city-desync-afternoon.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "dab4471788abf999c6dd03ea7ca8a1f85641952dd07c7cd07918b69f7dc327e9",
+      "runtime": "game/assets/4k/runtime/backgrounds/city-desync-afternoon.webp",
+      "runtimeSize": [
+        1920,
+        1080
+      ],
+      "runtimeSHA256": "3b1eacc882f9c749dc602e7435423ca93cd42252121a6b759e2c4e3b8ba974cb"
+    }
+  ]
+}

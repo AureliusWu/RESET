@@ -1,31 +1,53 @@
 {
   "schema": 1,
-  "generator": "ChatGPT-authored original vector illustration; deterministic raster master pipeline",
-  "workflow": "round7-new-vector-source-to-processed-4k-master",
-  "native4kClaim": false,
-  "authorization": "2026-10-27: 用户要求继续下一轮 Round 7 并沿用最高权限写入",
+  "character": null,
+  "name": "title-key-visual",
   "category": "ui",
   "id": "title-key-visual",
-  "prompt": "RESET title key visual: rain-dark Wucheng, 18:42 clock glow, reflective wet atmosphere, distant human echoes, restrained blue-gray palette, elegant Chinese visual-novel title composition.",
-  "processing": "new ChatGPT-authored vector source -> rsvg 1920x1080 PNG original -> Lanczos 3840x2160 PNG master -> 1920x1080 WebP runtime; legacy UI SVG not used as pixels",
-  "sourceVector": "game/art-sources/chatgpt/ui/title-key-visual/source.svg",
-  "sourceVectorSHA256": "c1937f931e036973f5b7b034eaa193f023c68ead101c84465798600b328e4a5d",
-  "original": "game/art-sources/chatgpt/ui/title-key-visual/original.png",
-  "originalSize": [
-    1920,
-    1080
-  ],
-  "originalSHA256": "67500d7a736ebad4add2057b8593099917028b5336135c2b800f3cfb15058e92",
-  "master": "game/assets/4k/ui/title-key-visual.png",
-  "masterSize": [
-    3840,
-    2160
-  ],
-  "masterSHA256": "be68ee26480b302d2994b7c2fda6583b3377aae851084332c372af2b4257437b",
-  "runtime": "game/assets/4k/runtime/ui/title-key-visual.webp",
-  "runtimeSize": [
-    1920,
-    1080
-  ],
-  "runtimeSHA256": "920ee09072e0a470d25ef6c9b2241d99219336108799c644138ccb45bb491428"
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
+  "native4kClaim": false,
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-c84c00d0-49a0-42ce-a8a7-b39350d8238b.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/ui/title-key-visual/prompt.txt",
+  "promptSHA256": "ff61bad01039eb95964d50c8f255a5942b63cf2d81618da42c1b7868d40212ce",
+  "spec": "game/art-sources/chatgpt/ui/title-key-visual/spec.json",
+  "specSHA256": "fbe69394d72702a1f0e4ff17aa50f223cc1b6a68db14f101c30cd3da49fa7415",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "resize": "aspect-fill Lanczos",
+    "sourceSize": [
+      1672,
+      941
+    ]
+  },
+  "assets": [
+    {
+      "expression": "title-key-visual",
+      "original": "game/art-sources/chatgpt/ui/title-key-visual/original.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "97467105d34a00959a3357127312edcc6f3632e06a879662dfd8835ce4169a1b",
+      "master": "game/assets/4k/ui/title-key-visual.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "acba4b4edc2870fec658e44e6b144047f5c27199044d9a06e123aa33973dbf2c",
+      "runtime": "game/assets/4k/runtime/ui/title-key-visual.webp",
+      "runtimeSize": [
+        1920,
+        1080
+      ],
+      "runtimeSHA256": "66af915a65646e71b5008c55c482e72801c333bbba9342c4b9f60176dd918ed2"
+    }
+  ]
 }
