@@ -160,23 +160,65 @@
     {
       "id": "xurong",
       "name": "许蓉",
-      "status": "BLOCKED",
-      "reason": "Approved native replacement not yet supplied.",
-      "review": null
+      "status": "UNVERIFIED",
+      "reason": "Native candidate generated; owner visual review pending.",
+      "review": null,
+      "artifacts": {
+        "original": {
+          "path": "game/art-sources/chatgpt/characters/xurong/neutral.png",
+          "sha256": "eac0644abd10e39f2255d4882e2f30b430bb16dd1c5f9cc3ebeca410e63e0cce"
+        },
+        "master": {
+          "path": "game/assets/4k/characters/xurong/neutral.png",
+          "sha256": "cf9b3e04fa33479038846b54ca8eb810865160d15415e42c04716db27b400b64"
+        },
+        "runtime": {
+          "path": "game/assets/4k/runtime/characters/xurong/neutral.webp",
+          "sha256": "cf94728f0962ac5c01664f27f0227e5118bd0351fbf0170959aaf1396c6c3d46"
+        }
+      }
     },
     {
       "id": "luoxiumei",
       "name": "罗秀梅",
-      "status": "BLOCKED",
-      "reason": "Approved native replacement not yet supplied.",
-      "review": null
+      "status": "UNVERIFIED",
+      "reason": "Native candidate generated; owner visual review pending.",
+      "review": null,
+      "artifacts": {
+        "original": {
+          "path": "game/art-sources/chatgpt/characters/luoxiumei/neutral.png",
+          "sha256": "ac59a2f3641a8f870123e53cb76a3184a2b5ad0a1453d669dece4882b9189dc3"
+        },
+        "master": {
+          "path": "game/assets/4k/characters/luoxiumei/neutral.png",
+          "sha256": "f1604def90c42c25e445c452dc342c347d91874267d67fad4bb52cb92e211609"
+        },
+        "runtime": {
+          "path": "game/assets/4k/runtime/characters/luoxiumei/neutral.webp",
+          "sha256": "753a64a4a1971c83fa052c019874fe6b3a17b5868ce0de7271c3c07e08e35f5e"
+        }
+      }
     },
     {
       "id": "suyao",
       "name": "苏遥",
-      "status": "BLOCKED",
-      "reason": "Approved native replacement not yet supplied.",
-      "review": null
+      "status": "UNVERIFIED",
+      "reason": "Native candidate generated; owner visual review pending.",
+      "review": null,
+      "artifacts": {
+        "original": {
+          "path": "game/art-sources/chatgpt/characters/suyao/neutral.png",
+          "sha256": "7d3576ff427ff1b81f38c073f845d28fdc65b1d5c3d9813d4baa9b72ae92cefd"
+        },
+        "master": {
+          "path": "game/assets/4k/characters/suyao/neutral.png",
+          "sha256": "d37abc33e82d9b4f97e58e6807643ba5675b567c8d66bcde6803e09b9d6ba959"
+        },
+        "runtime": {
+          "path": "game/assets/4k/runtime/characters/suyao/neutral.webp",
+          "sha256": "8084a85bb7cd9ef190cc69897327fbe626fceccacb2c8bc54f148c9d6712c758"
+        }
+      }
     },
     {
       "id": "hechuan",

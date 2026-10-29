@@ -2,24 +2,64 @@
   "schema": 1,
   "character": "suyao",
   "name": "苏遥",
-  "sourceType": "chatgpt-authored-procedural-raster-illustration",
-  "visualTier": "supporting-cast-stylized-bust",
+  "category": "characters",
+  "id": "suyao",
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
   "native4kClaim": false,
-  "designPlan": "game/visual/r5-supporting-cast-plan.json",
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-8da60778-848b-4064-bbac-425a36becc9a.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/characters/suyao/prompt-neutral.txt",
+  "promptSHA256": "e46c1b0449621e6069b44a7eafa402db0126bdc9a9bb9d9ae07cab22d527edc9",
+  "spec": "game/art-sources/chatgpt/characters/suyao/spec.json",
+  "specSHA256": "ab82470cd46d7d4d631f3cced531d6cec0c36e563caf88c98cfc86a895c75116",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "cropBounds": [
+      257,
+      16,
+      723,
+      1651
+    ],
+    "framingAlphaThreshold": 8,
+    "offset": [
+      567,
+      130
+    ],
+    "scaledSize": [
+      1026,
+      3600
+    ],
+    "resize": "premultiplied-alpha Lanczos"
+  },
   "assets": [
     {
       "expression": "neutral",
       "original": "game/art-sources/chatgpt/characters/suyao/neutral.png",
-      "originalSHA256": "ac14cfec9f9fbfe3139c94020989a692033137c9092cee6831f687684e5435fe",
       "originalSize": [
+        941,
+        1672
+      ],
+      "originalSHA256": "7d3576ff427ff1b81f38c073f845d28fdc65b1d5c3d9813d4baa9b72ae92cefd",
+      "master": "game/assets/4k/characters/suyao/neutral.png",
+      "masterSize": [
+        2160,
+        3840
+      ],
+      "masterSHA256": "d37abc33e82d9b4f97e58e6807643ba5675b567c8d66bcde6803e09b9d6ba959",
+      "runtime": "game/assets/4k/runtime/characters/suyao/neutral.webp",
+      "runtimeSize": [
         1080,
         1920
       ],
-      "master": "game/assets/4k/characters/suyao/neutral.png",
-      "masterSHA256": "b5b3d9cb26ca6fbc5c10acbaf0a97893e3a6dc713f65d1964de6c7683148c387",
-      "runtime": "game/assets/4k/runtime/characters/suyao/neutral.webp",
-      "runtimeSHA256": "ed2ec6ba597581608ef2d52b440f5008d2e7a852e595a13f94bbadc4a9e64c38",
-      "lockedBodySHA256": "ac14cfec9f9fbfe3139c94020989a692033137c9092cee6831f687684e5435fe"
+      "runtimeSHA256": "8084a85bb7cd9ef190cc69897327fbe626fceccacb2c8bc54f148c9d6712c758",
+      "lockedBodySHA256": "cb61822145bbe3cb08b3817fb3366bdb1fbc3d78c97146e7dac88a288098e8b4"
     }
   ]
 }

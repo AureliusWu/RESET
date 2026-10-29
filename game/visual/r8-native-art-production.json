@@ -31,7 +31,7 @@
       "id": "xurong",
       "name": "许蓉",
       "kind": "portrait",
-      "status": "TO_GENERATE",
+      "status": "UPLOADED",
       "prompt": "game/art-sources/chatgpt/characters/xurong/prompt-neutral.txt",
       "spec": "game/art-sources/chatgpt/characters/xurong/spec.json"
     },
@@ -39,7 +39,7 @@
       "id": "luoxiumei",
       "name": "罗秀梅",
       "kind": "portrait",
-      "status": "TO_GENERATE",
+      "status": "UPLOADED",
       "prompt": "game/art-sources/chatgpt/characters/luoxiumei/prompt-neutral.txt",
       "spec": "game/art-sources/chatgpt/characters/luoxiumei/spec.json"
     },
@@ -47,7 +47,7 @@
       "id": "suyao",
       "name": "苏遥",
       "kind": "portrait",
-      "status": "TO_GENERATE",
+      "status": "UPLOADED",
       "prompt": "game/art-sources/chatgpt/characters/suyao/prompt-neutral.txt",
       "spec": "game/art-sources/chatgpt/characters/suyao/spec.json"
     },

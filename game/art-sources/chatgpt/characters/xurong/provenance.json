@@ -2,24 +2,64 @@
   "schema": 1,
   "character": "xurong",
   "name": "许蓉",
-  "sourceType": "chatgpt-authored-procedural-raster-illustration",
-  "visualTier": "supporting-cast-stylized-bust",
+  "category": "characters",
+  "id": "xurong",
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
   "native4kClaim": false,
-  "designPlan": "game/visual/r5-supporting-cast-plan.json",
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-dafb87b3-2d86-4e28-8781-fa782d2c09e7.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/characters/xurong/prompt-neutral.txt",
+  "promptSHA256": "5bd256f908de54b4baa190def862ad382376f36a12c710dffb8ed69ab612bfc7",
+  "spec": "game/art-sources/chatgpt/characters/xurong/spec.json",
+  "specSHA256": "b607c6d9f69041af5bda8d3b6b63e0d295e8805bf876202396dddbb344e6aefd",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "cropBounds": [
+      209,
+      9,
+      719,
+      1661
+    ],
+    "framingAlphaThreshold": 8,
+    "offset": [
+      524,
+      130
+    ],
+    "scaledSize": [
+      1111,
+      3600
+    ],
+    "resize": "premultiplied-alpha Lanczos"
+  },
   "assets": [
     {
       "expression": "neutral",
       "original": "game/art-sources/chatgpt/characters/xurong/neutral.png",
-      "originalSHA256": "4af298ad3ac504e5b0836f3485b53103469562ce8db0d5f31277cee511d407ea",
       "originalSize": [
+        940,
+        1672
+      ],
+      "originalSHA256": "eac0644abd10e39f2255d4882e2f30b430bb16dd1c5f9cc3ebeca410e63e0cce",
+      "master": "game/assets/4k/characters/xurong/neutral.png",
+      "masterSize": [
+        2160,
+        3840
+      ],
+      "masterSHA256": "cf9b3e04fa33479038846b54ca8eb810865160d15415e42c04716db27b400b64",
+      "runtime": "game/assets/4k/runtime/characters/xurong/neutral.webp",
+      "runtimeSize": [
         1080,
         1920
       ],
-      "master": "game/assets/4k/characters/xurong/neutral.png",
-      "masterSHA256": "1b4da5dbb199024a1119853298a45f47913e821c263c0fe7b1312bae398b3b53",
-      "runtime": "game/assets/4k/runtime/characters/xurong/neutral.webp",
-      "runtimeSHA256": "69c6c84eea3efea1449ff452e42153c4be88697920422f131cbde587ce9b596a",
-      "lockedBodySHA256": "4af298ad3ac504e5b0836f3485b53103469562ce8db0d5f31277cee511d407ea"
+      "runtimeSHA256": "cf94728f0962ac5c01664f27f0227e5118bd0351fbf0170959aaf1396c6c3d46",
+      "lockedBodySHA256": "7a009b527a71324c855e5cfa2785d707c291aaf0fdfc006a7f3317b5a301bbe3"
     }
   ]
 }

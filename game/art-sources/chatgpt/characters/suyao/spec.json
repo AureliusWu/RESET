@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "id": "suyao",
+  "name": "苏遥",
+  "kind": "portrait",
+  "expression": "neutral",
+  "canonRole": "17岁女生，美术社成员，周小满好友，行动略慢、观察细致",
+  "visualProposal": "深栗黑齐肩短发，有自然小发夹，青灰学生开衫、白衬衣、深色百褶裙、袜子便鞋，抱着素描本与一支铅笔；手部清楚，安静观察的表情",
+  "sourceCommit": "5eeea12921cb8e07b4e0ba64a8a37b91730954a9",
+  "sourceDocs": [
+    "docs/CAST_BIBLE_R1.md",
+    "docs/R8_ART_RECONSTRUCTION.md",
+    "docs/ART_DIRECTION.md"
+  ],
+  "storyEvidence": [
+    {
+      "path": "game/content/chapters/01.json",
+      "sceneId": "xiaoman_rain",
+      "lineId": "r1_xiaoman_rain_pre03_01",
+      "text": "小满，你答应我的社团海报还差最后一层色。别又陪人乱跑到忘了截稿。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/03.json",
+      "sceneId": "route_xiaoman_feeling",
+      "lineId": "r1_route_xiaoman_feeling_pre03_01",
+      "text": "小满，你答应我的社团海报还差最后一层色。别又陪人乱跑到忘了截稿。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/03.json",
+      "sceneId": "focus_xiaoman_open",
+      "lineId": "r1_focus_xiaoman_open_pre03_01",
+      "text": "小满，你答应我的社团海报还差最后一层色。别又陪人乱跑到忘了截稿。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/04.json",
+      "sceneId": "c4_xiaoman_1",
+      "lineId": "r1_c4_xiaoman_1_pre03_01",
+      "text": "小满，你答应我的社团海报还差最后一层色。别又陪人乱跑到忘了截稿。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/04.json",
+      "sceneId": "c4_xiaoman_2",
+      "lineId": "r1_c4_xiaoman_2_pre03_01",
+      "text": "小满，你答应我的社团海报还差最后一层色。别又陪人乱跑到忘了截稿。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/04.json",
+      "sceneId": "end_xiaoman",
+      "lineId": "r1_end_xiaoman_pre03_01",
+      "text": "小满，你答应我的社团海报还差最后一层色。别又陪人乱跑到忘了截稿。",
+      "noSprite": false
+    }
+  ],
+  "generation": "ChatGPT native image_gen.imagegen",
+  "reviewStatus": "UNVERIFIED",
+  "native4kClaim": false
+}

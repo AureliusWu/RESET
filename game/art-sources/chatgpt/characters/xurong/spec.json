@@ -1,0 +1,76 @@
+{
+  "schema": 1,
+  "id": "xurong",
+  "name": "许蓉",
+  "kind": "portrait",
+  "expression": "neutral",
+  "canonRole": "29岁女性校图书馆管理员，安静克制，记得借阅记录和旧校史资料",
+  "visualProposal": "齐下颌深棕短发，细框圆眼镜，米色针织衫、苔绿内搭、棕色过膝裙和平底鞋，一臂自然抱两本无字旧书，另一手托住书脊；温和安静",
+  "sourceCommit": "5eeea12921cb8e07b4e0ba64a8a37b91730954a9",
+  "sourceDocs": [
+    "docs/CAST_BIBLE_R1.md",
+    "docs/R8_ART_RECONSTRUCTION.md",
+    "docs/ART_DIRECTION.md"
+  ],
+  "storyEvidence": [
+    {
+      "path": "game/content/chapters/01.json",
+      "sceneId": "archive_room",
+      "lineId": "r1_archive_room_pre03_01",
+      "text": "要查可以，先登记。旧资料不是线索箱，翻坏一页就少一页。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/02.json",
+      "sceneId": "archive_erased_map",
+      "lineId": "r1_archive_erased_map_pre03_01",
+      "text": "要查可以，先登记。旧资料不是线索箱，翻坏一页就少一页。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/03.json",
+      "sceneId": "letter_examination",
+      "lineId": "r1_letter_examination_pre03_01",
+      "text": "要查可以，先登记。旧资料不是线索箱，翻坏一页就少一页。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/03.json",
+      "sceneId": "archive_photo",
+      "lineId": "r1_archive_photo_pre03_01",
+      "text": "要查可以，先登记。旧资料不是线索箱，翻坏一页就少一页。",
+      "noSprite": true
+    },
+    {
+      "path": "game/content/chapters/04.json",
+      "sceneId": "c4_tinglan_1",
+      "lineId": "r1_c4_tinglan_1_pre03_01",
+      "text": "要查可以，先登记。旧资料不是线索箱，翻坏一页就少一页。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/04.json",
+      "sceneId": "c4_tinglan_2",
+      "lineId": "r1_c4_tinglan_2_pre03_01",
+      "text": "要查可以，先登记。旧资料不是线索箱，翻坏一页就少一页。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/04.json",
+      "sceneId": "end_tinglan",
+      "lineId": "r1_end_tinglan_pre03_01",
+      "text": "要查可以，先登记。旧资料不是线索箱，翻坏一页就少一页。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/07.json",
+      "sceneId": "c7_credits",
+      "lineId": "r1_c7_credits_key04_01",
+      "text": "书可以续借，旧档不行。沈听澜，周一之前把登记表补齐。",
+      "noSprite": true
+    }
+  ],
+  "generation": "ChatGPT native image_gen.imagegen",
+  "reviewStatus": "UNVERIFIED",
+  "native4kClaim": false
+}
