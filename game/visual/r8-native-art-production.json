@@ -277,7 +277,7 @@
       "id": "night-school-corridor",
       "name": "夜梧城旧教学楼走廊",
       "kind": "background",
-      "status": "TO_GENERATE",
+      "status": "UPLOADED",
       "scenes": [
         "c6_echo_goodbye"
       ],
@@ -288,7 +288,7 @@
       "id": "night-school-exit",
       "name": "夜梧城旧教学楼出口",
       "kind": "background",
-      "status": "TO_GENERATE",
+      "status": "UPLOADED",
       "scenes": [
         "c6_last_door"
       ],
@@ -299,7 +299,7 @@
       "id": "night-nanhu-station",
       "name": "夜梧城南湖站",
       "kind": "background",
-      "status": "TO_GENERATE",
+      "status": "UPLOADED",
       "scenes": [
         "c4_xuqi_1"
       ],

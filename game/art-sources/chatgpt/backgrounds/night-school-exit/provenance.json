@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "character": null,
+  "name": "night-school-exit",
+  "category": "backgrounds",
+  "id": "night-school-exit",
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
+  "native4kClaim": false,
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-f6405c31-f114-47ac-912e-e701c09de36e.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/backgrounds/night-school-exit/prompt.txt",
+  "promptSHA256": "ba3bca22e28825453e671a9c5dd9b207ea722b59bcc021a8a51caaa47a61ccd3",
+  "spec": "game/art-sources/chatgpt/backgrounds/night-school-exit/spec.json",
+  "specSHA256": "a0773b255225d7f7d4709ef0912eceb2ebc20a7e950f59b0a78548d925f2df06",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "resize": "aspect-fill Lanczos",
+    "sourceSize": [
+      1672,
+      941
+    ]
+  },
+  "assets": [
+    {
+      "expression": "night-school-exit",
+      "original": "game/art-sources/chatgpt/backgrounds/night-school-exit/original.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "93b3c0f0f46c7ef80fb541ebc9e019be7486fb8f35fa66b9777c19433d76aad8",
+      "master": "game/assets/4k/backgrounds/night-school-exit.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "22e7d5fcc4c317cfdefd9de97d9ddf5957a4517862c98628ac2d57d5fb73769e",
+      "runtime": "game/assets/4k/runtime/backgrounds/night-school-exit.webp",
+      "runtimeSize": [
+        1920,
+        1080
+      ],
+      "runtimeSHA256": "3fb79749e3bd98738a6696e14ec5f412f4d4e0933ea9826ea8ff2a42c3904f82"
+    }
+  ]
+}

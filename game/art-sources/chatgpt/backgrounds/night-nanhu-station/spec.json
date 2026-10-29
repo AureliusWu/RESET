@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "id": "night-nanhu-station",
+  "name": "夜梧城南湖站",
+  "kind": "background",
+  "sourceCommit": "8d190ebec6fb8c91b2f6c984bd6010b1d4de6005",
+  "canonSources": [
+    "docs/ART_DIRECTION.md",
+    "game/content/chapters/04.json"
+  ],
+  "sceneEvidence": [
+    {
+      "scene": "c4_xuqi_1",
+      "path": "game/content/chapters/04.json",
+      "location": "夜梧城·南湖站",
+      "time": "18:42",
+      "previousBackground": "night-wucheng",
+      "sampleLines": [
+        {
+          "id": "r1_c4_xuqi_1_pre01_01",
+          "text": "18:42，夜梧城·南湖站。闸机、摄像头、广播、站务日志和列车时刻共同构成秩序。只要其中一个东西不对，工作人员就会留下记录，她先认出口。"
+        },
+        {
+          "id": "r1_c4_xuqi_1_pre02_01",
+          "text": "陈渡以前从不注意这些细节。经历几次读取以后，他开始强迫自己记住能被别人共同验证的东西：谁坐在哪一排、谁最后离开、广播播了什么，旧店招还在闪。"
+        }
+      ]
+    }
+  ],
+  "designProposal": "18:42的夜梧城南湖地铁站，地下站台、黄线、普通站台屏蔽门、长椅和柱子，空无一人，顶灯冷白、远端灯光轻微蓝紫错位，列车窗映出重复的空间残影，普通地铁的异常副本，不是室外铁路站。所有屏幕暗色不含可读文字。",
+  "reviewStatus": "UNVERIFIED",
+  "native4kClaim": false
+}

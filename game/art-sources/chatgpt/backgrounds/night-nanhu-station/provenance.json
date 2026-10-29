@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "character": null,
+  "name": "night-nanhu-station",
+  "category": "backgrounds",
+  "id": "night-nanhu-station",
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
+  "native4kClaim": false,
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-eb7f3b9c-5c84-4378-8ca4-ec645657bb5d.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/backgrounds/night-nanhu-station/prompt.txt",
+  "promptSHA256": "32d2ab35e34e386ee52a6cfdf2d011df610e4db5a1caac2188614fc326ff6901",
+  "spec": "game/art-sources/chatgpt/backgrounds/night-nanhu-station/spec.json",
+  "specSHA256": "74cec3714f4dc37e84f44414e9127ac750f56c2888ce057f4cda13a49b694697",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "resize": "aspect-fill Lanczos",
+    "sourceSize": [
+      1672,
+      941
+    ]
+  },
+  "assets": [
+    {
+      "expression": "night-nanhu-station",
+      "original": "game/art-sources/chatgpt/backgrounds/night-nanhu-station/original.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "e1701d055c5fefe2b02529c15c24cc868b0bd44d2a5ae827444e55f585e53082",
+      "master": "game/assets/4k/backgrounds/night-nanhu-station.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "58dd22f8396459fe6082877074e3a81fd41601a623934a73030e38a73de304cb",
+      "runtime": "game/assets/4k/runtime/backgrounds/night-nanhu-station.webp",
+      "runtimeSize": [
+        1920,
+        1080
+      ],
+      "runtimeSHA256": "835d45cb51c049677ea1564fd151cbc1dc2471e9120aed37ba1f3c9ae65bc2f3"
+    }
+  ]
+}
