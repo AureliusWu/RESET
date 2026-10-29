@@ -75,6 +75,7 @@ jobs:
           unzip -q RESET-huiliu-v1.2.3-web.zip -d installed-web
           npm run test:release
           npm run test:browser
+          npm run test:music:browser
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -218,6 +219,7 @@ jobs:
           name: RESET-huiliu-v1.2.3-windows-validation
           path: |
             test-results/windows/host-policy.json
+            game-repo/test-results/music-r1/*.json
             game-repo/test-results/windows-installed/*.json
             game-repo/test-results/windows-installed/*.png
       - uses: actions/upload-artifact@v4

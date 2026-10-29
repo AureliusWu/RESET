@@ -1,65 +1,76 @@
-import { readFile } from 'node:fs/promises';
+import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createHash } from 'node:crypto';
+import { inspectWav, musicViolations } from './audio-metrics.mjs';
+import { validateScore } from './music-score.mjs';
 
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
-const dist = resolve(root, 'dist');
+const dist = resolve(process.env.RESET_DIST || resolve(root, 'dist'));
 const project = JSON.parse(await readFile(resolve(dist, 'project.json'), 'utf8'));
+const manifest = JSON.parse(await readFile(resolve(dist, 'build-manifest.json'), 'utf8'));
+const scoreBytes = await readFile(resolve(root, 'game/music/score.json'));
+const score = JSON.parse(scoreBytes); validateScore(score);
+const musicManifestBytes = await readFile(resolve(dist, 'music-manifest.json'));
+const musicManifest = JSON.parse(musicManifestBytes);
 const sw = await readFile(resolve(dist, 'sw.js'), 'utf8');
-
+const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 function assert(condition, message) { if (!condition) throw new Error(message); }
-function wavInfo(bytes) {
-  assert(bytes.length >= 44, 'WAV is too small');
-  assert(bytes.toString('ascii', 0, 4) === 'RIFF' && bytes.toString('ascii', 8, 12) === 'WAVE', 'invalid WAV container');
-  const channels = bytes.readUInt16LE(22), sampleRate = bytes.readUInt32LE(24), bits = bytes.readUInt16LE(34);
-  const dataBytes = bytes.readUInt32LE(40), blockAlign = bytes.readUInt16LE(32);
-  assert(blockAlign > 0 && dataBytes <= bytes.length - 44, 'invalid WAV payload');
-  return { channels, sampleRate, bits, dataBytes, frames: dataBytes / blockAlign, blockAlign };
+assert(musicManifest.schema === 1 && musicManifest.revision === 'music-r1' && musicManifest.synthesis === 'original-procedural', 'Music provenance is missing');
+assert(musicManifest.scoreSha256 === hash(scoreBytes) && musicManifest.rendererSha256 === hash(await readFile(resolve(root, 'scripts/music-score.mjs'))), 'Music source provenance is stale');
+assert(musicManifest.tracks.length === 14 && new Set(musicManifest.tracks.map(t => t.id)).size === 14, 'Score metadata is incomplete/duplicated');
+assert(manifest.extensions.includes('reset-music-r1'), 'Music integration is absent from final package');
+function packaged(src, bytes) {
+  const record = manifest.files.find(file => file.name === src);
+  assert(record?.size === bytes.length && record.sha256 === hash(bytes), `Final audio manifest mismatch: ${src}`);
+  assert(sw.includes(JSON.stringify(src)), `Audio unavailable offline: ${src}`);
 }
-function pcm16At(bytes, frame, channel, channels) { return bytes.readInt16LE(44 + (frame * channels + channel) * 2); }
-function seamPeak(bytes, info) {
-  const last = info.frames - 1;
-  let peak = 0;
-  for (let channel = 0; channel < info.channels; channel++) peak = Math.max(peak, Math.abs(pcm16At(bytes, 0, channel, info.channels) - pcm16At(bytes, last, channel, info.channels)));
-  return peak / 32767;
-}
-
+packaged('music-manifest.json', musicManifestBytes);
 const assets = project.assets.filter(asset => asset.kind === 'audio');
-const ids = new Set(assets.map(asset => asset.id));
-const sources = new Set();
-assert(assets.length >= 21, `expected upgraded audio catalog, got ${assets.length}`);
+const ids = new Set(assets.map(asset => asset.id)), sources = new Set();
+assert(assets.length === 21 && ids.size === 21, `Expected 14 Music + 7 SFX, got ${assets.length}`);
+const tracks = [], effects = [];
+let totalBytes = 0;
 for (const asset of assets) {
-  assert(!sources.has(asset.src), `audio assets share a source unexpectedly: ${asset.src}`);
-  sources.add(asset.src);
-  const bytes = await readFile(resolve(dist, asset.src));
-  const info = wavInfo(bytes);
-  assert(info.channels === 2, `${asset.id} is not stereo`);
-  assert(info.sampleRate >= 32000, `${asset.id} sample rate regressed below 32 kHz`);
-  assert(info.bits === 16, `${asset.id} must remain PCM16 for WebView/browser compatibility`);
-  const duration = info.frames / info.sampleRate;
+  assert(!sources.has(asset.src), `Audio unexpectedly shares a source: ${asset.src}`); sources.add(asset.src);
+  const bytes = await readFile(resolve(dist, asset.src)), info = inspectWav(bytes);
+  totalBytes += bytes.length; packaged(asset.src, bytes);
   if (asset.id.startsWith('music-')) {
-    assert(duration >= 12, `${asset.id} is too short for a score loop`);
-    assert(seamPeak(bytes, info) < .1, `${asset.id} has a likely audible loop seam`);
-  } else if (asset.id.startsWith('sfx-')) {
-    assert(duration > .1 && duration < 2, `${asset.id} has an implausible SFX duration`);
+    const cue = score.cues.find(cue => cue.id === asset.id), record = musicManifest.tracks.find(track => track.id === asset.id);
+    assert(cue && record?.sha256 === hash(bytes) && record.src === asset.src && record.bytes === bytes.length, `${asset.id}: missing/stale soundtrack metadata`);
+    assert(record.frames === info.frames && record.bpm === cue.bpm && record.bars === 16 && record.beatsPerBar === 4 && record.instrument === cue.instrument && record.title === cue.title, `${asset.id}: composition metadata does not match the score`);
+    assert(Math.abs(info.duration - 16 * 4 * 60 / cue.bpm) < 1 / 32000, `${asset.id}: phrase is not tempo-aligned`);
+    assert(record.loop === true && record.loopStart === 0 && record.loopEnd === info.duration && record.defaultGain === 1, `${asset.id}: loop metadata does not match full-file engine playback`);
+    const errors = musicViolations(info); assert(!errors.length, `${asset.id}: ${errors.join(', ')}`);
+    tracks.push({ id: asset.id, title: record.title, instrument: record.instrument, sha256: record.sha256, ...info });
+  } else {
+    assert(asset.id.startsWith('sfx-') && info.duration > .1 && info.duration < 2 && !info.clippedSamples, `${asset.id}: invalid/overloaded SFX`);
+    effects.push({ id: asset.id, sha256: hash(bytes), duration: info.duration });
   }
-  assert(sw.includes(asset.src), `${asset.id} is not available offline`);
 }
-
-for (const [sceneId, stage] of Object.entries(project.stage?.scenes ?? {})) {
-  if (stage.music) assert(ids.has(stage.music), `scene ${sceneId} references missing music ${stage.music}`);
-  if (stage.ambience) assert(ids.has(stage.ambience), `scene ${sceneId} references missing ambience ${stage.ambience}`);
+assert(tracks.length === 14 && effects.length === 7, 'Audio identities regressed');
+assert(totalBytes <= 96 * 1024 * 1024, 'Uncompressed offline audio exceeds 96 MiB');
+const rmsSpreadDb = Math.max(...tracks.map(t => t.rmsDbfs)) - Math.min(...tracks.map(t => t.rmsDbfs));
+assert(rmsSpreadDb <= 2, 'Score energy spread exceeds 2 dB');
+const sceneIds = new Set(project.scenes.map(scene => scene.id));
+const mappings = project.stage?.scenes ?? {};
+for (const [sceneId, stage] of Object.entries(mappings)) {
+  assert(sceneIds.has(sceneId), `Stale scene mapping ${sceneId}`);
+  if (stage.music) assert(tracks.some(track => track.id === stage.music), `Scene ${sceneId} references missing music ${stage.music}`);
+  if (stage.ambience) assert(ids.has(stage.ambience), `Scene ${sceneId} references missing ambience ${stage.ambience}`);
 }
-for (const [lineId, stage] of Object.entries(project.stage?.lines ?? {})) if (stage.sound) assert(ids.has(stage.sound), `line ${lineId} references missing SFX ${stage.sound}`);
-
-const heroineThemes = {
-  c4_linwan_1: 'music-linwan-dream',
-  c4_xiaoman_1: 'music-xiaoman-forward',
-  c4_xuqi_1: 'music-xuqi-night',
-  c4_tinglan_1: 'music-tinglan-archive',
-  c4_tangli_1: 'music-tangli-road',
-  c4_nanxing_1: 'music-nanxing-message'
-};
-for (const [sceneId, music] of Object.entries(heroineThemes)) assert(project.stage?.scenes?.[sceneId]?.music === music, `${sceneId} lost its heroine-specific theme`);
-
-console.log(JSON.stringify({ status: 'audio-ok', assets: assets.length, music: assets.filter(asset => asset.id.startsWith('music-')).length, sfx: assets.filter(asset => asset.id.startsWith('sfx-')).length, sampleRateFloor: 32000, channels: 2 }, null, 2));
+for (const scene of project.scenes) assert(mappings[scene.id]?.music, `Scene ${scene.id} silently falls back to default music`);
+for (const [lineId, stage] of Object.entries(project.stage?.lines ?? {})) {
+  if (stage.sound) assert(effects.some(effect => effect.id === stage.sound), `Line ${lineId} references missing SFX ${stage.sound}`);
+  if (stage.music) assert(tracks.some(track => track.id === stage.music), `Line ${lineId} references missing Music ${stage.music}`);
+}
+const themes = { linwan: 'linwan-dream', xiaoman: 'xiaoman-forward', xuqi: 'xuqi-night', tinglan: 'tinglan-archive', tangli: 'tangli-road', nanxing: 'nanxing-message' };
+for (const [name, theme] of Object.entries(themes)) for (const scene of [`c4_${name}_1`, `c4_${name}_2`, `end_${name}`]) assert(mappings[scene]?.music === `music-${theme}`, `${scene} lost its character score`);
+for (const id of ['c5_anchor_truth','c5_request','c5_1842','chapter6_gate','c6_no_save','c6_echo_goodbye']) assert(mappings[id]?.music === 'music-no-save', `${id} lost no-save score`);
+for (const id of ['c7_morning','c7_after','c7_linwan','c7_credits']) assert(mappings[id]?.music === 'music-tomorrow', `${id} lost tomorrow score`);
+const report = { schema: 1, status: 'PASS', revision: 'music-r1', scoreSha256: musicManifest.scoreSha256, rendererSha256: musicManifest.rendererSha256, packageFingerprint: manifest.contentFingerprint, measurement: 'PCM energy (dBFS RMS), not perceptual LUFS or human listening',
+  totalBytes, rmsSpreadDb, scenes: project.scenes.length, tracks, effects,
+  subjectiveListening: 'NOT_CLAIMED', physicalAndroid: 'NOT_RUN', physicalWindows: 'NOT_RUN' };
+await mkdir(resolve(root, 'test-results/music-r1'), { recursive: true });
+await writeFile(resolve(root, 'test-results/music-r1/audio-report.json'), JSON.stringify(report, null, 2) + '\n');
+console.log(JSON.stringify({ status: 'audio-ok', music: tracks.length, sfx: effects.length, explicitSceneScores: project.scenes.length, durationSeconds: [Math.min(...tracks.map(t => t.duration)), Math.max(...tracks.map(t => t.duration))], rmsSpreadDb, maxInternalStep: Math.max(...tracks.map(t => t.maxStep)), maxLoopStep: Math.max(...tracks.map(t => t.seamStep)), totalBytes }, null, 2));

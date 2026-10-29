@@ -76,6 +76,7 @@ async function walkFiles(directory) {
 }
 
 async function injectGameRuntime(project) {
+  await copyFile(resolve(root, 'game/assets/generated/music-manifest.json'), resolve(output, 'music-manifest.json'));
   const uiRuntimeDir = resolve(root, 'game/assets/4k/runtime/ui'), uiOutputDir = resolve(output, 'assets/4k/runtime/ui');
   await mkdir(uiOutputDir, { recursive: true });
   for (const file of ['title-key-visual.webp','save-anomaly.webp','ending-collection-header.webp','cg-gallery-header.webp','combat-hud-key-visual.webp']) {
@@ -117,7 +118,7 @@ async function injectGameRuntime(project) {
     version: project.version,
     engine: packagedManifest.engine,
     contentFingerprint: fingerprint,
-    extensions: ['reset-combat-v1', 'reset-meta-v1', 'reset-portrait-set-v1', 'reset-scene-art-v1', 'reset-archive-v1', 'reset-responsive-v1', 'reset-ui-key-visual-v1', 'reset-art-completeness-v1', 'reset-art-visual-gate-v1', 'reset-asset-schema-v1'],
+    extensions: ['reset-combat-v1', 'reset-meta-v1', 'reset-portrait-set-v1', 'reset-scene-art-v1', 'reset-archive-v1', 'reset-responsive-v1', 'reset-ui-key-visual-v1', 'reset-art-completeness-v1', 'reset-art-visual-gate-v1', 'reset-asset-schema-v1', 'reset-music-r1'],
     files: finalFiles.map(file => ({ name: file.name, size: file.bytes.length, sha256: createHash('sha256').update(file.bytes).digest('hex') }))
   };
   await writeFile(resolve(output, 'build-manifest.json'), JSON.stringify(metadata, null, 2) + '\n');

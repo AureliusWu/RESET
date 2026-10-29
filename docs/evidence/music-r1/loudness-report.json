@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "status": "PASS",
+  "measurement": "FFmpeg EBU R128 integrated LUFS and oversampled true peak",
+  "tool": "ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers",
+  "spreadLu": 1.3999999999999986,
+  "tracks": [
+    {
+      "id": "music-memory-rain",
+      "sha256": "f85d0bc8720cc1ba61ef7a920c914f9732e1bd4351c468a6d88143628180024f",
+      "integratedLufs": -15.2,
+      "loudnessRangeLu": 1.6,
+      "truePeakDbfs": -3
+    },
+    {
+      "id": "music-night-residue",
+      "sha256": "29fc7ecfc9843b0d06b8c1184f45fc4c830d8fe54b4cd7c0f5a3cc0a4d6f1bd8",
+      "integratedLufs": -15.7,
+      "loudnessRangeLu": 2.2,
+      "truePeakDbfs": -3
+    },
+    {
+      "id": "music-fracture-pulse",
+      "sha256": "22d8de38aa02df9e734f568f3faadc99023d62749518d29c2dc85e35d74fef6c",
+      "integratedLufs": -16.1,
+      "loudnessRangeLu": 1.4,
+      "truePeakDbfs": -3.6
+    },
+    {
+      "id": "music-letter-dawn",
+      "sha256": "4b1f7fe4fdc46222014fdabc7c690d4782296427f2e62a88deedc9851acf4c35",
+      "integratedLufs": -15,
+      "loudnessRangeLu": 1.7,
+      "truePeakDbfs": -3.5
+    },
+    {
+      "id": "music-seven-chairs",
+      "sha256": "5a858d9a3ddefbe48b9eb90a95e725b67724c7b482c600300c4e3ecb4486a97d",
+      "integratedLufs": -16.1,
+      "loudnessRangeLu": 1.6,
+      "truePeakDbfs": -3
+    },
+    {
+      "id": "music-route-choice",
+      "sha256": "575e626b9a716af53145ec82d0b20b815a4059111651ddcd17737f0bdcd574b3",
+      "integratedLufs": -15.6,
+      "loudnessRangeLu": 1.3,
+      "truePeakDbfs": -3.5
+    },
+    {
+      "id": "music-no-save",
+      "sha256": "74ce970c2ba09e1f8f6844371db518a1bc263be5cc817af3cc4fb10f4457215a",
+      "integratedLufs": -16.4,
+      "loudnessRangeLu": 2.3,
+      "truePeakDbfs": -3
+    },
+    {
+      "id": "music-tomorrow",
+      "sha256": "4ddcc73cbef01cada66ddfd4d1f2aee8d29c6129184461c53a28b5ef0651ee96",
+      "integratedLufs": -15.3,
+      "loudnessRangeLu": 1.2,
+      "truePeakDbfs": -3.2
+    },
+    {
+      "id": "music-linwan-dream",
+      "sha256": "f75f94ada49f707b63a7a199b40725f51754bf4df9b693244d19895fe264f7b9",
+      "integratedLufs": -15.5,
+      "loudnessRangeLu": 1.4,
+      "truePeakDbfs": -3
+    },
+    {
+      "id": "music-xiaoman-forward",
+      "sha256": "483727ff6070c4a9882156dad1f75198ce6b7d73d21f18fc2293de649c398049",
+      "integratedLufs": -15.4,
+      "loudnessRangeLu": 1.2,
+      "truePeakDbfs": -3.7
+    },
+    {
+      "id": "music-xuqi-night",
+      "sha256": "d60ae56af35fe75fb1d1b02beb8de11fd7ba407d553c23cbc22c711a57fe6f7d",
+      "integratedLufs": -15.2,
+      "loudnessRangeLu": 1.5,
+      "truePeakDbfs": -3.3
+    },
+    {
+      "id": "music-tinglan-archive",
+      "sha256": "98cf6cb72ca85342eb0ad417fd27512ad7d31da198abae7a293ef44958945a7d",
+      "integratedLufs": -15.9,
+      "loudnessRangeLu": 1.9,
+      "truePeakDbfs": -3.7
+    },
+    {
+      "id": "music-tangli-road",
+      "sha256": "c9c89c124832ea5ac4044f6b64f5edd7d80acd7fd9368ea5be3abc628a8f6c21",
+      "integratedLufs": -16,
+      "loudnessRangeLu": 1.1,
+      "truePeakDbfs": -4.7
+    },
+    {
+      "id": "music-nanxing-message",
+      "sha256": "db69081c46ac54a7523682a9572e04431424485e76669bfa96c6a433dea780a8",
+      "integratedLufs": -15.4,
+      "loudnessRangeLu": 1.1,
+      "truePeakDbfs": -3.9
+    }
+  ],
+  "subjectiveListening": "NOT_CLAIMED"
+}
