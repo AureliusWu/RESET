@@ -222,7 +222,7 @@
       "id": "abandoned-station-entrance",
       "name": "废弃站口",
       "kind": "background",
-      "status": "TO_GENERATE",
+      "status": "UPLOADED",
       "scenes": [
         "c4_tangli_2"
       ],
@@ -233,7 +233,7 @@
       "id": "information-lab",
       "name": "梧城一中信息教室",
       "kind": "background",
-      "status": "TO_GENERATE",
+      "status": "UPLOADED",
       "scenes": [
         "c4_nanxing_1"
       ],

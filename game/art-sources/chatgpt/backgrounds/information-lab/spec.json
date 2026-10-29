@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "id": "information-lab",
+  "name": "梧城一中信息教室",
+  "kind": "background",
+  "sourceCommit": "8d190ebec6fb8c91b2f6c984bd6010b1d4de6005",
+  "canonSources": [
+    "docs/ART_DIRECTION.md",
+    "game/content/chapters/04.json"
+  ],
+  "sceneEvidence": [
+    {
+      "scene": "c4_nanxing_1",
+      "path": "game/content/chapters/04.json",
+      "location": "梧城一中信息楼",
+      "time": "15:44",
+      "previousBackground": "old-art-room",
+      "sampleLines": [
+        {
+          "id": "r1_c4_nanxing_1_pre01_01",
+          "text": "15:44，梧城一中信息楼。梧城的天气、交通和人群仍按自己的节奏前进。纪尧把异常日志拷进离线盘后提醒她，时间戳只能说明设备当时写下了什么，她先看时间戳。"
+        },
+        {
+          "id": "r1_c4_nanxing_1_pre01_02",
+          "text": "路边小店在换班，骑车的人按铃借道，没有谁知道陈渡正在把这些琐碎当成确认现实的坐标。乔南星习惯先截屏再说话，直到这几天她才承认有些东西根本截不下来，屏幕亮了又暗。"
+        }
+      ]
+    }
+  ],
+  "designProposal": "15:44，中国公立高中信息技术教室，成排普通台式电脑与关闭或暗色空屏、网线、教师桌、校园机房交换柜、白板与窗外绿树，午后柔和自然光，干净克制、有人刚离开。没有画架、颜料或美术教室装饰。",
+  "reviewStatus": "UNVERIFIED",
+  "native4kClaim": false
+}

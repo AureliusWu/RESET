@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "character": null,
+  "name": "information-lab",
+  "category": "backgrounds",
+  "id": "information-lab",
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
+  "native4kClaim": false,
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-4f015bb1-59ff-4bbe-a09d-5ebb25bc25c1.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/backgrounds/information-lab/prompt.txt",
+  "promptSHA256": "ecbeff2015f672a958f9875ea8c98865516e6b4e12ddf1515633b7fa33ef333f",
+  "spec": "game/art-sources/chatgpt/backgrounds/information-lab/spec.json",
+  "specSHA256": "a65533f14061ba999fbf41ff36ef1b1a91253bc740248acfd240d3ad23ea8442",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "resize": "aspect-fill Lanczos",
+    "sourceSize": [
+      1672,
+      941
+    ]
+  },
+  "assets": [
+    {
+      "expression": "information-lab",
+      "original": "game/art-sources/chatgpt/backgrounds/information-lab/original.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "64a83fc7869e87b1ee190dfe0789d103e63761ecaba502cd407ec5bd4795dfe6",
+      "master": "game/assets/4k/backgrounds/information-lab.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "efb5526d2ea4ca2dcbc0efef43273a77fa4529d3b990d4f8f0099cc36ea61731",
+      "runtime": "game/assets/4k/runtime/backgrounds/information-lab.webp",
+      "runtimeSize": [
+        1920,
+        1080
+      ],
+      "runtimeSHA256": "77ac32938ee7a0a4d7806ad7dae37acfc0cd9d12cacc6ef40b2fac241f692748"
+    }
+  ]
+}
