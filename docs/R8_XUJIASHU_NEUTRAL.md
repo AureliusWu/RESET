@@ -21,6 +21,8 @@
 
 浏览器使用 Chromium 153.0.8010.0。手机是视口模拟，Android 实机与 Windows 原生未在本轮执行。Noto Sans SC 仅用于检查环境，不增加游戏字体依赖。
 
+Build CI 采用候选 `check:release`、运行回归与候选浏览器检查，并上传可下载的候选截图。正式 Release workflow 仍执行 `check:stable`；Build 在正式 publish 提交也额外执行稳定硬门禁。候选 Build 通过不表示稳定发行获准。
+
 ## 审核后接入
 
 `game/assets/4k/visual-acceptance.json` 保留六位女主原有 PASS，独立登记 12 名配角；徐嘉树 UNVERIFIED，其余 11 人 BLOCKED。

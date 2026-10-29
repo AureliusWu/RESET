@@ -44,6 +44,8 @@ jobs:
           node --check scripts/check-art-integrity.mjs
           node --check scripts/check-4k-production.mjs
           node --check scripts/check-art-visual-gate.mjs
+          node --check scripts/supporting-art.mjs
+          node --check scripts/apply-supporting-art.mjs
           node --check scripts/check-r5-visual-coverage.mjs
           node --check scripts/check-r5-background-coverage.mjs
           node --check scripts/check-r5-key-cg-coverage.mjs
@@ -51,6 +53,7 @@ jobs:
           node --check scripts/check-r5-final-integration.mjs
           node --check scripts/check-release.mjs
           node --check tests/mobile-shell.test.mjs
+          node --check tests/xujiashu-art-browser.mjs
       - name: Verify frozen 4K migration map
         working-directory: game-repo
         run: npm run art:audit
@@ -59,12 +62,33 @@ jobs:
         env:
           VN_ENGINE_PATH: ${{ github.workspace }}/vn-engine
         run: npm run build
-      - name: Stable integrity and visual gate
+      - name: Candidate integrity and visual state
+        working-directory: game-repo
+        run: npm run check:release
+      - name: Stable publication hard gate
+        if: github.event_name == 'push' && startsWith(github.event.head_commit.message, 'release: publish v')
         working-directory: game-repo
         run: npm run check:stable
       - name: Runtime, mobile shell, ending reachability and Meta regressions
         working-directory: game-repo
         run: npm run test:release
+      - name: Install candidate audit browser and CJK fonts
+        working-directory: vn-engine
+        run: |
+          npx playwright install --with-deps chromium
+          sudo apt-get install --no-install-recommends -y fonts-noto-cjk
+      - name: Xu Jiashu candidate visual and offline audit
+        working-directory: game-repo
+        env:
+          VN_ENGINE_PATH: ${{ github.workspace }}/vn-engine
+        run: npm run test:art:xujiashu
+      - name: Upload candidate visual evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: RESET-xujiashu-neutral-candidate-audit
+          path: game-repo/test-results/xujiashu-neutral
+          if-no-files-found: warn
       - name: Verify v1.2.2 release content
         working-directory: game-repo
         run: |
@@ -74,8 +98,8 @@ jobs:
           test -f dist/sw.js
           test -f dist/pwa.mjs
           test -f dist/experience.css
-      - name: Upload standalone stable build
+      - name: Upload standalone candidate build
         uses: actions/upload-artifact@v4
         with:
-          name: RESET-huiliu-v1.2.2
+          name: RESET-huiliu-v1.2.2-candidate
           path: game-repo/dist
