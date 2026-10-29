@@ -54,14 +54,14 @@ export async function verifyProductionArt({page,project,fixtures,loadFixture,out
       await page.evaluate(async({asset,background})=>{
         const {mountGame}=await import('./lib/index.js');const root=document.createElement('div');root.id='__assetQA';root.style.cssText='position:fixed;inset:0;z-index:2147483647;background:#14272e';document.body.append(root);
         const [character,expression]=asset.id.split('/');
-        const fixture={schema:1,game:'reset-isolated-art-qa',version:'qa',title:'Isolated art QA',type:'narrative',entry:'qa',stats:{},assets:[asset,...(asset.id===background.id?[]:[background])],stage:{scenes:{qa:{[asset.kind==='portrait'?'portrait':asset.kind]:asset.id}}},scenes:[{id:'qa',title:'Formal expression renderer fixture',character,background:background.id,lines:[{id:'qa-line',speaker:'QA',text:'此差分暂未在剧情使用；独立渲染验收。',expression}],ending:'qa'}]};
+        const fixture={schema:1,game:'reset-isolated-art-qa',version:'qa',title:'Isolated art QA',type:'narrative',entry:'qa',stats:{},assets:[asset,...(asset.id===background.id?[]:[background])],stage:{scenes:{qa:{[asset.kind==='portrait'?'portrait':asset.kind]:asset.id}}},scenes:[{id:'qa',title:'Formal expression renderer fixture',character,background:background.id,lines:[{id:'qa-line',speaker:'QA',text:'此素材当前未在剧情中单独展示；独立渲染验收。',expression}],ending:'qa'}]};
         window.__assetQAGame=mountGame(root,fixture,{baseURL:new URL('./',location.href),storage:null,audio:false});window.__assetQAGame.session.configure({textDelayMs:0,reducedMotion:true});
       },{asset,background:project.assets.find(a=>a.kind==='background')});
       try{
         await page.waitForFunction(({id,selector,width})=>{const im=document.querySelector('#__assetQA '+selector);return im?.dataset.asset===id&&im.complete&&im.naturalWidth===width;},{id:asset.id,selector,width:expectedWidth});
         await page.screenshot({path:out+'/fixture-'+asset.id.replaceAll('/','-')+'.png',animations:'disabled'});
       }finally{await page.evaluate(()=>{window.__assetQAGame.dispose();delete window.__assetQAGame;document.getElementById('__assetQA').remove();});}
-      records.push({id:asset.id,verification:'isolated packaged renderer fixture; unused in story'});
+      records.push({id:asset.id,verification:'isolated packaged renderer fixture; not shown as a standalone story image'});
     }
   }
   await writeFile(out+'/production-art.json',JSON.stringify({decoded,records},null,2)+'\n');
