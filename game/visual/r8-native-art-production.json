@@ -1,0 +1,95 @@
+{
+  "schema": 1,
+  "scope": "all missing or non-native production art",
+  "baseCommit": "5eeea12921cb8e07b4e0ba64a8a37b91730954a9",
+  "portraits": [
+    {
+      "id": "chengyan",
+      "name": "程妍",
+      "kind": "portrait",
+      "status": "UPLOADED",
+      "prompt": "game/art-sources/chatgpt/characters/chengyan/prompt-neutral.txt",
+      "spec": "game/art-sources/chatgpt/characters/chengyan/spec.json"
+    },
+    {
+      "id": "gumingyuan",
+      "name": "顾明远",
+      "kind": "portrait",
+      "status": "UPLOADED",
+      "prompt": "game/art-sources/chatgpt/characters/gumingyuan/prompt-neutral.txt",
+      "spec": "game/art-sources/chatgpt/characters/gumingyuan/spec.json"
+    },
+    {
+      "id": "chenlan",
+      "name": "陈岚",
+      "kind": "portrait",
+      "status": "UPLOADED",
+      "prompt": "game/art-sources/chatgpt/characters/chenlan/prompt-neutral.txt",
+      "spec": "game/art-sources/chatgpt/characters/chenlan/spec.json"
+    },
+    {
+      "id": "xurong",
+      "name": "许蓉",
+      "kind": "portrait",
+      "status": "TO_GENERATE",
+      "prompt": "game/art-sources/chatgpt/characters/xurong/prompt-neutral.txt",
+      "spec": "game/art-sources/chatgpt/characters/xurong/spec.json"
+    },
+    {
+      "id": "luoxiumei",
+      "name": "罗秀梅",
+      "kind": "portrait",
+      "status": "TO_GENERATE",
+      "prompt": "game/art-sources/chatgpt/characters/luoxiumei/prompt-neutral.txt",
+      "spec": "game/art-sources/chatgpt/characters/luoxiumei/spec.json"
+    },
+    {
+      "id": "suyao",
+      "name": "苏遥",
+      "kind": "portrait",
+      "status": "TO_GENERATE",
+      "prompt": "game/art-sources/chatgpt/characters/suyao/prompt-neutral.txt",
+      "spec": "game/art-sources/chatgpt/characters/suyao/spec.json"
+    },
+    {
+      "id": "hechuan",
+      "name": "何川",
+      "kind": "portrait",
+      "status": "TO_GENERATE",
+      "prompt": "game/art-sources/chatgpt/characters/hechuan/prompt-neutral.txt",
+      "spec": "game/art-sources/chatgpt/characters/hechuan/spec.json"
+    },
+    {
+      "id": "jiyao",
+      "name": "纪尧",
+      "kind": "portrait",
+      "status": "TO_GENERATE",
+      "prompt": "game/art-sources/chatgpt/characters/jiyao/prompt-neutral.txt",
+      "spec": "game/art-sources/chatgpt/characters/jiyao/spec.json"
+    },
+    {
+      "id": "lincheng",
+      "name": "林澄",
+      "kind": "portrait",
+      "status": "TO_GENERATE",
+      "prompt": "game/art-sources/chatgpt/characters/lincheng/prompt-neutral.txt",
+      "spec": "game/art-sources/chatgpt/characters/lincheng/spec.json"
+    },
+    {
+      "id": "shenyanqiu",
+      "name": "沈砚秋",
+      "kind": "portrait",
+      "status": "TO_GENERATE",
+      "prompt": "game/art-sources/chatgpt/characters/shenyanqiu/prompt-neutral.txt",
+      "spec": "game/art-sources/chatgpt/characters/shenyanqiu/spec.json"
+    },
+    {
+      "id": "liangcheng",
+      "name": "梁成",
+      "kind": "portrait",
+      "status": "TO_GENERATE",
+      "prompt": "game/art-sources/chatgpt/characters/liangcheng/prompt-neutral.txt",
+      "spec": "game/art-sources/chatgpt/characters/liangcheng/spec.json"
+    }
+  ]
+}

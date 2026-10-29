@@ -2,24 +2,64 @@
   "schema": 1,
   "character": "gumingyuan",
   "name": "顾明远",
-  "sourceType": "chatgpt-authored-procedural-raster-illustration",
-  "visualTier": "supporting-cast-stylized-bust",
+  "category": "characters",
+  "id": "gumingyuan",
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
   "native4kClaim": false,
-  "designPlan": "game/visual/r5-supporting-cast-plan.json",
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-b1093511-a480-44d6-8469-b2f3b342112e.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/characters/gumingyuan/prompt-neutral.txt",
+  "promptSHA256": "84c368bfe20c745360e81d9ffab4188790658218978f38dc301898d1d212f848",
+  "spec": "game/art-sources/chatgpt/characters/gumingyuan/spec.json",
+  "specSHA256": "0ca4c9dab38fabeb08b8e67388036e439f843ff2495a7c5b6baeff897fff238c",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "cropBounds": [
+      210,
+      10,
+      739,
+      1657
+    ],
+    "framingAlphaThreshold": 8,
+    "offset": [
+      502,
+      130
+    ],
+    "scaledSize": [
+      1156,
+      3600
+    ],
+    "resize": "premultiplied-alpha Lanczos"
+  },
   "assets": [
     {
       "expression": "neutral",
       "original": "game/art-sources/chatgpt/characters/gumingyuan/neutral.png",
-      "originalSHA256": "1f9dbf36679fc7fc84179c936d3c8c89b199583dc181d62087cd04967ffe96ee",
       "originalSize": [
+        941,
+        1672
+      ],
+      "originalSHA256": "db37e706bf2c46d6d14f7c0a8779ac00901f407bce4ea4d71ef7d3e5bdce90fd",
+      "master": "game/assets/4k/characters/gumingyuan/neutral.png",
+      "masterSize": [
+        2160,
+        3840
+      ],
+      "masterSHA256": "9a6ee854d3ebb273f68279386c2a4cc471a3f595597cdeedb42397061ddc2b4e",
+      "runtime": "game/assets/4k/runtime/characters/gumingyuan/neutral.webp",
+      "runtimeSize": [
         1080,
         1920
       ],
-      "master": "game/assets/4k/characters/gumingyuan/neutral.png",
-      "masterSHA256": "370c0d7ce9e0bec202946f7a8b7fccd399fb60f86ea502b098c1e16e19ae8026",
-      "runtime": "game/assets/4k/runtime/characters/gumingyuan/neutral.webp",
-      "runtimeSHA256": "37235a88223bf37735c10eab94ea89a4a26e77088d5199d894351341027598c1",
-      "lockedBodySHA256": "1f9dbf36679fc7fc84179c936d3c8c89b199583dc181d62087cd04967ffe96ee"
+      "runtimeSHA256": "a74f93d7b739f45a24ee9935612b1a67716277550910f5d17bc4f0563a1f396c",
+      "lockedBodySHA256": "df7fa9bb3f7acab8798d08b0ce4d25bdeaf5e7f609ffdcaa88b4bfadd56c32d7"
     }
   ]
 }

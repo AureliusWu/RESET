@@ -97,23 +97,65 @@
     {
       "id": "chengyan",
       "name": "程妍",
-      "status": "BLOCKED",
-      "reason": "Approved native replacement not yet supplied.",
-      "review": null
+      "status": "UNVERIFIED",
+      "reason": "Native candidate generated; owner visual review pending.",
+      "review": null,
+      "artifacts": {
+        "original": {
+          "path": "game/art-sources/chatgpt/characters/chengyan/neutral.png",
+          "sha256": "db7b513b82806fc897bc06de17b481b071fa73f9a270525becec76e934266fab"
+        },
+        "master": {
+          "path": "game/assets/4k/characters/chengyan/neutral.png",
+          "sha256": "0a814c501d138870dec351a8e598ec4bf03efc3a92201a078375fdffd472db66"
+        },
+        "runtime": {
+          "path": "game/assets/4k/runtime/characters/chengyan/neutral.webp",
+          "sha256": "1a44ebe0dea91ec7560ea08c2e3153c020dbd603301d641db12a7f6284d1c04e"
+        }
+      }
     },
     {
       "id": "gumingyuan",
       "name": "顾明远",
-      "status": "BLOCKED",
-      "reason": "Approved native replacement not yet supplied.",
-      "review": null
+      "status": "UNVERIFIED",
+      "reason": "Native candidate generated; owner visual review pending.",
+      "review": null,
+      "artifacts": {
+        "original": {
+          "path": "game/art-sources/chatgpt/characters/gumingyuan/neutral.png",
+          "sha256": "db37e706bf2c46d6d14f7c0a8779ac00901f407bce4ea4d71ef7d3e5bdce90fd"
+        },
+        "master": {
+          "path": "game/assets/4k/characters/gumingyuan/neutral.png",
+          "sha256": "9a6ee854d3ebb273f68279386c2a4cc471a3f595597cdeedb42397061ddc2b4e"
+        },
+        "runtime": {
+          "path": "game/assets/4k/runtime/characters/gumingyuan/neutral.webp",
+          "sha256": "a74f93d7b739f45a24ee9935612b1a67716277550910f5d17bc4f0563a1f396c"
+        }
+      }
     },
     {
       "id": "chenlan",
       "name": "陈岚",
-      "status": "BLOCKED",
-      "reason": "Approved native replacement not yet supplied.",
-      "review": null
+      "status": "UNVERIFIED",
+      "reason": "Native candidate generated; owner visual review pending.",
+      "review": null,
+      "artifacts": {
+        "original": {
+          "path": "game/art-sources/chatgpt/characters/chenlan/neutral.png",
+          "sha256": "097368b328c790336e6084f58aabb85422bb2b964a146990a1b99a2147bb8bcb"
+        },
+        "master": {
+          "path": "game/assets/4k/characters/chenlan/neutral.png",
+          "sha256": "b77daa48d3f7bfe04be49c48b196800452271b04ca45042597fef53f87525d1d"
+        },
+        "runtime": {
+          "path": "game/assets/4k/runtime/characters/chenlan/neutral.webp",
+          "sha256": "fe0f22abc5d59113d2e84620db78615722bc2a952c979fa0bf3ddebde36c3ec4"
+        }
+      }
     },
     {
       "id": "xurong",

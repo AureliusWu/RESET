@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "id": "chenlan",
+  "name": "陈岚",
+  "kind": "portrait",
+  "expression": "neutral",
+  "canonRole": "42岁女性，陈渡母亲，社区医院夜班护士，温和疲惫但可靠",
+  "visualProposal": "深棕发挽低发髻，有温和年龄细纹与眼下轻微疲惫，浅青灰护士工作服、深色直筒裤、柔软平底工作鞋，胸前无可读文字工牌，手持折好的薄开衫；成年母亲体态",
+  "sourceCommit": "5eeea12921cb8e07b4e0ba64a8a37b91730954a9",
+  "sourceDocs": [
+    "docs/CAST_BIBLE_R1.md",
+    "docs/R8_ART_RECONSTRUCTION.md",
+    "docs/ART_DIRECTION.md"
+  ],
+  "storyEvidence": [
+    {
+      "path": "game/content/chapters/01.json",
+      "sceneId": "home_bad",
+      "lineId": "r1_home_bad_pre03_01",
+      "text": "饭我给你留着。你最近老说没事，脸色可不像没事。",
+      "noSprite": true
+    },
+    {
+      "path": "game/content/chapters/03.json",
+      "sceneId": "chapter3_gate",
+      "lineId": "r1_chapter3_gate_pre03_01",
+      "text": "饭我给你留着。你最近老说没事，脸色可不像没事。",
+      "noSprite": true
+    },
+    {
+      "path": "game/content/chapters/05.json",
+      "sceneId": "chapter5_gate",
+      "lineId": "r1_chapter5_gate_pre03_01",
+      "text": "饭我给你留着。你最近老说没事，脸色可不像没事。",
+      "noSprite": true
+    },
+    {
+      "path": "game/content/chapters/05.json",
+      "sceneId": "chapter5_gate",
+      "lineId": "r1_chapter5_gate_key01_01",
+      "text": "学校老师刚给我打电话，说你今天请病假。你站在门口鞋都穿好了，病在哪？",
+      "noSprite": true
+    },
+    {
+      "path": "game/content/chapters/05.json",
+      "sceneId": "chapter5_gate",
+      "lineId": "r1_chapter5_gate_key03_01",
+      "text": "我可以接受你不告诉我全部。但你至少告诉我，晚上有没有可能回不来。",
+      "noSprite": true
+    },
+    {
+      "path": "game/content/chapters/07.json",
+      "sceneId": "c7_morning",
+      "lineId": "r1_c7_morning_pre03_01",
+      "text": "饭我给你留着。你最近老说没事，脸色可不像没事。",
+      "noSprite": true
+    }
+  ],
+  "generation": "ChatGPT native image_gen.imagegen",
+  "reviewStatus": "UNVERIFIED",
+  "native4kClaim": false
+}

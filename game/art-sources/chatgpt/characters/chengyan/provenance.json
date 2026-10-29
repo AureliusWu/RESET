@@ -2,24 +2,64 @@
   "schema": 1,
   "character": "chengyan",
   "name": "程妍",
-  "sourceType": "chatgpt-authored-procedural-raster-illustration",
-  "visualTier": "supporting-cast-stylized-bust",
+  "category": "characters",
+  "id": "chengyan",
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
   "native4kClaim": false,
-  "designPlan": "game/visual/r5-supporting-cast-plan.json",
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-241ae88d-974d-4dbc-aa1f-5e2d0128ddd3.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/characters/chengyan/prompt-neutral.txt",
+  "promptSHA256": "17b61c7366fd1aedb151e7c7c6ce9669c1190dff72d848e2861b0bb035704f2e",
+  "spec": "game/art-sources/chatgpt/characters/chengyan/spec.json",
+  "specSHA256": "e16c7c1ca0eb8489870937a7e25577881e397f08fe4b8ea4267bfa01bef5368c",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "cropBounds": [
+      231,
+      9,
+      701,
+      1661
+    ],
+    "framingAlphaThreshold": 8,
+    "offset": [
+      568,
+      130
+    ],
+    "scaledSize": [
+      1024,
+      3600
+    ],
+    "resize": "premultiplied-alpha Lanczos"
+  },
   "assets": [
     {
       "expression": "neutral",
       "original": "game/art-sources/chatgpt/characters/chengyan/neutral.png",
-      "originalSHA256": "21d3da34a3182bca1e8b6cb21072e3fe7ebc36f41f6f75b07c54a5f26954175f",
       "originalSize": [
+        941,
+        1672
+      ],
+      "originalSHA256": "db7b513b82806fc897bc06de17b481b071fa73f9a270525becec76e934266fab",
+      "master": "game/assets/4k/characters/chengyan/neutral.png",
+      "masterSize": [
+        2160,
+        3840
+      ],
+      "masterSHA256": "0a814c501d138870dec351a8e598ec4bf03efc3a92201a078375fdffd472db66",
+      "runtime": "game/assets/4k/runtime/characters/chengyan/neutral.webp",
+      "runtimeSize": [
         1080,
         1920
       ],
-      "master": "game/assets/4k/characters/chengyan/neutral.png",
-      "masterSHA256": "28360e75f1f32b350fb6c77aea0e47c122af15e05667b7916cb60a86bf1219f8",
-      "runtime": "game/assets/4k/runtime/characters/chengyan/neutral.webp",
-      "runtimeSHA256": "0463dda51879f821ccefb4e8a41f2cf2f1388a337ad6b858815f31c4a825b0d8",
-      "lockedBodySHA256": "21d3da34a3182bca1e8b6cb21072e3fe7ebc36f41f6f75b07c54a5f26954175f"
+      "runtimeSHA256": "1a44ebe0dea91ec7560ea08c2e3153c020dbd603301d641db12a7f6284d1c04e",
+      "lockedBodySHA256": "53485a1f1175bffe1cc314b4d527010656fb33b2729df2474d97f22ab8276351"
     }
   ]
 }
