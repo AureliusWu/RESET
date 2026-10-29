@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "id": "north-station-vanishing",
+  "name": "正在消失的北站",
+  "kind": "background",
+  "sourceCommit": "8d190ebec6fb8c91b2f6c984bd6010b1d4de6005",
+  "canonSources": [
+    "docs/ART_DIRECTION.md",
+    "game/content/chapters/06.json"
+  ],
+  "sceneEvidence": [
+    {
+      "scene": "c6_escape",
+      "path": "game/content/chapters/06.json",
+      "location": "正在消失的梧城北站",
+      "time": "18:47",
+      "previousBackground": "north-station",
+      "sampleLines": [
+        {
+          "id": "r1_c6_escape_pre01_01",
+          "text": "18:47，正在消失的梧城北站。闸机、摄像头、广播、站务日志和列车时刻共同构成秩序。只要其中一个东西不对，工作人员就会留下记录。"
+        },
+        {
+          "id": "r1_c6_escape_pre02_01",
+          "text": "过去几天里，陈渡养成了一个笨办法：每到一个地方先看人，再看钟，最后看自己。人会记错，钟会坏，而他本人更不值得完全相信。"
+        }
+      ]
+    }
+  ],
+  "designProposal": "18:47，正在消失的梧城北站，真实中国旧铁路站台的雨棚、架空线和远端月台正逐渐变成半透明蓝灰轮廓与光尘，前景地面和出口仍清晰可走，湿路反光，异常是空间退去而非爆炸，无赛博UI、无文字无人物。",
+  "reviewStatus": "UNVERIFIED",
+  "native4kClaim": false,
+  "references": [
+    "game/assets/4k/runtime/backgrounds/north-station.webp"
+  ]
+}

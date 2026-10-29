@@ -379,7 +379,7 @@
       "id": "underpass-exit-evening",
       "name": "下穿通道出口",
       "kind": "background",
-      "status": "TO_GENERATE",
+      "status": "UPLOADED",
       "scenes": [
         "breakthrough_first"
       ],
@@ -390,7 +390,7 @@
       "id": "north-station-after1842",
       "name": "北站时间向前",
       "kind": "background",
-      "status": "TO_GENERATE",
+      "status": "UPLOADED",
       "scenes": [
         "c6_walk_forward"
       ],
@@ -401,7 +401,7 @@
       "id": "north-station-vanishing",
       "name": "正在消失的北站",
       "kind": "background",
-      "status": "TO_GENERATE",
+      "status": "UPLOADED",
       "scenes": [
         "c6_escape"
       ],
