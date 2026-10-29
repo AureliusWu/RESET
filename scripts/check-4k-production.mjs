@@ -149,12 +149,21 @@ for (const item of plan.ui) {
   assert(runtimeInfo.width <= masterInfo.width && runtimeInfo.height <= masterInfo.height, `${item.id} runtime exceeds master dimensions`);
   const provenance = await readJson(resolve(root, `game/art-sources/chatgpt/ui/${item.id}/provenance.json`));
   assert(provenance.native4kClaim === false, `${item.id}: processed UI master must not claim native 4K`);
-  for (const [pathKey, hashKey] of [['sourceVector','sourceVectorSHA256'],['original','originalSHA256'],['master','masterSHA256'],['runtime','runtimeSHA256']]) {
-    const bytes = await readFile(resolve(root, provenance[pathKey]));
-    assert(createHash('sha256').update(bytes).digest('hex') === provenance[hashKey], `${item.id}: ${pathKey} provenance mismatch`);
+  const record = provenance.assets?.find(a => a.runtime === `game/${item.runtime}`) ?? provenance;
+  const pairs = [['original','originalSHA256'],['master','masterSHA256'],['runtime','runtimeSHA256']];
+  if (provenance.sourceType === 'chatgpt-native-imagegen') {
+    assert(!provenance.sourceVector && !record.sourceVector, `${item.id}: native UI must not use a vector source`);
+    for (const field of ['prompt','spec']) {
+      const bytes = await readFile(resolve(root, provenance[field]));
+      assert(createHash('sha256').update(bytes).digest('hex') === provenance[`${field}SHA256`], `${item.id}: ${field} provenance mismatch`);
+    }
+  } else pairs.unshift(['sourceVector','sourceVectorSHA256']);
+  for (const [pathKey, hashKey] of pairs) {
+    const bytes = await readFile(resolve(root, record[pathKey]));
+    assert(createHash('sha256').update(bytes).digest('hex') === record[hashKey], `${item.id}: ${pathKey} provenance mismatch`);
   }
-  const original = pngInfo(await readFile(resolve(root, provenance.original)));
-  assert(original?.width === 1920 && original.height === 1080, `${item.id}: original dimensions mismatch`);
+  const original = pngInfo(await readFile(resolve(root, record.original)));
+  assert(original?.width === record.originalSize[0] && original.height === record.originalSize[1], `${item.id}: original dimensions mismatch`);
   uiReady++;
 }
 

@@ -17,7 +17,7 @@
   "prompt": "game/art-sources/chatgpt/cg/route-xiaoman-end-cg/prompt.txt",
   "promptSHA256": "75631ae1d4545855695b7146ba939379385095c94c13a04d70a347032dce0452",
   "spec": "game/art-sources/chatgpt/cg/route-xiaoman-end-cg/spec.json",
-  "specSHA256": "b670970b35952390547a4e9b98b02330eb8271354aa018308c14627db66b8a26",
+  "specSHA256": "79a154439f3840cbe6d7b44a531c0f9125521e48e26da844cf9f51cde10ebaba",
   "processing": {
     "script": "scripts/prepare-r8-native-art.py",
     "pillow": "12.3.0",

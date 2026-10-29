@@ -1041,7 +1041,7 @@
       "title": "夜梧城没有出口",
       "location": "夜梧城·南湖站",
       "time": "18:42",
-      "background": "night-wucheng",
+      "background": "night-nanhu-station",
       "character": "xuqi",
       "lines": [
         {
@@ -1175,7 +1175,7 @@
       "title": "她为什么知道次数",
       "location": "夜梧城·钟楼下",
       "time": "18:42",
-      "background": "night-wucheng",
+      "background": "night-clocktower",
       "character": "xuqi",
       "lines": [
         {
@@ -1321,7 +1321,7 @@
       "title": "许栖 · 留在被放弃的世界",
       "location": "夜梧城·钟楼下",
       "time": "永远的18:42",
-      "background": "night-wucheng",
+      "background": "night-clocktower",
       "character": "xuqi",
       "lines": [
         {
@@ -1460,7 +1460,7 @@
       "title": "2009年的第七个人",
       "location": "市档案馆地下库",
       "time": "14:05",
-      "background": "archive-room",
+      "background": "municipal-archive-basement",
       "character": "tinglan",
       "lines": [
         {
@@ -1599,7 +1599,7 @@
       "title": "记录不会爱人",
       "location": "市档案馆楼顶",
       "time": "17:30",
-      "background": "rooftop-evening",
+      "background": "archive-rooftop-evening",
       "character": "tinglan",
       "lines": [
         {
@@ -1750,7 +1750,7 @@
       "title": "沈听澜 · 未归档的人",
       "location": "市档案馆",
       "time": "10月24日 18:43",
-      "background": "archive-room",
+      "background": "municipal-archive-workroom",
       "character": "tinglan",
       "lines": [
         {
@@ -2038,7 +2038,7 @@
       "title": "不要只会回头",
       "location": "废弃站口",
       "time": "17:02",
-      "background": "station-night",
+      "background": "abandoned-station-entrance",
       "character": "tangli",
       "lines": [
         {
@@ -2184,7 +2184,7 @@
       "title": "唐梨 · 向前跑",
       "location": "城外江堤",
       "time": "10月24日 18:43",
-      "background": "riverside-dusk",
+      "background": "river-levee-evening",
       "character": "tangli",
       "lines": [
         {
@@ -2323,7 +2323,7 @@
       "title": "发送端在未来",
       "location": "梧城一中信息楼",
       "time": "15:44",
-      "background": "old-art-room",
+      "background": "information-lab",
       "character": "nanxing",
       "lines": [
         {
@@ -2462,7 +2462,7 @@
       "title": "最后一条未发送消息",
       "location": "信息楼天台",
       "time": "18:10",
-      "background": "rooftop-evening",
+      "background": "information-rooftop-evening",
       "character": "nanxing",
       "lines": [
         {
@@ -2623,7 +2623,7 @@
       "title": "乔南星 · 已读不回",
       "location": "信息楼天台",
       "time": "10月24日 18:43",
-      "background": "rooftop-evening",
+      "background": "information-rooftop-evening",
       "character": "nanxing",
       "lines": [
         {
@@ -2767,7 +2767,7 @@
       "title": "六条线索，一个日期",
       "location": "梧城一中·旧美术教室",
       "time": "10月23日 19:10",
-      "background": "old-art-room",
+      "background": "old-art-room-evening",
       "noSprite": true,
       "lines": [
         {

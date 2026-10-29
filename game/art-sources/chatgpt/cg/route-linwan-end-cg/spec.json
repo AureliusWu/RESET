@@ -44,5 +44,17 @@
   ],
   "characterIdentityMustMatch": "linwan",
   "reviewStatus": "UNVERIFIED",
-  "native4kClaim": false
+  "native4kClaim": false,
+  "referenceInputs": [
+    {
+      "path": "game/assets/4k/runtime/cg/route-linwan-end-cg.webp",
+      "commit": "5eeea12921cb8e07b4e0ba64a8a37b91730954a9",
+      "sha256": "7b1daa21a7fa291586548fdf52067232cfeb6022d2034e479553d98ee36987e8"
+    },
+    {
+      "path": "game/assets/4k/runtime/characters/linwan/smile.webp",
+      "commit": "5eeea12921cb8e07b4e0ba64a8a37b91730954a9",
+      "sha256": "4264cdcc34c8ee108d408ee19a16969316bb82b9bd655e2f0c04a35b9de5f488"
+    }
+  ]
 }

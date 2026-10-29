@@ -32,5 +32,12 @@
   "native4kClaim": false,
   "references": [
     "game/assets/4k/runtime/backgrounds/north-station.webp"
+  ],
+  "referenceInputs": [
+    {
+      "path": "game/assets/4k/runtime/backgrounds/north-station.webp",
+      "commit": "5eeea12921cb8e07b4e0ba64a8a37b91730954a9",
+      "sha256": "04e2d8f2171e60fad0669e4af299927fb8dfbecca4c7a6e6441942e7c8da65fe"
+    }
   ]
 }

@@ -17,7 +17,7 @@
   "prompt": "game/art-sources/chatgpt/cg/route-tangli-end-cg/prompt.txt",
   "promptSHA256": "2af95483bcb55634017e4183d3197655958b27a398a1f15108f1ee4ea9b90c17",
   "spec": "game/art-sources/chatgpt/cg/route-tangli-end-cg/spec.json",
-  "specSHA256": "6b8e598cf6f87f9ae20262a6490bd3ce56f1f309cb4f92534e57e8d5e67797e3",
+  "specSHA256": "41b44b6eae9baae1ef07ed2a167d186f803efe133b9f0c863c74fdffd348af01",
   "processing": {
     "script": "scripts/prepare-r8-native-art.py",
     "pillow": "12.3.0",

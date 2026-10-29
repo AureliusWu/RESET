@@ -18,7 +18,13 @@ async function fixture(t, approve = false) {
     item.status = 'PASS';
     item.review = {type:'owner', name:'TEST FIXTURE ONLY', completedAt:'2026-10-29T00:00:00Z', checks:Object.fromEntries(visualChecks.map(key => [key,'PASS'])), artifactSHA256:Object.fromEntries(Object.entries(item.artifacts).map(([key,value]) => [key,value.sha256]))};
   }
-  const paths = ['game/visual/r5-supporting-cast-plan.json', 'game/art-sources/chatgpt/characters/xujiashu/provenance.json','game/art-sources/chatgpt/characters/xujiashu/spec.json','game/art-sources/chatgpt/characters/xujiashu/prompt-neutral.txt', ...Object.values(item.artifacts).map(value => value.path)];
+  // The repository now contains native candidates for the whole roster.
+  // Copy every recorded source chain so tests exercise real cross-character isolation.
+  const paths = ['game/visual/r5-supporting-cast-plan.json'];
+  for (const candidate of acceptance.supportingCharacters.filter(value => value.artifacts)) {
+    const base = `game/art-sources/chatgpt/characters/${candidate.id}/`;
+    paths.push(...['provenance.json','spec.json','prompt-neutral.txt'].map(name => base + name), ...Object.values(candidate.artifacts).map(value => value.path));
+  }
   for (const path of paths) { await mkdir(dirname(resolve(root,path)), {recursive:true}); await copyFile(resolve(repo,path), resolve(root,path)); }
   const save = async () => writeFile(resolve(root,'game/assets/4k/visual-acceptance.json'),JSON.stringify(acceptance));
   await save();

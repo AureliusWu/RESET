@@ -9,7 +9,7 @@
       "title": "10月24日",
       "location": "陈渡家",
       "time": "06:00",
-      "background": "home-corridor",
+      "background": "chendu-home-morning",
       "noSprite": true,
       "lines": [
         {
@@ -308,7 +308,7 @@
       "title": "城市开始不同步",
       "location": "梧城市区",
       "time": "14:26",
-      "background": "school-gate-evening",
+      "background": "city-desync-afternoon",
       "noSprite": true,
       "lines": [
         {
@@ -1296,7 +1296,7 @@
       "title": "锚点",
       "location": "梧城北站·控制室",
       "time": "18:31",
-      "background": "north-station",
+      "background": "north-station-control",
       "character": "tinglan",
       "lines": [
         {

@@ -17,7 +17,7 @@
   "prompt": "game/art-sources/chatgpt/cg/true-end-riverside-cg/prompt.txt",
   "promptSHA256": "b0766004058efbd9a610129b22f3d6ec987a64d77c9f6aea6f5051ebe54eabd2",
   "spec": "game/art-sources/chatgpt/cg/true-end-riverside-cg/spec.json",
-  "specSHA256": "57c0631d28699ead15da13b88270553b088f0402535fb3dcc2283691cc13e1bb",
+  "specSHA256": "cb1fb763a36fb12ad3abe932f93bac408da26f0cd5df982d029b4bdd20ab0062",
   "processing": {
     "script": "scripts/prepare-r8-native-art.py",
     "pillow": "12.3.0",

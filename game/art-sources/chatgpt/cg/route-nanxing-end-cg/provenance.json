@@ -17,7 +17,7 @@
   "prompt": "game/art-sources/chatgpt/cg/route-nanxing-end-cg/prompt.txt",
   "promptSHA256": "561cc714d0a4c1f1b9977270f647860c3bdb4c26aa695d4a40ab94891143f204",
   "spec": "game/art-sources/chatgpt/cg/route-nanxing-end-cg/spec.json",
-  "specSHA256": "546f4d8c3bae48ad60c4d6e4f9ea0e5328a7fa2deb6fd40636b40a9cf2f49bf0",
+  "specSHA256": "71217af80a5d2e0cca13bc767de2ae7c152203f585f13c01b3afc42dea5bc691",
   "processing": {
     "script": "scripts/prepare-r8-native-art.py",
     "pillow": "12.3.0",

@@ -17,7 +17,7 @@
   "prompt": "game/art-sources/chatgpt/cg/linwan-1842-cg/prompt.txt",
   "promptSHA256": "8effa47d86aa50875781c6f60ceaba91965d2a2c5d26cf1a225e6bcba7e5feb4",
   "spec": "game/art-sources/chatgpt/cg/linwan-1842-cg/spec.json",
-  "specSHA256": "f9efcada3de16d1c9f784cd7f91f3970773225f10a23d41f76a05ff02365f90f",
+  "specSHA256": "38f04dafc0b8af9cc93ba53bc4959abbf5a40c0dc8dbaa861795db52ba8e85c4",
   "processing": {
     "script": "scripts/prepare-r8-native-art.py",
     "pillow": "12.3.0",

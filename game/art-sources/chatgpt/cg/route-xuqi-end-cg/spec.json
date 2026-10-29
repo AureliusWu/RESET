@@ -39,5 +39,17 @@
   ],
   "characterIdentityMustMatch": "xuqi",
   "reviewStatus": "UNVERIFIED",
-  "native4kClaim": false
+  "native4kClaim": false,
+  "referenceInputs": [
+    {
+      "path": "game/assets/4k/runtime/cg/route-xuqi-end-cg.webp",
+      "commit": "5eeea12921cb8e07b4e0ba64a8a37b91730954a9",
+      "sha256": "3148cf0829b06dbe96a6ae12020fb44d8b32d291b2da1da9d7b0f7192707de8c"
+    },
+    {
+      "path": "game/assets/4k/runtime/characters/xuqi/serious.webp",
+      "commit": "5eeea12921cb8e07b4e0ba64a8a37b91730954a9",
+      "sha256": "d4ba161fa11c91682ff5b3f21e150198044ba170b62f15ae556feb8f2022f9f9"
+    }
+  ]
 }

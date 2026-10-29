@@ -17,7 +17,7 @@
   "prompt": "game/art-sources/chatgpt/cg/route-tinglan-end-cg/prompt.txt",
   "promptSHA256": "6d04143f807495f1d1c556e4750c003ea86b763e1fa349a8db6912e5d8c218b9",
   "spec": "game/art-sources/chatgpt/cg/route-tinglan-end-cg/spec.json",
-  "specSHA256": "40576ef4c4662ec7c6af96760a63a4a7ce3af103893f46ba4f9c19b13760c785",
+  "specSHA256": "d22671fed9589d8b469e6bf4156cb777ce6bd5659ecb7af7f142479282074aad",
   "processing": {
     "script": "scripts/prepare-r8-native-art.py",
     "pillow": "12.3.0",

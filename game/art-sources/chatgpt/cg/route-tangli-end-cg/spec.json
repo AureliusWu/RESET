@@ -39,5 +39,17 @@
   ],
   "characterIdentityMustMatch": "tangli",
   "reviewStatus": "UNVERIFIED",
-  "native4kClaim": false
+  "native4kClaim": false,
+  "referenceInputs": [
+    {
+      "path": "game/assets/4k/runtime/cg/route-tangli-end-cg.webp",
+      "commit": "5eeea12921cb8e07b4e0ba64a8a37b91730954a9",
+      "sha256": "a60b3315295ae185b19d31670ab2cf90ef0b354fd2eab0636439a0b3cf78ca76"
+    },
+    {
+      "path": "game/assets/4k/runtime/characters/tangli/smile.webp",
+      "commit": "5eeea12921cb8e07b4e0ba64a8a37b91730954a9",
+      "sha256": "c374730b20f364be4c4df8c13d4e785d10de96ae948b06402961576de137dd2d"
+    }
+  ]
 }

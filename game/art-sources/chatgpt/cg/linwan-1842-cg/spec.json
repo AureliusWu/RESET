@@ -59,5 +59,17 @@
   ],
   "characterIdentityMustMatch": "linwan",
   "reviewStatus": "UNVERIFIED",
-  "native4kClaim": false
+  "native4kClaim": false,
+  "referenceInputs": [
+    {
+      "path": "game/assets/4k/runtime/cg/linwan-1842-cg.webp",
+      "commit": "5eeea12921cb8e07b4e0ba64a8a37b91730954a9",
+      "sha256": "f1fe3a2a750a7cf09cd2efb6ab01d8a753473d5e1de47c5c94a1d837e8fadf4f"
+    },
+    {
+      "path": "game/assets/4k/runtime/characters/linwan/serious.webp",
+      "commit": "5eeea12921cb8e07b4e0ba64a8a37b91730954a9",
+      "sha256": "7d4c7eba7d05d3cb7ab9e2bd062e3fb1943cba55957b2acd85aaf45ff92f5c00"
+    }
+  ]
 }

@@ -17,7 +17,7 @@
   "prompt": "game/art-sources/chatgpt/backgrounds/north-station-vanishing/prompt.txt",
   "promptSHA256": "d036552360fe1e0e2389b0a310ba23db87530d5bdb2d8010cf489e9b388c7b90",
   "spec": "game/art-sources/chatgpt/backgrounds/north-station-vanishing/spec.json",
-  "specSHA256": "f858a96e0a6a60bb17d26e0a26fbcd9f1b0423447e57b0952134b89c8a8a2fcc",
+  "specSHA256": "8a3bcd8e8046caa0b0c19d06cd92537944b65c12a816bc7cae5c4373e96dc756",
   "processing": {
     "script": "scripts/prepare-r8-native-art.py",
     "pillow": "12.3.0",

@@ -39,5 +39,17 @@
   ],
   "characterIdentityMustMatch": "xiaoman",
   "reviewStatus": "UNVERIFIED",
-  "native4kClaim": false
+  "native4kClaim": false,
+  "referenceInputs": [
+    {
+      "path": "game/assets/4k/runtime/cg/route-xiaoman-end-cg.webp",
+      "commit": "5eeea12921cb8e07b4e0ba64a8a37b91730954a9",
+      "sha256": "f76a450f83cbad79e313b540f2f3bec71f5e0379483b0afcda9c9b45f37a9220"
+    },
+    {
+      "path": "game/assets/4k/runtime/characters/xiaoman/smile.webp",
+      "commit": "5eeea12921cb8e07b4e0ba64a8a37b91730954a9",
+      "sha256": "96604b9da02891a31cd6e156516fe24d71fc8252083602528e45ef7e8f97f024"
+    }
+  ]
 }

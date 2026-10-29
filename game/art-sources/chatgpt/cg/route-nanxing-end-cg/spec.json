@@ -49,5 +49,17 @@
   ],
   "characterIdentityMustMatch": "nanxing",
   "reviewStatus": "UNVERIFIED",
-  "native4kClaim": false
+  "native4kClaim": false,
+  "referenceInputs": [
+    {
+      "path": "game/assets/4k/runtime/cg/route-nanxing-end-cg.webp",
+      "commit": "5eeea12921cb8e07b4e0ba64a8a37b91730954a9",
+      "sha256": "ed188c5d1b1875e5b3871167a7d65e62a1ecbd98910e9f06501f1c30a30aacea"
+    },
+    {
+      "path": "game/assets/4k/runtime/characters/nanxing/serious.webp",
+      "commit": "5eeea12921cb8e07b4e0ba64a8a37b91730954a9",
+      "sha256": "b8d950fd80e081cbb9918e8a7d5d2ffa192413e0e50d237697947849be4982fb"
+    }
+  ]
 }

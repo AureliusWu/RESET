@@ -17,7 +17,7 @@
   "prompt": "game/art-sources/chatgpt/cg/route-linwan-end-cg/prompt.txt",
   "promptSHA256": "5156160b4dc9104895fc657c5dbca7f21131cd9bb4116fd65bfc29e767582b4e",
   "spec": "game/art-sources/chatgpt/cg/route-linwan-end-cg/spec.json",
-  "specSHA256": "f7042828bc54b8a89e84ceed3908dbf48a4c324765c37c464600456308b5f018",
+  "specSHA256": "ba7a91c271883f5466a0585b49a759a528f72446c1f349c2203ea3620aa85376",
   "processing": {
     "script": "scripts/prepare-r8-native-art.py",
     "pillow": "12.3.0",

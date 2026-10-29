@@ -70,5 +70,17 @@
   "characterIdentityMustMatch": "linwan",
   "reviewStatus": "UNVERIFIED",
   "native4kClaim": false,
-  "canonNote": "Current chapter c7_linwan explicitly states 17:58 and evening sunset; follow current chapter, retaining Oct25 future and 明天见."
+  "canonNote": "Current chapter c7_linwan explicitly states 17:58 and evening sunset; follow current chapter, retaining Oct25 future and 明天见.",
+  "referenceInputs": [
+    {
+      "path": "game/assets/4k/runtime/cg/true-end-riverside-cg.webp",
+      "commit": "5eeea12921cb8e07b4e0ba64a8a37b91730954a9",
+      "sha256": "3d714e6b2c139880621ce598adc5aba0cd594568b839d9cb75b0b4078ada75a4"
+    },
+    {
+      "path": "game/assets/4k/runtime/characters/linwan/smile.webp",
+      "commit": "5eeea12921cb8e07b4e0ba64a8a37b91730954a9",
+      "sha256": "4264cdcc34c8ee108d408ee19a16969316bb82b9bd655e2f0c04a35b9de5f488"
+    }
+  ]
 }

@@ -116,15 +116,15 @@ main#game{height:calc(100dvh - 30px - env(safe-area-inset-top) - env(safe-area-i
   .reset-brand-mark{width:min(25%,210px)!important}
   .vn-engine .vn-stage .vn-portrait{max-height:90%;max-width:42%}
 }
-/* Keep this full-body candidate above the reading box at a stable anchor. */
-.vn-engine .vn-stage .vn-portrait[data-asset="xujiashu/neutral"] {
-  --reset-xu-reading-space: clamp(180px, 24dvh, 240px);
-  bottom: var(--reset-xu-reading-space);
-  height: calc(100% - var(--reset-xu-reading-space));
-  max-height: calc(100% - var(--reset-xu-reading-space));
+/* Keep native full-body support/anomaly candidates above the reading box. */
+.vn-engine .vn-stage .vn-portrait:is([data-asset="xujiashu/neutral"],[data-asset="chengyan/neutral"],[data-asset="gumingyuan/neutral"],[data-asset="chenlan/neutral"],[data-asset="xurong/neutral"],[data-asset="luoxiumei/neutral"],[data-asset="suyao/neutral"],[data-asset="hechuan/neutral"],[data-asset="jiyao/neutral"],[data-asset="lincheng/neutral"],[data-asset="shenyanqiu/neutral"],[data-asset="liangcheng/neutral"],[data-asset="faceless/neutral"],[data-asset="echochen/neutral"]) {
+  --reset-fullbody-reading-space: clamp(180px, 24dvh, 240px);
+  bottom: var(--reset-fullbody-reading-space);
+  height: calc(100% - var(--reset-fullbody-reading-space));
+  max-height: calc(100% - var(--reset-fullbody-reading-space));
 }
 @media (orientation: landscape) and (max-height: 600px) {
-  .vn-engine .vn-stage .vn-portrait[data-asset="xujiashu/neutral"] {
-    --reset-xu-reading-space: 110px;
+  .vn-engine .vn-stage .vn-portrait:is([data-asset="xujiashu/neutral"],[data-asset="chengyan/neutral"],[data-asset="gumingyuan/neutral"],[data-asset="chenlan/neutral"],[data-asset="xurong/neutral"],[data-asset="luoxiumei/neutral"],[data-asset="suyao/neutral"],[data-asset="hechuan/neutral"],[data-asset="jiyao/neutral"],[data-asset="lincheng/neutral"],[data-asset="shenyanqiu/neutral"],[data-asset="liangcheng/neutral"],[data-asset="faceless/neutral"],[data-asset="echochen/neutral"]) {
+    --reset-fullbody-reading-space: max(110px, calc(32% + 8px));
   }
 }

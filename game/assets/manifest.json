@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "source": "R2 Asset Schema",
+  "source": "R8 native scene art completion; stable asset IDs",
   "production": [
     {
       "id": "classroom-rain",
@@ -457,6 +457,126 @@
       "kind": "portrait",
       "src": "assets/4k/runtime/characters/liangcheng/neutral.webp",
       "alt": "梁成立绘"
+    },
+    {
+      "id": "wucheng-street-evening",
+      "kind": "background",
+      "src": "assets/4k/runtime/backgrounds/wucheng-street-evening.webp",
+      "alt": "梧城雨后街头"
+    },
+    {
+      "id": "municipal-archive-basement",
+      "kind": "background",
+      "src": "assets/4k/runtime/backgrounds/municipal-archive-basement.webp",
+      "alt": "市档案馆地下库"
+    },
+    {
+      "id": "archive-rooftop-evening",
+      "kind": "background",
+      "src": "assets/4k/runtime/backgrounds/archive-rooftop-evening.webp",
+      "alt": "市档案馆楼顶"
+    },
+    {
+      "id": "abandoned-station-entrance",
+      "kind": "background",
+      "src": "assets/4k/runtime/backgrounds/abandoned-station-entrance.webp",
+      "alt": "废弃站口"
+    },
+    {
+      "id": "information-lab",
+      "kind": "background",
+      "src": "assets/4k/runtime/backgrounds/information-lab.webp",
+      "alt": "梧城一中信息教室"
+    },
+    {
+      "id": "chendu-home-morning",
+      "kind": "background",
+      "src": "assets/4k/runtime/backgrounds/chendu-home-morning.webp",
+      "alt": "陈渡家清晨"
+    },
+    {
+      "id": "city-desync-afternoon",
+      "kind": "background",
+      "src": "assets/4k/runtime/backgrounds/city-desync-afternoon.webp",
+      "alt": "梧城市区错位"
+    },
+    {
+      "id": "north-station-control",
+      "kind": "background",
+      "src": "assets/4k/runtime/backgrounds/north-station-control.webp",
+      "alt": "梧城北站控制室"
+    },
+    {
+      "id": "night-school-corridor",
+      "kind": "background",
+      "src": "assets/4k/runtime/backgrounds/night-school-corridor.webp",
+      "alt": "夜梧城旧教学楼走廊"
+    },
+    {
+      "id": "night-school-exit",
+      "kind": "background",
+      "src": "assets/4k/runtime/backgrounds/night-school-exit.webp",
+      "alt": "夜梧城旧教学楼出口"
+    },
+    {
+      "id": "night-nanhu-station",
+      "kind": "background",
+      "src": "assets/4k/runtime/backgrounds/night-nanhu-station.webp",
+      "alt": "夜梧城南湖站"
+    },
+    {
+      "id": "night-clocktower",
+      "kind": "background",
+      "src": "assets/4k/runtime/backgrounds/night-clocktower.webp",
+      "alt": "夜梧城钟楼下"
+    },
+    {
+      "id": "river-levee-evening",
+      "kind": "background",
+      "src": "assets/4k/runtime/backgrounds/river-levee-evening.webp",
+      "alt": "城外江堤"
+    },
+    {
+      "id": "municipal-archive-workroom",
+      "kind": "background",
+      "src": "assets/4k/runtime/backgrounds/municipal-archive-workroom.webp",
+      "alt": "市档案馆修复工作室"
+    },
+    {
+      "id": "nanhu-station-exit",
+      "kind": "background",
+      "src": "assets/4k/runtime/backgrounds/nanhu-station-exit.webp",
+      "alt": "南湖站出口"
+    },
+    {
+      "id": "information-rooftop-evening",
+      "kind": "background",
+      "src": "assets/4k/runtime/backgrounds/information-rooftop-evening.webp",
+      "alt": "信息楼天台"
+    },
+    {
+      "id": "old-art-room-evening",
+      "kind": "background",
+      "src": "assets/4k/runtime/backgrounds/old-art-room-evening.webp",
+      "alt": "旧美术教室夜间"
+    },
+    {
+      "id": "underpass-exit-evening",
+      "kind": "background",
+      "src": "assets/4k/runtime/backgrounds/underpass-exit-evening.webp",
+      "alt": "下穿通道出口"
+    },
+    {
+      "id": "north-station-after1842",
+      "kind": "background",
+      "src": "assets/4k/runtime/backgrounds/north-station-after1842.webp",
+      "alt": "北站时间向前"
+    },
+    {
+      "id": "north-station-vanishing",
+      "kind": "background",
+      "src": "assets/4k/runtime/backgrounds/north-station-vanishing.webp",
+      "alt": "正在消失的北站"
     }
   ],
   "extras": [

@@ -464,7 +464,7 @@
       "title": "没有读取键的路",
       "location": "梧城北站",
       "time": "18:43",
-      "background": "north-station",
+      "background": "north-station-after1842",
       "noSprite": true,
       "lines": [
         {
@@ -604,7 +604,7 @@
       "title": "最后一次逃离夜梧城",
       "location": "正在消失的梧城北站",
       "time": "18:47",
-      "background": "north-station",
+      "background": "north-station-vanishing",
       "noSprite": true,
       "lines": [
         {
@@ -750,7 +750,7 @@
       "title": "和失败的自己告别",
       "location": "夜梧城·旧教学楼",
       "time": "18:42之后",
-      "background": "night-wucheng",
+      "background": "night-school-corridor",
       "character": "echochen",
       "lines": [
         {
@@ -897,7 +897,7 @@
       "title": "最后一扇门",
       "location": "夜梧城·旧教学楼门口",
       "time": "未知",
-      "background": "night-wucheng",
+      "background": "night-school-exit",
       "noSprite": true,
       "lines": [
         {

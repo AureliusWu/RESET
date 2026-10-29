@@ -17,7 +17,7 @@
   "prompt": "game/art-sources/chatgpt/backgrounds/north-station-after1842/prompt.txt",
   "promptSHA256": "7fea60c87b8c2936dbba268c9c7daed424fae45c9db7f19967eb7320e3497dc4",
   "spec": "game/art-sources/chatgpt/backgrounds/north-station-after1842/spec.json",
-  "specSHA256": "6654ef6e1c7dfc0359a3e36abc48b0abf71c6b7592d847591f4c3240e2a83640",
+  "specSHA256": "63f99ada4d3b60cf8cba4efd0f36329d013e37aa0a096f55369c4b9fd3398e25",
   "processing": {
     "script": "scripts/prepare-r8-native-art.py",
     "pillow": "12.3.0",

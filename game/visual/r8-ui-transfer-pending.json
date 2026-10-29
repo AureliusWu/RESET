@@ -1,0 +1,55 @@
+{
+  "schema": 1,
+  "status": "GENERATED_PENDING_BINARY_UPLOAD",
+  "reason": "Cloud browser upload connection timed out; GitHub readback confirms no new UI binary commit.",
+  "archiveSHA256": "c3b7f587ac82760616e5301816e423f207677a8e09ff7d313c11fa6509226319",
+  "archiveBytes": 57143636,
+  "authoritativeProductionProvenance": false,
+  "assets": [
+    {
+      "id": "title-key-visual",
+      "original": "game/art-sources/chatgpt/ui/title-key-visual/original.png",
+      "originalSHA256": "97467105d34a00959a3357127312edcc6f3632e06a879662dfd8835ce4169a1b",
+      "master": "game/assets/4k/ui/title-key-visual.png",
+      "masterSHA256": "acba4b4edc2870fec658e44e6b144047f5c27199044d9a06e123aa33973dbf2c",
+      "runtime": "game/assets/4k/runtime/ui/title-key-visual.webp",
+      "runtimeSHA256": "66af915a65646e71b5008c55c482e72801c333bbba9342c4b9f60176dd918ed2"
+    },
+    {
+      "id": "save-anomaly",
+      "original": "game/art-sources/chatgpt/ui/save-anomaly/original.png",
+      "originalSHA256": "746fa503d392cff9d3e8e4c5bba43c124ecf1f0db37eaed35b8a68624e2f0b42",
+      "master": "game/assets/4k/ui/save-anomaly.png",
+      "masterSHA256": "a74e8c38c00f1e28626957d4232c37eb8b37b1a5bcd4b65120f2cc030485363b",
+      "runtime": "game/assets/4k/runtime/ui/save-anomaly.webp",
+      "runtimeSHA256": "1d853b9d9d4c3da03274bd500368b8e3f10c8b7b7274d8e9004593b54c57e908"
+    },
+    {
+      "id": "ending-collection-header",
+      "original": "game/art-sources/chatgpt/ui/ending-collection-header/original.png",
+      "originalSHA256": "ae7d9df6d6fa2ee10f9cbfe21a16fffe95b3a5aef8023ead84ff719561842159",
+      "master": "game/assets/4k/ui/ending-collection-header.png",
+      "masterSHA256": "77e329cc3cd8010918848cf4777c5745bd542386cda5daf812e3193a88c811cc",
+      "runtime": "game/assets/4k/runtime/ui/ending-collection-header.webp",
+      "runtimeSHA256": "4c6882a0ff02db7938fc120f3d52bd2fa395ec34b5744ea7cdeea1cfd3ccc15b"
+    },
+    {
+      "id": "cg-gallery-header",
+      "original": "game/art-sources/chatgpt/ui/cg-gallery-header/original.png",
+      "originalSHA256": "4699cfc90983e2dec74a60eaf72f1e4cea9c168df00075d68b72de244e07e1b1",
+      "master": "game/assets/4k/ui/cg-gallery-header.png",
+      "masterSHA256": "2926aa086cdbb1db9c48679a92ad4b69b4a8424a9e2c1a8c63cc08784a033cbc",
+      "runtime": "game/assets/4k/runtime/ui/cg-gallery-header.webp",
+      "runtimeSHA256": "7f255291a16fec50d9659eaa313e7b48a56318d75264e13fbaea68e4570979c1"
+    },
+    {
+      "id": "combat-hud-key-visual",
+      "original": "game/art-sources/chatgpt/ui/combat-hud-key-visual/original.png",
+      "originalSHA256": "79a54277d79830687cea76bedfc1a85c5098cc7342e7327000529834904cb1f0",
+      "master": "game/assets/4k/ui/combat-hud-key-visual.png",
+      "masterSHA256": "7809baa367935252b2e9c6f6e3185c0662f45ef16934a4a03d0aff48712a3b84",
+      "runtime": "game/assets/4k/runtime/ui/combat-hud-key-visual.webp",
+      "runtimeSHA256": "93bab2c7a96baa6660e2f826d47a2112c7a47a41ac7a461e3496507a690ebccd"
+    }
+  ]
+}

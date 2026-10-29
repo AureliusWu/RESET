@@ -44,5 +44,17 @@
   ],
   "characterIdentityMustMatch": "tinglan",
   "reviewStatus": "UNVERIFIED",
-  "native4kClaim": false
+  "native4kClaim": false,
+  "referenceInputs": [
+    {
+      "path": "game/assets/4k/runtime/cg/route-tinglan-end-cg.webp",
+      "commit": "5eeea12921cb8e07b4e0ba64a8a37b91730954a9",
+      "sha256": "95d8750ae6ace8bc76d5e820a53e79893843a76de864dd49606a16a2f44088d4"
+    },
+    {
+      "path": "game/assets/4k/runtime/characters/tinglan/serious.webp",
+      "commit": "5eeea12921cb8e07b4e0ba64a8a37b91730954a9",
+      "sha256": "1ab6bc910e80a74a801bdb921522e4b74a4f309b2cfacc88ee34f68910752e1c"
+    }
+  ]
 }
