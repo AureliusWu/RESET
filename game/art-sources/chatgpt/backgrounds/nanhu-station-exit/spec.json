@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "id": "nanhu-station-exit",
+  "name": "南湖站出口",
+  "kind": "background",
+  "sourceCommit": "8d190ebec6fb8c91b2f6c984bd6010b1d4de6005",
+  "canonSources": [
+    "docs/ART_DIRECTION.md",
+    "game/content/chapters/01.json"
+  ],
+  "sceneEvidence": [
+    {
+      "scene": "station_refuse",
+      "path": "game/content/chapters/01.json",
+      "location": "南湖站出口",
+      "time": "19:31",
+      "previousBackground": "station-night",
+      "sampleLines": [
+        {
+          "id": "r1_station_refuse_pre01_01",
+          "text": "19:31，南湖站出口。闸机、摄像头、广播、站务日志和列车时刻共同构成秩序。只要其中一个东西不对，工作人员就会留下记录。"
+        },
+        {
+          "id": "r1_station_refuse_pre02_01",
+          "text": "过去几天里，陈渡养成了一个笨办法：每到一个地方先看人，再看钟，最后看自己。人会记错，钟会坏，而他本人更不值得完全相信。"
+        }
+      ]
+    }
+  ],
+  "designProposal": "19:31的现实梧城南湖站出口，站内通向街面的普通地铁通道与上行台阶，黄白灯光、扶手、疏散通道、半闭临时隔离栏，外面是雨夜街口，空间布局可信，所有告示不含可读文字，不能画站台轨道。",
+  "reviewStatus": "UNVERIFIED",
+  "native4kClaim": false
+}

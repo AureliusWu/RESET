@@ -322,7 +322,7 @@
       "id": "river-levee-evening",
       "name": "城外江堤",
       "kind": "background",
-      "status": "TO_GENERATE",
+      "status": "UPLOADED",
       "scenes": [
         "end_tangli"
       ],
@@ -344,7 +344,7 @@
       "id": "nanhu-station-exit",
       "name": "南湖站出口",
       "kind": "background",
-      "status": "TO_GENERATE",
+      "status": "UPLOADED",
       "scenes": [
         "station_refuse"
       ],
@@ -367,7 +367,7 @@
       "id": "old-art-room-evening",
       "name": "旧美术教室夜间",
       "kind": "background",
-      "status": "TO_GENERATE",
+      "status": "UPLOADED",
       "scenes": [
         "focus_xiaoman_open",
         "route_convergence"

@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "character": null,
+  "name": "nanhu-station-exit",
+  "category": "backgrounds",
+  "id": "nanhu-station-exit",
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
+  "native4kClaim": false,
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-a20f5dd6-9411-4980-bbd4-994cec014149.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/backgrounds/nanhu-station-exit/prompt.txt",
+  "promptSHA256": "0ed356bf488f7d96e10cb6635c0e22cbcaf65f44fc37ec412acfa086f4d85f1f",
+  "spec": "game/art-sources/chatgpt/backgrounds/nanhu-station-exit/spec.json",
+  "specSHA256": "43c4cce2285d10fe3141e17e3de1a884bfc347889037b50ec55cc873e66f9b29",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "resize": "aspect-fill Lanczos",
+    "sourceSize": [
+      1672,
+      940
+    ]
+  },
+  "assets": [
+    {
+      "expression": "nanhu-station-exit",
+      "original": "game/art-sources/chatgpt/backgrounds/nanhu-station-exit/original.png",
+      "originalSize": [
+        1672,
+        940
+      ],
+      "originalSHA256": "9a82cc36dea1306fbeecaa5842dfb941f4f895c7167625e32538d617f53b7a30",
+      "master": "game/assets/4k/backgrounds/nanhu-station-exit.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "d77cca664311dfeb21f8692af2ce9894513bd3f9782e0623a59ac9c6bc723087",
+      "runtime": "game/assets/4k/runtime/backgrounds/nanhu-station-exit.webp",
+      "runtimeSize": [
+        1920,
+        1080
+      ],
+      "runtimeSHA256": "c32098163abb4688c69a183f77ffa2786226a9aff993f24670c648cfb689a684"
+    }
+  ]
+}
