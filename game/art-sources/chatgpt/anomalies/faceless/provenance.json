@@ -1,36 +1,65 @@
 {
   "schema": 1,
-  "generator": "ChatGPT-authored original vector illustration; deterministic raster master pipeline",
-  "workflow": "round6-new-vector-source-to-processed-4k-master",
-  "native4kClaim": false,
-  "processing": "new ChatGPT-authored vector source -> rsvg 1440x2560 PNG -> alpha-aware Lanczos 2160x3840 PNG master -> 1080x1920 WebP runtime; legacy SVG not used as pixels",
-  "authorization": "2026-10-27: 用户明确授权 Round 6 写入及仓库修改",
+  "character": null,
+  "name": "无面行人",
   "category": "anomalies",
   "id": "faceless",
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
+  "native4kClaim": false,
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-d2768a43-5a6b-4e7b-a602-b8e126ac0190.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/anomalies/faceless/prompt.txt",
+  "promptSHA256": "1e531347aec3be4bf22bd6f99e5a2fe673b2b133a13281d1869c938ff35dee3a",
+  "spec": "game/art-sources/chatgpt/anomalies/faceless/spec.json",
+  "specSHA256": "beff4829b3b4e796477c51d76f88306d207a2637516e33463d2d203523a3d05c",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "cropBounds": [
+      257,
+      17,
+      753,
+      1667
+    ],
+    "framingAlphaThreshold": 8,
+    "offset": [
+      539,
+      130
+    ],
+    "scaledSize": [
+      1082,
+      3600
+    ],
+    "resize": "premultiplied-alpha Lanczos"
+  },
   "assets": [
     {
+      "expression": "neutral",
+      "original": "game/art-sources/chatgpt/anomalies/faceless/original.png",
+      "originalSize": [
+        941,
+        1672
+      ],
+      "originalSHA256": "32e10423c4e28fdc3a804effa67d498f074133abf9e19a4682715ca554f5c2ac",
       "master": "game/assets/4k/anomalies/faceless.png",
       "masterSize": [
         2160,
         3840
       ],
-      "masterSHA256": "561b8422e26ed93b904da5e09bb72cb385f55453bb166788c3d8f779ca4c407a",
+      "masterSHA256": "e13e5001b777bdaf1fb4edf19d0f58403d4a295e2e5df66c1558c561af0e0eed",
       "runtime": "game/assets/4k/runtime/anomalies/faceless.webp",
       "runtimeSize": [
         1080,
         1920
       ],
-      "runtimeSHA256": "c9cdc68322cd2bca24f63d41b25e212d958af370f5e8179d29bda6fa287059ee",
-      "original": "game/art-sources/chatgpt/anomalies/faceless/original.png",
-      "originalSize": [
-        1440,
-        2560
-      ],
-      "originalSHA256": "cdce87a6a4bc2b66d52b23a68a8631874231e7fa732fb1816911ed79c6c4d1b8",
-      "sourceVector": "game/art-sources/chatgpt/anomalies/faceless/source.svg",
-      "sourceVectorSHA256": "09d1ce5899302c1dba43fd42f1f65f50db55273d990bf07e3c296a9f2f36303e",
-      "prompt": "Full-body transparent-background anomaly concept for RESET: a tall faceless urban pedestrian in a rain-dark coat, blank porcelain-like face, wet reflective seams and faint displaced echo silhouettes that imply its reflection moves before the body; cold blue-gray visual-novel palette, threatening but readable silhouette, no text.",
-      "processing": "new ChatGPT-authored vector source -> rsvg 1440x2560 PNG -> alpha-aware Lanczos 2160x3840 PNG master -> 1080x1920 WebP runtime; legacy SVG not used as pixels"
+      "runtimeSHA256": "cb6fe9d887e917df283da13fa27247196fc42018bdf90c84de4a77c10e23b6cf",
+      "lockedBodySHA256": "b162923227d23b79e14afac20c7ef37ecaea98c5db7d5dc5ed5f68db70e1012e"
     }
   ]
 }

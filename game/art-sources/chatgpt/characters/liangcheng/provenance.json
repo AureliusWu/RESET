@@ -2,24 +2,64 @@
   "schema": 1,
   "character": "liangcheng",
   "name": "梁成",
-  "sourceType": "chatgpt-authored-procedural-raster-illustration",
-  "visualTier": "supporting-cast-stylized-bust",
+  "category": "characters",
+  "id": "liangcheng",
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
   "native4kClaim": false,
-  "designPlan": "game/visual/r5-supporting-cast-plan.json",
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-58a18e51-de2e-422d-aac7-c7e6d0f0dc3a.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/characters/liangcheng/prompt-neutral.txt",
+  "promptSHA256": "c258ab257aec838b866c549f2a46da7d09bc643f2a5239e3487885d45bf80272",
+  "spec": "game/art-sources/chatgpt/characters/liangcheng/spec.json",
+  "specSHA256": "a840385bdf7f7534a70e4f4a1355b552bd926b3e8cf3d9bc8371a20e3dc2f5de",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "cropBounds": [
+      206,
+      12,
+      732,
+      1652
+    ],
+    "framingAlphaThreshold": 8,
+    "offset": [
+      502,
+      130
+    ],
+    "scaledSize": [
+      1155,
+      3600
+    ],
+    "resize": "premultiplied-alpha Lanczos"
+  },
   "assets": [
     {
       "expression": "neutral",
       "original": "game/art-sources/chatgpt/characters/liangcheng/neutral.png",
-      "originalSHA256": "ae301f3d922effe22649adf23df432a4ae902823d8cb03f83ba769128b2c1f18",
       "originalSize": [
+        940,
+        1672
+      ],
+      "originalSHA256": "4b3e64a2aab077594dd463fb2fd866b433646721e70c7a2a90daebb010e435c3",
+      "master": "game/assets/4k/characters/liangcheng/neutral.png",
+      "masterSize": [
+        2160,
+        3840
+      ],
+      "masterSHA256": "1ed72c068f848a0fef3b5ef1eeddf78505da8b54d129b71d07761a88821036c0",
+      "runtime": "game/assets/4k/runtime/characters/liangcheng/neutral.webp",
+      "runtimeSize": [
         1080,
         1920
       ],
-      "master": "game/assets/4k/characters/liangcheng/neutral.png",
-      "masterSHA256": "71cadd4e3626ba18b71d9612053ffddbad066e447918954eb08eaa34355cbe91",
-      "runtime": "game/assets/4k/runtime/characters/liangcheng/neutral.webp",
-      "runtimeSHA256": "55944b932d0b6369c85f120ddb03b64c3df328724034a724da219d63f6707db3",
-      "lockedBodySHA256": "ae301f3d922effe22649adf23df432a4ae902823d8cb03f83ba769128b2c1f18"
+      "runtimeSHA256": "fb44f23da214cf9143c31055c620035f04c6f5902ce2e66b0e711b21956b8e64",
+      "lockedBodySHA256": "db70f90bb62a0b339c1d80407cf6fa93e6f2c94bdb2a684e8f5646bc7cea69cc"
     }
   ]
 }

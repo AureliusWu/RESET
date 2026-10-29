@@ -1,0 +1,109 @@
+{
+  "schema": 1,
+  "id": "echo-chen",
+  "name": "第七人 / 陈渡残响",
+  "kind": "anomaly",
+  "sourceCommit": "5eeea12921cb8e07b4e0ba64a8a37b91730954a9",
+  "canonSources": [
+    "docs/ART_DIRECTION.md",
+    "game/content/chapters/05.json"
+  ],
+  "canonicalEvidence": [
+    {
+      "path": "game/content/chapters/06.json",
+      "scene": "c6_echo_goodbye",
+      "evidence": [
+        {
+          "id": "c6d001",
+          "text": "你以为不保存，就能证明你比我们勇敢？"
+        },
+        {
+          "id": "c6d004",
+          "text": "那我们算什么？"
+        },
+        {
+          "id": "c6d006",
+          "text": "第七人第一次有了脸。那张脸和陈渡一模一样，却比他平静。陈渡闻到烤肠摊残留的油味，摊位后却没有人，生活的痕迹比怪物更让人不安。"
+        },
+        {
+          "id": "c6d007",
+          "text": "那就替我们看看明天。"
+        }
+      ]
+    },
+    {
+      "path": "game/content/chapters/05.json",
+      "scene": "c5_echo_chen",
+      "evidence": [
+        {
+          "id": "c5e001",
+          "text": "你终于走到这里。"
+        },
+        {
+          "id": "c5e003",
+          "text": "你每次按下读取以后，觉得上一个自己去了哪里？"
+        },
+        {
+          "id": "c5e005",
+          "text": "你叫它们失败。我叫它们我。"
+        }
+      ]
+    },
+    {
+      "path": "game/content/chapters/05.json",
+      "scene": "c5_echo_fail",
+      "evidence": [
+        {
+          "id": "c5f001",
+          "text": "陈渡向前一步，第七人也向前一步。两人的动作完全同步。"
+        },
+        {
+          "id": "c5f002",
+          "text": "如果只有一个陈渡能留下，凭什么是你？"
+        }
+      ]
+    },
+    {
+      "path": "game/content/chapters/05.json",
+      "scene": "c5_echo_death",
+      "evidence": [
+        {
+          "id": "c5x002",
+          "text": "我当然知道。因为这一招是我教给你的。"
+        }
+      ]
+    },
+    {
+      "path": "game/content/chapters/05.json",
+      "scene": "c5_echo_pattern",
+      "evidence": [
+        {
+          "id": "c5p002",
+          "text": "……"
+        },
+        {
+          "id": "c5p004",
+          "text": "那你准备怎么处理我们？再删一次？"
+        },
+        {
+          "id": "c5p006",
+          "text": "第一次，没有人发动攻击。第七人的轮廓开始碎成数十个互相重叠的影子。"
+        }
+      ]
+    },
+    {
+      "path": "game/content/chapters/05.json",
+      "scene": "c5_anchor_truth",
+      "evidence": [
+        {
+          "id": "c5h001",
+          "text": "我找到2009年那页被裁掉的注释了。第七人不是失踪者。原文是“锚点”。"
+        }
+      ]
+    }
+  ],
+  "designProposal": "17岁中国男高中生陈渡的失败读档残响。黑色短发，普通少年身材，灰蓝校园外套、白色衬衫、深灰长裤、普通运动鞋；沉默疲惫的年轻脸，眼睛在刘海与冷阴影下若隐若现，不戴面具。主身体清晰，左右两侧叠出数层半透明蓝灰错位身影，轮廓像被重复读取、延迟半秒的同一个人。手指与脸仍是可辨识的正式人物原画，姿态低垂克制、带悲伤与质问，不是赛博黑客或铠甲怪物。不画图形UI、乱码、文字、光环或场景背景。",
+  "references": [],
+  "reviewStatus": "UNVERIFIED",
+  "native4kClaim": false
+}

@@ -286,16 +286,44 @@
     {
       "id": "shenyanqiu",
       "name": "沈砚秋",
-      "status": "BLOCKED",
-      "reason": "Approved native replacement not yet supplied.",
-      "review": null
+      "status": "UNVERIFIED",
+      "reason": "Native candidate generated; owner visual review pending.",
+      "review": null,
+      "artifacts": {
+        "original": {
+          "path": "game/art-sources/chatgpt/characters/shenyanqiu/neutral.png",
+          "sha256": "89bfc4d23edbb5d0682f6d04e603ce787012944f9719b09ed3bd304dc6bbe3d4"
+        },
+        "master": {
+          "path": "game/assets/4k/characters/shenyanqiu/neutral.png",
+          "sha256": "bd0b0622b3d7a04029828a6d0dd8d10f083565e10a8f0753931e9522da986d40"
+        },
+        "runtime": {
+          "path": "game/assets/4k/runtime/characters/shenyanqiu/neutral.webp",
+          "sha256": "a1a93a858088a63900baf0fdd0908e6fe3e6677dbcff20203d0260561c67a715"
+        }
+      }
     },
     {
       "id": "liangcheng",
       "name": "梁成",
-      "status": "BLOCKED",
-      "reason": "Approved native replacement not yet supplied.",
-      "review": null
+      "status": "UNVERIFIED",
+      "reason": "Native candidate generated; owner visual review pending.",
+      "review": null,
+      "artifacts": {
+        "original": {
+          "path": "game/art-sources/chatgpt/characters/liangcheng/neutral.png",
+          "sha256": "4b3e64a2aab077594dd463fb2fd866b433646721e70c7a2a90daebb010e435c3"
+        },
+        "master": {
+          "path": "game/assets/4k/characters/liangcheng/neutral.png",
+          "sha256": "1ed72c068f848a0fef3b5ef1eeddf78505da8b54d129b71d07761a88821036c0"
+        },
+        "runtime": {
+          "path": "game/assets/4k/runtime/characters/liangcheng/neutral.webp",
+          "sha256": "fb44f23da214cf9143c31055c620035f04c6f5902ce2e66b0e711b21956b8e64"
+        }
+      }
     }
   ]
 }

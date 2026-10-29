@@ -1,0 +1,146 @@
+{
+  "schema": 1,
+  "id": "liangcheng",
+  "name": "梁成",
+  "kind": "portrait",
+  "expression": "neutral",
+  "canonRole": "33岁男性，南湖地铁站值班站务员，熟悉广播和封站流程，普通可靠的成年人",
+  "visualProposal": "整齐短黑发，清晰成年男性面部，藏蓝地铁站务西装制服、浅蓝衬衣、深色领带、长裤、黑皮鞋，腰间小对讲机，胸前无字工牌，无真实运营商商标；身体自然站立",
+  "sourceCommit": "5eeea12921cb8e07b4e0ba64a8a37b91730954a9",
+  "sourceDocs": [
+    "docs/CAST_BIBLE_R1.md",
+    "docs/R8_ART_RECONSTRUCTION.md",
+    "docs/ART_DIRECTION.md"
+  ],
+  "storyEvidence": [
+    {
+      "path": "game/content/chapters/01.json",
+      "sceneId": "station_fourth",
+      "lineId": "r1_station_fourth_pre03_01",
+      "text": "同学，封闭区不能进。真有东西落里面，登记后我们帮你找。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/01.json",
+      "sceneId": "station_refuse",
+      "lineId": "r1_station_refuse_pre03_01",
+      "text": "同学，封闭区不能进。真有东西落里面，登记后我们帮你找。",
+      "noSprite": true
+    },
+    {
+      "path": "game/content/chapters/03.json",
+      "sceneId": "route_xuqi_night",
+      "lineId": "r1_route_xuqi_night_pre03_01",
+      "text": "南湖站的交接本上还有你们那天留下的记录。我不懂你们说的夜梧城，但现实这边有人会记。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/03.json",
+      "sceneId": "focus_xuqi_open",
+      "lineId": "r1_focus_xuqi_open_pre03_01",
+      "text": "南湖站的交接本上还有你们那天留下的记录。我不懂你们说的夜梧城，但现实这边有人会记。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/04.json",
+      "sceneId": "c4_xuqi_1",
+      "lineId": "r1_c4_xuqi_1_pre03_01",
+      "text": "同学，封闭区不能进。真有东西落里面，登记后我们帮你找。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/04.json",
+      "sceneId": "c4_xuqi_2",
+      "lineId": "r1_c4_xuqi_2_pre03_01",
+      "text": "南湖站的交接本上还有你们那天留下的记录。我不懂你们说的夜梧城，但现实这边有人会记。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/04.json",
+      "sceneId": "end_xuqi",
+      "lineId": "r1_end_xuqi_pre03_01",
+      "text": "南湖站的交接本上还有你们那天留下的记录。我不懂你们说的夜梧城，但现实这边有人会记。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/05.json",
+      "sceneId": "c5_north_station",
+      "lineId": "r1_c5_north_station_pre03_01",
+      "text": "同学，封闭区不能进。真有东西落里面，登记后我们帮你找。",
+      "noSprite": true
+    },
+    {
+      "path": "game/content/chapters/05.json",
+      "sceneId": "c5_echo_chen",
+      "lineId": "r1_c5_echo_chen_pre03_01",
+      "text": "同学，封闭区不能进。真有东西落里面，登记后我们帮你找。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/05.json",
+      "sceneId": "c5_echo_fail",
+      "lineId": "r1_c5_echo_fail_pre03_01",
+      "text": "同学，封闭区不能进。真有东西落里面，登记后我们帮你找。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/05.json",
+      "sceneId": "c5_echo_death",
+      "lineId": "r1_c5_echo_death_pre03_01",
+      "text": "同学，封闭区不能进。真有东西落里面，登记后我们帮你找。",
+      "noSprite": true
+    },
+    {
+      "path": "game/content/chapters/05.json",
+      "sceneId": "c5_echo_pattern",
+      "lineId": "r1_c5_echo_pattern_pre03_01",
+      "text": "同学，封闭区不能进。真有东西落里面，登记后我们帮你找。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/05.json",
+      "sceneId": "c5_anchor_truth",
+      "lineId": "r1_c5_anchor_truth_pre03_01",
+      "text": "同学，封闭区不能进。真有东西落里面，登记后我们帮你找。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/05.json",
+      "sceneId": "c5_request",
+      "lineId": "r1_c5_request_pre03_01",
+      "text": "同学，封闭区不能进。真有东西落里面，登记后我们帮你找。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/05.json",
+      "sceneId": "c5_countdown",
+      "lineId": "r1_c5_countdown_pre03_01",
+      "text": "同学，封闭区不能进。真有东西落里面，登记后我们帮你找。",
+      "noSprite": true
+    },
+    {
+      "path": "game/content/chapters/05.json",
+      "sceneId": "c5_1842",
+      "lineId": "r1_c5_1842_pre03_01",
+      "text": "同学，封闭区不能进。真有东西落里面，登记后我们帮你找。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/06.json",
+      "sceneId": "c6_walk_forward",
+      "lineId": "r1_c6_walk_forward_pre03_01",
+      "text": "同学，封闭区不能进。真有东西落里面，登记后我们帮你找。",
+      "noSprite": true
+    },
+    {
+      "path": "game/content/chapters/06.json",
+      "sceneId": "c6_escape",
+      "lineId": "r1_c6_escape_pre03_01",
+      "text": "同学，封闭区不能进。真有东西落里面，登记后我们帮你找。",
+      "noSprite": true
+    }
+  ],
+  "generation": "ChatGPT native image_gen.imagegen",
+  "reviewStatus": "UNVERIFIED",
+  "native4kClaim": false
+}

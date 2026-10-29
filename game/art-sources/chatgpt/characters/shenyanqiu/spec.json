@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "id": "shenyanqiu",
+  "name": "沈砚秋",
+  "kind": "portrait",
+  "expression": "neutral",
+  "canonRole": "39岁女性，沈听澜姑妈，市档案馆纸质文献修复员，重视来源链和纸张年代，专业克制",
+  "visualProposal": "深褐发低束发，窄框眼镜，灰棕长开衫、米色衬衣、深灰直筒长裤、黑平底鞋，双手托无字纸质档案夹，夹里露少量修复纸；39岁专业女性，有成熟年龄感",
+  "sourceCommit": "5eeea12921cb8e07b4e0ba64a8a37b91730954a9",
+  "sourceDocs": [
+    "docs/CAST_BIBLE_R1.md",
+    "docs/R8_ART_RECONSTRUCTION.md",
+    "docs/ART_DIRECTION.md"
+  ],
+  "storyEvidence": [
+    {
+      "path": "game/content/chapters/01.json",
+      "sceneId": "archive_room",
+      "lineId": "r1_archive_room_pre04_01",
+      "text": "记录有来源、有缺口，也有人当年为什么要这样写。别把缺失直接当成阴谋。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/02.json",
+      "sceneId": "archive_erased_map",
+      "lineId": "r1_archive_erased_map_pre04_01",
+      "text": "记录有来源、有缺口，也有人当年为什么要这样写。别把缺失直接当成阴谋。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/03.json",
+      "sceneId": "letter_examination",
+      "lineId": "r1_letter_examination_pre04_01",
+      "text": "记录有来源、有缺口，也有人当年为什么要这样写。别把缺失直接当成阴谋。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/03.json",
+      "sceneId": "archive_photo",
+      "lineId": "r1_archive_photo_pre04_01",
+      "text": "记录有来源、有缺口，也有人当年为什么要这样写。别把缺失直接当成阴谋。",
+      "noSprite": true
+    },
+    {
+      "path": "game/content/chapters/04.json",
+      "sceneId": "c4_tinglan_1",
+      "lineId": "r1_c4_tinglan_1_pre04_01",
+      "text": "记录有来源、有缺口，也有人当年为什么要这样写。别把缺失直接当成阴谋。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/04.json",
+      "sceneId": "c4_tinglan_2",
+      "lineId": "r1_c4_tinglan_2_pre04_01",
+      "text": "记录有来源、有缺口，也有人当年为什么要这样写。别把缺失直接当成阴谋。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/04.json",
+      "sceneId": "end_tinglan",
+      "lineId": "r1_end_tinglan_pre04_01",
+      "text": "记录有来源、有缺口，也有人当年为什么要这样写。别把缺失直接当成阴谋。",
+      "noSprite": false
+    }
+  ],
+  "generation": "ChatGPT native image_gen.imagegen",
+  "reviewStatus": "UNVERIFIED",
+  "native4kClaim": false
+}

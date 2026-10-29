@@ -1,0 +1,93 @@
+{
+  "schema": 1,
+  "id": "faceless",
+  "name": "无面行人",
+  "kind": "anomaly",
+  "sourceCommit": "5eeea12921cb8e07b4e0ba64a8a37b91730954a9",
+  "canonSources": [
+    "docs/ART_DIRECTION.md",
+    "game/content/chapters/02.json"
+  ],
+  "canonicalEvidence": [
+    {
+      "path": "game/content/chapters/02.json",
+      "scene": "faceless_first",
+      "evidence": [
+        {
+          "id": "r1_faceless_first_pre05_01",
+          "text": "无面行人从暗处逼近时，陈渡第一次没把“死了再来”当后路。他盯动作，其他人负责喊位置、拉人和退路，每个人都在害怕，也都没有散开。"
+        },
+        {
+          "id": "c2f003",
+          "text": "……回来。"
+        },
+        {
+          "id": "r1_faceless_first_post02_01",
+          "text": "陈渡给这一页标上“无面行人”，只记三件事：发生过什么、谁能作证、异常改掉了什么。结论先空着。"
+        },
+        {
+          "id": "r1_faceless_first_post05_01",
+          "text": "许蓉提醒他们，关于“无面行人”的任何纸质证据都要写清来源。她不参与猜谜，却坚持不能因为着急就破坏以后唯一能复核的东西。"
+        },
+        {
+          "id": "r1_faceless_first_post06_01",
+          "text": "何川把跑步群的轨迹截图留了下来。哪怕“无面行人”与训练无关，连续几天的定位记录也让梧城哪些路真实存在有了第三方参照。"
+        }
+      ]
+    },
+    {
+      "path": "game/content/chapters/02.json",
+      "scene": "death_fifth",
+      "evidence": [
+        {
+          "id": "c2x003",
+          "text": "……第五次。"
+        }
+      ]
+    },
+    {
+      "path": "game/content/chapters/02.json",
+      "scene": "faceless_second",
+      "evidence": [
+        {
+          "id": "r1_faceless_second_pre05_01",
+          "text": "无面行人记住了他们上一轮的躲法。陈渡他们也换了办法；进不了异常现场的人守在外围，用电话、时间和现实里的路口替他们确认位置。"
+        },
+        {
+          "id": "c2s002",
+          "text": "又是你。"
+        }
+      ]
+    },
+    {
+      "path": "game/content/chapters/02.json",
+      "scene": "death_sixth",
+      "evidence": [
+        {
+          "id": "c2y001",
+          "text": "陈渡向左闪开的瞬间，无面行人却提前一步站在了那里。"
+        },
+        {
+          "id": "c2y002",
+          "text": "你会躲。"
+        }
+      ]
+    },
+    {
+      "path": "game/content/chapters/02.json",
+      "scene": "breakthrough_first",
+      "evidence": [
+        {
+          "id": "c2b001",
+          "text": "陈渡没有击败无面行人。他只是第一次从它面前活着走出了通道。"
+        }
+      ]
+    }
+  ],
+  "designProposal": "一个高瘦男性高中生轮廓，湿黑短发自然垂落，脸是一层被雨水抹平的完整灰白皮肤，没有眼睛、鼻子、嘴、面具孔。湿透的白色校服衬衫和松开的深色领带，外罩与现有CG相同的近黑色长雨衣，深色直筒校裤，黑鞋。双臂自然垂下，身体静止却隐约将要抬起右手，衣摆带少量水珠。异常来自平静的空白脸和湿冷衣料，不画血腥、怪物牙齿或发光眼睛。只画一个清晰本体，微弱错位残影限制在身侧，不影响VN可读性。",
+  "references": [
+    "game/assets/4k/runtime/cg/faceless-reflection-cg.webp"
+  ],
+  "reviewStatus": "UNVERIFIED",
+  "native4kClaim": false
+}

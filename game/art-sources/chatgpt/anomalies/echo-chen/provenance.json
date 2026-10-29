@@ -1,36 +1,65 @@
 {
   "schema": 1,
-  "generator": "ChatGPT-authored original vector illustration; deterministic raster master pipeline",
-  "workflow": "round6-new-vector-source-to-processed-4k-master",
-  "native4kClaim": false,
-  "processing": "new ChatGPT-authored vector source -> rsvg 1440x2560 PNG -> alpha-aware Lanczos 2160x3840 PNG master -> 1080x1920 WebP runtime; legacy SVG not used as pixels",
-  "authorization": "2026-10-27: 用户明确授权 Round 6 写入及仓库修改",
+  "character": null,
+  "name": "第七人",
   "category": "anomalies",
   "id": "echo-chen",
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
+  "native4kClaim": false,
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-f3130f28-d66d-4939-a18f-059c42f1514b.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/anomalies/echo-chen/prompt.txt",
+  "promptSHA256": "a0670fd01f5c702b77f6ff37c44013a24baf00055ef3d4b8590c8ee86a949f42",
+  "spec": "game/art-sources/chatgpt/anomalies/echo-chen/spec.json",
+  "specSHA256": "ed309265b27f2a89da3d2bc6969212a6fcc1d122dde01b559aed966b43a5d1b7",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "cropBounds": [
+      99,
+      21,
+      898,
+      1643
+    ],
+    "framingAlphaThreshold": 8,
+    "offset": [
+      193,
+      130
+    ],
+    "scaledSize": [
+      1773,
+      3600
+    ],
+    "resize": "premultiplied-alpha Lanczos"
+  },
   "assets": [
     {
+      "expression": "neutral",
+      "original": "game/art-sources/chatgpt/anomalies/echo-chen/original.png",
+      "originalSize": [
+        941,
+        1672
+      ],
+      "originalSHA256": "5a63afd02a11a08860f0e9bcfa40b374b19d31ac550bff9ab2ddded401075ff2",
       "master": "game/assets/4k/anomalies/echo-chen.png",
       "masterSize": [
         2160,
         3840
       ],
-      "masterSHA256": "d9689b3640066f6f68f891a3b0a8f0bfd9eace72257248ac27201771868f82d2",
+      "masterSHA256": "b72e9cdea769b49cdb4900b4afde9b6b8d620fe929b6463fea1ba60712818ecd",
       "runtime": "game/assets/4k/runtime/anomalies/echo-chen.webp",
       "runtimeSize": [
         1080,
         1920
       ],
-      "runtimeSHA256": "c048822eb1ef373ca80a68f0ab5d2339fb9bae221640cfa922c8d59dee60a633",
-      "original": "game/art-sources/chatgpt/anomalies/echo-chen/original.png",
-      "originalSize": [
-        1440,
-        2560
-      ],
-      "originalSHA256": "adcc8eacd197d3774447772e05366cac72aa1f4dc22318ef57f530786115cf38",
-      "sourceVector": "game/art-sources/chatgpt/anomalies/echo-chen/source.svg",
-      "sourceVectorSHA256": "3ac54d2dba9c4c48adc777f092b0fa50290496038a57fcc4d863381365c04583",
-      "prompt": "Full-body transparent-background anomaly concept for RESET: the seventh person / Chen Du echo, a human silhouette made from stacked residues of failed loads, layered translucent blue-gray afterimages, obscured mask-like face and repeated temporal traces; melancholic and uncanny visual-novel boss design, no text.",
-      "processing": "new ChatGPT-authored vector source -> rsvg 1440x2560 PNG -> alpha-aware Lanczos 2160x3840 PNG master -> 1080x1920 WebP runtime; legacy SVG not used as pixels"
+      "runtimeSHA256": "9f54a3bb5729b0d18acdeaa04b8d84a26ac0abb19e88a4396c048d49d201f5d4",
+      "lockedBodySHA256": "d159b2230aa51adcec7db7c82ac8f11c1885d6f04912113dbcfb4a02e6c0cd2f"
     }
   ]
 }
