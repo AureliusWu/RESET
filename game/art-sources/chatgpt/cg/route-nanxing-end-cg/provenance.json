@@ -1,26 +1,53 @@
 {
   "schema": 1,
-  "assetId": "route-nanxing-end-cg",
-  "sourceType": "deterministic-composite-from-approved-production-art",
+  "character": null,
+  "name": "已读不回",
+  "category": "cg",
+  "id": "route-nanxing-end-cg",
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
   "native4kClaim": false,
-  "inputs": {
-    "background": "game/assets/4k/backgrounds/rooftop-evening.png",
-    "portrait": "game/assets/4k/characters/nanxing/serious.png",
-    "ending": "normal-nanxing",
-    "scene": "end_nanxing"
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-45df702f-bd4e-453b-ac59-1d41e5380858.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/cg/route-nanxing-end-cg/prompt.txt",
+  "promptSHA256": "561cc714d0a4c1f1b9977270f647860c3bdb4c26aa695d4a40ab94891143f204",
+  "spec": "game/art-sources/chatgpt/cg/route-nanxing-end-cg/spec.json",
+  "specSHA256": "546f4d8c3bae48ad60c4d6e4f9ea0e5328a7fa2deb6fd40636b40a9cf2f49bf0",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "resize": "aspect-fill Lanczos",
+    "sourceSize": [
+      1672,
+      941
+    ]
   },
   "assets": [
     {
+      "expression": "route-nanxing-end-cg",
       "original": "game/art-sources/chatgpt/cg/route-nanxing-end-cg/original.png",
-      "originalSHA256": "4d330c199080a5e5792fbf4e0b7fc32f428a202e93400fe498d5645c0077b7df",
       "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "485593fa1156ae0b636deb949763bb85b694700399209f7ef316f8a100a2c44e",
+      "master": "game/assets/4k/cg/route-nanxing-end-cg.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "daec45780577e2bb0f4969aacedc76cfb0375794125835af98f58113ecae04e8",
+      "runtime": "game/assets/4k/runtime/cg/route-nanxing-end-cg.webp",
+      "runtimeSize": [
         1920,
         1080
       ],
-      "master": "game/assets/4k/cg/route-nanxing-end-cg.png",
-      "masterSHA256": "77eecd1801aeeba37b691d541f96e80d372245d5db9e9847d9ae209c7d17ac02",
-      "runtime": "game/assets/4k/runtime/cg/route-nanxing-end-cg.webp",
-      "runtimeSHA256": "ed188c5d1b1875e5b3871167a7d65e62a1ecbd98910e9f06501f1c30a30aacea"
+      "runtimeSHA256": "ca2d117b526519e4d9c5a01385838f9a8b703ca2bd1e5fe6ffec2f1eba5a74ce"
     }
   ]
 }

@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "id": "route-tangli-end-cg",
+  "name": "向前跑",
+  "kind": "cg",
+  "scene": "end_tangli",
+  "canon": {
+    "path": "game/content/chapters/04.json",
+    "title": "唐梨 · 向前跑",
+    "location": "城外江堤",
+    "time": "10月24日 18:43",
+    "dialogue": [
+      {
+        "id": "r1_end_tangli_pre04_01",
+        "speaker": "唐梨",
+        "text": "知道。今天不争快慢，先把人带回来。"
+      },
+      {
+        "id": "e4d001",
+        "speaker": "唐梨",
+        "text": "十八点四十二分已经在我们后面了。"
+      },
+      {
+        "id": "r1_end_tangli_post01_01",
+        "speaker": "陈渡",
+        "text": "这页到这里就够了。关于唐梨，不用再写一个能把一切解释完的结论。"
+      },
+      {
+        "id": "r1_end_tangli_post08_01",
+        "speaker": "陈渡",
+        "text": "把徐嘉树和陈岚也记进去。不是因为他们掌握答案，是因为如果我们的选择伤到普通人的生活，那也必须算在结果里。"
+      }
+    ]
+  },
+  "designProposal": "10月24日18:43的城外江堤跑道，唐梨在画面右侧跑了几步后转身伸手招呼陈渡继续向前，运动感、明亮但克制的笑，保持参考人设和运动外套，发丝与衣摆随江风轻动。远处河面、堤岸草坡和普通路灯，自然晚霞，画面强调有体积与透视的真实运动姿势。",
+  "references": [
+    "game/assets/4k/runtime/cg/route-tangli-end-cg.webp",
+    "game/assets/4k/runtime/characters/tangli/smile.webp"
+  ],
+  "characterIdentityMustMatch": "tangli",
+  "reviewStatus": "UNVERIFIED",
+  "native4kClaim": false
+}

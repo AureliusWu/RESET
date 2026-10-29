@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "id": "route-nanxing-end-cg",
+  "name": "已读不回",
+  "kind": "cg",
+  "scene": "end_nanxing",
+  "canon": {
+    "path": "game/content/chapters/04.json",
+    "title": "乔南星 · 已读不回",
+    "location": "信息楼天台",
+    "time": "10月24日 18:43",
+    "dialogue": [
+      {
+        "id": "r1_end_nanxing_pre04_01",
+        "speaker": "乔南星",
+        "text": "所以先别说闹鬼。先承认我们的钟不可靠。"
+      },
+      {
+        "id": "e4n001",
+        "speaker": "乔南星",
+        "text": "未来没有再给我们发消息。"
+      },
+      {
+        "id": "e4n002",
+        "speaker": "陈渡",
+        "text": "你失望吗？"
+      },
+      {
+        "id": "e4n003",
+        "speaker": "乔南星",
+        "text": "不。说明我们终于不用抄未来的答案了。"
+      },
+      {
+        "id": "r1_end_nanxing_post01_01",
+        "speaker": "陈渡",
+        "text": "这页到这里就够了。关于乔南星，不用再写一个能把一切解释完的结论。"
+      },
+      {
+        "id": "r1_end_nanxing_post08_01",
+        "speaker": "陈渡",
+        "text": "把徐嘉树和林澄也记进去。不是因为他们掌握答案，是因为如果我们的选择伤到普通人的生活，那也必须算在结果里。"
+      }
+    ]
+  },
+  "designProposal": "10月24日18:43信息楼天台，乔南星在画面左侧倚在安全围栏旁，放下手机看向没有停住的夕阳，表情冷静却放松。手机屏幕不展示任何可读文字，空白的未来。保持参考中的星形发饰、长黑发、灰紫领结、深蓝开衫；参考没有眼镜，不添加眼镜。背景是学校信息楼设备、天线箱与普通城市天际线，自然暖冷交织，不画黑客代码。",
+  "references": [
+    "game/assets/4k/runtime/cg/route-nanxing-end-cg.webp",
+    "game/assets/4k/runtime/characters/nanxing/serious.webp"
+  ],
+  "characterIdentityMustMatch": "nanxing",
+  "reviewStatus": "UNVERIFIED",
+  "native4kClaim": false
+}
