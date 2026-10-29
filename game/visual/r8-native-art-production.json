@@ -255,7 +255,7 @@
       "id": "city-desync-afternoon",
       "name": "梧城市区错位",
       "kind": "background",
-      "status": "TO_GENERATE",
+      "status": "UPLOADED",
       "scenes": [
         "c5_city_desync"
       ],
@@ -266,7 +266,7 @@
       "id": "north-station-control",
       "name": "梧城北站控制室",
       "kind": "background",
-      "status": "TO_GENERATE",
+      "status": "UPLOADED",
       "scenes": [
         "c5_anchor_truth"
       ],

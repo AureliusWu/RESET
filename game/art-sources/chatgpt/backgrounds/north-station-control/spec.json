@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "id": "north-station-control",
+  "name": "梧城北站控制室",
+  "kind": "background",
+  "sourceCommit": "8d190ebec6fb8c91b2f6c984bd6010b1d4de6005",
+  "canonSources": [
+    "docs/ART_DIRECTION.md",
+    "game/content/chapters/05.json"
+  ],
+  "sceneEvidence": [
+    {
+      "scene": "c5_anchor_truth",
+      "path": "game/content/chapters/05.json",
+      "location": "梧城北站·控制室",
+      "time": "18:31",
+      "previousBackground": "north-station",
+      "sampleLines": [
+        {
+          "id": "r1_c5_anchor_truth_pre01_01",
+          "text": "18:31，梧城北站·控制室。闸机、摄像头、广播、站务日志和列车时刻共同构成秩序。只要其中一个东西不对，工作人员就会留下记录。"
+        },
+        {
+          "id": "r1_c5_anchor_truth_pre02_01",
+          "text": "如果只看手机时间，这一刻和任何一天没有区别。真正让陈渡不安的，是身边的人仍然沿着熟悉的习惯行动，而他的记忆已经不再属于同一条时间线。"
+        }
+      ]
+    }
+  ],
+  "designProposal": "18:31，梧城北站运营控制室室内，老式综合控制台、轨道示意监视屏（仅无字示意线）、值班日志纸、对讲机、普通办公椅、墙上监视器，透过小窗可见暮色站台，顶灯冷白、细微紫蓝失真，真实铁路运营空间，不是科幻飞船。",
+  "reviewStatus": "UNVERIFIED",
+  "native4kClaim": false
+}

@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "character": null,
+  "name": "north-station-control",
+  "category": "backgrounds",
+  "id": "north-station-control",
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
+  "native4kClaim": false,
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-c731cb71-7cf6-45c1-b166-21ed0b32c86b.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/backgrounds/north-station-control/prompt.txt",
+  "promptSHA256": "1ccfd6fabe3a2073f35ad872639b10b9a0b903c78e09c8cb373f3d49b9004e56",
+  "spec": "game/art-sources/chatgpt/backgrounds/north-station-control/spec.json",
+  "specSHA256": "672393e8fdf58f08cf7fe24b5c2ef497e17c1c494220854f50b78ec6778be651",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "resize": "aspect-fill Lanczos",
+    "sourceSize": [
+      1672,
+      941
+    ]
+  },
+  "assets": [
+    {
+      "expression": "north-station-control",
+      "original": "game/art-sources/chatgpt/backgrounds/north-station-control/original.png",
+      "originalSize": [
+        1672,
+        941
+      ],
+      "originalSHA256": "cdfc6b15f0ed129da7978d43777c5544937ec6a1c385a4f61c505aff096148b8",
+      "master": "game/assets/4k/backgrounds/north-station-control.png",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "masterSHA256": "113019aaf609a7455cbc7f7e8501a4df7e9f93a03dd0d98986c9c69ba88240b2",
+      "runtime": "game/assets/4k/runtime/backgrounds/north-station-control.webp",
+      "runtimeSize": [
+        1920,
+        1080
+      ],
+      "runtimeSHA256": "f03767b0dc83d1afdd1e01745be7823e4ce99486b9e6c536912bfb2ca7f2be0f"
+    }
+  ]
+}
