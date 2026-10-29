@@ -10,12 +10,12 @@
 | 异常体 | 2 | 2 | 2 |
 | 替换 CG | 8 | 8 | 8 |
 | 专用场景背景 | 20 | 20 | 20 |
-| UI 主视觉 | 5 | 5 | 0 |
-| 本轮合计 | 46 | 46 | 41 |
+| UI 主视觉 | 5 | 5 | 5 |
+| 本轮合计 | 46 | 46 | 46 |
 
 徐嘉树先导立绘已入库，故配角共 12/12 拥有原生候选。每项入库素材保留原始 PNG、处理后的 master、runtime WebP、规格、实际 prompt 与 SHA256/provenance。原生输出再标准化为 4K 母版，未声称 native 4K。
 
-5 张 UI 的 15 个真实图片文件已另存完整可续传 ZIP（57,143,636 字节）；`game/visual/r8-ui-transfer-pending.json` 记录其预期路径与哈希。这份文件是运输断点，不替代生产 provenance。浏览器连接超时后已读回远端，确认 UI 未提交；仓库继续使用原有 UI 与对应旧 provenance。
+2026-10-29 已恢复 UI ZIP（57,143,636 字节），按三批低于 25 MB 提交全部 15 个真实图片文件，并将原图、母版、runtime 与匹配的原生 prompt/spec/provenance 原子接入正式路径。`game/visual/r8-ui-transfer-pending.json` 保留原断点文件名，状态已改为 `UPLOADED`，记录三次二进制提交与逐项 SHA256；生产来源仍以各素材 provenance 为准。
 
 ## 接入
 
@@ -28,10 +28,12 @@
 
 ## 检查与边界
 
-- `npm run art:r8` 严格要求全部 46 项原生来源链；运输未完成的 GitHub 候选用 `--partial` 报告 41/46 与缺失 UI。映射检查在两种模式均执行。
+- `npm run art:r8` 严格检查全部 46 项原生来源链；当前 46/46、missing=[]。映射检查在严格与 `--partial` 两种模式均执行。
 - `npm run build`、`npm run check:release` 为候选技术检查；`npm run check:stable` 保留人工验收门禁并严格要求全部原生资源。
 - `npm run test:art:r8` 从最终解压 Web 包检查图片解码、Alpha、82 场景背景、4 种视窗中的配角/异常体布局、真实离线哈希及 reload；输出 `test-results/r8-art/audit.json` 和截图。仅退出 0 与报告存在才可记技术通过。
-- 浏览器视窗模拟不等于 Android 实机或 Windows 原生验收；这些平台签收仍待完成。
+- Release 工作流在 PR / 普通开发提交执行候选技术验收、严格 `art:r8`、最终 Web ZIP 浏览器验收与 Windows 原生 ZIP 验收。正式发布提交在 Web/Windows 打包前仍强制 `check:stable`，publish 在任何 tag/Release 写入前再次强制人工角色视觉门禁；PR 绿色只代表候选技术检查通过。
+- 本地完整 UI 候选 Build、check:release、严格 art:r8 与 78/78 回归通过；check:stable 仍以 12 个未签收角色返回 exit 2。远端同提交平台结果见 PR Checks，未结束前不记通过。
+- 浏览器视窗模拟不等于 Android 实机或 Windows 原生验收；Windows CI 通过也不冒充实体 Windows/DPI 或 Android 实机签收。
 - 按 AGENTS.md / R8 发布边界：自动截图、Build、SHA256 不授予人工 ART_PASS。当前不覆盖稳定 tag、Release 或 Pages。
 
 ## 已入库素材审核入口
@@ -99,3 +101,13 @@
 | underpass-exit-evening | 下穿通道出口 | [WebP](../game/assets/4k/runtime/backgrounds/underpass-exit-evening.webp) |
 | north-station-after1842 | 北站时间向前 | [WebP](../game/assets/4k/runtime/backgrounds/north-station-after1842.webp) |
 | north-station-vanishing | 正在消失的北站 | [WebP](../game/assets/4k/runtime/backgrounds/north-station-vanishing.webp) |
+
+### ui
+
+| ID | 名称 | runtime |
+| --- | --- | --- |
+| title-key-visual | 标题页主视觉 | [WebP](../game/assets/4k/runtime/ui/title-key-visual.webp) |
+| save-anomaly | 存档异常主视觉 | [WebP](../game/assets/4k/runtime/ui/save-anomaly.webp) |
+| ending-collection-header | 结局收藏主视觉 | [WebP](../game/assets/4k/runtime/ui/ending-collection-header.webp) |
+| cg-gallery-header | CG画廊主视觉 | [WebP](../game/assets/4k/runtime/ui/cg-gallery-header.webp) |
+| combat-hud-key-visual | 战斗页面主视觉 | [WebP](../game/assets/4k/runtime/ui/combat-hud-key-visual.webp) |

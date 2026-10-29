@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "status": "GENERATED_PENDING_BINARY_UPLOAD",
-  "reason": "Cloud browser upload connection timed out; GitHub readback confirms no new UI binary commit.",
+  "status": "UPLOADED",
+  "reason": "Resolved on 2026-10-29: real binaries committed in three batches below 25 MB; canonical files and matching native provenance integrated atomically.",
   "archiveSHA256": "c3b7f587ac82760616e5301816e423f207677a8e09ff7d313c11fa6509226319",
   "archiveBytes": 57143636,
   "authoritativeProductionProvenance": false,
@@ -51,5 +51,10 @@
       "runtime": "game/assets/4k/runtime/ui/combat-hud-key-visual.webp",
       "runtimeSHA256": "93bab2c7a96baa6660e2f826d47a2112c7a47a41ac7a461e3496507a690ebccd"
     }
+  ],
+  "binaryUploadCommits": [
+    "96b3e6de85ea5a97ca6231dd4c0eb6b6d3ccc041",
+    "8d73a3f2d5822bbc3174750de7388cf4937a09f9",
+    "ab3543a0cf1856c93f2f8d234b59d2fe79b3579d"
   ]
 }

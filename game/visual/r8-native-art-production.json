@@ -414,7 +414,7 @@
       "id": "title-key-visual",
       "name": "标题页主视觉",
       "kind": "ui",
-      "status": "GENERATED_PENDING_UPLOAD",
+      "status": "UPLOADED",
       "prompt": "game/art-sources/chatgpt/ui/title-key-visual/prompt.txt",
       "spec": "game/art-sources/chatgpt/ui/title-key-visual/spec.json"
     },
@@ -422,7 +422,7 @@
       "id": "save-anomaly",
       "name": "存档异常主视觉",
       "kind": "ui",
-      "status": "GENERATED_PENDING_UPLOAD",
+      "status": "UPLOADED",
       "prompt": "game/art-sources/chatgpt/ui/save-anomaly/prompt.txt",
       "spec": "game/art-sources/chatgpt/ui/save-anomaly/spec.json"
     },
@@ -430,7 +430,7 @@
       "id": "ending-collection-header",
       "name": "结局收藏主视觉",
       "kind": "ui",
-      "status": "GENERATED_PENDING_UPLOAD",
+      "status": "UPLOADED",
       "prompt": "game/art-sources/chatgpt/ui/ending-collection-header/prompt.txt",
       "spec": "game/art-sources/chatgpt/ui/ending-collection-header/spec.json"
     },
@@ -438,7 +438,7 @@
       "id": "cg-gallery-header",
       "name": "CG画廊主视觉",
       "kind": "ui",
-      "status": "GENERATED_PENDING_UPLOAD",
+      "status": "UPLOADED",
       "prompt": "game/art-sources/chatgpt/ui/cg-gallery-header/prompt.txt",
       "spec": "game/art-sources/chatgpt/ui/cg-gallery-header/spec.json"
     },
@@ -446,7 +446,7 @@
       "id": "combat-hud-key-visual",
       "name": "战斗页面主视觉",
       "kind": "ui",
-      "status": "GENERATED_PENDING_UPLOAD",
+      "status": "UPLOADED",
       "prompt": "game/art-sources/chatgpt/ui/combat-hud-key-visual/prompt.txt",
       "spec": "game/art-sources/chatgpt/ui/combat-hud-key-visual/spec.json"
     }
@@ -456,7 +456,7 @@
     "productionAssets": 96,
     "runtimeAssetsIncludingAudio": 117,
     "supportingOwnerApproved": 0,
-    "pendingUITransport": 5,
+    "pendingUITransport": 0,
     "releaseStatus": "CANDIDATE_ONLY"
   }
 }

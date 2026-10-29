@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "id": "cg-gallery-header",
+  "name": "CG画廊主视觉",
+  "kind": "ui-key-visual",
+  "canonSources": [
+    "docs/ART_DIRECTION.md",
+    "game/runtime/experience.css",
+    "game/assets/4k/asset-plan.json"
+  ],
+  "designProposal": "木桌上几张无人物的普通梧城风景相片错落：雨夜站台、学校天台、江滩、旧教室；旧相框和一小束窗光，冷灰蓝低饱和，像整理幸存的记忆，画面中心横带清楚，两端留白，适合作为CG收藏页顶部横幅。没有文字、没有UI、不要复制任何角色脸。",
+  "constraints": [
+    "Illustrative background only; controls and text remain real runtime UI",
+    "1920x1080 runtime; processed 3840x2160 master",
+    "No native 4K claim"
+  ],
+  "reviewStatus": "UNVERIFIED",
+  "native4kClaim": false
+}

@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "id": "combat-hud-key-visual",
+  "name": "战斗页面主视觉",
+  "kind": "ui-key-visual",
+  "canonSources": [
+    "docs/ART_DIRECTION.md",
+    "game/runtime/experience.css",
+    "game/assets/4k/asset-plan.json"
+  ],
+  "designProposal": "空无一人的雨夜下穿通道，湿瓷砖、排水沟、冷白灯，水面倒影与建筑错开半拍，左右两端有微弱层叠的蓝灰空间残响，中央大面积暗色留白供真实战斗信息与按键显示。只是原画背景，禁止画准星、血条、按钮、数字、文字或任何假UI。",
+  "constraints": [
+    "Illustrative background only; controls and text remain real runtime UI",
+    "1920x1080 runtime; processed 3840x2160 master",
+    "No native 4K claim"
+  ],
+  "reviewStatus": "UNVERIFIED",
+  "native4kClaim": false
+}

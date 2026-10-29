@@ -37,16 +37,22 @@ jobs:
         env:
           VN_ENGINE_PATH: ${{ github.workspace }}/vn-engine
         run: npm run build
-      - name: Validate stable v1.2.2 content and visual gate
+      - name: Validate candidate Web content and complete native art
         working-directory: game-repo
         run: |
-          npm run check:stable
+          npm run check:release
+          npm run art:r8
           node -e "const m=require('./dist/build-manifest.json');const p=require('./dist/project.json');if(m.game!=='reset'||p.version!=='reset-v1.2.2'||m.version!=='reset-v1.2.2')process.exit(1);if(!m.extensions.includes('reset-art-visual-gate-v1'))process.exit(2);if(!p.scenes.some(s=>s.ending==='true-end'))process.exit(3);console.log(m.engine,m.contentFingerprint,p.scenes.length,p.assets.length,m.extensions)"
           test -f dist/index.html
           test -f dist/manifest.webmanifest
           test -f dist/sw.js
           test -f dist/pwa.mjs
           test -f dist/experience.css
+      - name: Stable publication hard gate
+        if: >-
+          github.ref == 'refs/heads/main' && github.event_name == 'push' && startsWith(github.event.head_commit.message, 'release: publish v1.2.2')
+        working-directory: game-repo
+        run: npm run check:stable
       - name: Archive Web release
         working-directory: game-repo
         run: cd dist && zip -r ../RESET-huiliu-v1.2.2-web.zip .
@@ -109,7 +115,14 @@ jobs:
         env:
           VN_ENGINE_PATH: ${{ github.workspace }}\vn-engine
         run: npm run build
-      - name: Validate stable composed Windows content
+      - name: Validate candidate Windows content and complete native art
+        working-directory: game-repo
+        run: |
+          npm run check:release
+          npm run art:r8
+      - name: Stable publication hard gate
+        if: >-
+          github.ref == 'refs/heads/main' && github.event_name == 'push' && startsWith(github.event.head_commit.message, 'release: publish v1.2.2')
         working-directory: game-repo
         run: npm run check:stable
       - name: Publish native engine host
@@ -222,6 +235,8 @@ jobs:
       actions: read
     steps:
       - uses: actions/checkout@v4
+      - name: Require owner visual acceptance before publication
+        run: npm run art:visual:release
       - name: Require matching main Build CI
         uses: actions/github-script@v7
         with:
