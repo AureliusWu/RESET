@@ -77,6 +77,7 @@ async function walkFiles(directory) {
 
 async function injectGameRuntime(project) {
   await copyFile(resolve(root, 'game/assets/generated/music-manifest.json'), resolve(output, 'music-manifest.json'));
+  await copyFile(resolve(root, 'game/assets/generated/sfx-manifest.json'), resolve(output, 'sfx-manifest.json'));
   const uiRuntimeDir = resolve(root, 'game/assets/4k/runtime/ui'), uiOutputDir = resolve(output, 'assets/4k/runtime/ui');
   await mkdir(uiOutputDir, { recursive: true });
   for (const file of ['title-key-visual.webp','save-anomaly.webp','ending-collection-header.webp','cg-gallery-header.webp','combat-hud-key-visual.webp']) {
@@ -85,7 +86,7 @@ async function injectGameRuntime(project) {
   for (const file of ['README.md', 'LICENSE.md', 'CHANGELOG_v1.2.3.md']) {
     await copyFile(resolve(root, file), resolve(output, file));
   }
-  for (const file of ['combat.mjs','meta.mjs','archive.mjs','archive-data.mjs','experience.css','experience.mjs','ui.mjs','pwa.mjs']) {
+  for (const file of ['sfx.mjs','combat.mjs','meta.mjs','archive.mjs','archive-data.mjs','experience.css','experience.mjs','ui.mjs','pwa.mjs']) {
     await copyFile(resolve(root, 'game/runtime', file), resolve(output, file));
   }
   const htmlPath=resolve(output,'index.html');
@@ -94,7 +95,7 @@ async function injectGameRuntime(project) {
   let app = await readFile(appPath, 'utf8');
   const pagehide = "window.addEventListener('pagehide',event=>{if(!event.persisted)game.dispose();});";
   if (!app.includes(pagehide)) throw new Error('VN Engine packaged app entry changed; RESET runtime injection needs review');
-  app = app.replace(pagehide, "const [{mountCombatBridge},{mountMetaBridge},{mountArchiveBridge},{mountExperienceBridge},{mountUiBridge}]=await Promise.all([import('./combat.mjs'),import('./meta.mjs'),import('./archive.mjs'),import('./experience.mjs'),import('./ui.mjs')]);const combat=mountCombatBridge(game),meta=mountMetaBridge(game),archive=mountArchiveBridge(game,project,meta),experience=mountExperienceBridge(game,project),ui=mountUiBridge(game);window.addEventListener('pagehide',event=>{if(!event.persisted){ui.dispose();experience.dispose();archive.dispose();meta.dispose();combat.dispose();game.dispose();}});");
+  app = app.replace(pagehide, "const [{mountCombatBridge},{mountMetaBridge},{mountArchiveBridge},{mountExperienceBridge},{mountUiBridge},{mountSfxBridge}]=await Promise.all([import('./combat.mjs'),import('./meta.mjs'),import('./archive.mjs'),import('./experience.mjs'),import('./ui.mjs'),import('./sfx.mjs')]);const sfx=mountSfxBridge(game,project),combat=mountCombatBridge(game,{playSfx:sfx.play,stopSfx:sfx.stop}),meta=mountMetaBridge(game),archive=mountArchiveBridge(game,project,meta),experience=mountExperienceBridge(game,project),ui=mountUiBridge(game);window.addEventListener('pagehide',event=>{if(!event.persisted){ui.dispose();experience.dispose();archive.dispose();meta.dispose();combat.dispose();sfx.dispose();game.dispose();}});");
   const workerStart=app.indexOf("if('serviceWorker' in navigator)"), catchStart=app.indexOf('\ncatch(failure)',workerStart);
   if(workerStart<0||catchStart<0)throw new Error('Packaged PWA entry changed; review work-level registration');
   app=app.slice(0,workerStart)+"await (await import('./pwa.mjs')).registerGamePwa();}\n"+app.slice(catchStart);
@@ -118,7 +119,7 @@ async function injectGameRuntime(project) {
     version: project.version,
     engine: packagedManifest.engine,
     contentFingerprint: fingerprint,
-    extensions: ['reset-combat-v1', 'reset-meta-v1', 'reset-portrait-set-v1', 'reset-scene-art-v1', 'reset-archive-v1', 'reset-responsive-v1', 'reset-ui-key-visual-v1', 'reset-art-completeness-v1', 'reset-art-visual-gate-v1', 'reset-asset-schema-v1', 'reset-music-r1'],
+    extensions: ['reset-combat-v1', 'reset-meta-v1', 'reset-portrait-set-v1', 'reset-scene-art-v1', 'reset-archive-v1', 'reset-responsive-v1', 'reset-ui-key-visual-v1', 'reset-art-completeness-v1', 'reset-art-visual-gate-v1', 'reset-asset-schema-v1', 'reset-music-r1', 'reset-sfx-r1'],
     files: finalFiles.map(file => ({ name: file.name, size: file.bytes.length, sha256: createHash('sha256').update(file.bytes).digest('hex') }))
   };
   await writeFile(resolve(output, 'build-manifest.json'), JSON.stringify(metadata, null, 2) + '\n');

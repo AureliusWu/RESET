@@ -53,13 +53,14 @@ function harness(sceneId = 'faceless_first', settings = {}, focused = true, init
     requestAnimationFrame(fn) { const id = ++serial; frames.set(id, fn); return id; }, cancelAnimationFrame: id => frames.delete(id),
     setTimeout(fn, delay) { const id = ++serial; timers.set(id, { fn, at: time + delay }); return id; }, clearTimeout: id => timers.delete(id)
   });
-  const bridge = mount({ session });
+  const sfx = [], sfxStops = [];
+  const bridge = mount({ session }, { playSfx:id=>sfx.push(id), stopSfx:()=>sfxStops.push(time) });
   function frame(count = 1) { for (let i = 0; i < count; i++) { time += 16; const pending = [...frames]; frames.clear(); for (const [,fn] of pending) fn(time); for (const [id,timer] of timers) if (timer.at <= time) { timers.delete(id); timer.fn(); } } }
   const key = (type, code) => window.emit(type, code);
   const tap = code => { key('keydown', code); key('keyup', code); };
   const touch = (type, code) => buttons.get(code).emit(type);
   const flush = () => { for(const fn of microtasks.splice(0)) fn(); };
-  return { frame, key, tap, touch, window, document, bridge, session, notify, flush, results, drawn, view, frames, timers, resume, hud, get time(){return time;}, get removed() { return removed; }, get result() { return result; } };
+  return { frame, key, tap, touch, window, document, bridge, session, notify, flush, results, drawn, view, frames, timers, resume, hud, sfx, sfxStops, get time(){return time;}, get removed() { return removed; }, get result() { return result; } };
 }
 
 for (const encounter of ['faceless_first','faceless_second','c5_echo_fail']) {
@@ -211,4 +212,20 @@ test('Boss learning persists across encounters, changes adaptive patterns and ca
   assert.ok(observed[2].interval<observed[0].interval);assert.equal(observed[2].interval,observed[3].interval,'later attempts must stop increasing speed at the existing cap');
   const echo=harness('c5_echo_fail');const prediction=attackCycle(echo);
   assert.equal(prediction.first,'正在瞄准落点');assert.equal(prediction.second,'圆圈内危险');echo.bridge.dispose();
+});
+
+
+test('combat SFX follows successful dodge/hit edges and stops when suspended', () => {
+  const h = harness(); h.frame();
+  h.tap('Space'); h.frame(); assert.deepEqual(h.sfx,['sfx-dodge']);
+  h.tap('Space'); h.frame(); assert.equal(h.sfx.length,1,'cooldown-rejected dodge stays silent');
+  h.tap('KeyJ'); h.frame(); assert.equal(h.sfx.length,1,'an attack outside hit range stays silent');
+  h.window.emit('blur'); const before=h.sfx.length;
+  h.tap('Space'); h.frame(10); assert.equal(h.sfx.length,before);
+  assert.ok(h.sfxStops.length); h.bridge.dispose(); assert.ok(h.sfxStops.length>=2);
+});
+
+test('combat SFX announces a confirmed melee hit', () => {
+  const h=harness();h.key('keydown','ArrowRight');h.frame(145);h.key('keyup','ArrowRight');
+  h.tap('KeyJ');h.frame();assert.ok(h.sfx.includes('sfx-impact'));h.bridge.dispose();
 });
