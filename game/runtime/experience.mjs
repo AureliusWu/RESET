@@ -52,8 +52,8 @@ export function mountExperienceBridge(game, project) {
     if(!current.settings.reducedMotion && previous && current.ready && !current.paused){
       // Portraits stay spatially stable between dialogue lines. A previous 6px
       // slide-in on every expression swap made the sprite visibly jump.
-      if(previous.background!==next.background)animate('.vn-background',[{opacity:.8},{opacity:1}],240);
-      if(previous.cg!==next.cg && next.cg)animate('.vn-cg',[{opacity:.65},{opacity:1}],260);
+      if(host.dataset.direction!=='r1' && previous.background!==next.background)animate('.vn-background',[{opacity:.8},{opacity:1}],240);
+      if(host.dataset.direction!=='r1' && previous.cg!==next.cg && next.cg)animate('.vn-cg',[{opacity:.65},{opacity:1}],260);
       if(previous.visit!==next.visit && current.reason==='restore')animate('.vn-reading',[{boxShadow:'inset 0 2px #9accc5'},{boxShadow:'inset 0 2px transparent'}],340);
     }
     // Don't consume a visual change during a typewriter's incomplete first frame.

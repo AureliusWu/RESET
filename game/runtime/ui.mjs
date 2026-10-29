@@ -48,10 +48,11 @@ function phonePropSvg() {
   return `<svg viewBox="0 0 520 900" role="img" aria-label="来自五分钟后的未来照片消息"><defs><linearGradient id="phone-bg" x2="0" y2="1"><stop stop-color="#202b38"/><stop offset="1" stop-color="#0d141c"/></linearGradient></defs><rect x="48" y="25" width="424" height="850" rx="60" fill="#0a0d12" stroke="#77828d" stroke-width="8"/><rect x="70" y="76" width="380" height="740" rx="34" fill="url(#phone-bg)"/><rect x="186" y="47" width="148" height="17" rx="9" fill="#313943"/><text x="98" y="129" fill="#dce9ea" font-family="system-ui,'Microsoft YaHei',sans-serif" font-size="24" font-weight="650">陈渡</text><text x="98" y="160" fill="#83a7aa" font-family="system-ui,'Microsoft YaHei',sans-serif" font-size="17">来自未来 · 18:47</text><rect x="104" y="202" width="312" height="360" rx="22" fill="#121922" stroke="#52626f" stroke-width="3"/><path d="M132 510l65-96 47 55 49-86 93 127z" fill="#283541"/><circle cx="342" cy="286" r="42" fill="#7d8e98" opacity=".35"/><path d="M258 326c-24 18-35 56-25 99l-46 73h146l-44-73c10-43-3-80-31-99z" fill="#15181d"/><path d="M145 545h225" stroke="#844a4f" stroke-width="8" opacity=".8"/><rect x="98" y="607" width="300" height="86" rx="22" fill="#2d5151"/><text x="122" y="645" fill="#e6f3ef" font-family="system-ui,'Microsoft YaHei',sans-serif" font-size="18">发送人：你</text><text x="122" y="674" fill="#bdd8d3" font-family="system-ui,'Microsoft YaHei',sans-serif" font-size="17">拍摄时间：五分钟后</text><text x="260" y="784" fill="#80969b" text-anchor="middle" font-family="ui-monospace,monospace" font-size="18">18:42</text></svg>`;
 }
 
-export function mountUiBridge(game) {
+export function mountUiBridge(game, project = {scenes:[]}) {
   const { session, renderer } = game;
   const host = renderer.element;
   const doc = host.ownerDocument;
+  const scenes = new Map(project.scenes.map(scene=>[scene.id,scene]));
   let disposed = false;
   let lastChapter = null;
   let chapterTimer = 0;
@@ -68,7 +69,7 @@ export function mountUiBridge(game) {
   function syncTitle() {
     if (disposed) return;
     const stage = host.querySelector('.vn-stage'); if (!stage) return;
-    const show = session.getView().frame.sceneId === 'prologue_1842';
+    const show = Boolean(host.querySelector('.reset-title-gate'));
     let image = stage.querySelector('[data-ui-visual="title-key-visual"]');
     let brand = stage.querySelector('[data-art-extra="brand-mark"]');
     if (show && !image) { image = makeImage(UI.title, 'title-key-visual', '回留 RESET · 18:42', 'reset-title-key-visual'); stage.append(image); } else if (!show && image) image.remove();
@@ -76,9 +77,9 @@ export function mountUiBridge(game) {
   }
 
   function syncChapterCard() {
-    if (disposed) return;
+    if (disposed || host.dataset.direction==='r1') return;
     const stage = host.querySelector('.vn-stage'); if (!stage) return;
-    const chapter = Number(session.getView().frame.chapter); if (!CHAPTERS.has(chapter) || chapter === lastChapter) return;
+    const chapter = Number(scenes.get(session.getView().frame.sceneId)?.chapter); if (!CHAPTERS.has(chapter) || chapter === lastChapter) return;
     lastChapter = chapter; stage.querySelector('[data-art-extra="chapter-card"]')?.remove();
     const [num, title, subtitle] = CHAPTERS.get(chapter); const card = doc.createElement('div'); card.className = 'reset-chapter-card'; card.dataset.artExtra = 'chapter-card';
     card.innerHTML = `<div class="reset-chapter-number">${num}</div><div><div class="reset-chapter-kicker">CHAPTER</div><strong>${esc(title)}</strong><span>${esc(subtitle)}</span></div>`; stage.append(card);

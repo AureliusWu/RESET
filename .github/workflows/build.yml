@@ -37,6 +37,9 @@ jobs:
           node --check game/runtime/archive-data.mjs
           node --check game/runtime/experience.mjs
           node --check game/runtime/ui.mjs
+          node --check game/runtime/direction.mjs
+          node --check scripts/check-direction.mjs
+          node --check tests/direction-browser.mjs
           node --check game/runtime/sfx.mjs
           node --check scripts/sfx-design.mjs
           node --check scripts/check-sfx.mjs
@@ -100,6 +103,18 @@ jobs:
         env:
           VN_ENGINE_PATH: ${{ github.workspace }}/vn-engine
         run: npm run test:sfx:browser
+      - name: Direction R1 stage and motion lifecycle
+        working-directory: game-repo
+        env:
+          VN_ENGINE_PATH: ${{ github.workspace }}/vn-engine
+        run: npm run test:direction:browser
+      - name: Upload direction evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: RESET-direction-r1-audit
+          path: game-repo/test-results/direction-r1
+          if-no-files-found: error
       - name: Upload SFX measurements and playback evidence
         if: always()
         uses: actions/upload-artifact@v4
