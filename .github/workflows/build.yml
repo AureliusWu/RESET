@@ -37,6 +37,9 @@ jobs:
           node --check game/runtime/archive-data.mjs
           node --check game/runtime/experience.mjs
           node --check game/runtime/ui.mjs
+          node --check scripts/music-score.mjs
+          node --check scripts/audio-metrics.mjs
+          node --check tests/music-browser.mjs
           node --check game/runtime/pwa.mjs
           node --check scripts/assets.mjs
           node --check scripts/check-asset-schema.mjs
@@ -80,7 +83,21 @@ jobs:
         working-directory: vn-engine
         run: |
           npx playwright install --with-deps chromium
-          sudo apt-get install --no-install-recommends -y fonts-noto-cjk
+          sudo apt-get install --no-install-recommends -y fonts-noto-cjk ffmpeg
+      - name: Music R1 real playback and offline audio audit
+        working-directory: game-repo
+        env:
+          VN_ENGINE_PATH: ${{ github.workspace }}/vn-engine
+        run: |
+          npm run audio:measure
+          npm run test:music:browser
+      - name: Upload music measurements and playback evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: RESET-music-r1-audit
+          path: game-repo/test-results/music-r1
+          if-no-files-found: error
       - name: R8 candidate art and offline audit
         working-directory: game-repo
         env:

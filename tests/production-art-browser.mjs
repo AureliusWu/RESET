@@ -114,7 +114,10 @@ export async function verifyProductionArt({page,project,fixtures,loadFixture,out
         })();
         if(!witness)continue;
         await loadFixture(witness);
-        await page.waitForFunction(id=>{const im=document.querySelector('.vn-portrait');return im?.dataset.asset===id&&im.complete;},asset.id);
+        // Empty-src images are complete while the renderer's probe is pending.
+        // Require the real decoded sprite before measuring its stage bounds.
+        await page.waitForFunction(id=>{const im=document.querySelector('.vn-portrait');return im?.dataset.asset===id&&!im.hidden&&im.complete&&im.naturalWidth===1080&&im.naturalHeight===1920;},asset.id);
+        await page.locator('.vn-portrait').waitFor({state:'visible'});
         const geometry=await page.evaluate(()=>{
           const portrait=document.querySelector('.vn-portrait')?.getBoundingClientRect();
           const stage=document.querySelector('.vn-stage')?.getBoundingClientRect();

@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "sampleRate": 32000,
+  "beatsPerBar": 4,
+  "bars": 16,
+  "targetRmsDbfs": -17,
+  "peakCeilingDbfs": -3,
+  "provenance": "Original procedural compositions and synthesis; no samples, soundfonts or third-party recordings.",
+  "cues": [
+    {"id":"music-memory-rain","title":"雨中的回忆","bpm":72,"root":60,"mode":"major","progression":[0,5,3,4],"melody":[4,2,1,0,1,2,4,6],"instrument":"felt","density":"sparse","air":0.0012,"seed":1842},
+    {"id":"music-night-residue","title":"夜梧城残响","bpm":64,"root":52,"mode":"minor","progression":[0,5,3,4],"melody":[7,6,4,2,4,3,2,0],"instrument":"reed","density":"sparse","air":0.0024,"seed":4182},
+    {"id":"music-fracture-pulse","title":"断层脉冲","bpm":108,"root":50,"mode":"minor","progression":[0,5,3,4],"melody":[7,4,9,5,7,11,9,4],"instrument":"pluck","density":"driving","pulse":0.8,"air":0.0018,"seed":666},
+    {"id":"music-letter-dawn","title":"没有发生过的约定","bpm":70,"root":60,"mode":"major","progression":[0,3,5,4],"melody":[7,6,4,2,4,5,6,4],"instrument":"felt","density":"lyrical","air":0.0007,"seed":1025},
+    {"id":"music-seven-chairs","title":"第七把椅子","bpm":76,"root":55,"mode":"minor","progression":[0,3,5,4],"melody":[7,5,3,0,3,4,2,0],"instrument":"glass","density":"sparse","air":0.0018,"seed":7777},
+    {"id":"music-route-choice","title":"把时间交给谁","bpm":88,"root":53,"mode":"major","progression":[0,4,5,3],"melody":[7,8,9,7,5,7,8,11],"instrument":"marimba","density":"lyrical","air":0.0006,"seed":3141},
+    {"id":"music-no-save","title":"不保存","bpm":60,"root":57,"mode":"minor","progression":[0,5,3,4],"melody":[7,6,4,3,4,3,1,0],"instrument":"felt","density":"sparse","air":0.0008,"seed":1017},
+    {"id":"music-tomorrow","title":"明天见","bpm":72,"root":55,"mode":"major","progression":[0,3,5,4],"melody":[7,8,9,11,9,8,7,4],"instrument":"felt","density":"lyrical","counter":true,"air":0.0004,"seed":1025},
+    {"id":"music-linwan-dream","title":"梦里见过你","bpm":68,"root":55,"mode":"major","progression":[0,5,3,4],"melody":[9,7,4,7,8,7,4,3],"instrument":"glass","density":"lyrical","air":0.0005,"seed":1221},
+    {"id":"music-xiaoman-forward","title":"一直往前走","bpm":96,"root":57,"mode":"major","progression":[0,4,5,3],"melody":[7,8,9,11,9,8,7,5],"instrument":"marimba","density":"walking","air":0.0005,"seed":2401},
+    {"id":"music-xuqi-night","title":"夜梧城","bpm":82,"root":57,"mode":"minor","progression":[0,5,3,4],"melody":[4,2,0,2,4,5,4,0],"instrument":"electric","density":"sparse","air":0.0013,"seed":7301},
+    {"id":"music-tinglan-archive","title":"不可信的档案","bpm":66,"root":50,"mode":"minor","progression":[0,3,5,4],"melody":[7,5,4,3,5,7,8,5],"instrument":"pluck","density":"sparse","air":0.0007,"seed":5510},
+    {"id":"music-tangli-road","title":"正确的路","bpm":104,"root":52,"mode":"minor","progression":[0,5,3,4],"melody":[7,9,10,12,10,9,7,6],"instrument":"marimba","density":"walking","pulse":0.3,"air":0.0007,"seed":8604},
+    {"id":"music-nanxing-message","title":"明天发来的消息","bpm":90,"root":53,"mode":"major","progression":[0,5,3,4],"melody":[7,8,9,7,5,7,9,11],"instrument":"electric","density":"lyrical","counter":true,"air":0.0006,"seed":9027}
+  ]
+}
