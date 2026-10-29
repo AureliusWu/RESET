@@ -78,6 +78,8 @@ async function walkFiles(directory) {
 async function injectGameRuntime(project) {
   await copyFile(resolve(root, 'game/assets/generated/music-manifest.json'), resolve(output, 'music-manifest.json'));
   await copyFile(resolve(root, 'game/assets/generated/sfx-manifest.json'), resolve(output, 'sfx-manifest.json'));
+  const directionData=JSON.parse(await readFile(resolve(root,'game/direction/cues.json'),'utf8'));
+  await writeFile(resolve(output,'direction-data.mjs'),'export default '+JSON.stringify(directionData)+';\n');
   const uiRuntimeDir = resolve(root, 'game/assets/4k/runtime/ui'), uiOutputDir = resolve(output, 'assets/4k/runtime/ui');
   await mkdir(uiOutputDir, { recursive: true });
   for (const file of ['title-key-visual.webp','save-anomaly.webp','ending-collection-header.webp','cg-gallery-header.webp','combat-hud-key-visual.webp']) {
@@ -86,16 +88,16 @@ async function injectGameRuntime(project) {
   for (const file of ['README.md', 'LICENSE.md', 'CHANGELOG_v1.2.3.md']) {
     await copyFile(resolve(root, file), resolve(output, file));
   }
-  for (const file of ['sfx.mjs','combat.mjs','meta.mjs','archive.mjs','archive-data.mjs','experience.css','experience.mjs','ui.mjs','pwa.mjs']) {
+  for (const file of ['direction.mjs','direction.css','sfx.mjs','combat.mjs','meta.mjs','archive.mjs','archive-data.mjs','experience.css','experience.mjs','ui.mjs','pwa.mjs']) {
     await copyFile(resolve(root, 'game/runtime', file), resolve(output, file));
   }
   const htmlPath=resolve(output,'index.html');
-  await writeFile(htmlPath,(await readFile(htmlPath,'utf8')).replace('width=device-width,initial-scale=1','width=device-width,initial-scale=1,viewport-fit=cover').replace('</head>','<link rel="stylesheet" href="./experience.css"><meta name="theme-color" content="#1d393e"><link rel="apple-touch-icon" href="./icon-192.png"></head>'));
+  await writeFile(htmlPath,(await readFile(htmlPath,'utf8')).replace('width=device-width,initial-scale=1','width=device-width,initial-scale=1,viewport-fit=cover').replace('</head>','<link rel="stylesheet" href="./experience.css"><link rel="stylesheet" href="./direction.css"><meta name="theme-color" content="#1d393e"><link rel="apple-touch-icon" href="./icon-192.png"></head>'));
   const appPath = resolve(output, 'app.mjs');
   let app = await readFile(appPath, 'utf8');
   const pagehide = "window.addEventListener('pagehide',event=>{if(!event.persisted)game.dispose();});";
   if (!app.includes(pagehide)) throw new Error('VN Engine packaged app entry changed; RESET runtime injection needs review');
-  app = app.replace(pagehide, "const [{mountCombatBridge},{mountMetaBridge},{mountArchiveBridge},{mountExperienceBridge},{mountUiBridge},{mountSfxBridge}]=await Promise.all([import('./combat.mjs'),import('./meta.mjs'),import('./archive.mjs'),import('./experience.mjs'),import('./ui.mjs'),import('./sfx.mjs')]);const sfx=mountSfxBridge(game,project),combat=mountCombatBridge(game,{playSfx:sfx.play,stopSfx:sfx.stop}),meta=mountMetaBridge(game),archive=mountArchiveBridge(game,project,meta),experience=mountExperienceBridge(game,project),ui=mountUiBridge(game);window.addEventListener('pagehide',event=>{if(!event.persisted){ui.dispose();experience.dispose();archive.dispose();meta.dispose();combat.dispose();sfx.dispose();game.dispose();}});");
+  app = app.replace(pagehide, "const [{mountCombatBridge},{mountMetaBridge},{mountArchiveBridge},{mountExperienceBridge},{mountUiBridge},{mountSfxBridge},{mountDirectionBridge},{default:directionData}]=await Promise.all([import('./combat.mjs'),import('./meta.mjs'),import('./archive.mjs'),import('./experience.mjs'),import('./ui.mjs'),import('./sfx.mjs'),import('./direction.mjs'),import('./direction-data.mjs')]);const direction=mountDirectionBridge(game,project,directionData),sfx=mountSfxBridge(game,project),combat=mountCombatBridge(game,{playSfx:sfx.play,stopSfx:sfx.stop}),meta=mountMetaBridge(game),archive=mountArchiveBridge(game,project,meta),experience=mountExperienceBridge(game,project),ui=mountUiBridge(game,project);window.addEventListener('pagehide',event=>{if(!event.persisted){ui.dispose();experience.dispose();archive.dispose();meta.dispose();combat.dispose();sfx.dispose();direction.dispose();game.dispose();}});");
   const workerStart=app.indexOf("if('serviceWorker' in navigator)"), catchStart=app.indexOf('\ncatch(failure)',workerStart);
   if(workerStart<0||catchStart<0)throw new Error('Packaged PWA entry changed; review work-level registration');
   app=app.slice(0,workerStart)+"await (await import('./pwa.mjs')).registerGamePwa();}\n"+app.slice(catchStart);
@@ -119,7 +121,7 @@ async function injectGameRuntime(project) {
     version: project.version,
     engine: packagedManifest.engine,
     contentFingerprint: fingerprint,
-    extensions: ['reset-combat-v1', 'reset-meta-v1', 'reset-portrait-set-v1', 'reset-scene-art-v1', 'reset-archive-v1', 'reset-responsive-v1', 'reset-ui-key-visual-v1', 'reset-art-completeness-v1', 'reset-art-visual-gate-v1', 'reset-asset-schema-v1', 'reset-music-r1', 'reset-sfx-r1'],
+    extensions: ['reset-combat-v1', 'reset-meta-v1', 'reset-portrait-set-v1', 'reset-scene-art-v1', 'reset-archive-v1', 'reset-responsive-v1', 'reset-ui-key-visual-v1', 'reset-art-completeness-v1', 'reset-art-visual-gate-v1', 'reset-asset-schema-v1', 'reset-music-r1', 'reset-sfx-r1', 'reset-direction-r1'],
     files: finalFiles.map(file => ({ name: file.name, size: file.bytes.length, sha256: createHash('sha256').update(file.bytes).digest('hex') }))
   };
   await writeFile(resolve(output, 'build-manifest.json'), JSON.stringify(metadata, null, 2) + '\n');
@@ -138,9 +140,15 @@ for (const { pack } of (await loadContentPacks(root)).packs) project = applyPack
 const assetManifest = await loadAssetManifest(root);
 project = { ...project, assets: assetManifest.production };
 const audio = JSON.parse(await readFile(audioFile, 'utf8'));
+// R1 owns transitions; retire inherited full-stage flashes and shakes.
+const stage = mergeStage(project.stage,audio.stage);
+for (const group of ['defaults','scenes','lines']) {
+  if(group==='defaults')delete stage.defaults.effect;
+  else for(const [id,value] of Object.entries(stage[group])){stage[group][id]={...value};delete stage[group][id].effect;}
+}
 const buildProject = {
   ...project,
-  stage: mergeStage(project.stage, audio.stage),
+  stage,
   assets: [...project.assets, ...(audio.assets ?? [])]
 };
 await writeFile(buildProjectFile, JSON.stringify(buildProject, null, 2) + '\n');

@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "status": "PASS",
+  "baselineCommit": "cb3b7e92a2f7ad83cc176af6367ad8d958ebf537",
+  "retiredLegacyStageEffects": 10,
+  "canonicalScenesUnchanged": true,
+  "assetCatalogUnchanged": true,
+  "preserved": [
+    {
+      "path": "game/content/chapters/01.json",
+      "sha256": "ed0ba66402618d161ed42f08eec6e2e8525b0e220128b62d0ad2d59be43535bf"
+    },
+    {
+      "path": "game/content/chapters/02.json",
+      "sha256": "5be444e93860f82ffca87171e75d9d0acefa90afb548d67cd520b681054312ac"
+    },
+    {
+      "path": "game/content/chapters/03.json",
+      "sha256": "0039c5c90ed53f29961b7021bda9a333332dcb37f72c607c9d128ae095f9d570"
+    },
+    {
+      "path": "game/content/chapters/04.json",
+      "sha256": "f306bd854545a9495a781a88a0b8542c2c869559ff1ce30c11b6595905394f32"
+    },
+    {
+      "path": "game/content/chapters/05.json",
+      "sha256": "d5623f268adac2189ec118a0546fd1bbbd974922a3995d2fefc457ba7b0c6f56"
+    },
+    {
+      "path": "game/content/chapters/06.json",
+      "sha256": "f8c0807c76cebb1a24f90254d55dd06fc8fad9a8048ca8de716d5bde08cf1c90"
+    },
+    {
+      "path": "game/content/chapters/07.json",
+      "sha256": "5ebd737e75b106ea8910ab42fd2942b5fb9222a7d6ada831f6f2de504f9cb813"
+    },
+    {
+      "path": "ENGINE.lock.json",
+      "sha256": "1181c97645cdf09e447ef110e37565df6da54c8294fe4352ee4c1e0e2f0a2fa3"
+    },
+    {
+      "path": "game/assets/4k/visual-acceptance.json",
+      "sha256": "96dc1dcb0ec4a2a4858fe1a27428fbf12871da72f26bd1d8bad9241887965af7"
+    }
+  ]
+}

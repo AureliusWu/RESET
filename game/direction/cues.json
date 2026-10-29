@@ -1,0 +1,149 @@
+{
+  "schema": 1,
+  "revision": "direction-r1",
+  "suppressLegacyEffects": true,
+  "chapters": [
+    {
+      "id": 1,
+      "title": "雨夜存档点",
+      "subtitle": "18:42 / 回到开始"
+    },
+    {
+      "id": 2,
+      "title": "残响",
+      "subtitle": "被擦掉的出口"
+    },
+    {
+      "id": 3,
+      "title": "约定",
+      "subtitle": "没有发生过的约定"
+    },
+    {
+      "id": 4,
+      "title": "六条路线",
+      "subtitle": "把这一天交给谁"
+    },
+    {
+      "id": 5,
+      "title": "10月24日",
+      "subtitle": "锚点之前"
+    },
+    {
+      "id": 6,
+      "title": "不保存",
+      "subtitle": "不可逆"
+    },
+    {
+      "id": 7,
+      "title": "明天见",
+      "subtitle": "10月25日"
+    }
+  ],
+  "moods": {
+    "station_fourth": "tension",
+    "home_bad": "tension",
+    "chapter2_teaser": "anomaly",
+    "faceless_first": "tension",
+    "faceless_second": "tension",
+    "archive_photo": "memory",
+    "route_convergence": "memory",
+    "chapter5_gate": "tension",
+    "c5_city_desync": "anomaly",
+    "c5_1842": "quiet",
+    "chapter6_gate": "quiet",
+    "c6_no_save": "quiet",
+    "c6_walk_forward": "quiet",
+    "c6_echo_goodbye": "quiet",
+    "c6_last_door": "quiet",
+    "c7_morning": "release",
+    "c7_after": "release",
+    "c7_linwan": "release",
+    "c7_credits": "release"
+  },
+  "beats": {
+    "l002": {
+      "preset": "focus",
+      "sceneId": "linwan_shadow",
+      "text": "闪电照亮教室。她低头整理作业，而墙上的影子抬起了头。"
+    },
+    "n001": {
+      "preset": "shade",
+      "sceneId": "night_wucheng",
+      "text": "门外仍是梧城，却没有一辆车，也没有一个行人。远处钟楼停在18:42。"
+    },
+    "z002": {
+      "preset": "memory",
+      "sceneId": "chapter2_teaser",
+      "text": "有人记得你。"
+    },
+    "c2f001": {
+      "preset": "shade",
+      "sceneId": "faceless_first",
+      "text": "18:42。所有灯同时熄灭，又同时亮起。"
+    },
+    "c2f004": {
+      "preset": "impact",
+      "sceneId": "faceless_first",
+      "text": "它没有迈步，距离却瞬间缩短了一半。"
+    },
+    "c2l001": {
+      "preset": "rewrite",
+      "sceneId": "load_fifth",
+      "text": "读取完成。"
+    },
+    "c3d004": {
+      "preset": "focus",
+      "sceneId": "route_merge_message",
+      "text": "陈渡（已离线）：别让她们在18:42站成一排。"
+    },
+    "c3f001": {
+      "preset": "shutter",
+      "sceneId": "archive_photo",
+      "text": "18:42。快门声响起。没有人碰手机。"
+    },
+    "c3f004": {
+      "preset": "focus",
+      "sceneId": "archive_photo",
+      "text": "她们身后有七把椅子。第七把椅子上坐着一个被曝光抹白的人形。"
+    },
+    "c4m002": {
+      "preset": "focus",
+      "sceneId": "route_convergence",
+      "text": "2009年的第七个失踪者叫陈渡。"
+    },
+    "c5h001": {
+      "preset": "focus",
+      "sceneId": "c5_anchor_truth",
+      "text": "我找到2009年那页被裁掉的注释了。第七人不是失踪者。原文是“锚点”。"
+    },
+    "c5z008": {
+      "preset": "whiteout",
+      "sceneId": "c5_1842",
+      "text": "白光吞没站台。陈渡没有感到疼痛，只听见一个从游戏之外传来的提示音。"
+    },
+    "c6n002": {
+      "preset": "shade",
+      "sceneId": "c6_no_save",
+      "text": "警告：后续事件无法回退。"
+    },
+    "c6l005": {
+      "preset": "release",
+      "sceneId": "c6_last_door",
+      "text": "他推开门，没有再确认身后有什么。"
+    },
+    "c7c005": {
+      "preset": "settle",
+      "sceneId": "c7_credits",
+      "text": "TRUE END · 回留"
+    }
+  },
+  "quietLines": [
+    "c6w001"
+  ],
+  "limits": {
+    "maxFlashOpacity": 0.2,
+    "maxCameraPx": 2,
+    "maxScale": 1.012,
+    "maxBeatMs": 650
+  }
+}

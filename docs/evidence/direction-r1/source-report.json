@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "status": "PASS",
+  "revision": "direction-r1",
+  "scenes": 82,
+  "chapters": 7,
+  "beats": 15,
+  "moods": 19,
+  "sourceSha256": "a105e566601324ee050b5f5f127baeda8b0d91a2d6053a1755de4e64452d486f",
+  "packageFingerprint": "c6495e2b3d0fe9",
+  "limits": {
+    "maxFlashOpacity": 0.2,
+    "maxCameraPx": 2,
+    "maxScale": 1.012,
+    "maxBeatMs": 650
+  },
+  "physicalDevices": "NOT_RUN"
+}

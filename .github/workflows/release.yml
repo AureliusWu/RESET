@@ -77,6 +77,7 @@ jobs:
           npm run test:browser
           npm run test:music:browser
           npm run test:sfx:browser
+          npm run test:direction:browser
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -220,6 +221,7 @@ jobs:
           name: RESET-huiliu-v1.2.3-windows-validation
           path: |
             test-results/windows/host-policy.json
+            game-repo/test-results/direction-r1/*.json
             game-repo/test-results/sfx-r1/*.json
             game-repo/test-results/music-r1/*.json
             game-repo/test-results/windows-installed/*.json
