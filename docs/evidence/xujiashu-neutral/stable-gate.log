@@ -1,0 +1,20 @@
+PASS       linwan     林晚
+PASS       xiaoman    周小满
+PASS       xuqi       许栖
+PASS       tinglan    沈听澜
+PASS       tangli     唐梨
+PASS       nanxing    乔南星
+UNVERIFIED xujiashu   徐嘉树 — Native candidate uploaded; independent owner visual review pending.
+BLOCKED    chengyan   程妍 — Approved native replacement not yet supplied.
+BLOCKED    gumingyuan 顾明远 — Approved native replacement not yet supplied.
+BLOCKED    chenlan    陈岚 — Approved native replacement not yet supplied.
+BLOCKED    xurong     许蓉 — Approved native replacement not yet supplied.
+BLOCKED    luoxiumei  罗秀梅 — Approved native replacement not yet supplied.
+BLOCKED    suyao      苏遥 — Approved native replacement not yet supplied.
+BLOCKED    hechuan    何川 — Approved native replacement not yet supplied.
+BLOCKED    jiyao      纪尧 — Approved native replacement not yet supplied.
+BLOCKED    lincheng   林澄 — Approved native replacement not yet supplied.
+BLOCKED    shenyanqiu 沈砚秋 — Approved native replacement not yet supplied.
+BLOCKED    liangcheng 梁成 — Approved native replacement not yet supplied.
+Visual gate: BLOCKED; target=v1.2.1; package=1.2.2
+NO RELEASE: 12 character visual acceptance blocker(s): xujiashu, chengyan, gumingyuan, chenlan, xurong, luoxiumei, suyao, hechuan, jiyao, lincheng, shenyanqiu, liangcheng

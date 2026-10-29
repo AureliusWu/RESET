@@ -1,0 +1,180 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> reset-huiliu@1.2.2 build
+> node scripts/build.mjs && npm run art:check && npm run visual:r5:final
+
+Generated 14 loop-safe stereo score cues and 7 stereo SFX at 32000 Hz
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @aureliuswu/vn-engine-v2@0.3.0 build
+> tsc -p tsconfig.json
+
+{"output":"/workspace/scratch/e84cd2b2486a/RESET-upload/dist","files":137,"game":"reset","fingerprint":"656261cd4926fd"}
+回留 reset-v1.2.2 build completed with VN Engine v2 0.3.0 @ 15c101e0d2b2 + RESET combat/meta/canonical-asset runtime
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> reset-huiliu@1.2.2 art:check
+> npm run asset:schema && node scripts/check-art-integrity.mjs && node scripts/check-4k-production.mjs && npm run art:visual
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> reset-huiliu@1.2.2 asset:schema
+> node scripts/check-asset-schema.mjs
+
+{
+  "status": "asset-schema-r2-ok",
+  "staticProduction": 76,
+  "extras": 1,
+  "audio": 21,
+  "totalRuntimeAssets": 97
+}
+art integrity ok: 76 canonical production refs, 76 adopted 4K refs
+4K production pairing ok: 76 runtime asset(s), 18 adopted character(s), 5 UI key visual(s)
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> reset-huiliu@1.2.2 art:visual
+> node scripts/check-art-visual-gate.mjs
+
+PASS       linwan     林晚
+PASS       xiaoman    周小满
+PASS       xuqi       许栖
+PASS       tinglan    沈听澜
+PASS       tangli     唐梨
+PASS       nanxing    乔南星
+UNVERIFIED xujiashu   徐嘉树 — Native candidate uploaded; independent owner visual review pending.
+BLOCKED    chengyan   程妍 — Approved native replacement not yet supplied.
+BLOCKED    gumingyuan 顾明远 — Approved native replacement not yet supplied.
+BLOCKED    chenlan    陈岚 — Approved native replacement not yet supplied.
+BLOCKED    xurong     许蓉 — Approved native replacement not yet supplied.
+BLOCKED    luoxiumei  罗秀梅 — Approved native replacement not yet supplied.
+BLOCKED    suyao      苏遥 — Approved native replacement not yet supplied.
+BLOCKED    hechuan    何川 — Approved native replacement not yet supplied.
+BLOCKED    jiyao      纪尧 — Approved native replacement not yet supplied.
+BLOCKED    lincheng   林澄 — Approved native replacement not yet supplied.
+BLOCKED    shenyanqiu 沈砚秋 — Approved native replacement not yet supplied.
+BLOCKED    liangcheng 梁成 — Approved native replacement not yet supplied.
+Visual gate: BLOCKED; target=v1.2.1; package=1.2.2
+ART_BLOCKED is allowed only on the development line; stable release remains forbidden.
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> reset-huiliu@1.2.2 visual:r5:final
+> node scripts/check-r5-visual-coverage.mjs --final && npm run visual:r5:backgrounds && npm run visual:r5:cgs && npm run visual:r5:support && node scripts/check-r5-final-integration.mjs
+
+{
+  "status": "r5-visual-final-ok",
+  "scenes": 82,
+  "backgroundsCovered": 82,
+  "explicitCgScenes": 11,
+  "dialogueLines": 644,
+  "portraitLines": 222,
+  "runtimePortraitSpeakers": 8,
+  "deliberatelyNoPortraitLines": 422,
+  "pendingSupportingSpeakers": {},
+  "classifiedSpeakers": {
+    "？？？": 3,
+    "车站广播": 1,
+    "陈渡": 280,
+    "陈岚": 6,
+    "程妍": 15,
+    "第七人": 10,
+    "顾明远": 2,
+    "何川": 10,
+    "纪尧": 7,
+    "梁成": 18,
+    "林澄": 4,
+    "林晚": 40,
+    "罗秀梅": 2,
+    "旁白": 1517,
+    "乔南星": 30,
+    "沈听澜": 27,
+    "沈砚秋": 7,
+    "苏遥": 6,
+    "唐梨": 31,
+    "无面行人": 4,
+    "系统": 22,
+    "徐嘉树": 31,
+    "许栖": 44,
+    "许蓉": 8,
+    "周小满": 36
+  }
+}
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> reset-huiliu@1.2.2 visual:r5:backgrounds
+> node scripts/check-r5-background-coverage.mjs
+
+{
+  "status": "r5-background-coverage-ok",
+  "scenes": 82,
+  "scenesWithExplicitProductionBackground": 82,
+  "coverage": "82/82",
+  "uniqueBackgroundsUsed": 20,
+  "plannedBackgrounds": 20,
+  "unusedPlannedBackgrounds": [],
+  "distribution": {
+    "archive-room": 4,
+    "cafeteria": 1,
+    "classroom-dawn": 2,
+    "classroom-rain": 3,
+    "home-corridor": 2,
+    "night-art-room": 2,
+    "night-wucheng": 7,
+    "north-station": 11,
+    "old-art-room": 13,
+    "old-stationery": 3,
+    "riverside-dusk": 8,
+    "rooftop-evening": 6,
+    "save-room": 3,
+    "school-gate-evening": 2,
+    "school-gate-rain": 2,
+    "school-morning": 2,
+    "stairwell-morning": 1,
+    "station-night": 3,
+    "true-dawn": 1,
+    "underpass-rain": 6
+  }
+}
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> reset-huiliu@1.2.2 visual:r5:cgs
+> node scripts/check-r5-key-cg-coverage.mjs
+
+{
+  "status": "r5-key-cg-coverage-ok",
+  "existingKeyCgs": 5,
+  "routeEndingCgs": 6,
+  "productionGalleryCgs": 11,
+  "storyTriggeredCgs": 11,
+  "coverage": "11/11"
+}
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> reset-huiliu@1.2.2 visual:r5:support
+> node scripts/check-r5-supporting-cast.mjs
+
+{
+  "status": "supporting-portrait-quality-gate-ok",
+  "trackedSupportingCharacters": 12,
+  "directDialogueLinesCovered": 116,
+  "runtimePolicy": "approved-4k-original-or-hidden",
+  "legacyStylizedPortraitsVisible": 0
+}
+{
+  "status": "r5-final-visual-integration-ok",
+  "scenes": "82/82",
+  "approvedPortraitSpeakerMappings": "8/8",
+  "supportingCastTracked": "12/12",
+  "legacyStylizedSupportingPortraitsVisible": 0,
+  "portraitRuntimePolicy": "approved-4k-original-or-hidden",
+  "backgrounds": "82/82",
+  "keyCgs": "11/11",
+  "staticProductionVisuals": 76,
+  "productionPortraits": 45,
+  "productionBackgrounds": 20,
+  "productionCgs": 11,
+  "packagedRuntimeAssets": 97,
+  "missingRuntimeVisualAssets": 0,
+  "brokenVisualReferences": 0,
+  "placeholderOrFallbackProductionVisuals": 0,
+  "offlineCachedProductionVisuals": 76
+}

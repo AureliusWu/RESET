@@ -1,0 +1,89 @@
+{
+  "schema": 1,
+  "verifiedAt": "2026-10-29T01:09:45.128391+00:00",
+  "validatedCommit": "a167fb0d70fe45638213934a465721332eb22cbb",
+  "validatedGameTree": "7b9b1de991130bc8af2c2c8c4e2afc7960b09f90",
+  "engineCommit": "15c101e0d2b2c1e40dbc36d7a0c1a246d102b52c",
+  "transfer": "Work cloud browser file chooser, then Git tree existing-blob references",
+  "imageBase64ToolArguments": false,
+  "remoteReadback": "git fetch origin r8-xujiashu-neutral, canonical asset paths from commit 226704c3380bbe36d6949dbd2c8634579e733558, unchanged in validatedCommit",
+  "assets": [
+    {
+      "kind": "original",
+      "path": "game/art-sources/chatgpt/characters/xujiashu/neutral.png",
+      "sizeBytes": 931610,
+      "dimensions": [
+        941,
+        1672
+      ],
+      "mode": "RGBA",
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "sha256": "d8f1508e1f7974f7efd5cdf6a1512bcc8c31cf43f00c3744347decf04b556b5a",
+      "decoded": true
+    },
+    {
+      "kind": "master",
+      "path": "game/assets/4k/characters/xujiashu/neutral.png",
+      "sizeBytes": 2779588,
+      "dimensions": [
+        2160,
+        3840
+      ],
+      "mode": "RGBA",
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "sha256": "6894ef6088583daf27188cd27ad323e007ecc2985bcc6084e87b54ac9936b8e9",
+      "decoded": true
+    },
+    {
+      "kind": "runtime",
+      "path": "game/assets/4k/runtime/characters/xujiashu/neutral.webp",
+      "sizeBytes": 185514,
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "mode": "RGBA",
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "sha256": "cbc74d63768ab147ded207c1d4835d7ead1c7ae5800e8f2701d764cc80c86892",
+      "decoded": true
+    }
+  ],
+  "checks": {
+    "build": {
+      "exitCode": 0
+    },
+    "checkRelease": {
+      "exitCode": 0
+    },
+    "testRelease": {
+      "exitCode": 0,
+      "passed": 78,
+      "failed": 0
+    },
+    "browserAudit": {
+      "exitCode": 0,
+      "viewports": 4,
+      "offlineSpriteVerified": true,
+      "candidateProjectOverride": true
+    },
+    "stableArtGate": {
+      "exitCode": 2,
+      "expectedBlockers": 12
+    }
+  },
+  "buildManifestSHA256": "d67d2d797bcf14e1282ce40f472d981f3d8edeed747cdd9c14ab3120940ffe4a",
+  "artAcceptance": "UNVERIFIED",
+  "productionSpeakerMapping": "hidden",
+  "pagesDeployed": false,
+  "androidPhysicalDevice": false,
+  "windowsNative": false
+}
