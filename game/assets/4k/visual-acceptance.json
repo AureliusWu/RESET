@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "spec": "GALGAME SPEC v0.2",
-  "targetVersion": "R8 accepted candidate; next unpublished release version not frozen",
+  "targetVersion": "v1.2.3",
   "updated": "2026-10-29",
   "releaseGate": "PASS",
   "releaseBlocker": null,

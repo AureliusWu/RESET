@@ -1,6 +1,6 @@
-# R8 原生美术补齐候选进度
+# R8 原生美术补齐进度
 
-状态：原生素材 46/46 已入库；本轮授权 AI 模拟人工美术验收 12/12 PASS，最终包回归见当前 PR Checks。
+状态：原生素材 46/46 已入库；本轮授权 AI 模拟人工美术验收 12/12 PASS，v1.2.3 为本次发布目标，最终包回归见当前提交 Checks。
 
 ## 文件落地
 
@@ -32,9 +32,9 @@
 - `npm run build`、`npm run check:release` 为候选技术检查；`npm run check:stable` 保留人工验收门禁并严格要求全部原生资源。
 - `npm run test:art:r8` 从最终解压 Web 包检查图片解码、Alpha、82 场景背景、4 种视窗中的配角/异常体布局、真实离线哈希及 reload；输出 `test-results/r8-art/audit.json` 和截图。仅退出 0 与报告存在才可记技术通过。
 - Release 工作流在 PR / 普通开发提交执行候选技术验收、严格 `art:r8`、最终 Web ZIP 浏览器验收与 Windows 原生 ZIP 验收。正式发布提交在 Web/Windows 打包前仍强制 `check:stable`，publish 在任何 tag/Release 写入前再次校验已记录的授权视觉验收；PR 绿色只代表候选技术检查通过。
-- 既有完整 UI 候选 78/78 回归通过。本轮增加授权审核校验与剧情 CG 重复立绘回归，修改后的严格检查和最终包结果见当前 PR Checks；结束前不记通过。
+- 验收基线 2a10ed4 的 85/85 回归及最终 Web/Windows ZIP 已通过。本次 v1.2.3 增加 v1.2.2 存档与真实 PWA 升级验收，仍要求对应发布提交重新通过门禁。
 - 浏览器视窗模拟不等于 Android 实机或 Windows 原生验收；Windows CI 通过也不冒充实体 Windows/DPI 或 Android 实机签收。
-- 按 AGENTS.md / R8 发布边界：自动截图、Build、SHA256 不单独授予 ART_PASS；本轮根据用户明确授权完成 AI 模拟人工视觉审阅，详见 `R8_AI_REVIEW.md`。当前不覆盖稳定 tag、Release 或 Pages。
+- 按 AGENTS.md / R8 发布边界：自动截图、Build、SHA256 不单独授予 ART_PASS；本轮根据用户明确授权完成 AI 模拟人工视觉审阅，详见 `R8_AI_REVIEW.md`。用户随后授权“发布新版本”：v1.2.3 通过全部门禁后创建新 tag 与双平台 Release；Pages 从新公开 Web ZIP 升级，既有稳定 tag 和 Release 资产保持不可变。
 
 ## 已入库素材审核入口
 

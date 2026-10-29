@@ -6,10 +6,10 @@
 
 ## 当前状态
 
-- 当前稳定发行：**v1.2.1**
-- 故事版本：`reset-v1.2.1`
+- 当前稳定发行：**v1.2.3**
+- 故事版本：`reset-v1.2.3`
 - 剧情：主线、六角色 Normal End、关键 Bad End、True Route / True End 已闭环
-- 角色美术：六位角色 production 美术人工视觉 Gate **全部 PASS**
+- 角色美术：六位女主既有视觉 Gate **PASS**，12 名配角授权 AI 模拟人工验收 **PASS**
 - 引擎：`AureliusWu/VN-Engine-v2` v0.3.0
 - 锁定引擎提交：`15c101e0d2b2c1e40dbc36d7a0c1a246d102b52c`
 - 发布平台：**Web/PWA + Windows x64**
@@ -21,27 +21,24 @@
 TECH_READY != ART_READY
 ```
 
-技术完整性与人工视觉验收分别作为发布门禁；`game/assets/4k/visual-acceptance.json` 是角色视觉验收事实源。
+技术完整性与已记录的授权视觉验收分别作为发布门禁；`game/assets/4k/visual-acceptance.json` 是角色视觉验收事实源。
 
-## v1.2.1 修复重点
+## v1.2.3 更新重点
 
-- 标题页恢复为真实可交互 UI，提供明确的「进入游戏」入口。
-- 修复标题 Key Visual 覆盖剧情、导致底层控件无法交互的问题。
-- 修复 Android 竖屏与 844×390 横屏布局。
-- 移动端标题、剧情选项、工具栏与面板触控目标保持至少 44px。
-- 恢复桌面与 4K 宽屏布局，避免移动端修复影响桌面舞台比例。
-- 接入 Chromium `beforeinstallprompt`，可安装时显示「安装到设备」。
-- 保留 Service Worker 离线、同源升级、存档与 Meta 持久化。
-- 当前角色正式美术保持不变；本版本没有重绘已确认角色资产。
+- 完成 12 名配角、2 个异常体、8 张 CG、20 张专用背景与 5 张 UI 的原生美术来源链。
+- 12 名配角按用户授权完成 AI 模拟人工视觉验收并启用；陈岚正文 `noSprite` 保留，六位女主已批准图片保持不变。
+- 修复结局 CG 与普通立绘重复显示；离开 CG 后恢复正常立绘。
+- 保留 82 场景、全部剧情/存档/Meta/不可逆规则，故事版本更新为 `reset-v1.2.3`。
+- Web/PWA 与 Windows x64 同步发布，旧版存档受控升级；Pages 使用公开 Release 的原始 Web ZIP。
 
-完整说明见 [CHANGELOG_v1.2.1.md](CHANGELOG_v1.2.1.md)。
+完整说明见 [CHANGELOG_v1.2.3.md](CHANGELOG_v1.2.3.md)，视觉观察及授权见 [R8_AI_REVIEW.md](docs/R8_AI_REVIEW.md)。
 
 ## 下载与运行
 
-正式发行页：<https://github.com/AureliusWu/RESET/releases/tag/v1.2.1>
+正式发行页：<https://github.com/AureliusWu/RESET/releases/tag/v1.2.3>
 
-- Windows x64：`RESET-huiliu-v1.2.1-win-x64.zip`，完整解压后运行根目录 `RESET.exe`。需要 Windows 10/11 x64 与 Microsoft Edge WebView2 Runtime。
-- Web / PWA：`RESET-huiliu-v1.2.1-web.zip`，用 HTTPS 或 localhost 静态托管。首次联网等待“已下载，可离线游玩”后可离线重开。
+- Windows x64：`RESET-huiliu-v1.2.3-win-x64.zip`，完整解压后运行根目录 `RESET.exe`。需要 Windows 10/11 x64 与 Microsoft Edge WebView2 Runtime。
+- Web / PWA：`RESET-huiliu-v1.2.3-web.zip`，用 HTTPS 或 localhost 静态托管。首次联网等待“已下载，可离线游玩”后可离线重开。
 
 PWA 安装入口取决于浏览器 installability 判定。支持 `beforeinstallprompt` 的 Chromium 浏览器会在标题页显示「安装到设备」。
 
@@ -64,7 +61,7 @@ PWA 安装入口取决于浏览器 installability 判定。支持 `beforeinstall
 
 ## 存档兼容
 
-v1.2.1 受控接受并校验以下故事版本备份：
+v1.2.3 受控接受并校验以下故事版本备份：
 
 - `reset-v1.0.0`
 - `reset-v1.0.1`
@@ -74,13 +71,16 @@ v1.2.1 受控接受并校验以下故事版本备份：
 - `reset-v1.2.0-rc.2`
 - `reset-v1.2.0`
 - `reset-v1.2.1-dev`
+- `reset-v1.2.1`
+- `reset-v1.2.2`
 
 升级只修改加载到会话中的版本标记，不原地改写用户备份，并继续经过引擎路线校验。
 
 ## 美术与音频
 
-- 六位角色 production 美术：PASS
-- 20 个主要背景、关键 CG、异常体 / Boss 继续使用 4K master/runtime 体系
+- 六位女主既有 production 美术及 12 名配角授权视觉验收：PASS
+- 45 立绘、40 背景、11 CG，加 21 音频共 117 项 runtime assets；5 张 UI 装饰资源另计
+- 保留 original、4K master、runtime WebP 与来源哈希；放大母版不声明 native 4K
 - UI Key Visual 只作为装饰视觉，不得覆盖核心可玩 UI
 - 独立作品品牌、Chapter 01–07 章节卡、Q 版角色记忆与剧情道具视觉
 - 原创程序音乐 / 音效在构建时统一归一化与软限幅

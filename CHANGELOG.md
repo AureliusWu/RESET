@@ -2,12 +2,18 @@
 
 本文件记录《回留 / RESET》主线版本演进。已经发布的历史版本细节由对应 Git tag / GitHub Release 永久保存；主分支不再重复保留每个历史版本的独立 Changelog 文件。
 
-## Unreleased — R8 徐嘉树 neutral 候选
+## 1.2.3 — R8 原生美术与双平台发布
 
-- 首张 ChatGPT 原生徐嘉树立绘以真实 PNG / WebP 入库，保留原图、处理脚本、提示词、规格与哈希来源链；processed master 不声明 native 4K。
-- 配角映射按具体文件的 owner 视觉验收逐个启用，未批准候选继续隐藏；自动技术检查不能替代人工 PASS。
-- 增加徐嘉树全身构图的稳定阅读区、真实剧情候选四视口和离线字节检查。
-- 当前不创建稳定版本、不部署 Pages；R8 全部配角与平台门禁仍待完成。
+- 12 名配角完成用户授权的 AI 模拟人工审核并启用；全部 47 个原生美术来源链入库，包含新背景、异常体、CG 与 UI。
+- 修复 CG 重复立绘和审计标题截图时序；保留既有女主图片、正文 noSprite 与存档/Meta/不可逆规则。
+- Web/PWA 与 Windows x64 同步提供，v1.2.2 存档加入受控升级；实际公开 v1.2.2 PWA 的同源升级和离线重载纳入最终包验收。
+- 85 项回归、严格视觉/来源链、同 SHA Build / Web ZIP / Windows ZIP 门禁后发布；Pages 使用公开 Release 原 ZIP。
+- 详细说明见 [CHANGELOG_v1.2.3.md](CHANGELOG_v1.2.3.md)。
+
+## 1.2.2 — Visual Coverage Web/PWA
+
+- R5 配角、82 场景背景和路线 CG 覆盖进入 Web/PWA 正式发行；保留原 v1.2.1 Windows 包。
+- 历史发布详情见 [CHANGELOG_v1.2.2.md](CHANGELOG_v1.2.2.md) 与对应不可变 Release。
 
 ## 1.2.1 — Mobile shell and PWA recovery
 

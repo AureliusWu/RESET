@@ -97,10 +97,10 @@ jobs:
             game-repo/test-results/r8-art
             game-repo/docs/evidence/r8-native-art/source-audit.json
           if-no-files-found: warn
-      - name: Verify v1.2.2 release content
+      - name: Verify v1.2.3 release content
         working-directory: game-repo
         run: |
-          node -e "const m=require('./dist/build-manifest.json'); const p=require('./dist/project.json'); if(m.game!=='reset'||m.version!=='reset-v1.2.2'||p.version!=='reset-v1.2.2') process.exit(1); if(!m.extensions.includes('reset-art-visual-gate-v1')||!m.extensions.includes('reset-asset-schema-v1')) process.exit(2); if(!p.scenes.some(s=>s.ending==='true-end')||p.assets.length!==117) process.exit(3)"
+          node -e "const m=require('./dist/build-manifest.json'); const p=require('./dist/project.json'); if(m.game!=='reset'||m.version!=='reset-v1.2.3'||p.version!=='reset-v1.2.3') process.exit(1); if(!m.extensions.includes('reset-art-visual-gate-v1')||!m.extensions.includes('reset-asset-schema-v1')) process.exit(2); if(!p.scenes.some(s=>s.ending==='true-end')||p.assets.length!==117) process.exit(3)"
           test -f dist/index.html
           test -f dist/project.json
           test -f dist/sw.js
@@ -109,5 +109,5 @@ jobs:
       - name: Upload standalone candidate build
         uses: actions/upload-artifact@v4
         with:
-          name: RESET-huiliu-v1.2.2-candidate
+          name: RESET-huiliu-v1.2.3-candidate
           path: game-repo/dist
