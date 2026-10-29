@@ -1,0 +1,104 @@
+{
+  "schema": 1,
+  "sampleRate": 32000,
+  "peakCeilingDbfs": -11,
+  "provenance": "Original procedural sound design; no third-party samples, recordings or soundfonts.",
+  "runtime": {
+    "maxVoices": 2,
+    "gain": 0.5,
+    "minIntervalMs": 80
+  },
+  "cues": [
+    {
+      "id": "sfx-memory-ping",
+      "title": "记忆残响",
+      "design": "bell",
+      "duration": 0.42,
+      "attack": 0.004,
+      "decay": 7,
+      "pitch": 880,
+      "endPitch": 660,
+      "noise": 0.008,
+      "seed": 11,
+      "pan": -0.08
+    },
+    {
+      "id": "sfx-load",
+      "title": "世界重写",
+      "design": "rewrite",
+      "duration": 0.72,
+      "attack": 0.008,
+      "decay": 4.5,
+      "pitch": 180,
+      "endPitch": 720,
+      "noise": 0.12,
+      "seed": 12,
+      "pan": 0.12
+    },
+    {
+      "id": "sfx-impact",
+      "title": "异常体冲击",
+      "design": "impact",
+      "duration": 0.24,
+      "attack": 0.002,
+      "decay": 18,
+      "pitch": 140,
+      "endPitch": 48,
+      "noise": 0.6,
+      "seed": 13,
+      "pan": 0
+    },
+    {
+      "id": "sfx-dodge",
+      "title": "闪避掠风",
+      "design": "whoosh",
+      "duration": 0.2,
+      "attack": 0.004,
+      "decay": 13,
+      "pitch": 780,
+      "endPitch": 240,
+      "noise": 0.45,
+      "seed": 14,
+      "pan": 0.3
+    },
+    {
+      "id": "sfx-camera-self",
+      "title": "异常自拍快门",
+      "design": "shutter",
+      "duration": 0.16,
+      "attack": 0.0025,
+      "decay": 30,
+      "pitch": 1600,
+      "endPitch": 900,
+      "noise": 0.65,
+      "seed": 15,
+      "pan": -0.05
+    },
+    {
+      "id": "sfx-message-future",
+      "title": "未来消息",
+      "design": "message",
+      "duration": 0.38,
+      "attack": 0.003,
+      "decay": 9,
+      "pitch": 659.25,
+      "endPitch": 987.77,
+      "noise": 0.003,
+      "seed": 16,
+      "pan": 0.1
+    },
+    {
+      "id": "sfx-door-ghost",
+      "title": "不存在的门",
+      "design": "door",
+      "duration": 0.88,
+      "attack": 0.012,
+      "decay": 4.8,
+      "pitch": 92,
+      "endPitch": 38,
+      "noise": 0.32,
+      "seed": 17,
+      "pan": -0.18
+    }
+  ]
+}
