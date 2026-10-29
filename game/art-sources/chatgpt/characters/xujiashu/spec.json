@@ -1,0 +1,293 @@
+{
+  "schema": 1,
+  "character": "xujiashu",
+  "name": "徐嘉树",
+  "expression": "neutral",
+  "sourceCommit": "1c3f9cb4db7b44cb837d0831fbf83c078dc7ea05",
+  "canon": {
+    "age": 17,
+    "gender": "male",
+    "relationship": "陈渡同桌兼朋友",
+    "club": "篮球队替补",
+    "personality": "嘴快、怕麻烦，关键时刻不会把朋友独自扔下",
+    "visualAnchors": [
+      "普通男高中生",
+      "运动感"
+    ]
+  },
+  "designProposal": {
+    "status": "pending owner visual review",
+    "hair": "short slightly tousled dark hair",
+    "outfit": "navy school track jacket, ivory collared shirt, straight dark trousers, white trainers",
+    "prop": "one basketball",
+    "pose": "relaxed standing, closed-mouth neutral attentive expression"
+  },
+  "artDirection": {
+    "medium": "polished Japanese 2D visual novel",
+    "linework": "clean fine lines",
+    "shading": "restrained cel shading with soft gradients",
+    "palette": "muted natural school palette",
+    "framing": "complete full body with hands and feet uncropped",
+    "alpha": true
+  },
+  "outputTargets": {
+    "master": [
+      2160,
+      3840
+    ],
+    "runtime": [
+      1080,
+      1920
+    ],
+    "native4kClaim": false
+  },
+  "sourceDocuments": [
+    {
+      "path": "docs/CAST_BIBLE_R1.md",
+      "sha256": "b9c10ae8ebcd9f0f6e951a3346e9d8556e26d84c5bb917729661c47b9bd46069"
+    },
+    {
+      "path": "docs/R8_ART_RECONSTRUCTION.md",
+      "sha256": "9ece7e2795e6f941fafcd972aaf2aec65171d7adea89e39e8565b44dbd9efa21"
+    },
+    {
+      "path": "docs/ART_DIRECTION.md",
+      "sha256": "c445e462b1d22e873bb14e3bcc778c418c8e9f0d25ebcff742ecc8fee7e3db83"
+    },
+    {
+      "path": "game/visual/r5-supporting-cast-plan.json",
+      "sha256": "589c1c96d1c10866b4a58514e5854291ba5c850631b60bc5b9ebf97aa4445516"
+    }
+  ],
+  "styleReferences": [
+    {
+      "path": "game/assets/4k/runtime/characters/linwan/neutral.webp",
+      "sha256": "647e828dbb6f3c05d540cb998a4a128bfa8b80b5087f6628b89f409b59cf925a",
+      "use": "visually inspected style guide only, not image input"
+    },
+    {
+      "path": "game/assets/4k/runtime/characters/xuqi/neutral.webp",
+      "sha256": "6abafd9c28625ce4fe8a08c914684d0e14abced6a89adf8c9caaf1b529f82011",
+      "use": "visually inspected style guide only, not image input"
+    }
+  ],
+  "dialogueEvidence": [
+    {
+      "path": "game/content/chapters/01.json",
+      "scene": "prologue_1842",
+      "line": "r1_prologue_1842_pre03_01",
+      "text": "你这几天神出鬼没得跟欠了全班作业似的。真出事就说，别每次都用“没事”打发人。",
+      "noSprite": true
+    },
+    {
+      "path": "game/content/chapters/01.json",
+      "scene": "prologue_1842",
+      "line": "r1_prologue_1842_key01_01",
+      "text": "伞给你。我妈今天来接我，少一把没事。你别又说“不用”，上次你淋回去第二天嗓子都哑了。",
+      "noSprite": true
+    },
+    {
+      "path": "game/content/chapters/01.json",
+      "scene": "after_school_choice",
+      "line": "r1_after_school_choice_pre03_01",
+      "text": "我不懂你们在查什么，但你要是突然失联，至少给我留一句能看懂的话。",
+      "noSprite": true
+    },
+    {
+      "path": "game/content/chapters/01.json",
+      "scene": "night_wucheng",
+      "line": "r1_night_wucheng_pre03_01",
+      "text": "我不懂你们在查什么，但你要是突然失联，至少给我留一句能看懂的话。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/01.json",
+      "scene": "morning_after",
+      "line": "r1_morning_after_pre03_01",
+      "text": "你这几天神出鬼没得跟欠了全班作业似的。真出事就说，别每次都用“没事”打发人。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/01.json",
+      "scene": "morning_after",
+      "line": "r1_morning_after_key02_01",
+      "text": "你举不举手？我看你脸色像在站里住了一晚。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/01.json",
+      "scene": "morning_after",
+      "line": "r1_morning_after_key04_01",
+      "text": "你每次说“回头”，就等于没打算说。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/01.json",
+      "scene": "rooftop_warning",
+      "line": "r1_rooftop_warning_pre03_01",
+      "text": "你这几天神出鬼没得跟欠了全班作业似的。真出事就说，别每次都用“没事”打发人。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/02.json",
+      "scene": "chapter2_teaser",
+      "line": "r1_chapter2_teaser_pre03_01",
+      "text": "我不懂你们在查什么，但你要是突然失联，至少给我留一句能看懂的话。",
+      "noSprite": true
+    },
+    {
+      "path": "game/content/chapters/02.json",
+      "scene": "residue_homeroom",
+      "line": "r1_residue_homeroom_pre03_01",
+      "text": "你这几天神出鬼没得跟欠了全班作业似的。真出事就说，别每次都用“没事”打发人。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/02.json",
+      "scene": "faceless_first",
+      "line": "r1_faceless_first_pre03_01",
+      "text": "我不懂你们在查什么，但你要是突然失联，至少给我留一句能看懂的话。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/02.json",
+      "scene": "faceless_pattern",
+      "line": "r1_faceless_pattern_pre03_01",
+      "text": "我不懂你们在查什么，但你要是突然失联，至少给我留一句能看懂的话。",
+      "noSprite": true
+    },
+    {
+      "path": "game/content/chapters/02.json",
+      "scene": "death_fifth",
+      "line": "r1_death_fifth_pre03_01",
+      "text": "我不懂你们在查什么，但你要是突然失联，至少给我留一句能看懂的话。",
+      "noSprite": true
+    },
+    {
+      "path": "game/content/chapters/02.json",
+      "scene": "load_fifth",
+      "line": "r1_load_fifth_pre03_01",
+      "text": "你这几天神出鬼没得跟欠了全班作业似的。真出事就说，别每次都用“没事”打发人。",
+      "noSprite": true
+    },
+    {
+      "path": "game/content/chapters/02.json",
+      "scene": "faceless_second",
+      "line": "r1_faceless_second_pre03_01",
+      "text": "我不懂你们在查什么，但你要是突然失联，至少给我留一句能看懂的话。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/02.json",
+      "scene": "death_sixth",
+      "line": "r1_death_sixth_pre03_01",
+      "text": "我不懂你们在查什么，但你要是突然失联，至少给我留一句能看懂的话。",
+      "noSprite": true
+    },
+    {
+      "path": "game/content/chapters/02.json",
+      "scene": "breakthrough_first",
+      "line": "r1_breakthrough_first_pre03_01",
+      "text": "我不懂你们在查什么，但你要是突然失联，至少给我留一句能看懂的话。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/03.json",
+      "scene": "route_method_choice",
+      "line": "r1_route_method_choice_pre03_01",
+      "text": "你这几天神出鬼没得跟欠了全班作业似的。真出事就说，别每次都用“没事”打发人。",
+      "noSprite": true
+    },
+    {
+      "path": "game/content/chapters/03.json",
+      "scene": "six_person_meeting",
+      "line": "r1_six_person_meeting_pre03_01",
+      "text": "你这几天神出鬼没得跟欠了全班作业似的。真出事就说，别每次都用“没事”打发人。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/04.json",
+      "scene": "route_focus_choice",
+      "line": "r1_route_focus_choice_pre03_01",
+      "text": "你这几天神出鬼没得跟欠了全班作业似的。真出事就说，别每次都用“没事”打发人。",
+      "noSprite": true
+    },
+    {
+      "path": "game/content/chapters/04.json",
+      "scene": "route_convergence",
+      "line": "r1_route_convergence_pre03_01",
+      "text": "你这几天神出鬼没得跟欠了全班作业似的。真出事就说，别每次都用“没事”打发人。",
+      "noSprite": true
+    },
+    {
+      "path": "game/content/chapters/05.json",
+      "scene": "c5_team_morning",
+      "line": "r1_c5_team_morning_pre03_01",
+      "text": "你这几天神出鬼没得跟欠了全班作业似的。真出事就说，别每次都用“没事”打发人。",
+      "noSprite": true
+    },
+    {
+      "path": "game/content/chapters/05.json",
+      "scene": "c5_city_desync",
+      "line": "r1_c5_city_desync_pre03_01",
+      "text": "我不懂你们在查什么，但你要是突然失联，至少给我留一句能看懂的话。",
+      "noSprite": true
+    },
+    {
+      "path": "game/content/chapters/06.json",
+      "scene": "chapter6_gate",
+      "line": "r1_chapter6_gate_pre03_01",
+      "text": "我不懂你们在查什么，但你要是突然失联，至少给我留一句能看懂的话。",
+      "noSprite": true
+    },
+    {
+      "path": "game/content/chapters/06.json",
+      "scene": "c6_save_again",
+      "line": "r1_c6_save_again_pre03_01",
+      "text": "我不懂你们在查什么，但你要是突然失联，至少给我留一句能看懂的话。",
+      "noSprite": true
+    },
+    {
+      "path": "game/content/chapters/06.json",
+      "scene": "c6_no_save",
+      "line": "r1_c6_no_save_pre03_01",
+      "text": "我不懂你们在查什么，但你要是突然失联，至少给我留一句能看懂的话。",
+      "noSprite": true
+    },
+    {
+      "path": "game/content/chapters/06.json",
+      "scene": "c6_echo_goodbye",
+      "line": "r1_c6_echo_goodbye_pre03_01",
+      "text": "你这几天神出鬼没得跟欠了全班作业似的。真出事就说，别每次都用“没事”打发人。",
+      "noSprite": false
+    },
+    {
+      "path": "game/content/chapters/06.json",
+      "scene": "c6_last_door",
+      "line": "r1_c6_last_door_pre03_01",
+      "text": "你这几天神出鬼没得跟欠了全班作业似的。真出事就说，别每次都用“没事”打发人。",
+      "noSprite": true
+    },
+    {
+      "path": "game/content/chapters/07.json",
+      "scene": "c7_after",
+      "line": "r1_c7_after_pre03_01",
+      "text": "你这几天神出鬼没得跟欠了全班作业似的。真出事就说，别每次都用“没事”打发人。",
+      "noSprite": true
+    },
+    {
+      "path": "game/content/chapters/07.json",
+      "scene": "c7_after",
+      "line": "r1_c7_after_key02_01",
+      "text": "听见没，拯救世界不抵一张请假条。",
+      "noSprite": true
+    },
+    {
+      "path": "game/content/chapters/07.json",
+      "scene": "c7_credits",
+      "line": "r1_c7_credits_pre03_01",
+      "text": "我不懂你们在查什么，但你要是突然失联，至少给我留一句能看懂的话。",
+      "noSprite": true
+    }
+  ]
+}

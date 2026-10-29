@@ -2,24 +2,72 @@
   "schema": 1,
   "character": "xujiashu",
   "name": "徐嘉树",
-  "sourceType": "chatgpt-authored-procedural-raster-illustration",
-  "visualTier": "supporting-cast-stylized-bust",
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "chatgpt-original-to-processed-4k-master",
   "native4kClaim": false,
-  "designPlan": "game/visual/r5-supporting-cast-plan.json",
+  "generationDate": "2026-10-28",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-122f0b47-0db5-49de-9dd6-dd78b58eb7f3.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output. Original recovered byte-for-byte after a workspace reset; original SHA256 unchanged. Model, seed and request ID were not exposed. No API, Runway, SVG or procedural character drawing.",
+  "prompt": "game/art-sources/chatgpt/characters/xujiashu/prompt-neutral.txt",
+  "promptSHA256": "5e44dce0b1a0590b9408a0894f8989c19a3dddaa917a9d4deed2c36cab13deb8",
+  "spec": "game/art-sources/chatgpt/characters/xujiashu/spec.json",
+  "specSHA256": "672d032c77566f0132e91802a682cd649063882f381b368257967aa728be8b1c",
+  "processing": {
+    "script": "scripts/prepare-xujiashu-neutral.py",
+    "pillow": "12.3.0",
+    "cropBounds": [
+      150,
+      8,
+      702,
+      1660
+    ],
+    "framingAlphaThreshold": 8,
+    "masterCanvas": [
+      2160,
+      3840
+    ],
+    "scaledSize": [
+      1203,
+      3600
+    ],
+    "offset": [
+      478,
+      130
+    ],
+    "resize": "premultiplied-alpha Lanczos",
+    "runtimeEncoder": {
+      "format": "WebP",
+      "quality": 92,
+      "method": 6,
+      "exact": true
+    }
+  },
   "assets": [
     {
       "expression": "neutral",
       "original": "game/art-sources/chatgpt/characters/xujiashu/neutral.png",
-      "originalSHA256": "f176658f2020cc6386c1ccc7436a7ca1eca545ca96f95377f629e88a45425d74",
       "originalSize": [
+        941,
+        1672
+      ],
+      "originalSHA256": "d8f1508e1f7974f7efd5cdf6a1512bcc8c31cf43f00c3744347decf04b556b5a",
+      "master": "game/assets/4k/characters/xujiashu/neutral.png",
+      "masterSize": [
+        2160,
+        3840
+      ],
+      "masterSHA256": "6894ef6088583daf27188cd27ad323e007ecc2985bcc6084e87b54ac9936b8e9",
+      "runtime": "game/assets/4k/runtime/characters/xujiashu/neutral.webp",
+      "runtimeSize": [
         1080,
         1920
       ],
-      "master": "game/assets/4k/characters/xujiashu/neutral.png",
-      "masterSHA256": "eb124a8555e8c5fbac4af9fa7c08e81ea8bd47413a703e51b84ffa7be12a5061",
-      "runtime": "game/assets/4k/runtime/characters/xujiashu/neutral.webp",
-      "runtimeSHA256": "4d2af7e30a41d27c8ebcc9d1237220f48ca50aed40a501aa972b58e3c523db7e",
-      "lockedBodySHA256": "f176658f2020cc6386c1ccc7436a7ca1eca545ca96f95377f629e88a45425d74"
+      "runtimeSHA256": "cbc74d63768ab147ded207c1d4835d7ead1c7ae5800e8f2701d764cc80c86892",
+      "lockedBodySHA256": "4c66c300c2c74fa0eb6fd0535355ea2c2eed7ad9e5bd16352f63b78b60915d3b"
     }
   ]
 }
