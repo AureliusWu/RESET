@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "id": "route-xiaoman-end-cg",
+  "name": "今天别重来",
+  "kind": "cg",
+  "scene": "end_xiaoman",
+  "canon": {
+    "path": "game/content/chapters/04.json",
+    "title": "周小满 · 今天别重来",
+    "location": "学校天台",
+    "time": "10月24日 18:43",
+    "dialogue": [
+      {
+        "id": "r1_end_xiaoman_pre04_01",
+        "speaker": "周小满",
+        "text": "知道啦。等我把这件更离谱的事处理完。"
+      },
+      {
+        "id": "e4x001",
+        "speaker": "周小满",
+        "text": "十八点四十二分过了。你看，我们什么都没做。"
+      },
+      {
+        "id": "r1_end_xiaoman_post01_01",
+        "speaker": "陈渡",
+        "text": "这页到这里就够了。关于周小满，不用再写一个能把一切解释完的结论。"
+      },
+      {
+        "id": "r1_end_xiaoman_post08_01",
+        "speaker": "陈渡",
+        "text": "把徐嘉树和顾明远也记进去。不是因为他们掌握答案，是因为如果我们的选择伤到普通人的生活，那也必须算在结果里。"
+      }
+    ]
+  },
+  "designProposal": "10月24日18:43的学校天台，周小满在左侧中景，收起手机、另一只手抱着尚未完成的社团海报画纸（画纸仅有无文字的色块草图），对陈渡释然又俏皮地微笑，手指有一点颜料。身后是安全围栏、屋顶水箱、普通城市夕色。",
+  "references": [
+    "game/assets/4k/runtime/cg/route-xiaoman-end-cg.webp",
+    "game/assets/4k/runtime/characters/xiaoman/smile.webp"
+  ],
+  "characterIdentityMustMatch": "xiaoman",
+  "reviewStatus": "UNVERIFIED",
+  "native4kClaim": false
+}

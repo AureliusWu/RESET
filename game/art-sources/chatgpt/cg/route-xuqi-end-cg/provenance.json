@@ -1,26 +1,54 @@
 {
   "schema": 1,
-  "assetId": "route-xuqi-end-cg",
-  "sourceType": "deterministic-composite-from-approved-production-art",
+  "character": null,
+  "name": "留在被放弃的世界",
+  "category": "cg",
+  "id": "route-xuqi-end-cg",
+  "sourceType": "chatgpt-native-imagegen",
+  "generator": "ChatGPT native image_gen.imagegen",
+  "workflow": "native-file-to-processed-master-and-WebP",
   "native4kClaim": false,
-  "inputs": {
-    "background": "game/assets/4k/backgrounds/night-wucheng.png",
-    "portrait": "game/assets/4k/characters/xuqi/serious.png",
-    "ending": "normal-xuqi",
-    "scene": "end_xuqi"
+  "generationDate": "2026-10-29",
+  "generationTimePrecision": "day",
+  "toolOutputFilename": "exec-89d5920a-bf70-46ac-b80a-51810aefe2e6.png",
+  "toolModel": null,
+  "toolRequestId": null,
+  "evidenceNote": "Actual native image_gen output retained unchanged. No API, Runway, vector raster or procedural illustration. Processed master is resized and framed, not claimed native 4K.",
+  "prompt": "game/art-sources/chatgpt/cg/route-xuqi-end-cg/prompt.txt",
+  "promptSHA256": "9adaaecd5ee9deb61f814651b2d8f9186b7c99dc3a5fd6fd2020ff12667bd06d",
+  "spec": "game/art-sources/chatgpt/cg/route-xuqi-end-cg/spec.json",
+  "specSHA256": "e07e065dbcb2680cd48418368bd2bbeaeb77abcf3ba77289f2b57225f27fd884",
+  "processing": {
+    "script": "scripts/prepare-r8-native-art.py",
+    "pillow": "12.3.0",
+    "resize": "aspect-fill Lanczos",
+    "sourceSize": [
+      1672,
+      941
+    ]
   },
   "assets": [
     {
-      "original": "game/art-sources/chatgpt/cg/route-xuqi-end-cg/original.png",
-      "originalSHA256": "8b0d63a6c2ccec57a4cfe03dff05a93e64ca9044e5045592843698e7de40ea87",
+      "expression": "route-xuqi-end-cg",
       "originalSize": [
+        1672,
+        941
+      ],
+      "original": "game/art-sources/chatgpt/cg/route-xuqi-end-cg/original.png",
+      "originalSHA256": "e0e8d745c233da4dcf9b6c5123c0f024b229b92bf7f52e9958f0d3745e440f4e",
+      "masterSize": [
+        3840,
+        2160
+      ],
+      "master": "game/assets/4k/cg/route-xuqi-end-cg.png",
+      "masterSHA256": "220a8c672817e2c07df7810c180fb3c68e33e2481915a77f6915df660b181dfb",
+      "runtimeSize": [
         1920,
         1080
       ],
-      "master": "game/assets/4k/cg/route-xuqi-end-cg.png",
-      "masterSHA256": "d0f49ef79c7cf27a7c3e2067aa8e65bc24be80c49f8b33c080d8705ad2c393cf",
       "runtime": "game/assets/4k/runtime/cg/route-xuqi-end-cg.webp",
-      "runtimeSHA256": "3148cf0829b06dbe96a6ae12020fb44d8b32d291b2da1da9d7b0f7192707de8c"
+      "runtimeSHA256": "3e2d57ee8ee58a81b3201cfb2d2f367ee5e70bd29fafa0d30c9738d333eeb3d6"
     }
-  ]
+  ],
+  "recoveryNote": "Binary originals and derivatives recovered unchanged from GitHub upload commit 065ac5a; prompt/spec reconstructed from producing-turn record after scratch reset. Native output filename and source hash match original tool output."
 }

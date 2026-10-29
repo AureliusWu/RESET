@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "id": "route-xuqi-end-cg",
+  "name": "留在被放弃的世界",
+  "kind": "cg",
+  "scene": "end_xuqi",
+  "canon": {
+    "path": "game/content/chapters/04.json",
+    "title": "许栖 · 留在被放弃的世界",
+    "location": "夜梧城·钟楼下",
+    "time": "永远的18:42",
+    "dialogue": [
+      {
+        "id": "r1_end_xuqi_pre04_01",
+        "speaker": "许栖",
+        "text": "那就别让那页被撕掉。现实里有人记得，比我在里面多走一条路重要。"
+      },
+      {
+        "id": "e4q001",
+        "speaker": "许栖",
+        "text": "这里不会天亮。可至少不会有人再忘记我们。"
+      },
+      {
+        "id": "r1_end_xuqi_post01_01",
+        "speaker": "陈渡",
+        "text": "这页到这里就够了。关于许栖，不用再写一个能把一切解释完的结论。"
+      },
+      {
+        "id": "r1_end_xuqi_post08_01",
+        "speaker": "陈渡",
+        "text": "把顾明远和陈岚也记进去。不是因为他们掌握答案，是因为如果我们的选择伤到普通人的生活，那也必须算在结果里。"
+      }
+    ]
+  },
+  "designProposal": "永远18:42的夜梧城钟楼下，许栖在右侧前景，清醒坚定而带一丝孤独，手心有一把普通钥匙。蓝灰安静街道、老钟楼、商店亮着但没有行人，微弱紫蓝异常边缘，不是赛博霓虹。钟盘指针约18:42，不要求文字数字。",
+  "references": [
+    "game/assets/4k/runtime/cg/route-xuqi-end-cg.webp",
+    "game/assets/4k/runtime/characters/xuqi/serious.webp"
+  ],
+  "characterIdentityMustMatch": "xuqi",
+  "reviewStatus": "UNVERIFIED",
+  "native4kClaim": false
+}

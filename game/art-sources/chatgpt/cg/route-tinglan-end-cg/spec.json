@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "id": "route-tinglan-end-cg",
+  "name": "未归档的人",
+  "kind": "cg",
+  "scene": "end_tinglan",
+  "canon": {
+    "path": "game/content/chapters/04.json",
+    "title": "沈听澜 · 未归档的人",
+    "location": "市档案馆",
+    "time": "10月24日 18:43",
+    "dialogue": [
+      {
+        "id": "e4t001",
+        "speaker": "沈听澜",
+        "text": "我给你留了一页空白。没有编号，也没有结论。"
+      },
+      {
+        "id": "e4t002",
+        "speaker": "陈渡",
+        "text": "这不符合你的习惯。"
+      },
+      {
+        "id": "e4t003",
+        "speaker": "沈听澜",
+        "text": "人总该有一点不被记录定义的地方。"
+      },
+      {
+        "id": "r1_end_tinglan_post01_01",
+        "speaker": "陈渡",
+        "text": "这页到这里就够了。关于沈听澜，不用再写一个能把一切解释完的结论。"
+      },
+      {
+        "id": "r1_end_tinglan_post08_01",
+        "speaker": "陈渡",
+        "text": "把苏遥和梁成也记进去。不是因为他们掌握答案，是因为如果我们的选择伤到普通人的生活，那也必须算在结果里。"
+      }
+    ]
+  },
+  "designProposal": "10月24日18:43的市档案馆纸本文献工作室，沈听澜在画面左侧坐在宽桌旁，把一页没有编号、没有结论的空白纸轻轻推向镜头外的陈渡，表情安静而有温度。旧卷宗、修复纸张工具、棉手套和暖台灯，深处金属档案柜，自然傍晚窗光，纸上无文字。",
+  "references": [
+    "game/assets/4k/runtime/cg/route-tinglan-end-cg.webp",
+    "game/assets/4k/runtime/characters/tinglan/serious.webp"
+  ],
+  "characterIdentityMustMatch": "tinglan",
+  "reviewStatus": "UNVERIFIED",
+  "native4kClaim": false
+}

@@ -142,7 +142,7 @@
       "id": "route-xiaoman-end-cg",
       "name": "今天别重来",
       "kind": "cg",
-      "status": "TO_GENERATE",
+      "status": "UPLOADED",
       "scene": "end_xiaoman",
       "prompt": "game/art-sources/chatgpt/cg/route-xiaoman-end-cg/prompt.txt",
       "spec": "game/art-sources/chatgpt/cg/route-xiaoman-end-cg/spec.json"
@@ -151,7 +151,7 @@
       "id": "route-xuqi-end-cg",
       "name": "留在被放弃的世界",
       "kind": "cg",
-      "status": "TO_GENERATE",
+      "status": "UPLOADED",
       "scene": "end_xuqi",
       "prompt": "game/art-sources/chatgpt/cg/route-xuqi-end-cg/prompt.txt",
       "spec": "game/art-sources/chatgpt/cg/route-xuqi-end-cg/spec.json"
@@ -160,7 +160,7 @@
       "id": "route-tinglan-end-cg",
       "name": "未归档的人",
       "kind": "cg",
-      "status": "TO_GENERATE",
+      "status": "UPLOADED",
       "scene": "end_tinglan",
       "prompt": "game/art-sources/chatgpt/cg/route-tinglan-end-cg/prompt.txt",
       "spec": "game/art-sources/chatgpt/cg/route-tinglan-end-cg/spec.json"
