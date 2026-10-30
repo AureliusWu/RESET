@@ -42,7 +42,7 @@ jobs:
         run: |
           npm run check:release
           npm run art:r8
-          node -e "const m=require('./dist/build-manifest.json');const p=require('./dist/project.json');if(m.game!=='reset'||p.version!=='reset-v1.2.3'||m.version!=='reset-v1.2.3')process.exit(1);if(!m.extensions.includes('reset-art-visual-gate-v1'))process.exit(2);if(!p.scenes.some(s=>s.ending==='true-end'))process.exit(3);console.log(m.engine,m.contentFingerprint,p.scenes.length,p.assets.length,m.extensions)"
+          node -e "const m=require('./dist/build-manifest.json');const p=require('./dist/project.json');if(m.game!=='reset'||p.version!=='reset-v1.3.0'||m.version!=='reset-v1.3.0')process.exit(1);if(!m.extensions.includes('reset-art-visual-gate-v1'))process.exit(2);if(!p.scenes.some(s=>s.ending==='true-end'))process.exit(3);console.log(m.engine,m.contentFingerprint,p.scenes.length,p.assets.length,m.extensions)"
           test -f dist/index.html
           test -f dist/manifest.webmanifest
           test -f dist/sw.js
@@ -50,20 +50,20 @@ jobs:
           test -f dist/experience.css
       - name: Stable publication hard gate
         if: >-
-          github.ref == 'refs/heads/main' && github.event_name == 'push' && startsWith(github.event.head_commit.message, 'release: publish v1.2.3')
+          github.ref == 'refs/heads/main' && github.event_name == 'push' && startsWith(github.event.head_commit.message, 'release: publish v1.3.0')
         working-directory: game-repo
         run: npm run check:stable
       - name: Archive Web release
         working-directory: game-repo
-        run: cd dist && zip -r ../RESET-huiliu-v1.2.3-web.zip .
+        run: cd dist && zip -r ../RESET-huiliu-v1.3.0-web.zip .
       - name: Install acceptance browser
         working-directory: vn-engine
         run: npx playwright install --with-deps chromium
-      - name: Prepare immutable v1.2.2 upgrade fixture
+      - name: Prepare immutable v1.2.3 upgrade fixture
         working-directory: game-repo
         run: |
-          curl --fail --location --retry 3 https://github.com/AureliusWu/RESET/releases/download/v1.2.2/RESET-huiliu-v1.2.2-web.zip -o previous-web.zip
-          echo 'a0eadf71b0e2b8a45c0ecb6f7033b8b0f2530ff4f463d62a7618dd4e9febf791  previous-web.zip' | sha256sum --check
+          curl --fail --location --retry 3 https://github.com/AureliusWu/RESET/releases/download/v1.2.3/RESET-huiliu-v1.2.3-web.zip -o previous-web.zip
+          echo 'b7a4a9e9d8afa7ef72d714444937df097e4d831a786e7eef9a6be67e895ca127  previous-web.zip' | sha256sum --check
           unzip -q previous-web.zip -d previous-web
       - name: Test extracted final Web ZIP
         working-directory: game-repo
@@ -72,7 +72,7 @@ jobs:
           RESET_PREVIOUS_DIST: previous-web
           VN_ENGINE_PATH: ${{ github.workspace }}/vn-engine
         run: |
-          unzip -q RESET-huiliu-v1.2.3-web.zip -d installed-web
+          unzip -q RESET-huiliu-v1.3.0-web.zip -d installed-web
           npm run test:release
           npm run test:browser
           npm run test:music:browser
@@ -81,12 +81,12 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: RESET-huiliu-v1.2.3-web-validation
+          name: RESET-huiliu-v1.3.0-web-validation
           path: game-repo/test-results
       - uses: actions/upload-artifact@v4
         with:
-          name: RESET-huiliu-v1.2.3-web
-          path: game-repo/RESET-huiliu-v1.2.3-web.zip
+          name: RESET-huiliu-v1.3.0-web
+          path: game-repo/RESET-huiliu-v1.3.0-web.zip
 
   windows:
     runs-on: windows-latest
@@ -125,7 +125,7 @@ jobs:
           npm run art:r8
       - name: Stable publication hard gate
         if: >-
-          github.ref == 'refs/heads/main' && github.event_name == 'push' && startsWith(github.event.head_commit.message, 'release: publish v1.2.3')
+          github.ref == 'refs/heads/main' && github.event_name == 'push' && startsWith(github.event.head_commit.message, 'release: publish v1.3.0')
         working-directory: game-repo
         run: npm run check:stable
       - name: Publish native engine host
@@ -193,14 +193,14 @@ jobs:
           Get-Process VNEngine -ErrorAction SilentlyContinue | Stop-Process -Force
       - name: Archive Windows release
         shell: pwsh
-        run: Compress-Archive -Path package/* -DestinationPath RESET-huiliu-v1.2.3-win-x64.zip
+        run: Compress-Archive -Path package/* -DestinationPath RESET-huiliu-v1.3.0-win-x64.zip
       - name: Test actual installed Windows ZIP and process restart
         working-directory: game-repo
         env:
           VN_ENGINE_PATH: ${{ github.workspace }}\vn-engine
         shell: pwsh
         run: |
-          Expand-Archive ../RESET-huiliu-v1.2.3-win-x64.zip -DestinationPath ../installed-windows
+          Expand-Archive ../RESET-huiliu-v1.3.0-win-x64.zip -DestinationPath ../installed-windows
           $env:RESET_DIST = '../installed-windows/game'
           npm run test:release
           if ($LASTEXITCODE -ne 0) { throw 'Installed Windows runtime regressions failed' }
@@ -218,7 +218,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: RESET-huiliu-v1.2.3-windows-validation
+          name: RESET-huiliu-v1.3.0-windows-validation
           path: |
             test-results/windows/host-policy.json
             game-repo/test-results/direction-r1/*.json
@@ -228,13 +228,13 @@ jobs:
             game-repo/test-results/windows-installed/*.png
       - uses: actions/upload-artifact@v4
         with:
-          name: RESET-huiliu-v1.2.3-win-x64
-          path: RESET-huiliu-v1.2.3-win-x64.zip
+          name: RESET-huiliu-v1.3.0-win-x64
+          path: RESET-huiliu-v1.3.0-win-x64.zip
 
   publish:
     needs: [web, windows]
     if: >-
-      github.ref == 'refs/heads/main' && github.event_name == 'push' && startsWith(github.event.head_commit.message, 'release: publish v1.2.3')
+      github.ref == 'refs/heads/main' && github.event_name == 'push' && startsWith(github.event.head_commit.message, 'release: publish v1.3.0')
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -259,11 +259,11 @@ jobs:
             throw new Error('Matching Build CI did not finish');
       - uses: actions/download-artifact@v4
         with:
-          name: RESET-huiliu-v1.2.3-web
+          name: RESET-huiliu-v1.3.0-web
           path: release-assets
       - uses: actions/download-artifact@v4
         with:
-          name: RESET-huiliu-v1.2.3-win-x64
+          name: RESET-huiliu-v1.3.0-win-x64
           path: release-assets
       - name: Create immutable annotated tag after all acceptance gates
         uses: actions/github-script@v7
@@ -273,13 +273,13 @@ jobs:
             const head = (await github.rest.repos.getBranch({...repo, branch: 'main'})).data.commit.sha;
             if (head !== context.sha) throw new Error('A newer main commit superseded this candidate; refusing to publish');
             let ref;
-            try { ref = (await github.rest.git.getRef({...repo, ref: 'tags/v1.2.3'})).data; } catch (e) { if (e.status !== 404) throw e; }
+            try { ref = (await github.rest.git.getRef({...repo, ref: 'tags/v1.3.0'})).data; } catch (e) { if (e.status !== 404) throw e; }
             if (ref) {
               const sha = ref.object.type === 'tag' ? (await github.rest.git.getTag({...repo, tag_sha: ref.object.sha})).data.object.sha : ref.object.sha;
-              if (sha !== context.sha) throw new Error('v1.2.3 already points to another commit; never move a published tag');
+              if (sha !== context.sha) throw new Error('v1.3.0 already points to another commit; never move a published tag');
             } else {
-              const {data: tag} = await github.rest.git.createTag({...repo, tag: 'v1.2.3', message: '回留 / RESET v1.2.3 — verified R8 native art Web/PWA and Windows release', object: context.sha, type: 'commit'});
-              await github.rest.git.createRef({...repo, ref: 'refs/tags/v1.2.3', sha: tag.sha});
+              const {data: tag} = await github.rest.git.createTag({...repo, tag: 'v1.3.0', message: '回留 / RESET v1.3.0 — verified editorial, UI/UX, audio, direction and full-route Web/PWA and Windows release', object: context.sha, type: 'commit'});
+              await github.rest.git.createRef({...repo, ref: 'refs/tags/v1.3.0', sha: tag.sha});
             }
       - name: Publish verified Web/PWA and Windows release
         env:
@@ -288,14 +288,14 @@ jobs:
         shell: bash
         run: |
           cd release-assets
-          sha256sum RESET-huiliu-v1.2.3-web.zip RESET-huiliu-v1.2.3-win-x64.zip > SHA256SUMS.txt
+          sha256sum RESET-huiliu-v1.3.0-web.zip RESET-huiliu-v1.3.0-win-x64.zip > SHA256SUMS.txt
           sha256sum --check SHA256SUMS.txt
           cd ..
-          if gh release view v1.2.3 --json isDraft > release-state.json 2>/dev/null; then
-            node -e "if(!require('./release-state.json').isDraft)throw Error('v1.2.3 is already public; refusing to replace immutable release assets')"
+          if gh release view v1.3.0 --json isDraft > release-state.json 2>/dev/null; then
+            node -e "if(!require('./release-state.json').isDraft)throw Error('v1.3.0 is already public; refusing to replace immutable release assets')"
           else
-            gh release create v1.2.3 --verify-tag --draft --title '《回留 / RESET》v1.2.3 — Web/PWA + Windows' --notes-file CHANGELOG_v1.2.3.md
+            gh release create v1.3.0 --verify-tag --draft --title '《回留 / RESET》v1.3.0 — Web/PWA + Windows' --notes-file CHANGELOG_v1.3.0.md
           fi
-          gh release upload v1.2.3 release-assets/RESET-huiliu-v1.2.3-web.zip release-assets/RESET-huiliu-v1.2.3-win-x64.zip release-assets/SHA256SUMS.txt --clobber
-          gh release edit v1.2.3 --draft=false --latest --title '《回留 / RESET》v1.2.3 — Web/PWA + Windows' --notes-file CHANGELOG_v1.2.3.md
-          gh release view v1.2.3 --json url,tagName,isDraft,assets
+          gh release upload v1.3.0 release-assets/RESET-huiliu-v1.3.0-web.zip release-assets/RESET-huiliu-v1.3.0-win-x64.zip release-assets/SHA256SUMS.txt --clobber
+          gh release edit v1.3.0 --draft=false --latest --title '《回留 / RESET》v1.3.0 — Web/PWA + Windows' --notes-file CHANGELOG_v1.3.0.md
+          gh release view v1.3.0 --json url,tagName,isDraft,assets

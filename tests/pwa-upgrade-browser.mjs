@@ -26,13 +26,13 @@ export async function verifyPwaUpgrade({browser,dist,previous,fixtures,out,pass}
   try{
     page=await context.newPage();await page.goto(base);await page.locator('.vn-engine').waitFor();
     const previousProject=await page.evaluate(async()=>await(await fetch('./project.json')).json());
-    assert.equal(previousProject.version,'reset-v1.2.2');
+    assert.equal(previousProject.version,'reset-v1.2.3');
     await enterTitle();
     await page.locator('[data-control=save]').click();
     await page.locator('[data-reset-control=slots]').click();await page.locator('[data-slot="1"] [data-slot-action=save]').click();await page.keyboard.press('Escape');
     const oldEnding=structuredClone(fixtures.endings['normal-linwan']);
     const previousEnding=previousProject.scenes.find(scene=>scene.id===oldEnding.state.sceneId);
-    assert.ok(previousEnding,'v1.2.2 must contain the preserved Lin Wan ending scene');
+    assert.ok(previousEnding,'v1.2.3 must contain the preserved Lin Wan ending scene');
     oldEnding.state.storyVersion=previousProject.version;
     oldEnding.state.line=Math.max(0,(previousEnding.lines?.length??1)-1);
     oldEnding.state.history=[];
@@ -44,7 +44,7 @@ export async function verifyPwaUpgrade({browser,dist,previous,fixtures,out,pass}
     const nextWorkerPromise=context.waitForEvent('serviceworker');
     root=resolve(dist);await page.evaluate(async()=>{const owner=await navigator.serviceWorker.getRegistration();await owner.update();});
     await page.waitForFunction(async()=>Boolean((await navigator.serviceWorker.getRegistration()).waiting),null,{timeout:90000});
-    assert.equal(await page.evaluate(async()=> (await(await fetch('./project.json')).json()).version),'reset-v1.2.2','the active client must not switch runtime mid-story');
+    assert.equal(await page.evaluate(async()=> (await(await fetch('./project.json')).json()).version),'reset-v1.2.3','the active client must not switch runtime mid-story');
     const nextWorker=await nextWorkerPromise;
     await nextWorker.evaluate(()=>{self.__qaActivated=new Promise(resolve=>self.addEventListener('activate',()=>resolve(true),{once:true}));});
     await page.close();await nextWorker.evaluate(()=>self.__qaActivated);
@@ -53,7 +53,7 @@ export async function verifyPwaUpgrade({browser,dist,previous,fixtures,out,pass}
       const check=()=>{if(!self.registration.waiting&&self.registration.active?.state==='activated')resolve(true);else if(Date.now()>deadline)reject(Error('Candidate worker activation timed out'));else setTimeout(check,25);};check();
     }));
     page=await context.newPage();await page.goto(base);await page.locator('.vn-engine').waitFor();
-    await page.waitForFunction(async()=> (await(await fetch('./project.json')).json()).version==='reset-v1.2.3',null,{timeout:90000});
+    await page.waitForFunction(async()=> (await(await fetch('./project.json')).json()).version==='reset-v1.3.0',null,{timeout:90000});
     await enterTitle();
     await page.reload();await page.locator('.vn-engine').waitFor();await enterTitle();await page.locator('.reset-toolbar-controls').waitFor();
     assert.equal(await page.evaluate(()=>localStorage.getItem('vn-engine:reset:save:1')),saved.quick);
@@ -63,13 +63,13 @@ export async function verifyPwaUpgrade({browser,dist,previous,fixtures,out,pass}
     await page.locator('[data-reset-control=collection]').click();assert.equal(await page.locator('[data-ending=normal-linwan]').getAttribute('data-unlocked'),'true');await page.keyboard.press('Escape');
     const keys=await page.evaluate(()=>caches.keys());assert.ok(keys.includes('qa-unrelated-cache'));
     assert.ok(saved.caches.filter(k=>k.startsWith('vn-self-reset-v2:')).every(k=>!keys.includes(k)));
-    pass('Published v1.2.2 PWA upgrades at the same nested origin to v1.2.3 after clients close; old quick/manual saves, settings and ending Meta survive');
+    pass('Published v1.2.3 PWA upgrades at the same nested origin to v1.3.0 after clients close; old quick/manual saves, settings and ending Meta survive');
     await page.waitForFunction(()=>navigator.serviceWorker.controller&&document.getElementById('status').textContent.includes('可离线游玩'));
     await context.setOffline(true);await page.reload();await page.locator('.vn-engine').waitFor();await enterTitle();
     await page.locator('[data-control=load]').click();await page.locator('[data-reset-control=slots]').click();await page.locator('[data-slot="1"] [data-slot-action=load]').click();await page.locator('[data-reset-confirm]').click();
     await page.locator('.vn-background').waitFor({state:'visible'});assert.equal(await page.locator('#error').innerText(),'');
-    await page.screenshot({path:out+'/v122-upgraded-offline.png',fullPage:true});
-    pass('Upgraded v1.2.3 reloads offline and reads both real v1.2.2 save formats without clearing other caches');
+    await page.screenshot({path:out+'/v123-upgraded-offline.png',fullPage:true});
+    pass('Upgraded v1.3.0 reloads offline and reads both real v1.2.3 save formats without clearing other caches');
   }catch(error){
     await page?.screenshot({path:out+'/upgrade-failure.png',fullPage:true}).catch(()=>{});
     const state=await page?.evaluate(async()=>({error:document.querySelector('#error')?.textContent,html:document.body.innerText,cacheKeys:await caches.keys(),cacheProjects:await Promise.all((await caches.keys()).filter(k=>k.startsWith('vn-self-reset-v2:')).map(async key=>{const cache=await caches.open(key),response=await cache.match(new URL('./project.json',location.href));return {key,version:response?(await response.json()).version:null};})),archiveHasNewControls:(await(await fetch('./archive.mjs')).text()).includes('reset-toolbar-controls'),controller:navigator.serviceWorker.controller?.state,waiting:(await navigator.serviceWorker.getRegistration())?.waiting?.state})).catch(()=>null);

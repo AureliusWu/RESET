@@ -85,7 +85,7 @@ async function injectGameRuntime(project) {
   for (const file of ['title-key-visual.webp','save-anomaly.webp','ending-collection-header.webp','cg-gallery-header.webp','combat-hud-key-visual.webp']) {
     await copyFile(resolve(uiRuntimeDir, file), resolve(uiOutputDir, file));
   }
-  for (const file of ['README.md', 'LICENSE.md', 'CHANGELOG_v1.2.3.md']) {
+  for (const file of ['README.md', 'LICENSE.md', 'CHANGELOG_v1.3.0.md']) {
     await copyFile(resolve(root, file), resolve(output, file));
   }
   for (const file of ['direction.mjs','direction.css','sfx.mjs','combat.mjs','meta.mjs','archive.mjs','archive-data.mjs','experience.css','experience.mjs','ui.mjs','pwa.mjs']) {

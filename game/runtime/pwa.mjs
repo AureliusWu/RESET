@@ -27,16 +27,43 @@ function ensureTitleGate(archive){
   const gate=document.createElement('section');
   gate.className='reset-title-gate';
   gate.setAttribute('role','dialog');
+  gate.setAttribute('aria-modal','true');
   gate.setAttribute('aria-label','回留标题页');
   gate.innerHTML=`<div class="reset-title-gate__shade"></div><div class="reset-title-gate__content"><div class="reset-title-gate__kicker">18:42 · 有人记得你</div><h1>回留</h1><div class="reset-title-gate__en">RESET</div><div class="reset-title-gate__actions"><button type="button" data-reset-enter data-reset-new-game>新游戏</button><button type="button" data-reset-load-game>读取存档</button><button type="button" data-reset-install hidden>安装到设备</button></div><p class="reset-title-gate__hint">点击对话框 / Enter / Space 推进 · 支持离线</p></div>`;
   host.append(gate);
+  // Keep keyboard and assistive-technology navigation on the actual title
+  // actions, rather than letting it reach the story and toolbar underneath.
+  const obscured=[...host.children].filter(node=>node!==gate&&node.tagName!=='STYLE').map(node=>({node,inert:node.inert}));
+  for(const {node} of obscured)node.inert=true;
   const newGame=gate.querySelector('[data-reset-new-game]');
   const loadGame=gate.querySelector('[data-reset-load-game]');
   const install=gate.querySelector('[data-reset-install]');
+  const keyboard=event=>{
+    if(!gate.isConnected||event.ctrlKey||event.metaKey||event.altKey)return;
+    if(event.key==='Tab'){
+      const buttons=[...gate.querySelectorAll('button')].filter(node=>!node.hidden&&!node.disabled&&node.getClientRects().length);
+      const current=buttons.indexOf(document.activeElement),next=(current+(event.shiftKey?-1:1)+buttons.length)%buttons.length;
+      event.preventDefault();event.stopImmediatePropagation();buttons[next]?.focus();
+    }else if(!gate.contains(event.target)){
+      event.preventDefault();event.stopImmediatePropagation();newGame.focus({preventScroll:true});
+    }else event.stopPropagation();
+  };
+  document.addEventListener('keydown',keyboard,true);
+  newGame.focus({preventScroll:true});
+  const release=()=>{
+    document.removeEventListener('keydown',keyboard,true);
+    removeEventListener('reset-install-available',syncInstall);
+    for(const {node,inert} of obscured)node.inert=inert;
+  };
   const leave=after=>{
     if(gate.classList.contains('is-leaving'))return;
     gate.classList.add('is-leaving');
-    setTimeout(()=>{gate.remove();after?.();},220);
+    setTimeout(()=>{
+      gate.remove();release();
+      const reading=host.querySelector('.vn-reading');
+      if(reading){if(!reading.hasAttribute('tabindex'))reading.tabIndex=0;reading.focus({preventScroll:true});}
+      after?.();
+    },220);
   };
   newGame.addEventListener('click',()=>leave(),{once:true});
   loadGame.addEventListener('click',()=>leave(()=>{
@@ -46,6 +73,7 @@ function ensureTitleGate(archive){
   const syncInstall=()=>{install.hidden=!deferredInstallPrompt;};
   install.addEventListener('click',async()=>{if(!deferredInstallPrompt)return;const prompt=deferredInstallPrompt;deferredInstallPrompt=null;syncInstall();await prompt.prompt();try{await prompt.userChoice;}catch{}});
   addEventListener('reset-install-available',syncInstall);syncInstall();
+  addEventListener('pagehide',event=>{if(!event.persisted)release();},{once:true});
 }
 
 export async function registerGamePwa({archive}={}) {

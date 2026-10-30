@@ -1,7 +1,7 @@
 import { CGS } from './archive-data.mjs';
 const META_KEY = 'reset:meta:v1';
-const STORY_VERSION = 'reset-v1.2.3';
-const LEGACY_VERSIONS = new Set(['reset-v1.0.0','reset-v1.0.1','reset-v1.1.0','reset-v1.2.0-dev','reset-v1.2.0-rc.1','reset-v1.2.0-rc.2','reset-v1.2.0','reset-v1.2.1-dev','reset-v1.2.1','reset-v1.2.2']);
+const STORY_VERSION = 'reset-v1.3.0';
+const LEGACY_VERSIONS = new Set(['reset-v1.0.0','reset-v1.0.1','reset-v1.1.0','reset-v1.2.0-dev','reset-v1.2.0-rc.1','reset-v1.2.0-rc.2','reset-v1.2.0','reset-v1.2.1-dev','reset-v1.2.1','reset-v1.2.2','reset-v1.2.3']);
 const CG_IDS = new Set(CGS.map(cg => cg.id));
 export const IRREVERSIBLE_SCENES = Object.freeze(['c6_no_save','c6_walk_forward','c6_escape','c6_echo_goodbye','c6_last_door','c7_morning','c7_after','c7_linwan','c7_credits']);
 const IRREVERSIBLE = new Set(IRREVERSIBLE_SCENES);
