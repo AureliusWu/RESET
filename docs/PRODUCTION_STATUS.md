@@ -1,3 +1,7 @@
+## 2026-10-30 · VN 共用工作流 R1
+
+接入 `.vn/workflow.json`、AGENTS 制作入口与[本作 R1 约定](production/VN-WORKFLOW-R1.md)。六仓只读清单、三仓15项共用文件哈希及命令入口核对通过；工作流 PASS 不授予运行、内容或发布 PASS。本轮未改玩家程序与素材，未重跑原生/浏览器发布验收，当前玩家版本与历史证据各自保留。中央工具回归、范围及证据见 [R1 报告](https://github.com/AureliusWu/VN-Engine-v2/blob/main/docs/portfolio/R1-REUSE.md)。
+
 # 《回留 / RESET》制作状态
 
 更新时间：2026-10-30。本轮目标为 **v1.3.0**，公开发行状态以 GitHub Release 为准。剧本文案、UI/UX、路线 QA、AI 玩家观察与双平台发行门禁分别留证；全角色配音仍未开始。

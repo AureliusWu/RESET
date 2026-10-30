@@ -1,0 +1,63 @@
+{
+  "schema": "vn-workflow-profile-v1",
+  "workflowVersion": "1.0.0",
+  "repository": "AureliusWu/RESET",
+  "kind": "game",
+  "engine": "VN Engine v2 0.3.0 pinned / WebView2",
+  "releaseAuthority": "native-project-gates",
+  "sources": [
+    "game/content/manifest.json",
+    "game/content/chapters/*.json",
+    "game/content/runtime.json",
+    "game/assets/manifest.json",
+    "ENGINE.lock.json"
+  ],
+  "requiredPaths": [
+    "AGENTS.md",
+    "docs/production/VN-WORKFLOW-R1.md",
+    "docs/ENGINE_INTEGRATION.md",
+    "docs/NPC_RUNTIME_HOTFIX_v1.3.1.md",
+    "scripts/portrait-cues.mjs",
+    "tests/supporting-runtime-browser.mjs"
+  ],
+  "commands": [
+    {
+      "id": "candidate",
+      "argv": [
+        "npm",
+        "run",
+        "check:release"
+      ]
+    },
+    {
+      "id": "stable",
+      "argv": [
+        "npm",
+        "run",
+        "check:stable"
+      ]
+    },
+    {
+      "id": "routes",
+      "argv": [
+        "npm",
+        "run",
+        "test:routes"
+      ]
+    },
+    {
+      "id": "npc-dom",
+      "argv": [
+        "npm",
+        "run",
+        "test:npc:browser"
+      ]
+    }
+  ],
+  "workflows": [
+    ".github/workflows/build.yml",
+    ".github/workflows/release.yml",
+    ".github/workflows/pages.yml"
+  ],
+  "identityNotes": "ENGINE.lock.json 保持 15c101e0d2b2c1e40dbc36d7a0c1a246d102b52c；审批/映射不能代替真实 line frame 与 DOM 显示。"
+}

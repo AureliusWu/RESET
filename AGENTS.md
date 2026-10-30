@@ -20,3 +20,5 @@
 - 小步提交，记录真实状态；不改写既有稳定发布证据。
 - v1.3.1 通过具名 `presentation-migration.json` 只允许删除29个旧 noSprite；还原这些字段后继续校验 `docs/evidence/final-v1.3.0/content-contract.json` 的结构身份契约；严格发布额外要求独立 AI 玩家观察、已读截图及其源/运行包 SHA256。全路线矩阵与具名 UI 玩家脚本必须从最终发行包运行，脚本 PASS 不替代独立观察。
 - v1.3.1 使用已有逐行 portrait cue；旁白、陈渡、functional speaker 清空人物，27条显式离屏对白按行隐藏。新增立绘运行时门禁，禁止以 mapping/asset/approval PASS 替代真实剧情 frame 与 DOM 可见性。最终 Web ZIP、Windows WebView2 与 Pages 均检查12名 supporting cast。
+
+跨仓制作工作流另读 [VN 工作流 R1](docs/production/VN-WORKFLOW-R1.md) 与 `.vn/workflow.json`。复用方法按本作语义适配；清单检查 PASS 不授予运行、内容或发布 PASS。
