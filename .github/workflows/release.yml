@@ -76,7 +76,6 @@ jobs:
         run: |
           unzip -q RESET-huiliu-v1.3.0-web.zip -d installed-web
           npm run test:release
-          npm run test:routes
       - name: Scripted UI player actors on the final Web ZIP
         working-directory: game-repo
         env:
@@ -90,6 +89,11 @@ jobs:
           name: RESET-v1.3.0-player-observation
           path: game-repo/test-results/final-qa/players
           if-no-files-found: warn
+      - name: Complete decision paths on the final Web ZIP
+        working-directory: game-repo
+        env:
+          RESET_DIST: installed-web
+        run: npm run test:routes
       - name: Browser, PWA upgrade and audiovisual acceptance on the final Web ZIP
         working-directory: game-repo
         env:

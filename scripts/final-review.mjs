@@ -33,7 +33,7 @@ export async function checkContent(root){
     assert.equal(sha256(canonical(structure(pack))),record.structureSha256,'Narrative/save identity changed: '+record.path);
     for(const scene of pack.scenes){
       scenes++;lines+=scene.lines.length;
-      for(const line of scene.lines)assert.ok(!/在离开“|临走前，陈渡又回头/.test(line.text),'Retired generic scene-summary text: '+line.id);
+      for(const line of scene.lines)assert.ok(!/在离开“|临走前，陈渡又回头|不是为了寻找隐藏线索/.test(line.text),'Retired generic scene-summary text: '+line.id);
     }
   }
   assert.equal(scenes,82);assert.equal(lines,2161);
