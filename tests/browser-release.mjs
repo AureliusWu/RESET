@@ -10,7 +10,7 @@ import { verifyPwaUpgrade } from './pwa-upgrade-browser.mjs';
 import { verifyStageBridge } from './stage-browser.mjs';
 import { verifyLinwanArt, verifyLinwanOffline } from './linwan-art-browser.mjs';
 import { verifyProductionArt, verifyProductionArtOffline } from './production-art-browser.mjs';
-import { circleEchoWithHeavyAttacks } from './combat-player.mjs';
+import { defeatEchoWithHeavyAttacks } from './combat-player.mjs';
 const engine=resolve(process.env.VN_ENGINE_PATH||'../VN-Engine-v2');
 const {chromium}=await import(pathToFileURL(resolve(engine,'node_modules/playwright/index.mjs')));
 const dist=resolve(process.env.RESET_DIST||'dist'), out=resolve('test-results/browser');await mkdir(out,{recursive:true});
@@ -109,7 +109,7 @@ try{
         await moveTo('d',p=>p.x>=380);await moveTo('w',p=>p.y<=205);
       }
       await moveTo('d',p=>p.x>=700);await page.screenshot({path:out+`/combat-${id}-${outcome}.png`});
-      if(outcome==='win'&&id==='c5_echo_fail')await circleEchoWithHeavyAttacks(page);
+      if(outcome==='win'&&id==='c5_echo_fail')await defeatEchoWithHeavyAttacks(page);
       else if(outcome==='win')for(let hit=0;hit<500;hit++){
         if(!await page.locator('.reset-combat').count())break;
         try{
