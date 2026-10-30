@@ -18,6 +18,7 @@ const session=create(),branch=create(),replay=create();
 let processed=0,boundedEdges=0,transitions=0;
 while(queue.length){
   assert.ok(++processed<20000,'Route frontier exceeded the documented finite bound');
+  if(processed%1000===0)console.log(`Route frontier ${processed}; pending ${queue.length}; endings ${terminals.length}`);
   const node=queue.pop();session.restore(node.save);
   try{
     let previous=session.getView().frame.sceneId;
@@ -71,7 +72,10 @@ for(const method of methods)for(const route of routes){
 }
 assert.ok(terminals.some(t=>t.ending==='bad-permanent-save'&&t.trace.some(a=>a.action==='create_permanent_save')));
 assert.ok(terminals.some(t=>t.ending==='bad-permanent-save'&&t.trace.some(a=>a.action==='fear_and_save')));
+const variantCoverage=project.scenes.filter(s=>reached.has(s.id)).flatMap(s=>s.lines.filter(l=>l.variant).map(l=>({line:l.id,base:variants.has(l.id+'/false'),alternate:variants.has(l.id+'/true')})));
+assert.ok(variantCoverage.every(v=>v.base||v.alternate),'Unvisited authored variant');
+const replayChoices=project.scenes.filter(s=>reached.has(s.id)).flatMap(s=>(s.choices||[]).map(c=>({scene:s.id,action:c.id,next:c.next})));
 await mkdir('test-results/final-qa',{recursive:true});
-const report={schema:1,status:'PASS',version:project.version,contentFingerprint:manifest.contentFingerprint,reachableScenes:reached.size,canonicalScenes:project.scenes.length,reachableLines:lines.size,authoredChoicesCovered:project.scenes.filter(s=>reached.has(s.id)).reduce((n,s)=>n+(s.choices?.length||0),0),processedFrontiers:processed,transitions,terminalPaths:terminals.length,endings:counts,methodRoutePairs:18,pairsCheckedFor:['normal-end','true-end'],retryPolicy:'At most two entries per scene per path; both repeatable deaths and their recoveries covered. Infinite retry sequences are not enumerated.',boundedEdges,reservedScenes:reserved,reservedPolicy:'Retained legacy route-open nodes have no canonical incoming edge; reviewed as source, not claimed playable.',paths:terminals};
+const report={schema:1,status:'PASS',version:project.version,contentFingerprint:manifest.contentFingerprint,reachableScenes:reached.size,canonicalScenes:project.scenes.length,reachableLines:lines.size,authoredChoicesCovered:replayChoices.length,processedFrontiers:processed,transitions,terminalPaths:terminals.length,endings:counts,methodRoutePairs:18,pairsCheckedFor:['normal-end','true-end'],retryPolicy:'At most two entries per scene per path; both repeatable deaths and their recoveries covered. Infinite retry sequences are not enumerated.',boundedEdges,reservedScenes:reserved,reservedPolicy:'Retained legacy route-open nodes have no canonical incoming edge; reviewed as source, not claimed playable.',variantCoverage,choices:replayChoices,paths:terminals};
 await writeFile('test-results/final-qa/route-matrix.json',JSON.stringify(report,null,2)+'\n');
 console.log(JSON.stringify({...report,paths:undefined},null,2));

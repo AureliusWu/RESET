@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "baseline": "6f1017c0f24c44fdec18d9af0ce8616c8a161aad",
+  "policy": "Text and variant wording only; preserve positions, IDs, speakers, next edges, effects, conditions and scene metadata.",
+  "chapters": [
+    {
+      "path": "game/content/chapters/01.json",
+      "structureSha256": "0c4830f5f50b91e15433f6ca939a937786acdcc34af3332e0ced4f9db93fe1bf",
+      "scenes": 13,
+      "lines": 357
+    },
+    {
+      "path": "game/content/chapters/02.json",
+      "structureSha256": "e38a381d0dfc8b411b7cdebb603f2eae09a5c056696fd32db1c64befdead5fcd",
+      "scenes": 12,
+      "lines": 333
+    },
+    {
+      "path": "game/content/chapters/03.json",
+      "structureSha256": "e612761b09bc265ce37bb79e471f9dd6856bf398e54ce40c1eefccabe24ea4d3",
+      "scenes": 13,
+      "lines": 352
+    },
+    {
+      "path": "game/content/chapters/04.json",
+      "structureSha256": "e63e941f2cf2ed380a89004ca96b2dcd8b6fdc253b6f509560edc432775585ce",
+      "scenes": 20,
+      "lines": 495
+    },
+    {
+      "path": "game/content/chapters/05.json",
+      "structureSha256": "e2d74dd97dd9ceacb6a4f03d30ba191913e5aeaaeec8b1998c721d6efb7f56d7",
+      "scenes": 13,
+      "lines": 331
+    },
+    {
+      "path": "game/content/chapters/06.json",
+      "structureSha256": "6958aaee1032bd270eb0644d1b129ab4f26940a509915c619c63d97a6ad29c58",
+      "scenes": 7,
+      "lines": 180
+    },
+    {
+      "path": "game/content/chapters/07.json",
+      "structureSha256": "3979b1627e290f1498f5eeed409f576cdd922aee68b77f1e16556ffa270175b4",
+      "scenes": 4,
+      "lines": 113
+    }
+  ],
+  "protectedFiles": {
+    "ENGINE.lock.json": "1181c97645cdf09e447ef110e37565df6da54c8294fe4352ee4c1e0e2f0a2fa3",
+    "game/assets/manifest.json": "ed8e7ba03a77f6f607690b6f80400ddee25d89e9ab579d2c2184f1069ecd0000",
+    "game/direction/cues.json": "a105e566601324ee050b5f5f127baeda8b0d91a2d6053a1755de4e64452d486f",
+    "game/music/score.json": "68968344f00d9f4b5f51f46b7de46d0b172a880b09da8162ebe8591302637503",
+    "game/sfx/cues.json": "d53de9fac8fb08b8a5bcc4f162345bd6e12a98c26591b90d960da1e398438766",
+    "game/sfx/bindings.json": "14081f12ff3657b4707e3422c43a7977e197c89fb2bc9c010757800fa4b4f749"
+  }
+}

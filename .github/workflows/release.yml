@@ -12,7 +12,7 @@ permissions:
 jobs:
   web:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - name: Checkout game
         uses: actions/checkout@v4
@@ -58,7 +58,9 @@ jobs:
         run: cd dist && zip -r ../RESET-huiliu-v1.3.0-web.zip .
       - name: Install acceptance browser
         working-directory: vn-engine
-        run: npx playwright install --with-deps chromium
+        run: |
+          npx playwright install --with-deps chromium
+          sudo apt-get install --no-install-recommends -y fonts-noto-cjk
       - name: Prepare immutable v1.2.3 upgrade fixture
         working-directory: game-repo
         run: |
@@ -74,6 +76,27 @@ jobs:
         run: |
           unzip -q RESET-huiliu-v1.3.0-web.zip -d installed-web
           npm run test:release
+          npm run test:routes
+      - name: Scripted UI player actors on the final Web ZIP
+        working-directory: game-repo
+        env:
+          RESET_DIST: installed-web
+          VN_ENGINE_PATH: ${{ github.workspace }}/vn-engine
+        run: npm run test:players
+      - name: Upload independently reviewable player evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: RESET-v1.3.0-player-observation
+          path: game-repo/test-results/final-qa/players
+          if-no-files-found: warn
+      - name: Browser, PWA upgrade and audiovisual acceptance on the final Web ZIP
+        working-directory: game-repo
+        env:
+          RESET_DIST: installed-web
+          RESET_PREVIOUS_DIST: previous-web
+          VN_ENGINE_PATH: ${{ github.workspace }}/vn-engine
+        run: |
           npm run test:browser
           npm run test:music:browser
           npm run test:sfx:browser
@@ -204,6 +227,8 @@ jobs:
           $env:RESET_DIST = '../installed-windows/game'
           npm run test:release
           if ($LASTEXITCODE -ne 0) { throw 'Installed Windows runtime regressions failed' }
+          npm run test:routes
+          if ($LASTEXITCODE -ne 0) { throw 'Installed Windows decision-path matrix failed' }
           $Policy = 'HKLM:\SOFTWARE\Policies\Microsoft\Edge\WebView2\AdditionalBrowserArguments'
           New-Item -Path $Policy -Force | Out-Null
           $Prior = (Get-Item -Path $Policy).GetValue('VNEngine.exe', $null)
@@ -226,6 +251,7 @@ jobs:
             game-repo/test-results/music-r1/*.json
             game-repo/test-results/windows-installed/*.json
             game-repo/test-results/windows-installed/*.png
+            game-repo/test-results/final-qa/*.json
       - uses: actions/upload-artifact@v4
         with:
           name: RESET-huiliu-v1.3.0-win-x64

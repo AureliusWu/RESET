@@ -9,6 +9,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 25
     steps:
       - name: Checkout game
         uses: actions/checkout@v4
@@ -62,6 +63,11 @@ jobs:
           node --check scripts/check-r5-supporting-cast.mjs
           node --check scripts/check-r5-final-integration.mjs
           node --check scripts/check-release.mjs
+          node --check scripts/check-final-review.mjs
+          node --check scripts/final-review.mjs
+          node --check tests/route-matrix.mjs
+          node --check tests/player-actors-browser.mjs
+          node --check tests/combat-player.mjs
           node --check tests/mobile-shell.test.mjs
           node --check tests/xujiashu-art-browser.mjs
           node --check tests/r8-art-browser.mjs
@@ -86,6 +92,16 @@ jobs:
       - name: Runtime, mobile shell, ending reachability and Meta regressions
         working-directory: game-repo
         run: npm run test:release
+      - name: Complete bounded decision-path matrix
+        working-directory: game-repo
+        run: npm run test:routes
+      - name: Upload final narrative QA matrix
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: RESET-v1.3.0-route-matrix
+          path: game-repo/test-results/final-qa/route-matrix.json
+          if-no-files-found: error
       - name: Install candidate audit browser and CJK fonts
         working-directory: vn-engine
         run: |

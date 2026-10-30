@@ -21,8 +21,8 @@
     "art:legacy": "node scripts/check-art-integrity.mjs --legacy",
     "art:size": "node scripts/check-art-integrity.mjs --size",
     "build": "node scripts/build.mjs && npm run art:check && npm run visual:r5:final",
-    "check:release": "node scripts/check-release.mjs && npm run scenario:check && npm run audio:check && npm run asset:schema && npm run art:visual && npm run visual:r5:final && npm run art:r8 -- --partial && npm run direction:check",
-    "check:stable": "node scripts/check-release.mjs && npm run scenario:check && npm run audio:check && npm run asset:schema && npm run art:visual:release && npm run visual:r5:final && npm run art:r8 && npm run direction:check",
+    "check:release": "node scripts/check-release.mjs && npm run scenario:check && npm run audio:check && npm run asset:schema && npm run art:visual && npm run visual:r5:final && npm run art:r8 -- --partial && npm run direction:check && npm run final:check",
+    "check:stable": "node scripts/check-release.mjs && npm run scenario:check && npm run audio:check && npm run asset:schema && npm run art:visual:release && npm run visual:r5:final && npm run art:r8 && npm run direction:check && npm run final:stable",
     "test:release": "node --test tests/release.test.mjs tests/combat-input.test.mjs tests/archive.test.mjs tests/pwa.test.mjs tests/experience.test.mjs tests/art-completeness.test.mjs tests/art-visual-gate.test.mjs tests/mobile-shell.test.mjs tests/supporting-art.test.mjs tests/music.test.mjs tests/sfx.test.mjs tests/direction.test.mjs",
     "test:browser": "node tests/browser-release.mjs",
     "serve": "python -m http.server 8000 --directory dist",
@@ -35,7 +35,11 @@
     "sfx:check": "node scripts/check-sfx.mjs",
     "test:sfx:browser": "node tests/sfx-browser.mjs",
     "direction:check": "node scripts/check-direction.mjs",
-    "test:direction:browser": "node tests/direction-browser.mjs"
+    "test:direction:browser": "node tests/direction-browser.mjs",
+    "final:check": "node scripts/check-final-review.mjs",
+    "final:stable": "node scripts/check-final-review.mjs --stable",
+    "test:routes": "node tests/route-matrix.mjs",
+    "test:players": "node tests/player-actors-browser.mjs"
   },
   "engines": {
     "node": ">=22"
