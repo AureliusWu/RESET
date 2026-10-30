@@ -6,8 +6,8 @@
 
 ## 当前状态
 
-- 当前稳定发行：**v1.2.3**
-- 故事版本：`reset-v1.2.3`
+- 本版发行目标：**v1.3.0**（公开状态以正式发行页为准）
+- 故事版本：`reset-v1.3.0`
 - 剧情：主线、六角色 Normal End、关键 Bad End、True Route / True End 已闭环
 - 角色美术：六位女主既有视觉 Gate **PASS**，12 名配角授权 AI 模拟人工验收 **PASS**
 - 引擎：`AureliusWu/VN-Engine-v2` v0.3.0
@@ -23,22 +23,23 @@ TECH_READY != ART_READY
 
 技术完整性与已记录的授权视觉验收分别作为发布门禁；`game/assets/4k/visual-acceptance.json` 是角色视觉验收事实源。
 
-## v1.2.3 更新重点
+## v1.3.0 更新重点
 
-- 完成 12 名配角、2 个异常体、8 张 CG、20 张专用背景与 5 张 UI 的原生美术来源链。
-- 12 名配角按用户授权完成 AI 模拟人工视觉验收并启用；陈岚正文 `noSprite` 保留，六位女主已批准图片保持不变。
-- 修复结局 CG 与普通立绘重复显示；离开 CG 后恢复正常立绘。
-- 保留 82 场景、全部剧情/存档/Meta/不可逆规则，故事版本更新为 `reset-v1.2.3`。
-- Web/PWA 与 Windows x64 同步发布，旧版存档受控升级；Pages 使用公开 Release 的原始 Web ZIP。
+- 终审重复旁白、提前揭示、死亡与白色界面连续性，以及选择前错误离场的收尾；保留 82 场景、2161 条台词的位置、ID 与分支效果。
+- 标题页焦点隔离、Tab 导航、进入后的阅读焦点与手机 44px 触控尺寸。
+- 整合 14 首音乐、7 个重制音效、82 场景配乐、战斗反馈、15 个演出节拍和 7 章字幕。
+- 全路线决定路径、六条手机路线、六槽存档与不可逆终局玩家流程分别验证；AI 观察及截图哈希独立记录。
+- 从实际公开 v1.2.3 PWA 验证快速存档、六个不同手动槽、设置、结局/CG 的同源升级及离线读取；保留既有美术和锁定引擎。
+- Web/PWA 与 Windows x64 同步提供；严格同提交门禁后发布，Pages 使用公开 Release 的原始 Web ZIP。
 
-完整说明见 [CHANGELOG_v1.2.3.md](CHANGELOG_v1.2.3.md)，视觉观察及授权见 [R8_AI_REVIEW.md](docs/R8_AI_REVIEW.md)。
+完整说明见 [CHANGELOG_v1.3.0.md](CHANGELOG_v1.3.0.md) 与 [终审记录](docs/FINAL_REVIEW_v1.3.0.md)。既有美术观察及授权见 [R8_AI_REVIEW.md](docs/R8_AI_REVIEW.md)。
 
 ## 下载与运行
 
-正式发行页：<https://github.com/AureliusWu/RESET/releases/tag/v1.2.3>
+正式发行页：<https://github.com/AureliusWu/RESET/releases/tag/v1.3.0>
 
-- Windows x64：`RESET-huiliu-v1.2.3-win-x64.zip`，完整解压后运行根目录 `RESET.exe`。需要 Windows 10/11 x64 与 Microsoft Edge WebView2 Runtime。
-- Web / PWA：`RESET-huiliu-v1.2.3-web.zip`，用 HTTPS 或 localhost 静态托管。首次联网等待“已下载，可离线游玩”后可离线重开。
+- Windows x64：`RESET-huiliu-v1.3.0-win-x64.zip`，完整解压后运行根目录 `RESET.exe`。需要 Windows 10/11 x64 与 Microsoft Edge WebView2 Runtime。
+- Web / PWA：`RESET-huiliu-v1.3.0-web.zip`，用 HTTPS 或 localhost 静态托管。首次联网等待“已下载，可离线游玩”后可离线重开。
 
 PWA 安装入口取决于浏览器 installability 判定。支持 `beforeinstallprompt` 的 Chromium 浏览器会在标题页显示「安装到设备」。
 
@@ -61,7 +62,7 @@ PWA 安装入口取决于浏览器 installability 判定。支持 `beforeinstall
 
 ## 存档兼容
 
-v1.2.3 受控接受并校验以下故事版本备份：
+v1.3.0 受控接受并校验以下故事版本备份：
 
 - `reset-v1.0.0`
 - `reset-v1.0.1`
@@ -73,6 +74,7 @@ v1.2.3 受控接受并校验以下故事版本备份：
 - `reset-v1.2.1-dev`
 - `reset-v1.2.1`
 - `reset-v1.2.2`
+- `reset-v1.2.3`
 
 升级只修改加载到会话中的版本标记，不原地改写用户备份，并继续经过引擎路线校验。
 
@@ -83,7 +85,7 @@ v1.2.3 受控接受并校验以下故事版本备份：
 - 保留 original、4K master、runtime WebP 与来源哈希；放大母版不声明 native 4K
 - UI Key Visual 只作为装饰视觉，不得覆盖核心可玩 UI
 - 独立作品品牌、Chapter 01–07 章节卡、Q 版角色记忆与剧情道具视觉
-- 原创程序音乐 / 音效在构建时统一归一化与软限幅
+- 原创程序配乐使用 16 小节 A/B 编排；音乐与音效分别验证峰值、循环/起音、解码、实际播放与离线能力
 
 详细矩阵见 `docs/ART_4K_PLAN.md`、`docs/ART_COMPLETENESS_AUDIT.md` 与 `game/assets/4k/visual-acceptance.json`。
 
@@ -95,7 +97,9 @@ v1.2.3 受控接受并校验以下故事版本备份：
 npm run build
 npm run check:stable
 npm run test:release
+npm run test:routes
 npm run test:browser
+npm run test:players
 ```
 
 CI 对最终 Web ZIP 和 Windows ZIP 运行真实浏览器 / WebView2 验收；稳定发布只有在 Build、Web、Windows 三条门禁全部通过后才允许创建不可移动 tag 与 Release。Pages 只从公开 Release 的 Web ZIP 部署并再次执行公网回归。

@@ -108,14 +108,14 @@ main#game{height:calc(100dvh - 30px - env(safe-area-inset-top) - env(safe-area-i
   .vn-engine .vn-text{font-size:14px;line-height:1.45;margin-bottom:5px}
   .vn-engine .vn-speaker{font-size:12px;margin-bottom:2px}
   .vn-engine .vn-actions{gap:5px}
-  .vn-engine .vn-actions button{min-height:32px;padding:5px 9px;font-size:11px}
+  .vn-engine .vn-actions button{min-height:44px;padding:5px 9px;font-size:11px}
   .vn-engine .vn-toolbar{padding:3px 6px}
-  .vn-engine .vn-toolbar .reset-toolbar-controls button{min-height:32px;font-size:10px;padding:4px 7px}
+  .vn-engine .vn-toolbar .reset-toolbar-controls button{min-height:44px;font-size:10px;padding:4px 7px}
   .vn-engine .vn-status,#status{display:none}
   .reset-title-gate__content{width:min(460px,78%)}
   .reset-title-gate h1{font-size:clamp(46px,12vh,78px)}
   .reset-title-gate__actions{margin-top:18px;grid-template-columns:1fr 1fr;width:min(460px,100%)}
-  .reset-title-gate button{min-height:42px}
+  .reset-title-gate button{min-height:44px}
   .reset-title-gate__hint{margin:8px 0}
   .reset-brand-mark{width:min(25%,210px)!important}
   .vn-engine .vn-stage .vn-portrait{max-height:90%;max-width:42%}

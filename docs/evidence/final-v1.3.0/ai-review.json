@@ -1,0 +1,246 @@
+{
+  "schema": 1,
+  "type": "ai-simulated-human",
+  "status": "PASS",
+  "reviewedAt": "2026-10-30",
+  "reviewer": "Codex / AI player and visual observer",
+  "authorization": {
+    "quote": "查询RESET当前进度 完成这些阻断项 推进至发布正式版本",
+    "priorQuote": "验收由你来模拟人类执行",
+    "scope": "Independent AI observation of narrative continuity, player UI and screenshots; proceed to stable release only after all same-commit technical gates pass."
+  },
+  "realHumanParticipants": "NOT_CLAIMED",
+  "physicalDevices": "NOT_RUN",
+  "subjectiveListening": "NOT_CLAIMED",
+  "subject": {
+    "sourceCommit": "0874f54bd11298ea8994b2d09dc54200eca82ec1",
+    "sourceSha256": {
+      "game/content/chapters/01.json": "e64b6bdd59480c5256817bed35cb4c4e71c8961809c09380c854e307c3da74ed",
+      "game/content/chapters/02.json": "99921d37e2705a99026748d994f9ca6842537d2d2f0163055231af788b4f3b93",
+      "game/content/chapters/03.json": "b4f1e25a5c814d806843ab35e92e57656e602af49daf85915d7ff4356ec44567",
+      "game/content/chapters/04.json": "568aa2b758c4af0c96eb4a27784ad7f278ca6f8fcdc8dbee46e5452e8aa4a1b9",
+      "game/content/chapters/05.json": "11bff38c4efe97f113928269f39619b2e3fe20caaf9863bcc569d422c0135975",
+      "game/content/chapters/06.json": "3ac246a91d5ec038e9087e0bab03bfd533dd41d6c9b18eb6700abb4485505ad9",
+      "game/content/chapters/07.json": "f9f1ed6b34697f024f5cf330a2b2f9b477baa0cd3190e34787d281806b0dfd08",
+      "game/runtime/archive.mjs": "2354436bbaca2c1be2a930932f13a0ceae8fb313e950cbfe24f817768194a7f1",
+      "game/runtime/archive-data.mjs": "8c4310fa80a86e3592eb7836d8cee53a41ae7518ca0e1ea73399650bf4bc1f9f",
+      "game/runtime/combat.mjs": "f59a08101ca4e03f0107294acbb8477358f95b7d11e33070fd22e734373b34a6",
+      "game/runtime/direction.mjs": "080af065ebc9e6886882a8ad04c2ef5216035242953d1fe000713ecc1c0b4486",
+      "game/runtime/experience.mjs": "a8f77cf385b8599b6f796068dd5a12ccafa3f94349955dff5aba3e43854208c7",
+      "game/runtime/meta.mjs": "85c53c8d660e017cba409084165694bf1b6673166e9cb16457b3295e0a0e832d",
+      "game/runtime/pwa.mjs": "7de55f5f5a582b7c5eee46cd6edbff7a3b2fa763cd883189550daf0275055437",
+      "game/runtime/sfx.mjs": "adee6c3b1e8a9170576416ca78c7d335e486da5a18a894af3449c83c13aa6fab",
+      "game/runtime/ui.mjs": "85802b308711218b785cdd44281f56223e386e96aa6f738fbba09ce6cfa21620",
+      "game/runtime/experience.css": "a5668550774d27c61ca6ec9a5134344653abb2bd7b7366e1375a9dd86a5a97af",
+      "game/runtime/direction.css": "63408134c21a27b7e2b101f46096165ea3acfff2378a8b834de294e83b2e4c2e",
+      "scripts/final-review.mjs": "68d1f439f0ce471531d83c064d1e25f2e99e8915fe2baa0e3230f6f6a501cbb0",
+      "scripts/check-final-review.mjs": "4cde72f1d8f83c7788105f9942b94cb01c9d807a5fd18f9c36fefccef3b44081",
+      "tests/player-actors-browser.mjs": "175bf0d9feb481767314ebe88c0474eb423ca49519d120e4b968611cdf233981",
+      "tests/route-matrix.mjs": "0ffd3e7fc8dcf50532b9b373ad4569a7357d4eadb040052ee09a7ae0e1507ebf",
+      "tests/browser-release.mjs": "11ec63fa5cae426a82a92919f0936ce3f6018bd77a4a3375fa7b9f12b1c479a4",
+      "tests/pwa-upgrade-browser.mjs": "14e83731b9ec0bcce2a3d4832c936afefbe658e6150a35b130424d39fda28a37",
+      "tests/combat-player.mjs": "5979a86dd58773fa7b2b9acb659f4994753879ba6ea3162f52d69421f8530f3c"
+    },
+    "packageSha256": {
+      "project.json": "46805669e707cbaf6a9af7e881914dc31a17b63f64b2ac9d54af10a14a03ca26",
+      "index.html": "b9da4010f7622e53809f96a6d851de136ea63f4bd752039617b2ec27f3c8e145",
+      "app.mjs": "d37c5444b156088247d65c22de4f833438fb6d3260e959847c780a5bd5ee9043",
+      "archive.mjs": "2354436bbaca2c1be2a930932f13a0ceae8fb313e950cbfe24f817768194a7f1",
+      "archive-data.mjs": "8c4310fa80a86e3592eb7836d8cee53a41ae7518ca0e1ea73399650bf4bc1f9f",
+      "combat.mjs": "f59a08101ca4e03f0107294acbb8477358f95b7d11e33070fd22e734373b34a6",
+      "direction.mjs": "080af065ebc9e6886882a8ad04c2ef5216035242953d1fe000713ecc1c0b4486",
+      "direction-data.mjs": "5d8ad360377b9824ae94b6d1a3ef3cabf31fdcf61021e32ef477142f6b301eb4",
+      "direction.css": "63408134c21a27b7e2b101f46096165ea3acfff2378a8b834de294e83b2e4c2e",
+      "experience.mjs": "a8f77cf385b8599b6f796068dd5a12ccafa3f94349955dff5aba3e43854208c7",
+      "experience.css": "a5668550774d27c61ca6ec9a5134344653abb2bd7b7366e1375a9dd86a5a97af",
+      "meta.mjs": "85c53c8d660e017cba409084165694bf1b6673166e9cb16457b3295e0a0e832d",
+      "pwa.mjs": "7de55f5f5a582b7c5eee46cd6edbff7a3b2fa763cd883189550daf0275055437",
+      "sfx.mjs": "adee6c3b1e8a9170576416ca78c7d335e486da5a18a894af3449c83c13aa6fab",
+      "ui.mjs": "85802b308711218b785cdd44281f56223e386e96aa6f738fbba09ce6cfa21620"
+    }
+  },
+  "evidence": {
+    "repository": "AureliusWu/RESET",
+    "runId": 40999660425,
+    "sourceCommit": "71c473d9bcf4884315fd424dd176cc724c4d9d84",
+    "artifactId": 12952872213,
+    "artifactSha256": "d764d4b6d93d907bf9b433e096fff9f6197752e94f0cc4c6803e2e14fb7e1b20",
+    "actorStep": "PASS",
+    "overallReleaseAtEvidenceRun": "FAIL: echo win input strategy; separate final Web and Windows acceptance must pass on the release commit",
+    "binding": "The recorded project hash matches the player actor report. Runtime sources are unchanged from the evidence candidate; the follow-up source change only repairs the browser combat actor. Runtime file hashes bind the deterministic local build and must independently match the final CI package. This observation does not certify Release CI."
+  },
+  "playerActorReportSha256": "70fca75a933e133a68887f0668173a32dbb35b94956ca4298db28532ef48b326",
+  "observations": [
+    {
+      "area": "First-time keyboard reader",
+      "status": "PASS",
+      "finding": "Viewed the title, actual first anomaly and long paragraph. The visible focus ring, readable paragraph and toolbar support the separately recorded Tab/Shift+Tab/Enter checks."
+    },
+    {
+      "area": "Six mobile Normal Routes",
+      "status": "PASS",
+      "finding": "Viewed all six route-specific ending screenshots and the six-choice screen. Each has a distinct single CG and complete final text; Xu Qi remains in night Wucheng. UI actor imports are disclosed, not claimed as six full title-to-ending human sessions."
+    },
+    {
+      "area": "Returning player / six slots",
+      "status": "PASS",
+      "finding": "Viewed independent scene labels and paragraph summaries in the six-slot panel. Its scrollable lower slots and fixed close control remain usable; cancel/load and byte-preservation claims come from scripted UI assertions, not from pixels alone."
+    },
+    {
+      "area": "Irreversible decision and True End",
+      "status": "PASS",
+      "finding": "Viewed the unresolved confirmation, October 25 at 07:46, Lin Wan at the 17:58 riverside and final credits. Save/load/restart are absent during forward-only reading, then new-game returns at completion. Morning and sunset are separate scenes."
+    },
+    {
+      "area": "Editorial continuity",
+      "status": "PASS",
+      "finding": "Read the changed scene exits across all seven chapters and the final chapter diff, including death, permanent save, Xu Qi Normal End and the six-girl escape. The revised passages no longer treat a death screen or pre-confirmation save room as ordinary investigation or claim that tomorrow has already arrived. Structural identity is checked independently."
+    },
+    {
+      "area": "Reading, portraits and artwork scope",
+      "status": "PASS",
+      "finding": "Reviewed actual rendered text/portrait/CG composition. Long text stays above portraits; mobile CGs use letterboxing and show no duplicate heroine. Existing approved art bytes and provenance are preserved; this record grants no replacement-art permission."
+    },
+    {
+      "area": "Evidence limits",
+      "status": "PASS",
+      "finding": "These are four fixture-disclosed UI actors plus independent AI screenshot and source observations. Physical Android, physical Windows monitor DPI, real-human study and subjective listening remain NOT_RUN/NOT_CLAIMED. Technical playback, offline, combat and package gates remain mandatory."
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "screenshots/desktop-title.png",
+      "sha256": "075ecca7e29ebc0686f6e35e7044de7397d60ceb42d94737c94eaf84d5814ec5",
+      "actor": "first-time-keyboard",
+      "scene": "prologue_1842",
+      "line": "r1_prologue_1842_pre01_01",
+      "observation": "桌面标题居中，雨夜校门背景清楚；新游戏与读取存档分层明确，浅色焦点框可辨认，没有透出下层剧情控件。"
+    },
+    {
+      "file": "screenshots/desktop-first-anomaly.png",
+      "sha256": "538c617dc8f7f497f7aac23d96ab97cf21bdc091e110ca078e21b3e808b7cbf4",
+      "actor": "first-time-keyboard",
+      "scene": "linwan_shadow",
+      "line": "l002",
+      "observation": "林晚完整站在教室场景前，墙上影子先抬头的旁白清楚；阅读区在立绘上方，人物下部被阅读区正常遮挡。"
+    },
+    {
+      "file": "screenshots/desktop-long-dialogue.png",
+      "sha256": "22514838e9f95a422f74ad2d504152d012c8a037f3d0a83ddb33a50ef44d1022",
+      "actor": "first-time-keyboard",
+      "scene": "linwan_shadow",
+      "line": "r1_linwan_shadow_post09_01",
+      "observation": "两行长旁白可完整读到句末，字色与深色阅读底有足够对比；下方工具栏仍完整，未被立绘或道具盖住。"
+    },
+    {
+      "file": "screenshots/mobile-title.png",
+      "sha256": "979a65bee7cfeed62470b02b9f688f37d586c139c262cf4a97ba988a434c328a",
+      "actor": "mobile-six-routes",
+      "scene": "prologue_1842",
+      "line": "r1_prologue_1842_pre01_01",
+      "observation": "手机竖屏标题、两个入口和操作提示完整；新游戏有清晰焦点边框，底部离线资源状态处于舞台外的独立区域。"
+    },
+    {
+      "file": "screenshots/mobile-six-choices.png",
+      "sha256": "6086a72b10262ef59c17b0a455dacbeaf4fe8b5039dbcca52c961ffeae06215d",
+      "actor": "mobile-six-routes",
+      "scene": "route_focus_choice",
+      "line": "r1_route_focus_choice_post10_01",
+      "observation": "六位女主的路线按钮全部可辨认，标签没有横向截断；长段正文与六选项可在阅读区容纳，底部工具栏独立横向滚动。"
+    },
+    {
+      "file": "screenshots/mobile-ending-linwan.png",
+      "sha256": "44e743b313dbaf716c324cf3ce42c3d00607b89050e7692885d000e7bd290722",
+      "actor": "mobile-six-routes",
+      "scene": "end_linwan",
+      "line": "r1_end_linwan_post10_02",
+      "observation": "林晚普通结局为江岸晚霞 CG，人物只显示一次，画面没有被强行拉伸；结尾正文和已到达结局提示完整。"
+    },
+    {
+      "file": "screenshots/mobile-ending-xiaoman.png",
+      "sha256": "e32f5c92eb1aba3e4181166b70b269d74c7c0d454f295874c10d161ab8b6eda9",
+      "actor": "mobile-six-routes",
+      "scene": "end_xiaoman",
+      "line": "r1_end_xiaoman_post10_02",
+      "observation": "周小满的天台 CG 保留人物与画本；结尾描写离开社团，与天台场景和普通结局的日常收束相符，未叠加常规立绘。"
+    },
+    {
+      "file": "screenshots/mobile-ending-xuqi.png",
+      "sha256": "6ca3b9f996edc0f73b01523491e47180698bf22770598104b2e65b8a16a7f2d3",
+      "actor": "mobile-six-routes",
+      "scene": "end_xuqi",
+      "line": "r1_end_xuqi_post10_02",
+      "observation": "许栖普通结局使用夜梧城钟楼 CG；没有通往明天的日期的文字，与选择留下的结局一致，未出现重返正常学校的矛盾。"
+    },
+    {
+      "file": "screenshots/mobile-ending-tinglan.png",
+      "sha256": "d9f1908561135aa868017cf90d4af9ffe80b42da71436bb54398f1288fd82b7c",
+      "actor": "mobile-six-routes",
+      "scene": "end_tinglan",
+      "line": "r1_end_tinglan_post10_02",
+      "observation": "沈听澜普通结局中档案、桌面和角色保留，归档后离开的正文可读；CG 无重复人物，结局标记与下栏均未被遮挡。"
+    },
+    {
+      "file": "screenshots/mobile-ending-tangli.png",
+      "sha256": "efd2b384b00db76b2f3aa57fe666962bb4d858afef1698d4b5fcab92a82eff33",
+      "actor": "mobile-six-routes",
+      "scene": "end_tangli",
+      "line": "r1_end_tangli_post10_02",
+      "observation": "唐梨的奔跑江岸 CG 保留伸出的手与前行方向；正文结束于继续走未走过的路，文字框未遮住人物面部。"
+    },
+    {
+      "file": "screenshots/mobile-ending-nanxing.png",
+      "sha256": "cc44036aa085de7d123d9f86f37e1118d55766ac702259c7e78489506132c972",
+      "actor": "mobile-six-routes",
+      "scene": "end_nanxing",
+      "line": "r1_end_nanxing_post10_02",
+      "observation": "乔南星普通结局的手机与天台完整；普通消息和商量晚饭的文字与已读不回的收束相符，结尾没有被旧循环说明覆盖。"
+    },
+    {
+      "file": "screenshots/desktop-six-slots.png",
+      "sha256": "e21cfd89aede0b50eb6b3323ccffcdcc0e2b87eda046e16a3253c42e12a95206",
+      "actor": "returning-six-slots",
+      "scene": "prologue_1842",
+      "line": "r1_prologue_1842_pre01_01",
+      "observation": "六个手动槽保留不同章节和摘要；前四槽操作可见，第五第六槽位于面板内滚动区，关闭按钮固定可达，没有挤出窗口。"
+    },
+    {
+      "file": "screenshots/irreversible-confirmation.png",
+      "sha256": "9a001e4b54a4e5a2e5a1fc7e8a4c3321078d478bf7a49920f0b5a0b9859dc572",
+      "actor": "true-route-reader",
+      "scene": "c6_no_save",
+      "line": "r1_c6_no_save_post10_01",
+      "observation": "不保存场景清楚保留继续和返回两个选择，未提前宣告到达明天；快速存读档、新游戏和存档管理入口在工具栏中消失。"
+    },
+    {
+      "file": "screenshots/october-25-morning.png",
+      "sha256": "a7de24a70c246fc0586429f032c847dea29952a20953e77791ceadc2eb0011cc",
+      "actor": "true-route-reader",
+      "scene": "c7_morning",
+      "line": "r1_c7_morning_pre01_01",
+      "observation": "10月25日早晨使用明亮校门与07:46正文，和脱离异常后的正常生活相符；不可逆阅读期间仍未显示存读档入口。"
+    },
+    {
+      "file": "screenshots/true-end-riverside.png",
+      "sha256": "c4ac29e596a9062e34761f92b57ba53e15d9261a94d8cd05b6e3d12fd091a77c",
+      "actor": "true-route-reader",
+      "scene": "c7_linwan",
+      "line": "c7l007",
+      "observation": "明天见对应17:58江岸暖色晚霞，林晚单张 CG 清楚且没有重复立绘；这是早晨之后的傍晚，不误记为清晨 CG。"
+    },
+    {
+      "file": "screenshots/true-end-complete.png",
+      "sha256": "ef5aff2c145ee6d9c07afce870fafed8aa34528296a312c7c0a74741e992c086",
+      "actor": "true-route-reader",
+      "scene": "c7_credits",
+      "line": "r1_c7_credits_post10_01",
+      "observation": "最后正文梧城继续往前与已到达结局显示完整，普通城市背景取代终局白色空间；新游戏入口恢复，便于保留收藏后重新开始。"
+    }
+  ],
+  "nonBlocking": [
+    {
+      "area": "Mobile CG composition",
+      "finding": "Landscape CGs are letterboxed in portrait mode. Character faces and reading remain clear; a later dedicated portrait crop may use more of the vertical art area."
+    }
+  ]
+}

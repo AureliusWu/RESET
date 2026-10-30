@@ -1,0 +1,247 @@
+{
+  "schema": 1,
+  "type": "scripted-ui-player-actors",
+  "status": "PASS",
+  "version": "reset-v1.3.0",
+  "projectSha256": "46805669e707cbaf6a9af7e881914dc31a17b63f64b2ac9d54af10a14a03ca26",
+  "independentAiObservation": "REQUIRED_SEPARATELY",
+  "realHumanParticipants": "NOT_CLAIMED",
+  "physicalDevices": "NOT_RUN",
+  "actors": [
+    {
+      "id": "first-time-keyboard",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "entry": "fresh profile",
+      "fixtures": [],
+      "checks": [
+        "Fresh title traps Tab/Shift+Tab; Enter enters once and returns focus to reading",
+        "Real first choice enters Lin Wan scene and actual shadow paragraph",
+        "Long dialogue stays above the actual portrait, scene props and transient direction lights"
+      ],
+      "status": "PASS"
+    },
+    {
+      "id": "mobile-six-routes",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "entry": "fresh profile",
+      "fixtures": [
+        {
+          "scene": "route_focus_choice",
+          "method": "Settings backup import; canonical replay save from runtime discovery"
+        },
+        {
+          "scene": "route_focus_choice",
+          "method": "Settings backup import; canonical replay save from runtime discovery"
+        },
+        {
+          "scene": "route_focus_choice",
+          "method": "Settings backup import; canonical replay save from runtime discovery"
+        },
+        {
+          "scene": "route_focus_choice",
+          "method": "Settings backup import; canonical replay save from runtime discovery"
+        },
+        {
+          "scene": "route_focus_choice",
+          "method": "Settings backup import; canonical replay save from runtime discovery"
+        },
+        {
+          "scene": "route_focus_choice",
+          "method": "Settings backup import; canonical replay save from runtime discovery"
+        }
+      ],
+      "checks": [
+        "linwan: canonical focus fixture -> real route choice -> normal decision -> final paragraph and persistent ending Meta",
+        "xiaoman: canonical focus fixture -> real route choice -> normal decision -> final paragraph and persistent ending Meta",
+        "xuqi: canonical focus fixture -> real route choice -> normal decision -> final paragraph and persistent ending Meta",
+        "tinglan: canonical focus fixture -> real route choice -> normal decision -> final paragraph and persistent ending Meta",
+        "tangli: canonical focus fixture -> real route choice -> normal decision -> final paragraph and persistent ending Meta",
+        "nanxing: canonical focus fixture -> real route choice -> normal decision -> final paragraph and persistent ending Meta"
+      ],
+      "status": "PASS"
+    },
+    {
+      "id": "returning-six-slots",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "entry": "fresh profile",
+      "fixtures": [
+        {
+          "scene": "prologue_1842",
+          "method": "Settings backup import; canonical replay save from runtime discovery"
+        },
+        {
+          "scene": "linwan_shadow",
+          "method": "Settings backup import; canonical replay save from runtime discovery"
+        },
+        {
+          "scene": "archive_room",
+          "method": "Settings backup import; canonical replay save from runtime discovery"
+        },
+        {
+          "scene": "route_focus_choice",
+          "method": "Settings backup import; canonical replay save from runtime discovery"
+        },
+        {
+          "scene": "chapter5_gate",
+          "method": "Settings backup import; canonical replay save from runtime discovery"
+        },
+        {
+          "scene": "c5_request",
+          "method": "Settings backup import; canonical replay save from runtime discovery"
+        },
+        {
+          "scene": "prologue_1842",
+          "method": "Settings backup import; canonical replay save from runtime discovery"
+        }
+      ],
+      "checks": [
+        "Six distinct canonical story positions saved through visible manual-slot controls",
+        "Cancel preserves current paragraph; confirmed slot 6 restore does not rewrite the archive or quick-save"
+      ],
+      "status": "PASS"
+    },
+    {
+      "id": "true-route-reader",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "entry": "fresh profile",
+      "fixtures": [
+        {
+          "scene": "c6_no_save",
+          "method": "Settings backup import; canonical replay save from runtime discovery"
+        }
+      ],
+      "checks": [
+        "Disclosed c6_no_save fixture, then actual irreversible confirmation and forward-only reading through October 25 and credits",
+        "True End allows a new game while retaining Meta"
+      ],
+      "status": "PASS"
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "desktop-title.png",
+      "actor": "first-time-keyboard",
+      "scene": "prologue_1842",
+      "line": "r1_prologue_1842_pre01_01",
+      "sha256": "075ecca7e29ebc0686f6e35e7044de7397d60ceb42d94737c94eaf84d5814ec5"
+    },
+    {
+      "file": "desktop-first-anomaly.png",
+      "actor": "first-time-keyboard",
+      "scene": "linwan_shadow",
+      "line": "l002",
+      "sha256": "538c617dc8f7f497f7aac23d96ab97cf21bdc091e110ca078e21b3e808b7cbf4"
+    },
+    {
+      "file": "desktop-long-dialogue.png",
+      "actor": "first-time-keyboard",
+      "scene": "linwan_shadow",
+      "line": "r1_linwan_shadow_post09_01",
+      "sha256": "22514838e9f95a422f74ad2d504152d012c8a037f3d0a83ddb33a50ef44d1022"
+    },
+    {
+      "file": "mobile-title.png",
+      "actor": "mobile-six-routes",
+      "scene": "prologue_1842",
+      "line": "r1_prologue_1842_pre01_01",
+      "sha256": "979a65bee7cfeed62470b02b9f688f37d586c139c262cf4a97ba988a434c328a"
+    },
+    {
+      "file": "mobile-six-choices.png",
+      "actor": "mobile-six-routes",
+      "scene": "route_focus_choice",
+      "line": "r1_route_focus_choice_post10_01",
+      "sha256": "6086a72b10262ef59c17b0a455dacbeaf4fe8b5039dbcca52c961ffeae06215d"
+    },
+    {
+      "file": "mobile-ending-linwan.png",
+      "actor": "mobile-six-routes",
+      "scene": "end_linwan",
+      "line": "r1_end_linwan_post10_02",
+      "sha256": "44e743b313dbaf716c324cf3ce42c3d00607b89050e7692885d000e7bd290722"
+    },
+    {
+      "file": "mobile-ending-xiaoman.png",
+      "actor": "mobile-six-routes",
+      "scene": "end_xiaoman",
+      "line": "r1_end_xiaoman_post10_02",
+      "sha256": "e32f5c92eb1aba3e4181166b70b269d74c7c0d454f295874c10d161ab8b6eda9"
+    },
+    {
+      "file": "mobile-ending-xuqi.png",
+      "actor": "mobile-six-routes",
+      "scene": "end_xuqi",
+      "line": "r1_end_xuqi_post10_02",
+      "sha256": "6ca3b9f996edc0f73b01523491e47180698bf22770598104b2e65b8a16a7f2d3"
+    },
+    {
+      "file": "mobile-ending-tinglan.png",
+      "actor": "mobile-six-routes",
+      "scene": "end_tinglan",
+      "line": "r1_end_tinglan_post10_02",
+      "sha256": "d9f1908561135aa868017cf90d4af9ffe80b42da71436bb54398f1288fd82b7c"
+    },
+    {
+      "file": "mobile-ending-tangli.png",
+      "actor": "mobile-six-routes",
+      "scene": "end_tangli",
+      "line": "r1_end_tangli_post10_02",
+      "sha256": "efd2b384b00db76b2f3aa57fe666962bb4d858afef1698d4b5fcab92a82eff33"
+    },
+    {
+      "file": "mobile-ending-nanxing.png",
+      "actor": "mobile-six-routes",
+      "scene": "end_nanxing",
+      "line": "r1_end_nanxing_post10_02",
+      "sha256": "cc44036aa085de7d123d9f86f37e1118d55766ac702259c7e78489506132c972"
+    },
+    {
+      "file": "desktop-six-slots.png",
+      "actor": "returning-six-slots",
+      "scene": "prologue_1842",
+      "line": "r1_prologue_1842_pre01_01",
+      "sha256": "e21cfd89aede0b50eb6b3323ccffcdcc0e2b87eda046e16a3253c42e12a95206"
+    },
+    {
+      "file": "irreversible-confirmation.png",
+      "actor": "true-route-reader",
+      "scene": "c6_no_save",
+      "line": "r1_c6_no_save_post10_01",
+      "sha256": "9a001e4b54a4e5a2e5a1fc7e8a4c3321078d478bf7a49920f0b5a0b9859dc572"
+    },
+    {
+      "file": "october-25-morning.png",
+      "actor": "true-route-reader",
+      "scene": "c7_morning",
+      "line": "r1_c7_morning_pre01_01",
+      "sha256": "a7de24a70c246fc0586429f032c847dea29952a20953e77791ceadc2eb0011cc"
+    },
+    {
+      "file": "true-end-riverside.png",
+      "actor": "true-route-reader",
+      "scene": "c7_linwan",
+      "line": "c7l007",
+      "sha256": "c4ac29e596a9062e34761f92b57ba53e15d9261a94d8cd05b6e3d12fd091a77c"
+    },
+    {
+      "file": "true-end-complete.png",
+      "actor": "true-route-reader",
+      "scene": "c7_credits",
+      "line": "r1_c7_credits_post10_01",
+      "sha256": "ef5aff2c145ee6d9c07afce870fafed8aa34528296a312c7c0a74741e992c086"
+    }
+  ],
+  "errors": []
+}

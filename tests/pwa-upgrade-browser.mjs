@@ -26,25 +26,34 @@ export async function verifyPwaUpgrade({browser,dist,previous,fixtures,out,pass}
   try{
     page=await context.newPage();await page.goto(base);await page.locator('.vn-engine').waitFor();
     const previousProject=await page.evaluate(async()=>await(await fetch('./project.json')).json());
-    assert.equal(previousProject.version,'reset-v1.2.2');
+    assert.equal(previousProject.version,'reset-v1.2.3');
     await enterTitle();
     await page.locator('[data-control=save]').click();
-    await page.locator('[data-reset-control=slots]').click();await page.locator('[data-slot="1"] [data-slot-action=save]').click();await page.keyboard.press('Escape');
+    const points=['prologue_1842','linwan_shadow','archive_room','route_focus_choice','chapter5_gate','c5_request'];
+    for(let i=0;i<points.length;i++){
+      const old=structuredClone(fixtures.witnesses[points[i]]);old.state.storyVersion=previousProject.version;old.state.history=[];
+      await page.locator('[data-control=settings]').click();
+      await page.locator('input[type=file]').setInputFiles({name:'old-canonical-route.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(old))});
+      await page.locator('.vn-modal').waitFor({state:'hidden'});
+      await page.locator('[data-reset-control=slots]').click();await page.locator(`[data-slot="${i+1}"] [data-slot-action=save]`).click();await page.keyboard.press('Escape');
+    }
     const oldEnding=structuredClone(fixtures.endings['normal-linwan']);
     const previousEnding=previousProject.scenes.find(scene=>scene.id===oldEnding.state.sceneId);
-    assert.ok(previousEnding,'v1.2.2 must contain the preserved Lin Wan ending scene');
+    assert.ok(previousEnding,'v1.2.3 must contain the preserved Lin Wan ending scene');
     oldEnding.state.storyVersion=previousProject.version;
     oldEnding.state.line=Math.max(0,(previousEnding.lines?.length??1)-1);
     oldEnding.state.history=[];
     if(previousProject.stats)oldEnding.state.stats=Object.fromEntries(Object.entries(previousProject.stats).map(([key,value])=>[key,oldEnding.state.stats?.[key]??value]));
     await page.locator('[data-control=settings]').click();await page.locator('input[type=file]').setInputFiles({name:'old-route.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(oldEnding))});await page.locator('.vn-modal').waitFor({state:'hidden'});
     await page.waitForFunction(()=>document.getElementById('status').textContent.includes('可离线游玩')&&navigator.serviceWorker.controller);
-    const saved=await page.evaluate(async()=>({quick:localStorage.getItem('vn-engine:reset:save:1'),slots:localStorage.getItem('reset:slots:v1'),caches:await caches.keys()}));
+    const saved=await page.evaluate(async()=>({quick:localStorage.getItem('vn-engine:reset:save:1'),slots:localStorage.getItem('reset:slots:v1'),settings:localStorage.getItem('vn-engine:reset:settings'),meta:localStorage.getItem('reset:meta:v1'),caches:await caches.keys()}));
+    assert.equal(JSON.parse(saved.slots).slots.length,6);assert.ok(JSON.parse(saved.meta).cgs.length>0,'Old PWA fixture must really unlock a CG');
+    await page.screenshot({path:out+'/v123-before-upgrade.png',fullPage:true});
     await page.evaluate(async()=>{const c=await caches.open('qa-unrelated-cache');await c.put('./unrelated',new Response('keep'));});
     const nextWorkerPromise=context.waitForEvent('serviceworker');
     root=resolve(dist);await page.evaluate(async()=>{const owner=await navigator.serviceWorker.getRegistration();await owner.update();});
     await page.waitForFunction(async()=>Boolean((await navigator.serviceWorker.getRegistration()).waiting),null,{timeout:90000});
-    assert.equal(await page.evaluate(async()=> (await(await fetch('./project.json')).json()).version),'reset-v1.2.2','the active client must not switch runtime mid-story');
+    assert.equal(await page.evaluate(async()=> (await(await fetch('./project.json')).json()).version),'reset-v1.2.3','the active client must not switch runtime mid-story');
     const nextWorker=await nextWorkerPromise;
     await nextWorker.evaluate(()=>{self.__qaActivated=new Promise(resolve=>self.addEventListener('activate',()=>resolve(true),{once:true}));});
     await page.close();await nextWorker.evaluate(()=>self.__qaActivated);
@@ -53,23 +62,39 @@ export async function verifyPwaUpgrade({browser,dist,previous,fixtures,out,pass}
       const check=()=>{if(!self.registration.waiting&&self.registration.active?.state==='activated')resolve(true);else if(Date.now()>deadline)reject(Error('Candidate worker activation timed out'));else setTimeout(check,25);};check();
     }));
     page=await context.newPage();await page.goto(base);await page.locator('.vn-engine').waitFor();
-    await page.waitForFunction(async()=> (await(await fetch('./project.json')).json()).version==='reset-v1.2.3',null,{timeout:90000});
+    await page.waitForFunction(async()=> (await(await fetch('./project.json')).json()).version==='reset-v1.3.0',null,{timeout:90000});
     await enterTitle();
     await page.reload();await page.locator('.vn-engine').waitFor();await enterTitle();await page.locator('.reset-toolbar-controls').waitFor();
     assert.equal(await page.evaluate(()=>localStorage.getItem('vn-engine:reset:save:1')),saved.quick);
     assert.equal(await page.evaluate(()=>localStorage.getItem('reset:slots:v1')),saved.slots);
-    await page.locator('[data-control=load]').click();
-    await page.locator('[data-reset-control=slots]').click();await page.locator('[data-slot="1"] [data-slot-action=load]').click();await page.locator('[data-reset-confirm]').click();
+    assert.equal(await page.evaluate(()=>localStorage.getItem('vn-engine:reset:settings')),saved.settings);
+    assert.equal(await page.evaluate(()=>localStorage.getItem('reset:meta:v1')),saved.meta);
+    const verifyAllSaves=async()=>{
+      await page.locator('[data-control=load]').click();
+      assert.equal(await page.locator('.vn-engine').getAttribute('data-scene'),JSON.parse(saved.quick).state.sceneId);
+      for(const slot of JSON.parse(saved.slots).slots){
+        await page.locator('[data-reset-control=slots]').click();await page.locator(`[data-slot="${slot.id}"] [data-slot-action=load]`).click();await page.locator('[data-reset-confirm]').click();
+        assert.equal(await page.locator('.vn-engine').getAttribute('data-scene'),slot.save.state.sceneId,'old manual slot '+slot.id);
+        assert.equal(await page.locator('.vn-engine').getAttribute('data-line'),previousProject.scenes.find(s=>s.id===slot.save.state.sceneId).lines[slot.save.state.line].id,'preserved paragraph in slot '+slot.id);
+      }
+      assert.equal(await page.evaluate(()=>localStorage.getItem('vn-engine:reset:save:1')),saved.quick);
+      assert.equal(await page.evaluate(()=>localStorage.getItem('reset:slots:v1')),saved.slots,'Loading must not rewrite the original six-slot archive');
+      const meta=await page.evaluate(()=>JSON.parse(localStorage.getItem('reset:meta:v1'))),old=JSON.parse(saved.meta);
+      assert.ok(old.endings.every(id=>meta.endings.includes(id)));assert.ok(old.cgs.every(id=>meta.cgs.includes(id)));
+    };
+    await verifyAllSaves();
     await page.locator('[data-reset-control=collection]').click();assert.equal(await page.locator('[data-ending=normal-linwan]').getAttribute('data-unlocked'),'true');await page.keyboard.press('Escape');
     const keys=await page.evaluate(()=>caches.keys());assert.ok(keys.includes('qa-unrelated-cache'));
     assert.ok(saved.caches.filter(k=>k.startsWith('vn-self-reset-v2:')).every(k=>!keys.includes(k)));
-    pass('Published v1.2.2 PWA upgrades at the same nested origin to v1.2.3 after clients close; old quick/manual saves, settings and ending Meta survive');
+    pass('Published v1.2.3 PWA upgrades after old clients close; quick-save, all six distinct manual slots, settings, ending and CG Meta remain byte-preserved and load correctly');
     await page.waitForFunction(()=>navigator.serviceWorker.controller&&document.getElementById('status').textContent.includes('可离线游玩'));
     await context.setOffline(true);await page.reload();await page.locator('.vn-engine').waitFor();await enterTitle();
-    await page.locator('[data-control=load]').click();await page.locator('[data-reset-control=slots]').click();await page.locator('[data-slot="1"] [data-slot-action=load]').click();await page.locator('[data-reset-confirm]').click();
+    await verifyAllSaves();
     await page.locator('.vn-background').waitFor({state:'visible'});assert.equal(await page.locator('#error').innerText(),'');
-    await page.screenshot({path:out+'/v122-upgraded-offline.png',fullPage:true});
-    pass('Upgraded v1.2.3 reloads offline and reads both real v1.2.2 save formats without clearing other caches');
+    await page.screenshot({path:out+'/v123-upgraded-offline.png',fullPage:true});
+    pass('Offline v1.3.0 reload repeats quick and all six v1.2.3 manual loads with original archives and unrelated caches intact');
+    const {writeFile,mkdir}=await import('node:fs/promises');await mkdir('test-results/final-qa',{recursive:true});
+    await writeFile('test-results/final-qa/pwa-upgrade.json',JSON.stringify({status:'PASS',from:'reset-v1.2.3',to:'reset-v1.3.0',oldPackageSha256:'b7a4a9e9d8afa7ef72d714444937df097e4d831a786e7eef9a6be67e895ca127',manualSlots:6,distinctScenes:points,onlineLoads:7,offlineLoads:7,originalBackups:'UNCHANGED',settings:'PRESERVED',endingAndCgMeta:'PRESERVED',activeClientSwitch:'DEFERRED_UNTIL_CLOSED',unrelatedCaches:'PRESERVED',fixturePolicy:'Canonical replay saves imported into the actual published v1.2.3 UI, then saved via its six visible manual slots; not a human playthrough.'},null,2)+'\n');
   }catch(error){
     await page?.screenshot({path:out+'/upgrade-failure.png',fullPage:true}).catch(()=>{});
     const state=await page?.evaluate(async()=>({error:document.querySelector('#error')?.textContent,html:document.body.innerText,cacheKeys:await caches.keys(),cacheProjects:await Promise.all((await caches.keys()).filter(k=>k.startsWith('vn-self-reset-v2:')).map(async key=>{const cache=await caches.open(key),response=await cache.match(new URL('./project.json',location.href));return {key,version:response?(await response.json()).version:null};})),archiveHasNewControls:(await(await fetch('./archive.mjs')).text()).includes('reset-toolbar-controls'),controller:navigator.serviceWorker.controller?.state,waiting:(await navigator.serviceWorker.getRegistration())?.waiting?.state})).catch(()=>null);
