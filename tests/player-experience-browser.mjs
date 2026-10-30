@@ -62,7 +62,12 @@ export async function verifyPlayerExperience({browser,page,base,fixtures,project
         pass('R7 mobile dialogue advances by reading-box tap, Enter and Space while the legacy next control stays out of layout');
 
         await load(fixtures.witnesses.archive_erased_map);
-        const map=mobile.locator('.reset-story-prop-map');await map.waitFor({state:'visible'});await mobile.locator('.vn-portrait').waitFor({state:'visible'});
+        const map=mobile.locator('.reset-story-prop-map');await map.waitFor({state:'visible'});
+        const mapScene=project.scenes.find(s=>s.id==='archive_erased_map');
+        const mapSpeaker=mapScene.lines.find(l=>project.stage.lines[l.id]?.portrait);
+        assert.ok(mapSpeaker,'Map layering needs a canonical in-person speaking witness');
+        await advanceUntil(async()=>await mobile.locator('.vn-engine').getAttribute('data-line')===mapSpeaker.id,'map speaking turn');
+        await mobile.locator('.vn-portrait').waitFor({state:'visible'});
         const layering=await mobile.evaluate(()=>{
           const map=document.querySelector('.reset-story-prop-map'), portrait=document.querySelector('.vn-portrait'), stage=document.querySelector('.vn-stage');
           const m=map.getBoundingClientRect(),p=portrait.getBoundingClientRect(),s=stage.getBoundingClientRect();

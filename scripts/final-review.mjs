@@ -6,7 +6,7 @@ import {resolve} from 'node:path';
 export const evidencePath='docs/evidence/npc-v1.3.1';
 const contractPath='docs/evidence/final-v1.3.0';
 export const chapters=Array.from({length:7},(_,i)=>`game/content/chapters/0${i+1}.json`);
-export const sourceFiles=[...chapters,...['archive','archive-data','combat','direction','experience','meta','pwa','sfx','ui'].map(n=>`game/runtime/${n}.mjs`),'game/runtime/experience.css','game/runtime/direction.css','scripts/final-review.mjs','scripts/check-final-review.mjs','tests/player-actors-browser.mjs','tests/route-matrix.mjs','tests/browser-release.mjs','tests/pwa-upgrade-browser.mjs','tests/combat-player.mjs','game/content/runtime.json','scripts/build.mjs','scripts/portrait-cues.mjs','scripts/supporting-runtime.mjs','scripts/check-r5-supporting-cast.mjs','tests/supporting-portraits-browser.mjs','tests/supporting-runtime-browser.mjs','tests/portrait-runtime.test.mjs',`${evidencePath}/presentation-migration.json`];
+export const sourceFiles=[...chapters,...['archive','archive-data','combat','direction','experience','meta','pwa','sfx','ui'].map(n=>`game/runtime/${n}.mjs`),'game/runtime/experience.css','game/runtime/direction.css','scripts/final-review.mjs','scripts/check-final-review.mjs','tests/player-actors-browser.mjs','tests/route-matrix.mjs','tests/browser-release.mjs','tests/pwa-upgrade-browser.mjs','tests/combat-player.mjs','game/content/runtime.json','scripts/build.mjs','scripts/portrait-cues.mjs','scripts/supporting-runtime.mjs','scripts/check-r5-supporting-cast.mjs','tests/supporting-portraits-browser.mjs','tests/supporting-runtime-browser.mjs','tests/portrait-runtime.test.mjs','tests/player-experience-browser.mjs','tests/linwan-art-browser.mjs','tests/windows-launch.mjs','tests/pages-live.mjs',`${evidencePath}/presentation-migration.json`];
 export const packageFiles=['project.json','index.html','app.mjs','archive.mjs','archive-data.mjs','combat.mjs','direction.mjs','direction-data.mjs','direction.css','experience.mjs','experience.css','meta.mjs','pwa.mjs','sfx.mjs','ui.mjs'];
 export const sha256=value=>createHash('sha256').update(value).digest('hex');
 export function canonical(value){
@@ -67,9 +67,21 @@ export async function checkReview(root,dist){
   const actors=JSON.parse(actorsRaw);
   assert.equal(actors.status,'PASS');assert.equal(actors.projectSha256,review.subject.packageSha256['project.json']);
   assert.deepEqual(actors.actors.map(a=>[a.id,a.status]),['first-time-keyboard','mobile-six-routes','returning-six-slots','true-route-reader'].map(id=>[id,'PASS']));
+  const runtimeRaw=await readFile(resolve(root,evidencePath,'supporting-runtime.json'));
+  assert.equal(sha256(runtimeRaw),review.runtimeReportSha256,'Reviewed NPC runtime report changed');
+  const runtime=JSON.parse(runtimeRaw);
+  assert.equal(runtime.status,'PASS');assert.equal(runtime.projectSha256,review.subject.packageSha256['project.json']);
+  for(const key of ['supportingCharacters','approved','speakerMapped','runtimeVisible','domVisible'])assert.equal(runtime[key],12,'Incomplete NPC runtime evidence: '+key);
+  assert.equal(runtime.productionProjectOverride,false);
+  assert.equal(runtime.records.length,48,'All twelve NPCs need all four viewport checks');
+  for(const record of runtime.records){
+    assert.equal(record.asset,record.id+'/neutral');assert.equal(record.runtimePortrait,record.asset);
+    assert.equal(record.hidden,false);assert.ok(record.naturalWidth>0&&record.naturalHeight>0);
+  }
   for(const shot of review.screenshots){
     assert.ok(/^screenshots\/[a-z0-9-]+\.png$/.test(shot.file));
-    assert.ok(actors.screenshots.some(s=>shot.file==='screenshots/'+s.file&&s.sha256===shot.sha256),'Screenshot is not from the recorded player run: '+shot.file);
+    const source=shot.source==='supporting-runtime'?runtime:actors;
+    assert.ok(source.screenshots.some(s=>shot.file==='screenshots/'+s.file&&s.sha256===shot.sha256),'Screenshot is not from the recorded player run: '+shot.file);
     assert.equal(sha256(await readFile(resolve(root,evidencePath,shot.file))),shot.sha256,'Reviewed screenshot has changed: '+shot.file);
     assert.ok(shot.observation?.length>=20,'Screenshot has no actual observation');
   }

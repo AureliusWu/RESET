@@ -1,0 +1,1795 @@
+{
+  "schema": 1,
+  "status": "PASS",
+  "version": "reset-v1.3.1",
+  "projectSha256": "3c618ee8d5d27979f5919e017987a36ed582b1867ce4e79dcf804f8736465a17",
+  "supportingCharacters": 12,
+  "approved": 12,
+  "speakerMapped": 12,
+  "runtimeVisible": 12,
+  "domVisible": 12,
+  "runtimeVisitedLines": 2082,
+  "records": [
+    {
+      "id": "xujiashu",
+      "name": "徐嘉树",
+      "viewport": "1280x900",
+      "sceneId": "prologue_1842",
+      "lineId": "r1_prologue_1842_pre03_01",
+      "runtimePortrait": "xujiashu/neutral",
+      "asset": "xujiashu/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "chengyan",
+      "name": "程妍",
+      "viewport": "1280x900",
+      "sceneId": "prologue_1842",
+      "lineId": "r1_prologue_1842_pre04_01",
+      "runtimePortrait": "chengyan/neutral",
+      "asset": "chengyan/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "gumingyuan",
+      "name": "顾明远",
+      "viewport": "1280x900",
+      "sceneId": "morning_after",
+      "lineId": "r1_morning_after_key01_01",
+      "runtimePortrait": "gumingyuan/neutral",
+      "asset": "gumingyuan/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "chenlan",
+      "name": "陈岚",
+      "viewport": "1280x900",
+      "sceneId": "chapter5_gate",
+      "lineId": "r1_chapter5_gate_pre03_01",
+      "runtimePortrait": "chenlan/neutral",
+      "asset": "chenlan/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "xurong",
+      "name": "许蓉",
+      "viewport": "1280x900",
+      "sceneId": "archive_room",
+      "lineId": "r1_archive_room_pre03_01",
+      "runtimePortrait": "xurong/neutral",
+      "asset": "xurong/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "luoxiumei",
+      "name": "罗秀梅",
+      "viewport": "1280x900",
+      "sceneId": "cafeteria_path",
+      "lineId": "r1_cafeteria_path_pre03_01",
+      "runtimePortrait": "luoxiumei/neutral",
+      "asset": "luoxiumei/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "suyao",
+      "name": "苏遥",
+      "viewport": "1280x900",
+      "sceneId": "xiaoman_rain",
+      "lineId": "r1_xiaoman_rain_pre03_01",
+      "runtimePortrait": "suyao/neutral",
+      "asset": "suyao/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "hechuan",
+      "name": "何川",
+      "viewport": "1280x900",
+      "sceneId": "riverside_wrong_turn",
+      "lineId": "r1_riverside_wrong_turn_pre03_01",
+      "runtimePortrait": "hechuan/neutral",
+      "asset": "hechuan/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "jiyao",
+      "name": "纪尧",
+      "viewport": "1280x900",
+      "sceneId": "future_message",
+      "lineId": "r1_future_message_pre03_01",
+      "runtimePortrait": "jiyao/neutral",
+      "asset": "jiyao/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "lincheng",
+      "name": "林澄",
+      "viewport": "1280x900",
+      "sceneId": "linwan_shadow",
+      "lineId": "r1_linwan_shadow_pre03_01",
+      "runtimePortrait": "lincheng/neutral",
+      "asset": "lincheng/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "shenyanqiu",
+      "name": "沈砚秋",
+      "viewport": "1280x900",
+      "sceneId": "archive_room",
+      "lineId": "r1_archive_room_pre04_01",
+      "runtimePortrait": "shenyanqiu/neutral",
+      "asset": "shenyanqiu/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "liangcheng",
+      "name": "梁成",
+      "viewport": "1280x900",
+      "sceneId": "station_fourth",
+      "lineId": "r1_station_fourth_pre03_01",
+      "runtimePortrait": "liangcheng/neutral",
+      "asset": "liangcheng/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "xujiashu",
+      "name": "徐嘉树",
+      "viewport": "390x844",
+      "sceneId": "prologue_1842",
+      "lineId": "r1_prologue_1842_pre03_01",
+      "runtimePortrait": "xujiashu/neutral",
+      "asset": "xujiashu/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "chengyan",
+      "name": "程妍",
+      "viewport": "390x844",
+      "sceneId": "prologue_1842",
+      "lineId": "r1_prologue_1842_pre04_01",
+      "runtimePortrait": "chengyan/neutral",
+      "asset": "chengyan/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "gumingyuan",
+      "name": "顾明远",
+      "viewport": "390x844",
+      "sceneId": "morning_after",
+      "lineId": "r1_morning_after_key01_01",
+      "runtimePortrait": "gumingyuan/neutral",
+      "asset": "gumingyuan/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "chenlan",
+      "name": "陈岚",
+      "viewport": "390x844",
+      "sceneId": "chapter5_gate",
+      "lineId": "r1_chapter5_gate_pre03_01",
+      "runtimePortrait": "chenlan/neutral",
+      "asset": "chenlan/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "xurong",
+      "name": "许蓉",
+      "viewport": "390x844",
+      "sceneId": "archive_room",
+      "lineId": "r1_archive_room_pre03_01",
+      "runtimePortrait": "xurong/neutral",
+      "asset": "xurong/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "luoxiumei",
+      "name": "罗秀梅",
+      "viewport": "390x844",
+      "sceneId": "cafeteria_path",
+      "lineId": "r1_cafeteria_path_pre03_01",
+      "runtimePortrait": "luoxiumei/neutral",
+      "asset": "luoxiumei/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "suyao",
+      "name": "苏遥",
+      "viewport": "390x844",
+      "sceneId": "xiaoman_rain",
+      "lineId": "r1_xiaoman_rain_pre03_01",
+      "runtimePortrait": "suyao/neutral",
+      "asset": "suyao/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "hechuan",
+      "name": "何川",
+      "viewport": "390x844",
+      "sceneId": "riverside_wrong_turn",
+      "lineId": "r1_riverside_wrong_turn_pre03_01",
+      "runtimePortrait": "hechuan/neutral",
+      "asset": "hechuan/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "jiyao",
+      "name": "纪尧",
+      "viewport": "390x844",
+      "sceneId": "future_message",
+      "lineId": "r1_future_message_pre03_01",
+      "runtimePortrait": "jiyao/neutral",
+      "asset": "jiyao/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "lincheng",
+      "name": "林澄",
+      "viewport": "390x844",
+      "sceneId": "linwan_shadow",
+      "lineId": "r1_linwan_shadow_pre03_01",
+      "runtimePortrait": "lincheng/neutral",
+      "asset": "lincheng/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "shenyanqiu",
+      "name": "沈砚秋",
+      "viewport": "390x844",
+      "sceneId": "archive_room",
+      "lineId": "r1_archive_room_pre04_01",
+      "runtimePortrait": "shenyanqiu/neutral",
+      "asset": "shenyanqiu/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "liangcheng",
+      "name": "梁成",
+      "viewport": "390x844",
+      "sceneId": "station_fourth",
+      "lineId": "r1_station_fourth_pre03_01",
+      "runtimePortrait": "liangcheng/neutral",
+      "asset": "liangcheng/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "xujiashu",
+      "name": "徐嘉树",
+      "viewport": "844x390",
+      "sceneId": "prologue_1842",
+      "lineId": "r1_prologue_1842_pre03_01",
+      "runtimePortrait": "xujiashu/neutral",
+      "asset": "xujiashu/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "chengyan",
+      "name": "程妍",
+      "viewport": "844x390",
+      "sceneId": "prologue_1842",
+      "lineId": "r1_prologue_1842_pre04_01",
+      "runtimePortrait": "chengyan/neutral",
+      "asset": "chengyan/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "gumingyuan",
+      "name": "顾明远",
+      "viewport": "844x390",
+      "sceneId": "morning_after",
+      "lineId": "r1_morning_after_key01_01",
+      "runtimePortrait": "gumingyuan/neutral",
+      "asset": "gumingyuan/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "chenlan",
+      "name": "陈岚",
+      "viewport": "844x390",
+      "sceneId": "chapter5_gate",
+      "lineId": "r1_chapter5_gate_pre03_01",
+      "runtimePortrait": "chenlan/neutral",
+      "asset": "chenlan/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "xurong",
+      "name": "许蓉",
+      "viewport": "844x390",
+      "sceneId": "archive_room",
+      "lineId": "r1_archive_room_pre03_01",
+      "runtimePortrait": "xurong/neutral",
+      "asset": "xurong/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "luoxiumei",
+      "name": "罗秀梅",
+      "viewport": "844x390",
+      "sceneId": "cafeteria_path",
+      "lineId": "r1_cafeteria_path_pre03_01",
+      "runtimePortrait": "luoxiumei/neutral",
+      "asset": "luoxiumei/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "suyao",
+      "name": "苏遥",
+      "viewport": "844x390",
+      "sceneId": "xiaoman_rain",
+      "lineId": "r1_xiaoman_rain_pre03_01",
+      "runtimePortrait": "suyao/neutral",
+      "asset": "suyao/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "hechuan",
+      "name": "何川",
+      "viewport": "844x390",
+      "sceneId": "riverside_wrong_turn",
+      "lineId": "r1_riverside_wrong_turn_pre03_01",
+      "runtimePortrait": "hechuan/neutral",
+      "asset": "hechuan/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "jiyao",
+      "name": "纪尧",
+      "viewport": "844x390",
+      "sceneId": "future_message",
+      "lineId": "r1_future_message_pre03_01",
+      "runtimePortrait": "jiyao/neutral",
+      "asset": "jiyao/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "lincheng",
+      "name": "林澄",
+      "viewport": "844x390",
+      "sceneId": "linwan_shadow",
+      "lineId": "r1_linwan_shadow_pre03_01",
+      "runtimePortrait": "lincheng/neutral",
+      "asset": "lincheng/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "shenyanqiu",
+      "name": "沈砚秋",
+      "viewport": "844x390",
+      "sceneId": "archive_room",
+      "lineId": "r1_archive_room_pre04_01",
+      "runtimePortrait": "shenyanqiu/neutral",
+      "asset": "shenyanqiu/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "liangcheng",
+      "name": "梁成",
+      "viewport": "844x390",
+      "sceneId": "station_fourth",
+      "lineId": "r1_station_fourth_pre03_01",
+      "runtimePortrait": "liangcheng/neutral",
+      "asset": "liangcheng/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "xujiashu",
+      "name": "徐嘉树",
+      "viewport": "3840x2160",
+      "sceneId": "prologue_1842",
+      "lineId": "r1_prologue_1842_pre03_01",
+      "runtimePortrait": "xujiashu/neutral",
+      "asset": "xujiashu/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "chengyan",
+      "name": "程妍",
+      "viewport": "3840x2160",
+      "sceneId": "prologue_1842",
+      "lineId": "r1_prologue_1842_pre04_01",
+      "runtimePortrait": "chengyan/neutral",
+      "asset": "chengyan/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "gumingyuan",
+      "name": "顾明远",
+      "viewport": "3840x2160",
+      "sceneId": "morning_after",
+      "lineId": "r1_morning_after_key01_01",
+      "runtimePortrait": "gumingyuan/neutral",
+      "asset": "gumingyuan/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "chenlan",
+      "name": "陈岚",
+      "viewport": "3840x2160",
+      "sceneId": "chapter5_gate",
+      "lineId": "r1_chapter5_gate_pre03_01",
+      "runtimePortrait": "chenlan/neutral",
+      "asset": "chenlan/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "xurong",
+      "name": "许蓉",
+      "viewport": "3840x2160",
+      "sceneId": "archive_room",
+      "lineId": "r1_archive_room_pre03_01",
+      "runtimePortrait": "xurong/neutral",
+      "asset": "xurong/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "luoxiumei",
+      "name": "罗秀梅",
+      "viewport": "3840x2160",
+      "sceneId": "cafeteria_path",
+      "lineId": "r1_cafeteria_path_pre03_01",
+      "runtimePortrait": "luoxiumei/neutral",
+      "asset": "luoxiumei/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "suyao",
+      "name": "苏遥",
+      "viewport": "3840x2160",
+      "sceneId": "xiaoman_rain",
+      "lineId": "r1_xiaoman_rain_pre03_01",
+      "runtimePortrait": "suyao/neutral",
+      "asset": "suyao/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "hechuan",
+      "name": "何川",
+      "viewport": "3840x2160",
+      "sceneId": "riverside_wrong_turn",
+      "lineId": "r1_riverside_wrong_turn_pre03_01",
+      "runtimePortrait": "hechuan/neutral",
+      "asset": "hechuan/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "jiyao",
+      "name": "纪尧",
+      "viewport": "3840x2160",
+      "sceneId": "future_message",
+      "lineId": "r1_future_message_pre03_01",
+      "runtimePortrait": "jiyao/neutral",
+      "asset": "jiyao/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "lincheng",
+      "name": "林澄",
+      "viewport": "3840x2160",
+      "sceneId": "linwan_shadow",
+      "lineId": "r1_linwan_shadow_pre03_01",
+      "runtimePortrait": "lincheng/neutral",
+      "asset": "lincheng/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "shenyanqiu",
+      "name": "沈砚秋",
+      "viewport": "3840x2160",
+      "sceneId": "archive_room",
+      "lineId": "r1_archive_room_pre04_01",
+      "runtimePortrait": "shenyanqiu/neutral",
+      "asset": "shenyanqiu/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "id": "liangcheng",
+      "name": "梁成",
+      "viewport": "3840x2160",
+      "sceneId": "station_fourth",
+      "lineId": "r1_station_fourth_pre03_01",
+      "runtimePortrait": "liangcheng/neutral",
+      "asset": "liangcheng/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    }
+  ],
+  "sequences": [
+    {
+      "sceneId": "morning_after",
+      "lineId": "r1_morning_after_pre01_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": null,
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "morning_after",
+      "lineId": "r1_morning_after_pre02_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": null,
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "morning_after",
+      "lineId": "r1_morning_after_pre03_01",
+      "speaker": "徐嘉树",
+      "runtimePortrait": "xujiashu/neutral",
+      "asset": "xujiashu/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "sceneId": "morning_after",
+      "lineId": "r1_morning_after_pre04_01",
+      "speaker": "程妍",
+      "runtimePortrait": "chengyan/neutral",
+      "asset": "chengyan/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "sceneId": "morning_after",
+      "lineId": "r1_morning_after_pre05_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "morning_after",
+      "lineId": "r1_morning_after_key01_01",
+      "speaker": "顾明远",
+      "runtimePortrait": "gumingyuan/neutral",
+      "asset": "gumingyuan/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "sceneId": "morning_after",
+      "lineId": "r1_morning_after_key02_01",
+      "speaker": "徐嘉树",
+      "runtimePortrait": "xujiashu/neutral",
+      "asset": "xujiashu/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "sceneId": "morning_after",
+      "lineId": "r1_morning_after_key03_01",
+      "speaker": "陈渡",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "morning_after",
+      "lineId": "r1_morning_after_key04_01",
+      "speaker": "徐嘉树",
+      "runtimePortrait": "xujiashu/neutral",
+      "asset": "xujiashu/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "sceneId": "morning_after",
+      "lineId": "r1_morning_after_pre05_02",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "morning_after",
+      "lineId": "r1_morning_after_pre06_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "morning_after",
+      "lineId": "r1_morning_after_pre06_02",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "morning_after",
+      "lineId": "r1_morning_after_pre07_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "morning_after",
+      "lineId": "m001",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "morning_after",
+      "lineId": "m002",
+      "speaker": "周小满",
+      "runtimePortrait": "xiaoman/worried",
+      "asset": "xiaoman/worried",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "sceneId": "morning_after",
+      "lineId": "m003",
+      "speaker": "林晚",
+      "runtimePortrait": "linwan/worried",
+      "asset": "linwan/worried",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "sceneId": "morning_after",
+      "lineId": "m004",
+      "speaker": "陈渡",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "morning_after",
+      "lineId": "m005",
+      "speaker": "林晚",
+      "runtimePortrait": "linwan/surprised",
+      "asset": "linwan/surprised",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "sceneId": "morning_after",
+      "lineId": "r1_morning_after_post01_01",
+      "speaker": "陈渡",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "morning_after",
+      "lineId": "r1_morning_after_post02_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "morning_after",
+      "lineId": "r1_morning_after_post02_02",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "morning_after",
+      "lineId": "r1_morning_after_post03_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "morning_after",
+      "lineId": "r1_morning_after_post03_02",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "morning_after",
+      "lineId": "r1_morning_after_post04_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "morning_after",
+      "lineId": "r1_morning_after_post05_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "morning_after",
+      "lineId": "r1_morning_after_post06_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "morning_after",
+      "lineId": "r1_morning_after_post07_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "morning_after",
+      "lineId": "r1_morning_after_post07_02",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "morning_after",
+      "lineId": "r1_morning_after_post08_01",
+      "speaker": "陈渡",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "morning_after",
+      "lineId": "r1_morning_after_post09_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "morning_after",
+      "lineId": "r1_morning_after_post10_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "chapter5_gate",
+      "lineId": "r1_chapter5_gate_pre01_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": null,
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "chapter5_gate",
+      "lineId": "r1_chapter5_gate_pre02_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": null,
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "chapter5_gate",
+      "lineId": "r1_chapter5_gate_pre03_01",
+      "speaker": "陈岚",
+      "runtimePortrait": "chenlan/neutral",
+      "asset": "chenlan/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "sceneId": "chapter5_gate",
+      "lineId": "r1_chapter5_gate_pre04_01",
+      "speaker": "陈渡",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "chapter5_gate",
+      "lineId": "r1_chapter5_gate_pre05_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "chapter5_gate",
+      "lineId": "r1_chapter5_gate_key01_01",
+      "speaker": "陈岚",
+      "runtimePortrait": "chenlan/neutral",
+      "asset": "chenlan/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "sceneId": "chapter5_gate",
+      "lineId": "r1_chapter5_gate_key02_01",
+      "speaker": "陈渡",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "chapter5_gate",
+      "lineId": "r1_chapter5_gate_key03_01",
+      "speaker": "陈岚",
+      "runtimePortrait": "chenlan/neutral",
+      "asset": "chenlan/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "sceneId": "chapter5_gate",
+      "lineId": "r1_chapter5_gate_key04_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "chapter5_gate",
+      "lineId": "r1_chapter5_gate_pre05_02",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "chapter5_gate",
+      "lineId": "r1_chapter5_gate_pre06_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "chapter5_gate",
+      "lineId": "r1_chapter5_gate_pre07_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "chapter5_gate",
+      "lineId": "c5g001",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "chapter5_gate",
+      "lineId": "c5g002",
+      "speaker": "系统",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "chapter5_gate",
+      "lineId": "c5g003",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "chapter5_gate",
+      "lineId": "c5g004",
+      "speaker": "陈渡",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "chapter5_gate",
+      "lineId": "r1_chapter5_gate_post01_01",
+      "speaker": "陈渡",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "chapter5_gate",
+      "lineId": "r1_chapter5_gate_post02_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "chapter5_gate",
+      "lineId": "r1_chapter5_gate_post02_02",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "chapter5_gate",
+      "lineId": "r1_chapter5_gate_post03_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "chapter5_gate",
+      "lineId": "r1_chapter5_gate_post04_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "chapter5_gate",
+      "lineId": "r1_chapter5_gate_post05_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "chapter5_gate",
+      "lineId": "r1_chapter5_gate_post06_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "chapter5_gate",
+      "lineId": "r1_chapter5_gate_post07_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "chapter5_gate",
+      "lineId": "r1_chapter5_gate_post07_02",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "chapter5_gate",
+      "lineId": "r1_chapter5_gate_post08_01",
+      "speaker": "陈渡",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "chapter5_gate",
+      "lineId": "r1_chapter5_gate_post09_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "chapter5_gate",
+      "lineId": "r1_chapter5_gate_post10_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_morning",
+      "lineId": "r1_c7_morning_pre01_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": null,
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_morning",
+      "lineId": "r1_c7_morning_pre01_02",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": null,
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_morning",
+      "lineId": "r1_c7_morning_pre02_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": null,
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_morning",
+      "lineId": "r1_c7_morning_pre03_01",
+      "speaker": "陈岚",
+      "runtimePortrait": null,
+      "asset": null,
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_morning",
+      "lineId": "r1_c7_morning_pre04_01",
+      "speaker": "陈渡",
+      "runtimePortrait": null,
+      "asset": null,
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_morning",
+      "lineId": "r1_c7_morning_pre05_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": null,
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_morning",
+      "lineId": "r1_c7_morning_pre05_02",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": null,
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_morning",
+      "lineId": "r1_c7_morning_pre06_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": null,
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_morning",
+      "lineId": "r1_c7_morning_pre07_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": null,
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_morning",
+      "lineId": "c7m001",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": null,
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_morning",
+      "lineId": "c7m002",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": null,
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_morning",
+      "lineId": "c7m003",
+      "speaker": "周小满",
+      "runtimePortrait": "xiaoman/smile",
+      "asset": "xiaoman/smile",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "sceneId": "c7_morning",
+      "lineId": "c7m004",
+      "speaker": "陈渡",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_morning",
+      "lineId": "c7m005",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_morning",
+      "lineId": "r1_c7_morning_post01_01",
+      "speaker": "陈渡",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_morning",
+      "lineId": "r1_c7_morning_post02_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_morning",
+      "lineId": "r1_c7_morning_post02_02",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_morning",
+      "lineId": "r1_c7_morning_post03_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_morning",
+      "lineId": "r1_c7_morning_post04_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_morning",
+      "lineId": "r1_c7_morning_post05_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_morning",
+      "lineId": "r1_c7_morning_post06_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_morning",
+      "lineId": "r1_c7_morning_post07_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_morning",
+      "lineId": "r1_c7_morning_post07_02",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_morning",
+      "lineId": "r1_c7_morning_post08_01",
+      "speaker": "陈渡",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_morning",
+      "lineId": "r1_c7_morning_post09_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_morning",
+      "lineId": "r1_c7_morning_post10_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_after",
+      "lineId": "r1_c7_after_pre01_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": null,
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_after",
+      "lineId": "r1_c7_after_pre02_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": null,
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_after",
+      "lineId": "r1_c7_after_pre03_01",
+      "speaker": "徐嘉树",
+      "runtimePortrait": "xujiashu/neutral",
+      "asset": "xujiashu/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "sceneId": "c7_after",
+      "lineId": "r1_c7_after_pre04_01",
+      "speaker": "程妍",
+      "runtimePortrait": "chengyan/neutral",
+      "asset": "chengyan/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "sceneId": "c7_after",
+      "lineId": "r1_c7_after_pre05_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_after",
+      "lineId": "r1_c7_after_key01_01",
+      "speaker": "顾明远",
+      "runtimePortrait": "gumingyuan/neutral",
+      "asset": "gumingyuan/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "sceneId": "c7_after",
+      "lineId": "r1_c7_after_key02_01",
+      "speaker": "徐嘉树",
+      "runtimePortrait": "xujiashu/neutral",
+      "asset": "xujiashu/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "sceneId": "c7_after",
+      "lineId": "r1_c7_after_key03_01",
+      "speaker": "周小满",
+      "runtimePortrait": "xiaoman/neutral",
+      "asset": "xiaoman/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "sceneId": "c7_after",
+      "lineId": "r1_c7_after_pre05_02",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_after",
+      "lineId": "r1_c7_after_pre06_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_after",
+      "lineId": "r1_c7_after_pre07_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_after",
+      "lineId": "c7a001",
+      "speaker": "沈听澜",
+      "runtimePortrait": "tinglan/neutral",
+      "asset": "tinglan/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "sceneId": "c7_after",
+      "lineId": "c7a002",
+      "speaker": "唐梨",
+      "runtimePortrait": "tangli/smile",
+      "asset": "tangli/smile",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "sceneId": "c7_after",
+      "lineId": "c7a003",
+      "speaker": "乔南星",
+      "runtimePortrait": "nanxing/neutral",
+      "asset": "nanxing/neutral",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "sceneId": "c7_after",
+      "lineId": "c7a004",
+      "speaker": "许栖",
+      "runtimePortrait": "xuqi/smile",
+      "asset": "xuqi/smile",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "sceneId": "c7_after",
+      "lineId": "c7a005",
+      "speaker": "周小满",
+      "runtimePortrait": "xiaoman/smile",
+      "asset": "xiaoman/smile",
+      "hidden": false,
+      "naturalWidth": 1080,
+      "naturalHeight": 1920
+    },
+    {
+      "sceneId": "c7_after",
+      "lineId": "r1_c7_after_post01_01",
+      "speaker": "陈渡",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_after",
+      "lineId": "r1_c7_after_post02_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_after",
+      "lineId": "r1_c7_after_post02_02",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_after",
+      "lineId": "r1_c7_after_post03_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_after",
+      "lineId": "r1_c7_after_post04_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_after",
+      "lineId": "r1_c7_after_post05_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_after",
+      "lineId": "r1_c7_after_post06_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_after",
+      "lineId": "r1_c7_after_post07_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_after",
+      "lineId": "r1_c7_after_post07_02",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_after",
+      "lineId": "r1_c7_after_post08_01",
+      "speaker": "陈渡",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_after",
+      "lineId": "r1_c7_after_post09_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    },
+    {
+      "sceneId": "c7_after",
+      "lineId": "r1_c7_after_post10_01",
+      "speaker": "旁白",
+      "runtimePortrait": null,
+      "asset": "",
+      "hidden": true,
+      "naturalWidth": 0,
+      "naturalHeight": 0
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "390x844-xujiashu.png",
+      "sha256": "90689256165c8239f1d83a9456508900de221e072e5757822d61ff85089332fc"
+    },
+    {
+      "file": "390x844-chengyan.png",
+      "sha256": "089967996b03c0ca5b951259b40d8fea0a2e7d14647170aba48163183a5710fe"
+    },
+    {
+      "file": "390x844-gumingyuan.png",
+      "sha256": "516185a90664129a5b1c9614a92bf2c3ecd16d05560d70c16c891b66d50235ab"
+    },
+    {
+      "file": "390x844-chenlan.png",
+      "sha256": "938635bad58f9c328c17bf8df89004f3c7fbc06ea75a7843c9025a63a70c8aa9"
+    },
+    {
+      "file": "390x844-xurong.png",
+      "sha256": "7043be89b49057aa7fb827813de0a4dc7e71fbaa7721a3191f1ab89f37c81625"
+    },
+    {
+      "file": "390x844-luoxiumei.png",
+      "sha256": "ceffec18677c56515b32fcc8bc94f12a13332d9f6863559239fcfdeb6471d74f"
+    },
+    {
+      "file": "390x844-suyao.png",
+      "sha256": "c175c73ad0ef66208a0e1f435802b6d2b8f04371a15c23578ef7bc6876ecc345"
+    },
+    {
+      "file": "390x844-hechuan.png",
+      "sha256": "0b71e6b81e1a6bb98278f98601e18d111b492e120465b870541486d269962a62"
+    },
+    {
+      "file": "390x844-jiyao.png",
+      "sha256": "e258b94c20e80ae00fffc4606858359139d200c8e18912d44c3f6cbcf931f029"
+    },
+    {
+      "file": "390x844-lincheng.png",
+      "sha256": "2357b1ec9a946780b70a2c0d0958daee1d77cc7c9606768797df7b17f1653eda"
+    },
+    {
+      "file": "390x844-shenyanqiu.png",
+      "sha256": "934f3972b826a2c9235fce70a1bf06475aed5dec9e0259d01278ab7d56202418"
+    },
+    {
+      "file": "390x844-liangcheng.png",
+      "sha256": "b31121b3cf4c16f775e01b29be0589c2870b0e7bfbf8ef555ccf22c0d4a68620"
+    },
+    {
+      "file": "chapter5_gate-r1_chapter5_gate_key01_01.png",
+      "sha256": "1b6f07bb167c599be51c678fb6bce634112c2ed98fc2b35e9ec791186ab2750f"
+    },
+    {
+      "file": "c7_morning-c7m003.png",
+      "sha256": "0e0a3319714dbdc0640e3ff6334a8d55d9ab277a8610dc685840257929b667f7"
+    },
+    {
+      "file": "c7_after-r1_c7_after_pre03_01.png",
+      "sha256": "85a5da8c893d2e97e0ce9bf2d1ea5f5efdab63335a0174d6fb8f54def69133c1"
+    },
+    {
+      "file": "c7_after-r1_c7_after_pre04_01.png",
+      "sha256": "ea0932000eb7095f8a5a87cadb6e7f888790276b3853c93f724832cfcb888a64"
+    },
+    {
+      "file": "c7_after-r1_c7_after_key01_01.png",
+      "sha256": "a641806ee7123b8bdb31d6324eb25f709c2169afa0640bdb7434651ff8a380c2"
+    }
+  ],
+  "productionProjectOverride": false,
+  "evidenceMethod": "Canonical entry/choice traversal produces replay saves; the shipped player imports them through Settings. Runtime frames and real DOM must agree. Sequential playback uses visible Next controls.",
+  "physicalDevice": false
+}

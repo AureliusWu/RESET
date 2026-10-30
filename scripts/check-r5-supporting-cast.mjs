@@ -4,6 +4,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { loadContentPacks } from './content-packs.mjs';
 import { loadSupportingArt, assertSupportingMappings } from './supporting-art.mjs';
 import { supportingRuntimeWitnesses } from './supporting-runtime.mjs';
+import assert from 'node:assert/strict';
 
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const game = resolve(root, 'game');
@@ -32,6 +33,13 @@ const { createProject } = await import(pathToFileURL(resolve(dist, 'lib/index.js
 assertSupportingMappings(art, built.stage.speakers, speakerPolicy);
 const authored = await readJson(resolve(game, 'content/runtime.json'));
 const offscreen = Object.entries(authored.stage.lines).filter(([,cue]) => cue.portrait === null).map(([id]) => id);
+const migration = await readJson(resolve(root, 'docs/evidence/npc-v1.3.1/presentation-migration.json'));
+assert.deepEqual([...offscreen].sort(), migration.hiddenLines.map(line => line.lineId).sort(), 'Every offscreen exception must have a documented story reason');
+for (const item of migration.hiddenLines) {
+  const scene = built.scenes.find(scene => scene.id === item.sceneId);
+  assert.equal(scene?.lines.find(line => line.id === item.lineId)?.speaker, item.speaker, `Offscreen exception does not match canonical dialogue: ${item.lineId}`);
+  assert.ok(item.reason?.length > 20, `Offscreen exception has no story reason: ${item.lineId}`);
+}
 const runtime = supportingRuntimeWitnesses(built, createProject, art.characters, speakerPolicy, offscreen);
 
 console.log(JSON.stringify({

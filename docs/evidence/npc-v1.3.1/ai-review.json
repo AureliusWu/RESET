@@ -1,0 +1,285 @@
+{
+  "schema": 1,
+  "type": "ai-simulated-human",
+  "status": "PASS",
+  "reviewedAt": "2026-10-30T08:01:44.762Z",
+  "reviewer": "Codex / independent AI runtime and interaction observer",
+  "authorization": {
+    "quote": "建议发布：v1.3.1；保持现有 Release 流程。",
+    "priorQuote": "重点人工模拟试玩",
+    "scope": "Runtime/DOM/interaction observation and NPC hotfix release. Reuse all existing artwork approvals verbatim; no new art approval is granted."
+  },
+  "realHumanParticipants": "NOT_CLAIMED",
+  "physicalDevices": "NOT_RUN",
+  "subjectiveListening": "NOT_CLAIMED",
+  "artworkAcceptance": "UNCHANGED; no new or replacement artwork review",
+  "subject": {
+    "sourceCommit": "5c474f9797d97df574e67a07da77cebd3d38923f",
+    "sourceCommitRole": "Immutable package/evidence producer; subsequent source-only verification changes are bound by sourceSha256 below.",
+    "sourceSha256": {
+      "game/content/chapters/01.json": "caa18f9082ad0c4a455fbea0c1a4fd648e80cc8b87d559724cbf0f81c45c3f76",
+      "game/content/chapters/02.json": "a83f8f71320ccd232ac43a7da8da8e7ebcf6afbd2a1891c9a5da4197ee517ac5",
+      "game/content/chapters/03.json": "a257b406e292a87f759e6e25b84c1ddb4503d206ea680ce6f14b517236a07f54",
+      "game/content/chapters/04.json": "d28ab86c35c0e428547697a195422b55d94284a88411c34e14663ef2712b6840",
+      "game/content/chapters/05.json": "8bc5060e616a33567926e7b2f8abfc605f843c1cd32a9e52c54853bc9e145618",
+      "game/content/chapters/06.json": "98be90ad3c85db4604621aee1b576d1f545a40abdc776708db7a702c8648cb9b",
+      "game/content/chapters/07.json": "1b0dba130bdd7d6d063c64439900eb00bd6c17e20ccab7a2edbb30d7520e0f12",
+      "game/runtime/archive.mjs": "2354436bbaca2c1be2a930932f13a0ceae8fb313e950cbfe24f817768194a7f1",
+      "game/runtime/archive-data.mjs": "8c4310fa80a86e3592eb7836d8cee53a41ae7518ca0e1ea73399650bf4bc1f9f",
+      "game/runtime/combat.mjs": "f59a08101ca4e03f0107294acbb8477358f95b7d11e33070fd22e734373b34a6",
+      "game/runtime/direction.mjs": "080af065ebc9e6886882a8ad04c2ef5216035242953d1fe000713ecc1c0b4486",
+      "game/runtime/experience.mjs": "a8f77cf385b8599b6f796068dd5a12ccafa3f94349955dff5aba3e43854208c7",
+      "game/runtime/meta.mjs": "b8bcae6d4ccae7c7fa4a30f969e7fbfd55c02ead8f4a2dd3425d27d2e41dc123",
+      "game/runtime/pwa.mjs": "7de55f5f5a582b7c5eee46cd6edbff7a3b2fa763cd883189550daf0275055437",
+      "game/runtime/sfx.mjs": "adee6c3b1e8a9170576416ca78c7d335e486da5a18a894af3449c83c13aa6fab",
+      "game/runtime/ui.mjs": "85802b308711218b785cdd44281f56223e386e96aa6f738fbba09ce6cfa21620",
+      "game/runtime/experience.css": "a5668550774d27c61ca6ec9a5134344653abb2bd7b7366e1375a9dd86a5a97af",
+      "game/runtime/direction.css": "63408134c21a27b7e2b101f46096165ea3acfff2378a8b834de294e83b2e4c2e",
+      "scripts/final-review.mjs": "ee747dd922391b63a02a395091ad223a86cbe905e93d055f83d44e1edb4bfc9f",
+      "scripts/check-final-review.mjs": "4cde72f1d8f83c7788105f9942b94cb01c9d807a5fd18f9c36fefccef3b44081",
+      "tests/player-actors-browser.mjs": "175bf0d9feb481767314ebe88c0474eb423ca49519d120e4b968611cdf233981",
+      "tests/route-matrix.mjs": "0ffd3e7fc8dcf50532b9b373ad4569a7357d4eadb040052ee09a7ae0e1507ebf",
+      "tests/browser-release.mjs": "11ec63fa5cae426a82a92919f0936ce3f6018bd77a4a3375fa7b9f12b1c479a4",
+      "tests/pwa-upgrade-browser.mjs": "ec65f49e4e26d15fd09dcda1e02b8e24f93f387aca3340ac857698fd6caf569b",
+      "tests/combat-player.mjs": "5979a86dd58773fa7b2b9acb659f4994753879ba6ea3162f52d69421f8530f3c",
+      "game/content/runtime.json": "a3f2537f89e30aaeea244602a13135c67ee1f9ba4bb61f6968f5473bd37fbe3c",
+      "scripts/build.mjs": "061ac71c46b0224ec9bb3ba85ee45d7816f99c89607392d1fb6f645ea534b870",
+      "scripts/portrait-cues.mjs": "e20e6b02a13276be72ec14af3cb8b24e40b61211730edc0adbd45c62799851cb",
+      "scripts/supporting-runtime.mjs": "af4aeec2a72d6f48804d68761c70be7f8d59a2f35ced14f460f9d7b4c23158aa",
+      "scripts/check-r5-supporting-cast.mjs": "6a812093b308f48f66c54b57f2a674ffe87b27943afaffcf4f3ba5c6d21cdc89",
+      "tests/supporting-portraits-browser.mjs": "92d1de614dd00ed8853844f549b0a823b32b4b952306cca15468c36857b247c1",
+      "tests/supporting-runtime-browser.mjs": "68588aa0a085039e8fadaddb57339c99e9a3b0a745ba33599fe4bf10a6a7b63a",
+      "tests/portrait-runtime.test.mjs": "dc242a2684df7d75d665a67a7579245666c6b4d7ef1d971830e43bacf4bc2603",
+      "tests/player-experience-browser.mjs": "e7c8bab77b1627b1e8ade915a775c4d2e6b9800e98d7c6f9c35194e5f41488ec",
+      "tests/linwan-art-browser.mjs": "4cf30c5cbb98ff797fcd186396eaba8b6d58f0c910a7ceb0fbaf8e532b840ee0",
+      "tests/windows-launch.mjs": "86d7c03c89397df755bdf75b31711f54fb28961fb59a29ece805f399ef59908f",
+      "tests/pages-live.mjs": "d395c1874f625774e24577b0672af44983402a3fe84b169bd802ec61f37a1e65",
+      "docs/evidence/npc-v1.3.1/presentation-migration.json": "d0188ed5481ade8a5599c95a30a40978eb91ce2c4fed25e241edea09d3ac0216"
+    },
+    "packageSha256": {
+      "project.json": "3c618ee8d5d27979f5919e017987a36ed582b1867ce4e79dcf804f8736465a17",
+      "index.html": "b9da4010f7622e53809f96a6d851de136ea63f4bd752039617b2ec27f3c8e145",
+      "app.mjs": "d37c5444b156088247d65c22de4f833438fb6d3260e959847c780a5bd5ee9043",
+      "archive.mjs": "2354436bbaca2c1be2a930932f13a0ceae8fb313e950cbfe24f817768194a7f1",
+      "archive-data.mjs": "8c4310fa80a86e3592eb7836d8cee53a41ae7518ca0e1ea73399650bf4bc1f9f",
+      "combat.mjs": "f59a08101ca4e03f0107294acbb8477358f95b7d11e33070fd22e734373b34a6",
+      "direction.mjs": "080af065ebc9e6886882a8ad04c2ef5216035242953d1fe000713ecc1c0b4486",
+      "direction-data.mjs": "5d8ad360377b9824ae94b6d1a3ef3cabf31fdcf61021e32ef477142f6b301eb4",
+      "direction.css": "63408134c21a27b7e2b101f46096165ea3acfff2378a8b834de294e83b2e4c2e",
+      "experience.mjs": "a8f77cf385b8599b6f796068dd5a12ccafa3f94349955dff5aba3e43854208c7",
+      "experience.css": "a5668550774d27c61ca6ec9a5134344653abb2bd7b7366e1375a9dd86a5a97af",
+      "meta.mjs": "b8bcae6d4ccae7c7fa4a30f969e7fbfd55c02ead8f4a2dd3425d27d2e41dc123",
+      "pwa.mjs": "7de55f5f5a582b7c5eee46cd6edbff7a3b2fa763cd883189550daf0275055437",
+      "sfx.mjs": "adee6c3b1e8a9170576416ca78c7d335e486da5a18a894af3449c83c13aa6fab",
+      "ui.mjs": "85802b308711218b785cdd44281f56223e386e96aa6f738fbba09ce6cfa21620"
+    }
+  },
+  "playerActorReportSha256": "462afffb55538c061733019e421e6b47f2171f80cfd9d88a4d45e0492003d092",
+  "runtimeReportSha256": "4034f8acb9e45d7611f5a328d2214984e09a19466b5b79c4d11e675692ff42e3",
+  "evidence": {
+    "runtime": {
+      "runId": 41022095841,
+      "jobId": 123951524584,
+      "status": "SUCCESS",
+      "artifactId": 12962651991,
+      "artifactSha256": "dd402e98a246cdf14d054ea6d40877587e98010b1ab0d0dd6b989d5a97e08004"
+    },
+    "players": {
+      "runId": 41022095851,
+      "artifactId": 12961794430,
+      "status": "PASS",
+      "artifactSha256": "2758509e373cbdc62803219fcfe162aa1225647c978636d8a4d33abbbce90c70"
+    },
+    "windows": {
+      "runId": 41022095851,
+      "jobId": 123951524602,
+      "status": "SUCCESS",
+      "artifactId": 12962786720,
+      "artifactSha256": "deb691c1474edc5679dbc77a22d0b4c4e42ae43057151e0e8b5e0a72c9de2f05",
+      "verified": "Final Windows ZIP, native WebView2 12/12 NPC DOM, sequential scenes, host policy, window/DPI probes, process restart and storage retention",
+      "physicalDevice": false
+    },
+    "webEvidenceRun": "FAIL: old map-layer actor expected a portrait on the narrator scene-entry line. Follow-up actor advances to a real authored speaking turn; packaged runtime is byte-identical. Final same-commit Web/PWA gates remain mandatory.",
+    "binding": "Project and all reviewed runtime package files match the current build exactly. No release readiness is inferred from Build or visual asset approval alone."
+  },
+  "observations": [
+    {
+      "area": "All twelve supporting speakers",
+      "status": "PASS",
+      "finding": "Independently inspected all twelve 390x844 canonical player screenshots. Names, real dialogue and visible existing approved portraits agree. No picture is a standalone sprite fixture or a project mapping override. This observes runtime visibility and grants no replacement-art approval."
+    },
+    {
+      "area": "Chapter seven ordered switches",
+      "status": "PASS",
+      "finding": "Inspected the three distinct c7_after screenshots: Xu with basketball, Cheng with clipboard and Gu in a suit appear on their respective real turns. The ordered runtime/DOM report also verifies every intervening narrator and protagonist turn, rather than inferring continuous playback from screenshots alone."
+    },
+    {
+      "area": "Chen Lan and offscreen direction",
+      "status": "PASS",
+      "finding": "Inspected the fifth-chapter home dialogue screenshot with Chen Lan visible, including the question about sick leave. Source reading distinguishes this in-person scene from the home-door voice message, classroom memory and school-gate recollection. All 27 offscreen exceptions are line-ID/speaker/reason bound and subsequent in-person turns restore independently."
+    },
+    {
+      "area": "Narration, protagonist and functional voices",
+      "status": "PASS",
+      "finding": "The actual first-anomaly and long-narration player screenshots contain background and text with no inherited portrait. Canonical runtime traversal validates 2082 reachable lines; DOM Next playback covers morning_after, chapter5_gate, c7_morning, c7_after, the telephone/CG scene and station broadcasting. No inherited heroine is accepted on an NPC turn."
+    },
+    {
+      "area": "Heroine expressions, CG and story identity",
+      "status": "PASS",
+      "finding": "Inspected all six mobile Normal End CG screenshots, October 25 morning, True End sunset and credits. CGs show one character without duplicated standing sprites. Technical expression decoding and alpha tests pass; all artwork/approval/provenance bytes remain unchanged. The restored noSprite baseline comparison preserves 82 scenes, 2161 text lines and all IDs."
+    },
+    {
+      "area": "Player UI and save continuity",
+      "status": "PASS",
+      "finding": "Viewed all sixteen actor screenshots, including desktop/mobile title focus, six routes, scrollable six-slot panel and irreversible confirmation. Four separately identified UI actors pass with canonical fixture use disclosed. The v1.3.0 save whitelist extends the existing migration; the full same-origin PWA upgrade must still pass in final package CI."
+    },
+    {
+      "area": "Actual Windows package",
+      "status": "PASS",
+      "finding": "Windows job 123951524602 reports success against the extracted final ZIP: all twelve NPCs and ordered scenes in native WebView2, actual launcher/native window, resize/maximize/minimize, content DPI emulation, host policy and complete process restart/storage retention pass with no runner limitations reported. This is Windows CI, not a physical user-device claim."
+    },
+    {
+      "area": "Evidence and offline limits",
+      "status": "PASS",
+      "finding": "The standalone NPC DOM context intentionally blocks Service Workers and shows the existing offline-download warning; that screenshot is not used to claim PWA success. Public v1.3.0-to-v1.3.1 update, all-client-close activation, offline NPC rendering, matching main Build and final Windows/Web packages remain required release gates. Real human participants and physical devices were not tested."
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "screenshots/390x844-xujiashu.png",
+      "source": "supporting-runtime",
+      "sha256": "90689256165c8239f1d83a9456508900de221e072e5757822d61ff85089332fc",
+      "character": "xujiashu",
+      "scene": "prologue_1842",
+      "line": "r1_prologue_1842_pre03_01",
+      "observation": "雨夜教室显示徐嘉树现有抱篮球立绘，姓名及把伞拿好、一起到校门的真实剧情对白对应；正式开场不再被 noSprite 隐藏。"
+    },
+    {
+      "file": "screenshots/390x844-chengyan.png",
+      "source": "supporting-runtime",
+      "sha256": "089967996b03c0ca5b951259b40d8fea0a2e7d14647170aba48163183a5710fe",
+      "character": "chengyan",
+      "scene": "prologue_1842",
+      "line": "r1_prologue_1842_pre04_01",
+      "observation": "雨夜教室里，程妍的现有正式图出现在化学卷子对白上，画面已从徐嘉树切换；角色、姓名和正文对应，脸部及阅读区完整。"
+    },
+    {
+      "file": "screenshots/390x844-gumingyuan.png",
+      "source": "supporting-runtime",
+      "sha256": "516185a90664129a5b1c9614a92bf2c3ecd16d05560d70c16c891b66d50235ab",
+      "character": "gumingyuan",
+      "scene": "morning_after",
+      "line": "r1_morning_after_key01_01",
+      "observation": "第二天校门场景显示顾明远的西装教师立绘，姓名和昨晚南湖封站的台词对应；画面未继续停留在女主或学生立绘。"
+    },
+    {
+      "file": "screenshots/390x844-chenlan.png",
+      "source": "supporting-runtime",
+      "sha256": "938635bad58f9c328c17bf8df89004f3c7fbc06ea75a7843c9025a63a70c8aa9",
+      "character": "chenlan",
+      "scene": "chapter5_gate",
+      "line": "r1_chapter5_gate_pre03_01",
+      "observation": "10月24日的家中场景里，陈岚浅蓝工作服立绘显示在留饭对白上；她在当面交谈中不再被旧 noSprite 整场隐藏，正文和工具栏可见。"
+    },
+    {
+      "file": "screenshots/390x844-xurong.png",
+      "source": "supporting-runtime",
+      "sha256": "7043be89b49057aa7fb827813de0a4dc7e71fbaa7721a3191f1ab89f37c81625",
+      "character": "xurong",
+      "scene": "archive_room",
+      "line": "r1_archive_room_pre03_01",
+      "observation": "档案室场景显示许蓉现有眼镜针织衫立绘，要查先登记的台词对应；图片已实际显示，未以仅有 mapping 作为通过依据。"
+    },
+    {
+      "file": "screenshots/390x844-luoxiumei.png",
+      "source": "supporting-runtime",
+      "sha256": "ceffec18677c56515b32fcc8bc94f12a13332d9f6863559239fcfdeb6471d74f",
+      "character": "luoxiumei",
+      "scene": "cafeteria_path",
+      "line": "r1_cafeteria_path_pre03_01",
+      "observation": "食堂场景显示罗秀梅现有围裙立绘，姓名和提醒香菜的对白一致；人物与背景均已解码，阅读文字未被覆盖。"
+    },
+    {
+      "file": "screenshots/390x844-suyao.png",
+      "source": "supporting-runtime",
+      "sha256": "c175c73ad0ef66208a0e1f435802b6d2b8f04371a15c23578ef7bc6876ecc345",
+      "character": "suyao",
+      "scene": "xiaoman_rain",
+      "line": "r1_xiaoman_rain_pre03_01",
+      "observation": "奶茶店门口场景显示苏遥现有校服立绘，社团海报和截稿提醒的对白清楚；雨夜背景、人物与阅读区同时可见。"
+    },
+    {
+      "file": "screenshots/390x844-hechuan.png",
+      "source": "supporting-runtime",
+      "sha256": "0b71e6b81e1a6bb98278f98601e18d111b492e120465b870541486d269962a62",
+      "character": "hechuan",
+      "scene": "riverside_wrong_turn",
+      "line": "r1_riverside_wrong_turn_pre03_01",
+      "observation": "江边黄昏场景显示何川的运动服立绘，姓名、晨跑及湿滑路面的对白一致；人物没有盖住阅读区，上一人物未残留。"
+    },
+    {
+      "file": "screenshots/390x844-jiyao.png",
+      "source": "supporting-runtime",
+      "sha256": "e258b94c20e80ae00fffc4606858359139d200c8e18912d44c3f6cbcf931f029",
+      "character": "jiyao",
+      "scene": "future_message",
+      "line": "r1_future_message_pre03_01",
+      "observation": "天台黄昏场景显示纪尧现有眼镜校服立绘，设备时间与服务器记录对白完整；当前人物与说话人对应。"
+    },
+    {
+      "file": "screenshots/390x844-lincheng.png",
+      "source": "supporting-runtime",
+      "sha256": "2357b1ec9a946780b70a2c0d0958daee1d77cc7c9606768797df7b17f1653eda",
+      "character": "lincheng",
+      "scene": "linwan_shadow",
+      "line": "r1_linwan_shadow_pre03_01",
+      "observation": "教室场景显示林澄现有挎包立绘，正文为对林晚小时候雷雨记忆的谈话；没有误显示林晚或保留上一位角色。"
+    },
+    {
+      "file": "screenshots/390x844-shenyanqiu.png",
+      "source": "supporting-runtime",
+      "sha256": "934f3972b826a2c9235fce70a1bf06475aed5dec9e0259d01278ab7d56202418",
+      "character": "shenyanqiu",
+      "scene": "archive_room",
+      "line": "r1_archive_room_pre04_01",
+      "observation": "档案室场景显示沈砚秋现有手持文件立绘，记录来源、缺口与写作背景的对白对应；从许蓉切换后没有残留前一人物。"
+    },
+    {
+      "file": "screenshots/390x844-liangcheng.png",
+      "source": "supporting-runtime",
+      "sha256": "b31121b3cf4c16f775e01b29be0589c2870b0e7bfbf8ef555ccf22c0d4a68620",
+      "character": "liangcheng",
+      "scene": "station_fourth",
+      "line": "r1_station_fourth_pre03_01",
+      "observation": "南湖站场景显示梁成现有站务制服立绘，入口封闭和失物服务台的指引对白对应；未把车站场景整体视为不可显示人物。"
+    }
+  ],
+  "additionalInspectedRuntimeScreenshots": [
+    {
+      "file": "chapter5_gate-r1_chapter5_gate_key01_01.png",
+      "sha256": "1b6f07bb167c599be51c678fb6bce634112c2ed98fc2b35e9ec791186ab2750f",
+      "source": "Immutable supporting-runtime artifact; original file and digest retained in its report"
+    },
+    {
+      "file": "c7_morning-c7m003.png",
+      "sha256": "0e0a3319714dbdc0640e3ff6334a8d55d9ab277a8610dc685840257929b667f7",
+      "source": "Immutable supporting-runtime artifact; original file and digest retained in its report"
+    },
+    {
+      "file": "c7_after-r1_c7_after_pre03_01.png",
+      "sha256": "85a5da8c893d2e97e0ce9bf2d1ea5f5efdab63335a0174d6fb8f54def69133c1",
+      "source": "Immutable supporting-runtime artifact; original file and digest retained in its report"
+    },
+    {
+      "file": "c7_after-r1_c7_after_pre04_01.png",
+      "sha256": "ea0932000eb7095f8a5a87cadb6e7f888790276b3853c93f724832cfcb888a64",
+      "source": "Immutable supporting-runtime artifact; original file and digest retained in its report"
+    },
+    {
+      "file": "c7_after-r1_c7_after_key01_01.png",
+      "sha256": "a641806ee7123b8bdb31d6324eb25f709c2169afa0640bdb7434651ff8a380c2",
+      "source": "Immutable supporting-runtime artifact; original file and digest retained in its report"
+    }
+  ],
+  "releaseReadiness": "PENDING same-commit final Web/PWA, Windows and Build CI; this record approves the reviewed runtime/interaction observations only."
+}
