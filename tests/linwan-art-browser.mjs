@@ -53,7 +53,8 @@ export async function verifyLinwanArt({page,project,fixtures,loadFixture,control
   try {
     await control('restart').click();
     await advanceUntil(async()=>await page.locator('[data-action=watch_linwan]').count()>0,'watch_linwan choice');
-    await page.locator('[data-action=watch_linwan]').click();await ready('neutral');
+    await page.locator('[data-action=watch_linwan]').click();
+    await advanceUntil(async()=>await portrait.getAttribute('data-asset')==='linwan/neutral','Lin Wan first speaking turn');await ready('neutral');
     await page.screenshot({path:out+'/linwan-first-appearance.png',fullPage:true,animations:'disabled'});
     pass('Lin Wan first appears from New Game through canonical UI choices and decodes the new 1080x1920 WebP');
     for(const expression of formal) {
@@ -95,7 +96,8 @@ export async function verifyLinwanArt({page,project,fixtures,loadFixture,control
       Element.prototype.animate=function(...args){if(this.matches('.vn-portrait'))window.__linwanAnimationCalls.push(args);return window.__linwanAnimate.apply(this,args);};
     });
     try {
-      await loadFixture(fixtures.witnesses.linwan_shadow);await ready('neutral');
+      await loadFixture(fixtures.witnesses.linwan_shadow);
+      await advanceUntil(async()=>await portrait.getAttribute('data-asset')==='linwan/neutral','Lin Wan neutral speaking turn');await ready('neutral');
       const before=await portrait.evaluate(im=>{const r=im.getBoundingClientRect();return{x:r.x,y:r.y,width:r.width,height:r.height};});
       await advanceUntil(async()=>await portrait.getAttribute('data-asset')==='linwan/worried','Lin Wan worried expression');
       await ready('worried');
@@ -173,6 +175,7 @@ export async function verifyLinwanOffline({page,loadFixture,fixtures,out,pass}) 
   for(const path of paths)assert.ok(cachePaths.some(url=>url.endsWith('/'+path)),`${path} not in actual service worker cache`);
   for(const path of paths)assert.equal(await page.evaluate(async path=>(await fetch('./'+path)).ok,path),true);
   await loadFixture(fixtures.witnesses.linwan_shadow);
+  for(let n=0;n<100&&await page.locator('.vn-portrait').getAttribute('data-asset')!=='linwan/neutral';n++) await page.locator('[data-control=next]').click();
   await page.waitForFunction(()=>{const im=document.querySelector('.vn-portrait');return im?.dataset.asset==='linwan/neutral'&&im.complete&&im.naturalWidth===1080;});
   await page.screenshot({path:out+'/linwan-offline.png',fullPage:true,animations:'disabled'});
   pass('Offline real service-worker cache contains all five canonical Lin Wan production sprites and displays neutral without network');

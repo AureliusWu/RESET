@@ -10,7 +10,6 @@
       "location": "梧城一中旧教学楼",
       "time": "18:42",
       "background": "classroom-rain",
-      "noSprite": true,
       "lines": [
         {
           "id": "r1_prologue_1842_pre01_01",
@@ -507,7 +506,6 @@
       "location": "梧城街头",
       "time": "19:16",
       "background": "wucheng-street-evening",
-      "noSprite": true,
       "lines": [
         {
           "id": "r1_after_school_choice_pre01_01",
@@ -649,7 +647,6 @@
       "location": "陈渡家门外",
       "time": "19:34",
       "background": "home-corridor",
-      "noSprite": true,
       "lines": [
         {
           "id": "r1_home_bad_pre01_01",
@@ -955,7 +952,6 @@
       "location": "南湖站出口",
       "time": "19:31",
       "background": "nanhu-station-exit",
-      "noSprite": true,
       "lines": [
         {
           "id": "r1_station_refuse_pre01_01",

@@ -6,8 +6,8 @@
 
 ## 当前状态
 
-- 本版发行目标：**v1.3.0**（公开状态以正式发行页为准）
-- 故事版本：`reset-v1.3.0`
+- 本版发行目标：**v1.3.1**（公开状态以正式发行页为准）
+- 故事版本：`reset-v1.3.1`
 - 剧情：主线、六角色 Normal End、关键 Bad End、True Route / True End 已闭环
 - 角色美术：六位女主既有视觉 Gate **PASS**，12 名配角授权 AI 模拟人工验收 **PASS**
 - 引擎：`AureliusWu/VN-Engine-v2` v0.3.0
@@ -23,7 +23,9 @@ TECH_READY != ART_READY
 
 技术完整性与已记录的授权视觉验收分别作为发布门禁；`game/assets/4k/visual-acceptance.json` 是角色视觉验收事实源。
 
-## v1.3.0 更新重点
+## v1.3.1 更新重点
+
+修复七章29个 noSprite 场景隐藏正式 NPC 的问题；逐行立绘 cue 清除旁白和功能性说话人残留，27条离屏语音保留显式隐藏。12名 supporting cast 必须通过真实剧情 frame + DOM 验证；美术、验收、provenance 和剧情身份保持不变。
 
 - 终审重复旁白、提前揭示、死亡与白色界面连续性，以及选择前错误离场的收尾；保留 82 场景、2161 条台词的位置、ID 与分支效果。
 - 标题页焦点隔离、Tab 导航、进入后的阅读焦点与手机 44px 触控尺寸。
@@ -32,14 +34,14 @@ TECH_READY != ART_READY
 - 从实际公开 v1.2.3 PWA 验证快速存档、六个不同手动槽、设置、结局/CG 的同源升级及离线读取；保留既有美术和锁定引擎。
 - Web/PWA 与 Windows x64 同步提供；严格同提交门禁后发布，Pages 使用公开 Release 的原始 Web ZIP。
 
-完整说明见 [CHANGELOG_v1.3.0.md](CHANGELOG_v1.3.0.md) 与 [终审记录](docs/FINAL_REVIEW_v1.3.0.md)。既有美术观察及授权见 [R8_AI_REVIEW.md](docs/R8_AI_REVIEW.md)。
+完整说明见 [CHANGELOG_v1.3.1.md](CHANGELOG_v1.3.1.md) 与 [终审记录](docs/NPC_RUNTIME_HOTFIX_v1.3.1.md)。既有美术观察及授权见 [R8_AI_REVIEW.md](docs/R8_AI_REVIEW.md)。
 
 ## 下载与运行
 
-正式发行页：<https://github.com/AureliusWu/RESET/releases/tag/v1.3.0>
+正式发行页：<https://github.com/AureliusWu/RESET/releases/tag/v1.3.1>
 
-- Windows x64：`RESET-huiliu-v1.3.0-win-x64.zip`，完整解压后运行根目录 `RESET.exe`。需要 Windows 10/11 x64 与 Microsoft Edge WebView2 Runtime。
-- Web / PWA：`RESET-huiliu-v1.3.0-web.zip`，用 HTTPS 或 localhost 静态托管。首次联网等待“已下载，可离线游玩”后可离线重开。
+- Windows x64：`RESET-huiliu-v1.3.1-win-x64.zip`，完整解压后运行根目录 `RESET.exe`。需要 Windows 10/11 x64 与 Microsoft Edge WebView2 Runtime。
+- Web / PWA：`RESET-huiliu-v1.3.1-web.zip`，用 HTTPS 或 localhost 静态托管。首次联网等待“已下载，可离线游玩”后可离线重开。
 
 PWA 安装入口取决于浏览器 installability 判定。支持 `beforeinstallprompt` 的 Chromium 浏览器会在标题页显示「安装到设备」。
 
@@ -62,7 +64,7 @@ PWA 安装入口取决于浏览器 installability 判定。支持 `beforeinstall
 
 ## 存档兼容
 
-v1.3.0 受控接受并校验以下故事版本备份：
+v1.3.1 受控接受并校验以下故事版本备份：
 
 - `reset-v1.0.0`
 - `reset-v1.0.1`
@@ -75,6 +77,7 @@ v1.3.0 受控接受并校验以下故事版本备份：
 - `reset-v1.2.1`
 - `reset-v1.2.2`
 - `reset-v1.2.3`
+- `reset-v1.3.0`
 
 升级只修改加载到会话中的版本标记，不原地改写用户备份，并继续经过引擎路线校验。
 

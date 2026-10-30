@@ -10,6 +10,7 @@ import { verifyProductionArt } from './production-art-browser.mjs';
 import { verifyMusicDecoding } from './music-browser.mjs';
 import { verifySfxDecoding } from './sfx-browser.mjs';
 import { verifyDirection } from './direction-browser.mjs';
+import { verifySupportingPortraits } from './supporting-portraits-browser.mjs';
 const {chromium}=await import(pathToFileURL(resolve(process.env.VN_ENGINE_PATH,'node_modules/playwright/index.mjs')));
 const root=resolve(process.argv[2]), out=resolve('test-results/windows-installed');await mkdir(out,{recursive:true});
 const checks=[],errors=[],limitations=[];let browser,page;
@@ -59,6 +60,11 @@ try{
   assert.match(await page.title(),/读取/);checks.push('Native player renders art, uses settings, saves and restores with Meta');
   await page.locator('[data-reset-control=slots]').click();await page.locator('[data-slot="1"] [data-slot-action=save]').click();await page.keyboard.press('Escape');
   const importSave=async save=>{await page.locator('[data-control=settings]').click();await page.locator('input[type=file]').setInputFiles({name:'reset-save.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(save))});await page.locator('.vn-modal').waitFor({state:'hidden'});};
+  const resetNpc = async () => {
+    await page.reload(); await page.locator('.vn-engine').waitFor();
+    if(await page.locator('[data-reset-enter]').isVisible()) { await page.locator('[data-reset-enter]').click(); await page.locator('.reset-title-gate').waitFor({state:'detached'}); }
+  };
+  await verifySupportingPortraits({page,project,loadFixture:importSave,reset:resetNpc,out:resolve(out,'supporting-runtime'),dist:resolve(root,'game'),viewports:[null],pass:name=>checks.push('Native WebView2 NPC: '+name)});
   await verifyLinwanArt({page,project,fixtures,loadFixture:importSave,control:id=>page.locator(`[data-control="${id}"]`),out,pass:name=>checks.push('Native WebView2: '+name),viewports:false});
   await verifyProductionArt({page,project,fixtures,loadFixture:importSave,out,pass:name=>checks.push('Native WebView2: '+name),captureEdges:false});
   await verifyDirection({page,project,fixtures,loadFixture:importSave,pass:name=>checks.push('Native direction: '+name)});

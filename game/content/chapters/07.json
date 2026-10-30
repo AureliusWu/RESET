@@ -10,7 +10,6 @@
       "location": "梧城一中",
       "time": "07:46",
       "background": "school-morning",
-      "noSprite": true,
       "lines": [
         {
           "id": "r1_c7_morning_pre01_01",
@@ -153,7 +152,6 @@
       "location": "梧城一中·旧美术教室",
       "time": "12:40",
       "background": "old-art-room",
-      "noSprite": true,
       "lines": [
         {
           "id": "r1_c7_after_pre01_01",
@@ -473,7 +471,6 @@
       "location": "梧城",
       "time": "之后",
       "background": "true-dawn",
-      "noSprite": true,
       "lines": [
         {
           "id": "r1_c7_credits_pre01_01",

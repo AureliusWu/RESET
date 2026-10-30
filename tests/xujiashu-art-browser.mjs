@@ -49,8 +49,8 @@ function witnessedFrames(sceneId) {
 const morning=witnessedFrames('morning_after');assert.ok(morning.length>=2);
 assert.equal(morning[0].lineId,'r1_morning_after_pre03_01');
 const opening=witnessedFrames('prologue_1842');assert.ok(opening.length);
-assert.equal(project.scenes.find(s=>s.id==='prologue_1842').noSprite,true);
-assert.ok(!opening[0].portrait,'opening noSprite must still suppress Xu in the engine');
+assert.notEqual(project.scenes.find(s=>s.id==='prologue_1842').noSprite,true);
+assert.equal(opening[0].portrait,'xujiashu/neutral','normal opening dialogue must display the approved Xu portrait');
 const results=[],errors=[];
 let browser;
 const enter=async page=>{await page.locator('[data-reset-enter]').click();await page.locator('.reset-title-gate').waitFor({state:'detached'});};
@@ -76,7 +76,7 @@ try {
     const page=await context.newPage();page.on('pageerror',error=>errors.push(error.message));
     await page.goto(base);await enter(page);
     if(fontCss){const css=(await readFile(fontCss,'utf8')).replaceAll('./files/','/qa-font/files/');await page.addStyleTag({content:css+'\nbody, #status, #__xuCandidateLabel, .vn-engine, .vn-engine button {font-family:"Noto Sans SC",sans-serif !important;}'});}
-    await load(page,opening[0].save);assert.notEqual(await page.locator('.vn-portrait').getAttribute('data-asset'),'xujiashu/neutral');
+    await load(page,opening[0].save);await ready(page);
     for(const [name,width,height] of viewports){
       await page.setViewportSize({width,height});await load(page,morning[0].save);await ready(page);
       await page.evaluate(async()=>{await document.fonts.ready;if(!document.getElementById('__xuCandidateLabel')){const label=document.createElement('div');label.id='__xuCandidateLabel';label.textContent='候选视觉检查 · owner 审核待完成';label.style.cssText='position:fixed;right:6px;top:4px;z-index:2147483647;padding:3px 6px;background:#172f37;color:white;font:11px sans-serif;pointer-events:none';document.body.append(label);}});
@@ -102,7 +102,7 @@ try {
     await page.evaluate(async path=>{const overlay=document.createElement('div');overlay.style.cssText='position:fixed;inset:0;z-index:2147483646;display:flex';for(const bg of ['#fff','#101820']){const panel=document.createElement('div');panel.style.cssText=`width:540px;height:960px;background:${bg}`;const im=new Image(540,960);im.src=path;panel.append(im);overlay.append(panel);}document.body.append(overlay);await Promise.all([...overlay.querySelectorAll('img')].map(im=>im.decode()));},runtimePath);
     await page.screenshot({path:resolve(out,'alpha-edges.png'),animations:'disabled'});
     assert.deepEqual(errors,[]);
-    const report={status:approved?'TECH_PASS_ART_PASS':'TECH_PASS_ART_UNVERIFIED',browser:browser.version(),source:'built-package',candidateProjectOverride:!approved,productionCandidateLeak:false,sceneId:'morning_after',lineId:morning[0].lineId,noSpriteOpeningPreserved:true,viewports:results,offlineSpriteVerified:true,runtimeSHA256:expectedHash,androidPhysicalDevice:false,windowsNative:false};
+    const report={status:approved?'TECH_PASS_ART_PASS':'TECH_PASS_ART_UNVERIFIED',browser:browser.version(),source:'built-package',candidateProjectOverride:!approved,productionCandidateLeak:false,sceneId:'morning_after',lineId:morning[0].lineId,approvedOpeningPortraitVisible:true,viewports:results,offlineSpriteVerified:true,runtimeSHA256:expectedHash,androidPhysicalDevice:false,windowsNative:false};
     await writeFile(resolve(out,'audit.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report,null,2));
   } finally {await context.close();}
 } finally {await browser?.close();await new Promise(r=>server.close(r));}

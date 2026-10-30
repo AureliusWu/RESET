@@ -10,7 +10,6 @@
       "location": "梧城一中·高二（三）班",
       "time": "06:58",
       "background": "classroom-dawn",
-      "noSprite": true,
       "lines": [
         {
           "id": "r1_chapter3_gate_pre01_01",
@@ -304,7 +303,6 @@
       "location": "梧城一中·旧美术教室",
       "time": "12:36",
       "background": "old-art-room",
-      "noSprite": true,
       "lines": [
         {
           "id": "r1_route_method_choice_pre01_01",
@@ -1253,7 +1251,6 @@
       "location": "梧城一中·旧美术教室",
       "time": "18:42",
       "background": "old-art-room",
-      "noSprite": true,
       "cg": "six-chairs-cg",
       "cgFrom": 1,
       "lines": [

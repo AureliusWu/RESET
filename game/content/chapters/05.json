@@ -10,7 +10,6 @@
       "location": "陈渡家",
       "time": "06:00",
       "background": "chendu-home-morning",
-      "noSprite": true,
       "lines": [
         {
           "id": "r1_chapter5_gate_pre01_01",
@@ -162,7 +161,6 @@
       "location": "梧城一中·旧美术教室",
       "time": "08:12",
       "background": "old-art-room",
-      "noSprite": true,
       "lines": [
         {
           "id": "r1_c5_team_morning_pre01_01",
@@ -309,7 +307,6 @@
       "location": "梧城市区",
       "time": "14:26",
       "background": "city-desync-afternoon",
-      "noSprite": true,
       "lines": [
         {
           "id": "r1_c5_city_desync_pre01_01",
@@ -572,7 +569,6 @@
       "location": "梧城北站",
       "time": "18:12",
       "background": "north-station",
-      "noSprite": true,
       "lines": [
         {
           "id": "r1_c5_north_station_pre01_01",
@@ -1022,7 +1018,6 @@
       "location": "梧城北站",
       "time": "18:25",
       "background": "north-station",
-      "noSprite": true,
       "lines": [
         {
           "id": "r1_c5_echo_death_pre01_01",
@@ -1588,7 +1583,6 @@
       "location": "梧城北站·站台",
       "time": "18:41",
       "background": "north-station",
-      "noSprite": true,
       "lines": [
         {
           "id": "r1_c5_countdown_pre01_01",

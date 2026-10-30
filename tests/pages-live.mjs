@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import {readFile,mkdir,writeFile} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
+import {verifySupportingPortraits} from './supporting-portraits-browser.mjs';
 const {chromium}=await import(pathToFileURL(resolve(process.env.VN_ENGINE_PATH,'node_modules/playwright/index.mjs')));
 const base=process.env.RESET_LIVE_URL.replace(/\/?$/,'/'), expected='reset-'+process.env.RELEASE_TAG;
 const out=resolve('test-results/pages-live');await mkdir(out,{recursive:true});
@@ -41,6 +42,9 @@ try{
   await page.screenshot({path:out+'/online-desktop.png',fullPage:true});
   pass('Real public title entry and game render production art and support quick saves, manual slots, Meta and spoiler-free collection');
   const fixtures=JSON.parse(await readFile(process.env.RESET_FIXTURES||'test-results/route-fixtures.json','utf8'));
+  const npcLoad=async save=>{await control('settings').click();await page.locator('input[type=file]').setInputFiles({name:'live-npc-witness.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(save))});await page.locator('.vn-modal').waitFor({state:'hidden'});};
+  const npcReset=async()=>{await page.reload();await page.locator('.vn-engine').waitFor();await enterTitle();};
+  await verifySupportingPortraits({page,project,loadFixture:npcLoad,reset:npcReset,out:out+'/npc-online',pass,dist:resolve('published'),viewports:[[390,844]],sequences:false});
   await control('settings').click();await page.locator('input[type=file]').setInputFiles({name:'acceptance-true-end.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(fixtures.endings['true-end']))});
   await page.locator('.vn-modal').waitFor({state:'hidden'});await page.waitForFunction(()=>document.title==='回留 · 明天见');
   assert.equal(await page.title(),'回留 · 明天见');await control('restart').click();
@@ -55,6 +59,7 @@ try{
   assert.equal(await page.title(),'回留 · 明天见');assert.equal(await page.locator('#error').innerText(),'');
   await page.screenshot({path:out+'/offline-mobile.png',fullPage:true});
   pass('Actual hosted PWA reloads with network disabled, re-enters through the cached title gate and preserves production art, manual slots, ending collection and Meta');
+  await verifySupportingPortraits({page,project,loadFixture:npcLoad,reset:npcReset,out:out+'/npc-offline',pass,dist:resolve('published'),viewports:[[390,844]],sequences:false});
   assert.deepEqual(errors,[]);
   await writeFile(out+'/acceptance.json',JSON.stringify({result:'passed',url:base,version:project.version,deploymentCommit:process.env.GITHUB_SHA,browser:await browser.version(),checks,errors},null,2)+'\n');
 }catch(error){await page?.screenshot({path:out+'/failure.png',fullPage:true}).catch(()=>{});await writeFile(out+'/failure.json',JSON.stringify({error:error.stack,checks,errors,url:base},null,2));throw error;}
