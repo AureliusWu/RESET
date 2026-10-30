@@ -5,7 +5,7 @@ import {resolve} from 'node:path';
 
 export const evidencePath='docs/evidence/final-v1.3.0';
 export const chapters=Array.from({length:7},(_,i)=>`game/content/chapters/0${i+1}.json`);
-export const sourceFiles=[...chapters,...['archive','archive-data','combat','direction','experience','meta','pwa','sfx','ui'].map(n=>`game/runtime/${n}.mjs`),'game/runtime/experience.css','game/runtime/direction.css'];
+export const sourceFiles=[...chapters,...['archive','archive-data','combat','direction','experience','meta','pwa','sfx','ui'].map(n=>`game/runtime/${n}.mjs`),'game/runtime/experience.css','game/runtime/direction.css','scripts/final-review.mjs','scripts/check-final-review.mjs','tests/player-actors-browser.mjs','tests/route-matrix.mjs','tests/browser-release.mjs','tests/pwa-upgrade-browser.mjs','tests/combat-player.mjs'];
 export const packageFiles=['project.json','index.html','app.mjs','archive.mjs','archive-data.mjs','combat.mjs','direction.mjs','direction-data.mjs','direction.css','experience.mjs','experience.css','meta.mjs','pwa.mjs','sfx.mjs','ui.mjs'];
 export const sha256=value=>createHash('sha256').update(value).digest('hex');
 export function canonical(value){
@@ -49,8 +49,14 @@ export async function checkReview(root,dist){
   assert.deepEqual(review.subject.packageSha256,await hashes(dist,packageFiles),'Reviewed runtime differs from the final package');
   assert.ok(review.observations?.length>=6,'Independent player observations missing');
   assert.ok(review.screenshots?.length>=8,'Reviewed screenshot evidence incomplete');
+  const actorsRaw=await readFile(resolve(root,evidencePath,'player-actors.json'));
+  assert.equal(sha256(actorsRaw),review.playerActorReportSha256,'Player-actor report changed');
+  const actors=JSON.parse(actorsRaw);
+  assert.equal(actors.status,'PASS');assert.equal(actors.projectSha256,review.subject.packageSha256['project.json']);
+  assert.deepEqual(actors.actors.map(a=>[a.id,a.status]),['first-time-keyboard','mobile-six-routes','returning-six-slots','true-route-reader'].map(id=>[id,'PASS']));
   for(const shot of review.screenshots){
     assert.ok(/^screenshots\/[a-z0-9-]+\.png$/.test(shot.file));
+    assert.ok(actors.screenshots.some(s=>shot.file==='screenshots/'+s.file&&s.sha256===shot.sha256),'Screenshot is not from the recorded player run: '+shot.file);
     assert.equal(sha256(await readFile(resolve(root,evidencePath,shot.file))),shot.sha256,'Reviewed screenshot has changed: '+shot.file);
     assert.ok(shot.observation?.length>=20,'Screenshot has no actual observation');
   }

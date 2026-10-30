@@ -79,7 +79,13 @@ try{
     await page.locator('[data-action=watch_linwan]').click();
     const shadow=project.scenes.find(s=>s.id==='linwan_shadow').lines.find(l=>l.text.includes('闪电照亮教室')).id;
     await until(async()=>await line()===shadow,'the shadow moves before Lin Wan');await shot('desktop-first-anomaly');
+    const layers=await page.evaluate(()=>({reading:Number(getComputedStyle(document.querySelector('.vn-reading')).zIndex),portrait:Number(getComputedStyle(document.querySelector('.vn-portrait')).zIndex),props:[...document.querySelectorAll('.reset-story-prop,.reset-direction-light,.reset-direction-warm,.reset-direction-shade')].map(n=>Number(getComputedStyle(n).zIndex))}));
+    assert.ok(layers.reading>layers.portrait&&layers.props.every(z=>layers.reading>z),'Reading must stay above portraits, props and transient lighting');
+    const linwan=project.scenes.find(s=>s.id==='linwan_shadow'),shadowIndex=linwan.lines.findIndex(l=>l.id===shadow);
+    const long=linwan.lines.slice(shadowIndex+1).toSorted((a,b)=>b.text.length-a.text.length)[0];
+    await until(async()=>await line()===long.id,'long dialogue with a real standing portrait');await shot('desktop-long-dialogue');
     record.checks.push('Fresh title traps Tab/Shift+Tab; Enter enters once and returns focus to reading','Real first choice enters Lin Wan scene and actual shadow paragraph');
+    record.checks.push('Long dialogue stays above the actual portrait, scene props and transient direction lights');
   });
   await actor('mobile-six-routes',{viewport:{width:390,height:844},isMobile:true,hasTouch:true,deviceScaleFactor:2},async({page,scene,until,load,shot,record})=>{
     await shot('mobile-title');await page.locator('[data-reset-enter]').tap();await page.locator('.reset-title-gate').waitFor({state:'detached'});

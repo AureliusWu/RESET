@@ -10,6 +10,7 @@ function ensureTitleGate(archive){
       .vn-engine[data-dialog-advance="true"] .vn-reading{cursor:pointer}
       .vn-engine .vn-actions:has(> [data-control="next"]:only-child){position:absolute!important;width:1px!important;height:1px!important;margin:0!important;padding:0!important;overflow:visible!important}
       .vn-engine .vn-stage .vn-portrait{z-index:4!important;animation:none!important;transition:none!important}
+      .vn-engine .vn-stage .vn-reading{z-index:7}
       .vn-engine .vn-stage .reset-story-prop{z-index:2!important}
       .vn-engine .vn-stage .reset-story-prop-map{left:clamp(12px,3vw,44px)!important;right:auto!important;width:min(36%,460px)!important;top:clamp(60px,9vh,96px)!important}
       .vn-engine .vn-stage .reset-story-prop-phone{left:clamp(12px,3vw,44px)!important;right:auto!important;width:min(24%,300px)!important}
