@@ -1,0 +1,243 @@
+{
+  "schema": 1,
+  "baseline": "a92bd91e29dd1b07a17a80c2e909b48c22fbe3df",
+  "version": "1.3.1",
+  "policy": "Remove only the 29 legacy scene-wide noSprite flags. Preserve all text, structure, IDs, assets, approval hashes and saves. Use existing per-line StageCue portrait=null for disembodied voices, recordings and written speech.",
+  "chapters": [
+    {
+      "path": "game/content/chapters/01.json",
+      "originalCanonicalSha256": "6ccf828225aec068768fd70a86a1d9cefe6324de090440264d57fa84ab3c787b",
+      "removedNoSprite": [
+        "prologue_1842",
+        "after_school_choice",
+        "home_bad",
+        "station_refuse"
+      ]
+    },
+    {
+      "path": "game/content/chapters/02.json",
+      "originalCanonicalSha256": "552219ccf9b4ae822aca8ea5ab935f675c046eb928e1c1bf4c0ee30bb76974b5",
+      "removedNoSprite": [
+        "chapter2_teaser",
+        "faceless_pattern",
+        "death_fifth",
+        "load_fifth",
+        "death_sixth"
+      ]
+    },
+    {
+      "path": "game/content/chapters/03.json",
+      "originalCanonicalSha256": "f5dbf4446519bb70f9482a43f74fa26995ddef04a29ea90cfe0ed61f287b2010",
+      "removedNoSprite": [
+        "chapter3_gate",
+        "route_method_choice",
+        "archive_photo"
+      ]
+    },
+    {
+      "path": "game/content/chapters/04.json",
+      "originalCanonicalSha256": "a973b55bb072b1f5153deb02b8eb33901dce66180a1d9934b6b070e4a4a8b102",
+      "removedNoSprite": [
+        "route_focus_choice",
+        "route_convergence"
+      ]
+    },
+    {
+      "path": "game/content/chapters/05.json",
+      "originalCanonicalSha256": "99317f902b30592ebe00d6977a0a3c4943c4484e3b1d5e0708f85e5f69f5963e",
+      "removedNoSprite": [
+        "chapter5_gate",
+        "c5_team_morning",
+        "c5_city_desync",
+        "c5_north_station",
+        "c5_echo_death",
+        "c5_countdown"
+      ]
+    },
+    {
+      "path": "game/content/chapters/06.json",
+      "originalCanonicalSha256": "a5a979a4aedb8a9205a5d387ae8a30485008051fe8561198a0a39b5a6b49759d",
+      "removedNoSprite": [
+        "chapter6_gate",
+        "c6_save_again",
+        "c6_no_save",
+        "c6_walk_forward",
+        "c6_escape",
+        "c6_last_door"
+      ]
+    },
+    {
+      "path": "game/content/chapters/07.json",
+      "originalCanonicalSha256": "cf24377624b00af50080d1661d0139018223dd7075f65a4d79414b4f85d4c872",
+      "removedNoSprite": [
+        "c7_morning",
+        "c7_after",
+        "c7_credits"
+      ]
+    }
+  ],
+  "hiddenLines": [
+    {
+      "sceneId": "home_bad",
+      "lineId": "r1_home_bad_pre03_01",
+      "speaker": "陈岚",
+      "reason": "Mother is heard in a voice message before the locked-door horror sequence."
+    },
+    {
+      "sceneId": "night_wucheng",
+      "lineId": "r1_night_wucheng_pre03_01",
+      "speaker": "徐嘉树",
+      "reason": "Explicitly written as an offscreen voice / remembered recording: （消息停在进门前）"
+    },
+    {
+      "sceneId": "chapter2_teaser",
+      "lineId": "r1_chapter2_teaser_pre03_01",
+      "speaker": "徐嘉树",
+      "reason": "Explicitly written as an offscreen voice / remembered recording: （放学时的语音）"
+    },
+    {
+      "sceneId": "faceless_pattern",
+      "lineId": "r1_faceless_pattern_pre03_01",
+      "speaker": "徐嘉树",
+      "reason": "Explicitly written as an offscreen voice / remembered recording: （电话里断续的提醒）"
+    },
+    {
+      "sceneId": "death_fifth",
+      "lineId": "r1_death_fifth_pre03_01",
+      "speaker": "徐嘉树",
+      "reason": "Explicitly written as an offscreen voice / remembered recording: （失真的通话）"
+    },
+    {
+      "sceneId": "load_fifth",
+      "lineId": "r1_load_fifth_pre03_01",
+      "speaker": "徐嘉树",
+      "reason": "Explicitly written as an offscreen voice / remembered recording: （耳边像又响起借伞时的叮嘱）"
+    },
+    {
+      "sceneId": "load_fifth",
+      "lineId": "r1_load_fifth_pre04_01",
+      "speaker": "程妍",
+      "reason": "Explicitly written as an offscreen voice / remembered recording: （另一段熟悉的声音）"
+    },
+    {
+      "sceneId": "faceless_second",
+      "lineId": "r1_faceless_second_pre03_01",
+      "speaker": "徐嘉树",
+      "reason": "Explicitly written as an offscreen voice / remembered recording: （留在外围的语音）"
+    },
+    {
+      "sceneId": "death_sixth",
+      "lineId": "r1_death_sixth_pre03_01",
+      "speaker": "徐嘉树",
+      "reason": "Explicitly written as an offscreen voice / remembered recording: （通话里只剩半句）"
+    },
+    {
+      "sceneId": "chapter3_gate",
+      "lineId": "r1_chapter3_gate_pre03_01",
+      "speaker": "陈岚",
+      "reason": "Mother is remembered from the previous evening; the present scene is the classroom."
+    },
+    {
+      "sceneId": "chapter3_gate",
+      "lineId": "c3g003",
+      "speaker": "林晚",
+      "reason": "Lin Wan quotation in the letter CG, not an in-person turn."
+    },
+    {
+      "sceneId": "c5_city_desync",
+      "lineId": "r1_c5_city_desync_pre03_01",
+      "speaker": "徐嘉树",
+      "reason": "Xu is calling from school while the group is outside in the desynchronizing city."
+    },
+    {
+      "sceneId": "c5_north_station",
+      "lineId": "r1_c5_north_station_pre03_01",
+      "speaker": "梁成",
+      "reason": "Explicitly written as an offscreen voice / remembered recording: （进入前留下的语音）"
+    },
+    {
+      "sceneId": "c5_echo_chen",
+      "lineId": "r1_c5_echo_chen_pre03_01",
+      "speaker": "梁成",
+      "reason": "Explicitly written as an offscreen voice / remembered recording: （进站前的叮嘱仍在记忆里）"
+    },
+    {
+      "sceneId": "c5_echo_fail",
+      "lineId": "r1_c5_echo_fail_pre03_01",
+      "speaker": "梁成",
+      "reason": "Explicitly written as an offscreen voice / remembered recording: （模糊的记忆）"
+    },
+    {
+      "sceneId": "c5_echo_death",
+      "lineId": "r1_c5_echo_death_pre03_01",
+      "speaker": "梁成",
+      "reason": "Explicitly written as an offscreen voice / remembered recording: （记忆里的最后一句提醒）"
+    },
+    {
+      "sceneId": "c5_echo_pattern",
+      "lineId": "r1_c5_echo_pattern_pre03_01",
+      "speaker": "梁成",
+      "reason": "Explicitly written as an offscreen voice / remembered recording: （站口传来的旧语音）"
+    },
+    {
+      "sceneId": "c5_request",
+      "lineId": "r1_c5_request_pre03_01",
+      "speaker": "梁成",
+      "reason": "Explicitly written as an offscreen voice / remembered recording: （站口那句叮嘱忽然又被想起）"
+    },
+    {
+      "sceneId": "c5_countdown",
+      "lineId": "r1_c5_countdown_pre03_01",
+      "speaker": "梁成",
+      "reason": "Explicitly written as an offscreen voice / remembered recording: （最后记得的站务广播）"
+    },
+    {
+      "sceneId": "chapter6_gate",
+      "lineId": "r1_chapter6_gate_pre03_01",
+      "speaker": "徐嘉树",
+      "reason": "Explicitly written as an offscreen voice / remembered recording: （记忆里的语音）"
+    },
+    {
+      "sceneId": "c6_save_again",
+      "lineId": "r1_c6_save_again_pre03_01",
+      "speaker": "徐嘉树",
+      "reason": "Explicitly written as an offscreen voice / remembered recording: （很早以前的录音）"
+    },
+    {
+      "sceneId": "c6_no_save",
+      "lineId": "r1_c6_no_save_pre03_01",
+      "speaker": "徐嘉树",
+      "reason": "Explicitly written as an offscreen voice / remembered recording: （陈渡记得那条没发完的消息）"
+    },
+    {
+      "sceneId": "c6_walk_forward",
+      "lineId": "r1_c6_walk_forward_pre03_01",
+      "speaker": "梁成",
+      "reason": "Explicitly written as an offscreen voice / remembered recording: （像从很远处传来的指引）"
+    },
+    {
+      "sceneId": "c6_escape",
+      "lineId": "r1_c6_escape_pre03_01",
+      "speaker": "梁成",
+      "reason": "Explicitly written as an offscreen voice / remembered recording: （留在记忆里的安全提醒）"
+    },
+    {
+      "sceneId": "c6_last_door",
+      "lineId": "r1_c6_last_door_pre03_01",
+      "speaker": "徐嘉树",
+      "reason": "Explicitly written as an offscreen voice / remembered recording: （记忆里最后一次散场）"
+    },
+    {
+      "sceneId": "c6_last_door",
+      "lineId": "r1_c6_last_door_pre04_01",
+      "speaker": "程妍",
+      "reason": "Explicitly written as an offscreen voice / remembered recording: （随口的叮嘱也被记起）"
+    },
+    {
+      "sceneId": "c7_morning",
+      "lineId": "r1_c7_morning_pre03_01",
+      "speaker": "陈岚",
+      "reason": "Morning recollection of mother while the present scene is the school gate."
+    }
+  ]
+}

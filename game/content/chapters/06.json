@@ -10,7 +10,6 @@
       "location": "不存在的界面",
       "time": "--:--",
       "background": "save-room",
-      "noSprite": true,
       "lines": [
         {
           "id": "r1_chapter6_gate_pre01_01",
@@ -169,7 +168,6 @@
       "location": "不存在的界面",
       "time": "18:42",
       "background": "save-room",
-      "noSprite": true,
       "lines": [
         {
           "id": "r1_c6_save_again_pre01_01",
@@ -311,7 +309,6 @@
       "location": "不存在的界面",
       "time": "--:--",
       "background": "save-room",
-      "noSprite": true,
       "lines": [
         {
           "id": "r1_c6_no_save_pre01_01",
@@ -465,7 +462,6 @@
       "location": "梧城北站",
       "time": "18:43",
       "background": "north-station-after1842",
-      "noSprite": true,
       "lines": [
         {
           "id": "r1_c6_walk_forward_pre01_01",
@@ -605,7 +601,6 @@
       "location": "正在消失的梧城北站",
       "time": "18:47",
       "background": "north-station-vanishing",
-      "noSprite": true,
       "lines": [
         {
           "id": "r1_c6_escape_pre01_01",
@@ -898,7 +893,6 @@
       "location": "夜梧城·旧教学楼门口",
       "time": "未知",
       "background": "night-school-exit",
-      "noSprite": true,
       "lines": [
         {
           "id": "r1_c6_last_door_pre01_01",

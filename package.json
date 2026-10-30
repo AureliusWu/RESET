@@ -1,6 +1,6 @@
 {
   "name": "reset-huiliu",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "private": true,
   "type": "module",
   "scripts": {
@@ -23,7 +23,7 @@
     "build": "node scripts/build.mjs && npm run art:check && npm run visual:r5:final",
     "check:release": "node scripts/check-release.mjs && npm run scenario:check && npm run audio:check && npm run asset:schema && npm run art:visual && npm run visual:r5:final && npm run art:r8 -- --partial && npm run direction:check && npm run final:check",
     "check:stable": "node scripts/check-release.mjs && npm run scenario:check && npm run audio:check && npm run asset:schema && npm run art:visual:release && npm run visual:r5:final && npm run art:r8 && npm run direction:check && npm run final:stable",
-    "test:release": "node --test tests/release.test.mjs tests/combat-input.test.mjs tests/archive.test.mjs tests/pwa.test.mjs tests/experience.test.mjs tests/art-completeness.test.mjs tests/art-visual-gate.test.mjs tests/mobile-shell.test.mjs tests/supporting-art.test.mjs tests/music.test.mjs tests/sfx.test.mjs tests/direction.test.mjs",
+    "test:release": "node --test tests/release.test.mjs tests/combat-input.test.mjs tests/archive.test.mjs tests/pwa.test.mjs tests/experience.test.mjs tests/art-completeness.test.mjs tests/art-visual-gate.test.mjs tests/mobile-shell.test.mjs tests/supporting-art.test.mjs tests/music.test.mjs tests/sfx.test.mjs tests/direction.test.mjs tests/portrait-runtime.test.mjs",
     "test:browser": "node tests/browser-release.mjs",
     "serve": "python -m http.server 8000 --directory dist",
     "art:support:apply": "node scripts/apply-supporting-art.mjs",
@@ -39,7 +39,8 @@
     "final:check": "node scripts/check-final-review.mjs",
     "final:stable": "node scripts/check-final-review.mjs --stable",
     "test:routes": "node tests/route-matrix.mjs",
-    "test:players": "node tests/player-actors-browser.mjs"
+    "test:players": "node tests/player-actors-browser.mjs",
+    "test:npc:browser": "node tests/supporting-runtime-browser.mjs"
   },
   "engines": {
     "node": ">=22"

@@ -7,6 +7,7 @@ import process from 'node:process';
 import { pngIcon } from './pwa-assets.mjs';
 import { loadContentPacks } from './content-packs.mjs';
 import { loadAssetManifest } from './assets.mjs';
+import { compilePortraitCues } from './portrait-cues.mjs';
 
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const lock = JSON.parse(await readFile(resolve(root, 'ENGINE.lock.json'), 'utf8'));
@@ -85,7 +86,7 @@ async function injectGameRuntime(project) {
   for (const file of ['title-key-visual.webp','save-anomaly.webp','ending-collection-header.webp','cg-gallery-header.webp','combat-hud-key-visual.webp']) {
     await copyFile(resolve(uiRuntimeDir, file), resolve(uiOutputDir, file));
   }
-  for (const file of ['README.md', 'LICENSE.md', 'CHANGELOG_v1.3.0.md']) {
+  for (const file of ['README.md', 'LICENSE.md', 'CHANGELOG_v1.3.1.md']) {
     await copyFile(resolve(root, file), resolve(output, file));
   }
   for (const file of ['direction.mjs','direction.css','sfx.mjs','combat.mjs','meta.mjs','archive.mjs','archive-data.mjs','experience.css','experience.mjs','ui.mjs','pwa.mjs']) {
@@ -146,11 +147,11 @@ for (const group of ['defaults','scenes','lines']) {
   if(group==='defaults')delete stage.defaults.effect;
   else for(const [id,value] of Object.entries(stage[group])){stage[group][id]={...value};delete stage[group][id].effect;}
 }
-const buildProject = {
+const buildProject = compilePortraitCues({
   ...project,
   stage,
   assets: [...project.assets, ...(audio.assets ?? [])]
-};
+}, JSON.parse(await readFile(resolve(root, 'game/visual/r5-speaker-policy.json'), 'utf8')));
 await writeFile(buildProjectFile, JSON.stringify(buildProject, null, 2) + '\n');
 
 try {

@@ -225,7 +225,8 @@
         "effect": {
           "type": "flash",
           "durationMs": 180
-        }
+        },
+        "portrait": null
       },
       "c3d004": {
         "effect": {
@@ -310,6 +311,84 @@
           "type": "flash",
           "durationMs": 400
         }
+      },
+      "r1_home_bad_pre03_01": {
+        "portrait": null
+      },
+      "r1_night_wucheng_pre03_01": {
+        "portrait": null
+      },
+      "r1_chapter2_teaser_pre03_01": {
+        "portrait": null
+      },
+      "r1_faceless_pattern_pre03_01": {
+        "portrait": null
+      },
+      "r1_death_fifth_pre03_01": {
+        "portrait": null
+      },
+      "r1_load_fifth_pre03_01": {
+        "portrait": null
+      },
+      "r1_load_fifth_pre04_01": {
+        "portrait": null
+      },
+      "r1_faceless_second_pre03_01": {
+        "portrait": null
+      },
+      "r1_death_sixth_pre03_01": {
+        "portrait": null
+      },
+      "r1_chapter3_gate_pre03_01": {
+        "portrait": null
+      },
+      "r1_c5_city_desync_pre03_01": {
+        "portrait": null
+      },
+      "r1_c5_north_station_pre03_01": {
+        "portrait": null
+      },
+      "r1_c5_echo_chen_pre03_01": {
+        "portrait": null
+      },
+      "r1_c5_echo_fail_pre03_01": {
+        "portrait": null
+      },
+      "r1_c5_echo_death_pre03_01": {
+        "portrait": null
+      },
+      "r1_c5_echo_pattern_pre03_01": {
+        "portrait": null
+      },
+      "r1_c5_request_pre03_01": {
+        "portrait": null
+      },
+      "r1_c5_countdown_pre03_01": {
+        "portrait": null
+      },
+      "r1_chapter6_gate_pre03_01": {
+        "portrait": null
+      },
+      "r1_c6_save_again_pre03_01": {
+        "portrait": null
+      },
+      "r1_c6_no_save_pre03_01": {
+        "portrait": null
+      },
+      "r1_c6_walk_forward_pre03_01": {
+        "portrait": null
+      },
+      "r1_c6_escape_pre03_01": {
+        "portrait": null
+      },
+      "r1_c6_last_door_pre03_01": {
+        "portrait": null
+      },
+      "r1_c6_last_door_pre04_01": {
+        "portrait": null
+      },
+      "r1_c7_morning_pre03_01": {
+        "portrait": null
       }
     }
   }

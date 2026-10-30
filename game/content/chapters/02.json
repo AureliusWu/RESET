@@ -10,7 +10,6 @@
       "location": "未知",
       "time": "18:42",
       "background": "night-wucheng",
-      "noSprite": true,
       "lines": [
         {
           "id": "r1_chapter2_teaser_pre01_01",
@@ -970,7 +969,6 @@
       "background": "underpass-rain",
       "cg": "faceless-reflection-cg",
       "cgFrom": 1,
-      "noSprite": true,
       "lines": [
         {
           "id": "r1_faceless_pattern_pre01_01",
@@ -1135,7 +1133,6 @@
       "location": "下穿通道",
       "time": "18:42",
       "background": "underpass-rain",
-      "noSprite": true,
       "lines": [
         {
           "id": "r1_death_fifth_pre01_01",
@@ -1283,7 +1280,6 @@
       "location": "梧城一中旧教学楼",
       "time": "18:42",
       "background": "classroom-rain",
-      "noSprite": true,
       "lines": [
         {
           "id": "r1_load_fifth_pre01_01",
@@ -1600,7 +1596,6 @@
       "location": "下穿通道",
       "time": "18:42",
       "background": "underpass-rain",
-      "noSprite": true,
       "lines": [
         {
           "id": "r1_death_sixth_pre01_01",

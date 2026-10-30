@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import {createServer} from 'node:http';
 import {readFile} from 'node:fs/promises';
 import {resolve,extname,sep} from 'node:path';
+import {verifySupportingPortraits} from './supporting-portraits-browser.mjs';
 
 export async function verifyPwaUpgrade({browser,dist,previous,fixtures,out,pass}) {
   let root=resolve(previous);
@@ -26,7 +27,8 @@ export async function verifyPwaUpgrade({browser,dist,previous,fixtures,out,pass}
   try{
     page=await context.newPage();await page.goto(base);await page.locator('.vn-engine').waitFor();
     const previousProject=await page.evaluate(async()=>await(await fetch('./project.json')).json());
-    assert.equal(previousProject.version,'reset-v1.2.3');
+    assert.equal(previousProject.version,'reset-v1.3.0');
+    const previousManifest=await page.evaluate(async()=>await(await fetch('./build-manifest.json')).json());
     await enterTitle();
     await page.locator('[data-control=save]').click();
     const points=['prologue_1842','linwan_shadow','archive_room','route_focus_choice','chapter5_gate','c5_request'];
@@ -39,7 +41,7 @@ export async function verifyPwaUpgrade({browser,dist,previous,fixtures,out,pass}
     }
     const oldEnding=structuredClone(fixtures.endings['normal-linwan']);
     const previousEnding=previousProject.scenes.find(scene=>scene.id===oldEnding.state.sceneId);
-    assert.ok(previousEnding,'v1.2.3 must contain the preserved Lin Wan ending scene');
+    assert.ok(previousEnding,'v1.3.0 must contain the preserved Lin Wan ending scene');
     oldEnding.state.storyVersion=previousProject.version;
     oldEnding.state.line=Math.max(0,(previousEnding.lines?.length??1)-1);
     oldEnding.state.history=[];
@@ -48,12 +50,12 @@ export async function verifyPwaUpgrade({browser,dist,previous,fixtures,out,pass}
     await page.waitForFunction(()=>document.getElementById('status').textContent.includes('可离线游玩')&&navigator.serviceWorker.controller);
     const saved=await page.evaluate(async()=>({quick:localStorage.getItem('vn-engine:reset:save:1'),slots:localStorage.getItem('reset:slots:v1'),settings:localStorage.getItem('vn-engine:reset:settings'),meta:localStorage.getItem('reset:meta:v1'),caches:await caches.keys()}));
     assert.equal(JSON.parse(saved.slots).slots.length,6);assert.ok(JSON.parse(saved.meta).cgs.length>0,'Old PWA fixture must really unlock a CG');
-    await page.screenshot({path:out+'/v123-before-upgrade.png',fullPage:true});
+    await page.screenshot({path:out+'/v130-before-upgrade.png',fullPage:true});
     await page.evaluate(async()=>{const c=await caches.open('qa-unrelated-cache');await c.put('./unrelated',new Response('keep'));});
     const nextWorkerPromise=context.waitForEvent('serviceworker');
     root=resolve(dist);await page.evaluate(async()=>{const owner=await navigator.serviceWorker.getRegistration();await owner.update();});
     await page.waitForFunction(async()=>Boolean((await navigator.serviceWorker.getRegistration()).waiting),null,{timeout:90000});
-    assert.equal(await page.evaluate(async()=> (await(await fetch('./project.json')).json()).version),'reset-v1.2.3','the active client must not switch runtime mid-story');
+    assert.equal(await page.evaluate(async()=> (await(await fetch('./project.json')).json()).version),'reset-v1.3.0','the active client must not switch runtime mid-story');
     const nextWorker=await nextWorkerPromise;
     await nextWorker.evaluate(()=>{self.__qaActivated=new Promise(resolve=>self.addEventListener('activate',()=>resolve(true),{once:true}));});
     await page.close();await nextWorker.evaluate(()=>self.__qaActivated);
@@ -62,7 +64,10 @@ export async function verifyPwaUpgrade({browser,dist,previous,fixtures,out,pass}
       const check=()=>{if(!self.registration.waiting&&self.registration.active?.state==='activated')resolve(true);else if(Date.now()>deadline)reject(Error('Candidate worker activation timed out'));else setTimeout(check,25);};check();
     }));
     page=await context.newPage();await page.goto(base);await page.locator('.vn-engine').waitFor();
-    await page.waitForFunction(async()=> (await(await fetch('./project.json')).json()).version==='reset-v1.3.0',null,{timeout:90000});
+    await page.waitForFunction(async()=> (await(await fetch('./project.json')).json()).version==='reset-v1.3.1',null,{timeout:90000});
+    const nextManifest=JSON.parse(await readFile(resolve(dist,'build-manifest.json'),'utf8'));
+    assert.notEqual(nextManifest.contentFingerprint,previousManifest.contentFingerprint,'updated content must use a new cache identity');
+    assert.notDeepEqual(await readFile(resolve(dist,'sw.js')),await readFile(resolve(previous,'sw.js')),'updated worker bytes must differ');
     await enterTitle();
     await page.reload();await page.locator('.vn-engine').waitFor();await enterTitle();await page.locator('.reset-toolbar-controls').waitFor();
     assert.equal(await page.evaluate(()=>localStorage.getItem('vn-engine:reset:save:1')),saved.quick);
@@ -86,15 +91,20 @@ export async function verifyPwaUpgrade({browser,dist,previous,fixtures,out,pass}
     await page.locator('[data-reset-control=collection]').click();assert.equal(await page.locator('[data-ending=normal-linwan]').getAttribute('data-unlocked'),'true');await page.keyboard.press('Escape');
     const keys=await page.evaluate(()=>caches.keys());assert.ok(keys.includes('qa-unrelated-cache'));
     assert.ok(saved.caches.filter(k=>k.startsWith('vn-self-reset-v2:')).every(k=>!keys.includes(k)));
-    pass('Published v1.2.3 PWA upgrades after old clients close; quick-save, all six distinct manual slots, settings, ending and CG Meta remain byte-preserved and load correctly');
+    pass('Published v1.3.0 PWA upgrades after old clients close; quick-save, all six distinct manual slots, settings, ending and CG Meta remain byte-preserved and load correctly');
+    const npcProject=JSON.parse(await readFile(resolve(dist,'project.json'),'utf8'));
+    const npcLoad=async save=>{await page.locator('[data-control=settings]').click();await page.locator('input[type=file]').setInputFiles({name:'upgraded-npc-witness.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(save))});await page.locator('.vn-modal').waitFor({state:'hidden'});};
+    const npcReset=async()=>{await page.reload();await page.locator('.vn-engine').waitFor();await enterTitle();};
+    await verifySupportingPortraits({page,project:npcProject,loadFixture:npcLoad,reset:npcReset,out:out+'/upgrade-npc-online',pass,dist,viewports:[[390,844]],sequences:false});
     await page.waitForFunction(()=>navigator.serviceWorker.controller&&document.getElementById('status').textContent.includes('可离线游玩'));
     await context.setOffline(true);await page.reload();await page.locator('.vn-engine').waitFor();await enterTitle();
     await verifyAllSaves();
+    await verifySupportingPortraits({page,project:npcProject,loadFixture:npcLoad,reset:npcReset,out:out+'/upgrade-npc-offline',pass,dist,viewports:[[390,844]],sequences:false});
     await page.locator('.vn-background').waitFor({state:'visible'});assert.equal(await page.locator('#error').innerText(),'');
-    await page.screenshot({path:out+'/v123-upgraded-offline.png',fullPage:true});
-    pass('Offline v1.3.0 reload repeats quick and all six v1.2.3 manual loads with original archives and unrelated caches intact');
+    await page.screenshot({path:out+'/v130-upgraded-offline.png',fullPage:true});
+    pass('Offline v1.3.1 reload repeats quick and all six v1.3.0 manual loads with original archives and unrelated caches intact');
     const {writeFile,mkdir}=await import('node:fs/promises');await mkdir('test-results/final-qa',{recursive:true});
-    await writeFile('test-results/final-qa/pwa-upgrade.json',JSON.stringify({status:'PASS',from:'reset-v1.2.3',to:'reset-v1.3.0',oldPackageSha256:'b7a4a9e9d8afa7ef72d714444937df097e4d831a786e7eef9a6be67e895ca127',manualSlots:6,distinctScenes:points,onlineLoads:7,offlineLoads:7,originalBackups:'UNCHANGED',settings:'PRESERVED',endingAndCgMeta:'PRESERVED',activeClientSwitch:'DEFERRED_UNTIL_CLOSED',unrelatedCaches:'PRESERVED',fixturePolicy:'Canonical replay saves imported into the actual published v1.2.3 UI, then saved via its six visible manual slots; not a human playthrough.'},null,2)+'\n');
+    await writeFile('test-results/final-qa/pwa-upgrade.json',JSON.stringify({status:'PASS',from:'reset-v1.3.0',to:'reset-v1.3.1',oldPackageSha256:'84432958fda05489de4ef4106cc95ecb51f2f1c137e1cc1d403acbb5cfe82b3f',previousContentFingerprint:previousManifest.contentFingerprint,contentFingerprint:nextManifest.contentFingerprint,workerChanged:true,npcOnline:12,npcOffline:12,manualSlots:6,distinctScenes:points,onlineLoads:7,offlineLoads:7,originalBackups:'UNCHANGED',settings:'PRESERVED',endingAndCgMeta:'PRESERVED',activeClientSwitch:'DEFERRED_UNTIL_CLOSED',unrelatedCaches:'PRESERVED',fixturePolicy:'Canonical replay saves imported into the actual published v1.3.0 UI, then saved via its six visible manual slots; not a human playthrough.'},null,2)+'\n');
   }catch(error){
     await page?.screenshot({path:out+'/upgrade-failure.png',fullPage:true}).catch(()=>{});
     const state=await page?.evaluate(async()=>({error:document.querySelector('#error')?.textContent,html:document.body.innerText,cacheKeys:await caches.keys(),cacheProjects:await Promise.all((await caches.keys()).filter(k=>k.startsWith('vn-self-reset-v2:')).map(async key=>{const cache=await caches.open(key),response=await cache.match(new URL('./project.json',location.href));return {key,version:response?(await response.json()).version:null};})),archiveHasNewControls:(await(await fetch('./archive.mjs')).text()).includes('reset-toolbar-controls'),controller:navigator.serviceWorker.controller?.state,waiting:(await navigator.serviceWorker.getRegistration())?.waiting?.state})).catch(()=>null);

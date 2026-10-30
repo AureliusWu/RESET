@@ -10,7 +10,6 @@
       "location": "梧城一中·旧美术教室",
       "time": "10月20日 08:10",
       "background": "old-art-room",
-      "noSprite": true,
       "lines": [
         {
           "id": "r1_route_focus_choice_pre01_01",
@@ -2768,7 +2767,6 @@
       "location": "梧城一中·旧美术教室",
       "time": "10月23日 19:10",
       "background": "old-art-room-evening",
-      "noSprite": true,
       "lines": [
         {
           "id": "r1_route_convergence_pre01_01",
