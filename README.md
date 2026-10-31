@@ -1,5 +1,9 @@
 # 回留 / RESET
 
+<!-- project-badges:start -->
+[![Version](https://img.shields.io/github/v/tag/AureliusWu/RESET?sort=semver&style=flat-square&label=version)](https://github.com/AureliusWu/RESET/tags) [![Build](https://github.com/AureliusWu/RESET/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/AureliusWu/RESET/actions/workflows/build.yml) [![Last commit](https://img.shields.io/github/last-commit/AureliusWu/RESET?style=flat-square)](https://github.com/AureliusWu/RESET/commits/main) [![License](https://img.shields.io/github/license/AureliusWu/RESET?style=flat-square)](LICENSE)
+<!-- project-badges:end -->
+
 > 有些选择可以重来，有些人却只能遇见一次。
 
 《回留》是一部发生在架空中国城市“梧城”的现代校园视觉小说，围绕读档、记忆残响、都市灵异、恋爱、多周目与“无法重来的选择”展开；主体是 VN 阅读与角色路线，关键节点穿插少量可操作的 2D 实时战斗。
